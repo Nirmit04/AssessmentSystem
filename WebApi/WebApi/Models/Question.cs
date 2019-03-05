@@ -21,7 +21,7 @@ namespace WebApi.Models
         }
     
         public int Question_ID { get; set; }
-        public string Question1 { get; set; }
+        public string QuestionStatement { get; set; }
         public string Option1 { get; set; }
         public string Option2 { get; set; }
         public string Option3 { get; set; }

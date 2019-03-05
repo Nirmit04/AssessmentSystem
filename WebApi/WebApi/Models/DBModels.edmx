@@ -20,7 +20,7 @@
             <PropertyRef Name="Question_ID" />
           </Key>
           <Property Name="Question_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Question" Type="nvarchar" MaxLength="300" />
+          <Property Name="QuestionStatement" Type="nvarchar" MaxLength="300" />
           <Property Name="Option1" Type="nvarchar" MaxLength="250" />
           <Property Name="Option2" Type="nvarchar" MaxLength="250" />
           <Property Name="Option3" Type="nvarchar" MaxLength="250" />
@@ -298,7 +298,7 @@
             <PropertyRef Name="Question_ID" />
           </Key>
           <Property Name="Question_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Question1" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="QuestionStatement" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="Option1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Option2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Option3" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
@@ -593,7 +593,7 @@
             <EntityTypeMapping TypeName="AssessmentSystemDBModel.Question">
               <MappingFragment StoreEntitySet="Question">
                 <ScalarProperty Name="Question_ID" ColumnName="Question_ID" />
-                <ScalarProperty Name="Question1" ColumnName="Question" />
+                <ScalarProperty Name="QuestionStatement" ColumnName="QuestionStatement" />
                 <ScalarProperty Name="Option1" ColumnName="Option1" />
                 <ScalarProperty Name="Option2" ColumnName="Option2" />
                 <ScalarProperty Name="Option3" ColumnName="Option3" />
