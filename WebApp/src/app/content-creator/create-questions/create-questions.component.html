@@ -1,0 +1,90 @@
+<div class="card" style="width: 80%;">
+  <div class="card-body">
+    <h5 class="card-title">Add Questions</h5>
+    <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+      <input type="hidden" name="Question_ID" #Question_ID="ngModel" [(ngModel)]="service.formData.Question_ID">
+      <div class="form-group">
+        <label>Question</label>
+        <textarea class="form-control" name="QuestionStatement" #QuestionStatement="ngModel"
+          [(ngModel)]="service.formData.QuestionStatement" rows="3" required></textarea>
+        <div class="validation-error" *ngIf="QuestionStatement.invalid && QuestionStatement.touched">This field is
+          required.
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Option 1</label>
+          <input required type="text" name="Option1" #Option1="ngModel" [(ngModel)]="service.formData.Option1"
+            class="form-control">
+          <div class="validation-error" *ngIf="Option1.invalid && Option1.touched">This field is required.</div>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Option 2</label>
+          <input required type="text" name="Option2" #Option2="ngModel" [(ngModel)]="service.formData.Option2"
+            class="form-control">
+          <div class="validation-error" *ngIf="Option2.invalid && Option2.touched">This field is required.</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Option 3</label>
+          <input required type="text" name="Option3" #Option3="ngModel" [(ngModel)]="service.formData.Option3"
+            class="form-control">
+          <div class="validation-error" *ngIf="Option3.invalid && Option3.touched">This field is required.</div>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Option 4</label>
+          <input required type="text" name="Option4" #Option4="ngModel" [(ngModel)]="service.formData.Option4"
+            class="form-control">
+          <div class="validation-error" *ngIf="Option4.invalid && Option4.touched">This field is required.</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Correct Option</label>
+          <input required type="text" name="Answer" #Answer="ngModel" [(ngModel)]="service.formData.Answer"
+            class="form-control">
+          <div class="validation-error" *ngIf="Answer.invalid && Answer.touched">This field is required.
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Marks</label>
+          <input required type="text" name="Marks" #Marks="ngModel" [(ngModel)]="service.formData.Marks"
+            class="form-control">
+          <div class="validation-error" *ngIf="Marks.invalid && Marks.touched">This field is required.</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <!-- <label>Subject-Tag</label>
+          <input required type="text" name="Sub" #Sub="ngModel" [(ngModel)]="service.formData.Subject_ID"
+            class="form-control"> -->
+          <label for="sel1">Select Subject</label>
+          <select name="Subject_ID" required #Subject_ID="ngModel" [(ngModel)]="service.formData.Subject_ID"
+            class="form-control" id="sel1">
+            <option value="">Choose</option>
+            <option *ngFor="let Sujbect of Subjects" value="{{Subject.Subject_ID}}">{{Subject.Name}}</option>
+          </select>
+          <div class="validation-error" *ngIf="Subject_ID.invalid && Subject_ID.touched">This field is required.</div>
+        </div>
+        <div class="form-group col-md-6">
+          <!-- <label>Difficulty-Tag</label>
+          <input required type="text" name="Diff" #Diff="ngModel" [(ngModel)]="service.formData.Diff"
+            class="form-control"> -->
+          <label for="sel1">Select Difficulty-Level</label>
+          <select name="Difficulty" required #Difficulty="ngModel" [(ngModel)]="service.formData.Difficulty"
+            class="form-control" id="sel1">
+            <option value="">Choose</option>
+            <option value="Beginner">Easy</option>
+            <option value="Intermediate">Medium</option>
+            <option value="Advanced">Hard</option>
+          </select>
+          <div class="validation-error" *ngIf="Difficulty.invalid && Difficulty.touched">This field is required.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" [disabled]="form.invalid" class="btn btn-primary btn-block">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
