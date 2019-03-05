@@ -91,6 +91,7 @@
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Role" Type="nvarchar" MaxLength="50" />
           <Property Name="ImageURL" Type="nvarchar" MaxLength="200" />
+          <Property Name="GoogleID" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_DetailedReport_Question">
           <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
@@ -386,6 +387,7 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ImageURL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="GoogleID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="DetailedReports" Relationship="Self.FK_DetailedReport_User" FromRole="User" ToRole="DetailedReport" />
           <NavigationProperty Name="Quizs" Relationship="Self.FK_Quiz_User" FromRole="User" ToRole="Quiz" />
           <NavigationProperty Name="QuizSchedules" Relationship="Self.FK_QuizSchedule_User" FromRole="User" ToRole="QuizSchedule" />
@@ -673,6 +675,7 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+                <ScalarProperty Name="GoogleID" ColumnName="GoogleID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
