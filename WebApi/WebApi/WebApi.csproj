@@ -202,6 +202,7 @@
     <Content Include="Models\DBModels.edmx.diagram">
       <DependentUpon>DBModels.edmx</DependentUpon>
     </Content>
+    <Content Include="connectionString.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
