@@ -1,0 +1,41 @@
+<h2 style="text-align: center">Questions</h2>
+<br /><br /><br />
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <ul class="nav navbar-nav">
+    <form #getQuestions ="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="search(searchField.value, difficulty_level.value)">
+      <input style="margin-left: 30px; width:30rem" #searchField class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <div style="margin-left: 30px">
+          <select #difficulty_level>
+            <option disabled selected value>Choose Difficulty Level</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+          </select>
+        </div>
+      <button style="margin-left: 30px" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </ul>
+</nav>
+
+<table class="table" *ngIf="getQuestions == null">
+  <thead>
+    <tr>
+      <th scope="col">Question No.</th>
+      <th scope="col">Question</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <ng-container *ngFor="let question of getQuestions">
+      <tr>
+        <th (click)="openForEdit(question.QuestionID)">{{question.Question_ID}}</th>
+        <td (click)="openForEdit(question.QuestionStatement)">{{question.QuestionStatement}}</td>
+        <td>
+          <a class="btn text-danger" (click)="onOrderDelete(question.QuestionID)"><button
+              class="btn btn-danger"></button></a>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
