@@ -23,11 +23,12 @@ namespace WebApi.Models
             this.Reports = new HashSet<Report>();
         }
     
-        public int User_ID { get; set; }
+        public long User_ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Role { get; set; }
+        public string ImageURL { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetailedReport> DetailedReports { get; set; }

@@ -13,7 +13,7 @@
           <Property Name="Quiz_ID" Type="int" />
           <Property Name="Question_ID" Type="int" />
           <Property Name="AttemptedAnswer" Type="int" />
-          <Property Name="User_ID" Type="int" />
+          <Property Name="User_ID" Type="bigint" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -29,6 +29,7 @@
           <Property Name="Marks" Type="decimal" Precision="10" Scale="2" />
           <Property Name="Subject_ID" Type="int" />
           <Property Name="Difficulty" Type="int" />
+          <Property Name="ImageName" Type="nvarchar" MaxLength="60" />
         </EntityType>
         <EntityType Name="Quiz">
           <Key>
@@ -41,7 +42,7 @@
           <Property Name="TotalQuestions" Type="int" />
           <Property Name="TotalMarks" Type="decimal" Precision="10" Scale="2" />
           <Property Name="ArchiveStatus" Type="int" />
-          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedBy" Type="bigint" />
           <Property Name="QuizType" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="QuizSchedule">
@@ -53,14 +54,14 @@
           <Property Name="StartDateTime" Type="datetime" />
           <Property Name="EndDateTime" Type="datetime" />
           <Property Name="ArchiveStatus" Type="int" />
-          <Property Name="User_ID" Type="int" />
+          <Property Name="User_ID" Type="bigint" />
         </EntityType>
         <EntityType Name="Report">
           <Key>
             <PropertyRef Name="Report_ID" />
           </Key>
           <Property Name="Report_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="User_ID" Type="int" />
+          <Property Name="User_ID" Type="bigint" />
           <Property Name="Quiz_ID" Type="int" />
           <Property Name="CorrectAnswers" Type="int" />
           <Property Name="WrongAnswers" Type="int" />
@@ -84,11 +85,12 @@
           <Key>
             <PropertyRef Name="User_ID" />
           </Key>
-          <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Role" Type="nvarchar" MaxLength="50" />
+          <Property Name="ImageURL" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <Association Name="FK_DetailedReport_Question">
           <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
@@ -288,7 +290,7 @@
           <Property Name="Quiz_ID" Type="Int32" />
           <Property Name="Question_ID" Type="Int32" />
           <Property Name="AttemptedAnswer" Type="Int32" />
-          <Property Name="User_ID" Type="Int32" />
+          <Property Name="User_ID" Type="Int64" />
           <NavigationProperty Name="Question" Relationship="Self.FK_DetailedReport_Question" FromRole="DetailedReport" ToRole="Question" />
           <NavigationProperty Name="Quiz" Relationship="Self.FK_DetailedReport_Quiz" FromRole="DetailedReport" ToRole="Quiz" />
           <NavigationProperty Name="User" Relationship="Self.FK_DetailedReport_User" FromRole="DetailedReport" ToRole="User" />
@@ -307,6 +309,7 @@
           <Property Name="Marks" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="Subject_ID" Type="Int32" />
           <Property Name="Difficulty" Type="Int32" />
+          <Property Name="ImageName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DetailedReports" Relationship="Self.FK_DetailedReport_Question" FromRole="Question" ToRole="DetailedReport" />
           <NavigationProperty Name="Subject" Relationship="Self.FK_Question_Subject" FromRole="Question" ToRole="Subject" />
         </EntityType>
@@ -321,7 +324,7 @@
           <Property Name="TotalQuestions" Type="Int32" />
           <Property Name="TotalMarks" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="ArchiveStatus" Type="Int32" />
-          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedBy" Type="Int64" />
           <Property Name="QuizType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DetailedReports" Relationship="Self.FK_DetailedReport_Quiz" FromRole="Quiz" ToRole="DetailedReport" />
           <NavigationProperty Name="Subject" Relationship="Self.FK_Quiz_Subject" FromRole="Quiz" ToRole="Subject" />
@@ -338,7 +341,7 @@
           <Property Name="StartDateTime" Type="DateTime" Precision="3" />
           <Property Name="EndDateTime" Type="DateTime" Precision="3" />
           <Property Name="ArchiveStatus" Type="Int32" />
-          <Property Name="User_ID" Type="Int32" />
+          <Property Name="User_ID" Type="Int64" />
           <NavigationProperty Name="Quiz" Relationship="Self.FK_QuizSchedule_Quiz" FromRole="QuizSchedule" ToRole="Quiz" />
           <NavigationProperty Name="User" Relationship="Self.FK_QuizSchedule_User" FromRole="QuizSchedule" ToRole="User" />
         </EntityType>
@@ -347,7 +350,7 @@
             <PropertyRef Name="Report_ID" />
           </Key>
           <Property Name="Report_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User_ID" Type="Int32" />
+          <Property Name="User_ID" Type="Int64" />
           <Property Name="Quiz_ID" Type="Int32" />
           <Property Name="CorrectAnswers" Type="Int32" />
           <Property Name="WrongAnswers" Type="Int32" />
@@ -377,11 +380,12 @@
           <Key>
             <PropertyRef Name="User_ID" />
           </Key>
-          <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ImageURL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DetailedReports" Relationship="Self.FK_DetailedReport_User" FromRole="User" ToRole="DetailedReport" />
           <NavigationProperty Name="Quizs" Relationship="Self.FK_Quiz_User" FromRole="User" ToRole="Quiz" />
           <NavigationProperty Name="QuizSchedules" Relationship="Self.FK_QuizSchedule_User" FromRole="User" ToRole="QuizSchedule" />
@@ -602,6 +606,7 @@
                 <ScalarProperty Name="Marks" ColumnName="Marks" />
                 <ScalarProperty Name="Subject_ID" ColumnName="Subject_ID" />
                 <ScalarProperty Name="Difficulty" ColumnName="Difficulty" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -667,6 +672,7 @@
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

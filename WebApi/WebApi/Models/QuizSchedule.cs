@@ -19,7 +19,7 @@ namespace WebApi.Models
         public Nullable<System.DateTime> StartDateTime { get; set; }
         public Nullable<System.DateTime> EndDateTime { get; set; }
         public Nullable<int> ArchiveStatus { get; set; }
-        public Nullable<int> User_ID { get; set; }
+        public Nullable<long> User_ID { get; set; }
     
         public virtual Quiz Quiz { get; set; }
         public virtual User User { get; set; }

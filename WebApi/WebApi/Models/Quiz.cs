@@ -29,7 +29,7 @@ namespace WebApi.Models
         public Nullable<int> TotalQuestions { get; set; }
         public Nullable<decimal> TotalMarks { get; set; }
         public Nullable<int> ArchiveStatus { get; set; }
-        public Nullable<int> CreatedBy { get; set; }
+        public Nullable<long> CreatedBy { get; set; }
         public string QuizType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d0e00d2bce2c4d8bbbc4c2713a4e2bea" Name="Diagram1">
-        <EntityTypeShape EntityType="AssessmentSystemDBModel.DetailedReport" Width="1.5" PointX="2.875" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="AssessmentSystemDBModel.Question" Width="1.5" PointX="1.375" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="AssessmentSystemDBModel.Quiz" Width="1.5" PointX="5.625" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="AssessmentSystemDBModel.QuizSchedule" Width="1.5" PointX="8.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="AssessmentSystemDBModel.Report" Width="1.5" PointX="8.125" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="AssessmentSystemDBModel.Subject" Width="1.5" PointX="4.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="AssessmentSystemDBModel.User" Width="1.5" PointX="0.5" PointY="5.25" IsExpanded="true" />
+      <Diagram DiagramId="9192c79d48ae411f8213972a357c947f" Name="Diagram1">
+        <EntityTypeShape EntityType="AssessmentSystemDBModel.DetailedReport" Width="1.5" PointX="3.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssessmentSystemDBModel.Question" Width="1.5" PointX="1.375" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssessmentSystemDBModel.Quiz" Width="1.5" PointX="6.375" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssessmentSystemDBModel.QuizSchedule" Width="1.5" PointX="8.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssessmentSystemDBModel.Report" Width="1.5" PointX="7.25" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssessmentSystemDBModel.Subject" Width="1.5" PointX="4.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssessmentSystemDBModel.User" Width="1.5" PointX="0.5" PointY="4.75" IsExpanded="true" />
         <AssociationConnector Association="AssessmentSystemDBModel.FK_DetailedReport_Question" ManuallyRouted="false" />
         <AssociationConnector Association="AssessmentSystemDBModel.FK_DetailedReport_Quiz" ManuallyRouted="false" />
         <AssociationConnector Association="AssessmentSystemDBModel.FK_DetailedReport_User" ManuallyRouted="false" />

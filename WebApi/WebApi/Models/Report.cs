@@ -15,7 +15,7 @@ namespace WebApi.Models
     public partial class Report
     {
         public int Report_ID { get; set; }
-        public Nullable<int> User_ID { get; set; }
+        public Nullable<long> User_ID { get; set; }
         public Nullable<int> Quiz_ID { get; set; }
         public Nullable<int> CorrectAnswers { get; set; }
         public Nullable<int> WrongAnswers { get; set; }

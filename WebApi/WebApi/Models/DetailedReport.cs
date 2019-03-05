@@ -18,7 +18,7 @@ namespace WebApi.Models
         public Nullable<int> Quiz_ID { get; set; }
         public Nullable<int> Question_ID { get; set; }
         public Nullable<int> AttemptedAnswer { get; set; }
-        public Nullable<int> User_ID { get; set; }
+        public Nullable<long> User_ID { get; set; }
     
         public virtual Question Question { get; set; }
         public virtual Quiz Quiz { get; set; }
