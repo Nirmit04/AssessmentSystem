@@ -1,18 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ContentCreatorComponent } from './content-creator/content-creator.component';
+import { DashboardComponent } from './content-creator/dashboard/dashboard.component';
+import { RetrieveQuestionBankComponent } from './content-creator/retrieve-question-bank/retrieve-question-bank.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [ AppComponent, RetrieveQuestionBankComponent, ContentCreatorComponent, DashboardComponent ],
+	imports: [ BrowserModule, AppRoutingModule, FormsModule, HttpClientModule ],
+	providers: [],
+	bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {}
