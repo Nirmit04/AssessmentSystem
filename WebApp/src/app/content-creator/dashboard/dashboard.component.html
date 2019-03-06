@@ -13,14 +13,17 @@
         </div>
         <ul class="nav">
           <li class="active ">
-            <a href="../content-creator.component.html">
+            <a (click) = "Open(1)">
               <i class="tim-icons icon-chart-pie-36"></i>
               <p>Dashboard</p>
-            </a>
+              <!-- <button mat-raised-button (click) = "onCreate()">
+                Dashboard
+              </button> -->
+            </a> 
           </li>
           
           <li>
-            <a href="../content-creator.component.html">
+            <a (click)="Open(2)">
               <i class="tim-icons icon-single-02"></i>
               <p>Create Question</p>
             </a>
@@ -58,7 +61,7 @@
                   <span class="navbar-toggler-bar bar3"></span>
                 </button>
               </div>
-              <a class="navbar-brand" href="javascript:void(0)">Dashboard</a>
+              <a class="navbar-brand" href="#">Dashboard</a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -92,7 +95,19 @@
           </div>
         </nav>
         <!-- End Navbar -->
-        </div>
+        <div class="content">
+            <div class="row">
+              <div class="col-12">
+              <a *ngIf = "1 == Val">
+                <app-retrieve-question-bank></app-retrieve-question-bank>
+              </a>
+              <a *ngIf = "2 == Val">
+                <app-content-creator></app-content-creator>
+              </a>
+              </div>
+              </div>
+                </div>
+                 
+   </div>
   </div>
-</body>
- 
+  </body>
