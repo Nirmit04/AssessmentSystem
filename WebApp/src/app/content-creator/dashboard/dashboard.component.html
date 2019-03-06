@@ -12,13 +12,10 @@
           </a>
         </div>
         <ul class="nav">
-          <li class="active ">
+          <li class="">
             <a (click) = "Open(1)">
               <i class="tim-icons icon-chart-pie-36"></i>
               <p>Dashboard</p>
-              <!-- <button mat-raised-button (click) = "onCreate()">
-                Dashboard
-              </button> -->
             </a> 
           </li>
           
@@ -29,19 +26,19 @@
             </a>
           </li>
           <li>
-            <a href="javascript:void(0)">
+            <a (click)="Open(3)">
               <i class="tim-icons icon-puzzle-10"></i>
               <p>Create Quiz</p>
             </a>
           </li>
           <li>
-              <a href="javascript:void(0)">
+              <a (click)="Open(4)">
                 <i class="tim-icons icon-puzzle-10"></i>
                 <p>Create Tag</p>
               </a>
             </li>
             <li>
-                <a href="javascript:void(0)">
+                <a (click)="Open(5)">
                   <i class="tim-icons icon-puzzle-10"></i>
                   <p>Questions Created</p>
                 </a>
@@ -98,13 +95,22 @@
         <div class="content">
             <div class="row">
               <div class="col-12">
-              <a *ngIf = "1 == Val">
+               <a *ngIf = "1 == Val">
                 <app-retrieve-question-bank></app-retrieve-question-bank>
               </a>
-              <a *ngIf = "2 == Val">
-                <app-content-creator></app-content-creator>
+               <a *ngIf = "2 == Val">
+                <app-create-questions></app-create-questions>
               </a>
-              </div>
+              <!-- <a *ngIf = "3 == Val">
+                  <app-create-questions></app-create-questions>
+                </a>
+                <a *ngIf = "4 == Val">
+                    <app-create-questions></app-create-questions>
+                  </a>
+                  <a *ngIf = "5 == Val">
+                      <app-create-questions></app-create-questions>
+                    </a>-->
+              </div> 
               </div>
                 </div>
                  

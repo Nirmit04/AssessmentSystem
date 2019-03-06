@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ContentCreatorComponent } from '../content-creator.component';
 import { RetrieveQuestionBankComponent } from '../retrieve-question-bank/retrieve-question-bank.component';
 import { stringify } from '@angular/core/src/render3/util';
@@ -10,7 +9,7 @@ import { stringify } from '@angular/core/src/render3/util';
 	styleUrls: [ './dashboard.component.css' ]
 })
 export class DashboardComponent implements OnInit {
-	constructor(private dialog: MatDialog) {}
+	constructor() {}
 	Val: string[];
 	ngOnInit() {}
 	Open(link) {
