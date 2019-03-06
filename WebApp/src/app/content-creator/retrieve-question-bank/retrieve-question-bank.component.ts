@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { ContentCreatorServiceService } from '../shared/content-creator-service';
+import { ContentCreatorServiceService } from 'src/app/content-creator/shared/content-creator-service.service';
 
 @Component({
   selector: 'app-retrieve-question-bank',
