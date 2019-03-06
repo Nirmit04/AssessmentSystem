@@ -9,5 +9,6 @@ export class Question {
     Answer: number;
     Marks: number;
     Difficulty: String;
-    Subject_ID: number;
+    Subject_ID: String;
+    ImageName?: String;
 }

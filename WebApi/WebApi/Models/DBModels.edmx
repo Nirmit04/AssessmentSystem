@@ -1,0 +1,705 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AssessmentSystemDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DetailedReport">
+          <Key>
+            <PropertyRef Name="DetailedReport_ID" />
+          </Key>
+          <Property Name="DetailedReport_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Quiz_ID" Type="int" />
+          <Property Name="Question_ID" Type="int" />
+          <Property Name="AttemptedAnswer" Type="int" />
+          <Property Name="User_ID" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Question_ID" />
+          </Key>
+          <Property Name="Question_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionStatement" Type="nvarchar" MaxLength="300" />
+          <Property Name="Option1" Type="nvarchar" MaxLength="250" />
+          <Property Name="Option2" Type="nvarchar" MaxLength="250" />
+          <Property Name="Option3" Type="nvarchar" MaxLength="250" />
+          <Property Name="Option4" Type="nvarchar" MaxLength="250" />
+          <Property Name="Answer" Type="int" />
+          <Property Name="Marks" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Subject_ID" Type="int" />
+          <Property Name="Difficulty" Type="int" />
+          <Property Name="ImageName" Type="nvarchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="Quiz">
+          <Key>
+            <PropertyRef Name="Quiz_ID" />
+          </Key>
+          <Property Name="Quiz_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Question_IDs" Type="nvarchar" MaxLength="250" />
+          <Property Name="Difficulty" Type="int" />
+          <Property Name="Subject_ID" Type="int" />
+          <Property Name="TotalQuestions" Type="int" />
+          <Property Name="TotalMarks" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="ArchiveStatus" Type="int" />
+          <Property Name="CreatedBy" Type="bigint" />
+          <Property Name="QuizType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="QuizSchedule">
+          <Key>
+            <PropertyRef Name="Schedule_ID" />
+          </Key>
+          <Property Name="Schedule_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Quiz_ID" Type="int" />
+          <Property Name="StartDateTime" Type="datetime" />
+          <Property Name="EndDateTime" Type="datetime" />
+          <Property Name="ArchiveStatus" Type="int" />
+          <Property Name="User_ID" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="Report_ID" />
+          </Key>
+          <Property Name="Report_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="bigint" />
+          <Property Name="Quiz_ID" Type="int" />
+          <Property Name="CorrectAnswers" Type="int" />
+          <Property Name="WrongAnswers" Type="int" />
+          <Property Name="TimeTaken" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="UnattemptedAnswers" Type="int" />
+          <Property Name="Accuracy" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Efficiency" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="TotalMarks" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="QuizType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Subject_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="Subject_ID" />
+          </Key>
+          <Property Name="Subject_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Department" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+          <Property Name="ImageURL" Type="nvarchar" MaxLength="200" />
+          <Property Name="GoogleID" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DetailedReport_Question">
+          <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+          <End Role="DetailedReport" Type="Self.DetailedReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Question_ID" />
+            </Principal>
+            <Dependent Role="DetailedReport">
+              <PropertyRef Name="Question_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetailedReport_Quiz">
+          <End Role="Quiz" Type="Self.Quiz" Multiplicity="0..1" />
+          <End Role="DetailedReport" Type="Self.DetailedReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quiz">
+              <PropertyRef Name="Quiz_ID" />
+            </Principal>
+            <Dependent Role="DetailedReport">
+              <PropertyRef Name="Quiz_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetailedReport_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="DetailedReport" Type="Self.DetailedReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="DetailedReport">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="Subject_ID" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="Subject_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Quiz_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+          <End Role="Quiz" Type="Self.Quiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="Subject_ID" />
+            </Principal>
+            <Dependent Role="Quiz">
+              <PropertyRef Name="Subject_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Quiz_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Quiz" Type="Self.Quiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Quiz">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuizSchedule_Quiz">
+          <End Role="Quiz" Type="Self.Quiz" Multiplicity="0..1" />
+          <End Role="QuizSchedule" Type="Self.QuizSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quiz">
+              <PropertyRef Name="Quiz_ID" />
+            </Principal>
+            <Dependent Role="QuizSchedule">
+              <PropertyRef Name="Quiz_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuizSchedule_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="QuizSchedule" Type="Self.QuizSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="QuizSchedule">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_Quiz">
+          <End Role="Quiz" Type="Self.Quiz" Multiplicity="0..1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quiz">
+              <PropertyRef Name="Quiz_ID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="Quiz_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="Subject_ID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="Subject_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AssessmentSystemDBModelStoreContainer">
+          <EntitySet Name="DetailedReport" EntityType="Self.DetailedReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Quiz" EntityType="Self.Quiz" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuizSchedule" EntityType="Self.QuizSchedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DetailedReport_Question" Association="Self.FK_DetailedReport_Question">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="DetailedReport" EntitySet="DetailedReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetailedReport_Quiz" Association="Self.FK_DetailedReport_Quiz">
+            <End Role="Quiz" EntitySet="Quiz" />
+            <End Role="DetailedReport" EntitySet="DetailedReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetailedReport_User" Association="Self.FK_DetailedReport_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="DetailedReport" EntitySet="DetailedReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Subject" Association="Self.FK_Question_Subject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Quiz_Subject" Association="Self.FK_Quiz_Subject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="Quiz" EntitySet="Quiz" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Quiz_User" Association="Self.FK_Quiz_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Quiz" EntitySet="Quiz" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuizSchedule_Quiz" Association="Self.FK_QuizSchedule_Quiz">
+            <End Role="Quiz" EntitySet="Quiz" />
+            <End Role="QuizSchedule" EntitySet="QuizSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuizSchedule_User" Association="Self.FK_QuizSchedule_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="QuizSchedule" EntitySet="QuizSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_Quiz" Association="Self.FK_Report_Quiz">
+            <End Role="Quiz" EntitySet="Quiz" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_Subject" Association="Self.FK_Report_Subject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_User" Association="Self.FK_Report_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AssessmentSystemDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DetailedReport">
+          <Key>
+            <PropertyRef Name="DetailedReport_ID" />
+          </Key>
+          <Property Name="DetailedReport_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Quiz_ID" Type="Int32" />
+          <Property Name="Question_ID" Type="Int32" />
+          <Property Name="AttemptedAnswer" Type="Int32" />
+          <Property Name="User_ID" Type="Int64" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_DetailedReport_Question" FromRole="DetailedReport" ToRole="Question" />
+          <NavigationProperty Name="Quiz" Relationship="Self.FK_DetailedReport_Quiz" FromRole="DetailedReport" ToRole="Quiz" />
+          <NavigationProperty Name="User" Relationship="Self.FK_DetailedReport_User" FromRole="DetailedReport" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Question_ID" />
+          </Key>
+          <Property Name="Question_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionStatement" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Option1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Option2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Option3" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Option4" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Answer" Type="Int32" />
+          <Property Name="Marks" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Subject_ID" Type="Int32" />
+          <Property Name="Difficulty" Type="Int32" />
+          <Property Name="ImageName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DetailedReports" Relationship="Self.FK_DetailedReport_Question" FromRole="Question" ToRole="DetailedReport" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK_Question_Subject" FromRole="Question" ToRole="Subject" />
+        </EntityType>
+        <EntityType Name="Quiz">
+          <Key>
+            <PropertyRef Name="Quiz_ID" />
+          </Key>
+          <Property Name="Quiz_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Question_IDs" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Difficulty" Type="Int32" />
+          <Property Name="Subject_ID" Type="Int32" />
+          <Property Name="TotalQuestions" Type="Int32" />
+          <Property Name="TotalMarks" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="ArchiveStatus" Type="Int32" />
+          <Property Name="CreatedBy" Type="Int64" />
+          <Property Name="QuizType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DetailedReports" Relationship="Self.FK_DetailedReport_Quiz" FromRole="Quiz" ToRole="DetailedReport" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK_Quiz_Subject" FromRole="Quiz" ToRole="Subject" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Quiz_User" FromRole="Quiz" ToRole="User" />
+          <NavigationProperty Name="QuizSchedules" Relationship="Self.FK_QuizSchedule_Quiz" FromRole="Quiz" ToRole="QuizSchedule" />
+          <NavigationProperty Name="Reports" Relationship="Self.FK_Report_Quiz" FromRole="Quiz" ToRole="Report" />
+        </EntityType>
+        <EntityType Name="QuizSchedule">
+          <Key>
+            <PropertyRef Name="Schedule_ID" />
+          </Key>
+          <Property Name="Schedule_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Quiz_ID" Type="Int32" />
+          <Property Name="StartDateTime" Type="DateTime" Precision="3" />
+          <Property Name="EndDateTime" Type="DateTime" Precision="3" />
+          <Property Name="ArchiveStatus" Type="Int32" />
+          <Property Name="User_ID" Type="Int64" />
+          <NavigationProperty Name="Quiz" Relationship="Self.FK_QuizSchedule_Quiz" FromRole="QuizSchedule" ToRole="Quiz" />
+          <NavigationProperty Name="User" Relationship="Self.FK_QuizSchedule_User" FromRole="QuizSchedule" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="Report_ID" />
+          </Key>
+          <Property Name="Report_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="Int64" />
+          <Property Name="Quiz_ID" Type="Int32" />
+          <Property Name="CorrectAnswers" Type="Int32" />
+          <Property Name="WrongAnswers" Type="Int32" />
+          <Property Name="TimeTaken" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="UnattemptedAnswers" Type="Int32" />
+          <Property Name="Accuracy" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Efficiency" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="TotalMarks" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="QuizType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Subject_ID" Type="Int32" />
+          <NavigationProperty Name="Quiz" Relationship="Self.FK_Report_Quiz" FromRole="Report" ToRole="Quiz" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK_Report_Subject" FromRole="Report" ToRole="Subject" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Report_User" FromRole="Report" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="Subject_ID" />
+          </Key>
+          <Property Name="Subject_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK_Question_Subject" FromRole="Subject" ToRole="Question" />
+          <NavigationProperty Name="Quizs" Relationship="Self.FK_Quiz_Subject" FromRole="Subject" ToRole="Quiz" />
+          <NavigationProperty Name="Reports" Relationship="Self.FK_Report_Subject" FromRole="Subject" ToRole="Report" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ImageURL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="GoogleID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DetailedReports" Relationship="Self.FK_DetailedReport_User" FromRole="User" ToRole="DetailedReport" />
+          <NavigationProperty Name="Quizs" Relationship="Self.FK_Quiz_User" FromRole="User" ToRole="Quiz" />
+          <NavigationProperty Name="QuizSchedules" Relationship="Self.FK_QuizSchedule_User" FromRole="User" ToRole="QuizSchedule" />
+          <NavigationProperty Name="Reports" Relationship="Self.FK_Report_User" FromRole="User" ToRole="Report" />
+        </EntityType>
+        <Association Name="FK_DetailedReport_Question">
+          <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+          <End Role="DetailedReport" Type="Self.DetailedReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Question_ID" />
+            </Principal>
+            <Dependent Role="DetailedReport">
+              <PropertyRef Name="Question_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetailedReport_Quiz">
+          <End Role="Quiz" Type="Self.Quiz" Multiplicity="0..1" />
+          <End Role="DetailedReport" Type="Self.DetailedReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quiz">
+              <PropertyRef Name="Quiz_ID" />
+            </Principal>
+            <Dependent Role="DetailedReport">
+              <PropertyRef Name="Quiz_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetailedReport_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="DetailedReport" Type="Self.DetailedReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="DetailedReport">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="Subject_ID" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="Subject_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Quiz_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+          <End Role="Quiz" Type="Self.Quiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="Subject_ID" />
+            </Principal>
+            <Dependent Role="Quiz">
+              <PropertyRef Name="Subject_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Quiz_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Quiz" Type="Self.Quiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Quiz">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuizSchedule_Quiz">
+          <End Role="Quiz" Type="Self.Quiz" Multiplicity="0..1" />
+          <End Role="QuizSchedule" Type="Self.QuizSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quiz">
+              <PropertyRef Name="Quiz_ID" />
+            </Principal>
+            <Dependent Role="QuizSchedule">
+              <PropertyRef Name="Quiz_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_Quiz">
+          <End Role="Quiz" Type="Self.Quiz" Multiplicity="0..1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quiz">
+              <PropertyRef Name="Quiz_ID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="Quiz_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuizSchedule_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="QuizSchedule" Type="Self.QuizSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="QuizSchedule">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="Subject_ID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="Subject_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBModel" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DetailedReports" EntityType="Self.DetailedReport" />
+          <EntitySet Name="Questions" EntityType="Self.Question" />
+          <EntitySet Name="Quizs" EntityType="Self.Quiz" />
+          <EntitySet Name="QuizSchedules" EntityType="Self.QuizSchedule" />
+          <EntitySet Name="Reports" EntityType="Self.Report" />
+          <EntitySet Name="Subjects" EntityType="Self.Subject" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_DetailedReport_Question" Association="Self.FK_DetailedReport_Question">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="DetailedReport" EntitySet="DetailedReports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetailedReport_Quiz" Association="Self.FK_DetailedReport_Quiz">
+            <End Role="Quiz" EntitySet="Quizs" />
+            <End Role="DetailedReport" EntitySet="DetailedReports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetailedReport_User" Association="Self.FK_DetailedReport_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="DetailedReport" EntitySet="DetailedReports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Subject" Association="Self.FK_Question_Subject">
+            <End Role="Subject" EntitySet="Subjects" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Quiz_Subject" Association="Self.FK_Quiz_Subject">
+            <End Role="Subject" EntitySet="Subjects" />
+            <End Role="Quiz" EntitySet="Quizs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Quiz_User" Association="Self.FK_Quiz_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Quiz" EntitySet="Quizs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuizSchedule_Quiz" Association="Self.FK_QuizSchedule_Quiz">
+            <End Role="Quiz" EntitySet="Quizs" />
+            <End Role="QuizSchedule" EntitySet="QuizSchedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_Quiz" Association="Self.FK_Report_Quiz">
+            <End Role="Quiz" EntitySet="Quizs" />
+            <End Role="Report" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuizSchedule_User" Association="Self.FK_QuizSchedule_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="QuizSchedule" EntitySet="QuizSchedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_Subject" Association="Self.FK_Report_Subject">
+            <End Role="Subject" EntitySet="Subjects" />
+            <End Role="Report" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_User" Association="Self.FK_Report_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Report" EntitySet="Reports" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AssessmentSystemDBModelStoreContainer" CdmEntityContainer="DBModel">
+          <EntitySetMapping Name="DetailedReports">
+            <EntityTypeMapping TypeName="AssessmentSystemDBModel.DetailedReport">
+              <MappingFragment StoreEntitySet="DetailedReport">
+                <ScalarProperty Name="DetailedReport_ID" ColumnName="DetailedReport_ID" />
+                <ScalarProperty Name="Quiz_ID" ColumnName="Quiz_ID" />
+                <ScalarProperty Name="Question_ID" ColumnName="Question_ID" />
+                <ScalarProperty Name="AttemptedAnswer" ColumnName="AttemptedAnswer" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="AssessmentSystemDBModel.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="Question_ID" ColumnName="Question_ID" />
+                <ScalarProperty Name="QuestionStatement" ColumnName="QuestionStatement" />
+                <ScalarProperty Name="Option1" ColumnName="Option1" />
+                <ScalarProperty Name="Option2" ColumnName="Option2" />
+                <ScalarProperty Name="Option3" ColumnName="Option3" />
+                <ScalarProperty Name="Option4" ColumnName="Option4" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="Marks" ColumnName="Marks" />
+                <ScalarProperty Name="Subject_ID" ColumnName="Subject_ID" />
+                <ScalarProperty Name="Difficulty" ColumnName="Difficulty" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Quizs">
+            <EntityTypeMapping TypeName="AssessmentSystemDBModel.Quiz">
+              <MappingFragment StoreEntitySet="Quiz">
+                <ScalarProperty Name="Quiz_ID" ColumnName="Quiz_ID" />
+                <ScalarProperty Name="Question_IDs" ColumnName="Question_IDs" />
+                <ScalarProperty Name="Difficulty" ColumnName="Difficulty" />
+                <ScalarProperty Name="Subject_ID" ColumnName="Subject_ID" />
+                <ScalarProperty Name="TotalQuestions" ColumnName="TotalQuestions" />
+                <ScalarProperty Name="TotalMarks" ColumnName="TotalMarks" />
+                <ScalarProperty Name="ArchiveStatus" ColumnName="ArchiveStatus" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="QuizType" ColumnName="QuizType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuizSchedules">
+            <EntityTypeMapping TypeName="AssessmentSystemDBModel.QuizSchedule">
+              <MappingFragment StoreEntitySet="QuizSchedule">
+                <ScalarProperty Name="Schedule_ID" ColumnName="Schedule_ID" />
+                <ScalarProperty Name="Quiz_ID" ColumnName="Quiz_ID" />
+                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+                <ScalarProperty Name="ArchiveStatus" ColumnName="ArchiveStatus" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reports">
+            <EntityTypeMapping TypeName="AssessmentSystemDBModel.Report">
+              <MappingFragment StoreEntitySet="Report">
+                <ScalarProperty Name="Report_ID" ColumnName="Report_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Quiz_ID" ColumnName="Quiz_ID" />
+                <ScalarProperty Name="CorrectAnswers" ColumnName="CorrectAnswers" />
+                <ScalarProperty Name="WrongAnswers" ColumnName="WrongAnswers" />
+                <ScalarProperty Name="TimeTaken" ColumnName="TimeTaken" />
+                <ScalarProperty Name="UnattemptedAnswers" ColumnName="UnattemptedAnswers" />
+                <ScalarProperty Name="Accuracy" ColumnName="Accuracy" />
+                <ScalarProperty Name="Efficiency" ColumnName="Efficiency" />
+                <ScalarProperty Name="TotalMarks" ColumnName="TotalMarks" />
+                <ScalarProperty Name="QuizType" ColumnName="QuizType" />
+                <ScalarProperty Name="Subject_ID" ColumnName="Subject_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subjects">
+            <EntityTypeMapping TypeName="AssessmentSystemDBModel.Subject">
+              <MappingFragment StoreEntitySet="Subject">
+                <ScalarProperty Name="Subject_ID" ColumnName="Subject_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="AssessmentSystemDBModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+                <ScalarProperty Name="GoogleID" ColumnName="GoogleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

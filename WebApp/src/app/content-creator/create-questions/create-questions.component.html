@@ -56,24 +56,18 @@
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
-          <!-- <label>Subject-Tag</label>
-          <input required type="text" name="Sub" #Sub="ngModel" [(ngModel)]="service.formData.Subject_ID"
-            class="form-control"> -->
-          <label for="sel1">Select Subject</label>
+          <label>Select Subject</label>
           <select name="Subject_ID" required #Subject_ID="ngModel" [(ngModel)]="service.formData.Subject_ID"
-            class="form-control" id="sel1">
+            class="form-control">
             <option value="">Choose</option>
-            <option *ngFor="let Sujbect of Subjects" value="{{Subject.Subject_ID}}">{{Subject.Name}}</option>
+            <option *ngFor="let Subject of Subjects" value="{{Subject.Subject_ID}}">{{Subject.Name}}</option>
           </select>
           <div class="validation-error" *ngIf="Subject_ID.invalid && Subject_ID.touched">This field is required.</div>
         </div>
         <div class="form-group col-md-6">
-          <!-- <label>Difficulty-Tag</label>
-          <input required type="text" name="Diff" #Diff="ngModel" [(ngModel)]="service.formData.Diff"
-            class="form-control"> -->
-          <label for="sel1">Select Difficulty-Level</label>
+          <label>Select Difficulty-Level</label>
           <select name="Difficulty" required #Difficulty="ngModel" [(ngModel)]="service.formData.Difficulty"
-            class="form-control" id="sel1">
+            class="form-control">
             <option value="">Choose</option>
             <option value="Beginner">Easy</option>
             <option value="Intermediate">Medium</option>

@@ -10,13 +10,13 @@ import { Subject } from 'src/app/content-creator/shared/subject.model';
 })
 export class CreateQuestionsComponent implements OnInit {
   public Subjects: Subject[];
-  constructor(public service: ContentCreatorServiceService
-    , public toastr: ToastrService) { }
+  constructor(public service: ContentCreatorServiceService, public toastr: ToastrService) { }
   ngOnInit() {
     this.resetForm();
-    this.service.retrieveSubjects().then((res => this.Subjects = res as Subject[]
-    ));
-    console.log(this.Subjects);
+    this.service.retrieveSubjects().subscribe(res => {
+      console.log("This is here")
+      this.Subjects = res as Subject[];
+    });
   }
 
   resetForm(form?: NgForm) {
@@ -33,7 +33,7 @@ export class CreateQuestionsComponent implements OnInit {
       Answer: null,
       Marks: null,
       Difficulty: "",
-      Subject_ID: null,
+      Subject_ID: "",
     }
   }
   onSubmit(form: NgForm) {
