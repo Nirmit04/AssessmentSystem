@@ -177,12 +177,14 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Controllers\SubjectController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903070925511_Initial-DB.cs" />
-    <Compile Include="Migrations\201903070925511_Initial-DB.Designer.cs">
-      <DependentUpon>201903070925511_Initial-DB.cs</DependentUpon>
+    <Compile Include="Migrations\201903071142580_Initial-DB.cs" />
+    <Compile Include="Migrations\201903071142580_Initial-DB.Designer.cs">
+      <DependentUpon>201903071142580_Initial-DB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -223,8 +225,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903070925511_Initial-DB.resx">
-      <DependentUpon>201903070925511_Initial-DB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903071142580_Initial-DB.resx">
+      <DependentUpon>201903071142580_Initial-DB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
