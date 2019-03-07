@@ -11,16 +11,16 @@ namespace WebApi.Models
     {
         [Key]
         public int ScheduleId { get; set; }
-        public  System.DateTime  StartDateTime { get; set; }
-        public  System.DateTime  EndDateTime { get; set; }
-        public  int  ArchiveStatus { get; set; }
+        public DateTime StartDateTime { get; set; }
+        public DateTime EndDateTime { get; set; }
+        public bool ArchiveStatus { get; set; }
 
         [ForeignKey("User")]
-        public  long  UserId { get; set; }
+        public string UserId { get; set; }
         [ForeignKey("Quiz")]
         public int QuizId { get; set; }
 
         public virtual Quiz Quiz { get; set; }
-        public virtual User User { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }

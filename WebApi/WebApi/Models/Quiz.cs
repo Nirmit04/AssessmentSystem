@@ -19,11 +19,11 @@ namespace WebApi.Models
 
         [ForeignKey("Subject")]
         public int SubjectId { get; set; }
-        [ForeignKey("User")]
-        public long CreatedBy { get; set; }
-
         public virtual Subject Subject { get; set; }
-        public virtual User User { get; set; }
+
+        [ForeignKey("User")]
+        public string CreatedBy { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         public virtual ICollection<DetailedReport> DetailedReports { get; set; }
         public virtual ICollection<QuizSchedule> QuizSchedules { get; set; }

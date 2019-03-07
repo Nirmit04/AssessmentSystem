@@ -6,10 +6,10 @@ using System.Web;
 
 namespace WebApi.Models
 {
-    public class User
+    public class Account
     {   
         [Key]
-        public long UserId { get; set; }
+        public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

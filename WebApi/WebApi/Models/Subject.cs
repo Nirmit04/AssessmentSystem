@@ -16,7 +16,7 @@ namespace WebApi.Models
 
         [ForeignKey("User")]
         public string CreatedBy { get; set; }
-        public User User { get; set; }
+        public ApplicationUser User { get; set; }
 
         public virtual ICollection<Question> Questions { get; set; }
         public virtual ICollection<Quiz> Quizs { get; set; }

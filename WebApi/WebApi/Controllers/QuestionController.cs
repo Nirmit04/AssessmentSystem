@@ -15,7 +15,7 @@ namespace WebApi.Controllers
 {
     public class QuestionController : ApiController
     {
-        private DBModel db = new DBModel();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         [HttpGet]
         [Route("api/Question/GetQuestionAll")]
@@ -147,7 +147,7 @@ namespace WebApi.Controllers
 
         [HttpGet]
         [Route("api/Question/GetQuestionByUser/{UserId}")]
-        public IHttpActionResult UserQuestions(long? UserId)
+        public IHttpActionResult UserQuestions(string UserId)
         {
             if (UserId == null)
             {

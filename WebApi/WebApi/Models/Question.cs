@@ -22,14 +22,11 @@ namespace WebApi.Models
         [ForeignKey("Subject")]
         public int SubjectId { get; set; }
         [ForeignKey("User")]
-        public long CreatedBy { get; set; }
+        public string CreatedBy { get; set; }
 
         //Foreign Key reference table
         public virtual Subject Subject { get; set; }
-        public virtual User User { get; set; }
-
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ApplicationUser User { get; set; }
         public virtual ICollection<DetailedReport> DetailedReports { get; set; }
         
     }

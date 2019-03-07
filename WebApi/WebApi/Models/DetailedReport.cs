@@ -18,10 +18,10 @@ namespace WebApi.Models
         [ForeignKey("Question")]
         public int QuestionId { get; set; }
         [ForeignKey("User")]
-        public long UserId { get; set; }
+        public string UserId { get; set; }
 
         public virtual Question Question { get; set; }
         public virtual Quiz Quiz { get; set; }
-        public virtual User User { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }
