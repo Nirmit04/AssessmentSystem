@@ -12,33 +12,33 @@
           </a>
         </div>
         <ul class="nav">
-          <li class="active ">
-            <a href="../content-creator.component.html">
+          <li class="">
+            <a (click) = "Open(1)">
               <i class="tim-icons icon-chart-pie-36"></i>
               <p>Dashboard</p>
-            </a>
+            </a> 
           </li>
           
           <li>
-            <a href="../content-creator.component.html">
+            <a (click)="Open(2)">
               <i class="tim-icons icon-single-02"></i>
               <p>Create Question</p>
             </a>
           </li>
           <li>
-            <a href="javascript:void(0)">
+            <a (click)="Open(3)">
               <i class="tim-icons icon-puzzle-10"></i>
               <p>Create Quiz</p>
             </a>
           </li>
           <li>
-              <a href="javascript:void(0)">
+              <a (click)="Open(4)">
                 <i class="tim-icons icon-puzzle-10"></i>
                 <p>Create Tag</p>
               </a>
             </li>
             <li>
-                <a href="javascript:void(0)">
+                <a (click)="Open(5)">
                   <i class="tim-icons icon-puzzle-10"></i>
                   <p>Questions Created</p>
                 </a>
@@ -58,7 +58,7 @@
                   <span class="navbar-toggler-bar bar3"></span>
                 </button>
               </div>
-              <a class="navbar-brand" href="javascript:void(0)">Dashboard</a>
+              <a class="navbar-brand" href="#">Dashboard</a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -92,7 +92,28 @@
           </div>
         </nav>
         <!-- End Navbar -->
-        </div>
+        <div class="content">
+            <div class="row">
+              <div class="col-12">
+               <a *ngIf = "1 == Val">
+                <app-retrieve-question-bank></app-retrieve-question-bank>
+              </a>
+               <a *ngIf = "2 == Val">
+                <app-create-questions></app-create-questions>
+              </a>
+              <!-- <a *ngIf = "3 == Val">
+                  <app-create-questions></app-create-questions>
+                </a>
+                <a *ngIf = "4 == Val">
+                    <app-create-questions></app-create-questions>
+                  </a>
+                  <a *ngIf = "5 == Val">
+                      <app-create-questions></app-create-questions>
+                    </a>-->
+              </div> 
+              </div>
+                </div>
+                 
+   </div>
   </div>
-</body>
- 
+  </body>

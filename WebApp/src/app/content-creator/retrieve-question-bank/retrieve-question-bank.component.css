@@ -1,5 +1,3 @@
-.li{
-    padding-left:300px;
-    padding-right:30px;
-  }
-
+th,td{
+  text-align: center;
+}

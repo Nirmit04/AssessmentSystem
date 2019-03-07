@@ -10,25 +10,25 @@ import { AppComponent } from './app.component';
 import { ContentCreatorComponent } from './content-creator/content-creator.component';
 import { DashboardComponent } from './content-creator/dashboard/dashboard.component';
 import { RetrieveQuestionBankComponent } from './content-creator/retrieve-question-bank/retrieve-question-bank.component';
-import { ContentCreatorServiceService } from './content-creator/shared/content-creator-service.service'
-@NgModule({
-  declarations: [
-    AppComponent,
-    CreateQuestionsComponent,
-    RetrieveQuestionBankComponent,
-    ContentCreatorComponent,
-    DashboardComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    ToastrModule.forRoot()
-  ],
-  providers: [ContentCreatorServiceService],
-  bootstrap: [AppComponent]
+import { ContentCreatorServiceService } from './content-creator/shared/content-creator-service.service';
 
+@NgModule({
+	declarations: [
+		AppComponent,
+		CreateQuestionsComponent,
+		RetrieveQuestionBankComponent,
+		ContentCreatorComponent,
+		DashboardComponent
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		FormsModule,
+		HttpClientModule,
+		BrowserAnimationsModule,
+		ToastrModule.forRoot()
+	],
+	providers: [ ContentCreatorServiceService ],
+	bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {}
