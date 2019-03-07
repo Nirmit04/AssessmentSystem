@@ -15,7 +15,12 @@ export class ContentCreatorServiceService {
   retrieveSubjects() {
     return this.http.get("http://demo7951933.mockable.io/hello1231");
   }
-  getQuestionsList(searchTag, difficulty) {
-    return this.http.get(this.rootURL + '/getQuestions/' + searchTag + '/' + difficulty);
+
+  getQuestionList() {
+    return this.http.get(this.rootURL + '/Question/User/1');
+  }
+
+  deleteOrder(id: number) {
+    return this.http.delete(this.rootURL + '/Question/Delete/' + id);
   }
 }

@@ -17,7 +17,7 @@ import { ContentCreatorServiceService } from './content-creator/shared/content-c
     CreateQuestionsComponent,
     RetrieveQuestionBankComponent,
     ContentCreatorComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,7 +25,9 @@ import { ContentCreatorServiceService } from './content-creator/shared/content-c
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+
+
   ],
   providers: [ContentCreatorServiceService],
   bootstrap: [AppComponent]
