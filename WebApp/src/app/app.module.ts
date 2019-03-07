@@ -11,6 +11,11 @@ import { ContentCreatorComponent } from './content-creator/content-creator.compo
 import { DashboardComponent } from './content-creator/dashboard/dashboard.component';
 import { RetrieveQuestionBankComponent } from './content-creator/retrieve-question-bank/retrieve-question-bank.component';
 import { ContentCreatorServiceService } from './content-creator/shared/content-creator-service.service';
+import { TagComponent } from './tag/tag.component';
+import { MatTableModule } from '@angular/material/table';
+import { DemoComponent } from './demo/demo.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
 	declarations: [
@@ -18,7 +23,9 @@ import { ContentCreatorServiceService } from './content-creator/shared/content-c
 		CreateQuestionsComponent,
 		RetrieveQuestionBankComponent,
 		ContentCreatorComponent,
-		DashboardComponent
+		DashboardComponent,
+		TagComponent,
+		DemoComponent
 	],
 	imports: [
 		BrowserModule,
@@ -26,7 +33,10 @@ import { ContentCreatorServiceService } from './content-creator/shared/content-c
 		FormsModule,
 		HttpClientModule,
 		BrowserAnimationsModule,
-		ToastrModule.forRoot()
+		ToastrModule.forRoot(),
+		MatTableModule,
+		MatIconModule,
+		MatButtonModule
 	],
 	providers: [ ContentCreatorServiceService ],
 	bootstrap: [ AppComponent ]
