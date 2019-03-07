@@ -1,41 +1,66 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { ContentCreatorServiceService } from 'src/app/content-creator/shared/content-creator-service.service';
+import { Question } from '../shared/question.model';
+import { ContentCreatorServiceService } from '../shared/content-creator-service.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-retrieve-question-bank',
-  templateUrl: './retrieve-question-bank.component.html',
-  styleUrls: ['./retrieve-question-bank.component.css']
+	selector: 'app-retrieve-question-bank',
+	templateUrl: './retrieve-question-bank.component.html',
+	styleUrls: [ './retrieve-question-bank.component.css' ]
 })
 export class RetrieveQuestionBankComponent implements OnInit {
+	questionList: any;
+	searchText = '';
+	difficultyLevel = '';
 
-  getQuestions: any = null;
+	constructor(private service: ContentCreatorServiceService, private toastr: ToastrService) {}
 
-  constructor(private service: ContentCreatorServiceService) { }
+	ngOnInit() {
+		this.refreshList();
+	}
 
-  ngOnInit() {
-  }
+	refreshList() {
+		console.log('Hello');
+		this.service.getQuestionList().subscribe((res: any) => {
+			console.log(res);
+			this.questionList = res;
+			this.hello();
+		});
+	}
+	filter(item: Question) {
+		return (
+			item.QuestionStatement.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1 ||
+			item.SubjectName.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1
+		);
+	}
 
-  search(searchInput, difficulty) {
-    console.log(searchInput);
-    console.log(difficulty);
+	filterSubject(event: any) {
+		console.log('helo');
+		this.difficultyLevel = event.target.value;
+		console.log(this.difficultyLevel);
+	}
 
-    if (searchInput === '') {
-      searchInput = null;
-    }
-    console.log(searchInput);
+	hello() {
+		console.log(this.questionList);
+		console.log(this.questionList.Question_ID);
+		if (this.questionList.DifficultyLevel === '1') {
+			console.log('mandeep chutiye');
+			this.questionList.DifficultyLevel = 'Beginner';
+		} else if (this.questionList.DifficultyLevel === '2') {
+			this.questionList.DifficultyLevel = 'Intermediate';
+		} else if (this.questionList.DifficultyLevel === '3') {
+			this.questionList.DifficultyLevel = 'Advanced';
+		}
+	}
 
-    if (difficulty === '') {
-      difficulty = null;
-    }
-
-    this.service.getQuestionsList(searchInput, difficulty).subscribe((data: any) => {
-      console.log(data);
-      this.getQuestions = data;
-      console.log(this.getQuestions);
-    });
-
-  }
-
+	onOrderDelete(id: number) {
+		if (confirm('Are you sure you want to delete this record')) {
+			this.service.deleteOrder(id).subscribe((res: any) => {
+				this.refreshList();
+				this.toastr.success('Deleted Successfully', 'Assesment System');
+			});
+		}
+	}
 }
