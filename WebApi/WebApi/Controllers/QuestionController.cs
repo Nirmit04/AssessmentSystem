@@ -9,26 +9,30 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApi.Models;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
+
 
 namespace WebApi.Controllers
 {
     public class QuestionController : ApiController
     {
-        private DBModel db = new DBModel();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         [HttpGet]
-        [Route("api/Question/Get/{Difficulty:int?}/{Subject_ID:int?}")]
-        public IHttpActionResult GetAllQuestions(int? Difficulty, int? Subject_ID)
+        [Route("api/Question/GetQuestionAll")]
+        public IQueryable<Question> GetQuestionAll()
         {
-            if (Difficulty.HasValue)
-            {
-                var questions = db.Questions
-                    .Where(z => z.Difficulty == Difficulty)
+            return db.Questions;
+        }
+
+        [HttpGet]
+        [Route("api/Question/GetQuestion/{SubjectId:int?}")]
+        public IHttpActionResult GetQuestion(int? SubjectId)
+        {
+            var questions = db.Questions
+                    .Where(z => z.SubjectId == SubjectId)
                     .Select(x => new
                     {
-                        Question_ID = x.Question_ID,
+                        QuestionId = x.QuestionId,
                         QuestionStatement = x.QuestionStatement,
                         Option1 = x.Option1,
                         Option2 = x.Option2,
@@ -36,82 +40,82 @@ namespace WebApi.Controllers
                         Option4 = x.Option4,
                         Answer = x.Answer,
                         Marks = x.Marks,
-                        SubjectName = db.Subjects.Where(y => y.Subject_ID == x.Subject_ID).FirstOrDefault().Name,
-                        DifficultyLevel = (Difficulty)x.Difficulty,
+                        SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
+                        DifficultyLevel = x.Difficulty,
                         ImageName = x.ImageName
-                    })
-                    .ToList();
-            }
-            else if (Subject_ID.HasValue)
-            {
-                var questions = db.Questions
-                    .Where(z => z.Subject_ID == Subject_ID)
-                    .Select(x => new
-                    {
-                        Question_ID = x.Question_ID,
-                        QuestionStatement = x.QuestionStatement,
-                        Option1 = x.Option1,
-                        Option2 = x.Option2,
-                        Option3 = x.Option3,
-                        Option4 = x.Option4,
-                        Answer = x.Answer,
-                        Marks = x.Marks,
-                        SubjectName = db.Subjects.Where(y => y.Subject_ID == x.Subject_ID).FirstOrDefault().Name,
-                        DifficultyLevel = (Difficulty)x.Difficulty,
-                        ImageName = x.ImageName
-                    })
-                    .ToList();
-            }
+                    }).ToList();
             return Ok(questions);
         }
 
-        //[HttpGet]
-        //[Route("api/Question/Get/{Difficulty}/{Subject_ID}")]
-        //public IHttpActionResult GetQuestion(int Difficulty, int Subject_ID)
-        //{
-        //    List<Question> questions = db.Questions.Where(x => x.Difficulty == Difficulty).ToList();
-        //    return Ok(questions);
-        //}
 
-
-        // GET: api/Question/5
-        [ResponseType(typeof(Question))]
-        public IHttpActionResult GetQuestion(int id)
+        [HttpGet]
+        [Route("api/Question/GetQuestion/{Difficulty}/{SubjectId}")]
+        public IHttpActionResult GetAllQuestions(string Difficulty, int SubjectId)
         {
-            Question question = db.Questions.Find(id);
-            if (question == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(question);
+            var questions = db.Questions
+                .Where(z => z.Difficulty == Difficulty && z.SubjectId == SubjectId)
+                .Select(x => new
+                {
+                    QuestionId = x.QuestionId,
+                    QuestionStatement = x.QuestionStatement,
+                    Option1 = x.Option1,
+                    Option2 = x.Option2,
+                    Option3 = x.Option3,
+                    Option4 = x.Option4,
+                    Answer = x.Answer,
+                    Marks = x.Marks,
+                    SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
+                    DifficultyLevel = x.Difficulty,
+                    ImageName = x.ImageName
+                })
+                .ToList();
+            return Ok(db.Questions);
         }
 
 
-        // POST: api/Question
-        [ResponseType(typeof(Question))]
+        [HttpGet]
+        [Route("api/Question/GetAllQuestions")]
+        public IHttpActionResult GetAllQuestion()
+        {
+            var questions = db.Questions
+                .Select(x => new
+                {
+                    QuestionId = x.QuestionId,
+                    QuestionStatement = x.QuestionStatement,
+                    Option1 = x.Option1,
+                    Option2 = x.Option2,
+                    Option3 = x.Option3,
+                    Option4 = x.Option4,
+                    Answer = x.Answer,
+                    Marks = x.Marks,
+                    SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
+                    DifficultyLevel = x.Difficulty,
+                    ImageName = x.ImageName
+                }).ToList();
+            return Ok(questions);
+        }
+
+
+        [HttpPost]
+        [Route("api/Question/CreateQuestion")]
         public IHttpActionResult PostQuestion(Question question)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             db.Questions.Add(question);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = question.Question_ID }, question);
+            return CreatedAtRoute("DefaultApi", new { id = question.QuestionId }, question);
         }
         
         [HttpPut]
-        [Route("api/Question/Edit/{Question_ID}")]
-        public IHttpActionResult EditQuestion(int? Question_ID ,Question Question)
+        [Route("api/Question/Edit/{QuestionId}")]
+        public IHttpActionResult EditQuestion(int? QuestionId ,Question Question)
         {
             
-            if(Question_ID==null)
+            if(QuestionId==null)
             {
                 return BadRequest();
             }
+
             db.Entry(Question).State = EntityState.Modified;
 
             try
@@ -122,15 +126,15 @@ namespace WebApi.Controllers
             {
                 return NotFound();
             }
-            return StatusCode(HttpStatusCode.NoContent);
+            return StatusCode(HttpStatusCode.OK);
         }
 
 
         [HttpDelete]
-        [Route("api/Question/Delete/{Question_ID}")]
-        public IHttpActionResult DeleteQuestion(int? Question_ID)
+        [Route("api/Question/Delete/{QuestionId}")]
+        public IHttpActionResult DeleteQuestion(int? QuestionId)
         {
-            Question question = db.Questions.Find(Question_ID);
+            Question question = db.Questions.Find(QuestionId);
 
             if (question == null)
                 return NotFound();
@@ -139,5 +143,42 @@ namespace WebApi.Controllers
             db.SaveChanges();
             return Ok(question);
         }
+
+
+        [HttpGet]
+        [Route("api/Question/GetQuestionByUser/{UserId}")]
+        public IHttpActionResult UserQuestions(string UserId)
+        {
+            if (UserId == null)
+            {
+                return BadRequest();
+            }
+
+            var result = db.Questions
+                .Where(x => x.CreatedBy == UserId)
+                .Select(x => new {
+                    QuestionId = x.QuestionId,
+                    QuestionStatement = x.QuestionStatement,
+                    Option1 = x.Option1,
+                    Option2 = x.Option2,
+                    Option3 = x.Option3,
+                    Option4 = x.Option4,
+                    Answer = x.Answer,
+                    Marks = x.Marks,
+                    SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
+                    DifficultyLevel = x.Difficulty.ToString(),
+                    ImageName = x.ImageName
+                });
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(result);
+            }
+        }
+
     }
 }
