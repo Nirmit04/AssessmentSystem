@@ -12,31 +12,50 @@ namespace WebApi.Controllers
 {
     public class UserController : ApiController
     {
-
-        [Route("api/User/Register")]
+        
         [HttpPost]
         [AllowAnonymous]
+        [Route("api/User/Register")]
         public IdentityResult Register(Account model)
         {
-            System.Diagnostics.Debug.WriteLine(model.FirstName);
             var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
             var manager = new UserManager<ApplicationUser>(userStore);
+            var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email };
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            user.ImageURL = model.ImageURL;
+            user.GoogleId = model.GoogleId;
+            user.Role = model.Role;
+            IdentityResult result = manager.Create(user);
+            return result;
+        }
 
-            if (manager.FindByEmail(model.Email) != null)
+        [HttpGet]
+        [Route("api/User/GetUserAll")]
+        public IQueryable<Account> GetUserAll()
+        {
+            var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
+            var manager = new UserManager<ApplicationUser>(userStore);
+            var users = manager.Users;
+            List<Account> userlist = new List<Account>();
+            foreach (var user in users)
             {
-                return IdentityResult.Failed();
+                userlist.Add(new Account
+                {
+                    Id = user.Id,
+                    UserName = user.UserName,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email = user.Email,
+                    ImageURL = user.ImageURL,
+                    GoogleId = user.GoogleId,
+                    Role = user.Role
+                });
             }
-            else
-            {
-                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email };
-                user.FirstName = model.FirstName;
-                user.LastName = model.LastName;
-                user.ImageURL = model.ImageURL;
-                user.GoogleId = model.GoogleId;
-                user.Role = model.Role;
-                IdentityResult result = manager.Create(user);
-                return result;
-            }
+            return userlist.AsQueryable();
+            //ApplicationDbContext db = new ApplicationDbContext();
+            //var u=db.Users.ToList();
+            //return u.AsQueryable();
         }
     }
 }

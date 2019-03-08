@@ -10,7 +10,7 @@ namespace WebApi.Models
     {   
         [Key]
         public string Id { get; set; }
-        public string UserName { get; set; } 
+        public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -18,7 +18,6 @@ namespace WebApi.Models
         public string ImageURL { get; set; }
         public string GoogleId { get; set; }
 
-        
         public virtual ICollection<DetailedReport> DetailedReports { get; set; }
         
         public virtual ICollection<Quiz> Quizs { get; set; }
