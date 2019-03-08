@@ -10,7 +10,6 @@ namespace WebApi.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(WebApi.Models.ApplicationDbContext context)

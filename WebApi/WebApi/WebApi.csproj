@@ -177,12 +177,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903070925511_Initial-DB.cs" />
-    <Compile Include="Migrations\201903070925511_Initial-DB.Designer.cs">
-      <DependentUpon>201903070925511_Initial-DB.cs</DependentUpon>
+    <Compile Include="Migrations\201903071158231_Initial-DB.cs" />
+    <Compile Include="Migrations\201903071158231_Initial-DB.Designer.cs">
+      <DependentUpon>201903071158231_Initial-DB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -204,8 +205,9 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="connectionString.config" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -217,14 +219,15 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="connectionString.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903070925511_Initial-DB.resx">
-      <DependentUpon>201903070925511_Initial-DB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903071158231_Initial-DB.resx">
+      <DependentUpon>201903071158231_Initial-DB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
