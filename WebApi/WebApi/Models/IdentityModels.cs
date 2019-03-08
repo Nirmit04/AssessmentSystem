@@ -53,6 +53,7 @@ namespace WebApi.Models
         public virtual DbSet<QuizSchedule> QuizSchedules { get; set; }
         public virtual DbSet<Report> Reports { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
+        public virtual DbSet<QuizQuestion> QuizQuestions { get; set; }
         //public virtual DbSet<Account> Accounts { get; set; }
 
         public static ApplicationDbContext Create()

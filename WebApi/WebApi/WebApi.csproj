@@ -186,6 +186,10 @@
     <Compile Include="Migrations\201903071142580_Initial-DB.Designer.cs">
       <DependentUpon>201903071142580_Initial-DB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903081736162_ChangedDBSchema.cs" />
+    <Compile Include="Migrations\201903081736162_ChangedDBSchema.Designer.cs">
+      <DependentUpon>201903081736162_ChangedDBSchema.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -228,6 +232,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201903071142580_Initial-DB.resx">
       <DependentUpon>201903071142580_Initial-DB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903081736162_ChangedDBSchema.resx">
+      <DependentUpon>201903081736162_ChangedDBSchema.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
