@@ -381,7 +381,7 @@ healthchecksdb
 MigrationBackup/
 
 #Migration Folder
-Migration/
+Migrations/
 
 #ConnectionString
 connectionString.config
