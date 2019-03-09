@@ -25,7 +25,6 @@ namespace WebApi.Controllers
             user.LastName = model.LastName;
             user.ImageURL = model.ImageURL;
             user.GoogleId = model.GoogleId;
-            user.Role = model.Role;
             IdentityResult result = manager.Create(user);
             return result;
         }
@@ -49,7 +48,6 @@ namespace WebApi.Controllers
                     Email = user.Email,
                     ImageURL = user.ImageURL,
                     GoogleId = user.GoogleId,
-                    Role = user.Role
                 });
             }
             return userlist.AsQueryable();

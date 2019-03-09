@@ -28,6 +28,6 @@ namespace WebApi.Models
         public virtual Subject Subject { get; set; }
         public virtual ApplicationUser User { get; set; }
         public virtual ICollection<DetailedReport> DetailedReports { get; set; }
-        
+        public virtual ICollection<QuizQuestion> QuizQuestions { get; set; }
     }
 }
