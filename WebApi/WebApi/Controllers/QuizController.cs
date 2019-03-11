@@ -14,11 +14,12 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [Route("api/Quiz/CreateQuiz")]
-        public IHttpActionResult CreateQuiz(Quiz quiz, string question)
+        public IHttpActionResult CreateQuiz(Quiz quiz, int[] qId)
         {
-            string[] questionId = question.Split(',');
-            int[] qId= Array.ConvertAll(questionId, s => int.Parse(s));
-
+            foreach (var item in qId)
+            {
+                System.Diagnostics.Debug.WriteLine(qId);
+            }
             Question ques=new Question();
             quiz.TotalMarks = 0;
             foreach (var item in qId)
@@ -40,6 +41,23 @@ namespace WebApi.Controllers
             db.SaveChanges();
             return Ok();
 
+        }
+
+        [HttpPost]
+        [Route("api/Quiz/GetQuiz/{CreatedBy}")]
+        public IHttpActionResult CreateQuiz(string CreatedBy)
+        {
+            var quiz = db.Quizs.Where(x => x.CreatedBy == CreatedBy).
+                Select(x => new {
+                    QuizId = x.QuizId,
+                    Difficulty = x.Difficulty,
+                    TotalQuestions = x.TotalQuestions,
+                    TotalMarks = x.TotalMarks,
+                    ArchiveStatus = x.ArchiveStatus,
+                    QuizType = x.QuizType,
+                    Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name
+                }).ToList();
+            return Ok(quiz);
         }
     }
 }
