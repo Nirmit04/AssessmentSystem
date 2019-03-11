@@ -177,6 +177,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Controllers\QuizController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -189,6 +191,10 @@
     <Compile Include="Migrations\201903081736162_ChangedDBSchema.cs" />
     <Compile Include="Migrations\201903081736162_ChangedDBSchema.Designer.cs">
       <DependentUpon>201903081736162_ChangedDBSchema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903090535050_Quiz Question.cs" />
+    <Compile Include="Migrations\201903090535050_Quiz Question.Designer.cs">
+      <DependentUpon>201903090535050_Quiz Question.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -237,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903081736162_ChangedDBSchema.resx">
       <DependentUpon>201903081736162_ChangedDBSchema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903090535050_Quiz Question.resx">
+      <DependentUpon>201903090535050_Quiz Question.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

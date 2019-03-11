@@ -41,7 +41,7 @@ namespace WebApi.Controllers
                         Answer = x.Answer,
                         Marks = x.Marks,
                         SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
-                        DifficultyLevel = x.Difficulty,
+                        Difficulty = x.Difficulty,
                         ImageName = x.ImageName
                     }).ToList();
             return Ok(questions);
@@ -65,7 +65,7 @@ namespace WebApi.Controllers
                     Answer = x.Answer,
                     Marks = x.Marks,
                     SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
-                    DifficultyLevel = x.Difficulty,
+                    Difficulty = x.Difficulty,
                     ImageName = x.ImageName
                 })
                 .ToList();
@@ -89,7 +89,7 @@ namespace WebApi.Controllers
                     Answer = x.Answer,
                     Marks = x.Marks,
                     SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
-                    DifficultyLevel = x.Difficulty,
+                    Difficulty = x.Difficulty,
                     ImageName = x.ImageName
                 }).ToList();
             return Ok(questions);
@@ -144,7 +144,7 @@ namespace WebApi.Controllers
             return Ok(question);
         }
 
-
+        
         [HttpGet]
         [Route("api/Question/GetQuestionByUser/{UserId}")]
         public IHttpActionResult UserQuestions(string UserId)
@@ -166,7 +166,8 @@ namespace WebApi.Controllers
                     Answer = x.Answer,
                     Marks = x.Marks,
                     SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
-                    DifficultyLevel = x.Difficulty.ToString(),
+                    SubjectId=x.SubjectId,
+                    Difficulty = x.Difficulty.ToString(),
                     ImageName = x.ImageName
                 });
 

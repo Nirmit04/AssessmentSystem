@@ -48,8 +48,26 @@ namespace WebApi.Providers
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);
             context.Request.Context.Authentication.SignIn(cookiesIdentity);
-        }
 
+
+            //    var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
+            //    var manager = new UserManager<ApplicationUser>(userStore);
+            //    user = await manager.FindByEmailAsync(context.);
+            //    if (user != null)
+            //    {
+            //        var identity = new ClaimsIdentity(context.Options.AuthenticationType);
+            //        identity.AddClaim(new Claim("Username", user.UserName));
+            //        identity.AddClaim(new Claim("Email", user.Email));
+            //        identity.AddClaim(new Claim("FirstName", user.FirstName));
+            //        identity.AddClaim(new Claim("LastName", user.LastName));
+            //        identity.AddClaim(new Claim("Id", user.Id));
+            //        System.Diagnostics.Debug.WriteLine(user.Id);
+            //        context.Validated(identity);
+            //    }
+            //    else
+            //        return;
+            //}
+        }
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)
         {
             foreach (KeyValuePair<string, string> property in context.Properties.Dictionary)

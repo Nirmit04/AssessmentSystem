@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -13,10 +15,18 @@ namespace WebApi.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         [HttpGet]
-        [Route("api/Subject/GetSubjectAll")]
-        public IQueryable<Subject> GetSubjectAll()
+        [Route("api/Subject/GetSubjects")]
+        public IHttpActionResult GetSubjectAll()
         {
-            return db.Subjects;
+            var subject = db.Subjects.
+                Select(x => new
+                {
+                    SubjectId=x.SubjectId,
+                    Name=x.Name,
+                    Department=x.Department,
+                    CreatedBy=x.CreatedBy
+                }).ToList();
+            return Ok(subject);
         }
 
         [HttpPost]
@@ -27,6 +37,43 @@ namespace WebApi.Controllers
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = subject.SubjectId }, subject);
+        }
+
+        [HttpPut]
+        [Route("api/Subject/Edit/{SubjectId}")]
+        public IHttpActionResult EditSubject(Subject subject,int? SubjectId)
+        {
+            if (SubjectId == null)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(subject).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return NotFound();
+            }
+            return StatusCode(HttpStatusCode.OK);
+        }
+        [HttpGet]
+        
+        [Route("api/Subject/GetSubjects/{UserId}")]
+        public IHttpActionResult GetSubjectAll(string UserId)
+        {
+            var subject = db.Subjects.Where(x=>x.CreatedBy==UserId).
+                Select(x => new
+                {
+                    SubjectId = x.SubjectId,
+                    Name = x.Name,
+                    Department = x.Department,
+                    CreatedBy = x.CreatedBy
+                }).ToList();
+            return Ok(subject);
         }
     }
 }
