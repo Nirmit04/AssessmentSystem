@@ -184,17 +184,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903071158231_Initial-DB.cs" />
-    <Compile Include="Migrations\201903071158231_Initial-DB.Designer.cs">
-      <DependentUpon>201903071158231_Initial-DB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903081736162_ChangedDBSchema.cs" />
-    <Compile Include="Migrations\201903081736162_ChangedDBSchema.Designer.cs">
-      <DependentUpon>201903081736162_ChangedDBSchema.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903090535050_Quiz Question.cs" />
-    <Compile Include="Migrations\201903090535050_Quiz Question.Designer.cs">
-      <DependentUpon>201903090535050_Quiz Question.cs</DependentUpon>
+    <Compile Include="Migrations\201903110915180_CheckUpdates.cs" />
+    <Compile Include="Migrations\201903110915180_CheckUpdates.Designer.cs">
+      <DependentUpon>201903110915180_CheckUpdates.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -238,14 +230,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903071158231_Initial-DB.resx">
-      <DependentUpon>201903071158231_Initial-DB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903081736162_ChangedDBSchema.resx">
-      <DependentUpon>201903081736162_ChangedDBSchema.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903090535050_Quiz Question.resx">
-      <DependentUpon>201903090535050_Quiz Question.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903110915180_CheckUpdates.resx">
+      <DependentUpon>201903110915180_CheckUpdates.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
