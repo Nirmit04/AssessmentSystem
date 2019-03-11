@@ -10,32 +10,35 @@ namespace WebApi.Controllers
 {
     public class QuizController : ApiController
     {
-     private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         [HttpPost]
         [Route("api/Quiz/CreateQuiz")]
-        public IHttpActionResult CreateQuiz(Quiz quiz, int[] qId)
+        public IHttpActionResult CreateQuiz(Quiz quiz)
         {
-            foreach (var item in qId)
+            foreach (var item in quiz.qId)
             {
-                System.Diagnostics.Debug.WriteLine(qId);
+                System.Diagnostics.Debug.WriteLine(quiz.qId);
             }
-            Question ques=new Question();
+            Question ques = new Question();
             quiz.TotalMarks = 0;
-            foreach (var item in qId)
+            quiz.TotalQuestions = quiz.qId.Length;
+            foreach (var item in quiz.qId)
             {
-                 ques = db.Questions.Find(qId[item]);
-                 quiz.TotalMarks += ques.Marks;
+                ques = db.Questions.Find(item);
+                quiz.TotalMarks += ques.Marks;
             }
             quiz.ArchiveStatus = false;
             db.Quizs.Add(quiz);
 
             QuizQuestion quizQuestion = new QuizQuestion();
-            quizQuestion.QuizId = quiz.QuizId;
-            foreach (var item in qId)
+
+            foreach (var item in quiz.qId)
             {
+                quizQuestion.QuizId = quiz.QuizId;
                 quizQuestion.QuestionId = item;
                 db.QuizQuestions.Add(quizQuestion);
+                db.SaveChanges();
             }
 
             db.SaveChanges();
@@ -43,12 +46,13 @@ namespace WebApi.Controllers
 
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("api/Quiz/GetQuiz/{CreatedBy}")]
         public IHttpActionResult CreateQuiz(string CreatedBy)
         {
             var quiz = db.Quizs.Where(x => x.CreatedBy == CreatedBy).
-                Select(x => new {
+                Select(x => new
+                {
                     QuizId = x.QuizId,
                     Difficulty = x.Difficulty,
                     TotalQuestions = x.TotalQuestions,
@@ -58,6 +62,16 @@ namespace WebApi.Controllers
                     Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name
                 }).ToList();
             return Ok(quiz);
+        }
+
+        [HttpDelete]
+        [Route("api/Quiz/Delete/{QuizId}")]
+        public IHttpActionResult CreateQuiz(int QuizId)
+        {
+            Quiz quiz = db.Quizs.Find(QuizId);
+            quiz.ArchiveStatus = true;
+
+            return Ok();
         }
     }
 }

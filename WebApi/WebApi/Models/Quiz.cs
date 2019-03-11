@@ -14,9 +14,9 @@ namespace WebApi.Models
         public string Difficulty { get; set; }
         public int TotalQuestions { get; set; }
         public decimal TotalMarks { get; set; }
-        public bool ArchiveStatus { get; set; }
+        public bool ArchiveStatus { get; set; } = false;
         public string QuizType { get; set; }
-
+        public int[] qId { get; set; }
         [ForeignKey("Subject")]
         public int SubjectId { get; set; }
         public virtual Subject Subject { get; set; }
