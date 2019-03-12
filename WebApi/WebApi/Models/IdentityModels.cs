@@ -13,7 +13,7 @@ namespace WebApi.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string ImageURL { get; set; }
+        //public string ImageURL { get; set; }
         public string GoogleId { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
@@ -54,7 +54,6 @@ namespace WebApi.Models
         public virtual DbSet<Report> Reports { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<QuizQuestion> QuizQuestions { get; set; }
-        //public virtual DbSet<Account> Accounts { get; set; }
 
         public static ApplicationDbContext Create()
         {

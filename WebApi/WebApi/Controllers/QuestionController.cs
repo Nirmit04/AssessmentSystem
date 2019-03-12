@@ -67,9 +67,8 @@ namespace WebApi.Controllers
                     SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
                     Difficulty = x.Difficulty,
                     ImageName = x.ImageName
-                })
-                .ToList();
-            return Ok(db.Questions);
+                }).ToList();
+            return Ok(questions);
         }
 
 
@@ -100,6 +99,11 @@ namespace WebApi.Controllers
         [Route("api/Question/CreateQuestion")]
         public IHttpActionResult PostQuestion(Question question)
         {
+            Subject sub = db.Subjects.FirstOrDefault(x => x.SubjectId == question.SubjectId);
+            if(sub.SubjectId!=question.SubjectId)
+            {
+                return BadRequest();
+            }
             db.Questions.Add(question);
             db.SaveChanges();
 

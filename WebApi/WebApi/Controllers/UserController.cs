@@ -30,7 +30,7 @@ namespace WebApi.Controllers
                 System.Diagnostics.Debug.WriteLine(user.Id);
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
-                user.ImageURL = model.ImageURL;
+                //user.ImageURL = model.ImageURL;
                 user.GoogleId = model.GoogleId;
                 IdentityResult result = manager.Create(user);
                 string id = user.Id;
@@ -79,7 +79,7 @@ namespace WebApi.Controllers
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Email = user.Email,
-                    ImageURL = user.ImageURL,
+                    //ImageURL = user.ImageURL,
                     GoogleId = user.GoogleId,
                 });
             }

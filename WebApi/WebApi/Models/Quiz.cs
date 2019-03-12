@@ -15,7 +15,7 @@ namespace WebApi.Models
         public int TotalQuestions { get; set; }
         public decimal TotalMarks { get; set; }
         public bool ArchiveStatus { get; set; } = false;
-        public string QuizType { get; set; }
+        public string QuizType { get; set; } = "non-mock";
         public int[] qId { get; set; }
         [ForeignKey("Subject")]
         public int SubjectId { get; set; }
