@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -102,12 +103,6 @@ namespace WebApi.Controllers
                      });
                 questions.Add(q);
             }
-
-            foreach (var item in questions)
-            {
-                System.Diagnostics.Debug.WriteLine(item.ToString());
-            }
-           // var json = JsonConvert.SerializeObject(questions, Formatting.Indented);
             return Ok(questions);
         }
 
@@ -116,15 +111,50 @@ namespace WebApi.Controllers
         [Route("api/Quiz/Question/Delete/{QuizId}/{QuestionId}")]
         public IHttpActionResult DeleteQuestion(int QuestionId,int QuizId)
         {
-            if(QuestionId==null || QuizId == null)
-            {
-                return BadRequest();
-            }
-
             var q = db.QuizQuestions.FirstOrDefault(x => x.QuestionId == QuestionId && x.QuizId == QuizId);
             db.QuizQuestions.Remove(q);
+
+            var question = db.Questions.FirstOrDefault(x=>x.QuestionId==QuestionId);
+            var quiz = db.Quizs.FirstOrDefault(x => x.QuizId == QuizId);
+            quiz.TotalMarks = quiz.TotalMarks - question.Marks;
+            quiz.TotalQuestions--;
+
             db.SaveChanges();
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("api/Quiz/GetType/{QuizId}")]
+        public IHttpActionResult GetQuestions(int QuizId)
+        {
+            IEnumerable questionIds;
+             questionIds = db.QuizQuestions.Where(x => x.QuizId == QuizId).
+               Select(x => new
+               {
+                   x.QuestionId
+               }).ToList();
+
+            var quiz = from a in db.Quizs
+                       join b in db.QuizQuestions on a.QuizId equals b.QuizId
+                       join c in db.Questions on b.QuestionId equals c.QuestionId
+                       where a.QuizId==QuizId && b.QuestionId!=c.QuestionId
+                       select new
+                       {
+                               QuestionId = c.QuestionId,
+                               QuestionStatement = c.QuestionStatement,
+                               Option1 = c.Option1,
+                               Option2 = c.Option2,
+                               Option3 = c.Option3,
+                               Option4 = c.Option4,
+                               Answer = c.Answer,
+                               Marks = c.Marks,
+                               SubjectName = db.Subjects.Where(y => y.SubjectId == c.SubjectId).FirstOrDefault().Name,
+                               SubjectId = c.SubjectId,
+                               Difficulty = c.Difficulty.ToString(),
+                           };
+            
+            
+            return Ok(quiz);
         }
     }
 }
