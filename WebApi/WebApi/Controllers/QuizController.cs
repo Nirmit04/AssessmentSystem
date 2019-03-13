@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -75,35 +76,55 @@ namespace WebApi.Controllers
             return Ok();
         }
 
-        //    [HttpGet]
-        //    [Route("api/Quiz/Question/{QuizId}")]
-        //    public IQueryable GetQuiz(int QuizId)
-        //    {
-        //        var questionIds = db.QuizQuestions.Where(x => x.QuizId == QuizId).
-        //            Select(x => new {
-        //                x.QuestionId
-        //            }).ToList();
+        [HttpGet]
+        [Route("api/Quiz/Question/{QuizId}")]
+        public IHttpActionResult GetQuiz(int QuizId)
+        {
+            var questionIds = db.QuizQuestions.Where(x => x.QuizId == QuizId).
+                Select(x => new
+                {
+                    x.QuestionId
+                }).ToList();
 
-        //        var questions=new Object();
-        //        foreach (var item in questionIds)
-        //        {
-        //            System.Diagnostics.Debug.WriteLine(item.QuestionId);
+            List<object> questions = new List<object>();
+            
+            foreach (var item in questionIds)
+            {   
+                System.Diagnostics.Debug.WriteLine(item.QuestionId);
+                var q = db.Questions.Where(y => y.QuestionId == item.QuestionId).
+                     Select(x => new
+                     {
+                         x.QuestionId,
+                         x.QuestionStatement,
+                         x.Marks,
+                         x.Difficulty,
+                         x.CreatedBy
+                     });
+                questions.Add(q);
+            }
 
-        //            System.Diagnostics.Debug.WriteLine(questions);
-        //        }
-        //        questions = db.Questions.Where(y => y.QuestionId.Contains(questionIds)).
-        //                Select(x => new
-        //                {
-        //                    x.QuestionId,
-        //                    x.QuestionStatement,
-        //                    x.Marks,
-        //                    x.Difficulty,
-        //                    x.CreatedBy
-        //                }).ToList();
+            foreach (var item in questions)
+            {
+                System.Diagnostics.Debug.WriteLine(item.ToString());
+            }
+           // var json = JsonConvert.SerializeObject(questions, Formatting.Indented);
+            return Ok(questions);
+        }
 
+        [HttpDelete]
+        [AllowAnonymous]
+        [Route("api/Quiz/Question/Delete/{QuizId}/{QuestionId}")]
+        public IHttpActionResult DeleteQuestion(int QuestionId,int QuizId)
+        {
+            if(QuestionId==null || QuizId == null)
+            {
+                return BadRequest();
+            }
 
-        //        return questions;
-        //    }
-        //}
+            var q = db.QuizQuestions.FirstOrDefault(x => x.QuestionId == QuestionId && x.QuizId == QuizId);
+            db.QuizQuestions.Remove(q);
+            db.SaveChanges();
+            return Ok();
+        }
     }
 }
