@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -12,6 +13,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
+using Newtonsoft.Json;
 using WebApi.Models;
 using WebApi.Providers;
 using WebApi.Results;
@@ -51,18 +53,59 @@ namespace WebApi.Controllers
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
         // GET api/Account/UserInfo
-        [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("UserInfo")]
-        public UserInfoViewModel GetUserInfo()
+        public IHttpActionResult GetUserInfo()
         {
-            ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
+            //ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
 
-            return new UserInfoViewModel
+            var user = UserManager.FindByName(User.Identity.GetUserName());
+
+            if (user != null)
             {
-                Email = User.Identity.GetUserName(),
-                HasRegistered = externalLogin == null,
-                LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
-            };
+                Account account = new Account()
+                {
+                    Id = user.Id,
+                    UserName = user.UserName,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email = user.Email,
+                    GoogleId = user.GoogleId,
+                };
+                return Ok(account);
+            }
+            return Ok(user);
+        }
+
+        private const string GoogleApiTokenInfoUrl = "https://www.googleapis.com/oauth2/v3/tokeninfo?id_token={0}";
+
+        // POST api/Account/GetExternalUserDetails
+        [HttpPost]
+        [Route("GetExternalUserDetails")]
+        public GoogleApiTokenInfo GetExternalUserDetails()
+        {
+            string IdToken = HttpContext.Current.Request.Form["IdToken"];
+            var httpClient = new HttpClient();
+            var requestUri = new Uri(string.Format(GoogleApiTokenInfoUrl, IdToken));
+
+            HttpResponseMessage httpResponseMessage;
+            try
+            {
+                httpResponseMessage = httpClient.GetAsync(requestUri).Result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            if (httpResponseMessage.StatusCode != HttpStatusCode.OK)
+            {
+                return null;
+            }
+
+            var response = httpResponseMessage.Content.ReadAsStringAsync().Result;
+            var googleApiTokenInfo = JsonConvert.DeserializeObject<GoogleApiTokenInfo>(response);
+
+            return googleApiTokenInfo;
         }
 
         // POST api/Account/Logout
@@ -107,7 +150,7 @@ namespace WebApi.Controllers
             return new ManageInfoViewModel
             {
                 LocalLoginProvider = LocalLoginProvider,
-                Email = user.UserName,
+                Email = user.Email,
                 Logins = logins,
                 ExternalLoginProviders = GetExternalLogins(returnUrl, generateState)
             };
@@ -249,8 +292,9 @@ namespace WebApi.Controllers
                 return new ChallengeResult(provider, this);
             }
 
-            ApplicationUser user = await UserManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider,
-                externalLogin.ProviderKey));
+            //ApplicationUser user = await UserManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider,
+            //    externalLogin.ProviderKey));
+            ApplicationUser user = await UserManager.FindByEmailAsync(externalLogin.Email);
 
             bool hasRegistered = user != null;
 
@@ -258,23 +302,38 @@ namespace WebApi.Controllers
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
                 
-                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
-
                 AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
                 Authentication.SignIn(properties, oAuthIdentity, cookieIdentity);
+                return Ok(user);
             }
             else
             {
-                IEnumerable<Claim> claims = externalLogin.GetClaims();
-                ClaimsIdentity identity = new ClaimsIdentity(claims, OAuthDefaults.AuthenticationType);
-                Authentication.SignIn(identity);
+                user = new ApplicationUser() { UserName = externalLogin.UserName, Email = externalLogin.Email };
+                user.FirstName = externalLogin.FirstName;
+                user.LastName = externalLogin.LastName;
+                user.GoogleId = externalLogin.GoogleId;
+                IdentityResult result = await UserManager.CreateAsync(user);
+                if (!result.Succeeded)
+                {
+                    return GetErrorResult(result);
+                }
+                //IEnumerable<Claim> claims = externalLogin.GetClaims();
+                //ClaimsIdentity identity = new ClaimsIdentity(claims, OAuthDefaults.AuthenticationType);
+                //Authentication.SignIn(identity);
+                ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                    OAuthDefaults.AuthenticationType);
+                ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                    CookieAuthenticationDefaults.AuthenticationType);
+                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
+                Authentication.SignIn(properties, oAuthIdentity, cookieIdentity);
+                return Ok(user);
             }
-
-            return Ok();
         }
+
 
         // GET api/Account/ExternalLogins?returnUrl=%2F&generateState=true
         [AllowAnonymous]
@@ -306,7 +365,7 @@ namespace WebApi.Controllers
                         provider = description.AuthenticationType,
                         response_type = "token",
                         client_id = Startup.PublicClientId,
-                        redirect_uri = new Uri(Request.RequestUri, returnUrl).AbsoluteUri,
+                        redirect_uri = new Uri("http://localhost:4200/Home").AbsoluteUri,
                         state = state
                     }),
                     State = state
@@ -343,7 +402,7 @@ namespace WebApi.Controllers
         [OverrideAuthentication]
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("RegisterExternal")]
-        public async Task<IHttpActionResult> RegisterExternal(RegisterExternalBindingModel model)
+        public async Task<IHttpActionResult> RegisterExternal(Account model)
         {
             if (!ModelState.IsValid)
             {
@@ -356,20 +415,26 @@ namespace WebApi.Controllers
                 return InternalServerError();
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
-
-            IdentityResult result = await UserManager.CreateAsync(user);
-            if (!result.Succeeded)
+            var user = UserManager.FindByEmail(model.Email);
+            if (user == null)
             {
-                return GetErrorResult(result);
-            }
+                user = new ApplicationUser() { UserName = model.Email.Substring(0, model.Email.LastIndexOf("@")), Email = model.Email };
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.GoogleId = model.GoogleId;
+                IdentityResult result = await UserManager.CreateAsync(user);
+                if (!result.Succeeded)
+                {
+                    return GetErrorResult(result);
+                }
 
-            result = await UserManager.AddLoginAsync(user.Id, info.Login);
-            if (!result.Succeeded)
-            {
-                return GetErrorResult(result); 
+                result = await UserManager.AddLoginAsync(user.Id, info.Login);
+                if (!result.Succeeded)
+                {
+                    return GetErrorResult(result);
+                }
             }
-            return Ok();
+            return Ok(user);
         }
 
         protected override void Dispose(bool disposing)
@@ -424,15 +489,20 @@ namespace WebApi.Controllers
             public string LoginProvider { get; set; }
             public string ProviderKey { get; set; }
             public string UserName { get; set; }
+            public string Name { get; set; }
+            public string Email { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public string GoogleId { get; set; }
 
             public IList<Claim> GetClaims()
             {
                 IList<Claim> claims = new List<Claim>();
                 claims.Add(new Claim(ClaimTypes.NameIdentifier, ProviderKey, null, LoginProvider));
 
-                if (UserName != null)
+                if (Name != null)
                 {
-                    claims.Add(new Claim(ClaimTypes.Name, UserName, null, LoginProvider));
+                    claims.Add(new Claim(ClaimTypes.Name, Name, null, LoginProvider));
                 }
 
                 return claims;
@@ -445,7 +515,7 @@ namespace WebApi.Controllers
                     return null;
                 }
 
-                Claim providerKeyClaim = identity.FindFirst(ClaimTypes.NameIdentifier);
+                Claim providerKeyClaim = identity.FindFirst(ClaimTypes.NameIdentifier);                
 
                 if (providerKeyClaim == null || String.IsNullOrEmpty(providerKeyClaim.Issuer)
                     || String.IsNullOrEmpty(providerKeyClaim.Value))
@@ -462,7 +532,12 @@ namespace WebApi.Controllers
                 {
                     LoginProvider = providerKeyClaim.Issuer,
                     ProviderKey = providerKeyClaim.Value,
-                    UserName = identity.FindFirstValue(ClaimTypes.Name)
+                    UserName = identity.FindFirstValue(ClaimTypes.Email).Substring(0, identity.FindFirstValue(ClaimTypes.Email).LastIndexOf("@")),
+                    Name = identity.FindFirstValue(ClaimTypes.Name),
+                    Email = identity.FindFirstValue(ClaimTypes.Email),
+                    FirstName = identity.FindFirstValue(ClaimTypes.GivenName),
+                    LastName = identity.FindFirstValue(ClaimTypes.Surname),
+                    GoogleId = identity.FindFirst(ClaimTypes.NameIdentifier).Value
                 };
             }
         }

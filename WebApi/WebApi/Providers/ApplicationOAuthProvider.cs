@@ -29,13 +29,16 @@ namespace WebApi.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
+            var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
+            var userManager = new UserManager<ApplicationUser>(userStore);
 
-            ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
+            //var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
+
+            ApplicationUser user = await userManager.FindByNameAsync(context.UserName);
 
             if (user == null)
             {
-                context.SetError("invalid_grant", "The user name or password is incorrect.");
+                context.SetError("invalid_grant", "The user name is incorrect.");
                 return;
             }
 
@@ -43,31 +46,18 @@ namespace WebApi.Providers
                OAuthDefaults.AuthenticationType);
             ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
                 CookieAuthenticationDefaults.AuthenticationType);
+            oAuthIdentity.AddClaim(new Claim("Email", user.Email));
+            oAuthIdentity.AddClaim(new Claim("UserName", user.UserName));
+            oAuthIdentity.AddClaim(new Claim("FirstName", user.FirstName));
+            oAuthIdentity.AddClaim(new Claim("LastName", user.LastName));
+            oAuthIdentity.AddClaim(new Claim("GoogleId", user.GoogleId));
 
             AuthenticationProperties properties = CreateProperties(user.UserName);
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);
             context.Request.Context.Authentication.SignIn(cookiesIdentity);
-
-
-            //    var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
-            //    var manager = new UserManager<ApplicationUser>(userStore);
-            //    user = await manager.FindByEmailAsync(context.);
-            //    if (user != null)
-            //    {
-            //        var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            //        identity.AddClaim(new Claim("Username", user.UserName));
-            //        identity.AddClaim(new Claim("Email", user.Email));
-            //        identity.AddClaim(new Claim("FirstName", user.FirstName));
-            //        identity.AddClaim(new Claim("LastName", user.LastName));
-            //        identity.AddClaim(new Claim("Id", user.Id));
-            //        System.Diagnostics.Debug.WriteLine(user.Id);
-            //        context.Validated(identity);
-            //    }
-            //    else
-            //        return;
-            //}
         }
+
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)
         {
             foreach (KeyValuePair<string, string> property in context.Properties.Dictionary)
@@ -93,7 +83,7 @@ namespace WebApi.Providers
         {
             if (context.ClientId == _publicClientId)
             {
-                Uri expectedRootUri = new Uri(context.Request.Uri, "/");
+                Uri expectedRootUri = new Uri("http://localhost:4200/Home");
 
                 if (expectedRootUri.AbsoluteUri == context.RedirectUri)
                 {
@@ -108,7 +98,7 @@ namespace WebApi.Providers
         {
             IDictionary<string, string> data = new Dictionary<string, string>
             {
-                { "userName", userName }
+                { "UserName", userName }
             };
             return new AuthenticationProperties(data);
         }

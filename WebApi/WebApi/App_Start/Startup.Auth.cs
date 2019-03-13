@@ -38,7 +38,7 @@ namespace WebApi
                 TokenEndpointPath = new PathString("/Token"),
                 Provider = new ApplicationOAuthProvider(PublicClientId),
                 AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
+                AccessTokenExpireTimeSpan = TimeSpan.FromHours(2),
                 // In production mode set AllowInsecureHttp = false
                 AllowInsecureHttp = true
             };
@@ -61,8 +61,8 @@ namespace WebApi
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "819840688710-ljvg9sqe86d08r2hlgv6e9s74i3jmiq0.apps.googleusercontent.com",
-                ClientSecret = "29xBn1en0hs7-_2HG3ydZUjc"
+                ClientId = "889590185011-lp2bhjq5anljfgqpj6mje92fh0e6mbk7.apps.googleusercontent.com",
+                ClientSecret = "PXFsS0vftyV7dXTWbLVJkcMp"
             });
         }
     }
