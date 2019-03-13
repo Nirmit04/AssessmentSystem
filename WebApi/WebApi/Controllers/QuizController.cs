@@ -48,9 +48,9 @@ namespace WebApi.Controllers
 
         [HttpGet]
         [Route("api/Quiz/GetQuiz/{CreatedBy}")]
-        public IHttpActionResult CreateQuiz(string CreatedBy)
+        public IHttpActionResult GetQuiz(string CreatedBy)
         {
-            var quiz = db.Quizs.Where(x => x.CreatedBy == CreatedBy).
+            var quiz = db.Quizs.Where(x => x.CreatedBy == CreatedBy).Where(x => x.ArchiveStatus == false).
                 Select(x => new
                 {
                     QuizId = x.QuizId,
@@ -69,9 +69,41 @@ namespace WebApi.Controllers
         public IHttpActionResult CreateQuiz(int QuizId)
         {
             Quiz quiz = db.Quizs.Find(QuizId);
+            System.Diagnostics.Debug.WriteLine(quiz.QuizId);
             quiz.ArchiveStatus = true;
-
+            db.SaveChanges();
             return Ok();
         }
+
+        //    [HttpGet]
+        //    [Route("api/Quiz/Question/{QuizId}")]
+        //    public IQueryable GetQuiz(int QuizId)
+        //    {
+        //        var questionIds = db.QuizQuestions.Where(x => x.QuizId == QuizId).
+        //            Select(x => new {
+        //                x.QuestionId
+        //            }).ToList();
+
+        //        var questions=new Object();
+        //        foreach (var item in questionIds)
+        //        {
+        //            System.Diagnostics.Debug.WriteLine(item.QuestionId);
+
+        //            System.Diagnostics.Debug.WriteLine(questions);
+        //        }
+        //        questions = db.Questions.Where(y => y.QuestionId.Contains(questionIds)).
+        //                Select(x => new
+        //                {
+        //                    x.QuestionId,
+        //                    x.QuestionStatement,
+        //                    x.Marks,
+        //                    x.Difficulty,
+        //                    x.CreatedBy
+        //                }).ToList();
+
+
+        //        return questions;
+        //    }
+        //}
     }
 }

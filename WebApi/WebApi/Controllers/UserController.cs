@@ -26,16 +26,28 @@ namespace WebApi.Controllers
             var dumuser = manager.FindByEmail(model.Email);
             if (dumuser == null)
             {
-                var user = new ApplicationUser() { UserName = model.FirstName + model.LastName+rnd.Next(), Email = model.Email };
-                System.Diagnostics.Debug.WriteLine(user.Id);
+                ApplicationUser user = new ApplicationUser() { UserName = model.FirstName + model.LastName+rnd.Next(), Email = model.Email };
+               
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
-                //user.ImageURL = model.ImageURL;
+                user.ImageURL = model.ImageURL;
                 user.GoogleId = model.GoogleId;
-                IdentityResult result = manager.Create(user);
                 string id = user.Id;
-                manager.AddToRole(id, "Content-Creator");
-                System.Diagnostics.Debug.WriteLine(result);
+                IdentityResult result = manager.Create(user);
+                
+            
+                try
+                { 
+                 var user1= manager.FindByEmail(user.Email);
+                    System.Diagnostics.Debug.WriteLine(user1.Id + " 11");
+                    manager.AddToRole(user1.Id, "content-creator");
+                
+                }
+                catch
+                {
+                    System.Diagnostics.Debug.WriteLine("Failed");
+                }
+                
                 return result;
             }
             else {
@@ -79,7 +91,7 @@ namespace WebApi.Controllers
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Email = user.Email,
-                    //ImageURL = user.ImageURL,
+                    ImageURL = user.ImageURL,
                     GoogleId = user.GoogleId,
                 });
             }

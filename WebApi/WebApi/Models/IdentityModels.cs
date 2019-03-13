@@ -13,7 +13,7 @@ namespace WebApi.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        //public string ImageURL { get; set; }
+        public string ImageURL { get; set; }
         public string GoogleId { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
