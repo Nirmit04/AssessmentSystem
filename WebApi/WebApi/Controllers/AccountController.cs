@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
@@ -52,14 +53,45 @@ namespace WebApi.Controllers
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
+        [HttpGet]
+        [Authorize(Roles = "Content-Creator")]
+        [Route("ContentCreatorRole")]
+        public string ContentCreator()
+        {
+            return "For Content-Creator Role";
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Employee")]
+        [Route("EmployeeRole")]
+        public string Employee()
+        {
+            return "For Employee Role";
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Intern")]
+        [Route("InternRole")]
+        public string Intern()
+        {
+            return "For Intern Role";
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Test-Administrator")]
+        [Route("TestAdministratorRole")]
+        public string TestAdministrator()
+        {
+            return "For Test-Administrator Role";
+        }
+
         // GET api/Account/UserInfo
         [Route("UserInfo")]
         public IHttpActionResult GetUserInfo()
         {
-            //ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
-
             var user = UserManager.FindByName(User.Identity.GetUserName());
-
+            List<string> userRoles = UserManager.GetRoles(user.Id).ToList<string>();
+            
             if (user != null)
             {
                 Account account = new Account()
@@ -69,7 +101,8 @@ namespace WebApi.Controllers
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Email = user.Email,
-                    GoogleId = user.GoogleId,
+                    Roles = userRoles.ToArray(),
+                    GoogleId = user.GoogleId
                 };
                 return Ok(account);
             }
@@ -306,7 +339,8 @@ namespace WebApi.Controllers
                     OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
-                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
+                var userRoles = UserManager.GetRoles(user.Id);
+                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName, userRoles);
                 Authentication.SignIn(properties, oAuthIdentity, cookieIdentity);
                 return Ok(user);
             }
@@ -321,6 +355,8 @@ namespace WebApi.Controllers
                 {
                     return GetErrorResult(result);
                 }
+                string[] roles = new string[] { "Employee" };
+                UserManager.AddToRoles(user.Id, roles);
                 //IEnumerable<Claim> claims = externalLogin.GetClaims();
                 //ClaimsIdentity identity = new ClaimsIdentity(claims, OAuthDefaults.AuthenticationType);
                 //Authentication.SignIn(identity);
@@ -328,7 +364,8 @@ namespace WebApi.Controllers
                     OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
-                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
+                var userRoles = UserManager.GetRoles(user.Id);
+                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName, userRoles);
                 Authentication.SignIn(properties, oAuthIdentity, cookieIdentity);
                 return Ok(user);
             }
@@ -537,7 +574,7 @@ namespace WebApi.Controllers
                     Email = identity.FindFirstValue(ClaimTypes.Email),
                     FirstName = identity.FindFirstValue(ClaimTypes.GivenName),
                     LastName = identity.FindFirstValue(ClaimTypes.Surname),
-                    GoogleId = identity.FindFirst(ClaimTypes.NameIdentifier).Value
+                    GoogleId = identity.FindFirst(ClaimTypes.NameIdentifier).Value 
                 };
             }
         }
