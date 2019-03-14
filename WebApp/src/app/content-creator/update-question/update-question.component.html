@@ -1,12 +1,13 @@
 <div class="card" style="width: 80%;">
   <div class="card-body">
-    <h5 class="card-title">Add Questions</h5>
+    <h5 class="card-title">{{label}}</h5>
     <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
       <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="CCreatedBy">
+      <input type="hidden" name="QuestionId" #QuestionId="ngModel" [(ngModel)]="service.formData.QuestionId">
       <div class="form-group">
         <label>Question</label>
-        <textarea class="form-control" name="QuestionStatement" #QuestionStatement="ngModel"
-          [(ngModel)]="service.formData.QuestionStatement" rows="3" required></textarea>
+        <textarea class="form-control" [readonly]="bool" name="QuestionStatement" #QuestionStatement="ngModel"
+          [(ngModel)]="service.formData.QuestionStatement" rows="3"></textarea>
         <div class="validation-error" *ngIf="QuestionStatement.invalid && QuestionStatement.touched">This field is
           required.
         </div>
@@ -14,13 +15,13 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label>Option 1</label>
-          <input required type="text" name="Option1" #Option1="ngModel" [(ngModel)]="service.formData.Option1"
+          <input required type="text" [readonly]="bool" name="Option1" #Option1="ngModel" [(ngModel)]="service.formData.Option1"
             class="form-control">
           <div class="validation-error" *ngIf="Option1.invalid && Option1.touched">This field is required.</div>
         </div>
         <div class="form-group col-md-6">
           <label>Option 2</label>
-          <input required type="text" name="Option2" #Option2="ngModel" [(ngModel)]="service.formData.Option2"
+          <input required type="text" [readonly]="bool" name="Option2" #Option2="ngModel" [(ngModel)]="service.formData.Option2"
             class="form-control">
           <div class="validation-error" *ngIf="Option2.invalid && Option2.touched">This field is required.</div>
         </div>
@@ -28,13 +29,13 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label>Option 3</label>
-          <input required type="text" name="Option3" #Option3="ngModel" [(ngModel)]="service.formData.Option3"
+          <input required type="text" [readonly]="bool" name="Option3" #Option3="ngModel" [(ngModel)]="service.formData.Option3"
             class="form-control">
           <div class="validation-error" *ngIf="Option3.invalid && Option3.touched">This field is required.</div>
         </div>
         <div class="form-group col-md-6">
           <label>Option 4</label>
-          <input required type="text" name="Option4" #Option4="ngModel" [(ngModel)]="service.formData.Option4"
+          <input required type="text" [readonly]="bool" name="Option4" #Option4="ngModel" [(ngModel)]="service.formData.Option4"
             class="form-control">
           <div class="validation-error" *ngIf="Option4.invalid && Option4.touched">This field is required.</div>
         </div>
@@ -42,14 +43,14 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label>Correct Option</label>
-          <input required type="text" name="Answer" #Answer="ngModel" [(ngModel)]="service.formData.Answer"
+          <input required type="text" [readonly]="bool" name="Answer" #Answer="ngModel" [(ngModel)]="service.formData.Answer"
             class="form-control">
           <div class="validation-error" *ngIf="Answer.invalid && Answer.touched">This field is required.
           </div>
         </div>
         <div class="form-group col-md-6">
           <label>Marks</label>
-          <input required type="text" name="Marks" #Marks="ngModel" [(ngModel)]="service.formData.Marks"
+          <input required type="text" [readonly]="bool" name="Marks" #Marks="ngModel" [(ngModel)]="service.formData.Marks"
             class="form-control">
           <div class="validation-error" *ngIf="Marks.invalid && Marks.touched">This field is required.</div>
         </div>
@@ -57,7 +58,7 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label>Select Subject</label>
-          <select name="SubjectId" required #SubjectId="ngModel" [(ngModel)]="service.formData.SubjectId"
+          <select name="SubjectId" [disabled]="bool" required #SubjectId="ngModel" [(ngModel)]="service.formData.SubjectId"
             class="form-control">
             <option value="">Choose</option>
             <option *ngFor="let Subject of Subjects" value="{{Subject.SubjectId}}">{{Subject.Name}}</option>
@@ -66,7 +67,7 @@
         </div>
         <div class="form-group col-md-6">
           <label>Select Difficulty-Level</label>
-          <select name="Difficulty" required #Difficulty="ngModel" [(ngModel)]="service.formData.Difficulty"
+          <select name="Difficulty" [disabled]="bool" required #Difficulty="ngModel" [(ngModel)]="service.formData.Difficulty"
             class="form-control">
             <option value="">Choose</option>
             <option value="Beginner">Easy</option>
@@ -77,7 +78,8 @@
         </div>
       </div>
       <div class="form-group">
-        <button type="submit" [disabled]="form.invalid" class="btn btn-primary btn-block">Submit</button>
+        <button style="margin:0 5%" type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button>
       </div>
     </form>
   </div>

@@ -4,18 +4,31 @@ import { ContentCreatorServiceService } from '../shared/content-creator-service.
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from '../shared/subject.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router'
+
 @Component({
-  selector: 'app-create-questions',
-  templateUrl: './create-questions.component.html',
-  styleUrls: ['./create-questions.component.css']
+  selector: 'app-update-question',
+  templateUrl: './update-question.component.html',
+  styleUrls: ['./update-question.component.css']
 })
-export class CreateQuestionsComponent implements OnInit {
+export class UpdateQuestionComponent implements OnInit {
   public Subjects: Subject[];
-  CCreatedBy = "";
-  constructor(public service: ContentCreatorServiceService, public toastr: ToastrService,
-  ) { }
+  public CCreatedBy = '';
+  bool = false;
+  label: string;
+  constructor(@Inject(MAT_DIALOG_DATA) public data,
+    public dialogRef: MatDialogRef<UpdateQuestionComponent>,
+    public service: ContentCreatorServiceService,
+    public toastr: ToastrService,
+    private router: Router) { }
+
   ngOnInit() {
-    this.resetForm();
+    this.bool = this.service.readonlyStatus;
+    if (this.bool === true) {
+      this.label = "View Question";
+    } else {
+      this.label = "Edit Questions";
+    }
     this.CCreatedBy = localStorage.getItem('uid');
     this.service.retrieveSubjects().subscribe(res => {
       this.Subjects = res as Subject[];
@@ -39,10 +52,13 @@ export class CreateQuestionsComponent implements OnInit {
       SubjectId: "",
     }
   }
+
   onSubmit(form: NgForm) {
-    this.service.postQuestion(form.value).subscribe(res => {
-      this.toastr.success('Inserted successfully');
+    this.service.updateQuestion(form.value).subscribe(res => {
+      this.toastr.success('Updated successfully');
       this.resetForm(form);
+      // this.router.navigate(['/cc-dash'])
     });;
   }
+
 }
