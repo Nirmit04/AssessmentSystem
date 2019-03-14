@@ -250,6 +250,7 @@ button {
 	font-size: 0.99925rem;
 	line-height: inherit;
 	white-space: nowrap;
+	color: #fff;
 }
 
 .navbar-brand:hover,

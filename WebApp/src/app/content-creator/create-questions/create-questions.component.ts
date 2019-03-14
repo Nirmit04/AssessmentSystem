@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ContentCreatorServiceService } from 'src/app/content-creator/shared/content-creator-service.service'
+import { ContentCreatorServiceService } from '../shared/content-creator-service.service'
 import { ToastrService } from 'ngx-toastr';
-import { Subject } from 'src/app/content-creator/shared/subject.model';
+import { Subject } from '../shared/subject.model';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-create-questions',
   templateUrl: './create-questions.component.html',
@@ -10,11 +11,13 @@ import { Subject } from 'src/app/content-creator/shared/subject.model';
 })
 export class CreateQuestionsComponent implements OnInit {
   public Subjects: Subject[];
-  constructor(public service: ContentCreatorServiceService, public toastr: ToastrService) { }
+  CCreatedBy = "";
+  constructor(public service: ContentCreatorServiceService, public toastr: ToastrService,
+  ) { }
   ngOnInit() {
     this.resetForm();
+    this.CCreatedBy = localStorage.getItem('uid');
     this.service.retrieveSubjects().subscribe(res => {
-      console.log("This is here")
       this.Subjects = res as Subject[];
     });
   }
@@ -24,7 +27,7 @@ export class CreateQuestionsComponent implements OnInit {
       form.resetForm();
     }
     this.service.formData = {
-      Question_ID: null,
+      QuestionId: null,
       QuestionStatement: "",
       Option1: "",
       Option2: "",
@@ -33,7 +36,7 @@ export class CreateQuestionsComponent implements OnInit {
       Answer: null,
       Marks: null,
       Difficulty: "",
-      Subject_ID: "",
+      SubjectId: "",
     }
   }
   onSubmit(form: NgForm) {

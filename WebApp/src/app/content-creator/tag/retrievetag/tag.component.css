@@ -1,0 +1,14 @@
+table {
+	width: 100%;
+	margin-top: 10px;
+}
+.container-fluid {
+	margin: 7px auto;
+	padding: 5px auto;
+}
+h4 {
+	text-align: center;
+}
+.th .mat-header-cell {
+	padding-left: 20px !important;
+}
