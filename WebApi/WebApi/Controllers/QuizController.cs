@@ -193,7 +193,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut]
-        [Route("api/EditQuiz/AddQuestion/{QuizId}")]
+        [Route("api/Quiz/EditQuiz/AddQuestion/{QuizId}")]
         public IHttpActionResult AddQuestions(int QuizId,[FromBody]int[] QuestionId)
         {
             QuizQuestion quizQuestion = new QuizQuestion();
