@@ -189,14 +189,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903150558328_ChangedSchema.cs" />
-    <Compile Include="Migrations\201903150558328_ChangedSchema.Designer.cs">
-      <DependentUpon>201903150558328_ChangedSchema.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903150606393_ChangedSchemaAgain.cs" />
-    <Compile Include="Migrations\201903150606393_ChangedSchemaAgain.Designer.cs">
-      <DependentUpon>201903150606393_ChangedSchemaAgain.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -239,14 +231,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903150558328_ChangedSchema.resx">
-      <DependentUpon>201903150558328_ChangedSchema.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903150606393_ChangedSchemaAgain.resx">
-      <DependentUpon>201903150606393_ChangedSchemaAgain.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
