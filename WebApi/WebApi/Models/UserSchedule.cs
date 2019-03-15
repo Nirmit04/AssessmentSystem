@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -8,7 +9,7 @@ namespace WebApi.Models
 {
     public class UserSchedule
     {
-
+        [Key]
         public int UserScheduleId { get; set; }
 
         [ForeignKey("QuizSchedule")]
@@ -16,7 +17,6 @@ namespace WebApi.Models
 
         [ForeignKey("User")]
         public string UserId { get; set; }
-       
 
         public bool Taken { get; set; }
 

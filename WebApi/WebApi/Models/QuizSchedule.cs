@@ -14,18 +14,15 @@ namespace WebApi.Models
         public DateTime StartDateTime { get; set; }
         public DateTime EndDateTime { get; set; }
         public bool ArchiveStatus { get; set; }
-        
         [ForeignKey("Quiz")]
         public int QuizId { get; set; }
 
         [ForeignKey("TestAdmin")]
         public string CreatedBy { get; set; }
 
-        public string[] UserIds { get; set; }
         public virtual Quiz Quiz { get; set; }
         public virtual ApplicationUser TestAdmin { get; set; }
 
         public virtual ICollection<UserSchedule> UserSchedules { get; set; }
-
     }
 }

@@ -88,7 +88,7 @@ namespace WebApi.Providers
         {
             if (context.ClientId == _publicClientId)
             {
-                Uri expectedRootUri = new Uri("http://localhost:4200/Home");
+                Uri expectedRootUri = new Uri("http://localhost:4200/home");
 
                 if (expectedRootUri.AbsoluteUri == context.RedirectUri)
                 {

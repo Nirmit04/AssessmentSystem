@@ -18,7 +18,6 @@ namespace WebApi.Controllers
         [Route("api/Quiz/CreateQuiz")]
         public IHttpActionResult CreateQuiz(Quiz quiz)
         {
-           
             Question ques = new Question();
             quiz.TotalMarks = 0;
             quiz.TotalQuestions = quiz.QuestionIds.Length;
@@ -39,18 +38,16 @@ namespace WebApi.Controllers
                 db.QuizQuestions.Add(quizQuestion);
                 db.SaveChanges();
             }
-
             db.SaveChanges();
             return Ok();
-
         }
 
         [HttpGet]
         [Route("api/Quiz/GetQuiz/{CreatedBy}")]
         public IHttpActionResult GetQuiz(string CreatedBy)
         {
-            var quiz = db.Quizs.Where(x => x.CreatedBy == CreatedBy).Where(x => x.ArchiveStatus == false).
-                Select(x => new
+            var quiz = db.Quizs.Where(x => x.CreatedBy == CreatedBy && x.ArchiveStatus == false)
+                .Select(x => new
                 {
                     QuizId = x.QuizId,
                     Difficulty = x.Difficulty,
@@ -68,7 +65,6 @@ namespace WebApi.Controllers
         public IHttpActionResult Archive(int QuizId)
         {
             Quiz quiz = db.Quizs.Find(QuizId);
-            System.Diagnostics.Debug.WriteLine(quiz.QuizId);
             quiz.ArchiveStatus = true;
             db.SaveChanges();
             return Ok();
@@ -89,44 +85,41 @@ namespace WebApi.Controllers
         [Route("api/Quiz/QuizQuestion/{QuizId}")]
         public IHttpActionResult GetQuiz(int QuizId)
         {
-            var questionIds = db.QuizQuestions.Where(x => x.QuizId == QuizId).
-                Select(x => new
-                {
-                    x.QuestionId
-                }).ToList();
+            var qIds = db.QuizQuestions
+                .Where(x => x.QuizId == QuizId)
+                .Select(x => x.QuestionId)
+                .ToList();
 
-            List<object> questions = new List<object>();
-            
-            foreach (var item in questionIds)
-            {   
-                System.Diagnostics.Debug.WriteLine(item.QuestionId);
-                var q = db.Questions.Where(y => y.QuestionId == item.QuestionId).
-                     Select(x => new
+            List<int> questionIds = new List<int>();
+            foreach (int qId in qIds)
+            {
+                questionIds.Add(qId);
+            }
+            var questions = db.Questions
+                .AsEnumerable()
+                .Where(y => questionIds.Contains(y.QuestionId))
+                .Select(x => new
                      {
                          x.QuestionId,
                          x.QuestionStatement,
                          x.Marks,
                          x.Difficulty,
                          x.CreatedBy
-                     });
-                questions.Add(q);
-            }
+                     }).ToList(); 
             return Ok(questions);
         }
 
         [HttpDelete]
-        [AllowAnonymous]
+        [AllowAnonymous] //To be removed later
         [Route("api/Quiz/QuizQuestion/Delete/{QuizId}/{QuestionId}")]
         public IHttpActionResult DeleteQuestion(int QuestionId,int QuizId)
         {
-            var q = db.QuizQuestions.FirstOrDefault(x => x.QuestionId == QuestionId && x.QuizId == QuizId);
-            db.QuizQuestions.Remove(q);
-
-            var question = db.Questions.FirstOrDefault(x=>x.QuestionId==QuestionId);
+            var quizquestion = db.QuizQuestions.FirstOrDefault(x => x.QuestionId == QuestionId && x.QuizId == QuizId);
+            db.QuizQuestions.Remove(quizquestion);
+            var question = db.Questions.FirstOrDefault(x => x.QuestionId == QuestionId);
             var quiz = db.Quizs.FirstOrDefault(x => x.QuizId == QuizId);
             quiz.TotalMarks = quiz.TotalMarks - question.Marks;
             quiz.TotalQuestions--;
-
             db.SaveChanges();
             return Ok();
         }

@@ -18,13 +18,6 @@ namespace WebApi.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         [HttpGet]
-        [Route("api/Question/GetQuestionAll")]
-        public IQueryable<Question> GetQuestionAll()
-        {
-            return db.Questions;
-        }
-
-        [HttpGet]
         [Route("api/Question/GetQuestion/{SubjectId:int?}")]
         public IHttpActionResult GetQuestion(int? SubjectId)
         {
@@ -40,6 +33,7 @@ namespace WebApi.Controllers
                         Option4 = x.Option4,
                         Answer = x.Answer,
                         Marks = x.Marks,
+                        SubjectId = x.SubjectId,
                         SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
                         Difficulty = x.Difficulty,
                         ImageName = x.ImageName
@@ -64,6 +58,7 @@ namespace WebApi.Controllers
                     Option4 = x.Option4,
                     Answer = x.Answer,
                     Marks = x.Marks,
+                    SubjectId = x.SubjectId,
                     SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
                     Difficulty = x.Difficulty,
                     ImageName = x.ImageName
@@ -87,6 +82,7 @@ namespace WebApi.Controllers
                     Option4 = x.Option4,
                     Answer = x.Answer,
                     Marks = x.Marks,
+                    SubjectId = x.SubjectId,
                     SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
                     Difficulty = x.Difficulty,
                     ImageName = x.ImageName
@@ -158,8 +154,7 @@ namespace WebApi.Controllers
             {
                 return BadRequest();
             }
-
-            var result = db.Questions
+            var questions = db.Questions
                 .Where(x => x.CreatedBy == UserId)
                 .Select(x => new {
                     QuestionId = x.QuestionId,
@@ -170,20 +165,12 @@ namespace WebApi.Controllers
                     Option4 = x.Option4,
                     Answer = x.Answer,
                     Marks = x.Marks,
+                    SubjectId = x.SubjectId,
                     SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
-                    SubjectId=x.SubjectId,
                     Difficulty = x.Difficulty.ToString(),
                     ImageName = x.ImageName
                 });
-
-            if (result == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                return Ok(result);
-            }
+            return Ok(questions);
         }
 
         
