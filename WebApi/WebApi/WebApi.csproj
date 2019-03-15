@@ -178,6 +178,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\QuizSchedule.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\QuizController.cs" />
@@ -186,6 +187,18 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903150512456_QuizSChedule.cs" />
+    <Compile Include="Migrations\201903150512456_QuizSChedule.Designer.cs">
+      <DependentUpon>201903150512456_QuizSChedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903150604202_UserSchedule.cs" />
+    <Compile Include="Migrations\201903150604202_UserSchedule.Designer.cs">
+      <DependentUpon>201903150604202_UserSchedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903150640221_UserSchedule11.cs" />
+    <Compile Include="Migrations\201903150640221_UserSchedule11.Designer.cs">
+      <DependentUpon>201903150640221_UserSchedule11.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -201,6 +214,7 @@
     <Compile Include="Models\QuizSchedule.cs" />
     <Compile Include="Models\Report.cs" />
     <Compile Include="Models\Subject.cs" />
+    <Compile Include="Models\UserSchedule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -228,6 +242,17 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201903150512456_QuizSChedule.resx">
+      <DependentUpon>201903150512456_QuizSChedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903150604202_UserSchedule.resx">
+      <DependentUpon>201903150604202_UserSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903150640221_UserSchedule11.resx">
+      <DependentUpon>201903150640221_UserSchedule11.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

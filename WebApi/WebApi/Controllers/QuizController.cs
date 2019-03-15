@@ -18,14 +18,11 @@ namespace WebApi.Controllers
         [Route("api/Quiz/CreateQuiz")]
         public IHttpActionResult CreateQuiz(Quiz quiz)
         {
-            foreach (var item in quiz.qId)
-            {
-                System.Diagnostics.Debug.WriteLine(quiz.qId);
-            }
+           
             Question ques = new Question();
             quiz.TotalMarks = 0;
-            quiz.TotalQuestions = quiz.qId.Length;
-            foreach (var item in quiz.qId)
+            quiz.TotalQuestions = quiz.QuestionIds.Length;
+            foreach (var item in quiz.QuestionIds)
             {
                 ques = db.Questions.Find(item);
                 quiz.TotalMarks += ques.Marks;
@@ -35,7 +32,7 @@ namespace WebApi.Controllers
 
             QuizQuestion quizQuestion = new QuizQuestion();
 
-            foreach (var item in quiz.qId)
+            foreach (var item in quiz.QuestionIds)
             {
                 quizQuestion.QuizId = quiz.QuizId;
                 quizQuestion.QuestionId = item;
@@ -68,7 +65,7 @@ namespace WebApi.Controllers
 
         [HttpDelete]
         [Route("api/Quiz/Delete/{QuizId}")]
-        public IHttpActionResult CreateQuiz(int QuizId)
+        public IHttpActionResult Archive(int QuizId)
         {
             Quiz quiz = db.Quizs.Find(QuizId);
             System.Diagnostics.Debug.WriteLine(quiz.QuizId);
@@ -77,8 +74,19 @@ namespace WebApi.Controllers
             return Ok();
         }
 
+        [HttpPut]
+        [Route("api/Quiz/Unarchive")]
+        public IHttpActionResult UnArchive([FromBody]int QuizId)
+        {
+            Quiz quiz = db.Quizs.Find(QuizId);
+            System.Diagnostics.Debug.WriteLine(quiz.QuizId);
+            quiz.ArchiveStatus = false;
+            db.SaveChanges();
+            return Ok();
+        }
+
         [HttpGet]
-        [Route("api/Quiz/Question/{QuizId}")]
+        [Route("api/Quiz/QuizQuestion/{QuizId}")]
         public IHttpActionResult GetQuiz(int QuizId)
         {
             var questionIds = db.QuizQuestions.Where(x => x.QuizId == QuizId).
@@ -108,7 +116,7 @@ namespace WebApi.Controllers
 
         [HttpDelete]
         [AllowAnonymous]
-        [Route("api/Quiz/Question/Delete/{QuizId}/{QuestionId}")]
+        [Route("api/Quiz/QuizQuestion/Delete/{QuizId}/{QuestionId}")]
         public IHttpActionResult DeleteQuestion(int QuestionId,int QuizId)
         {
             var q = db.QuizQuestions.FirstOrDefault(x => x.QuestionId == QuestionId && x.QuizId == QuizId);
@@ -127,33 +135,48 @@ namespace WebApi.Controllers
         [Route("api/Quiz/GetType/{QuizId}")]
         public IHttpActionResult GetQuestions(int QuizId)
         {
-            IEnumerable questionIds;
-             questionIds = db.QuizQuestions.Where(x => x.QuizId == QuizId).
-               Select(x => new
-               {
-                   x.QuestionId
-               }).ToList();
+            var quiz = db.Database.SqlQuery<IEnumerable<string>>(@"select QuestionId, QuestionStatement from     
+           (select QuestionId, QuestionStatement from Questions,Quizs where Quizs.Difficulty = Questions.Difficulty and Quizs.SubjectId = Questions.SubjectId and Quizs.QuizId='QuizId')as A 
+            where A.QuestionID not IN (select QuestionId from Quizs, QuizQuestions where Quizs.QuizId = 'QuizId' and Quizs.QuizId = QuizQuestions.QuizId);").ToList();
+            return Ok(quiz);
 
-            var quiz = from a in db.Quizs
-                       join b in db.QuizQuestions on a.QuizId equals b.QuizId
-                       join c in db.Questions on b.QuestionId equals c.QuestionId
-                       where a.QuizId==QuizId && b.QuestionId!=c.QuestionId
-                       select new
-                       {
-                               QuestionId = c.QuestionId,
-                               QuestionStatement = c.QuestionStatement,
-                               Option1 = c.Option1,
-                               Option2 = c.Option2,
-                               Option3 = c.Option3,
-                               Option4 = c.Option4,
-                               Answer = c.Answer,
-                               Marks = c.Marks,
-                               SubjectName = db.Subjects.Where(y => y.SubjectId == c.SubjectId).FirstOrDefault().Name,
-                               SubjectId = c.SubjectId,
-                               Difficulty = c.Difficulty.ToString(),
-                           };
-            
-            
+
+        }
+        [HttpGet]
+        [Route("api/Quiz/Archived/{CreatedBy}")]
+        public IHttpActionResult ArchviedQuiz(string CreatedBy)
+        {
+
+            var quiz = db.Quizs.Where(x => x.CreatedBy == CreatedBy).Where(x => x.ArchiveStatus == true).
+                Select(x => new
+                {
+                    QuizId = x.QuizId,
+                    Difficulty = x.Difficulty,
+                    TotalQuestions = x.TotalQuestions,
+                    TotalMarks = x.TotalMarks,
+                    ArchiveStatus = x.ArchiveStatus,
+                    QuizType = x.QuizType,
+                    Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name
+                }).ToList();
+            return Ok(quiz);
+        }
+
+
+        [HttpGet]
+        [Route("api/Quiz/GetAllQuiz")]
+        public IHttpActionResult GetAllQuiz()
+        {
+            var quiz = db.Quizs.Where(x => x.ArchiveStatus == false).
+                Select(x => new
+                {
+                    QuizId = x.QuizId,
+                    Difficulty = x.Difficulty,
+                    TotalQuestions = x.TotalQuestions,
+                    TotalMarks = x.TotalMarks,
+                    ArchiveStatus = x.ArchiveStatus,
+                    QuizType = x.QuizType,
+                    Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name
+                }).ToList();
             return Ok(quiz);
         }
     }
