@@ -4,6 +4,7 @@ import { TestAdminService } from '../../shared/test-admin.service';
 import { QuizModel } from '../../../content-creator/shared/quiz.model';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { AddUserComponent } from 'src/app/test-admin/retrieve-schedule/add-user/add-user.component';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-create-schedule',
   templateUrl: './create-schedule.component.html',
@@ -15,7 +16,9 @@ export class CreateScheduleComponent implements OnInit {
   q3 = "";
   btndisable = true;
   CCreatedBy = "";
-  constructor(private service: TestAdminService, private dialog: MatDialog) { }
+  constructor(private service: TestAdminService, 
+    private dialog: MatDialog,
+    public toastr: ToastrService) { }
   QuizList: QuizModel[];
   ngOnInit() {
     this.CCreatedBy = localStorage.getItem('uid');
@@ -31,7 +34,10 @@ export class CreateScheduleComponent implements OnInit {
   }
   sub(form: NgForm) {
     // console.log(form.value);
-    this.service.postSchedule(form.value);
+    this.service.postSchedule(form.value).subscribe((res:any)=>{
+      console.log(res);
+    });
+    this.toastr.success('Inserted successfully');
   }
   adduser() {
     const dialogConfig = new MatDialogConfig();

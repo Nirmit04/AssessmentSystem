@@ -1,0 +1,31 @@
+<div class="card" style="width: 80%;">
+  <div class="card-body">
+    <h5 class="card-title">{{label}}</h5>
+    <button type="button" (click)="onAdd()" class="btn btn-primary">Add Question</button>
+    <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+      <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="this.CCreatedBy">
+      <input type="hidden" name="QuizId" #QuizId="ngModel" [(ngModel)]="service.formdata.QuizId">
+      <div class="form-group col-md-6">
+        <label>Start Date Time</label>
+        <input type="datetime-local" required name="StartDateTime" #StartDateTime="ngModel"
+          [(ngModel)]=service.formdata.StartDateTime [readonly]="bool">
+        <div class="validation-error" *ngIf="StartDateTime.invalid && StartDateTime.touched">This field is required.
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label>End Date Time</label>
+        <input type="datetime-local" required name="EndDateTime" #EndDateTime="ngModel"
+          [(ngModel)]="service.formdata.EndDateTime" [readonly]="bool">
+        <div class="validation-error" *ngIf="EndDateTime.invalid && EndDateTime.touched">This field is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <button style="margin:0 5%" type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button>
+      </div>   
+      <ng-container *ngFor="let item of scheduleList;index as i">
+        <p>{{i+1}}.&nbsp;&nbsp;item.name</p><br/>
+      </ng-container>
+    </form>
+  </div>
+</div>

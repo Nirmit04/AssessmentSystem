@@ -26,6 +26,7 @@ export class AddQuesInQuizComponent implements OnInit {
     private dialogref: MatDialogRef<AddQuesInQuizComponent>) { }
   ngOnInit() {
     this.questions = this.data;
+    console.log(this.questions);
     this.resetForm();
   }
   resetForm(form?: NgForm) {
@@ -41,8 +42,9 @@ export class AddQuesInQuizComponent implements OnInit {
         Subject: '',
         QuizType: '',
         CreatedBy: '',
-        qId: null,
-        SubjectId: null
+        QuestionIds: null,
+        SubjectId: null,
+        QuizName:''
       }
       if (this.questions) {
         this.questions.map(y => y.selected = false);
@@ -59,7 +61,7 @@ export class AddQuesInQuizComponent implements OnInit {
     this.service.putQuestionsSelected(QuestionId).subscribe(res => {
       this.toastr.success('Inserted successfully');
     })    
-    this.dialogref.close();
+   // this.dialogref.close();
   }
 
 }

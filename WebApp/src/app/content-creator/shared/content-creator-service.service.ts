@@ -14,7 +14,7 @@ export class ContentCreatorServiceService {
 	readonlyStatus: boolean;
 	rootURL = environment.apiURl;
 	public createdBy;
-	constructor(private http: HttpClient) {}
+	constructor(private http: HttpClient) { }
 	postQuestion(formData: Question) {
 		console.log(formData);
 		return this.http.post(this.rootURL + 'Question/CreateQuestion', formData);
@@ -66,28 +66,28 @@ export class ContentCreatorServiceService {
 		return this.http.get(this.rootURL + 'Question/GetQuestion/' + form.Difficulty + '/' + form.SubjectId);
 	}
 	postQuestionsSelected(questions: number[]) {
-		this.quizForm.qId = questions;
+		this.quizForm.QuestionIds = questions;
 		console.log(this.quizForm);
 		return this.http.post(this.rootURL + 'Quiz/CreateQuiz', this.quizForm);
 	}
 	// pulkit's methods
 	putQuestionsSelected(questions: number[]) {
-		this.quizForm.qId = questions;
+		this.quizForm.QuestionIds = questions;
 		this.quizForm.CreatedBy = localStorage.getItem('uid');
-		console.log(this.quizForm);
-		return this.http.put(this.rootURL + 'Quiz/CreateQuiz/' + Number(localStorage.getItem('quizId')), this.quizForm);
+		console.log(this.quizForm.QuestionIds);
+		return this.http.put(this.rootURL + 'Quiz/EditQuiz/AddQuestion/' + Number(localStorage.getItem('quizId')), this.quizForm.QuestionIds);
 	}
 	deleteQuesOfQuiz(id) {
 		console.log(id);
 		return this.http.delete(
-			this.rootURL + 'Quiz/Question/Delete/' + Number(localStorage.getItem('quizId')) + '/' + id
+			this.rootURL + 'Quiz/QuizQuestion/Delete/' + Number(localStorage.getItem('quizId')) + '/' + id
 		);
 	}
 	getQuestionsByQuiz(id: number) {
-		return this.http.get(this.rootURL + 'Quiz/Question/' + id);
+		return this.http.get(this.rootURL + 'Quiz/QuizQuestion/' + id);
 	}
 	getQuizQuestions(qid: number) {
-		return this.http.get(this.rootURL + 'Quiz/getType/' + qid);
+		return this.http.get(this.rootURL + 'Quiz/GetQuestionsNotInQuiz/' + qid);
 	}
 
 	getUserDetails() {

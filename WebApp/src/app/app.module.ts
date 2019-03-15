@@ -37,7 +37,7 @@ import { CreateScheduleComponent } from './test-admin/retrieve-schedule/create-s
 import { AddUserComponent } from './test-admin/retrieve-schedule/add-user/add-user.component';
 import { ArchiveQuizComponent } from './content-creator/retrieve-quiz/archive-quiz/archive-quiz.component';
 import { MainNav2Component } from './test-admin/main-nav2/main-nav2.component';
-
+import { ViewScheduleComponent } from './test-admin/retrieve-schedule/view-schedule/view-schedule.component';
 let config = new AuthServiceConfig([
 	{
 		id: GoogleLoginProvider.PROVIDER_ID,
@@ -71,7 +71,8 @@ export function provideConfig() {
 		CreateScheduleComponent,
 		AddUserComponent,
 		ArchiveQuizComponent,
-		MainNav2Component
+		MainNav2Component,
+		ViewScheduleComponent
 	],
 	imports: [
 		BrowserModule,
@@ -106,7 +107,8 @@ export function provideConfig() {
 		CreateQuizComponent,
 		UpdateQuizComponent,
 		AddQuesInQuizComponent,
-		AddUserComponent
+		AddUserComponent,
+		ViewScheduleComponent
 
 	],
 })

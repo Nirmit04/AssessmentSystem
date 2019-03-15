@@ -13,14 +13,30 @@ export class TestAdminService {
   rooturl = environment.apiURl;
   quiz: QuizModel[];
   quiztakerId: string[] = null;
+  formdata: Schedule;
+  readonlyStatus: boolean;
+  scheduleQuizUsers: string[];
   retriveAllQuizzes() {
     return this.http.get(this.rooturl + 'Quiz/GetAllQuiz');
   }
   retrieveAllEmployees() {
     return this.http.get(this.rooturl + 'User/GetUserAll');
   }
+  retrieveSpecificEmployees(sId) {
+    return this.http.get(this.rooturl + 'User/GetUserSpecific/' + sId);
+  }
   postSchedule(formdata: Schedule) {
     formdata.UserId = this.quiztakerId;
     console.log(formdata);
+    return this.http.post(this.rooturl + 'QuizSchedule/ScheduleQuiz', formdata);
+  }
+  getSchedule(id: string) {
+    return this.http.get(this.rooturl + 'QuizSchedule/GetAllQuizSchedule/' + id);
+  }
+  getScheduleQuizUsers(id: number) {
+    return this.http.get(this.rooturl + 'QuizSchedule/GetUsersForSchedule/' + id);
+  }
+  deleteSchedule(id: string) {
+    return this.http.delete(this.rooturl + '/' + id);
   }
 }

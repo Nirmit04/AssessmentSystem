@@ -6,6 +6,7 @@ export class QuizModel {
     Subject: string;
     QuizType?: string;
     CreatedBy?: string;
-    qId: number[];
+    QuestionIds: number[];
     SubjectId: number;
+    QuizName: string
 }

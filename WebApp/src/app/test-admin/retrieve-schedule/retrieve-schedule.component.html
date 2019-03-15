@@ -1,3 +1,33 @@
 <app-main-nav2>
-    <button type="button" (click)="onCreate()" class="btn btn-primary">Create Schedule</button>
-</app-main-nav2>
+  <button type="button" (click)="onCreate()" class="btn btn-primary">Create Schedule</button>
+    <br /><br />
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <th scope="col">#Schedule ID</th>
+        <th scope="col">Quiz Id</th>
+        <th scope="col">Start Date/Time</th>
+        <th scope="col">End Date/Time</th>
+        <th scope="col">Action</th>
+    
+      </thead>
+    
+      <tbody>
+        <ng-container *ngFor="let item of scheduleList;index as i;">
+          <tr style="color:azure">
+            <th (click)="viewSchedule(item.QuizId,i+1)" scope="row">{{i+1}}</th>
+            <td (click)="viewSchedule(item.QuizId,i+1)" scope="row">{{item.QuizId}}</td>
+            <td (click)="viewSchedule(item.QuizId,i+1)" scope="row">{{item.StartDateTime}}</td>
+            <td (click)="viewSchedule(item.QuizId,i+1)" scope="row">{{item.EndDateTime}}</td>
+            <td>
+              <a class="btn btn-sm btn-info text-white" (click)="editSchedule(item.QuizId,i+1)"><i
+                  class="fa fa-pencil"></i></a>
+              <a class="btn btn-sm btn-danger text-white ml-1" (click)="deleteSchedule(ques.QuestionId)"><i
+                  class="fa fa-trash"></i></a>
+            </td>
+    
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+    </app-main-nav2>
+    
