@@ -75,7 +75,6 @@ namespace WebApi.Controllers
         public IHttpActionResult UnArchive([FromBody]int QuizId)
         {
             Quiz quiz = db.Quizs.Find(QuizId);
-            System.Diagnostics.Debug.WriteLine(quiz.QuizId);
             quiz.ArchiveStatus = false;
             db.SaveChanges();
             return Ok();
@@ -171,6 +170,22 @@ namespace WebApi.Controllers
                     Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name
                 }).ToList();
             return Ok(quiz);
+        }
+
+        [HttpPut]
+        [Route("api/EditQuiz/AddQuestion/{QuizId}")]
+        public IHttpActionResult AddQuestions(int QuizId,[FromBody]int[] QuestionId)
+        {
+            QuizQuestion quizQuestion = new QuizQuestion();
+
+            foreach (var item in QuestionId)
+            {
+                quizQuestion.QuizId = QuizId;
+                quizQuestion.QuestionId = item;
+                db.QuizQuestions.Add(quizQuestion);
+                db.SaveChanges();
+            }
+            return Ok();
         }
     }
 }
