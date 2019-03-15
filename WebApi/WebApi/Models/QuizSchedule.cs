@@ -14,6 +14,7 @@ namespace WebApi.Models
         public DateTime StartDateTime { get; set; }
         public DateTime EndDateTime { get; set; }
         public bool ArchiveStatus { get; set; }
+        public string[] UserId { get; set; }
         [ForeignKey("Quiz")]
         public int QuizId { get; set; }
 

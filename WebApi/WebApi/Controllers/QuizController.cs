@@ -50,6 +50,7 @@ namespace WebApi.Controllers
                 .Select(x => new
                 {
                     QuizId = x.QuizId,
+                    QuizName = x.QuizName,
                     Difficulty = x.Difficulty,
                     TotalQuestions = x.TotalQuestions,
                     TotalMarks = x.TotalMarks,
@@ -125,16 +126,33 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("api/Quiz/GetType/{QuizId}")]
-        public IHttpActionResult GetQuestions(int QuizId)
+        [Route("api/Quiz/GetQuestionsNotInQuiz/{QuizId}")]
+        public IHttpActionResult GetQuestionsNotInQuiz(int QuizId)
         {
-            var quiz = db.Database.SqlQuery<IEnumerable<string>>(@"select QuestionId, QuestionStatement from     
-           (select QuestionId, QuestionStatement from Questions,Quizs where Quizs.Difficulty = Questions.Difficulty and Quizs.SubjectId = Questions.SubjectId and Quizs.QuizId='QuizId')as A 
-            where A.QuestionID not IN (select QuestionId from Quizs, QuizQuestions where Quizs.QuizId = 'QuizId' and Quizs.QuizId = QuizQuestions.QuizId);").ToList();
-            return Ok(quiz);
-
-
+            var qIds = db.QuizQuestions.AsEnumerable()
+                .Where(x => x.QuizId == QuizId)
+                .Select(z => z.QuestionId).ToList();
+            var quiz = db.Quizs.Single(x => x.QuizId == QuizId);
+            var questionsList = db.Questions
+                .Where(x => x.Difficulty == quiz.Difficulty && x.SubjectId == quiz.SubjectId && !qIds.Contains(x.QuestionId))
+                .Select(z => new
+                {
+                    QuestionId = z.QuestionId,
+                    QuestionStatement = z.QuestionStatement,
+                    Option1 = z.Option1,
+                    Option2 = z.Option2,
+                    Option3 = z.Option3,
+                    Option4 = z.Option4,
+                    Answer = z.Answer,
+                    Marks = z.Marks,
+                    SubjectId = z.SubjectId,
+                    SubjectName = db.Subjects.Where(y => y.SubjectId == z.SubjectId).FirstOrDefault().Name,
+                    Difficulty = z.Difficulty,
+                    ImageName = z.ImageName
+                }).ToList();
+            return Ok(questionsList);
         }
+
         [HttpGet]
         [Route("api/Quiz/Archived/{CreatedBy}")]
         public IHttpActionResult ArchviedQuiz(string CreatedBy)
@@ -144,6 +162,7 @@ namespace WebApi.Controllers
                 Select(x => new
                 {
                     QuizId = x.QuizId,
+                    QuizName = x.QuizName,
                     Difficulty = x.Difficulty,
                     TotalQuestions = x.TotalQuestions,
                     TotalMarks = x.TotalMarks,
@@ -163,6 +182,7 @@ namespace WebApi.Controllers
                 Select(x => new
                 {
                     QuizId = x.QuizId,
+                    QuizName = x.QuizName,
                     Difficulty = x.Difficulty,
                     TotalQuestions = x.TotalQuestions,
                     TotalMarks = x.TotalMarks,
