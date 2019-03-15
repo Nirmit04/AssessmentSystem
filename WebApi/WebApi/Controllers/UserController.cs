@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using WebApi.Models;
@@ -14,7 +17,7 @@ namespace WebApi.Controllers
 {
     public class UserController : ApiController
     {
-        
+        private ApplicationDbContext db = new ApplicationDbContext();
         [HttpPost]
         [AllowAnonymous]
         [Route("api/User/Register")]
@@ -26,44 +29,34 @@ namespace WebApi.Controllers
             var dumuser = manager.FindByEmail(model.Email);
             if (dumuser == null)
             {
-                ApplicationUser user = new ApplicationUser() { UserName = model.FirstName + model.LastName+rnd.Next(), Email = model.Email };
-               
+                ApplicationUser user = new ApplicationUser() { UserName = model.FirstName + model.LastName + rnd.Next(), Email = model.Email };
+
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
                 user.ImageURL = model.ImageURL;
                 user.GoogleId = model.GoogleId;
                 string id = user.Id;
                 IdentityResult result = manager.Create(user);
-                
-            
+
+
                 try
-                { 
-                 var user1= manager.FindByEmail(user.Email);
+                {
+                    var user1 = manager.FindByEmail(user.Email);
                     System.Diagnostics.Debug.WriteLine(user1.Id + " 11");
                     manager.AddToRole(user1.Id, "content-creator");
-                
+
                 }
                 catch
                 {
                     System.Diagnostics.Debug.WriteLine("Failed");
                 }
-                
+
                 return result;
             }
             else {
                 return IdentityResult.Failed();
             }
-            //else
-            //{
-            //    var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
-            //    var roleMngr = new RoleManager<IdentityRole>(roleStore);
-
-            //    IdentityResult role = roleMngr.Roles
-            //        .Select(x => new { x.Id, x.Name })
-            //        .ToList();
-            //    //var role = roleMngr.AddToRole(dumuser.Id, "Content-Creator");
-            //    return role;
-            //}
+            
         }
 
         [HttpGet]
@@ -128,7 +121,7 @@ namespace WebApi.Controllers
         [Route("api/GetUserDetails")]
         public ApplicationUser UserDetails(string email)
         {
-            if(email==null)
+            if (email == null)
             {
                 return null;
             }
@@ -137,6 +130,20 @@ namespace WebApi.Controllers
             System.Diagnostics.Debug.WriteLine(email);
             var modelvar = manager.FindByEmail(email);
             return modelvar;
+        }
+
+
+        [HttpGet]
+        [Route("api/Stats/{UserId}")]
+        public IHttpActionResult UserStats(string UserId)
+        {
+            int[] result = new int[3];
+            result[0]=db.Quizs.Where(x => x.CreatedBy == UserId).Count();
+            result[1]=db.Questions.Where(x => x.CreatedBy == UserId).Count();
+            result[2]=db.Subjects.Where(x => x.CreatedBy == UserId).Count();
+
+            //var json = JsonConvert.SerializeObject(result);
+            return Ok(result);
         }
     }
 }

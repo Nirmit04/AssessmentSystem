@@ -100,6 +100,7 @@ namespace WebApi.Controllers
             {
                 return BadRequest();
             }
+
             db.Questions.Add(question);
             db.SaveChanges();
 
@@ -172,5 +173,6 @@ namespace WebApi.Controllers
             return Ok(questions);
         }
 
+        
     }
 }

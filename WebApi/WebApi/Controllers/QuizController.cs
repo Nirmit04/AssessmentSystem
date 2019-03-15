@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -61,10 +62,21 @@ namespace WebApi.Controllers
 
         [HttpDelete]
         [Route("api/Quiz/Delete/{QuizId}")]
-        public IHttpActionResult CreateQuiz(int QuizId)
+        public IHttpActionResult Archive(int QuizId)
         {
             Quiz quiz = db.Quizs.Find(QuizId);
             quiz.ArchiveStatus = true;
+            db.SaveChanges();
+            return Ok();
+        }
+
+        [HttpPut]
+        [Route("api/Quiz/Unarchive")]
+        public IHttpActionResult UnArchive([FromBody]int QuizId)
+        {
+            Quiz quiz = db.Quizs.Find(QuizId);
+            System.Diagnostics.Debug.WriteLine(quiz.QuizId);
+            quiz.ArchiveStatus = false;
             db.SaveChanges();
             return Ok();
         }
@@ -93,7 +105,7 @@ namespace WebApi.Controllers
                          x.Marks,
                          x.Difficulty,
                          x.CreatedBy
-                     }).ToArray(); 
+                     }).ToList(); 
             return Ok(questions);
         }
 
@@ -112,5 +124,53 @@ namespace WebApi.Controllers
             return Ok();
         }
 
+        [HttpGet]
+        [Route("api/Quiz/GetType/{QuizId}")]
+        public IHttpActionResult GetQuestions(int QuizId)
+        {
+            var quiz = db.Database.SqlQuery<IEnumerable<string>>(@"select QuestionId, QuestionStatement from     
+           (select QuestionId, QuestionStatement from Questions,Quizs where Quizs.Difficulty = Questions.Difficulty and Quizs.SubjectId = Questions.SubjectId and Quizs.QuizId='QuizId')as A 
+            where A.QuestionID not IN (select QuestionId from Quizs, QuizQuestions where Quizs.QuizId = 'QuizId' and Quizs.QuizId = QuizQuestions.QuizId);").ToList();
+            return Ok(quiz);
+
+
+        }
+        [HttpGet]
+        [Route("api/Quiz/Archived/{CreatedBy}")]
+        public IHttpActionResult ArchviedQuiz(string CreatedBy)
+        {
+
+            var quiz = db.Quizs.Where(x => x.CreatedBy == CreatedBy).Where(x => x.ArchiveStatus == true).
+                Select(x => new
+                {
+                    QuizId = x.QuizId,
+                    Difficulty = x.Difficulty,
+                    TotalQuestions = x.TotalQuestions,
+                    TotalMarks = x.TotalMarks,
+                    ArchiveStatus = x.ArchiveStatus,
+                    QuizType = x.QuizType,
+                    Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name
+                }).ToList();
+            return Ok(quiz);
+        }
+
+
+        [HttpGet]
+        [Route("api/Quiz/GetAllQuiz")]
+        public IHttpActionResult GetAllQuiz()
+        {
+            var quiz = db.Quizs.Where(x => x.ArchiveStatus == false).
+                Select(x => new
+                {
+                    QuizId = x.QuizId,
+                    Difficulty = x.Difficulty,
+                    TotalQuestions = x.TotalQuestions,
+                    TotalMarks = x.TotalMarks,
+                    ArchiveStatus = x.ArchiveStatus,
+                    QuizType = x.QuizType,
+                    Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name
+                }).ToList();
+            return Ok(quiz);
+        }
     }
 }
