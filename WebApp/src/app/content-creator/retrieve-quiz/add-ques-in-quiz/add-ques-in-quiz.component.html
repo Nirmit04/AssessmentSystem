@@ -1,0 +1,14 @@
+<app-main-nav>
+  <div class="card-body">
+    <h5 class="card-title" style="text-align: center">Choose Questions</h5><br>
+    <form #Questionform="ngForm" (submit)="onDetailsSubmit(Questionform)" autocomplete="off">
+      <div *ngFor="let x of questions; let i = index"><br>
+        <input [id]="'questions-'+i" type="checkbox" value="{{x.Question_ID}}" [checked]="x.selected"
+          (change)="updateSelectedQuestions(i)">
+        <label>{{x.QuestionStatement}}</label>
+      </div>
+      <button style="margin-left:5%; margin-right: 5%" type="submit" class="btn btn-primary">Submit</button>
+      <button type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button>
+    </form>
+  </div>
+</app-main-nav>
