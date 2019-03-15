@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
+using Newtonsoft.Json;
 using WebApi.Models;
 
 namespace WebApi.Providers
@@ -51,8 +52,12 @@ namespace WebApi.Providers
             oAuthIdentity.AddClaim(new Claim("FirstName", user.FirstName));
             oAuthIdentity.AddClaim(new Claim("LastName", user.LastName));
             oAuthIdentity.AddClaim(new Claim("GoogleId", user.GoogleId));
-
-            AuthenticationProperties properties = CreateProperties(user.UserName);
+            var userRoles = userManager.GetRoles(user.Id);
+            foreach (string roleName in userRoles)
+            {
+                oAuthIdentity.AddClaim(new Claim(ClaimTypes.Role, roleName));
+            }
+            AuthenticationProperties properties = CreateProperties(user.UserName, userRoles);
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);
             context.Request.Context.Authentication.SignIn(cookiesIdentity);
@@ -94,11 +99,12 @@ namespace WebApi.Providers
             return Task.FromResult<object>(null);
         }
 
-        public static AuthenticationProperties CreateProperties(string userName)
+        public static AuthenticationProperties CreateProperties(string userName, IList<string> userRoles)
         {
             IDictionary<string, string> data = new Dictionary<string, string>
             {
-                { "UserName", userName }
+                { "UserName", userName },
+                { "Role" , JsonConvert.SerializeObject(userRoles) }
             };
             return new AuthenticationProperties(data);
         }

@@ -8,7 +8,7 @@ using System.Net.Http;
 using System.Web.Http;
 using WebApi.Models;
 
-namespace WebAPI.Controllers
+namespace WebApi.Controllers
 {
     public class RoleController : ApiController
     {
@@ -16,7 +16,7 @@ namespace WebAPI.Controllers
         [HttpGet]
         [Route("api/GetAllRoles")]
         [AllowAnonymous]
-        public HttpResponseMessage GetRoles()
+        public IHttpActionResult GetRoles()
         {
             var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
             var roleMngr = new RoleManager<IdentityRole>(roleStore);
@@ -24,7 +24,7 @@ namespace WebAPI.Controllers
             var roles = roleMngr.Roles
                 .Select(x => new { x.Id, x.Name })
                 .ToList();
-            return this.Request.CreateResponse(HttpStatusCode.OK, roles);
+            return Ok(roles);
         }
     }
 }

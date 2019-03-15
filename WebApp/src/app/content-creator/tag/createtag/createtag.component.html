@@ -1,0 +1,31 @@
+<div class="card" style="width: 80%;">
+  <div class="card-body">
+    <h5 class="card-title">{{Option}} Tag</h5>
+    <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+      <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="userId">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input type="hidden" name="SubjectId" #SubjectId="ngModel" [(ngModel)]="service.tagForm.SubjectId" class="form-control">
+        </div>
+      </div>
+      <div class="form-row">
+          <div class="form-group col-md-6">
+              <label>Name</label>
+              <input required type="text" name="Name" #Name="ngModel" [(ngModel)]="service.tagForm.Name"
+                class="form-control">
+              <div class="validation-error" *ngIf="Name.invalid && Name.touched">This field is required.</div>
+          </div>
+        <div class="form-group col-md-6">
+          <label>Department</label>
+          <input required type="text" name="Department" #Department="ngModel" [(ngModel)]="service.tagForm.Department"
+            class="form-control">
+          <div class="validation-error" *ngIf="Department.invalid && Department.touched">This field is required.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button style="margin:0 5%" type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button>
+      </div>
+    </form>
+  </div>
+</div>
