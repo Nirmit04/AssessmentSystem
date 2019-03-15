@@ -13,7 +13,7 @@ namespace WebApi
     {
         public void Configuration(IAppBuilder app)
         {
-            app.UseCors(CorsOptions.AllowAll);
+            //app.UseCors(CorsOptions.AllowAll);
             ConfigureAuth(app);
         }
     }

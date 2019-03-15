@@ -62,7 +62,7 @@ namespace WebApi
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
                 ClientId = "889590185011-lp2bhjq5anljfgqpj6mje92fh0e6mbk7.apps.googleusercontent.com",
-                ClientSecret = "PXFsS0vftyV7dXTWbLVJkcMp"
+                ClientSecret = "rrgaVG5deLiaeiiai1QgXaeA"
             });
         }
     }

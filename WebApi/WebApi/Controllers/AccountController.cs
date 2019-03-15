@@ -355,7 +355,7 @@ namespace WebApi.Controllers
                 {
                     return GetErrorResult(result);
                 }
-                string[] roles = new string[] { "Employee" };
+                string[] roles = new string[] { "Content-Creator" };
                 UserManager.AddToRoles(user.Id, roles);
                 //IEnumerable<Claim> claims = externalLogin.GetClaims();
                 //ClaimsIdentity identity = new ClaimsIdentity(claims, OAuthDefaults.AuthenticationType);
@@ -402,7 +402,7 @@ namespace WebApi.Controllers
                         provider = description.AuthenticationType,
                         response_type = "token",
                         client_id = Startup.PublicClientId,
-                        redirect_uri = new Uri("http://localhost:4200/Home").AbsoluteUri,
+                        redirect_uri = new Uri("http://localhost:4200/home").AbsoluteUri,
                         state = state
                     }),
                     State = state
