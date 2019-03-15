@@ -7,12 +7,13 @@ import { Router } from '@angular/router';
 	providedIn: 'root'
 })
 export class AuthGuard implements CanActivate, CanActivateChild {
-	constructor(private router: Router) {}
+	constructor(private router: Router) { }
 	canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 		if (localStorage.getItem('uid') != null) {
 			return true;
 		}
-		this.router.navigate([ '/login' ]);
+		localStorage.clear();
+		this.router.navigate(['/login']);
 		return false;
 	}
 	canActivateChild(

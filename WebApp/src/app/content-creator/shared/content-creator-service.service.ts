@@ -33,6 +33,13 @@ export class ContentCreatorServiceService {
 		console.log(qid);
 		return this.http.delete(this.rootURL + '/Question/Delete/' + qid);
 	}
+	getArchivedQuizzes() {
+		return this.http.get(this.rootURL + 'Quiz/Archived/' + localStorage.getItem('uid'));
+	}
+	unArchiveQuiz(id: number) {
+		console.log(id);
+		return this.http.put(this.rootURL + '/Quiz/UnArchive', id);
+	}
 
 	getTags() {
 		return this.http.get(this.rootURL + 'Subject/GetSubjects/' + localStorage.getItem('uid'));

@@ -3,28 +3,21 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from 'angularx-social-login';
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'
 
 @Component({
-	selector: 'app-main-nav',
-	templateUrl: './main-nav.component.html',
-	styleUrls: ['./main-nav.component.css']
+	selector: 'app-main-nav2',
+	templateUrl: './main-nav2.component.html',
+	styleUrls: ['./main-nav2.component.css']
 })
-export class MainNavComponent {
+export class MainNav2Component {
 	isHandset$: Observable<boolean> = this.breakpointObserver
 		.observe(Breakpoints.Handset)
 		.pipe(map((result) => result.matches));
 
-	constructor(
-		private breakpointObserver: BreakpointObserver,
-		private authService: AuthService,
-		private router: Router
-	) { }
-	Val: string[];
+	constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService,
+		private router: Router) { }
 	ngOnInit() {
-		if (localStorage.getItem('id') === null) {
-			this.router.navigate(['/login']);
-		}
 		this.authService.authState.subscribe((user) => {
 			if (user != null) {
 				//	console.log(user);
@@ -34,16 +27,7 @@ export class MainNavComponent {
 			}
 		});
 	}
-	Open(link) {
-		this.Val = link;
-		console.log(this.Val);
-	}
 	logout() {
-		localStorage.clear();
 		this.authService.signOut();
 	}
-	// clicked() {
-	// 	console.log('clicked');
-	// 	document.getElementById('clk').style.backgroundColor = 'red';
-	// }
 }

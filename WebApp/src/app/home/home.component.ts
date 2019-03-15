@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
 	selector: 'app-home',
@@ -9,7 +10,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class HomeComponent implements OnInit {
 	constructor(private router: Router, private http: HttpClient) {}
-	rooturl = 'http://c3e9de58.ngrok.io/api/';
+	rooturl = environment.apiURl;
 	role = '';
 	uid = '';
 	ngOnInit() {

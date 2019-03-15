@@ -31,6 +31,12 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatSidenavModule, MatListModule } from '@angular/material';
 import { UserDetailsComponent } from './content-creator/user-details/user-details.component';
 import { AuthGuard } from './auth.guard';
+import { TestAdminComponent } from './test-admin/test-admin.component';
+import { RetrieveScheduleComponent } from './test-admin/retrieve-schedule/retrieve-schedule.component';
+import { CreateScheduleComponent } from './test-admin/retrieve-schedule/create-schedule/create-schedule.component';
+import { AddUserComponent } from './test-admin/retrieve-schedule/add-user/add-user.component';
+import { ArchiveQuizComponent } from './content-creator/retrieve-quiz/archive-quiz/archive-quiz.component';
+import { MainNav2Component } from './test-admin/main-nav2/main-nav2.component';
 
 let config = new AuthServiceConfig([
 	{
@@ -59,7 +65,13 @@ export function provideConfig() {
 		UpdateQuizComponent,
 		AddQuesInQuizComponent,
 		MainNavComponent,
-		UserDetailsComponent
+		UserDetailsComponent,
+		TestAdminComponent,
+		RetrieveScheduleComponent,
+		CreateScheduleComponent,
+		AddUserComponent,
+		ArchiveQuizComponent,
+		MainNav2Component
 	],
 	imports: [
 		BrowserModule,
@@ -87,13 +99,15 @@ export function provideConfig() {
 			useFactory: provideConfig
 		}
 	],
-	bootstrap: [ AppComponent ],
+	bootstrap: [AppComponent],
 	entryComponents: [
 		CreatetagComponent,
 		UpdateQuestionComponent,
 		CreateQuizComponent,
 		UpdateQuizComponent,
-		AddQuesInQuizComponent
-	]
+		AddQuesInQuizComponent,
+		AddUserComponent
+
+	],
 })
-export class AppModule {}
+export class AppModule { }

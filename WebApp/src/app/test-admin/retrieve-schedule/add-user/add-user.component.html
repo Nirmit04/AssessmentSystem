@@ -1,0 +1,9 @@
+    <form #Userform="ngForm" (submit)="onSubmit(Userform)" autocomplete="off">
+        <div *ngFor="let x of quiztakers; let i = index"><br>
+          <input [id]="'quiztakers-'+i" type="checkbox" value="{{x.Id}}" [checked]="x.selected"
+            (change)="updateSelectedUsers(i)">
+          <label>{{x.FirstName  }}{{x.LastName}}</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" [mat-dialog-close] class="btn btn-danger">Close</button>
+      </form>
