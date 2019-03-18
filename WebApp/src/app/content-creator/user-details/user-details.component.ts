@@ -15,6 +15,7 @@ export class UserDetailsComponent implements OnInit {
 	Quizzes: any;
 	Questions: any;
 	Tags: any;
+	profileUrl: any;
 	constructor(private service: ContentCreatorServiceService, private ngxService: NgxUiLoaderService) {}
 	show: boolean = true;
 	ngOnInit() {
@@ -23,7 +24,7 @@ export class UserDetailsComponent implements OnInit {
 		this.ngxService.stopBackground('do-background-things');
 
 		this.ngxService.startLoader('loader-01'); // start foreground spinner of the loader "loader-01" with 'default' taskId
-
+		this.profileUrl = localStorage.getItem('imgurl');
 		this.loadUserDetails();
 		this.loadUserProgress();
 	}
@@ -43,7 +44,7 @@ export class UserDetailsComponent implements OnInit {
 			this.Quizzes = res[0];
 			this.Questions = res[1];
 			this.Tags = res[2];
-			// this.show = false;
+			this.show = false;
 			// console.log(this.show);
 
 			// console.log(this.Questions);
