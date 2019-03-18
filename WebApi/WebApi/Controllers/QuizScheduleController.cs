@@ -46,6 +46,23 @@ namespace WebApi.Controllers
             return Ok(quizSchedule);
         }
 
+        [HttpPut]
+        [Route("api/QuizSchedule/EditQuizSchedule/{QuizScheduleId}")]
+        public IHttpActionResult EditQuizSchedule(int? QuizScheduleId, QuizSchedule newQuizSchedule)
+        {
+            if (QuizScheduleId == null)
+            {
+                return BadRequest();
+            }
+            var quizSchedule = db.QuizSchedules.Find(QuizScheduleId);
+            quizSchedule.StartDateTime = newQuizSchedule.StartDateTime;
+            quizSchedule.EndDateTime = newQuizSchedule.EndDateTime;
+            quizSchedule.ArchiveStatus = newQuizSchedule.ArchiveStatus;
+            quizSchedule.QuizId = newQuizSchedule.QuizId;
+            db.SaveChanges();
+            return StatusCode(HttpStatusCode.OK);
+        }
+
         [HttpDelete]
         [Route("api/QuizSchedule/DeleteQuizSchedule/{QuizScheduleId}")]
         public IHttpActionResult DeleteQuizSchedule(int QuizScheduleId)
