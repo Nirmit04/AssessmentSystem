@@ -27,23 +27,15 @@ export class MainNavComponent {
 		}
 		this.authService.authState.subscribe((user) => {
 			if (user != null) {
-				//	console.log(user);
 			} else {
 				localStorage.clear();
 				this.router.navigate(['/login']);
 			}
 		});
 	}
-	Open(link) {
-		this.Val = link;
-		console.log(this.Val);
-	}
 	logout() {
 		localStorage.clear();
 		this.authService.signOut();
 	}
-	// clicked() {
-	// 	console.log('clicked');
-	// 	document.getElementById('clk').style.backgroundColor = 'red';
-	// }
+
 }

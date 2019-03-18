@@ -30,15 +30,12 @@ export class RetrieveScheduleComponent implements OnInit {
 			console.log(this.scheduleList);
 		});
 	}
-	deleteSchedule(qid) {
-		this.service.deleteSchedule(qid).subscribe((res: any) => {
+	deleteSchedule(scheduleId) {
+		this.service.deleteSchedule(scheduleId).subscribe((res: any) => {
 			this.toastr.success('Deleted Successfully', 'Assesment System');
 		});
 	}
 	viewSchedule(scheduleid: number, arrayindex: number) {
-		this.service.getScheduleQuizUsers(scheduleid).subscribe((res: any) => {
-			this.service.scheduleQuizUsers = res;
-		})
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = "70%";
@@ -55,10 +52,11 @@ export class RetrieveScheduleComponent implements OnInit {
 		dialogConfig.width = "70%";
 		dialogConfig.disableClose = true;
 		this.service.readonlyStatus = false;
+		dialogConfig.data = scheduleid;
 		this.service.formdata = this.scheduleList[arrayindex - 1];
-		localStorage.setItem('sId', scheduleid.toString());
+		// localStorage.setItem('sId', scheduleid.toString());
 		this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe((res: any) => {
-			localStorage.removeItem('sId');
+			// localStorage.removeItem('sId');
 		});
 
 	}

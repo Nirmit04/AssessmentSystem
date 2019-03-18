@@ -12,20 +12,20 @@ import { ToastrService } from 'ngx-toastr';
 export class AddUserComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
-  public dialogRef: MatDialogRef<AddUserComponent>,
-  public toastr: ToastrService,
-  public dialog: MatDialog,
-  private service: TestAdminService) { }
+    public dialogRef: MatDialogRef<AddUserComponent>,
+    public toastr: ToastrService,
+    public dialog: MatDialog,
+    private service: TestAdminService) { }
 
   quiztakers: any[];
 
   ngOnInit() {
-    // if(Number(localStorage.getItem('sid')) !=null)  {
-    //   this.loadSpecificUsers(this.data);
-    //   }
-      //else{
-    this.loadUsers();
-    //  }
+    if (this.data != null) {
+      this.loadSpecificUsers(+this.data);
+    }
+    else {
+      this.loadUsers();
+    }
   }
 
   loadUsers() {
@@ -34,8 +34,8 @@ export class AddUserComponent implements OnInit {
       this.quiztakers = res as User[];
     })
   }
-  loadSpecificUsers(id:number) {
-    this.service.retrieveSpecificEmployees(id).subscribe((res:any)=> {
+  loadSpecificUsers(id: number) {
+    this.service.retrieveSpecificEmployees(id).subscribe((res: any) => {
       res.forEach(obj => obj.selected = false);
       this.quiztakers = res as User[];
     })

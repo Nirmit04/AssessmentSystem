@@ -17,7 +17,7 @@ export class ViewScheduleComponent implements OnInit {
   public CCreatedBy = '';
   bool: boolean;
   label: string;
-  usersList : any[];
+  usersList: any[];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<UpdateQuestionComponent>,
@@ -26,7 +26,7 @@ export class ViewScheduleComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit() {
-    console.log(this.service.formdata);
+    console.log(this.data);
     this.bool = this.service.readonlyStatus;
     if (this.bool === true) {
       this.label = "View Schedule";
@@ -34,16 +34,27 @@ export class ViewScheduleComponent implements OnInit {
       this.label = "Edit Schedule";
     }
     this.CCreatedBy = localStorage.getItem('uid');
-    this.usersList = this.service.scheduleQuizUsers;
+    this.loadExistingUsers(+this.data);
   }
-  onAdd()  {
+  onAdd() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = "70%";
+    dialogConfig.data = this.data;
     dialogConfig.disableClose = true;
     let dialogRef = this.dialog.open(AddUserComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
     });
   }
-
+  loadExistingUsers(scheduleQuizId: number) {
+    this.service.getScheduleQuizUsers(scheduleQuizId).subscribe((res: any) => {
+      this.usersList = res as any[];
+      console.log(this.usersList);
+    });
+  }
+  deleteUserFromSchedule(Id: string) {
+    this.service.deleteUserFromSchedule(Id).subscribe((res: any) => {
+      this.toastr.error('removed successfully');
+    });
+  }
 }

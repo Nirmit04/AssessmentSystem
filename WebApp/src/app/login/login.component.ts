@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/home']);
       } else {
         localStorage.clear();
-        console.log('not signed in');
       }
     });
   }

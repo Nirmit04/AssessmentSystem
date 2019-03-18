@@ -19,9 +19,9 @@
             <td (click)="viewSchedule(item.QuizId,i+1)" scope="row">{{item.StartDateTime}}</td>
             <td (click)="viewSchedule(item.QuizId,i+1)" scope="row">{{item.EndDateTime}}</td>
             <td>
-              <a class="btn btn-sm btn-info text-white" (click)="editSchedule(item.QuizId,i+1)"><i
+              <a class="btn btn-sm btn-info text-white" (click)="editSchedule(item.QuizScheduleId,i+1)"><i
                   class="fa fa-pencil"></i></a>
-              <a class="btn btn-sm btn-danger text-white ml-1" (click)="deleteSchedule(ques.QuestionId)"><i
+              <a class="btn btn-sm btn-danger text-white ml-1" (click)="deleteSchedule(item.QuizScheduleId)"><i
                   class="fa fa-trash"></i></a>
             </td>
     

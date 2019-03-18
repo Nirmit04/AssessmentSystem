@@ -34,9 +34,13 @@ export class TestAdminService {
     return this.http.get(this.rooturl + 'QuizSchedule/GetAllQuizSchedule/' + id);
   }
   getScheduleQuizUsers(id: number) {
-    return this.http.get(this.rooturl + 'QuizSchedule/GetUsersForSchedule/' + id);
+    console.log(1);
+    return this.http.get(this.rooturl + 'UserSchedule/UserAssignedQuiz/' + id);
   }
-  deleteSchedule(id: string) {
-    return this.http.delete(this.rooturl + '/' + id);
+  deleteSchedule(id: number) {
+    return this.http.delete(this.rooturl + 'QuizSchedule/DeleteQuizSchedule/' + id);
+  }
+  deleteUserFromSchedule(Id: string) {
+    return this.http.delete(this.rooturl + '/' + Id);
   }
 }
