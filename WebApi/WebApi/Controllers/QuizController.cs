@@ -197,12 +197,18 @@ namespace WebApi.Controllers
         public IHttpActionResult AddQuestions(int QuizId,[FromBody]int[] QuestionId)
         {
             QuizQuestion quizQuestion = new QuizQuestion();
-
+            Quiz quiz = new Quiz();
+            Question question = new Question();
             foreach (var item in QuestionId)
             {
                 quizQuestion.QuizId = QuizId;
                 quizQuestion.QuestionId = item;
                 db.QuizQuestions.Add(quizQuestion);
+                quiz = db.Quizs.FirstOrDefault(x=>x.QuizId==QuizId);
+                question = db.Questions.FirstOrDefault(x=>x.QuestionId==item);
+
+                quiz.TotalQuestions++;
+                quiz.TotalMarks += question.Marks;
                 db.SaveChanges();
             }
             return Ok();

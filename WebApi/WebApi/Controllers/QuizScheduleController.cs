@@ -32,7 +32,6 @@ namespace WebApi.Controllers
         [Route("api/QuizSchedule/ScheduleQuiz")]
         public IHttpActionResult ScheduleQuiz(QuizSchedule quizSchedule)
         {
-
             db.QuizSchedules.Add(quizSchedule);
             UserSchedule userSchedule = new UserSchedule();
             foreach (var uId in quizSchedule.UserId)
@@ -47,7 +46,15 @@ namespace WebApi.Controllers
             return Ok(quizSchedule);
         }
 
-        //[HttpDelete]
-        //[Route("api/QuizSchedule/DeleteQuizSchedule/{QuizScheduleId}")]
+        [HttpDelete]
+        [Route("api/QuizSchedule/DeleteQuizSchedule/{QuizScheduleId}")]
+        public IHttpActionResult DeleteQuizSchedule(int QuizScheduleId)
+        {
+            var quizSchedule = db.QuizSchedules.Find(QuizScheduleId);
+            quizSchedule.ArchiveStatus = true;
+            db.SaveChanges();
+            return Ok();
+        }
+
     }
 }

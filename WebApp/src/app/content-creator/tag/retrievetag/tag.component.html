@@ -1,28 +1,30 @@
-<div>
-  <button mat-raised-button (click)="onCreate()">
-    <mat-icon>add</mat-icon>Create
-  </button>
-</div>
-<table class="table table-bordered table-striped">
-  <thead class="thead-dark">
-    <th scope="col">#Subject ID</th>
-    <th scope="col">Subject</th>
-    <th scope="col">Department</th>
-    <th scope="col">Action</th>
-
-  </thead>
-
-  <tbody>
-    <ng-container *ngFor="let tag of tagList;index as i;">
-      <tr style="color:azure">
-        <th scope="row">{{i+1}}</th>
-        <td scope="row">{{tag.Name}}</td>
-        <td scope="row">{{tag.Department}}</td>
-        <td>
-          <a class="btn btn-sm btn-info text-white" (click)="onEdit(i+1)"><i class="fa fa-pencil"></i></a>
-        </td>
-
-      </tr>
-    </ng-container>
-  </tbody>
-</table>
+<app-main-nav>
+  <div>
+    <button mat-raised-button (click)="onCreate()">
+      <mat-icon>add</mat-icon>Create
+    </button>
+  </div>
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <th scope="col">#Subject ID</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Department</th>
+      <th scope="col">Action</th>
+  
+    </thead>
+  
+    <tbody>
+      <ng-container *ngFor="let tag of tagList;index as i;">
+        <tr>
+          <th scope="row">{{i+1}}</th>
+          <td scope="row">{{tag.Name}}</td>
+          <td scope="row">{{tag.Department}}</td>
+          <td>
+            <a class="btn btn-sm btn-info text-white" (click)="onEdit(i+1)"><i class="fa fa-pencil"></i></a>
+          </td>
+  
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</app-main-nav>

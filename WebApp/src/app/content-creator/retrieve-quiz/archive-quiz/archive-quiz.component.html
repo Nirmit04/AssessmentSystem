@@ -1,0 +1,48 @@
+<app-main-nav>
+<div>
+  <br/><br/><br/>
+  <h1 style="text-align: center">List of Archived Quizzes</h1>
+  <div class="row">
+    <div>
+      <input style="margin-left: 5%; width: 40rem" #searchField class="form-control mr-sm-2 border border-secondary"
+        placeholder="Filter.." aria-label="Filter" #searchInput="ngModel" [(ngModel)]="searchText">
+    </div>
+    <div>
+      <select (change)="filterSubject($event)" #dropdown style="margin-left :40%" class="form-control border border-secondary">
+        <option  selected value>Choose Difficulty Level</option>
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+      </select>
+    </div>
+  </div>
+  <br /><br />
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <th scope="col">#Quiz ID</th>
+      <th scope="col">Quiz Type</th>
+      <th scope="col">Difficulty</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Total Questions</th>
+      <th scope="col">Total Marks</th>
+      <th scope="col">Action</th>
+    </thead>
+  
+    <tbody>
+      <ng-container *ngFor="let item of QuizList;index as i">
+        <tr *ngIf="(filter(item))">
+          <th class="text-primary" scope="row">{{i+1}}</th>
+          <td class="text-primary" scope="row">{{item.QuizType}}</td>
+          <td class="text-primary" scope="row">{{item.Difficulty}}</td>
+          <td class="text-primary" scope="row">{{item.Subject}}</td>
+          <td class="text-primary" scope="row">{{item.TotalQuestions}}</td>
+          <td class="text-primary" scope="row">{{item.TotalMarks}}</td>
+          <td>
+            <a class="btn text-danger" (click)="onUnArchived(item.QuizId)"><i class="fa fa-file-archive-o"></i></a>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+  </div>
+</app-main-nav>

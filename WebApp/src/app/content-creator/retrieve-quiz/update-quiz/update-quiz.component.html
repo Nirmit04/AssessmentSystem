@@ -1,28 +1,30 @@
-<button type="button" (click)="onCreate()" class="btn btn-primary">Add Question</button>
-<div>
-  <br /><br />
-  <h1 style="text-align: center">View Quiz Details</h1>
-  <br />
-  <table class="table table-bordered table-striped">
-    <thead class="thead-dark">
-      <th scope="col">#Question ID</th>
-      <th scope="col">Question</th>
-      <th scope="col">Marks</th>
-      <th scope="col">Action</th>
-    </thead>
+<mat-dialog-content>
+  <button type="button" (click)="onCreate()" class="btn btn-primary">Add Question</button>
+  <div>
+    <br /><br />
+    <h1 style="text-align: center">View Quiz Details</h1>
+    <br />
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <th scope="col">#Question ID</th>
+        <th scope="col">Question</th>
+        <th scope="col">Marks</th>
+        <th scope="col">Action</th>
+      </thead>
 
-    <tbody>
-      <ng-container *ngFor="let item of UpdateQuizQuestionList;index as i">
-        <tr>
-          <th class="text-primary" scope="row">{{i+1}}</th>
-          <th class="text-primary" scope="row">{{item[0].QuestionStatement}}</th>
-          <td class="text-primary" scope="row">{{item[0].Marks}}</td>
-          <td>
-            <a class="btn text-danger" (click)="onDelete(item[0].QuestionId)"><i class="fa fa-trash fa-lg"></i></a>
-          </td>
-        </tr>
-      </ng-container>
-    </tbody>
-  </table>
-</div>
-<button type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button>
+      <tbody>
+        <ng-container *ngFor="let item of UpdateQuizQuestionList;index as i">
+          <tr>
+            <th class="text-primary" scope="row">{{i+1}}</th>
+            <th class="text-primary" scope="row">{{item.QuestionStatement}}</th>
+            <td class="text-primary" scope="row">{{item.Marks}}</td>
+            <td>
+              <a class="btn text-danger" (click)="onDelete(item.QuestionId)"><i class="fa fa-trash fa-lg"></i></a>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+  <button type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button>
+</mat-dialog-content>

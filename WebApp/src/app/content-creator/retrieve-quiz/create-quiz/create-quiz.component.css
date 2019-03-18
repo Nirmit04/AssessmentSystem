@@ -1,7 +1,10 @@
-.card{
-    margin: 9px auto;
+.card {
+	margin: 9px auto;
 }
-.container{
-    max-width: inherit;
-    max-height: inherit;
+.container {
+	max-width: inherit;
+	max-height: inherit;
+}
+button {
+	margin-left: 10px;
 }

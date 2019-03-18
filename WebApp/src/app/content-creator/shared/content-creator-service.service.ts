@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Question } from '../shared/question.model';
-//import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 import { TagModel } from './tags.model';
-import { QuizModel } from './quiz.model'
+import { QuizModel } from './quiz.model';
 @Injectable({
 	providedIn: 'root'
 })
@@ -12,7 +12,7 @@ export class ContentCreatorServiceService {
 	formData: Question;
 	quizForm: QuizModel;
 	readonlyStatus: boolean;
-	rootURL = 'http://201f9f2d.ngrok.io/api/';
+	rootURL = environment.apiURl;
 	public createdBy;
 	constructor(private http: HttpClient) { }
 	postQuestion(formData: Question) {
@@ -33,6 +33,13 @@ export class ContentCreatorServiceService {
 		console.log(qid);
 		return this.http.delete(this.rootURL + '/Question/Delete/' + qid);
 	}
+	getArchivedQuizzes() {
+		return this.http.get(this.rootURL + 'Quiz/Archived/' + localStorage.getItem('uid'));
+	}
+	unArchiveQuiz(id: number) {
+		console.log(id);
+		return this.http.put(this.rootURL + '/Quiz/UnArchive', id);
+	}
 
 	getTags() {
 		return this.http.get(this.rootURL + 'Subject/GetSubjects/' + localStorage.getItem('uid'));
@@ -44,7 +51,6 @@ export class ContentCreatorServiceService {
 		} else {
 			return this.http.put(this.rootURL + 'Subject/Edit/' + tagForm.SubjectId, tagForm);
 		}
-
 	}
 	deleteTags(id: number) {
 		return this.http.delete(this.rootURL + '/Tag/Delete/' + id);
@@ -60,25 +66,37 @@ export class ContentCreatorServiceService {
 		return this.http.get(this.rootURL + 'Question/GetQuestion/' + form.Difficulty + '/' + form.SubjectId);
 	}
 	postQuestionsSelected(questions: number[]) {
-		this.quizForm.qId = questions;
+		this.quizForm.QuestionIds = questions;
 		console.log(this.quizForm);
 		return this.http.post(this.rootURL + 'Quiz/CreateQuiz', this.quizForm);
 	}
 	// pulkit's methods
 	putQuestionsSelected(questions: number[]) {
-		this.quizForm.qId = questions;
+		this.quizForm.QuestionIds = questions;
 		this.quizForm.CreatedBy = localStorage.getItem('uid');
-		console.log(this.quizForm);
-		return this.http.put(this.rootURL + 'Quiz/CreateQuiz/' + Number(localStorage.getItem('quizId')), this.quizForm);
+		console.log(this.quizForm.QuestionIds);
+		return this.http.put(this.rootURL + 'Quiz/EditQuiz/AddQuestion/' + Number(localStorage.getItem('quizId')), this.quizForm.QuestionIds);
 	}
 	deleteQuesOfQuiz(id) {
 		console.log(id);
-		return this.http.delete(this.rootURL + 'Quiz/Question/Delete/' + Number(localStorage.getItem('quizId')) + '/' + id);
+		return this.http.delete(
+			this.rootURL + 'Quiz/QuizQuestion/Delete/' + Number(localStorage.getItem('quizId')) + '/' + id
+		);
 	}
 	getQuestionsByQuiz(id: number) {
-		return this.http.get(this.rootURL + 'Quiz/Question/' + id);
+		return this.http.get(this.rootURL + 'Quiz/QuizQuestion/' + id);
 	}
 	getQuizQuestions(qid: number) {
-		return this.http.get(this.rootURL + 'Quiz/getType/' + qid);
+		return this.http.get(this.rootURL + 'Quiz/GetQuestionsNotInQuiz/' + qid);
+	}
+
+	getUserDetails() {
+		console.log(localStorage.getItem('email'));
+		return this.http.get(this.rootURL + 'GetUserDetails?email=' + localStorage.getItem('email'));
+	}
+
+	getUserProgress() {
+		console.log(localStorage.getItem('uid'));
+		return this.http.get(this.rootURL + 'Stats/' + localStorage.getItem('uid'));
 	}
 }

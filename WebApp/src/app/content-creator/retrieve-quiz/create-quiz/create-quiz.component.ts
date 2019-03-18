@@ -39,8 +39,9 @@ export class CreateQuizComponent implements OnInit {
         Subject: '',
         QuizType: '',
         CreatedBy: '',
-        qId: null,
-        SubjectId: null
+        QuestionIds: null,
+        SubjectId: null,
+        QuizName:''
       }
       if (this.questions) {
         this.questions.map(y => y.selected = false);

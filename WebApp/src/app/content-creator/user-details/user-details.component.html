@@ -1,0 +1,47 @@
+<app-main-nav>
+<div class="container parent">
+  <div class="child1">
+    <img class="card-img" src="" alt="Profile image">
+  </div>
+  <div class="child2">
+    <div class="card text-white bg-dark">
+      <div class="card-header">Profile</div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <label>Firstname: {{Firstname}}</label>
+          </div>
+          <div class="col-md-6">
+            <label>Lastname: {{Lastname}}</label>
+          </div>
+          <div class="col-md-12">
+            <label>Email: {{email}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="child3">
+      <div class="card-deck">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Quizzes Created</h5>
+              <label>{{Quizzes}}</label>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Questions Created</h5>
+              <label>{{Questions}}</label>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Tags Created</h5>
+              <label>{{Tags}}</label>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
+</app-main-nav>

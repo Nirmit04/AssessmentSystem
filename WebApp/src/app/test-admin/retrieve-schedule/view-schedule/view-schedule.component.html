@@ -1,0 +1,48 @@
+<mat-dialog-content>
+  <h5 class="card-title">{{label}}</h5>
+  <button type="button" (click)="onAdd()" class="btn btn-primary">Add Users</button>
+  <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+    <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="this.CCreatedBy">
+    <input type="hidden" name="QuizId" #QuizId="ngModel" [(ngModel)]="service.formdata.QuizId">
+    <div class="form-group col-md-6">
+      <label>Start Date Time</label>
+      <input type="datetime-local" required name="StartDateTime" #StartDateTime="ngModel"
+        [(ngModel)]=service.formdata.StartDateTime [readonly]="bool">
+      <div class="validation-error" *ngIf="StartDateTime.invalid && StartDateTime.touched">This field is required.
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label>End Date Time</label>
+      <input type="datetime-local" required name="EndDateTime" #EndDateTime="ngModel"
+        [(ngModel)]="service.formdata.EndDateTime" [readonly]="bool">
+      <div class="validation-error" *ngIf="EndDateTime.invalid && EndDateTime.touched">This field is required.
+      </div>
+    </div>
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <th scope="col">#User ID</th>
+        <th scope="col">UserName</th>
+        <th scope="col">E-Mail</th>
+        <th scope="col">Taken</th>
+        <th scope="col">Action</th>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let user of usersList;index as i">
+          <tr>
+            <th class="text-primary" scope="row">{{i+1}}</th>
+            <th class="text-primary" scope="row">{{user.UserName}}</th>
+            <td class="text-primary" scope="row">{{user.Email}}</td>
+            <td class="text-primary" scope="row">{{user.QuizTaken}}</td>
+            <td>
+              <a class="btn text-danger" (click)="onDelete(item.QuizScheduleId)"><i class="fa fa-trash fa-lg"></i></a>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+    <div class="form-group">
+      <button style="margin:0 5%" type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
+      <button type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button>
+    </div>
+  </form>
+</mat-dialog-content>

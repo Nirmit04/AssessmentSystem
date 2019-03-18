@@ -13,13 +13,13 @@ import { AddQuesInQuizComponent } from '../add-ques-in-quiz/add-ques-in-quiz.com
   styleUrls: ['./update-quiz.component.css']
 })
 export class UpdateQuizComponent implements OnInit {
-  UpdateQuizQuestionList : Question[];
+  UpdateQuizQuestionList: Question[];
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data, 
-  public dialogRef : MatDialogRef<UpdateQuizComponent>,
-  public service: ContentCreatorServiceService, 
-  public toastr: ToastrService,
-  public dialog: MatDialog) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data,
+    public dialogRef: MatDialogRef<UpdateQuizComponent>,
+    public service: ContentCreatorServiceService,
+    public toastr: ToastrService,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     this.UpdateQuizQuestionList = this.data;
@@ -27,28 +27,30 @@ export class UpdateQuizComponent implements OnInit {
 
   loadingData() {
     this.service.getQuestionsByQuiz(Number(localStorage.getItem('quizId'))).subscribe((res: any) => {
-      this.UpdateQuizQuestionList = res; });
+      this.UpdateQuizQuestionList = res;
+    });
   }
 
-  onDelete(id: number)    {
+  onDelete(id: number) {
     console.log(id);
     this.service.deleteQuesOfQuiz(id).subscribe((res: any) => {
-			this.toastr.success('Deleted Successfully', 'Assesment System');
-		});
+      this.toastr.success('Deleted Successfully', 'Assesment System');
+      this.loadingData();
+    });
   }
 
-  onCreate()  {
+  onCreate() {
     const dialogConfig = new MatDialogConfig();
-			dialogConfig.autoFocus = true;
-			dialogConfig.width = "70%";
-      dialogConfig.disableClose = true;
-      this.service.getQuizQuestions(Number(localStorage.getItem('quizId'))).subscribe((res:any)=>{
-        dialogConfig.data = res;
-        console.log(dialogConfig.data);
-			this.dialog.open(AddQuesInQuizComponent, dialogConfig).afterClosed().subscribe(res => {
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "70%";
+    dialogConfig.disableClose = true;
+    this.service.getQuizQuestions(Number(localStorage.getItem('quizId'))).subscribe((res: any) => {
+      dialogConfig.data = res;
+      console.log(dialogConfig.data);
+      this.dialog.open(AddQuesInQuizComponent, dialogConfig).afterClosed().subscribe(res => {
         this.loadingData();
-			  });
       });
+    });
   }
 
 }
