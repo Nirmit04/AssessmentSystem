@@ -75,7 +75,7 @@ namespace WebApi.Controllers
             userSchedule.QuizScheduleId = QuizScheduleId;
             userSchedule.Taken = false;
             foreach (var item in UserIds)
-            {
+            { 
                 userSchedule.UserId = item;
                 db.UserSchedules.Add(userSchedule);
                 db.SaveChanges();
