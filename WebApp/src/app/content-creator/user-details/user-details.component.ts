@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ContentCreatorServiceService } from '../shared/content-creator-service.service';
 import { Question } from '../shared/question.model';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
 	selector: 'app-user-details',
@@ -14,9 +15,15 @@ export class UserDetailsComponent implements OnInit {
 	Quizzes: any;
 	Questions: any;
 	Tags: any;
-	constructor(private service: ContentCreatorServiceService) {}
-
+	constructor(private service: ContentCreatorServiceService, private ngxService: NgxUiLoaderService) {}
+	show: boolean = true;
 	ngOnInit() {
+		this.ngxService.startBackground('do-background-things');
+		// Do something here...
+		this.ngxService.stopBackground('do-background-things');
+
+		this.ngxService.startLoader('loader-01'); // start foreground spinner of the loader "loader-01" with 'default' taskId
+
 		this.loadUserDetails();
 		this.loadUserProgress();
 	}
@@ -36,6 +43,9 @@ export class UserDetailsComponent implements OnInit {
 			this.Quizzes = res[0];
 			this.Questions = res[1];
 			this.Tags = res[2];
+			// this.show = false;
+			// console.log(this.show);
+
 			// console.log(this.Questions);
 		});
 	}

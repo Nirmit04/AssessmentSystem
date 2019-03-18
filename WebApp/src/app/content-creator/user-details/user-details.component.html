@@ -1,8 +1,9 @@
 <app-main-nav>
-<div class="container parent">
-  <div class="child1">
+    <ngx-ui-loader [loaderId]="'loader-01'" *ngIf = "show"></ngx-ui-loader>
+      <div class="container parent">
+    <div class="child1">
     <img class="card-img" src="" alt="Profile image">
-  </div>
+    </div>
   <div class="child2">
     <div class="card text-white bg-dark">
       <div class="card-header">Profile</div>

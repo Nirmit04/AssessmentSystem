@@ -26,3 +26,8 @@ body {
 	text-align: left;
 	background-color: #1e1e2f;
 }
+.ngx-foreground-spinner {
+	position: absolute;
+	top: 50% !important;
+	left: 50% !important;
+}
