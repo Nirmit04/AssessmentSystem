@@ -70,18 +70,27 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [Route("api/UserSchedule/UserAdd/{QuizScheduleId}")]
-        public IHttpActionResult UserAdd(int QUizScheduleId, [FromBody] string[] UserId)
+        public IHttpActionResult UserAdd(int QuizScheduleId, [FromBody] string[] UserIds)
         {
-            UserSchedule userSchedule=new UserSchedule();
-            userSchedule.QuizScheduleId = QUizScheduleId;
+            UserSchedule userSchedule = new UserSchedule();
+            userSchedule.QuizScheduleId = QuizScheduleId;
             userSchedule.Taken = false;
-            foreach (var item in UserId)
-            {
-                
+            foreach (var item in UserIds)
+            { 
                 userSchedule.UserId = item;
                 db.UserSchedules.Add(userSchedule);
                 db.SaveChanges();
             }
+            return Ok();
+        }
+
+        [HttpPut]
+        [Route("api/UserSchedule/QuizAttemptStatus/{QuizScheduleId}/{UserId}")]
+        public IHttpActionResult QuizAttemptStatus(int QuizScheduleId, string UserId)
+        {
+            var user = db.UserSchedules.SingleOrDefault(x => x.QuizScheduleId == QuizScheduleId && x.UserId == UserId);
+            user.Taken = true;
+            db.SaveChanges();
             return Ok();
         }
     }
