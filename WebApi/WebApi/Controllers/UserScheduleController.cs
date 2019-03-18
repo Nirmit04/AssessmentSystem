@@ -58,11 +58,10 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete]
-        [Route("api/UserSchedule/UserDelete/{UserId}")]
-        public IHttpActionResult UserDelete(string UserId)
+        [Route("api/UserSchedule/UserDelete/{QuizScheduleId}/{UserId}")]
+        public IHttpActionResult UserDelete(int QuizScheduleId, string UserId)
         {
-
-            UserSchedule user = db.UserSchedules.SingleOrDefault(x => x.UserId == UserId);
+            UserSchedule user = db.UserSchedules.SingleOrDefault(x => x.QuizScheduleId == QuizScheduleId && x.UserId == UserId);
             db.UserSchedules.Remove(user);
             db.SaveChanges();
             return Ok();
