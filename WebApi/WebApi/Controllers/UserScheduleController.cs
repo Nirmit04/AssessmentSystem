@@ -56,5 +56,41 @@ namespace WebApi.Controllers
                 }).ToList();
             return Ok(userIds);
         }
+
+        [HttpDelete]
+        [Route("api/UserSchedule/UserDelete/{UserId}")]
+        public IHttpActionResult UserDelete(string UserId)
+        {
+            UserSchedule user = db.UserSchedules.SingleOrDefault(x => x.UserId == UserId);
+            db.UserSchedules.Remove(user);
+            db.SaveChanges();
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("api/UserSchedule/UserAdd/{QuizScheduleId}")]
+        public IHttpActionResult UserAdd(int QuizScheduleId, [FromBody] string[] UserIds)
+        {
+            UserSchedule userSchedule = new UserSchedule();
+            userSchedule.QuizScheduleId = QuizScheduleId;
+            userSchedule.Taken = false;
+            foreach (var item in UserIds)
+            {
+                userSchedule.UserId = item;
+                db.UserSchedules.Add(userSchedule);
+                db.SaveChanges();
+            }
+            return Ok();
+        }
+
+        [HttpPut]
+        [Route("api/UserSchedule/QuizAttemptStatus/{QuizScheduleId}/{UserId}")]
+        public IHttpActionResult QuizAttemptStatus(int QuizScheduleId, string UserId)
+        {
+            var user = db.UserSchedules.SingleOrDefault(x => x.QuizScheduleId == QuizScheduleId && x.UserId == UserId);
+            user.Taken = true;
+            db.SaveChanges();
+            return Ok();
+        }
     }
 }
