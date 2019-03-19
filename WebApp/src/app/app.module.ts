@@ -39,6 +39,35 @@ import { ArchiveQuizComponent } from './content-creator/retrieve-quiz/archive-qu
 import { MainNav2Component } from './test-admin/main-nav2/main-nav2.component';
 import { ViewScheduleComponent } from './test-admin/retrieve-schedule/view-schedule/view-schedule.component';
 import { DataTablesModule } from 'angular-datatables';
+
+import { NgxUiLoaderModule, NgxUiLoaderConfig } from 'ngx-ui-loader';
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+	bgsColor: '#00ACC1',
+	bgsOpacity: 0.7,
+	bgsPosition: 'bottom-right',
+	bgsSize: 60,
+	bgsType: 'rectangle-bounce-pulse-out',
+	blur: 16,
+	fgsColor: '#00ACC1',
+	fgsPosition: 'center-center',
+	fgsSize: 60,
+	fgsType: 'rectangle-bounce-pulse-out',
+	gap: 24,
+	logoPosition: 'center-center',
+	logoSize: 120,
+	logoUrl: '',
+	masterLoaderId: 'master',
+	overlayBorderRadius: '0',
+	overlayColor: 'rgba(40, 40, 40, 0.8)',
+	pbColor: '#00ACC1',
+	pbDirection: 'ltr',
+	pbThickness: 1,
+	hasProgressBar: false,
+	text: 'LOADING...',
+	textColor: '#FFFFFF',
+	textPosition: 'center-center',
+	threshold: 500
+};
 let config = new AuthServiceConfig([
 	{
 		id: GoogleLoginProvider.PROVIDER_ID,
@@ -92,7 +121,8 @@ export function provideConfig() {
 		MatToolbarModule,
 		MatSidenavModule,
 		MatListModule,
-		DataTablesModule
+		DataTablesModule,
+		NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
 	],
 	providers: [
 		AuthGuard,
@@ -102,7 +132,7 @@ export function provideConfig() {
 			useFactory: provideConfig
 		}
 	],
-	bootstrap: [AppComponent],
+	bootstrap: [ AppComponent ],
 	entryComponents: [
 		CreatetagComponent,
 		UpdateQuestionComponent,
@@ -111,7 +141,6 @@ export function provideConfig() {
 		AddQuesInQuizComponent,
 		AddUserComponent,
 		ViewScheduleComponent
-
-	],
+	]
 })
-export class AppModule { }
+export class AppModule {}
