@@ -1,11 +1,11 @@
 <app-main-nav>
 
-<div class="row">
-  <div>
+  <!-- <div class="row">
+   <div>
     <input style="margin-left: 5%; width: 40rem" #searchField class="form-control mr-sm-2 border border-secondary"
       placeholder="Filter.." aria-label="Filter" #searchInput="ngModel" [(ngModel)]="searchText">
-  </div>
-  <div>
+  </div> -->
+  <!-- <div>
     <select (change)="filterSubject($event)" #dropdown style="margin-left :40%"
       class="form-control border border-secondary">
       <option selected value>Choose Difficulty Level</option>
@@ -15,33 +15,36 @@
     </select>
   </div>
 </div>
-<br /><br />
-<table class="table table-bordered table-striped">
-  <thead class="thead-dark">
-    <th scope="col">#Question ID</th>
-    <th scope="col">Question</th>
-    <th scope="col">Subject</th>
-    <th scope="col">Difficulty Level</th>
-    <th scope="col">Action</th>
+<br /><br/>  -->
 
-  </thead>
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+    class="row-border hover table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>#Question ID</th>
+        <th>Question</th>
+        <th>Subject</th>
+        <th>Difficulty Level</th>
+        <th>Action</th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <ng-container *ngFor="let ques of questionList;index as i;">
-      <tr *ngIf="(filter(ques))"  style="color:azure">
-        <th (click)="viewUserQues(ques.QuestionId,i+1)" scope="row">{{i+1}}</th>
-        <td (click)="viewUserQues(ques.QuestionId,i+1)" scope="row">{{ques.QuestionStatement}}</td>
-        <td (click)="viewUserQues(ques.QuestionId,i+1)" scope="row">{{ques.SubjectName}}</td>
-        <td (click)="viewUserQues(ques.QuestionId,i+1)" scope="row">{{ques.Difficulty}}</td>
+    <tbody>
+      <tr *ngFor="let ques of questionList; index as i;">
+        <td>{{i+1}}</td>
+        <td (click)="viewUserQues(ques.QuestionId,i+1)">{{ques.QuestionStatement}}</td>
+        <td (click)="viewUserQues(ques.QuestionId,i+1)">{{ques.SubjectName}}</td>
+        <td (click)="viewUserQues(ques.QuestionId,i+1)">{{ques.Difficulty}}</td>
         <td>
           <a class="btn btn-sm btn-info text-white" (click)="editUserQues(ques.QuestionId,i+1)"><i
               class="fa fa-pencil"></i></a>
-          <a class="btn btn-sm btn-danger text-white ml-1" (click)="deleteQues(ques.QuestionId)"><i
+          <a class="btn btn-sm btn-danger text-white" (click)="deleteQues(ques.QuestionId)"><i
               class="fa fa-trash"></i></a>
         </td>
-
       </tr>
-    </ng-container>
-  </tbody>
-</table>
+
+    </tbody>
+
+  </table>
+
 </app-main-nav>

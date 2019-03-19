@@ -21,7 +21,8 @@ export class AddUserComponent implements OnInit {
 
   ngOnInit() {
     if (this.data != null) {
-      this.loadSpecificUsers(+this.data);
+      console.log(this.data);
+      this.loadSpecificUsers(this.data);
     }
     else {
       this.loadUsers();
@@ -46,7 +47,14 @@ export class AddUserComponent implements OnInit {
   onSubmit(form: NgForm) {
     var quiztakerId = this.quiztakers.filter(Id => Id.selected).map(idSelected => idSelected.Id);
     console.log(quiztakerId);
-    this.service.quiztakerId = quiztakerId;
+    if (this.data != null) {
+      this.service.addUserInExistingSchedule(this.data, quiztakerId).subscribe(res => {
+        this.toastr.success('added succesfully');
+      });
+    }
+    else {
+      this.service.quiztakerId = quiztakerId;
+    }
   }
 }
 

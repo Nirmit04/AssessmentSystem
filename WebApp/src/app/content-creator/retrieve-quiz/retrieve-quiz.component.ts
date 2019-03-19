@@ -7,6 +7,8 @@ import { ToastrService } from 'ngx-toastr';
 import { QuizModel } from '../shared/quiz.model';
 import { CreateQuizComponent } from './create-quiz/create-quiz.component';
 import { UpdateQuizComponent } from './update-quiz/update-quiz.component';
+import { concat, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Component({
 	selector: 'retrieve-quiz',
@@ -19,30 +21,38 @@ export class RetrieveQuizComponent implements OnInit {
 	difficultyLevel = '';
 	index = 0;
 	QuestionList: any[];
+	dtOptions: DataTables.Settings = {};
+	dtTrigger: Subject<QuizModel> = new Subject();
+	subscription: Subscription;
 	constructor(private service: ContentCreatorServiceService,
 		private router: Router,
 		private dialog: MatDialog,
 		private toastr: ToastrService) { }
 
 	ngOnInit() {
+		this.dtOptions = {
+			pagingType: 'full_numbers',
+			pageLength: 10,
+		};
 		this.loadQuiz();
 	}
 	loadQuiz() {
 		this.service.getQuizzes().subscribe((res: any) => {
 			this.QuizList = res as QuizModel[];
+			this.dtTrigger.next();
 		});
 	}
-	filter(item: QuizModel) {
-		return (
-			(item.Subject.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1
-				|| item.QuizType.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1)
-			&& item.Difficulty.toLowerCase().indexOf(this.difficultyLevel.toLowerCase()) > -1
-		);
-	}
-	filterSubject(event: any) {
-		this.difficultyLevel = event.target.value;
-		console.log(this.difficultyLevel);
-	}
+	// filter(item: QuizModel) {
+	// 	return (
+	// 		(item.Subject.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1
+	// 			|| item.QuizType.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1)
+	// 		&& item.Difficulty.toLowerCase().indexOf(this.difficultyLevel.toLowerCase()) > -1
+	// 	);
+	// }
+	// filterSubject(event: any) {
+	// 	this.difficultyLevel = event.target.value;
+	// 	console.log(this.difficultyLevel);
+	// }
 	onCreate() {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
@@ -51,6 +61,8 @@ export class RetrieveQuizComponent implements OnInit {
 		let dialogRef = this.dialog.open(CreateQuizComponent, dialogConfig);
 		dialogRef.afterClosed().subscribe(result => {
 			this.loadQuiz();
+			this.dtTrigger.unsubscribe();
+			this.dtTrigger.next();
 		});
 	}
 
@@ -59,6 +71,8 @@ export class RetrieveQuizComponent implements OnInit {
 		if (confirm('Are you sure you want to delete this quiz?')) {
 			this.service.deleteQuiz(id).subscribe((res: any) => {
 				this.loadQuiz();
+				this.dtTrigger.unsubscribe();
+				this.dtTrigger.next();
 				this.toastr.success('Archieved Successfully', 'Assesment System');
 			});
 		}
@@ -75,9 +89,14 @@ export class RetrieveQuizComponent implements OnInit {
 			console.log(dialogConfig.data);
 			this.dialog.open(UpdateQuizComponent, dialogConfig).afterClosed().subscribe(res => {
 				this.loadQuiz();
+				this.dtTrigger.unsubscribe();
+				this.dtTrigger.next();
 				localStorage.removeItem('quizId');
 			});
 		});
 
+	}
+	ngOnDestroy() {
+		this.dtTrigger.unsubscribe();
 	}
 }

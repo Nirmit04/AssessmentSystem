@@ -46,11 +46,27 @@
           <h5 *ngIf="length>0" class="card-title" style="text-align: center">Choose Questions</h5><br><br>
           <h5 *ngIf="length==0" class="card-title" style="text-align: center">No Question Available</h5><br><br>
           <form #Questionform="ngForm" (submit)="onDetailsSubmit(Questionform)" autocomplete="off">
-            <div *ngFor="let x of questions; let i = index"><br>
-              <input [id]="'questions-'+i" type="checkbox" value="{{x.Question_ID}}" [checked]="x.selected"
-                (change)="updateSelectedQuestions(i)">
-              <label>{{x.QuestionStatement}}</label>
-            </div>
+
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+              class="row-border hover table table-bordered table-striped">
+
+              <thead class="thead-dark">
+                <tr>
+                  <th>#S.NO.</th>
+                  <th>Tick</th>
+                  <th>Question</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let x of questions; let i = index">
+                  <td>{{i+1}}</td>
+                  <td><input [id]="'questions-'+i" type="checkbox" value="{{x.Question_ID}}"
+                      [checked]="x.selected" (change)="updateSelectedQuestions(i)"></td>
+                  <td>{{x.QuestionStatement}}</td>
+                </tr>
+              </tbody>
+            </table>
+
             <div *ngIf="length==0">
               <a routerLink='/create-question' routerLinkActive='active'>Click Here to Create Question</a>
             </div>

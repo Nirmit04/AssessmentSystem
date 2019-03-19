@@ -27,7 +27,7 @@
                 <select name="QuizId" required #QuizId="ngModel" [(ngModel)]="q3" class="form-control">
                   <option value="">Choose</option>
                   <option *ngFor="let Quiz of QuizList" value="{{Quiz.QuizId}}">
-                    {{Quiz.Subject}}&nbsp;&nbsp;{{Quiz.Difficulty}}</option>
+                    {{Quiz.QuizName}}</option>
                 </select>
                 <div class="validation-error" *ngIf="QuizId.invalid && QuizId.touched">This field is required.</div>
               </div>

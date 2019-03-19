@@ -26,8 +26,9 @@ export class ViewScheduleComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit() {
-    console.log(this.data);
+    // console.log(this.data);
     this.bool = this.service.readonlyStatus;
+    console.log(this.bool);
     if (this.bool === true) {
       this.label = "View Schedule";
     } else {
@@ -44,6 +45,7 @@ export class ViewScheduleComponent implements OnInit {
     dialogConfig.disableClose = true;
     let dialogRef = this.dialog.open(AddUserComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
+      this.loadExistingUsers(+this.data);
     });
   }
   loadExistingUsers(scheduleQuizId: number) {
@@ -52,9 +54,15 @@ export class ViewScheduleComponent implements OnInit {
       console.log(this.usersList);
     });
   }
-  deleteUserFromSchedule(Id: string) {
-    this.service.deleteUserFromSchedule(Id).subscribe((res: any) => {
+  deleteUserFromSchedule(UserId: string) {
+    this.service.deleteUserFromSchedule(+this.data, UserId).subscribe((res: any) => {
       this.toastr.error('removed successfully');
+      this.loadExistingUsers(+this.data);
     });
+  }
+  onSubmit(form: NgForm) {
+    this.service.editSchedule(this.data, form.value).subscribe(res => {
+      this.toastr.success('Changes Saved');
+    })
   }
 }

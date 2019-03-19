@@ -1,30 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ContentCreatorServiceService } from '../../shared/content-creator-service.service';
-import { Subject } from 'src/app/content-creator/shared/subject.model';
+//import { Subject } from 'src/app/content-creator/shared/subject.model';
 import { ToastrService } from 'ngx-toastr';
 import { Question } from 'src/app/content-creator/shared/question.model';
-
+import { concat, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
 @Component({
   selector: 'app-create-quiz',
   templateUrl: './create-quiz.component.html',
   styleUrls: ['./create-quiz.component.css']
 })
 export class CreateQuizComponent implements OnInit {
-  public Subjects: Subject[];
+  dtOptions: DataTables.Settings = {};
+  public Subjects: any[];
   questions: any[];
   val: Boolean = false;
   count: number = 0;
   CCreatedBy = "";
   length = 0;
+  flag = 1;
+  dtTrigger: Subject<Question> = new Subject();
+  subscription: Subscription;
   constructor(private service: ContentCreatorServiceService, public toastr: ToastrService) { }
   ngOnInit() {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 4,
+    };
     this.resetForm();
+    this.dtTrigger.next();
     this.CCreatedBy = localStorage.getItem('uid');
     this.service.retrieveSubjects().subscribe(data => {
-      this.Subjects = data as Subject[];
+      this.Subjects = data as any[];
       console.log(this.Subjects);
     });
+
   }
   resetForm(form?: NgForm) {
     if (form != null) {
@@ -41,13 +52,18 @@ export class CreateQuizComponent implements OnInit {
         CreatedBy: '',
         QuestionIds: null,
         SubjectId: null,
-        QuizName:''
+        QuizName: ''
       }
       if (this.questions) {
         this.questions.map(y => y.selected = false);
       }
     }
   }
+
+  fetch(form: NgForm) {
+    this.fetchReqQues(form);
+  }
+
   fetchReqQues(form: NgForm) {
     console.log(form.value);
     this.service.quizForm = form.value;
@@ -56,6 +72,7 @@ export class CreateQuizComponent implements OnInit {
       this.questions = data;
       this.length = this.questions.length;
       console.log(this.questions);
+      this.dtTrigger.next();
       this.checkVal();
     });
   }
@@ -72,5 +89,8 @@ export class CreateQuizComponent implements OnInit {
     this.service.postQuestionsSelected(QuestionId).subscribe(res => {
       this.toastr.success('Inserted successfully');
     })
+  }
+  ngOnDestroy() {
+    this.dtTrigger.unsubscribe();
   }
 }

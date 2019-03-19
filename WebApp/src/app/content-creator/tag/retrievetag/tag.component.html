@@ -4,15 +4,18 @@
       <mat-icon>add</mat-icon>Create
     </button>
   </div>
-  <table class="table table-bordered table-striped">
+  <br>
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+    class="row-border hover table table-bordered table-striped">
     <thead class="thead-dark">
-      <th scope="col">#Subject ID</th>
-      <th scope="col">Subject</th>
-      <th scope="col">Department</th>
-      <th scope="col">Action</th>
-  
+      <tr>
+        <th scope="col">#Subject ID</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Department</th>
+        <th scope="col">Action</th>
+      </tr>
     </thead>
-  
+
     <tbody>
       <ng-container *ngFor="let tag of tagList;index as i;">
         <tr>
@@ -22,7 +25,7 @@
           <td>
             <a class="btn btn-sm btn-info text-white" (click)="onEdit(i+1)"><i class="fa fa-pencil"></i></a>
           </td>
-  
+
         </tr>
       </ng-container>
     </tbody>

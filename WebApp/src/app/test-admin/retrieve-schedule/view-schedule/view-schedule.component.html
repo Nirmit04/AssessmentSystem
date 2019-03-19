@@ -1,9 +1,10 @@
 <mat-dialog-content>
   <h5 class="card-title">{{label}}</h5>
-  <button type="button" (click)="onAdd()" class="btn btn-primary">Add Users</button>
+  <button type="button" [disabled]="bool" (click)="onAdd()" class="btn btn-primary">Add Users</button>
   <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
     <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="this.CCreatedBy">
     <input type="hidden" name="QuizId" #QuizId="ngModel" [(ngModel)]="service.formdata.QuizId">
+    <input type="hidden" name="ArchiveStatus" #ArchiveStatus="ngModel" [(ngModel)]="service.formdata.ArchiveStatus">
     <div class="form-group col-md-6">
       <label>Start Date Time</label>
       <input type="datetime-local" required name="StartDateTime" #StartDateTime="ngModel"
@@ -34,14 +35,16 @@
             <td class="text-primary" scope="row">{{user.Email}}</td>
             <td class="text-primary" scope="row">{{user.QuizTaken}}</td>
             <td>
-              <a class="btn text-danger" (click)="deleteUserFromSchedule(user.Id)"><i class="fa fa-trash fa-lg"></i></a>
+              <button [disabled]="bool" class="btn text-danger" (click)="deleteUserFromSchedule(user.Id)"><i
+                  class="fa fa-trash fa-lg"></i></button>
             </td>
           </tr>
         </ng-container>
       </tbody>
     </table>
     <div class="form-group">
-      <button style="margin:0 5%" type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
+      <button style="margin:0 5%" type="submit" [disabled]="form.invalid || bool"
+        class="btn btn-primary">Submit</button>
       <button type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button>
     </div>
   </form>

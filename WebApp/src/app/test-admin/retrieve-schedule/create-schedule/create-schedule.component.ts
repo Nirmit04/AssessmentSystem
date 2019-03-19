@@ -16,7 +16,7 @@ export class CreateScheduleComponent implements OnInit {
   q3 = "";
   btndisable = true;
   CCreatedBy = "";
-  constructor(private service: TestAdminService, 
+  constructor(private service: TestAdminService,
     private dialog: MatDialog,
     public toastr: ToastrService) { }
   QuizList: QuizModel[];
@@ -34,7 +34,7 @@ export class CreateScheduleComponent implements OnInit {
   }
   sub(form: NgForm) {
     // console.log(form.value);
-    this.service.postSchedule(form.value).subscribe((res:any)=>{
+    this.service.postSchedule(form.value).subscribe((res: any) => {
       console.log(res);
     });
     this.toastr.success('Inserted successfully');
@@ -46,7 +46,7 @@ export class CreateScheduleComponent implements OnInit {
     dialogConfig.disableClose = true;
     let dialogRef = this.dialog.open(AddUserComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
-      //console.log(this.service.quiztakerId);
+      console.log(this.service.quiztakerId);
       if (this.service.quiztakerId != null) {
         this.btndisable = false;
       }
