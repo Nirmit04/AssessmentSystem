@@ -38,6 +38,7 @@ import { AddUserComponent } from './test-admin/retrieve-schedule/add-user/add-us
 import { ArchiveQuizComponent } from './content-creator/retrieve-quiz/archive-quiz/archive-quiz.component';
 import { MainNav2Component } from './test-admin/main-nav2/main-nav2.component';
 import { ViewScheduleComponent } from './test-admin/retrieve-schedule/view-schedule/view-schedule.component';
+import { DataTablesModule } from 'angular-datatables';
 let config = new AuthServiceConfig([
 	{
 		id: GoogleLoginProvider.PROVIDER_ID,
@@ -72,7 +73,7 @@ export function provideConfig() {
 		AddUserComponent,
 		ArchiveQuizComponent,
 		MainNav2Component,
-		ViewScheduleComponent
+		ViewScheduleComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -90,7 +91,8 @@ export function provideConfig() {
 		LayoutModule,
 		MatToolbarModule,
 		MatSidenavModule,
-		MatListModule
+		MatListModule,
+		DataTablesModule
 	],
 	providers: [
 		AuthGuard,

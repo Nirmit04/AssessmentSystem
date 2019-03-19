@@ -6,7 +6,7 @@ import { ContentCreatorServiceService } from '../shared/content-creator-service.
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { UpdateQuestionComponent } from '../update-question/update-question.component';
-import { concat } from 'rxjs';
+import { DataTablesModule } from 'angular-datatables';
 
 @Component({
 	selector: 'app-retrieve-question-bank',
@@ -24,13 +24,13 @@ export class RetrieveQuestionBankComponent implements OnInit {
 
 	ngOnInit() {
 		this.getQuesOfUser(localStorage.getItem('uid'));
+		this.searchText = '';
 	}
 	filter(ques: Question) {
-		console.log(this.difficultyLevel);
-		console.log(ques.Difficulty);
+		console.log(this.searchText+'hello');
 		return (
 			(ques.QuestionStatement.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1
-			|| ques.SubjectName.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1)
+				|| ques.SubjectName.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1)
 			&& ques.Difficulty.toLowerCase().indexOf(this.difficultyLevel.toLowerCase()) > -1
 		);
 	}
@@ -46,10 +46,12 @@ export class RetrieveQuestionBankComponent implements OnInit {
 		})
 	}
 	deleteQues(qid) {
+		if (confirm('Are you sure you want to delete this record?')) {
 		this.service.deleteQues(qid).subscribe((res: any) => {
 			this.toastr.success('Deleted Successfully', 'Assesment System');
 			this.getQuesOfUser(localStorage.getItem('uid'));
 		});
+	}
 	}
 	editUserQues(quesid: number, arrayindex: number) {
 		const dialogConfig = new MatDialogConfig();
