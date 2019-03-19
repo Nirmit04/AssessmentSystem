@@ -1,43 +1,39 @@
 <app-main-nav2>
-    <div class="card" style="width: 80%;">
-        <div class="card-body">
-          <h5 class="card-title">Create Schedule</h5>
-          <button type="button" (click)="adduser()" class="btn btn-primary">Add Users</button><br />
-          <form #form="ngForm" (submit)="sub(form)" autocomplete="off">
-            <div class="form-row">
-              <input type="hidden" #CreatedBy="ngModel" name="CreatedBy" [(ngModel)]="CCreatedBy">
-              <div class="form-group col-md-6">
-                <label>Start Date Time</label>
-                <input type="datetime-local" required name="StartDateTime" #StartDateTime="ngModel" [(ngModel)]="q1">
-                <div class="validation-error" *ngIf="StartDateTime.invalid && StartDateTime.touched">This field is
-                  required.
-                </div>
-              </div>
-              <div class="form-group col-md-6">
-                <label>End Date Time</label>
-                <input type="datetime-local" required name="EndDateTime" #EndDateTime="ngModel" [(ngModel)]="q2">
-                <div class="validation-error" *ngIf="EndDateTime.invalid && EndDateTime.touched">This field is
-                  required.
-                </div>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label>Select Quiz</label>
-                <select name="QuizId" required #QuizId="ngModel" [(ngModel)]="q3" class="form-control">
-                  <option value="">Choose</option>
-                  <option *ngFor="let Quiz of QuizList" value="{{Quiz.QuizId}}">
-                    {{Quiz.QuizName}}</option>
-                </select>
-                <div class="validation-error" *ngIf="QuizId.invalid && QuizId.touched">This field is required.</div>
-              </div>
-            </div>
-      
-      
-            <div class="form-group">
-              <button type="submit" [disabled]="btndisable || form.invalid" class="btn btn-primary btn-block">Submit</button>
-            </div>
-          </form>
+  <h5 class="card-title">Create Schedule</h5>
+  <button type="button" (click)="adduser()" class="btn btn-primary">Add Users</button><br /><br />
+  <form #form="ngForm" (submit)="sub(form)" autocomplete="off">
+    <div class="form-row">
+      <input type="hidden" #CreatedBy="ngModel" name="CreatedBy" [(ngModel)]="CCreatedBy">
+      <div class="form-group col-md-6">
+        <label>Start Date Time:</label><br />
+        <input type="datetime-local" required name="StartDateTime" #StartDateTime="ngModel" [(ngModel)]="q1">
+        <div class="validation-error" *ngIf="StartDateTime.invalid && StartDateTime.touched">This field is
+          required.
         </div>
       </div>
+      <div class="form-group col-md-6">
+        <label>End Date Time</label><br />
+        <input type="datetime-local" required name="EndDateTime" #EndDateTime="ngModel" [(ngModel)]="q2">
+        <div class="validation-error" *ngIf="EndDateTime.invalid && EndDateTime.touched">This field is
+          required.
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Select Quiz</label>
+        <select name="QuizId" required #QuizId="ngModel" [(ngModel)]="q3" class="form-control">
+          <option value="">Choose</option>
+          <option *ngFor="let Quiz of QuizList" value="{{Quiz.QuizId}}">
+            {{Quiz.QuizName}}</option>
+        </select>
+        <div class="validation-error" *ngIf="QuizId.invalid && QuizId.touched">This field is required.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="submit" [disabled]="btndisable || form.invalid" class="btn btn-primary btn-block">Submit</button>
+    </div>
+  </form>
+
+
 </app-main-nav2>

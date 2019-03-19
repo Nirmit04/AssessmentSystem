@@ -35,6 +35,7 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 			pageLength: 10,
 		};
 		this.getQuesOfUser(localStorage.getItem('uid'));
+		this.searchText = '';
 	}
 	// filter(ques: Question) {
 	// 	// console.log(this.difficultyLevel);
@@ -61,12 +62,14 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 
 	}
 	deleteQues(qid) {
+		if (confirm('Are you sure you want to delete this record?')) {
 		this.service.deleteQues(qid).subscribe((res: any) => {
 			this.toastr.success('Deleted Successfully', 'Assesment System');
 			this.getQuesOfUser(localStorage.getItem('uid'));
 			this.dtTrigger.unsubscribe();
 			this.dtTrigger.next();
 		});
+	}
 	}
 	editUserQues(quesid: number, arrayindex: number) {
 		const dialogConfig = new MatDialogConfig();

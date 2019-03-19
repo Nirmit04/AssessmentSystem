@@ -29,6 +29,7 @@ const routes: Routes = [
 	{ path: 'testAdminCreateScheDule', component: CreateScheduleComponent, canActivate: [AuthGuard] },
 	{ path: 'retrieve-schedule', component: RetrieveScheduleComponent, canActivate: [AuthGuard] },
 	{ path: 'ta-dash', component: MainNav2Component, canActivate: [AuthGuard] }
+
 ];
 
 @NgModule({

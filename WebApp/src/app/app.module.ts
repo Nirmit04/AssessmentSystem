@@ -102,7 +102,7 @@ export function provideConfig() {
 		AddUserComponent,
 		ArchiveQuizComponent,
 		MainNav2Component,
-		ViewScheduleComponent
+		ViewScheduleComponent,
 	],
 	imports: [
 		BrowserModule,

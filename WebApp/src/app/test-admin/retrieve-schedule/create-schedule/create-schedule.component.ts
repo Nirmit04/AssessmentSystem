@@ -36,8 +36,8 @@ export class CreateScheduleComponent implements OnInit {
     // console.log(form.value);
     this.service.postSchedule(form.value).subscribe((res: any) => {
       console.log(res);
+      this.toastr.success('Inserted successfully');
     });
-    this.toastr.success('Inserted successfully');
   }
   adduser() {
     const dialogConfig = new MatDialogConfig();
