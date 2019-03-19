@@ -23,7 +23,7 @@ namespace WebApi.Controllers
                     StartDateTime = x.StartDateTime,
                     EndDateTime = x.EndDateTime,
                     QuizId = x.QuizId,
-                    QuizName = db.Quizs.Find(x.QuizId).QuizName,
+                    QuizName = db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).QuizName,
                     ArchiveStatus = x.ArchiveStatus,
                 }).ToList();
             return Ok(quizSchedule);
