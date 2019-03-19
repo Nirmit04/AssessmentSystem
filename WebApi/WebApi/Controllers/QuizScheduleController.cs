@@ -14,7 +14,7 @@ namespace WebApi.Controllers
 
         [HttpGet]
         [Route("api/QuizSchedule/GetAllQuizSchedule/{CreatedBy}")]
-        public IHttpActionResult GetQuiz(string CreatedBy)
+        public IHttpActionResult GetAllQuizSchedule(string CreatedBy)
         {
             var quizSchedule = db.QuizSchedules.Where(x => x.CreatedBy == CreatedBy && x.ArchiveStatus == false)
                 .Select(x => new
@@ -23,6 +23,7 @@ namespace WebApi.Controllers
                     StartDateTime = x.StartDateTime,
                     EndDateTime = x.EndDateTime,
                     QuizId = x.QuizId,
+                    QuizName = db.Quizs.Find(x.QuizId).QuizName,
                     ArchiveStatus = x.ArchiveStatus,
                 }).ToList();
             return Ok(quizSchedule);
@@ -77,6 +78,14 @@ namespace WebApi.Controllers
             quizSchedule.ArchiveStatus = true;
             db.SaveChanges();
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("api/QuizSchedule/Stats/{CreatedBy}")]
+        public IHttpActionResult Stats(string CreatedBy)
+        {
+            int testSchdeule = db.QuizSchedules.Where(x => x.CreatedBy == CreatedBy).Count();
+            return Ok(testSchdeule);
         }
 
     }
