@@ -1,8 +1,53 @@
 <app-main-nav>
-<div class="container parent">
-  <div class="child1">
-    <img class="card-img" src="" alt="Profile image">
+    <ngx-ui-loader [loaderId]="'loader-01'" *ngIf = "show"></ngx-ui-loader>
+ 
+<div class="card">
+  <div class="thumbnail">
+    <img class="left" src="{{ profileUrl }}"/>
   </div>
+  <div class="info">
+      <h1><span>{{ Firstname}} </span> {{ Lastname }}</h1>
+      <!-- <div class="separator"></div> -->
+      <h2><span>Email: </span>{{ email }}</h2>
+  </div>
+  <div class="right">
+    <div class="one">Quizzes Created
+      <h3>{{ Quizzes }}</h3>
+    </div>
+    <div class="two">Tags Created
+      <h3>{{ Tags }}</h3>
+    </div>
+    <div class="three">Questions Created
+      <h3>{{ Questions }}</h3>
+    </div>
+    <p></p>
+  </div>
+</div>
+    
+    
+    
+    
+    
+    
+    <!-- <div class="container">
+        <div class="pic">
+          <img src="../.././../assets/img/anime3.png" alt="profile pic">
+        </div>
+        <div class="details">
+          <label>FirstName: <span>{{Firstname}}</span></label>
+          <label>LastName: <span>{{Lasttname}}</span></label>
+          <label>Email: <span>{{email}}</span></label>
+        </div>
+      </div>
+     -->
+    
+    
+    
+    
+    <!-- <div class="container parent">
+    <div class="child1">
+    <img class="card-img" src="" alt="Profile image">
+    </div>
   <div class="child2">
     <div class="card text-white bg-dark">
       <div class="card-header">Profile</div>
@@ -43,5 +88,5 @@
           </div>
         </div>
   </div>
-</div>
+</div> -->
 </app-main-nav>
