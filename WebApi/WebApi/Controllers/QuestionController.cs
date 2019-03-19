@@ -104,7 +104,7 @@ namespace WebApi.Controllers
             db.Questions.Add(question);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = question.QuestionId }, question);
+            return Ok(question);
         }
         
         [HttpPut]

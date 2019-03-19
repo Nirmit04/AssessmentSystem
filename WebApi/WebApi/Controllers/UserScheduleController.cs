@@ -80,6 +80,8 @@ namespace WebApi.Controllers
                 db.UserSchedules.Add(userSchedule);
                 db.SaveChanges();
             }
+            var userEmails = db.Users.Where(x => UserIds.Contains(x.Id)).Select(y => y.Email).ToArray();
+            var EmailResponse = InviteController.InviteUser(userEmails, "Click on the Link Below to take Quiz. \n <a href=\"" + "http://73387bfe.ngrok.io/api/QuizSchedule/GetAllQuizSchedule/" + db.QuizSchedules.Single(x => x.QuizScheduleId == QuizScheduleId).CreatedBy + "\">Click Here</a>");
             return Ok();
         }
 

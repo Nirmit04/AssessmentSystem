@@ -33,6 +33,7 @@ namespace WebApi.Controllers
         public IHttpActionResult ScheduleQuiz(QuizSchedule quizSchedule)
         {
             db.QuizSchedules.Add(quizSchedule);
+            db.SaveChanges();
             UserSchedule userSchedule = new UserSchedule();
             foreach (var uId in quizSchedule.UserId)
             {
@@ -42,8 +43,12 @@ namespace WebApi.Controllers
                 db.UserSchedules.Add(userSchedule);
                 db.SaveChanges();
             }
-            db.SaveChanges();
-            return Ok(quizSchedule);
+            var userEmails = db.Users.Where(x => quizSchedule.UserId.Contains(x.Id)).Select(y => y.Email).ToArray();
+            var EmailResponse = InviteController.InviteUser(userEmails, "Click on the Link Below to take Quiz. \n <a href=\"" + "http://localhost:8000/api/QuizSchedule/GetAllQuizSchedule/" + quizSchedule.CreatedBy + "\">Click Here</a>");
+            if (EmailResponse == "Invite Sent")
+                return Ok(quizSchedule);
+            else
+                return BadRequest("Try Again !!!");
         }
 
         [HttpPut]
@@ -62,6 +67,7 @@ namespace WebApi.Controllers
             db.SaveChanges();
             return StatusCode(HttpStatusCode.OK);
         }
+
 
         [HttpDelete]
         [Route("api/QuizSchedule/DeleteQuizSchedule/{QuizScheduleId}")]
