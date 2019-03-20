@@ -125,9 +125,9 @@ namespace WebApi.Controllers
             {
                 httpResponseMessage = httpClient.GetAsync(requestUri).Result;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
 
             if (httpResponseMessage.StatusCode != HttpStatusCode.OK)
@@ -403,7 +403,7 @@ namespace WebApi.Controllers
                         response_type = "token",
                         client_id = Startup.PublicClientId,
                         redirect_uri = new Uri("http://localhost:4200/home").AbsoluteUri,
-                        state = state
+                        state
                     }),
                     State = state
                 };

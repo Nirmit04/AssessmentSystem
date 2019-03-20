@@ -81,7 +81,7 @@ namespace WebApi.Controllers
                 db.SaveChanges();
             }
             var userEmails = db.Users.Where(x => UserIds.Contains(x.Id)).Select(y => y.Email).ToArray();
-            var EmailResponse = InviteController.InviteUser(userEmails, "Click on the Link Below to take Quiz. \n <a href=\"" + "http://73387bfe.ngrok.io/api/QuizSchedule/GetAllQuizSchedule/" + db.QuizSchedules.Single(x => x.QuizScheduleId == QuizScheduleId).CreatedBy + "\">Click Here</a>");
+            var EmailResponse = InviteController.InviteUser(userEmails, "Click on the Link Below to take Quiz. \n <a href=\"" + "http://c6f0a0ba.ngrok.io/api/QuizSchedule/GetAllQuizSchedule/" + db.QuizSchedules.Single(x => x.QuizScheduleId == QuizScheduleId).CreatedBy + "\">Click Here</a>");
             return Ok();
         }
 
@@ -94,10 +94,11 @@ namespace WebApi.Controllers
             db.SaveChanges();
             return Ok();
         }
-        
+
+
         [HttpGet]
         [Route("api/UserSchedule/Status/{ScheduleId}/{UserId}")]
-         public IHttpActionResult UserStatus(int QuizScheduleId, string UserId)
+        public IHttpActionResult UserStatus(int QuizScheduleId, string UserId)
         {
             var user = db.UserSchedules.Where(x => x.QuizScheduleId == QuizScheduleId && x.UserId == UserId);
             if (User != null)
@@ -105,8 +106,9 @@ namespace WebApi.Controllers
                 return Ok("true");
             }
             else
+            {
                 return BadRequest("false");
+            }
         }
-       
     }
 }

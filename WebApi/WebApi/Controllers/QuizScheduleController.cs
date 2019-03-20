@@ -14,7 +14,7 @@ namespace WebApi.Controllers
 
         [HttpGet]
         [Route("api/QuizSchedule/GetAllQuizSchedule/{CreatedBy}")]
-        public IHttpActionResult GetQuiz(string CreatedBy)
+        public IHttpActionResult GetAllQuizSchedule(string CreatedBy)
         {
             var quizSchedule = db.QuizSchedules.Where(x => x.CreatedBy == CreatedBy && x.ArchiveStatus == false)
                 .Select(x => new
@@ -23,6 +23,7 @@ namespace WebApi.Controllers
                     StartDateTime = x.StartDateTime,
                     EndDateTime = x.EndDateTime,
                     QuizId = x.QuizId,
+                    QuizName = db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).QuizName,
                     ArchiveStatus = x.ArchiveStatus,
                 }).ToList();
             return Ok(quizSchedule);
@@ -44,7 +45,7 @@ namespace WebApi.Controllers
                 db.SaveChanges();
             }
             var userEmails = db.Users.Where(x => quizSchedule.UserId.Contains(x.Id)).Select(y => y.Email).ToArray();
-            var EmailResponse = InviteController.InviteUser(userEmails, "Click on the Link Below to take Quiz. \n <a href=\"" + "http://localhost:8000/api/QuizSchedule/GetAllQuizSchedule/" + quizSchedule.CreatedBy + "\">Click Here</a>");
+            var EmailResponse = InviteController.InviteUser(userEmails, "Click on the Link Below to take Quiz. \n <a href=\"" + "http://c6f0a0ba.ngrok.io/api/QuizSchedule/GetAllQuizSchedule/" + quizSchedule.CreatedBy + "\">Click Here</a>");
             if (EmailResponse == "Invite Sent")
                 return Ok(quizSchedule);
             else
@@ -75,6 +76,34 @@ namespace WebApi.Controllers
         {
             var quizSchedule = db.QuizSchedules.Find(QuizScheduleId);
             quizSchedule.ArchiveStatus = true;
+            db.SaveChanges();
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("api/QuizSchedule/ArchivedList/{CreatedBy}")]
+        public IHttpActionResult ArchivedList(string CreatedBy)
+        {
+            var quizSchedule = db.QuizSchedules
+                .Where(x => x.CreatedBy == CreatedBy && x.ArchiveStatus == true)
+                .Select(y => new
+                {
+                    QuizScheduleId = y.QuizScheduleId,
+                    StartDateTime = y.StartDateTime,
+                    EndDateTime = y.EndDateTime,
+                    QuizId = y.QuizId,
+                    QuizName = db.Quizs.FirstOrDefault(z => z.QuizId == y.QuizId).QuizName,
+                    ArchiveStatus = y.ArchiveStatus
+                }).ToList();
+            return Ok(quizSchedule);
+        }
+
+        [HttpDelete]
+        [Route("api/QuizSchedule/Unarchive/{QuizScheduleId}")]
+        public IHttpActionResult Unarchive(int QuizScheduleId)
+        {
+            var quizSchedule = db.QuizSchedules.Find(QuizScheduleId);
+            quizSchedule.ArchiveStatus = false;
             db.SaveChanges();
             return Ok();
         }
