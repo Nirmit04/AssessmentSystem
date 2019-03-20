@@ -17,6 +17,8 @@ import { MainNav2Component } from './test-admin/main-nav2/main-nav2.component';
 import { ArchivedScheduleComponent } from './test-admin/retrieve-schedule/archived-schedule/archived-schedule.component';
 import { TestAdminComponent } from './test-admin/test-admin.component';
 import { NonMockComponent } from './employee/non-mock/non-mock.component'
+import { EmployeeComponent } from './employee/employee.component';
+
 const routes: Routes = [
 	{ path: 'home', component: HomeComponent },
 	{ path: '', component: LoginComponent, pathMatch: 'full' },
@@ -33,6 +35,7 @@ const routes: Routes = [
 	{ path: 'ta-dash', component: TestAdminComponent, canActivate: [AuthGuard] },
 	{ path: 'archive-schedule', component: ArchivedScheduleComponent, canActivate: [AuthGuard] },
 	{ path: 'non-mocks', component: NonMockComponent, canActivate: [AuthGuard] },
+	{ path: 'emp-dash', component: EmployeeComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
