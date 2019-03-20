@@ -1,3 +1,46 @@
-<p>
-  non-mock works!
-</p>
+<div>
+  <br /><br /><br />
+  <h1 style="text-align: center">List of Scheduled Quizzes</h1>
+  <!-- <div class="row">
+    <div>
+      <input style="margin-left: 5%; width: 40rem" #searchField class="form-control mr-sm-2 border border-secondary"
+        placeholder="Filter.." aria-label="Filter" #searchInput="ngModel" [(ngModel)]="searchText">
+    </div>
+    <div>
+      <select (change)="filterSubject($event)" #dropdown style="margin-left :40%" class="form-control border border-secondary">
+        <option  selected value>Choose Difficulty Level</option>
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+      </select>
+    </div>
+  </div> -->
+  <br /><br />
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+    class="row-border hover table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#Schedule ID</th>
+        <th scope="col">Quiz Name</th>
+        <th scope="col">Start Date/Time</th>
+        <th scope="col">End Date/Time</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <ng-container *ngFor="let item of nonMockScheduleList;index as i;">
+        <tr>
+          <th scope="row">{{i+1}}</th>
+          <td scope="row">{{item.QuizName}}</td>
+          <td scope="row">{{item.StartDateTime}}</td>
+          <td scope="row">{{item.EndDateTime}}</td>
+          <td style="text-align:center;">
+            <a class="btn btn-sm btn-info text-white" (click)="unarchiveSchedule(item.QuizScheduleId)"><i
+                class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

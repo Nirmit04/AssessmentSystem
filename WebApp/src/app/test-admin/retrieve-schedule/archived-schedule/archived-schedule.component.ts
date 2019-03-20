@@ -40,10 +40,13 @@ export class ArchivedScheduleComponent implements OnInit {
         // console.log(res);
         this.toastr.success('Un-Archived Successfully', 'Assesment System');
         this.loadArchivedSchedules();
-       // this.dtTrigger.unsubscribe();
+        // this.dtTrigger.unsubscribe();
         this.dtTrigger.next();
       });
     }
+  }
+  ngOnDestroy() {
+    this.dtTrigger.unsubscribe();
   }
 
 }
