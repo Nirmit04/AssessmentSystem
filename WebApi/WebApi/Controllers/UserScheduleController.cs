@@ -94,5 +94,19 @@ namespace WebApi.Controllers
             db.SaveChanges();
             return Ok();
         }
+        
+        [HttpGet]
+        [Route("api/UserSchedule/Status/{ScheduleId}/{UserId}")]
+         public IHttpActionResult UserStatus(int QuizScheduleId, string UserId)
+        {
+            var user = db.UserSchedules.Where(x => x.QuizScheduleId == QuizScheduleId && x.UserId == UserId);
+            if (User != null)
+            {
+                return Ok("true");
+            }
+            else
+                return BadRequest("false");
+        }
+       
     }
 }

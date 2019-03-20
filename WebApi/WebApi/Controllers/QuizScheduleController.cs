@@ -79,5 +79,13 @@ namespace WebApi.Controllers
             return Ok();
         }
 
+        [HttpGet]
+        [Route("api/QuizSchedule/Stats/{CreatedBy}")]
+        public IHttpActionResult Stats(string CreatedBy)
+        {
+            int testSchdeule = db.QuizSchedules.Where(x => x.CreatedBy == CreatedBy).Count();
+            return Ok(testSchdeule);
+        }
+
     }
 }
