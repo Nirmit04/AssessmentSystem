@@ -15,6 +15,7 @@ import { CreateScheduleComponent } from './test-admin/retrieve-schedule/create-s
 import { RetrieveScheduleComponent } from './test-admin/retrieve-schedule/retrieve-schedule.component';
 import { MainNav2Component } from './test-admin/main-nav2/main-nav2.component';
 import { ArchivedScheduleComponent } from './test-admin/retrieve-schedule/archived-schedule/archived-schedule.component';
+import { TestAdminComponent } from './test-admin/test-admin.component';
 
 const routes: Routes = [
 	{ path: 'home', component: HomeComponent },
@@ -29,7 +30,7 @@ const routes: Routes = [
 	{ path: 'archive-quiz', component: ArchiveQuizComponent, canActivate: [AuthGuard] },
 	{ path: 'testAdminCreateScheDule', component: CreateScheduleComponent, canActivate: [AuthGuard] },
 	{ path: 'retrieve-schedule', component: RetrieveScheduleComponent, canActivate: [AuthGuard] },
-	{ path: 'ta-dash', component: MainNav2Component, canActivate: [AuthGuard] },
+	{ path: 'ta-dash', component: TestAdminComponent, canActivate: [AuthGuard] },
 	{ path: 'archive-schedule', component: ArchivedScheduleComponent, canActivate: [AuthGuard] }
 ];
 

@@ -1,3 +1,19 @@
-<p>
-  test-admin works!
-</p>
+<app-main-nav2>
+  <ngx-ui-loader [loaderId]="'loader-01'" *ngIf = "show"></ngx-ui-loader>
+
+<div class="card">
+<div class="thumbnail">
+  <img class="left" src="{{ profileUrl }}"/>
+</div>
+<div class="info">
+    <h1><span>{{ Firstname}} </span> {{ Lastname }}</h1>
+    <!-- <div class="separator"></div> -->
+    <h2><span>Email: </span>{{ email }}</h2>
+</div>
+<div class="right">
+  <div class="one">Schedule Created
+    <h3>{{ count }}</h3>
+  </div>
+</div>
+</div>
+</app-main-nav2>
