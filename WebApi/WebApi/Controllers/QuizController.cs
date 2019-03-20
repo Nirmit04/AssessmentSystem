@@ -100,17 +100,18 @@ namespace WebApi.Controllers
                 .Where(y => questionIds.Contains(y.QuestionId))
                 .Select(x => new
                      {
-                         x.QuestionId,
-                         x.QuestionStatement,
-                         x.Marks,
-                         x.Difficulty,
-                         x.CreatedBy
+                        x.QuestionId,
+                        x.QuestionStatement,
+                        Option = new string[] { x.Option1, x.Option2, x.Option3, x.Option4 },
+                        x.ImageName,
+                        x.Marks,
+                        x.Difficulty,
+                        x.CreatedBy
                      }).ToList(); 
             return Ok(questions);
         }
 
         [HttpDelete]
-        [AllowAnonymous] //To be removed later
         [Route("api/Quiz/QuizQuestion/Delete/{QuizId}/{QuestionId}")]
         public IHttpActionResult DeleteQuestion(int QuestionId,int QuizId)
         {
