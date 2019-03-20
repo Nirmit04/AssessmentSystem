@@ -21,22 +21,31 @@ export class CreateScheduleComponent implements OnInit {
     public toastr: ToastrService) { }
   QuizList: QuizModel[];
   ngOnInit() {
+    this.resetForm();
     this.CCreatedBy = localStorage.getItem('uid');
     this.service.retriveAllQuizzes().subscribe((res) => {
       // console.log(res);
       this.QuizList = res as QuizModel[];
       console.log(this.QuizList);
-      this.q1 = "";
-      this.q2 = "";
-      this.q3 = "";
+
     }
     )
   }
+  resetForm(form?: NgForm) {
+    if (form != null) {
+      form.resetForm();
+    }
+    this.q1 = "";
+    this.q2 = "";
+    this.q3 = "";
+  }
+
   sub(form: NgForm) {
     // console.log(form.value);
     this.service.postSchedule(form.value).subscribe((res: any) => {
       console.log(res);
       this.toastr.success('Inserted successfully');
+      this.resetForm(form);
     });
   }
   adduser() {

@@ -20,7 +20,7 @@ export class CreateQuizComponent implements OnInit {
   CCreatedBy = "";
   length = 0;
   flag = 1;
-  dtTrigger: Subject<Question> = new Subject();
+  dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
   constructor(private service: ContentCreatorServiceService, public toastr: ToastrService) { }
   ngOnInit() {
@@ -62,6 +62,7 @@ export class CreateQuizComponent implements OnInit {
 
   fetch(form: NgForm) {
     this.fetchReqQues(form);
+    this.dtTrigger.next();
   }
 
   fetchReqQues(form: NgForm) {
@@ -78,6 +79,7 @@ export class CreateQuizComponent implements OnInit {
   }
   checkVal() {
     this.val = true;
+    this.dtTrigger.next();
   }
   updateSelectedQuestions(index) {
     this.questions[index].selected = !this.questions[index].selected;

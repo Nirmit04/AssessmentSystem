@@ -6,6 +6,7 @@
       "jasmine",
       "node"
     ],
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowJs": true
   },

@@ -39,8 +39,15 @@ import { ArchiveQuizComponent } from './content-creator/retrieve-quiz/archive-qu
 import { MainNav2Component } from './test-admin/main-nav2/main-nav2.component';
 import { ViewScheduleComponent } from './test-admin/retrieve-schedule/view-schedule/view-schedule.component';
 import { DataTablesModule } from 'angular-datatables';
-
 import { NgxUiLoaderModule, NgxUiLoaderConfig, SPINNER, POSITION, PB_DIRECTION } from 'ngx-ui-loader';
+import { ArchivedScheduleComponent } from './test-admin/retrieve-schedule/archived-schedule/archived-schedule.component';
+import { EmployeeComponent } from './employee/employee.component';
+import { DetailedReportComponent } from './employee/detailed-report/detailed-report.component';
+import { MockComponent } from './employee/mock/mock.component';
+import { MockReportComponent } from './employee/mock-report/mock-report.component';
+import { NonMockComponent } from './employee/non-mock/non-mock.component';
+import { TakeQuizComponent } from './employee/take-quiz/take-quiz.component';
+import { ViewAnswerComponent } from './employee/view-answer/view-answer.component';
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 	bgsColor: '#00ACC1',
 	bgsOpacity: 0.7,
@@ -103,6 +110,15 @@ export function provideConfig() {
 		ArchiveQuizComponent,
 		MainNav2Component,
 		ViewScheduleComponent,
+		ArchivedScheduleComponent,
+		EmployeeComponent,
+		DetailedReportComponent,
+		MockComponent,
+		MockReportComponent,
+		NonMockComponent,
+		TakeQuizComponent,
+		ViewAnswerComponent
+
 	],
 	imports: [
 		BrowserModule,
@@ -132,7 +148,7 @@ export function provideConfig() {
 			useFactory: provideConfig
 		}
 	],
-	bootstrap: [ AppComponent ],
+	bootstrap: [AppComponent],
 	entryComponents: [
 		CreatetagComponent,
 		UpdateQuestionComponent,
@@ -143,4 +159,4 @@ export function provideConfig() {
 		ViewScheduleComponent
 	]
 })
-export class AppModule {}
+export class AppModule { }

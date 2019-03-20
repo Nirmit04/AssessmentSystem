@@ -47,6 +47,7 @@ export class RetrieveScheduleComponent implements OnInit {
 			this.toastr.success('Deleted Successfully', 'Assesment System');
 			this.dtTrigger.unsubscribe();
 			this.dtTrigger.next();
+			this.loadSchedule();
 		});
 	}
 	viewSchedule(scheduleid: number, arrayindex: number) {
@@ -76,6 +77,9 @@ export class RetrieveScheduleComponent implements OnInit {
 			this.dtTrigger.next();	// localStorage.removeItem('sId');
 		});
 
+	}
+	ngOnDestroy() {
+		this.dtTrigger.unsubscribe();
 	}
 
 }

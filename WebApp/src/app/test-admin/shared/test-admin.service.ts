@@ -55,4 +55,14 @@ export class TestAdminService {
     return this.http.put(this.rooturl + 'QuizSchedule/EditQuizSchedule/' + QuizScheduleId, formData);
 
   }
+  getArchivedSchedules() {
+    return this.http.get(this.rooturl + 'QuizSchedule/ArchivedList/' + localStorage.getItem('uid'));
+  }
+  unArchiveSchedule(id: number) {
+    var body = {
+      QuizScheduleId: id
+    }
+    console.log(body);
+    return this.http.delete(this.rooturl + 'QuizSchedule/Unarchive/' + id);
+  }
 }

@@ -70,10 +70,10 @@ export class RetrieveQuizComponent implements OnInit {
 		console.log(id);
 		if (confirm('Are you sure you want to delete this quiz?')) {
 			this.service.deleteQuiz(id).subscribe((res: any) => {
-				this.loadQuiz();
 				this.dtTrigger.unsubscribe();
 				this.dtTrigger.next();
 				this.toastr.success('Archieved Successfully', 'Assesment System');
+				location.reload();
 			});
 		}
 	}
