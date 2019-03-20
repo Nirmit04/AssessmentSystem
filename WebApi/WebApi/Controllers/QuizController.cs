@@ -214,5 +214,26 @@ namespace WebApi.Controllers
             }
             return Ok();
         }
+
+
+        /**
+         * This method is used to find the list of mock quiz 
+         * @Params- none
+         * @Returns -List of all mock quizzes.
+         * **/
+        [HttpGet]
+        [Route("api/Quiz/MockQuiz")]
+        public IHttpActionResult GetAllMockQuiz()
+        {
+            var Mock = db.Quizs.Where(x => x.QuizType == "Mock").Select(x=>new
+            {
+                x.QuizName,
+                x.Difficulty,
+                Subject=db.Subjects.FirstOrDefault(y=>y.SubjectId==x.SubjectId).Name,
+                x.TotalMarks,
+                x.TotalQuestions
+            }).ToList();
+            return Ok(Mock);
+        }
     }
 }
