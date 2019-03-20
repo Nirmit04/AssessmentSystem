@@ -14,26 +14,26 @@ import { ArchiveQuizComponent } from './content-creator/retrieve-quiz/archive-qu
 import { CreateScheduleComponent } from './test-admin/retrieve-schedule/create-schedule/create-schedule.component';
 import { RetrieveScheduleComponent } from './test-admin/retrieve-schedule/retrieve-schedule.component';
 import { MainNav2Component } from './test-admin/main-nav2/main-nav2.component';
+import { TestAdminComponent } from './test-admin/test-admin.component';
 
 const routes: Routes = [
 	{ path: 'home', component: HomeComponent },
 	{ path: '', component: LoginComponent, pathMatch: 'full' },
 	{ path: 'app-root', component: AppComponent },
-	{ path: 'cc-dash', component: UserDetailsComponent, canActivate: [AuthGuard] },
+	{ path: 'cc-dash', component: UserDetailsComponent, canActivate: [ AuthGuard ] },
 	{ path: 'login', component: LoginComponent },
-	{ path: 'tag', component: TagComponent, canActivate: [AuthGuard] },
-	{ path: 'quiz', component: RetrieveQuizComponent, canActivate: [AuthGuard] },
-	{ path: 'rqbank', component: RetrieveQuestionBankComponent, canActivate: [AuthGuard] },
-	{ path: 'create-question', component: CreateQuestionsComponent, canActivate: [AuthGuard] },
-	{ path: 'archive-quiz', component: ArchiveQuizComponent, canActivate: [AuthGuard] },
-	{ path: 'testAdminCreateScheDule', component: CreateScheduleComponent, canActivate: [AuthGuard] },
-	{ path: 'retrieve-schedule', component: RetrieveScheduleComponent, canActivate: [AuthGuard] },
-	{ path: 'ta-dash', component: MainNav2Component, canActivate: [AuthGuard] }
-
+	{ path: 'tag', component: TagComponent, canActivate: [ AuthGuard ] },
+	{ path: 'quiz', component: RetrieveQuizComponent, canActivate: [ AuthGuard ] },
+	{ path: 'rqbank', component: RetrieveQuestionBankComponent, canActivate: [ AuthGuard ] },
+	{ path: 'create-question', component: CreateQuestionsComponent, canActivate: [ AuthGuard ] },
+	{ path: 'archive-quiz', component: ArchiveQuizComponent, canActivate: [ AuthGuard ] },
+	{ path: 'testAdminCreateScheDule', component: CreateScheduleComponent, canActivate: [ AuthGuard ] },
+	{ path: 'retrieve-schedule', component: RetrieveScheduleComponent, canActivate: [ AuthGuard ] },
+	{ path: 'ta-dash', component: TestAdminComponent, canActivate: [ AuthGuard ] }
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes)],
-	exports: [RouterModule]
+	imports: [ RouterModule.forRoot(routes) ],
+	exports: [ RouterModule ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

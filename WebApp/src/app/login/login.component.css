@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather');
+.container {
+	position: relative;
+	background-image: url(../../assets/2.jpg);
+	background-repeat: no-repeat;
+	height: 100%;
+	width: 100%;
+	background-size: cover;
+}
+.container h1 {
+	position: absolute;
+	z-index: 99999;
+	top: 28%;
+	left: 29%;
+	font-family: 'Merriweather', serif;
+	font-size: 60px;
+	padding: 0;
+	line-height: 200px;
+	color: black;
+}
+.container .card-block {
+	position: absolute;
+	top: 52%;
+	left: 40%;
+	width: 280px;
+	height: 90px;
+}
+.btn {
+	height: 50px !important;
+}
+.card-block:hover {
+	cursor: pointer;
+}
+.container .card-block btn {
+	width: 60px;
+	height: 30px;
+}
+.btn:hover {
+	cursor: pointer;
+}
+span.label {
+	font-family: serif;
+	font-weight: normal;
+}
+span.icon {
+	background: url('/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+	width: 42px;
+	height: 42px;
+}
+span.buttonText {
+	display: inline-block;
+	vertical-align: middle;
+	padding-left: 42px;
+	padding-right: 42px;
+	font-size: 14px;
+	font-weight: bold;
+	font-family: 'Roboto', sans-serif;
+}
