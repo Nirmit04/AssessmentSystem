@@ -49,6 +49,7 @@ import { NonMockComponent } from './employee/non-mock/non-mock.component';
 import { TakeQuizComponent } from './employee/take-quiz/take-quiz.component';
 import { ViewAnswerComponent } from './employee/view-answer/view-answer.component';
 import { MainNav3Component } from './employee/main-nav3/main-nav3.component';
+import { ResultComponent } from './employee/result/result.component';
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 	bgsColor: '#00ACC1',
 	bgsOpacity: 0.7,
@@ -119,7 +120,8 @@ export function provideConfig() {
 		NonMockComponent,
 		TakeQuizComponent,
 		ViewAnswerComponent,
-		MainNav3Component
+		MainNav3Component,
+		ResultComponent
 
 	],
 	imports: [

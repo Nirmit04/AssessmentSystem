@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../shared/employee.service';
 import { concat, Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-non-mock',
   templateUrl: './non-mock.component.html',
@@ -9,7 +10,8 @@ import { Subject } from 'rxjs';
 })
 export class NonMockComponent implements OnInit {
 
-  constructor(private service: EmployeeService) { }
+  constructor(private service: EmployeeService,
+    private router: Router) { }
   nonMockScheduleList: any[];
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
@@ -27,6 +29,14 @@ export class NonMockComponent implements OnInit {
       this.dtTrigger.next();
       console.log(this.nonMockScheduleList);
     });
+  }
+  takeQuiz(QuizId: number) {
+    this.service.getQuesOfQuiz(QuizId).subscribe((res: any) => {
+      console.log(res);
+      this.service.quesOfQuiz = res as any[];
+      this.router.navigate(['/take-quiz']);
+    });
+
   }
   ngOnDestroy() {
     this.dtTrigger.unsubscribe();
