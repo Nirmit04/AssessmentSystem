@@ -99,21 +99,21 @@ namespace WebApi.Controllers
                 .AsEnumerable()
                 .Where(y => questionIds.Contains(y.QuestionId))
                 .Select(x => new
-                     {
-                        x.QuestionId,
-                        x.QuestionStatement,
-                        Option = new string[] { x.Option1, x.Option2, x.Option3, x.Option4 },
-                        x.ImageName,
-                        x.Marks,
-                        x.Difficulty,
-                        x.CreatedBy
-                     }).ToList(); 
+                {
+                    x.QuestionId,
+                    x.QuestionStatement,
+                    Option = new string[] { x.Option1, x.Option2, x.Option3, x.Option4 },
+                    x.ImageName,
+                    x.Marks,
+                    x.Difficulty,
+                    x.CreatedBy
+                }).ToList();
             return Ok(questions);
         }
 
         [HttpDelete]
         [Route("api/Quiz/QuizQuestion/Delete/{QuizId}/{QuestionId}")]
-        public IHttpActionResult DeleteQuestion(int QuestionId,int QuizId)
+        public IHttpActionResult DeleteQuestion(int QuestionId, int QuizId)
         {
             var quizquestion = db.QuizQuestions.FirstOrDefault(x => x.QuestionId == QuestionId && x.QuizId == QuizId);
             db.QuizQuestions.Remove(quizquestion);
@@ -195,7 +195,7 @@ namespace WebApi.Controllers
 
         [HttpPut]
         [Route("api/Quiz/EditQuiz/AddQuestion/{QuizId}")]
-        public IHttpActionResult AddQuestions(int QuizId,[FromBody]int[] QuestionId)
+        public IHttpActionResult AddQuestions(int QuizId, [FromBody]int[] QuestionId)
         {
             QuizQuestion quizQuestion = new QuizQuestion();
             Quiz quiz = new Quiz();
@@ -205,8 +205,8 @@ namespace WebApi.Controllers
                 quizQuestion.QuizId = QuizId;
                 quizQuestion.QuestionId = item;
                 db.QuizQuestions.Add(quizQuestion);
-                quiz = db.Quizs.FirstOrDefault(x=>x.QuizId==QuizId);
-                question = db.Questions.FirstOrDefault(x=>x.QuestionId==item);
+                quiz = db.Quizs.FirstOrDefault(x => x.QuizId == QuizId);
+                question = db.Questions.FirstOrDefault(x => x.QuestionId == item);
 
                 quiz.TotalQuestions++;
                 quiz.TotalMarks += question.Marks;
@@ -225,15 +225,76 @@ namespace WebApi.Controllers
         [Route("api/Quiz/MockQuiz")]
         public IHttpActionResult GetAllMockQuiz()
         {
-            var Mock = db.Quizs.Where(x => x.QuizType == "Mock").Select(x=>new
+            var Mock = db.Quizs.Where(x => x.QuizType == "Mock").Select(x => new
             {
                 x.QuizName,
                 x.Difficulty,
-                Subject=db.Subjects.FirstOrDefault(y=>y.SubjectId==x.SubjectId).Name,
+                Subject = db.Subjects.FirstOrDefault(y => y.SubjectId == x.SubjectId).Name,
                 x.TotalMarks,
                 x.TotalQuestions
             }).ToList();
             return Ok(Mock);
+        }
+
+
+        [HttpPost]
+        [Route("api/Quiz/EvaluateQuiz")]
+        public IHttpActionResult EvaluateQuiz(EvalutionAnswer evalutionAnswer)
+        {
+            List<int> qIDs = new List<int>();
+            foreach (var item in evalutionAnswer.QuesAnswers)
+            {
+                qIDs.Add(item.QuestionID);
+            }
+            var CorrectAnswers = db.Questions
+                .AsEnumerable()
+                .Where(x => qIDs.Contains(x.QuestionId))
+                .OrderBy(x => { return Array.IndexOf(qIDs.ToArray(), x.QuestionId); })
+                .Select(z => new { z.Answer, z.Marks })
+                .ToList();
+            int i = 0, CAnswer = 0, WAnswer = 0, UAttempted = 0;
+            decimal TMarks = 0;
+            DetailedReport detailedReport = new DetailedReport();
+            Report report = new Report();
+            foreach (var item in evalutionAnswer.QuesAnswers)
+            {
+                detailedReport.AttemptedAnswer = item.MarkedAnswer;
+                detailedReport.CorrectAnswer = CorrectAnswers[i].Answer;
+                detailedReport.QuizId = evalutionAnswer.QuizId;
+                detailedReport.QuestionId = item.QuestionID;
+                detailedReport.UserId = evalutionAnswer.UserId;
+                if (item.MarkedAnswer == CorrectAnswers[i].Answer)
+                {
+                    TMarks += CorrectAnswers[i].Marks;
+                    CAnswer++;
+                }
+                else if (item.MarkedAnswer == 0)
+                {
+                    UAttempted++;
+                }
+                else
+                {
+                    WAnswer++;
+                }
+                i++;
+                db.DetailedReports.Add(detailedReport);
+                db.SaveChanges();
+            }
+            report.CorrectAnswers = CAnswer;
+            report.WrongAnswers = WAnswer;
+            report.UnattemptedAnswers = UAttempted;
+            report.TimeTaken = evalutionAnswer.TimeTaken;
+            report.Accuracy = (CAnswer * 100) / CorrectAnswers.Count();
+            report.Efficiency = (decimal)((CAnswer * 60 * 100.0) / TimeSpan.Parse(evalutionAnswer.TimeTaken).TotalSeconds);
+            report.TotalMarks = TMarks;
+            report.QuizType = db.Quizs.FirstOrDefault(x => x.QuizId == evalutionAnswer.QuizId).QuizType;
+            report.UserId = evalutionAnswer.UserId;
+            report.QuizId = evalutionAnswer.QuizId;
+            var userSchedule = db.UserSchedules.FirstOrDefault(x => x.QuizScheduleId == evalutionAnswer.QuizScheduleId && x.UserId == evalutionAnswer.UserId);
+            userSchedule.Taken = true;
+            db.Reports.Add(report);
+            db.SaveChanges();
+            return Ok();
         }
     }
 }

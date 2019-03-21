@@ -12,6 +12,7 @@ namespace WebApi.Models
         [Key]
         public int DetailedReportId { get; set; }
         public int AttemptedAnswer { get; set; }
+        public int CorrectAnswer { get; set; }
 
         [ForeignKey("Quiz")]
         public int QuizId { get; set; }

@@ -27,10 +27,11 @@ namespace WebApi.Controllers
             var Quiz = db.Quizs.Where(x => quizIds.Contains(x.QuizId) && x.QuizType == "Non-Mock")
                 .Select(x => new
                 {
+                    db.QuizSchedules.FirstOrDefault(y => y.QuizId == x.QuizId).QuizScheduleId,
                     x.QuizId,
                     x.QuizName,
                     db.QuizSchedules.FirstOrDefault(y => y.QuizId == x.QuizId).StartDateTime,
-                    db.QuizSchedules.FirstOrDefault(y => y.QuizId == x.QuizId).EndDateTime,
+                    db.QuizSchedules.FirstOrDefault(y => y.QuizId == x.QuizId).EndDateTime
                 });
             return Ok(Quiz);
         }     
