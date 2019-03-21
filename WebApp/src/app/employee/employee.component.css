@@ -108,10 +108,18 @@ h2 {
 	padding-left: 15px;
 	box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.75);
 }
-.right .three .con {
-	position: relative;
-}
-.right .three .con h2 {
+.right .three h2 {
 	position: absolute;
-	top: 10%;
+	right: 5%;
+	top: 21%;
+}
+.right .forth {
+	position: absolute;
+	width: 30%;
+	height: 10%;
+	top: 70%;
+	padding-top: 15px;
+	padding-left: 15px;
+	border-radius: 25px;
+	box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.75);
 }
