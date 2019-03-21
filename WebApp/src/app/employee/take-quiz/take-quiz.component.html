@@ -1,11 +1,10 @@
+<mat-progress-bar mode="determinate" value="{{ bar }}"></mat-progress-bar>
+<!-- <div class="progress">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:'{{service.qnProgress*10 }}%;"></div>
+</div> -->
 <div class="row" *ngIf="service.quesOfQuiz">
   <div class="col s8 offset-s2">
     <span>Time Elapsed : {{service.displayTimeElapsed()}}</span>
-    <!-- <div class="progress">
-      <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="10%"
-        aria-valuemin="0" aria-valuemax="100"></div>
-    </div> -->
-
 
     <div class="container-fluid ">
       <div class="modal-dialog">
@@ -47,25 +46,4 @@
     </div>
 
 
-    <!-- 
-    <div class="card">
-      <div class="card-content white-text">
-        <span class="card-title">{{service.qnProgress+1}}</span>
-        <p>{{service.quesOfQuiz[service.qnProgress].QuestionStatement}}</p>
-        <div *ngIf="service.quesOfQuiz[service.qnProgress].ImageName!=null">
-          <img class="center" [src]="service.rootUrl+'/Images/'+service.quesOfQuiz[service.qnProgress].ImageName"
-            style="width:350px;height:200px">
-        </div>
-      </div>
-      <div class="card-content"></div>
-      <ul class="collection answer">
-        <ng-container *ngFor="let option of service.quesOfQuiz[service.qnProgress].Option;index as i">
-          <li *ngIf="option != null" class="collection-item"
-            (click)="Answer(service.quesOfQuiz[service.qnProgress].QuestionId,i)">
-            {{i+1}})&nbsp;&nbsp;{{option}}
-          </li>
-        </ng-container>
-      </ul>
-    </div>
-  </div>
-</div> -->
+   

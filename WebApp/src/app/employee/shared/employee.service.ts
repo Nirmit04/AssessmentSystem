@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { postReport } from './postReport.model';
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class EmployeeService {
   rootURL = environment.apiURl;
@@ -31,6 +31,10 @@ export class EmployeeService {
     this.body.UserId = localStorage.getItem('uid');
     console.log(this.body);
     return this.http.post(this.rootURL + 'Quiz/EvaluateQuiz' , this.body);
-  }
+	}
+	getUserDetails() {
+		console.log(localStorage.getItem('email'));
+		return this.http.get(this.rootURL + 'GetUserDetails?email=' + localStorage.getItem('email'));
+	}
 
 }

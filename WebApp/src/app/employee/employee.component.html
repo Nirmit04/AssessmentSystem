@@ -1,31 +1,28 @@
 <app-main-nav3>
-  <ngx-ui-loader [loaderId]="'loader-01'" *ngIf="show"></ngx-ui-loader>
-
+  <ngx-ui-loader [loaderId]="'loader-01'" *ngIf = "show"></ngx-ui-loader>
+      
   <div class="card">
-    <div class="thumbnail">
-      <img class="left" src="{{ profileUrl }}" />
-    </div>
-    <div class="info">
+  <div class="thumbnail">
+    <img class="left" src="{{ profileUrl }}"/>
+  </div>
+  <div class="info">
       <h1><span>{{ Firstname}} </span> {{ Lastname }}</h1>
       <!-- <div class="separator"></div> -->
       <h2><span>Email: </span>{{ email }}</h2>
+  </div>
+  <div class="right">
+    <div class="one">Mocks Taken
+      <h3>{{ count }}</h3>
     </div>
-    <div class="right">
-      <div class="one">Mocks Taken
+    <div class="two">NoN-Mocks Taken
         <h3>{{ count }}</h3>
       </div>
-      <div class="two">NoN-Mocks Taken
-        <h3>{{ count }}</h3>
-      </div>
-      <div class="three">Recent Activity:
-        <div class="con">
-          <h2>quiz3 taken</h2>
-        </div>
-
-      </div>
-      <div class="forth">Accuracy
-        <h3>{{ count }}</h3>
-      </div>
+    <div class="three">Recent Activity:
+        <h2>quiz3 taken</h2>
     </div>
+    <div class="forth">Accuracy:
+        <h3>{{ count }}</h3>
+    </div>
+  </div>
   </div>
 </app-main-nav3>
