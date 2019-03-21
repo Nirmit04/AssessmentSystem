@@ -38,25 +38,6 @@ export class TakeQuizComponent implements OnInit {
 				}
 			};
 		};
-		// document.onkeydown = function(event: KeyboardEvent) {
-		// 	switch (event.keyCode) {
-		// 		case 116:
-		// 			event.returnValue = false;
-		// 			event.preventDefault();
-		// 			event.stopPropagation();
-		// 			window.event.returnValue = false;
-		// 			event.keyCode = 0;
-		// 			window.status = 'Refresh is disabled';
-		// 			return false;
-		// 		case 82:
-		// 			if (event.ctrlKey) {
-		// 				event.returnValue = false;
-		// 				event.preventDefault();
-		// 				event.stopImmediatePropagation();
-		// 				return false;
-		// 			}
-		// 	}
-		// };
 		this.loadQues();
 	}
 	loadQues() {
@@ -70,12 +51,12 @@ export class TakeQuizComponent implements OnInit {
 	startTimer() {
 		this.service.timer = setInterval(() => {
 			this.service.seconds++;
+			localStorage.setItem('seconds', this.service.seconds.toString());
 		}, 1000);
 	}
 	Answer(QuestionId, choice) {
 		this.service.quesOfQuiz[this.service.qnProgress].answer = choice;
 		this.service.qnProgress++;
-		// console.log(QuestionId);
 		if (this.service.qnProgress == this.noOfQues) {
 			clearInterval(this.service.timer);
 			this.router.navigate([ '/result' ]);

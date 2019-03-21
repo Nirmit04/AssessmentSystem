@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { postReport } from './postReport.model';
 @Injectable({
 	providedIn: 'root'
 })
@@ -9,8 +10,11 @@ export class EmployeeService {
 	quesOfQuiz: any[];
 	seconds: number;
 	timer;
-	size: number;
 	qnProgress: number;
+	size: number;
+	QuizScheduleId: number;
+	body: postReport;
+	QuizId: number;
 	constructor(private http: HttpClient) {}
 	displayTimeElapsed() {
 		return (
@@ -22,6 +26,13 @@ export class EmployeeService {
 	}
 	getQuesOfQuiz(QuizId: number) {
 		return this.http.get(this.rootURL + 'Quiz/QuizQuestion/' + QuizId);
+	}
+	postanswers() {
+		this.body.QuizScheduleId = this.QuizScheduleId;
+		this.body.QuizId = this.QuizId;
+		this.body.UserId = localStorage.getItem('uid');
+		console.log(this.body);
+		return this.http.post(this.rootURL + 'Quiz/EvaluateQuiz', this.body);
 	}
 	getUserDetails() {
 		console.log(localStorage.getItem('email'));
