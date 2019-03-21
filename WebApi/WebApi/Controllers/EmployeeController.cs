@@ -22,20 +22,19 @@ namespace WebApi.Controllers
         [Route("api/Employee/NonMock/{UserId}")]
         public IHttpActionResult GetNonMockQuiz(string UserId)
         {
-            List<int> ScheduleIds = db.UserSchedules.Where(x => x.UserId == UserId && x.Taken==false).Select(x=>x.QuizScheduleId).Distinct().ToList();
-            var Quiz = db.QuizSchedules.Where(x => ScheduleIds.Contains(x.QuizId)).
-                Select(x => new
+            var quizScheduleIds = db.UserSchedules.Where(x => x.UserId == UserId && x.Taken == false).Select(x => x.QuizScheduleId).ToList();
+            var quizIds = db.QuizSchedules.Where(x => quizScheduleIds.Contains(x.QuizScheduleId)).Select(y => y.QuizId).ToList();
+            var Quiz = db.Quizs.Where(x => quizIds.Contains(x.QuizId) && x.QuizType == "Non-Mock")
+                .Select(x => new
                 {
+                    db.QuizSchedules.FirstOrDefault(y => y.QuizId == x.QuizId).QuizScheduleId,
                     x.QuizId,
-                    db.Quizs.FirstOrDefault(z => z.QuizId == x.QuizId).QuizName,
-                    x.EndDateTime,
-                    x.StartDateTime
-
+                    x.QuizName,
+                    db.QuizSchedules.FirstOrDefault(y => y.QuizId == x.QuizId).StartDateTime,
+                    db.QuizSchedules.FirstOrDefault(y => y.QuizId == x.QuizId).EndDateTime
                 });
             return Ok(Quiz);
-        }
-
-        
+        }     
 
     }
 }

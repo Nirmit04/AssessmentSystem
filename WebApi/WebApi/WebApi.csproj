@@ -207,6 +207,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DetailedReport.cs" />
     <Compile Include="Models\Difficulty.cs" />
+    <Compile Include="Models\EvaluationAnswer.cs" />
     <Compile Include="Models\GoogleApiTokenInfo.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Question.cs" />
