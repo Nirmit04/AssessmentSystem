@@ -13,10 +13,32 @@ namespace WebApi.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         [HttpGet]
-        [Route("api/Report/{UserId}")]
-        public IHttpActionResult GetReport(string UserId)
+        [Route("api/Report/NonMock/{UserId}")]
+        public IHttpActionResult GetNonMockReport(string UserId)
         {
-            var report = db.Reports.Where(x => x.UserId == UserId).Select(x => new
+            var report = db.Reports.Where(x => x.UserId == UserId && x.QuizType=="Non-Mock").Select(x => new
+            {
+                x.Accuracy,
+                x.CorrectAnswers,
+                x.Efficiency,
+                x.QuizId,
+                x.ReportId,
+                x.TimeTaken,
+                x.TotalMarks,
+                x.UnattemptedAnswers,
+                x.WrongAnswers,
+                x.UserId,
+                db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).QuizName
+            }).ToList();
+            return Ok();
+        }
+
+
+        [HttpGet]
+        [Route("api/Report/Mock/{UserId}")]
+        public IHttpActionResult GetMockReport(string UserId)
+        {
+            var report = db.Reports.Where(x => x.UserId == UserId && x.QuizType == "Mock").Select(x => new
             {
                 x.Accuracy,
                 x.CorrectAnswers,
