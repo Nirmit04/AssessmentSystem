@@ -30,7 +30,7 @@ export class EmployeeService {
     this.body.QuizId = this.QuizId;
     this.body.UserId = localStorage.getItem('uid');
     console.log(this.body);
-    return this.http.post(this.rootURL + '/' + this.QuizScheduleId, this.body);
+    return this.http.post(this.rootURL + 'Quiz/EvaluateQuiz' , this.body);
   }
 
 }

@@ -22,7 +22,7 @@ export class ResultComponent implements OnInit {
       dict.push(
         {
           QuestionId: body[i],
-          MarkedAnswers: body1[i]
+          MarkedAnswer: body1[i]
         }
       )
     }
@@ -32,7 +32,8 @@ export class ResultComponent implements OnInit {
       QuesAnswers: dict,
       TimeTaken: this.timeTaken
     }
-        this.service.postanswers().subscribe(res => {
+    this.service.postanswers().subscribe(res => {
+      this.dispCard = true;
       setInterval(() => {
         this.router.navigate([('/emp-dash')]);
       }, 3000);
