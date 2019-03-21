@@ -10,6 +10,7 @@ export class TakeQuizComponent implements OnInit {
 	constructor(private service: EmployeeService, private router: Router) {}
 	QuestionList: any[];
 	noOfQues: number;
+	bar: number;
 	ngOnInit() {
 		this.service.qnProgress = 0;
 		this.service.seconds = 0;
@@ -55,6 +56,7 @@ export class TakeQuizComponent implements OnInit {
 		}, 1000);
 	}
 	Answer(QuestionId, choice) {
+		this.bar = (this.service.qnProgress + 1) / this.noOfQues * 100;
 		this.service.quesOfQuiz[this.service.qnProgress].answer = choice;
 		this.service.qnProgress++;
 		if (this.service.qnProgress == this.noOfQues) {
