@@ -28,12 +28,12 @@ export class TakeQuizComponent implements OnInit {
   startTimer() {
     this.service.timer = setInterval(() => {
       this.service.seconds++;
+      localStorage.setItem('seconds', this.service.seconds.toString());
     }, 1000);
   }
   Answer(QuestionId, choice) {
     this.service.quesOfQuiz[this.service.qnProgress].answer = choice;
     this.service.qnProgress++;
-    // console.log(QuestionId);
     if (this.service.qnProgress == this.noOfQues) {
       clearInterval(this.service.timer);
       this.router.navigate(['/result']);

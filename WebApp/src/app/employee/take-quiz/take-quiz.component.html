@@ -36,6 +36,11 @@
                 class="element-animation1 btn btn-lg btn-primary btn-block"><span class="btn-label"><i
                     class="glyphicon glyphicon-chevron-right"></i></span> {{i+1}})&nbsp;&nbsp;{{option}}</label>
             </div>
+            <div>
+              <a class="btn btn-sm btn-info text-white"
+                (click)="Answer(service.quesOfQuiz[service.qnProgress].QuestionId,0)"><i
+                  class="fa fa-forward"></i>Skip</a>
+            </div>
           </div>
         </div>
       </div>
