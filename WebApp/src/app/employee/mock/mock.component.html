@@ -1,3 +1,31 @@
-<p>
-  mock works!
-</p>
+<app-main-nav3>
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+    class="row-border hover table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>#S No.</th>
+        <th>Quiz Name</th>
+        <th>Subject</th>
+        <th>Difficulty Level</th>
+        <th>Total Questions</th>
+        <th>Total Marks</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let mock of mockList; index as i;">
+        <th>{{i+1}}</th>
+        <td>{{mock.QuizName}}</td>
+        <td>{{mock.Subject}}</td>
+        <td>{{mock.Difficulty}}</td>
+        <td>{{mock.TotalQuestions}}</td>
+        <td>{{mock.TotalMarks}}</td>
+        <td>
+          <a class="btn btn-sm btn-info text-white" (click)="takeMockQuiz(mock.MockId)"><i
+              class="fa fa-paper-plane"></i></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</app-main-nav3>

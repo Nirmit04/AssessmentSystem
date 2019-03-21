@@ -51,7 +51,9 @@ import { ViewAnswerComponent } from './employee/view-answer/view-answer.componen
 import { MainNav3Component } from './employee/main-nav3/main-nav3.component';
 import { ResultComponent } from './employee/result/result.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-
+import { NonMockReportComponent } from './employee/non-mock-report/non-mock-report.component';
+import { ChartsModule } from 'ng2-charts';
+import { NgxGaugeModule } from 'ngx-gauge'
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 	bgsColor: '#00ACC1',
 	bgsOpacity: 0.7,
@@ -123,7 +125,8 @@ export function provideConfig() {
 		TakeQuizComponent,
 		ViewAnswerComponent,
 		MainNav3Component,
-		ResultComponent
+		ResultComponent,
+		NonMockReportComponent
 	],
 	imports: [
 		BrowserModule,
@@ -144,7 +147,9 @@ export function provideConfig() {
 		MatListModule,
 		DataTablesModule,
 		NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
-		MatProgressBarModule
+		MatProgressBarModule,
+		ChartsModule,
+		NgxGaugeModule
 	],
 	providers: [
 		AuthGuard,
@@ -154,7 +159,7 @@ export function provideConfig() {
 			useFactory: provideConfig
 		}
 	],
-	bootstrap: [ AppComponent ],
+	bootstrap: [AppComponent],
 	entryComponents: [
 		CreatetagComponent,
 		UpdateQuestionComponent,
@@ -165,4 +170,4 @@ export function provideConfig() {
 		ViewScheduleComponent
 	]
 })
-export class AppModule {}
+export class AppModule { }

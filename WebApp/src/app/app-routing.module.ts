@@ -20,6 +20,9 @@ import { NonMockComponent } from './employee/non-mock/non-mock.component'
 import { EmployeeComponent } from './employee/employee.component';
 import { TakeQuizComponent } from './employee/take-quiz/take-quiz.component';
 import { ResultComponent } from './employee/result/result.component'
+import { NonMockReportComponent } from './employee/non-mock-report/non-mock-report.component';
+import { DetailedReportComponent } from './employee/detailed-report/detailed-report.component';
+import { MockComponent } from './employee/mock/mock.component';
 const routes: Routes = [
 	{ path: 'home', component: HomeComponent },
 	{ path: '', component: LoginComponent, pathMatch: 'full' },
@@ -38,7 +41,10 @@ const routes: Routes = [
 	{ path: 'non-mocks', component: NonMockComponent, canActivate: [AuthGuard] },
 	{ path: 'emp-dash', component: EmployeeComponent, canActivate: [AuthGuard] },
 	{ path: 'take-quiz', component: TakeQuizComponent, canActivate: [AuthGuard] },
-	{ path: 'result', component: ResultComponent, canActivate: [AuthGuard] }
+	{ path: 'result', component: ResultComponent, canActivate: [AuthGuard] },
+	{ path: 'non-mock-report', component: NonMockReportComponent, canActivate: [AuthGuard] },
+	{ path: 'detailed-report', component: DetailedReportComponent, canActivate: [AuthGuard] },
+	{ path: 'mock', component: MockComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
