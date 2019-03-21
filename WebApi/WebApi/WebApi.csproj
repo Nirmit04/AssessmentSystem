@@ -185,12 +185,21 @@
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\QuizController.cs" />
     <Compile Include="Controllers\QuizScheduleController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserScheduleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903210633089_correct.cs" />
+    <Compile Include="Migrations\201903210633089_correct.Designer.cs">
+      <DependentUpon>201903210633089_correct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903210658006_correct1.cs" />
+    <Compile Include="Migrations\201903210658006_correct1.Designer.cs">
+      <DependentUpon>201903210658006_correct1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -234,6 +243,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201903210633089_correct.resx">
+      <DependentUpon>201903210633089_correct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903210658006_correct1.resx">
+      <DependentUpon>201903210658006_correct1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

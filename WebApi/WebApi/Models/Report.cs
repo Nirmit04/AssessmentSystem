@@ -13,7 +13,7 @@ namespace WebApi.Models
         public int ReportId { get; set; }
         public int CorrectAnswers { get; set; }
         public int WrongAnswers { get; set; }
-        public decimal TimeTaken { get; set; }
+        public string TimeTaken { get; set; }
         public int UnattemptedAnswers { get; set; }
         public decimal Accuracy { get; set; }
         public decimal Efficiency { get; set; }
