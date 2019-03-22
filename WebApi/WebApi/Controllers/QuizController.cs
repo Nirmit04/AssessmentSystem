@@ -286,7 +286,7 @@ namespace WebApi.Controllers
             report.TimeTaken = evalutionAnswer.TimeTaken;
             report.Accuracy = (CAnswer * 100) / CorrectAnswers.Count();
             report.Efficiency = (decimal)((CAnswer * 60 * 100.0) / TimeSpan.Parse(evalutionAnswer.TimeTaken).TotalSeconds);
-            report.TotalMarks = TMarks;
+            report.MarksScored = TMarks;
             report.QuizType = db.Quizs.FirstOrDefault(x => x.QuizId == evalutionAnswer.QuizId).QuizType;
             report.UserId = evalutionAnswer.UserId;
             report.QuizId = evalutionAnswer.QuizId;

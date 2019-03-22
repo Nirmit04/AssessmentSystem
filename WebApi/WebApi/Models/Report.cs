@@ -17,7 +17,7 @@ namespace WebApi.Models
         public int UnattemptedAnswers { get; set; }
         public decimal Accuracy { get; set; }
         public decimal Efficiency { get; set; }
-        public decimal TotalMarks { get; set; }
+        public decimal MarksScored { get; set; }
         public string QuizType { get; set; }
 
         [ForeignKey("User")]
