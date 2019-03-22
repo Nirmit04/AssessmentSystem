@@ -53,7 +53,7 @@ import { ResultComponent } from './employee/result/result.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { NonMockReportComponent } from './employee/non-mock-report/non-mock-report.component';
 import { ChartsModule } from 'ng2-charts';
-import { NgxGaugeModule } from 'ngx-gauge'
+import { NgxGaugeModule } from 'ngx-gauge';
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 	bgsColor: '#00ACC1',
 	bgsOpacity: 0.7,
@@ -159,7 +159,7 @@ export function provideConfig() {
 			useFactory: provideConfig
 		}
 	],
-	bootstrap: [AppComponent],
+	bootstrap: [ AppComponent ],
 	entryComponents: [
 		CreatetagComponent,
 		UpdateQuestionComponent,
@@ -170,4 +170,4 @@ export function provideConfig() {
 		ViewScheduleComponent
 	]
 })
-export class AppModule { }
+export class AppModule {}
