@@ -167,7 +167,8 @@ export function provideConfig() {
 		UpdateQuizComponent,
 		AddQuesInQuizComponent,
 		AddUserComponent,
-		ViewScheduleComponent
+		ViewScheduleComponent,
+		ViewAnswerComponent
 	]
 })
 export class AppModule { }

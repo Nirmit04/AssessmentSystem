@@ -50,4 +50,7 @@ export class EmployeeService {
     console.log(this.QuizId);
     return this.http.get(this.rootURL + '/DetailedReport/' + localStorage.getItem('uid') + '/' + this.QuizId);
   }
+  getQues(id: number) {
+    return this.http.get(this.rootURL + 'Question/' + id)
+  }
 }
