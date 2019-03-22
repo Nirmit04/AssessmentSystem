@@ -291,7 +291,10 @@ namespace WebApi.Controllers
             report.UserId = evalutionAnswer.UserId;
             report.QuizId = evalutionAnswer.QuizId;
             var userSchedule = db.UserSchedules.FirstOrDefault(x => x.QuizScheduleId == evalutionAnswer.QuizScheduleId && x.UserId == evalutionAnswer.UserId);
-            userSchedule.Taken = true;
+            if (userSchedule != null)
+            {
+                userSchedule.Taken = true;
+            }
             db.Reports.Add(report);
             db.SaveChanges();
             return Ok();

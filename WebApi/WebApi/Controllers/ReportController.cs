@@ -30,7 +30,7 @@ namespace WebApi.Controllers
                 x.UserId,
                 db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).QuizName
             }).ToList();
-            return Ok();
+            return Ok(report);
         }
 
 
@@ -52,7 +52,9 @@ namespace WebApi.Controllers
                 x.UserId,
                 db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).QuizName
             }).ToList();
-            return Ok();
+            return Ok(report);
         }
+
+
     }
 }
