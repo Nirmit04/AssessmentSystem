@@ -15,6 +15,7 @@ export class EmployeeService {
   QuizScheduleId: number;
   body: postReport;
   QuizId: number;
+  data: any;
   constructor(private http: HttpClient) { }
   displayTimeElapsed() {
     return Math.floor(this.seconds / 3600) + ':' + Math.floor(this.seconds / 60) + ':' + Math.floor(this.seconds % 60);
@@ -42,5 +43,7 @@ export class EmployeeService {
   getReportOfNonMockQuiz(id) {
     return this.http.get(environment.apiURl + 'Report/NonMock/' + id);
   }
-
+  getReportOfMockQuiz(id) {
+    return this.http.get(environment.apiURl + 'Report/Mock/' + id);
+  }
 }

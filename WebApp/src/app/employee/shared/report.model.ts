@@ -6,6 +6,7 @@ export class Report {
     UnattemptedAnswers: number;
     Accuracy: number;
     Efficiency: number;
+    MarksScored: number;
     TotalMarks: number;
     QuizType: string;
 }

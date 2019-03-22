@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { EmployeeService } from '../shared/employee.service';
 
 
 @Component({
@@ -8,24 +9,24 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 })
 export class DetailedReportComponent implements OnInit {
 
-  public doughnutChartLabels1=['Attempted', 'UnAttempted'];
-  public doughnutChartData1=[60,40];
-  public doughnutChartType1='doughnut';
-  
+  public doughnutChartLabels1 = ['Attempted', 'UnAttempted'];
+  public doughnutChartData1 = [this.service.data.CorrectAnswers + this.service.data.WrongAnswers, this.service.data.UnattemptedAnswers];
+  public doughnutChartType1 = 'doughnut';
+
   quizname = 'Python';
-  public doughnutChartLabels2=['Correct', 'InCorrect'];
-  public doughnutChartData2=[40,30];
-  public doughnutChartType2='doughnut';
+  public doughnutChartLabels2 = ['Correct', 'InCorrect'];
+  public doughnutChartData2 = [this.service.data.CorrectAnswers, this.service.data.WrongAnswers];
+  public doughnutChartType2 = 'doughnut';
+
+  gaugeType = 'semi';
+  gaugeValue = this.service.data.MarksScored;
+  gaugeLabel = 'Marks Scored';
+  gaugeAppendText = '/' + this.service.data.TotalMarks;
 
 
-  constructor() { }
+  constructor(private service: EmployeeService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-
-  gaugeType = "semi";
-  gaugeValue = 60;
-  gaugeLabel = "Marks Scored";
-  gaugeAppendText = "/100";
 
 }

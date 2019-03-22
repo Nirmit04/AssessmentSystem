@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../shared/employee.service';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription, Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-non-mock-report',
@@ -14,12 +15,13 @@ export class NonMockReportComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
 
-  bool:false;
+  bool: false;
 
   nonMockReportList: any[];
 
   constructor(private service: EmployeeService,
-    private toastr: ToastrService) { }
+              private toastr: ToastrService,
+              private router: Router) { }
 
   ngOnInit() {
     this.dtOptions = {
@@ -32,11 +34,13 @@ export class NonMockReportComponent implements OnInit {
   getNonMockReport() {
     this.service.getReportOfNonMockQuiz(localStorage.getItem('uid')).subscribe((res: any) => {
       this.nonMockReportList = res as any[];
+      console.log(this.nonMockReportList);
       this.dtTrigger.next();
     });
   }
-  viewDetailedReport(qid:number)  {
-    //localStorage.setItem('qIdReport', qid);
-    //this.router.navigate(['/non-mock-report']);
+  viewDetailedReport(qid: number, index: number) {
+    this.service.data = this.nonMockReportList[index];
+    this.service.QuizId = qid;
+    this.router.navigate(['/detailed-report']);
   }
 }

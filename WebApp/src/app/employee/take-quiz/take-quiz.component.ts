@@ -4,10 +4,10 @@ import { Router } from '@angular/router';
 @Component({
 	selector: 'app-take-quiz',
 	templateUrl: './take-quiz.component.html',
-	styleUrls: [ './take-quiz.component.css' ]
+	styleUrls: ['./take-quiz.component.css']
 })
 export class TakeQuizComponent implements OnInit {
-	constructor(private service: EmployeeService, private router: Router) {}
+	constructor(private service: EmployeeService, private router: Router) { }
 	QuestionList: any[];
 	noOfQues: number;
 	bar: number;
@@ -15,7 +15,7 @@ export class TakeQuizComponent implements OnInit {
 		this.service.qnProgress = 0;
 		this.service.seconds = 0;
 		history.pushState(null, null, location.href);
-		window.onpopstate = function() {
+		window.onpopstate = function () {
 			history.go(1);
 		};
 		document.oncontextmenu = preventDefaultAction;
@@ -27,8 +27,8 @@ export class TakeQuizComponent implements OnInit {
 				event.returnValue = false;
 			}
 		}
-		window.onload = function() {
-			document.onkeydown = function(e) {
+		window.onload = function () {
+			document.onkeydown = function (e) {
 				if ((e.which || e.keyCode) == 116) {
 					e.preventDefault();
 					e.returnValue = false;
@@ -61,7 +61,7 @@ export class TakeQuizComponent implements OnInit {
 		this.service.qnProgress++;
 		if (this.service.qnProgress == this.noOfQues) {
 			clearInterval(this.service.timer);
-			this.router.navigate([ '/result' ]);
+			this.router.navigate(['/result']);
 		}
 	}
 }
