@@ -70,7 +70,6 @@ export class RetrieveScheduleComponent implements OnInit {
 		this.service.readonlyStatus = false;
 		dialogConfig.data = scheduleid;
 		this.service.formdata = this.scheduleList[arrayindex - 1];
-		// localStorage.setItem('sId', scheduleid.toString());
 		this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe((res: any) => {
 			this.loadSchedule();
 			this.dtTrigger.unsubscribe();

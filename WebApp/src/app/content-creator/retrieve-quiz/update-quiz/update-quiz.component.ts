@@ -3,8 +3,6 @@ import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig, MatDialog } from '@angu
 import { ContentCreatorServiceService } from '../../shared/content-creator-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { Question } from '../../shared/question.model';
-// import { CreateQuestionsComponent } from '../../retrieve-question-bank/create-questions/create-questions.component';
-// import { CreateQuizComponent } from '../create-quiz/create-quiz.component';
 import { AddQuesInQuizComponent } from '../add-ques-in-quiz/add-ques-in-quiz.component';
 
 @Component({

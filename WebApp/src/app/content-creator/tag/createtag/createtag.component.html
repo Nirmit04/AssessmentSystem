@@ -11,7 +11,7 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label>Name</label>
+                <label>Subject</label>
                 <input required type="text" name="Name" #Name="ngModel" [(ngModel)]="service.tagForm.Name"
                   class="form-control">
                 <div class="validation-error" *ngIf="Name.invalid && Name.touched">This field is required.</div>

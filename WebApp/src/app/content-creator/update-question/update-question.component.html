@@ -90,7 +90,7 @@
         </div>
       </div>
       <div class="form-group">
-        <button style="margin:0 5%" type="submit" [disabled]="form.invalid || bool"
+        <button [hidden] = "bool" style="margin:0 5%" type="submit" [disabled]="form.invalid || bool"
           class="btn btn-primary">Submit</button>
         <button type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button>
       </div>

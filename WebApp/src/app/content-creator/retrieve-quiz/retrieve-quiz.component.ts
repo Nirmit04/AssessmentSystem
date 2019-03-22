@@ -42,17 +42,6 @@ export class RetrieveQuizComponent implements OnInit {
 			this.dtTrigger.next();
 		});
 	}
-	// filter(item: QuizModel) {
-	// 	return (
-	// 		(item.Subject.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1
-	// 			|| item.QuizType.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1)
-	// 		&& item.Difficulty.toLowerCase().indexOf(this.difficultyLevel.toLowerCase()) > -1
-	// 	);
-	// }
-	// filterSubject(event: any) {
-	// 	this.difficultyLevel = event.target.value;
-	// 	console.log(this.difficultyLevel);
-	// }
 	onCreate() {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;

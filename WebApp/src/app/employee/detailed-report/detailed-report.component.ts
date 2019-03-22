@@ -15,10 +15,12 @@ export class DetailedReportComponent implements OnInit {
   public doughnutChartOptions1 = {
     legend: {
       onClick: function (e) {
-          e.stopPropagation();
+        e.stopPropagation();
       }
+    }
   }
-  }
+  private doughnutChartColors2: any[] = [{ backgroundColor: ["#FF713A", "#00B292"] }];
+  private doughnutChartColors1: any[] = [{ backgroundColor: ["#3E00B2", "#FFF53A"] }];
 
   quizname = this.service.data.QuizName;
   public doughnutChartLabels2 = ['Correct', 'InCorrect'];
@@ -27,9 +29,9 @@ export class DetailedReportComponent implements OnInit {
   public doughnutChartOptions2 = {
     legend: {
       onClick: function (e) {
-          e.stopPropagation();
+        e.stopPropagation();
       }
-  }
+    }
   }
 
   gaugeType = 'semi';
