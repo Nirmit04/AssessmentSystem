@@ -13,7 +13,7 @@ export class DetailedReportComponent implements OnInit {
   public doughnutChartData1 = [this.service.data.CorrectAnswers + this.service.data.WrongAnswers, this.service.data.UnattemptedAnswers];
   public doughnutChartType1 = 'doughnut';
 
-  quizname = 'Python';
+  quizname = '';
   public doughnutChartLabels2 = ['Correct', 'InCorrect'];
   public doughnutChartData2 = [this.service.data.CorrectAnswers, this.service.data.WrongAnswers];
   public doughnutChartType2 = 'doughnut';
@@ -22,11 +22,20 @@ export class DetailedReportComponent implements OnInit {
   gaugeValue = this.service.data.MarksScored;
   gaugeLabel = 'Marks Scored';
   gaugeAppendText = '/' + this.service.data.TotalMarks;
-
+  reports: any[];
 
   constructor(private service: EmployeeService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.loadDetail();
+  }
+  loadDetail() {
+    this.service.getDetailedReport().subscribe((res: any) => {
+      this.reports = res as any[];
+      console.log(this.reports);
+      this.quizname = this.reports[0].QuizName;
+    })
+  }
 
 
 }
