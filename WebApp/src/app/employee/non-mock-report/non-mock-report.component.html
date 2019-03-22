@@ -10,6 +10,7 @@
             <th>Correct Answers</th>
             <th>Wrong Answers</th>
             <th>Unattempted Questions</th>
+            <th>Marks Scored</th>
             <th>Total Marks</th>
             <th>Accuracy</th>
             <th>Time Taken</th>
@@ -24,12 +25,13 @@
             <td>{{quiz.CorrectAnswers}}</td>
             <td>{{quiz.WrongAnswers}}</td>
             <td>{{quiz.UnattemptedAnswers}}</td>
+            <td>{{quiz.MarksScored}}</td>
             <td>{{quiz.TotalMarks}}</td>
             <td>{{quiz.Accuracy}}</td>
             <td>{{quiz.TimeTaken}}</td>
             <td>{{quiz.Efficiency}}</td>
             <td>
-              <a class="btn btn-sm btn-info text-white" (click)="viewDetailedReport(mock.ScheduleId,mock.QuizId)"><i
+              <a class="btn btn-sm btn-info text-white" (click)="viewDetailedReport(quiz.QuizId,i)"><i
               class="fa fa-file"></i></a>
             </td>
           </tr>

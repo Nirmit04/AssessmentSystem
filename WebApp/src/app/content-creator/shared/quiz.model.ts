@@ -4,7 +4,7 @@ export class QuizModel {
     TotalQuestions?: number;
     TotalMarks?: number;
     Subject: string;
-    QuizType?: string;
+    QuizType: string;
     CreatedBy?: string;
     QuestionIds: number[];
     SubjectId: number;

@@ -1,26 +1,44 @@
 <app-main-nav3>
-<h1 style="text-align: center; margin-bottom: 10%">Detailed Report for Quiz - {{quizname}}</h1>
-<div class="row">
-<div class="col-md-4">
-    <canvas baseChart
-        [data]="doughnutChartData1"
-        [labels]="doughnutChartLabels1"
-        [chartType]="doughnutChartType1">
-    </canvas>
-</div>
-<div class="col-md-4">
-    <ngx-gauge  [type]="gaugeType" 
-                [value]="gaugeValue" 
-                [label]="gaugeLabel"  
-                [append]="gaugeAppendText">
-</ngx-gauge>
-</div>
-<div class="col-md-4">
-    <canvas baseChart
-        [data]="doughnutChartData2"
-        [labels]="doughnutChartLabels2"
-        [chartType]="doughnutChartType2">
-    </canvas>
-</div>
-</div>
+    <h1 style="text-align: center">Detailed Report for</h1>
+    <h2 style="text-align: center; margin-bottom: 10%">{{quizname}}</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <canvas baseChart [data]="doughnutChartData1" [labels]="doughnutChartLabels1"
+                [chartType]="doughnutChartType1" [options]="doughnutChartOptions1">
+            </canvas>
+        </div>
+        <div class="col-md-4">
+            <ngx-gauge [type]="gaugeType" [value]="gaugeValue" [label]="gaugeLabel" [append]="gaugeAppendText">
+            </ngx-gauge>
+        </div>
+        <div class="col-md-4">
+            <canvas baseChart [data]="doughnutChartData2" [labels]="doughnutChartLabels2"
+                [chartType]="doughnutChartType2" [options]="doughnutChartOptions2">
+            </canvas>
+        </div>
+    </div>
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+        class="row-border hover table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#S.No.</th>
+                <th scope="col">Question</th>
+                <th scope="col">Status</th>
+                <th scope="col">View</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of reports;index as i">
+
+                <th scope="row">{{i+1}}</th>
+                <td scope="row">{{item.QuestionStatement}}</td>
+                <td scope="row">{{item.status}}</td>
+                <td scope="row"><button type="button" (click)="viewques(item.QuestionId,i)" class="btn btn-info"><i
+                            class="fa fa-paper-plane-o fa-lg"></i></button>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
 </app-main-nav3>
