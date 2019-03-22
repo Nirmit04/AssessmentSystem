@@ -82,9 +82,6 @@ export class DetailedReportComponent implements OnInit {
     dialogConfig.width = "70%";
     dialogConfig.disableClose = true;
     dialogConfig.data = id;
-    this.service.getQues(id).subscribe(res => {
-      this.service.data = res;
-    })
     this.dialog.open(ViewAnswerComponent, dialogConfig).afterClosed().subscribe((res: any) => {
       this.dtTrigger.unsubscribe();
       this.dtTrigger.next();

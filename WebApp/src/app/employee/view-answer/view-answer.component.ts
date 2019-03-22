@@ -8,14 +8,13 @@ import { loadQueryList } from '@angular/core/src/render3';
   styleUrls: ['./view-answer.component.css']
 })
 export class ViewAnswerComponent implements OnInit {
-  ques: any;
+  ques: any[];
   constructor(private service: EmployeeService,
     @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit() {
-    // this.ques = '';
+    this.ques[0] = 'lol';
     this.service.getQues(this.data).subscribe((res: any) => {
-      //console.log(res);
       this.sda(res);
     });
   }
