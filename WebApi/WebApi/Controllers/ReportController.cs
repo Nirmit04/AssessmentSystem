@@ -52,11 +52,9 @@ namespace WebApi.Controllers
                 x.WrongAnswers,
                 x.UserId,
                 db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).QuizName,
-                TotalMarks = db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).TotalMarks
+                db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).TotalMarks
             }).ToList();
             return Ok(report);
         }
-
-
     }
 }
