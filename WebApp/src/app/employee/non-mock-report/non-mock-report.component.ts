@@ -20,8 +20,8 @@ export class NonMockReportComponent implements OnInit {
   nonMockReportList: any[];
 
   constructor(private service: EmployeeService,
-              private toastr: ToastrService,
-              private router: Router) { }
+    private toastr: ToastrService,
+    private router: Router) { }
 
   ngOnInit() {
     this.dtOptions = {
@@ -42,5 +42,6 @@ export class NonMockReportComponent implements OnInit {
     this.service.data = this.nonMockReportList[index];
     this.service.QuizId = qid;
     this.router.navigate(['/detailed-report']);
+    this.dtTrigger.next();
   }
 }

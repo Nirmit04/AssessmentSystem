@@ -1,4 +1,17 @@
-<p *ngIf="ques[0]!=lol">
+<p *ngIf="ques">
   {{ques[0].QuestionStatement}}
+  <br>
+  <input name="a1" disabled="true" [checked]="flop1" type="radio">1){{ques[0].Option1}}
+  <label *ngIf="zlop1">---You Marked This</label>
+  <br>
+  <input name="a1" disabled="true" [checked]="flop2" type="radio">{{ques[0].Option2}}
+  <label *ngIf="zlop2">---You Marked This</label>
+  <br>
+  <input name="a1" disabled="true" [checked]="flop3" type="radio">{{ques[0].Option3}}
+  <label *ngIf="zlop3">---You Marked This</label>
+  <br>
+  <input name="a1" disabled="true" [checked]="flop4" type="radio">{{ques[0].Option4}}
+  <label *ngIf="zlop4">---You Marked This</label>
+  <br>
 </p>
 <button type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button>
