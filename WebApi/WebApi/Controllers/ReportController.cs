@@ -28,7 +28,8 @@ namespace WebApi.Controllers
                 x.UnattemptedAnswers,
                 x.WrongAnswers,
                 x.UserId,
-                db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).QuizName
+                db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).QuizName,
+                MarksScored = db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).TotalMarks
             }).ToList();
             return Ok();
         }
@@ -50,7 +51,8 @@ namespace WebApi.Controllers
                 x.UnattemptedAnswers,
                 x.WrongAnswers,
                 x.UserId,
-                db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).QuizName
+                db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).QuizName,
+                 MarksScored = db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).TotalMarks
             }).ToList();
             return Ok();
         }
