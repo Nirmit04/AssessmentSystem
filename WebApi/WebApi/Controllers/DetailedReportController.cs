@@ -22,7 +22,9 @@ namespace WebApi.Controllers
                 {
                     y.DetailedReportId,
                     y.QuizId,
+                    db.Quizs.FirstOrDefault(z => z.QuizId == y.QuizId).QuizName,
                     y.UserId,
+                    y.QuestionId,
                     y.AttemptedAnswer,
                     y.CorrectAnswer,
                     db.Questions.FirstOrDefault(z=>z.QuestionId == y.QuestionId).QuestionStatement,

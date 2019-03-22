@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApi.Models;
@@ -101,9 +103,20 @@ namespace WebApi.Controllers
                 return BadRequest();
             }
 
+            string imageName = null;
+            var httpRequest = HttpContext.Current.Request;
+            var postedFile = httpRequest.Files["Image"];
+            if (postedFile != null)
+            {
+                var ImageDirectoryUrl = HttpContext.Current.Server.MapPath("/Images/");
+                imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).ToArray()).Replace(" ", "-");
+                imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
+                var filePath = ImageDirectoryUrl + imageName;
+                question.ImageName = imageName;
+                postedFile.SaveAs(filePath);
+            }
             db.Questions.Add(question);
             db.SaveChanges();
-
             return Ok(question);
         }
         
@@ -115,6 +128,23 @@ namespace WebApi.Controllers
             if(QuestionId==null)
             {
                 return BadRequest();
+            }
+
+            string imageName = null;
+            var httpRequest = HttpContext.Current.Request;
+            var postedFile = httpRequest.Files["Image"];
+            if (postedFile != null)
+            {
+                var ImageDirectoryUrl = HttpContext.Current.Server.MapPath("/Images/");
+                imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).ToArray()).Replace(" ", "-");
+                imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
+                var filePath = ImageDirectoryUrl + imageName;
+                if (Question.ImageName != null)
+                {
+                    File.Delete(ImageDirectoryUrl + Question.ImageName);
+                }
+                Question.ImageName = imageName;
+                postedFile.SaveAs(filePath);
             }
 
             db.Entry(Question).State = EntityState.Modified;
