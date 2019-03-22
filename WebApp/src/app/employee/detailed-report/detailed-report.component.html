@@ -1,11 +1,13 @@
 <app-main-nav3>
-<h1 style="text-align: center; margin-bottom: 10%">Detailed Report for Quiz - {{quizname}}</h1>
+<h1 style="text-align: center">Detailed Report for</h1> 
+<h2 style="text-align: center; margin-bottom: 10%">{{quizname}}</h2>
 <div class="row">
 <div class="col-md-4">
     <canvas baseChart
         [data]="doughnutChartData1"
         [labels]="doughnutChartLabels1"
-        [chartType]="doughnutChartType1">
+        [chartType]="doughnutChartType1"
+        [options]= "doughnutChartOptions1">
     </canvas>
 </div>
 <div class="col-md-4">
@@ -19,7 +21,8 @@
     <canvas baseChart
         [data]="doughnutChartData2"
         [labels]="doughnutChartLabels2"
-        [chartType]="doughnutChartType2">
+        [chartType]="doughnutChartType2"
+        [options]= "doughnutChartOptions2">
     </canvas>
 </div>
 </div>
