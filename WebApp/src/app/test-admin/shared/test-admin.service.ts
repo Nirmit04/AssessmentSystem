@@ -18,14 +18,14 @@ export class TestAdminService {
 	retriveAllQuizzes() {
 		return this.http.get(this.rooturl + 'Quiz/GetAllQuiz');
 	}
-	retrieveAllEmployees() {
-		return this.http.get(this.rooturl + 'User/GetUserAll');
+	retrieveAllEmployees(id:number) {
+		return this.http.get(this.rooturl + 'UserSchedule/UserNotAssignedQuiz/'+id);
 	}
 	retrieveSpecificEmployees(sId) {
 		return this.http.get(this.rooturl + 'UserSchedule/UserNotAssignedQuiz/' + sId);
 	}
 	postSchedule(formdata: Schedule) {
-		formdata.UserId = this.quiztakerId;
+		// formdata.UserId = this.quiztakerId;
 		console.log(formdata);
 		return this.http.post(this.rooturl + 'QuizSchedule/ScheduleQuiz', formdata);
 	}

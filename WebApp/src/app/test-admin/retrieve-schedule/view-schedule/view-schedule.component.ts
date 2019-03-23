@@ -36,17 +36,17 @@ export class ViewScheduleComponent implements OnInit {
     this.CCreatedBy = localStorage.getItem('uid');
     this.loadExistingUsers(+this.data);
   }
-  onAdd() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = "70%";
-    dialogConfig.data = this.data;
-    dialogConfig.disableClose = true;
-    let dialogRef = this.dialog.open(AddUserComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe(result => {
-      this.loadExistingUsers(+this.data);
-    });
-  }
+  // onAdd() {
+  //   const dialogConfig = new MatDialogConfig();
+  //   dialogConfig.autoFocus = true;
+  //   dialogConfig.width = "70%";
+  //   dialogConfig.data = this.data;
+  //   dialogConfig.disableClose = true;
+  //   let dialogRef = this.dialog.open(AddUserComponent, dialogConfig);
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     this.loadExistingUsers(+this.data);
+  //   });
+  // }
   loadExistingUsers(scheduleQuizId: number) {
     this.service.getScheduleQuizUsers(scheduleQuizId).subscribe((res: any) => {
       this.usersList = res as any[];

@@ -24,6 +24,7 @@ import { NonMockReportComponent } from './employee/non-mock-report/non-mock-repo
 import { DetailedReportComponent } from './employee/detailed-report/detailed-report.component';
 import { MockComponent } from './employee/mock/mock.component';
 import { MockReportComponent } from './employee/mock-report/mock-report.component';
+import { AddUserComponent } from './test-admin/retrieve-schedule/add-user/add-user.component';
 const routes: Routes = [
 	{ path: 'home', component: HomeComponent },
 	{ path: '', component: LoginComponent, pathMatch: 'full' },
@@ -46,7 +47,8 @@ const routes: Routes = [
 	{ path: 'non-mock-report', component: NonMockReportComponent, canActivate: [AuthGuard] },
 	{ path: 'detailed-report', component: DetailedReportComponent, canActivate: [AuthGuard] },
 	{ path: 'mock', component: MockComponent, canActivate: [AuthGuard] },
-	{ path: 'mock-report', component: MockReportComponent, canActivate: [AuthGuard] }
+	{ path: 'mock-report', component: MockReportComponent, canActivate: [AuthGuard] },
+	{ path: 'add-user', component: AddUserComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

@@ -3,7 +3,7 @@ export class Schedule {
     StartDateTime: Date;
     EndDateTime: Date;
     ArchiveStatus: boolean;
-    UserId: string[];
+    UserId?: string[];
     QuizId: number;
     CreatedBy?: string;
 }

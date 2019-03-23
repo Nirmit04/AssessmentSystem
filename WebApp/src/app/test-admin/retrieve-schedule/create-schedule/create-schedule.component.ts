@@ -14,7 +14,7 @@ export class CreateScheduleComponent implements OnInit {
   q1 = "";
   q2 = "";
   q3 = "";
-  btndisable = true;
+  btndisable = false;
   CCreatedBy = "";
   scheduleUrl = 'localhost:4200//emp-dash/take-quiz/';
   constructor(private service: TestAdminService,
@@ -46,18 +46,17 @@ export class CreateScheduleComponent implements OnInit {
       this.resetForm(form);
     });
   }
-  adduser() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = "70%";
-    dialogConfig.disableClose = true;
-    let dialogRef = this.dialog.open(AddUserComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      console.log(this.service.quiztakerId);
-      if (this.service.quiztakerId != null) {
-        this.btndisable = false;
-      }
-    });
-  }
+  // adduser() {
+  //   const dialogConfig = new MatDialogConfig();
+  //   dialogConfig.autoFocus = true;
+  //   dialogConfig.width = "70%";
+  //   dialogConfig.disableClose = true;
+  //   let dialogRef = this.dialog.open(AddUserComponent, dialogConfig);
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log(this.service.quiztakerId);
+  //     if (this.service.quiztakerId != null) {
+  //      // this.btndisable = false;
+  //     }
+  //   });
+  // }
 }

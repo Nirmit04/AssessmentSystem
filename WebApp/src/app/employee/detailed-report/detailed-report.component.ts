@@ -78,15 +78,15 @@ export class DetailedReportComponent implements OnInit {
       }
     }
   }
-  viewques(id: number) {
+  viewques(id: number, markedanswer: number) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = "70%";
     dialogConfig.disableClose = true;
-    dialogConfig.data = id;
-    this.service.getQues(id).subscribe(res => {
-      this.service.data = res;
-    })
+    dialogConfig.data = {
+      id: id,
+      markedanswer: markedanswer,
+    };
     this.dialog.open(ViewAnswerComponent, dialogConfig).afterClosed().subscribe((res: any) => {
       this.dtTrigger.unsubscribe();
       this.dtTrigger.next();

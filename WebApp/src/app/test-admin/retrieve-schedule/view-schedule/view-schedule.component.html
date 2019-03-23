@@ -1,7 +1,5 @@
   <h5 class="card-title">{{label}}</h5>
-  <button type="button" [hidden]="bool" (click)="onAdd()" class="btn btn-primary">Add Users</button>
-  <button style="margin-bottom: 4%; margin-left:90%" [hidden] ="!bool" type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button>
-  <br/>
+  <button type="button" [hidden]="bool" (click)="onAdd()" class="btn btn-primary">Add Users</button>  <br/>
   <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
     <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="this.CCreatedBy">
     <input type="hidden" name="QuizId" #QuizId="ngModel" [(ngModel)]="service.formdata.QuizId">
