@@ -14,7 +14,7 @@ export class CreateScheduleComponent implements OnInit {
   q1 = "";
   q2 = "";
   q3 = "";
-  btndisable = true;
+  btndisable = false;
   CCreatedBy = "";
   constructor(private service: TestAdminService,
     private dialog: MatDialog,
@@ -43,22 +43,22 @@ export class CreateScheduleComponent implements OnInit {
   sub(form: NgForm) {
     // console.log(form.value);
     this.service.postSchedule(form.value).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.toastr.success('Inserted successfully');
       this.resetForm(form);
     });
   }
-  adduser() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = "70%";
-    dialogConfig.disableClose = true;
-    let dialogRef = this.dialog.open(AddUserComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(this.service.quiztakerId);
-      if (this.service.quiztakerId != null) {
-        this.btndisable = false;
-      }
-    });
-  }
+  // adduser() {
+  //   const dialogConfig = new MatDialogConfig();
+  //   dialogConfig.autoFocus = true;
+  //   dialogConfig.width = "70%";
+  //   dialogConfig.disableClose = true;
+  //   let dialogRef = this.dialog.open(AddUserComponent, dialogConfig);
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log(this.service.quiztakerId);
+  //     if (this.service.quiztakerId != null) {
+  //      // this.btndisable = false;
+  //     }
+  //   });
+  // }
 }

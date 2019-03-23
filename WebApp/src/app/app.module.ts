@@ -54,6 +54,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { NonMockReportComponent } from './employee/non-mock-report/non-mock-report.component';
 import { ChartsModule } from 'ng2-charts';
 import { NgxGaugeModule } from 'ngx-gauge';
+import { AddUser1Component } from './test-admin/add-user1/add-user1.component';
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 	bgsColor: '#00ACC1',
 	bgsOpacity: 0.7,
@@ -126,7 +127,8 @@ export function provideConfig() {
 		ViewAnswerComponent,
 		MainNav3Component,
 		ResultComponent,
-		NonMockReportComponent
+		NonMockReportComponent,
+		AddUser1Component
 	],
 	imports: [
 		BrowserModule,
@@ -168,7 +170,8 @@ export function provideConfig() {
 		AddQuesInQuizComponent,
 		AddUserComponent,
 		ViewScheduleComponent,
-		ViewAnswerComponent
+		ViewAnswerComponent,
+		AddUser1Component
 	]
 })
 export class AppModule {}
