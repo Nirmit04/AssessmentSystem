@@ -48,15 +48,6 @@ export class TagComponent implements OnInit {
 			this.dtTrigger.next();
 		});
 	}
-	// onDelete(id: number) {
-	// 	console.log(id);
-	// 	if (confirm('Are you sure you want to delete this record')) {
-	// 		this.service.deleteTags(id).subscribe((res: any) => {
-	// 			this.loadTags();
-	// 			this.toastr.success('Deleted Successfully', 'Assesment System');
-	// 		});
-	// 	}
-	// }
 	onEdit(id: number) {
 		// console.log(id);
 		const dialogConfig = new MatDialogConfig();

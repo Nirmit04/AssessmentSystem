@@ -49,6 +49,6 @@ export class CreatetagComponent implements OnInit {
 			this.toastr.success('Inserted successfully');
 			this.resetForm(form);
 		});;
-		//this.dialogRef.close();
+		this.dialogRef.close('Inserted');
 	}
 }

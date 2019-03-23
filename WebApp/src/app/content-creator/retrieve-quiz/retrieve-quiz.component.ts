@@ -57,12 +57,12 @@ export class RetrieveQuizComponent implements OnInit {
 
 	onArchive(id: number) {
 		console.log(id);
-		if (confirm('Are you sure you want to delete this quiz?')) {
+		if (confirm('Are you sure you want to archive this quiz?')) {
 			this.service.deleteQuiz(id).subscribe((res: any) => {
+				this.toastr.success('Archieved Successfully', 'Assesment System');
+				this.loadQuiz();
 				this.dtTrigger.unsubscribe();
 				this.dtTrigger.next();
-				this.toastr.success('Archieved Successfully', 'Assesment System');
-				location.reload();
 			});
 		}
 	}

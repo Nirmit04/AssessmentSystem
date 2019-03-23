@@ -2,17 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { EmployeeService } from '../employee/shared/employee.service';
 
 @Component({
 	selector: 'app-home',
 	templateUrl: './home.component.html',
-	styleUrls: [ './home.component.css' ]
+	styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-	constructor(private router: Router, private http: HttpClient) {}
+	constructor(private router: Router, private http: HttpClient, private service: EmployeeService) { }
 	rooturl = environment.apiURl;
 	role = '';
 	uid = '';
+	check: string = localStorage.getItem('key');
 	ngOnInit() {
 		if (localStorage.getItem('id') != null) {
 			const body = {
@@ -30,17 +32,29 @@ export class HomeComponent implements OnInit {
 						this.role = res1.Roles[0].RoleId;
 						localStorage.setItem('uid', this.uid);
 						localStorage.setItem('role', this.role);
+						//this.redirecttodash(this.role);
+						// if (this.check != null) {
+						// 	this.service.getQuesOfQuiz(+this.check).subscribe((res: any) => {
+						// 		this.service.quesOfQuiz = res as any[];
+						// 		this.service.QuizScheduleId = Id;
+						// 		this.service.QuizId = QuizId;
+						// 		this.router.navigate(['/take-quiz']);
+						// 	  });
+						// }
+						// else {
+						// 	this.redirecttodash(this.role);
+						// }
 						this.redirecttodash(this.role);
 					});
 			});
 		} else {
-			this.router.navigate([ '/login' ]);
+			this.router.navigate(['/login']);
 		}
 	}
 	redirecttodash(role: string) {
 		if (this.role === '2') {
 			console.log('i am content creator');
-			this.router.navigate([ '/cc-dash' ]);
+			this.router.navigate(['/cc-dash']);
 		}
 	}
 }

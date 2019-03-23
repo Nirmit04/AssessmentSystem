@@ -30,11 +30,12 @@ export class UpdateQuizComponent implements OnInit {
   }
 
   onDelete(id: number) {
-    console.log(id);
-    this.service.deleteQuesOfQuiz(id).subscribe((res: any) => {
-      this.toastr.success('Deleted Successfully', 'Assesment System');
-      this.loadingData();
-    });
+    if (confirm('Are you sure you want to delete this record?')) {
+      this.service.deleteQuesOfQuiz(id).subscribe((res: any) => {
+        this.toastr.success('Deleted Successfully', 'Assesment System');
+        this.loadingData();
+      });
+    }
   }
 
   onCreate() {

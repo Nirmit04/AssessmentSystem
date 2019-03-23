@@ -38,12 +38,19 @@ export class EmployeeService {
     return this.http.get(this.rootURL + 'GetUserDetails?email=' + localStorage.getItem('email'));
   }
   getListOfMockQuizzes() {
-    return this.http.get(environment.apiURl + 'Quiz/MockQuiz');
+    return this.http.get(this.rootURL + 'Quiz/MockQuiz');
   }
   getReportOfNonMockQuiz(id) {
-    return this.http.get(environment.apiURl + 'Report/NonMock/' + id);
+    return this.http.get(this.rootURL + 'Report/NonMock/' + id);
   }
   getReportOfMockQuiz(id) {
-    return this.http.get(environment.apiURl + 'Report/Mock/' + id);
+    return this.http.get(this.rootURL + 'Report/Mock/' + id);
+  }
+  getDetailedReport() {
+    console.log(this.QuizId);
+    return this.http.get(this.rootURL + '/DetailedReport/' + localStorage.getItem('uid') + '/' + this.QuizId);
+  }
+  getQues(id: number) {
+    return this.http.get(this.rootURL + 'Question/' + id)
   }
 }

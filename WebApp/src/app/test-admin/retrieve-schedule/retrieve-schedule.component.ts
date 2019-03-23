@@ -45,9 +45,9 @@ export class RetrieveScheduleComponent implements OnInit {
 	deleteSchedule(scheduleId) {
 		this.service.deleteSchedule(scheduleId).subscribe((res: any) => {
 			this.toastr.success('Deleted Successfully', 'Assesment System');
+			this.loadSchedule();
 			this.dtTrigger.unsubscribe();
 			this.dtTrigger.next();
-			this.loadSchedule();
 		});
 	}
 	viewSchedule(scheduleid: number, arrayindex: number) {
@@ -73,7 +73,7 @@ export class RetrieveScheduleComponent implements OnInit {
 		this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe((res: any) => {
 			this.loadSchedule();
 			this.dtTrigger.unsubscribe();
-			this.dtTrigger.next();	// localStorage.removeItem('sId');
+			this.dtTrigger.next();
 		});
 
 	}

@@ -37,20 +37,6 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 		this.getQuesOfUser(localStorage.getItem('uid'));
 		this.searchText = '';
 	}
-	// filter(ques: Question) {
-	// 	// console.log(this.difficultyLevel);
-	// 	// console.log(ques.Difficulty);
-	// 	console.log(this.searchText + 'hello');
-	// 	return (
-	// 		(ques.QuestionStatement.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1
-	// 			|| ques.SubjectName.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1)
-	// 		&& ques.Difficulty.toLowerCase().indexOf(this.difficultyLevel.toLowerCase()) > -1
-	// 	);
-	// }
-	// filterSubject(event: any) {
-	// 	this.difficultyLevel = event.target.value;
-	// 	// console.log(this.difficultyLevel);
-	// }
 
 	getQuesOfUser(uid: string) {
 		this.service.getQuesOfUser(uid).subscribe((data: any) => {
@@ -79,7 +65,6 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 		this.service.readonlyStatus = false;
 		this.service.formData = this.questionList[arrayindex - 1];
 		this.dialog.open(UpdateQuestionComponent, dialogConfig).afterClosed().subscribe((res: any) => {
-			//console.log(res);
 			this.getQuesOfUser(localStorage.getItem('uid'));
 			this.dtTrigger.unsubscribe();
 			this.dtTrigger.next();

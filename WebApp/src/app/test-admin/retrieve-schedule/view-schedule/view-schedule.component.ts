@@ -26,7 +26,6 @@ export class ViewScheduleComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit() {
-    // console.log(this.data);
     this.bool = this.service.readonlyStatus;
     console.log(this.bool);
     if (this.bool === true) {
@@ -63,6 +62,7 @@ export class ViewScheduleComponent implements OnInit {
   onSubmit(form: NgForm) {
     this.service.editSchedule(this.data, form.value).subscribe(res => {
       this.toastr.success('Changes Saved');
+      this.dialogRef.close('Saved');
     })
   }
 }

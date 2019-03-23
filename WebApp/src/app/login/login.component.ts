@@ -2,18 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'angularx-social-login';
 import { SocialUser } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.component.html',
-	styleUrls: [ './login.component.css' ]
+	styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 	user: SocialUser;
-	constructor(private authService: AuthService, private router: Router) {}
+	returnURL: string;
+	constructor(private authService: AuthService, 
+		private router: Router,
+		private route: ActivatedRoute) { }
 
 	ngOnInit() {
+		localStorage.setItem('key',this.route.snapshot.queryParamMap.get('take-quiz'));
+		console.log(localStorage.getItem('key'));
 		this.authService.authState.subscribe((user) => {
 			this.user = user;
 			if (user != null) {
@@ -25,7 +30,7 @@ export class LoginComponent implements OnInit {
 				localStorage.setItem('id', this.user.id);
 				localStorage.setItem('imgurl', this.user.photoUrl);
 				localStorage.setItem('provider', this.user.provider);
-				this.router.navigate([ '/home' ]);
+				this.router.navigate(['/home']);
 			} else {
 				localStorage.clear();
 			}

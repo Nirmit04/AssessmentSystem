@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ContentCreatorServiceService } from '../../shared/content-creator-service.service';
-//import { Subject } from 'src/app/content-creator/shared/subject.model';
 import { ToastrService } from 'ngx-toastr';
 import { Question } from 'src/app/content-creator/shared/question.model';
 import { concat, Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
+import { MatDialogRef } from '@angular/material';
 @Component({
   selector: 'app-create-quiz',
   templateUrl: './create-quiz.component.html',
@@ -22,7 +22,7 @@ export class CreateQuizComponent implements OnInit {
   flag = 1;
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
-  constructor(private service: ContentCreatorServiceService, public toastr: ToastrService) { }
+  constructor(private service: ContentCreatorServiceService, private dialogRef: MatDialogRef<CreateQuizComponent>, public toastr: ToastrService) { }
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -90,6 +90,7 @@ export class CreateQuizComponent implements OnInit {
     console.log(QuestionId);
     this.service.postQuestionsSelected(QuestionId).subscribe(res => {
       this.toastr.success('Inserted successfully');
+      this.dialogRef.close('Inserted');
     })
   }
   ngOnDestroy() {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, EventEmitter, Output} from '@angular/core';
 import { TestAdminService } from '../../shared/test-admin.service';
 import { User } from 'src/app/test-admin/shared/user.model'
 import { NgForm } from '@angular/forms';
@@ -28,7 +28,6 @@ export class AddUserComponent implements OnInit {
       this.loadUsers();
     }
   }
-
   loadUsers() {
     this.service.retrieveAllEmployees().subscribe((res: any) => {
       res.forEach(obj => obj.selected = false);
@@ -55,6 +54,7 @@ export class AddUserComponent implements OnInit {
     else {
       this.service.quiztakerId = quiztakerId;
     }
+    this.dialogRef.close('Submitted');
   }
 }
 
