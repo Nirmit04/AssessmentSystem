@@ -209,22 +209,22 @@ namespace WebApi.Controllers
         public IHttpActionResult QuestionById(int? QuestionId)
         {
             var questions = db.Questions
-                    .Where(z => z.QuestionId == QuestionId)
-                    .Select(x => new
-                    {
-                        QuestionId = x.QuestionId,
-                        QuestionStatement = x.QuestionStatement,
-                        Option1 = x.Option1,
-                        Option2 = x.Option2,
-                        Option3 = x.Option3,
-                        Option4 = x.Option4,
-                        Answer = x.Answer,
-                        Marks = x.Marks,
-                        SubjectId = x.SubjectId,
-                        SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
-                        Difficulty = x.Difficulty,
-                        ImageName = x.ImageName
-                    }).ToList();
+                .Where(z => z.QuestionId == QuestionId)
+                .Select(x => new
+                {
+                    QuestionId = x.QuestionId,
+                    QuestionStatement = x.QuestionStatement,
+                    Option1 = x.Option1,
+                    Option2 = x.Option2,
+                    Option3 = x.Option3,
+                    Option4 = x.Option4,
+                    Answer = x.Answer,
+                    Marks = x.Marks,
+                    SubjectId = x.SubjectId,
+                    SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
+                    Difficulty = x.Difficulty,
+                    ImageName = x.ImageName
+                });
             return Ok(questions);
         }
 

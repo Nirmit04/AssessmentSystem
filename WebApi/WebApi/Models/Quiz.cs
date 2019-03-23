@@ -28,6 +28,7 @@ namespace WebApi.Models
 
         public virtual ICollection<DetailedReport> DetailedReports { get; set; }
         public virtual ICollection<QuizSchedule> QuizSchedules { get; set; }
+        public virtual ICollection<UserSchedule> UserSchedules { get; set; }
         public virtual ICollection<QuizQuestion> QuizQuestions { get; set; }
         public virtual ICollection<Report> Reports { get; set; }
     }

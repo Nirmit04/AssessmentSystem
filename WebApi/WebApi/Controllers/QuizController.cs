@@ -46,7 +46,7 @@ namespace WebApi.Controllers
         [Route("api/Quiz/GetQuiz/{CreatedBy}")]
         public IHttpActionResult GetQuiz(string CreatedBy)
         {
-            var quiz = db.Quizs.Where(x => x.CreatedBy == CreatedBy && x.ArchiveStatus == false)
+           var quiz = db.Quizs.Where(x => x.CreatedBy == CreatedBy && x.ArchiveStatus == false)
                 .Select(x => new
                 {
                     QuizId = x.QuizId,
@@ -290,7 +290,7 @@ namespace WebApi.Controllers
             report.QuizType = db.Quizs.FirstOrDefault(x => x.QuizId == evalutionAnswer.QuizId).QuizType;
             report.UserId = evalutionAnswer.UserId;
             report.QuizId = evalutionAnswer.QuizId;
-            var userSchedule = db.UserSchedules.FirstOrDefault(x => x.QuizScheduleId == evalutionAnswer.QuizScheduleId && x.UserId == evalutionAnswer.UserId);
+            var userSchedule = db.UserSchedules.FirstOrDefault(x => x.QuizScheduleId == evalutionAnswer.QuizScheduleId && x.UserId == evalutionAnswer.UserId && x.QuizId == evalutionAnswer.QuizId);
             if (userSchedule != null)
             {
                 userSchedule.Taken = true;

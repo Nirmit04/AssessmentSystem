@@ -16,11 +16,12 @@ namespace WebApi.Controllers
         [Route("api/UserSchedule/UserNotAssignedQuiz/{QuizScheduleId}")]
         public IHttpActionResult UserNotAssignedQuiz(int QuizScheduleId)
         {
-            var userScheduleUserIds = db.UserSchedules.AsEnumerable()
-                .Where(x => x.QuizScheduleId == QuizScheduleId)
+            int QuizId = db.QuizSchedules.FirstOrDefault(z => z.QuizScheduleId == QuizScheduleId).QuizId;
+            var userIds = db.UserSchedules.AsEnumerable()
+                .Where(x => x.QuizScheduleId == QuizScheduleId && x.QuizId == QuizId)
                 .Select(y => y.UserId).ToList();
-            var userIds = db.Users
-                .Where(x => !userScheduleUserIds.Contains(x.Id))
+            var users = db.Users
+                .Where(x => !userIds.Contains(x.Id))
                 .Select(z => new
                 {
                     Id = z.Id,
@@ -31,7 +32,7 @@ namespace WebApi.Controllers
                     ImageURL = z.ImageURL,
                     GoogleId = z.GoogleId
                 }).ToList();
-            return Ok(userIds);
+            return Ok(users);
         }
 
         [HttpGet]
@@ -61,10 +62,19 @@ namespace WebApi.Controllers
         [Route("api/UserSchedule/UserDelete/{QuizScheduleId}/{UserId}")]
         public IHttpActionResult UserDelete(int QuizScheduleId, string UserId)
         {
-            UserSchedule user = db.UserSchedules.SingleOrDefault(x => x.QuizScheduleId == QuizScheduleId && x.UserId == UserId);
-            db.UserSchedules.Remove(user);
-            db.SaveChanges();
-            return Ok();
+            int QuizId = db.QuizSchedules.FirstOrDefault(x => x.QuizScheduleId == QuizScheduleId).QuizId;
+            UserSchedule user = db.UserSchedules.SingleOrDefault(x => x.QuizScheduleId == QuizScheduleId && x.UserId == UserId && x.QuizId == QuizId);
+            if (user.Taken == false)
+            {
+                db.UserSchedules.Remove(user);
+                db.SaveChanges();
+                return Ok();
+            }
+            else
+            {
+                return BadRequest("CantDeleteUser");
+            }
+            
         }
 
         [HttpPost]
@@ -73,6 +83,7 @@ namespace WebApi.Controllers
         {
             UserSchedule userSchedule = new UserSchedule();
             userSchedule.QuizScheduleId = QuizScheduleId;
+            userSchedule.QuizId = db.QuizSchedules.FirstOrDefault(x => x.QuizScheduleId == QuizScheduleId).QuizId;
             userSchedule.Taken = false;
             foreach (var item in UserIds)
             { 
