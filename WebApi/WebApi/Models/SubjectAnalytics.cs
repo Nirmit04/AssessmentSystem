@@ -13,6 +13,7 @@ namespace WebApi.Models
         }
         public string SubjectName { get; set; }
         public int SubjectId { get; set; }
+        
         public Property Properties { get; set; }
     }
     public class Property
