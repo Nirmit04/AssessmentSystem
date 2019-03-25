@@ -25,6 +25,11 @@ import { DetailedReportComponent } from './employee/detailed-report/detailed-rep
 import { MockComponent } from './employee/mock/mock.component';
 import { MockReportComponent } from './employee/mock-report/mock-report.component';
 import { AddUserComponent } from './test-admin/retrieve-schedule/add-user/add-user.component';
+import { MainNav4Component } from './reporting-user/main-nav4/main-nav4.component';
+import { AnalyticsByUserComponent } from './reporting-user/analytics-by-user/analytics-by-user.component';
+import { AnalyticsByTagComponent } from './reporting-user/analytics-by-tag/analytics-by-tag.component';
+import { AnalyticsByQuizComponent } from './reporting-user/analytics-by-quiz/analytics-by-quiz.component';
+import { Mainnav4Component } from './reporting-user/mainnav4/mainnav4.component';
 const routes: Routes = [
 	{ path: 'home', component: HomeComponent },
 	{ path: '', component: LoginComponent, pathMatch: 'full' },
@@ -48,7 +53,12 @@ const routes: Routes = [
 	{ path: 'qmp-dash/quiz/detailed-report', component: DetailedReportComponent, canActivate: [AuthGuard] },
 	{ path: 'emp-dash/mock', component: MockComponent, canActivate: [AuthGuard] },
 	{ path: 'emp-dash/mock-report', component: MockReportComponent, canActivate: [AuthGuard] },
-	{ path: 'ta-dash/add-user', component: AddUserComponent, canActivate: [AuthGuard] }
+	{ path: 'ta-dash/add-user', component: AddUserComponent, canActivate: [AuthGuard] },
+	{ path: 'ru-dash', component: Mainnav4Component, canActivate: [AuthGuard] },
+	{ path: 'ru-dash/ana-by-user', component: AnalyticsByUserComponent, canActivate: [AuthGuard] },
+	{ path: 'ru-dash/ana-by-tag', component: AnalyticsByTagComponent, canActivate: [AuthGuard] },
+	{ path: 'ru-dash/ana-by-quiz', component: AnalyticsByQuizComponent, canActivate: [AuthGuard] },
+
 ];
 
 @NgModule({
