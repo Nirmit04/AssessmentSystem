@@ -38,15 +38,17 @@ namespace WebApi.Controllers
 
 
         [HttpGet]
-        [Route("api/Employee/TakenQuizCount/{UserId}")]
-        public IHttpActionResult TakenQuiz(string UserId)
+        [Route("api/Employee/Stats/{UserId}")]
+        public IHttpActionResult Stats(string UserId)
         {
-            Dictionary<string, int> QuizCount = new Dictionary<string, int>();
+            Dictionary<string, string> employeeStats = new Dictionary<string, string>();
             var MockCount = db.Reports.Where(x => x.UserId == UserId && x.QuizType == "Mock").Count();
             var NonMockCount = db.Reports.Where(x => x.UserId == UserId && x.QuizType == "Non-Mock").Count();
-            QuizCount.Add("Mock", MockCount);
-            QuizCount.Add("Non-Mock", NonMockCount);
-            return Ok(QuizCount);
+            var TotalAccuracy = db.Reports.Where(x => x.UserId == UserId).Select(y => y.Accuracy).Sum() / (MockCount + NonMockCount);
+            employeeStats.Add("Mock", MockCount.ToString());
+            employeeStats.Add("Non-Mock", NonMockCount.ToString());
+            employeeStats.Add("Accuracy", TotalAccuracy.ToString());
+            return Ok(employeeStats);
         }
     }
 }
