@@ -4,7 +4,7 @@ import { CreateQuestionsComponent } from './content-creator/create-questions/cre
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ContentCreatorComponent } from './content-creator/content-creator.component';
@@ -59,6 +59,8 @@ import { ReportingUserComponent } from './reporting-user/reporting-user.componen
 import { AnalyticsByTagComponent } from './reporting-user/analytics-by-tag/analytics-by-tag.component';
 import { AnalyticsByQuizComponent } from './reporting-user/analytics-by-quiz/analytics-by-quiz.component';
 import { AnalyticsByUserComponent } from './reporting-user/analytics-by-user/analytics-by-user.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { HttpErrorInterceptor } from '../app/http-error-interceptor';
 import { Mainnav4Component } from './reporting-user/mainnav4/mainnav4.component';
 import { ViewUserDetailsComponent } from './reporting-user/analytics-by-user/view-user-details/view-user-details.component';
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -163,7 +165,8 @@ export function provideConfig() {
 		NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
 		MatProgressBarModule,
 		ChartsModule,
-		NgxGaugeModule
+		NgxGaugeModule,
+		MatExpansionModule
 	],
 	providers: [
 		AuthGuard,
@@ -171,9 +174,14 @@ export function provideConfig() {
 		{
 			provide: AuthServiceConfig,
 			useFactory: provideConfig
+		},
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: HttpErrorInterceptor,
+			multi: true
 		}
 	],
-	bootstrap: [AppComponent],
+	bootstrap: [ AppComponent ],
 	entryComponents: [
 		CreatetagComponent,
 		UpdateQuestionComponent,
@@ -188,4 +196,4 @@ export function provideConfig() {
 		CreateQuestionsComponent
 	]
 })
-export class AppModule { }
+export class AppModule {}

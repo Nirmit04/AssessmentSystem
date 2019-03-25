@@ -1,42 +1,58 @@
 <app-mainnav4>
-  <!-- <div>
-    <br /><br /><br />
+  <div>
     <h1 style="text-align: center">Analytics by Tag</h1>
     <br /><br />
-    <p>
-      <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
-              [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-        Toggle
-      </button>
-    </p>
-    <div id="collapseExample" [ngbCollapse]="isCollapsed">
-      <div class="card">
-        <div class="card-body">
-          You can collapse this card by clicking Toggle
+    <div class="row">
+      <div class="col-md-6">
+        <div *ngIf="barChartLabels">
+          <canvas baseChart 
+          [datasets]="barChartData" 
+          [labels]="barChartLabels" 
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins" 
+          [legend]="barChartLegend" 
+          [chartType]="barChartType">
+          </canvas>
         </div>
       </div>
-    </div> -->
-    <br/><br/>
-    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
-      class="row-border hover table table-bordered table-striped">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">#S. No.</th>
-          <th scope="col">Tag Name</th>
-          <th scope="col">Accuracy</th>
-          <th scope="col">Efficiency</th>
-        </tr>
-      </thead>
-      <tbody>
-        <ng-container *ngFor="let item of tagAnalysisList;index as i;">
+      <div class="col-md-6">
+          <div *ngIf="radarChartLabels">
+              <canvas baseChart
+              [datasets]="radarChartData"
+              [options]="radarChartOptions"
+              [labels]="radarChartLabels"
+              [chartType]="radarChartType">
+            </canvas>
+          </div>
+        </div>
+    </div>
+      <br /><br />
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+        class="row-border hover table table-bordered table-striped">
+        <thead class="thead-dark">
           <tr>
-            <th scope="row">{{i+1}}</th>
-            <td scope="row">{{item.QuizName}}</td>
-            <td scope="row">{{item.StartDateTime}}</td>
-            <td scope="row">{{item.EndDateTime}}</td>
+            <th scope="col">#S. No.</th>
+            <th scope="col">Tag Name</th>
+            <th scope="col">No. Of Quiz</th>
+            <th scope="col">High Score</th>
+            <th scope="col">Low Score</th>
+            <th scope="col">Average Score</th>
+            <th scope="col">Accuracy</th>
           </tr>
-        </ng-container>
-      </tbody>
-    </table>
-  <!-- </div> -->
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let item of tagAnalysisList;index as i;">
+            <tr>
+              <th scope="row">{{i+1}}</th>
+              <td scope="row">{{item.SubjectName}}</td>
+              <td scope="row">{{item.Properties.NoOfQuiz}}</td>
+              <td scope="row">{{item.Properties.HighestScore}}</td>
+              <td scope="row">{{item.Properties.LowestScore}}</td>
+              <td scope="row">{{item.Properties.AverageMarks}}</td>
+              <td scope="row">{{item.Properties.Accuracy}}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
 </app-mainnav4>
