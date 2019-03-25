@@ -5,7 +5,7 @@
       <input type="hidden" #CreatedBy="ngModel" name="CreatedBy" [(ngModel)]="CCreatedBy">
       <div class="form-group col-md-6">
         <label>Start Date Time:</label><br />
-        <input type="datetime-local" required name="StartDateTime" #EndDateTime="ngModel" [(ngModel)]="q1">
+        <input type="datetime-local" required name="StartDateTime" #StartDateTime="ngModel" [(ngModel)]="q1">
         <div class="validation-error" *ngIf="StartDateTime.invalid && StartDateTime.touched">This field is
           required.
         </div>

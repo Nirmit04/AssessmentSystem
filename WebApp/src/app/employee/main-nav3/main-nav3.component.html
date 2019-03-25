@@ -4,10 +4,17 @@
     [opened]="!(isHandset$ | async)">
     <mat-toolbar><a mat-list-item routerLink="/emp-dash"><i class="fa fa-tachometer" aria-hidden="true"></i>  Dashboard</a></mat-toolbar>
     <mat-nav-list>
+<<<<<<< HEAD
       <a mat-list-item routerLink="/emp-dash/non-mocks"><i class="fa fa-code" aria-hidden="true"></i> Scheduled Quizzes</a>
       <a mat-list-item routerLink="/emp-dash/non-mock-report"><i class="fa fa-retweet" aria-hidden="true"></i>  Scheduled Quizzes' Result</a>
       <a mat-list-item routerLink="/emp-dash/mock-report"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Non-Scheduled Quizzes' Result</a>
       <a mat-list-item routerLink="/emp-dash/mock"><i class="fa fa-check" aria-hidden="true"></i> Give Mocks</a>
+=======
+      <a mat-list-item routerLink="/emp-dash/non-mocks">Scheduled Quizzes</a>
+      <a mat-list-item routerLink="/emp-dash/quiz/non-mock-report">Scheduled Quizzes' Result</a>
+      <a mat-list-item routerLink="/emp-dash/quiz/mock-report">Non-Scheduled Quizzes' Result</a>
+      <a mat-list-item routerLink="/emp-dash/mock">Give Mocks</a>
+>>>>>>> 7b4d1b043a700e8767c354c74e4cdaf57906520f
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

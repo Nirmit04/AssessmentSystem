@@ -346,6 +346,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _employee_mock_mock_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./employee/mock/mock.component */ "./src/app/employee/mock/mock.component.ts");
 /* harmony import */ var _employee_mock_report_mock_report_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./employee/mock-report/mock-report.component */ "./src/app/employee/mock-report/mock-report.component.ts");
 /* harmony import */ var _test_admin_retrieve_schedule_add_user_add_user_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./test-admin/retrieve-schedule/add-user/add-user.component */ "./src/app/test-admin/retrieve-schedule/add-user/add-user.component.ts");
+/* harmony import */ var _reporting_user_analytics_by_tag_analytics_by_tag_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./reporting-user/analytics-by-tag/analytics-by-tag.component */ "./src/app/reporting-user/analytics-by-tag/analytics-by-tag.component.ts");
+/* harmony import */ var _reporting_user_analytics_by_user_analytics_by_user_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./reporting-user/analytics-by-user/analytics-by-user.component */ "./src/app/reporting-user/analytics-by-user/analytics-by-user.component.ts");
+/* harmony import */ var _reporting_user_analytics_by_quiz_analytics_by_quiz_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./reporting-user/analytics-by-quiz/analytics-by-quiz.component */ "./src/app/reporting-user/analytics-by-quiz/analytics-by-quiz.component.ts");
+/* harmony import */ var _reporting_user_mainnav4_mainnav4_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./reporting-user/mainnav4/mainnav4.component */ "./src/app/reporting-user/mainnav4/mainnav4.component.ts");
+
+
+
+
 
 
 
@@ -391,11 +399,17 @@ var routes = [
     { path: 'emp-dash', component: _employee_employee_component__WEBPACK_IMPORTED_MODULE_18__["EmployeeComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
     { path: 'emp-dash/quiz/take-quiz', component: _employee_take_quiz_take_quiz_component__WEBPACK_IMPORTED_MODULE_19__["TakeQuizComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
     { path: 'emp-dash/quiz/result', component: _employee_result_result_component__WEBPACK_IMPORTED_MODULE_20__["ResultComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'em-dash/quiz/non-mock-report', component: _employee_non_mock_report_non_mock_report_component__WEBPACK_IMPORTED_MODULE_21__["NonMockReportComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'qmp-dash/quiz/detailed-report', component: _employee_detailed_report_detailed_report_component__WEBPACK_IMPORTED_MODULE_22__["DetailedReportComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
+    { path: 'emp-dash/quiz/non-mock-report', component: _employee_non_mock_report_non_mock_report_component__WEBPACK_IMPORTED_MODULE_21__["NonMockReportComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
+    { path: 'emp-dash/quiz/detailed-report', component: _employee_detailed_report_detailed_report_component__WEBPACK_IMPORTED_MODULE_22__["DetailedReportComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
     { path: 'emp-dash/mock', component: _employee_mock_mock_component__WEBPACK_IMPORTED_MODULE_23__["MockComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
+    { path: 'emp-dash/quiz/mock-report', component: _employee_mock_report_mock_report_component__WEBPACK_IMPORTED_MODULE_24__["MockReportComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
+    { path: 'ta-dash/add-user', component: _test_admin_retrieve_schedule_add_user_add_user_component__WEBPACK_IMPORTED_MODULE_25__["AddUserComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
+    { path: 'ru-dash/ana-by-tag', component: _reporting_user_analytics_by_tag_analytics_by_tag_component__WEBPACK_IMPORTED_MODULE_26__["AnalyticsByTagComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
+    { path: 'ru-dash', component: _reporting_user_mainnav4_mainnav4_component__WEBPACK_IMPORTED_MODULE_29__["Mainnav4Component"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
     { path: 'emp-dash/mock-report', component: _employee_mock_report_mock_report_component__WEBPACK_IMPORTED_MODULE_24__["MockReportComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'ta-dash/add-user', component: _test_admin_retrieve_schedule_add_user_add_user_component__WEBPACK_IMPORTED_MODULE_25__["AddUserComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] }
+    { path: 'ta-dash/add-user', component: _test_admin_retrieve_schedule_add_user_add_user_component__WEBPACK_IMPORTED_MODULE_25__["AddUserComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
+    { path: 'ru-dash/ana-by-user', component: _reporting_user_analytics_by_user_analytics_by_user_component__WEBPACK_IMPORTED_MODULE_27__["AnalyticsByUserComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
+    { path: 'ru-dash/ana-by-quiz', component: _reporting_user_analytics_by_quiz_analytics_by_quiz_component__WEBPACK_IMPORTED_MODULE_28__["AnalyticsByQuizComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -536,6 +550,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! ng2-charts */ "./node_modules/ng2-charts/fesm5/ng2-charts.js");
 /* harmony import */ var ngx_gauge__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! ngx-gauge */ "./node_modules/ngx-gauge/fesm5/ngx-gauge.js");
 /* harmony import */ var _test_admin_add_user1_add_user1_component__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! ./test-admin/add-user1/add-user1.component */ "./src/app/test-admin/add-user1/add-user1.component.ts");
+/* harmony import */ var _reporting_user_reporting_user_component__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! ./reporting-user/reporting-user.component */ "./src/app/reporting-user/reporting-user.component.ts");
+/* harmony import */ var _reporting_user_analytics_by_tag_analytics_by_tag_component__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! ./reporting-user/analytics-by-tag/analytics-by-tag.component */ "./src/app/reporting-user/analytics-by-tag/analytics-by-tag.component.ts");
+/* harmony import */ var _reporting_user_analytics_by_quiz_analytics_by_quiz_component__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! ./reporting-user/analytics-by-quiz/analytics-by-quiz.component */ "./src/app/reporting-user/analytics-by-quiz/analytics-by-quiz.component.ts");
+/* harmony import */ var _reporting_user_analytics_by_user_analytics_by_user_component__WEBPACK_IMPORTED_MODULE_60__ = __webpack_require__(/*! ./reporting-user/analytics-by-user/analytics-by-user.component */ "./src/app/reporting-user/analytics-by-user/analytics-by-user.component.ts");
+/* harmony import */ var _angular_material_expansion__WEBPACK_IMPORTED_MODULE_61__ = __webpack_require__(/*! @angular/material/expansion */ "./node_modules/@angular/material/esm5/expansion.es5.js");
+/* harmony import */ var _app_http_error_interceptor__WEBPACK_IMPORTED_MODULE_62__ = __webpack_require__(/*! ../app/http-error-interceptor */ "./src/app/http-error-interceptor.ts");
+/* harmony import */ var _reporting_user_mainnav4_mainnav4_component__WEBPACK_IMPORTED_MODULE_63__ = __webpack_require__(/*! ./reporting-user/mainnav4/mainnav4.component */ "./src/app/reporting-user/mainnav4/mainnav4.component.ts");
+/* harmony import */ var _reporting_user_analytics_by_user_view_user_details_view_user_details_component__WEBPACK_IMPORTED_MODULE_64__ = __webpack_require__(/*! ./reporting-user/analytics-by-user/view-user-details/view-user-details.component */ "./src/app/reporting-user/analytics-by-user/view-user-details/view-user-details.component.ts");
 
 
 
@@ -593,6 +615,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+// import { Mainnav4Component } from './reporting-user/mainnav4/mainnav4.component';
 
 var ngxUiLoaderConfig = {
     bgsColor: '#00ACC1',
@@ -669,7 +700,13 @@ var AppModule = /** @class */ (function () {
                 _employee_main_nav3_main_nav3_component__WEBPACK_IMPORTED_MODULE_50__["MainNav3Component"],
                 _employee_result_result_component__WEBPACK_IMPORTED_MODULE_51__["ResultComponent"],
                 _employee_non_mock_report_non_mock_report_component__WEBPACK_IMPORTED_MODULE_53__["NonMockReportComponent"],
-                _test_admin_add_user1_add_user1_component__WEBPACK_IMPORTED_MODULE_56__["AddUser1Component"]
+                _test_admin_add_user1_add_user1_component__WEBPACK_IMPORTED_MODULE_56__["AddUser1Component"],
+                _reporting_user_reporting_user_component__WEBPACK_IMPORTED_MODULE_57__["ReportingUserComponent"],
+                _reporting_user_analytics_by_tag_analytics_by_tag_component__WEBPACK_IMPORTED_MODULE_58__["AnalyticsByTagComponent"],
+                _reporting_user_analytics_by_quiz_analytics_by_quiz_component__WEBPACK_IMPORTED_MODULE_59__["AnalyticsByQuizComponent"],
+                _reporting_user_analytics_by_user_analytics_by_user_component__WEBPACK_IMPORTED_MODULE_60__["AnalyticsByUserComponent"],
+                _reporting_user_mainnav4_mainnav4_component__WEBPACK_IMPORTED_MODULE_63__["Mainnav4Component"],
+                _reporting_user_analytics_by_user_view_user_details_view_user_details_component__WEBPACK_IMPORTED_MODULE_64__["ViewUserDetailsComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -692,7 +729,8 @@ var AppModule = /** @class */ (function () {
                 ngx_ui_loader__WEBPACK_IMPORTED_MODULE_41__["NgxUiLoaderModule"].forRoot(ngxUiLoaderConfig),
                 _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_52__["MatProgressBarModule"],
                 ng2_charts__WEBPACK_IMPORTED_MODULE_54__["ChartsModule"],
-                ngx_gauge__WEBPACK_IMPORTED_MODULE_55__["NgxGaugeModule"]
+                ngx_gauge__WEBPACK_IMPORTED_MODULE_55__["NgxGaugeModule"],
+                _angular_material_expansion__WEBPACK_IMPORTED_MODULE_61__["MatExpansionModule"],
             ],
             providers: [
                 _auth_guard__WEBPACK_IMPORTED_MODULE_32__["AuthGuard"],
@@ -700,6 +738,11 @@ var AppModule = /** @class */ (function () {
                 {
                     provide: angularx_social_login__WEBPACK_IMPORTED_MODULE_13__["AuthServiceConfig"],
                     useFactory: provideConfig
+                },
+                {
+                    provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HTTP_INTERCEPTORS"],
+                    useClass: _app_http_error_interceptor__WEBPACK_IMPORTED_MODULE_62__["HttpErrorInterceptor"],
+                    multi: true
                 }
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]],
@@ -712,7 +755,9 @@ var AppModule = /** @class */ (function () {
                 _test_admin_retrieve_schedule_add_user_add_user_component__WEBPACK_IMPORTED_MODULE_36__["AddUserComponent"],
                 _test_admin_retrieve_schedule_view_schedule_view_schedule_component__WEBPACK_IMPORTED_MODULE_39__["ViewScheduleComponent"],
                 _employee_view_answer_view_answer_component__WEBPACK_IMPORTED_MODULE_49__["ViewAnswerComponent"],
-                _test_admin_add_user1_add_user1_component__WEBPACK_IMPORTED_MODULE_56__["AddUser1Component"]
+                _test_admin_add_user1_add_user1_component__WEBPACK_IMPORTED_MODULE_56__["AddUser1Component"],
+                _reporting_user_analytics_by_user_view_user_details_view_user_details_component__WEBPACK_IMPORTED_MODULE_64__["ViewUserDetailsComponent"],
+                _content_creator_create_questions_create_questions_component__WEBPACK_IMPORTED_MODULE_3__["CreateQuestionsComponent"]
             ]
         })
     ], AppModule);
@@ -841,7 +886,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav>\n  <div class=\"card\">\n    <div class=\"card-body\">\n      <h5 class=\"card-title\">Add Questions</h5>\n      <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n        <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"CCreatedBy\">\n        <div class=\"form-group\">\n          <label>Question</label>\n          <textarea class=\"form-control\" name=\"QuestionStatement\" #QuestionStatement=\"ngModel\"\n            [(ngModel)]=\"service.formData.QuestionStatement\" rows=\"3\" required></textarea>\n          <div class=\"validation-error\" *ngIf=\"QuestionStatement.invalid && QuestionStatement.touched\">This field is\n            required.\n          </div>\n        </div>\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label>Option 1</label>\n            <input required type=\"text\" name=\"Option1\" #Option1=\"ngModel\" [(ngModel)]=\"service.formData.Option1\"\n              class=\"form-control\">\n            <div class=\"validation-error\" *ngIf=\"Option1.invalid && Option1.touched\">This field is required.</div>\n          </div>\n          <div class=\"form-group col-md-6\">\n            <label>Option 2</label>\n            <input required type=\"text\" name=\"Option2\" #Option2=\"ngModel\" [(ngModel)]=\"service.formData.Option2\"\n              class=\"form-control\">\n            <div class=\"validation-error\" *ngIf=\"Option2.invalid && Option2.touched\">This field is required.</div>\n          </div>\n        </div>\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label>Option 3</label>\n            <input type=\"text\" name=\"Option3\" #Option3=\"ngModel\" [(ngModel)]=\"service.formData.Option3\"\n              class=\"form-control\">\n          </div>\n          <div class=\"form-group col-md-6\">\n            <label>Option 4</label>\n            <input type=\"text\" name=\"Option4\" #Option4=\"ngModel\" [(ngModel)]=\"service.formData.Option4\"\n              class=\"form-control\">\n          </div>\n        </div>\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label>Correct Option</label>\n            <select name=\"Answer\" [disabled]=\"bool\" required #Answer=\"ngModel\" [(ngModel)]=\"service.formData.Answer\"\n            class=\"form-control\">\n            <option selected disabled value=\"\">Choose</option>\n            <option value=\"1\">1</option>\n            <option value=\"2\">2</option>\n            <option value=\"3\">3</option>\n            <option value=\"4\">4</option>\n          </select>\n            <div class=\"validation-error\" *ngIf=\"Answer.invalid && Answer.touched\">This field is required.\n            </div>\n          </div>\n          <div class=\"form-group col-md-6\">\n            <label>Marks</label>\n            <select name=\"Marks\" [disabled]=\"bool\" required #Marks=\"ngModel\" [(ngModel)]=\"service.formData.Marks\"\n            class=\"form-control\">\n            <option selected disabled value=\"\">Choose</option>\n            <option value=\"1\">1</option>\n            <option value=\"2\">2</option>\n            <option value=\"3\">3</option>\n            <option value=\"5\">5</option>\n          </select>\n            <div class=\"validation-error\" *ngIf=\"Marks.invalid && Marks.touched\">This field is required.</div>\n          </div>\n        </div>\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label>Select Subject</label>\n            <select name=\"SubjectId\" required #SubjectId=\"ngModel\" [(ngModel)]=\"service.formData.SubjectId\"\n              class=\"form-control\">\n              <option selected disabled value=\"\">Choose an option..</option>\n              <option *ngFor=\"let Subject of Subjects\" value=\"{{Subject.SubjectId}}\">{{Subject.Name}}</option>\n            </select>\n            <div class=\"validation-error\" *ngIf=\"SubjectId.invalid && SubjectId.touched\">This field is required.</div>\n          </div>\n          <div class=\"form-group col-md-6\">\n            <label>Select Difficulty-Level</label>\n            <select name=\"Difficulty\" required #Difficulty=\"ngModel\" [(ngModel)]=\"service.formData.Difficulty\"\n              class=\"form-control\">\n              <option selected disabled value=\"\">Choose an option...</option>\n              <option value=\"Beginner\">Beginner</option>\n              <option value=\"Intermediate\">Intermediate</option>\n              <option value=\"Advanced\">Advanced</option>\n            </select>\n            <div class=\"validation-error\" *ngIf=\"Difficulty.invalid && Difficulty.touched\">This field is required.</div>\n          </div>\n        </div>\n        <div class=\"form-group\" style=\"margin-top: 3%\">\n          <button type=\"submit\" [disabled]=\"form.invalid\" class=\"btn btn-primary btn-block\">Submit</button>\n        </div>\n      </form>\n    </div>\n  </div>\n</app-main-nav>"
+module.exports = "\n<app-main-nav>\n  <div class=\"card\">\n    <div class=\"card-body\">\n      <h5 class=\"card-title\">Add Questions</h5>\n      <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n        <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"CCreatedBy\">\n        <div class=\"form-group\">\n          <label>Question</label>\n          <textarea class=\"form-control\" name=\"QuestionStatement\" #QuestionStatement=\"ngModel\"\n            [(ngModel)]=\"service.formData.QuestionStatement\" rows=\"3\" required></textarea>\n          <div class=\"validation-error\" *ngIf=\"QuestionStatement.invalid && QuestionStatement.touched\">This field is\n            required.\n          </div>\n        </div>\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label>Option 1</label>\n            <input required type=\"text\" name=\"Option1\" #Option1=\"ngModel\" [(ngModel)]=\"service.formData.Option1\"\n              class=\"form-control\">\n            <div class=\"validation-error\" *ngIf=\"Option1.invalid && Option1.touched\">This field is required.</div>\n          </div>\n          <div class=\"form-group col-md-6\">\n            <label>Option 2</label>\n            <input required type=\"text\" name=\"Option2\" #Option2=\"ngModel\" [(ngModel)]=\"service.formData.Option2\"\n              class=\"form-control\">\n            <div class=\"validation-error\" *ngIf=\"Option2.invalid && Option2.touched\">This field is required.</div>\n          </div>\n        </div>\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label>Option 3</label>\n            <input type=\"text\" name=\"Option3\" #Option3=\"ngModel\" [(ngModel)]=\"service.formData.Option3\"\n              class=\"form-control\">\n          </div>\n          <div class=\"form-group col-md-6\">\n            <label>Option 4</label>\n            <input type=\"text\" name=\"Option4\" #Option4=\"ngModel\" [(ngModel)]=\"service.formData.Option4\"\n              class=\"form-control\">\n          </div>\n        </div>\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label>Correct Option</label>\n            <select name=\"Answer\" [disabled]=\"bool\" required #Answer=\"ngModel\" [(ngModel)]=\"service.formData.Answer\"\n              class=\"form-control\">\n              <option selected disabled value=\"\">Choose</option>\n              <option value=\"1\">1</option>\n              <option value=\"2\">2</option>\n              <option value=\"3\">3</option>\n              <option value=\"4\">4</option>\n            </select>\n            <div class=\"validation-error\" *ngIf=\"Answer.invalid && Answer.touched\">This field is required.\n            </div>\n          </div>\n          <div class=\"form-group col-md-6\">\n            <label>Marks</label>\n            <select name=\"Marks\" [disabled]=\"bool\" required #Marks=\"ngModel\" [(ngModel)]=\"service.formData.Marks\"\n              class=\"form-control\">\n              <option selected disabled value=\"\">Choose</option>\n              <option value=\"1\">1</option>\n              <option value=\"2\">2</option>\n              <option value=\"3\">3</option>\n              <option value=\"5\">5</option>\n            </select>\n            <div class=\"validation-error\" *ngIf=\"Marks.invalid && Marks.touched\">This field is required.</div>\n          </div>\n        </div>\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label>Select Subject</label>\n            <select name=\"SubjectId\" required #SubjectId=\"ngModel\" [(ngModel)]=\"service.formData.SubjectId\"\n              class=\"form-control\">\n              <option selected disabled value=\"\">Choose an option..</option>\n              <option *ngFor=\"let Subject of Subjects\" value=\"{{Subject.SubjectId}}\">{{Subject.Name}}</option>\n            </select>\n            <div class=\"validation-error\" *ngIf=\"SubjectId.invalid && SubjectId.touched\">This field is required.</div>\n          </div>\n          <div class=\"form-group col-md-6\">\n            <label>Select Difficulty-Level</label>\n            <select name=\"Difficulty\" required #Difficulty=\"ngModel\" [(ngModel)]=\"service.formData.Difficulty\"\n              class=\"form-control\">\n              <option selected disabled value=\"\">Choose an option...</option>\n              <option value=\"Beginner\">Beginner</option>\n              <option value=\"Intermediate\">Intermediate</option>\n              <option value=\"Advanced\">Advanced</option>\n            </select>\n            <div class=\"validation-error\" *ngIf=\"Difficulty.invalid && Difficulty.touched\">This field is required.</div>\n          </div>\n        </div>\n        <div class=\"form-group\" style=\"margin-top: 3%\">\n          <button type=\"submit\" [disabled]=\"form.invalid\" class=\"btn btn-primary btn-block\">Submit</button>\n        </div>\n      </form>\n    </div>\n  </div>\n</app-main-nav>\n"
 
 /***/ }),
 
@@ -864,7 +909,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var CreateQuestionsComponent = /** @class */ (function () {
-    function CreateQuestionsComponent(service, toastr) {
+    function CreateQuestionsComponent(// @Inject(MAT_DIALOG_DATA) public data,
+    // public dialogRef: MatDialogRef<CreateQuestionsComponent>,
+    service, toastr) {
         this.service = service;
         this.toastr = toastr;
         this.CCreatedBy = "";
@@ -935,7 +982,7 @@ module.exports = ".sidenav-container {\n\theight: 100%;\n}\n.sidenav-container a
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-sidenav-container class=\"sidenav-container\">\n  <mat-sidenav #drawer class=\"sidenav\" fixedInViewport=\"true\"\n    [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\" [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\n    [opened]=\"!(isHandset$ | async)\">\n    <mat-toolbar><a mat-list-item routerLink=\"/cc-dash\">Dashboard</a></mat-toolbar>\n    <mat-nav-list>\n      <a mat-list-item routerLink=\"/create-question\">Create Question</a>\n      <a mat-list-item routerLink=\"/quiz\">Create/Retrieve Quiz</a>\n      <a mat-list-item routerLink=\"/tag\">Create / Edit Tag</a>\n      <a mat-list-item routerLink=\"/rqbank\">Questions Created</a>\n      <a mat-list-item routerLink=\"/archive-quiz\">Archive Quizes</a>\n    </mat-nav-list>\n  </mat-sidenav>\n  <mat-sidenav-content>\n    <mat-toolbar>\n      <button type=\"button\" aria-label=\"Toggle sidenav\" mat-icon-button (click)=\"drawer.toggle()\"\n        *ngIf=\"isHandset$ | async\">\n        <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\n      </button>\n      <span>Content Creator</span>\n      <span class=\"spacer\"></span>\n      <a class=\"log\" (click)=\"logout()\">Log Out</a>\n    </mat-toolbar>\n    <div class=\"content\">\n      <ng-content></ng-content>\n    </div>\n  </mat-sidenav-content>\n</mat-sidenav-container>"
+module.exports = "<mat-sidenav-container class=\"sidenav-container\">\n  <mat-sidenav #drawer class=\"sidenav\" fixedInViewport=\"true\"\n    [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\" [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\n    [opened]=\"!(isHandset$ | async)\">\n    <mat-toolbar><a mat-list-item routerLink=\"/cc-dash\">Dashboard</a></mat-toolbar>\n    <mat-nav-list>\n      <a mat-list-item routerLink=\"/cc-dash/create-question\">Create Question</a>\n      <a mat-list-item routerLink=\"/cc-dash/quiz\">Create/Retrieve Quiz</a>\n      <a mat-list-item routerLink=\"/cc-dash/tag\">Create / Edit Tag</a>\n      <a mat-list-item routerLink=\"/cc-dash/rqbank\">Questions Created</a>\n      <a mat-list-item routerLink=\"/cc-dash/archive-quiz\">Archive Quizes</a>\n    </mat-nav-list>\n  </mat-sidenav>\n  <mat-sidenav-content>\n    <mat-toolbar>\n      <button type=\"button\" aria-label=\"Toggle sidenav\" mat-icon-button (click)=\"drawer.toggle()\"\n        *ngIf=\"isHandset$ | async\">\n        <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\n      </button>\n      <span>Content Creator</span>\n      <span class=\"spacer\"></span>\n      <a class=\"log\" (click)=\"logout()\">Log Out</a>\n    </mat-toolbar>\n    <div class=\"content\">\n      <ng-content></ng-content>\n    </div>\n  </mat-sidenav-content>\n</mat-sidenav-container>"
 
 /***/ }),
 
@@ -1024,7 +1071,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav>\n\n  <!-- <div class=\"row\">\n   <div>\n<div class=\"row\">\n  <div>\n    <input style=\"margin-left: 5%; width: 40rem\" #searchField class=\"form-control mr-sm-2 border border-secondary\"\n      placeholder=\"Filter..\" aria-label=\"Filter\" #searchInput=\"ngModel\" [(ngModel)]=\"searchText\">\n  </div> -->\n  <!-- <div>\n    <select (change)=\"filterSubject($event)\" #dropdown style=\"margin-left :40%\"\n      class=\"form-control border border-secondary\">\n      <option selected value>Choose Difficulty Level</option>\n      <option value=\"Beginner\">Beginner</option>\n      <option value=\"Intermediate\">Intermediate</option>\n      <option value=\"Advanced\">Advanced</option>\n    </select>\n  </div>\n</div>\n<br /><br/>  -->\n\n  <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th>#Question ID</th>\n        <th>Question</th>\n        <th>Subject</th>\n        <th>Difficulty Level</th>\n        <th>Action</th>\n      </tr>\n    </thead>\n\n    <tbody>\n      <tr *ngFor=\"let ques of questionList; index as i;\">\n        <td>{{i+1}}</td>\n        <td (click)=\"viewUserQues(ques.QuestionId,i+1)\">{{ques.QuestionStatement}}</td>\n        <td (click)=\"viewUserQues(ques.QuestionId,i+1)\">{{ques.SubjectName}}</td>\n        <td (click)=\"viewUserQues(ques.QuestionId,i+1)\">{{ques.Difficulty}}</td>\n        <td>\n          <a class=\"btn btn-sm btn-info text-white\" (click)=\"editUserQues(ques.QuestionId,i+1)\"><i\n              class=\"fa fa-pencil\"></i></a>\n          <a class=\"btn btn-sm btn-danger text-white\" (click)=\"deleteQues(ques.QuestionId)\"><i\n              class=\"fa fa-trash\"></i></a>\n        </td>\n      </tr>\n\n    </tbody>\n\n  </table>\n\n</app-main-nav>"
+module.exports = "<app-main-nav>\n  <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th>#S. No.</th>\n        <th>Question</th>\n        <th>Subject</th>\n        <th>Difficulty Level</th>\n        <th>Action</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let ques of questionList; index as i;\">\n        <td>{{i+1}}</td>\n        <td (click)=\"viewUserQues(ques.QuestionId,i+1)\">{{ques.QuestionStatement}}</td>\n        <td (click)=\"viewUserQues(ques.QuestionId,i+1)\">{{ques.SubjectName}}</td>\n        <td (click)=\"viewUserQues(ques.QuestionId,i+1)\">{{ques.Difficulty}}</td>\n        <td>\n          <a class=\"btn btn-sm btn-info text-white\" (click)=\"editUserQues(ques.QuestionId,i+1)\"><i\n              class=\"fa fa-pencil\"></i></a>\n          <a class=\"btn btn-sm btn-danger text-white\" (click)=\"deleteQues(ques.QuestionId)\"><i\n              class=\"fa fa-trash\"></i></a>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</app-main-nav>"
 
 /***/ }),
 
@@ -1140,7 +1187,7 @@ var RetrieveQuestionBankComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbnRlbnQtY3JlYXRvci9yZXRyaWV2ZS1xdWl6L2FkZC1xdWVzLWluLXF1aXovYWRkLXF1ZXMtaW4tcXVpei5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "mat-dialog-content {\n\tposition: relative;\n}\n.pos {\n\tposition: absolute;\n\tright: 1%;\n\ttop: 2%;\n\tz-index: 9999;\n\twidth: 35px;\n\theight: 35px;\n}\nmat-icon {\n\twidth: 30px;\n\theight: 30px;\n\tposition: absolute;\n\tleft: 10%;\n\ttop: 10%;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29udGVudC1jcmVhdG9yL3JldHJpZXZlLXF1aXovYWRkLXF1ZXMtaW4tcXVpei9hZGQtcXVlcy1pbi1xdWl6LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Q0FDQyxrQkFBa0I7QUFDbkI7QUFDQTtDQUNDLGtCQUFrQjtDQUNsQixTQUFTO0NBQ1QsT0FBTztDQUNQLGFBQWE7Q0FDYixXQUFXO0NBQ1gsWUFBWTtBQUNiO0FBQ0E7Q0FDQyxXQUFXO0NBQ1gsWUFBWTtDQUNaLGtCQUFrQjtDQUNsQixTQUFTO0NBQ1QsUUFBUTtBQUNUIiwiZmlsZSI6InNyYy9hcHAvY29udGVudC1jcmVhdG9yL3JldHJpZXZlLXF1aXovYWRkLXF1ZXMtaW4tcXVpei9hZGQtcXVlcy1pbi1xdWl6LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJtYXQtZGlhbG9nLWNvbnRlbnQge1xuXHRwb3NpdGlvbjogcmVsYXRpdmU7XG59XG4ucG9zIHtcblx0cG9zaXRpb246IGFic29sdXRlO1xuXHRyaWdodDogMSU7XG5cdHRvcDogMiU7XG5cdHotaW5kZXg6IDk5OTk7XG5cdHdpZHRoOiAzNXB4O1xuXHRoZWlnaHQ6IDM1cHg7XG59XG5tYXQtaWNvbiB7XG5cdHdpZHRoOiAzMHB4O1xuXHRoZWlnaHQ6IDMwcHg7XG5cdHBvc2l0aW9uOiBhYnNvbHV0ZTtcblx0bGVmdDogMTAlO1xuXHR0b3A6IDEwJTtcbn1cbiJdfQ== */"
 
 /***/ }),
 
@@ -1151,7 +1198,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card-body\">\n  <h5 class=\"card-title\" style=\"text-align: center\">Choose Questions</h5><br>\n  <form #Questionform=\"ngForm\" (submit)=\"onDetailsSubmit(Questionform)\" autocomplete=\"off\">\n    <div *ngFor=\"let x of questions; let i = index\"><br>\n      <input [id]=\"'questions-'+i\" type=\"checkbox\" value=\"{{x.Question_ID}}\" [checked]=\"x.selected\"\n        (change)=\"updateSelectedQuestions(i)\">\n      <label>{{x.QuestionStatement}}</label>\n    </div>\n    <button style=\"margin-left:5%; margin-right: 5%\" type=\"submit\" class=\"btn btn-primary\">Submit</button>\n    <button type=\"button\" class=\"btn btn-primary btn-danger\" [mat-dialog-close]> Close</button>\n  </form>\n</div>"
+module.exports = "<button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\"><mat-icon>clear</mat-icon></button>\n<div class=\"card-body\">\n  <h5 class=\"card-title\" style=\"text-align: center\">Choose Questions</h5><br>\n  <form #Questionform=\"ngForm\" (submit)=\"onDetailsSubmit(Questionform)\" autocomplete=\"off\">\n    <div *ngFor=\"let x of questions; let i = index\"><br>\n      <input [id]=\"'questions-'+i\" type=\"checkbox\" value=\"{{x.Question_ID}}\" [checked]=\"x.selected\"\n        (change)=\"updateSelectedQuestions(i)\">\n      <label>{{x.QuestionStatement}}</label>\n    </div>\n    <button style=\"margin-left:5%; margin-right: 5%\" type=\"submit\" class=\"btn btn-primary\">Submit</button>\n  </form>\n</div>"
 
 /***/ }),
 
@@ -1189,7 +1236,6 @@ var AddQuesInQuizComponent = /** @class */ (function () {
     }
     AddQuesInQuizComponent.prototype.ngOnInit = function () {
         this.questions = this.data;
-        console.log(this.questions);
         this.resetForm();
     };
     AddQuesInQuizComponent.prototype.resetForm = function (form) {
@@ -1220,7 +1266,6 @@ var AddQuesInQuizComponent = /** @class */ (function () {
     AddQuesInQuizComponent.prototype.onDetailsSubmit = function (form) {
         var _this = this;
         var QuestionId = this.questions.filter(function (QuestionId) { return QuestionId.selected; }).map(function (idSelected) { return idSelected.QuestionId; });
-        console.log(QuestionId);
         this.service.putQuestionsSelected(QuestionId).subscribe(function (res) {
             _this.toastr.success('Inserted successfully');
         });
@@ -1263,7 +1308,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav>\n  <div>\n    <br /><br /><br />\n    <h1 style=\"text-align: center\">List of Archived Quizzes</h1>\n    <!-- <div class=\"row\">\n    <div>\n      <input style=\"margin-left: 5%; width: 40rem\" #searchField class=\"form-control mr-sm-2 border border-secondary\"\n        placeholder=\"Filter..\" aria-label=\"Filter\" #searchInput=\"ngModel\" [(ngModel)]=\"searchText\">\n    </div>\n    <div>\n      <select (change)=\"filterSubject($event)\" #dropdown style=\"margin-left :40%\" class=\"form-control border border-secondary\">\n        <option  selected value>Choose Difficulty Level</option>\n        <option value=\"Beginner\">Beginner</option>\n        <option value=\"Intermediate\">Intermediate</option>\n        <option value=\"Advanced\">Advanced</option>\n      </select>\n    </div>\n  </div> -->\n    <br /><br />\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n      class=\"row-border hover table table-bordered table-striped\">\n      <thead class=\"thead-dark\">\n        <tr>\n          <th scope=\"col\">#Quiz ID</th>\n          <th scope=\"col\">Quiz Type</th>\n          <th scope=\"col\">Difficulty</th>\n          <th scope=\"col\">Subject</th>\n          <th scope=\"col\">Total Questions</th>\n          <th scope=\"col\">Total Marks</th>\n          <th scope=\"col\">Action</th>\n        </tr>\n      </thead>\n\n      <tbody>\n        <ng-container *ngFor=\"let item of QuizList;index as i\">\n          <tr>\n            <th class=\"text-primary\" scope=\"row\">{{i+1}}</th>\n            <td class=\"text-primary\" scope=\"row\">{{item.QuizType}}</td>\n            <td class=\"text-primary\" scope=\"row\">{{item.Difficulty}}</td>\n            <td class=\"text-primary\" scope=\"row\">{{item.Subject}}</td>\n            <td class=\"text-primary\" scope=\"row\">{{item.TotalQuestions}}</td>\n            <td class=\"text-primary\" scope=\"row\">{{item.TotalMarks}}</td>\n            <td>\n              <a class=\"btn text-danger\" (click)=\"onUnArchived(item.QuizId)\"><i class=\"fa fa-file-archive-o\"></i></a>\n            </td>\n          </tr>\n        </ng-container>\n      </tbody>\n    </table>\n  </div>\n</app-main-nav>"
+module.exports = "<app-main-nav>\n  <div>\n    <br /><br /><br />\n    <h1 style=\"text-align: center\">List of Archived Quizzes</h1>\n    <br /><br />\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n      class=\"row-border hover table table-bordered table-striped\">\n      <thead class=\"thead-dark\">\n        <tr>\n          <th scope=\"col\">#S. No.</th>\n          <th scope=\"col\">Quiz Type</th>\n          <th scope=\"col\">Difficulty</th>\n          <th scope=\"col\">Subject</th>\n          <th scope=\"col\">Total Questions</th>\n          <th scope=\"col\">Total Marks</th>\n          <th scope=\"col\">Action</th>\n        </tr>\n      </thead>\n      <tbody>\n        <ng-container *ngFor=\"let item of QuizList;index as i\">\n          <tr>\n            <th class=\"text-primary\" scope=\"row\">{{i+1}}</th>\n            <td class=\"text-primary\" scope=\"row\">{{item.QuizType}}</td>\n            <td class=\"text-primary\" scope=\"row\">{{item.Difficulty}}</td>\n            <td class=\"text-primary\" scope=\"row\">{{item.Subject}}</td>\n            <td class=\"text-primary\" scope=\"row\">{{item.TotalQuestions}}</td>\n            <td class=\"text-primary\" scope=\"row\">{{item.TotalMarks}}</td>\n            <td>\n              <a class=\"btn text-danger\" (click)=\"onUnArchived(item.QuizId)\"><i class=\"fa fa-file-archive-o\"></i></a>\n            </td>\n          </tr>\n        </ng-container>\n      </tbody>\n    </table>\n  </div>\n</app-main-nav>"
 
 /***/ }),
 
@@ -1311,17 +1356,6 @@ var ArchiveQuizComponent = /** @class */ (function () {
             _this.dtTrigger.next();
         });
     };
-    // filter(item: QuizModel) {
-    // 	return (
-    // 		(item.Subject.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1
-    // 			|| item.QuizType.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1)
-    // 		&& item.Difficulty.toLowerCase().indexOf(this.difficultyLevel.toLowerCase()) > -1
-    // 	);
-    // }
-    // filterSubject(event: any) {
-    // 	this.difficultyLevel = event.target.value;
-    // 	console.log(this.difficultyLevel);
-    // }
     ArchiveQuizComponent.prototype.onUnArchived = function (id) {
         var _this = this;
         console.log(id);
@@ -1329,8 +1363,8 @@ var ArchiveQuizComponent = /** @class */ (function () {
             this.service.unArchiveQuiz(id).subscribe(function (res) {
                 console.log(res);
                 _this.loadQuiz();
-                _this.dtTrigger.next();
                 _this.toastr.success('Un-Archived Successfully', 'Assesment System');
+                _this.dtTrigger.next();
             });
         }
     };
@@ -1360,7 +1394,7 @@ var ArchiveQuizComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".card {\n\tmargin: 9px auto;\n}\n.container {\n\tmax-width: inherit;\n\tmax-height: inherit;\n}\nbutton {\n\tmargin-left: 10px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29udGVudC1jcmVhdG9yL3JldHJpZXZlLXF1aXovY3JlYXRlLXF1aXovY3JlYXRlLXF1aXouY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtDQUNDLGdCQUFnQjtBQUNqQjtBQUNBO0NBQ0Msa0JBQWtCO0NBQ2xCLG1CQUFtQjtBQUNwQjtBQUNBO0NBQ0MsaUJBQWlCO0FBQ2xCIiwiZmlsZSI6InNyYy9hcHAvY29udGVudC1jcmVhdG9yL3JldHJpZXZlLXF1aXovY3JlYXRlLXF1aXovY3JlYXRlLXF1aXouY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jYXJkIHtcblx0bWFyZ2luOiA5cHggYXV0bztcbn1cbi5jb250YWluZXIge1xuXHRtYXgtd2lkdGg6IGluaGVyaXQ7XG5cdG1heC1oZWlnaHQ6IGluaGVyaXQ7XG59XG5idXR0b24ge1xuXHRtYXJnaW4tbGVmdDogMTBweDtcbn1cbiJdfQ== */"
+module.exports = ".card {\n\tmargin: 9px auto;\n}\n.container {\n\tmax-width: inherit;\n\tmax-height: inherit;\n}\nbutton {\n\tmargin-left: 10px;\n}\nmat-dialog-content {\n\tposition: relative;\n}\n.pos {\n\tposition: absolute;\n\tright: 2%;\n\ttop: 2%;\n\tz-index: 9999;\n\twidth: 35px;\n\theight: 35px;\n}\nmat-icon {\n\twidth: 30px;\n\theight: 30px;\n\tposition: absolute;\n\tleft: 10%;\n\ttop: 10%;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29udGVudC1jcmVhdG9yL3JldHJpZXZlLXF1aXovY3JlYXRlLXF1aXovY3JlYXRlLXF1aXouY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtDQUNDLGdCQUFnQjtBQUNqQjtBQUNBO0NBQ0Msa0JBQWtCO0NBQ2xCLG1CQUFtQjtBQUNwQjtBQUNBO0NBQ0MsaUJBQWlCO0FBQ2xCO0FBQ0E7Q0FDQyxrQkFBa0I7QUFDbkI7QUFDQTtDQUNDLGtCQUFrQjtDQUNsQixTQUFTO0NBQ1QsT0FBTztDQUNQLGFBQWE7Q0FDYixXQUFXO0NBQ1gsWUFBWTtBQUNiO0FBQ0E7Q0FDQyxXQUFXO0NBQ1gsWUFBWTtDQUNaLGtCQUFrQjtDQUNsQixTQUFTO0NBQ1QsUUFBUTtBQUNUIiwiZmlsZSI6InNyYy9hcHAvY29udGVudC1jcmVhdG9yL3JldHJpZXZlLXF1aXovY3JlYXRlLXF1aXovY3JlYXRlLXF1aXouY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jYXJkIHtcblx0bWFyZ2luOiA5cHggYXV0bztcbn1cbi5jb250YWluZXIge1xuXHRtYXgtd2lkdGg6IGluaGVyaXQ7XG5cdG1heC1oZWlnaHQ6IGluaGVyaXQ7XG59XG5idXR0b24ge1xuXHRtYXJnaW4tbGVmdDogMTBweDtcbn1cbm1hdC1kaWFsb2ctY29udGVudCB7XG5cdHBvc2l0aW9uOiByZWxhdGl2ZTtcbn1cbi5wb3Mge1xuXHRwb3NpdGlvbjogYWJzb2x1dGU7XG5cdHJpZ2h0OiAyJTtcblx0dG9wOiAyJTtcblx0ei1pbmRleDogOTk5OTtcblx0d2lkdGg6IDM1cHg7XG5cdGhlaWdodDogMzVweDtcbn1cbm1hdC1pY29uIHtcblx0d2lkdGg6IDMwcHg7XG5cdGhlaWdodDogMzBweDtcblx0cG9zaXRpb246IGFic29sdXRlO1xuXHRsZWZ0OiAxMCU7XG5cdHRvcDogMTAlO1xufVxuIl19 */"
 
 /***/ }),
 
@@ -1371,7 +1405,7 @@ module.exports = ".card {\n\tmargin: 9px auto;\n}\n.container {\n\tmax-width: in
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-dialog-content>\n  <div class=\"card\" style=\"width: 80%; overflow: auto\">\n    <div class=\"card-body\">\n      <h5 class=\"card-title\" style=\"text-align: center\">Create A Quiz</h5><br/>\n      <ng-container *ngIf=\"!val\">\n        <form #form=\"ngForm\" (submit)=\"fetchReqQues(form)\" autocomplete=\"off\">\n          <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"CCreatedBy\">\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <label>Select Difficulty-Level</label>\n              <select name=\"Difficulty\" required #Difficulty=\"ngModel\" [(ngModel)]=\"service.quizForm.Difficulty\"\n                class=\"form-control\">\n                <option value=\"Beginner\">Beginner</option>\n                <option value=\"Intermediate\">Intermediate</option>\n                <option value=\"Advanced\">Advanced</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Difficulty.invalid && Difficulty.touched\">This field is required.\n              </div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <label>Select Subject</label>\n              <select name=\"SubjectId\" required #SubjectId=\"ngModel\" [(ngModel)]=\"service.quizForm.SubjectId\"\n                class=\"form-control\">\n                <option *ngFor=\"let Subject of Subjects;\" value=\"{{Subject.SubjectId}}\">{{Subject.Name}}</option>\n              </select>\n\n              <div class=\"validation-error\" *ngIf=\"SubjectId.invalid && SubjectId.touched\">This field is required.</div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <label>Quiz Name</label>\n              <br/>\n              <input type=\"text\" required name=\"QuizName\" #QuizName=\"ngModel\" [(ngModel)]=\"service.quizForm.QuizName\" class=\"form-control\">\n              <div class=\"validation-error\" *ngIf=\"QuizName.invalid && QuizName.touched\">This field is required.</div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <label>Select Quiz Type</label>\n              <select name=\"QuizType\" required #QuizType=\"ngModel\" [(ngModel)]=\"service.quizForm.QuizType\"\n                class=\"form-control\">\n                <option value=\"\" disabled>Choose an option...</option>\n                <option value=\"Mock\">Mock</option>\n                <option value=\"Non-Mock\">Non-Mock</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"QuizType.invalid && QuizType.touched\">This field is required.\n              </div>\n            </div>\n          </div>\n          <div class=\"form-group\">\n            <button type=\"submit\" [disabled]=\"form.invalid\" class=\"btn btn-primary \">Create</button>\n            <button type=\"button\" [mat-dialog-close] class=\"btn btn-danger\">Close</button>\n          </div>\n        </form>\n      </ng-container>\n      <div *ngIf=\"val\">\n        <div class=\"card-body\">\n          <h5 *ngIf=\"length>0\" class=\"card-title\" style=\"text-align: center\">Choose Questions</h5><br/>\n          <h5 *ngIf=\"length==0\" class=\"card-title\" style=\"text-align: center\">No Question Available</h5><br/>\n          <form #Questionform=\"ngForm\" (submit)=\"onDetailsSubmit(Questionform)\" autocomplete=\"off\">\n            <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n              class=\"row-border hover table table-bordered table-striped\">\n              <thead class=\"thead-dark\">\n                <tr>\n                  <th>#S.NO.</th>\n                  <th>Tick</th>\n                  <th>Question</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr *ngFor=\"let x of questions; let i = index\">\n                  <td>{{i+1}}</td>\n                  <td><input [id]=\"'questions-'+i\" type=\"checkbox\" value=\"{{x.Question_ID}}\" [checked]=\"x.selected\"\n                      (change)=\"updateSelectedQuestions(i)\"></td>\n                  <td>{{x.QuestionStatement}}</td>\n                </tr>\n              </tbody>\n            </table>\n            <div *ngIf=\"length==0\">\n              <a routerLink='/create-question' routerLinkActive='active'>Click Here to Create Question</a>\n            </div>\n            <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n            <button type=\"button\" [mat-dialog-close] class=\"btn btn-danger\">Close</button>\n          </form>\n        </div>\n      </div>\n    </div>\n  </div>\n</mat-dialog-content>"
+module.exports = "<mat-dialog-content>\n  <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n    <mat-icon>clear</mat-icon>\n  </button>\n  <div class=\"card\" style=\"width: 80%; overflow: auto\">\n    <div class=\"card-body\">\n      <h5 class=\"card-title\" style=\"text-align: center\">Create A Quiz</h5><br />\n      <ng-container *ngIf=\"!val\">\n        <form #form=\"ngForm\" (submit)=\"fetchReqQues(form)\" autocomplete=\"off\">\n          <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"CCreatedBy\">\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <label>Select Difficulty-Level</label>\n              <select name=\"Difficulty\" required #Difficulty=\"ngModel\" [(ngModel)]=\"service.quizForm.Difficulty\"\n                class=\"form-control\">\n                <option value=\"Beginner\">Beginner</option>\n                <option value=\"Intermediate\">Intermediate</option>\n                <option value=\"Advanced\">Advanced</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Difficulty.invalid && Difficulty.touched\">This field is required.\n              </div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <label>Select Subject</label>\n              <select name=\"SubjectId\" required #SubjectId=\"ngModel\" [(ngModel)]=\"service.quizForm.SubjectId\"\n                class=\"form-control\">\n                <option *ngFor=\"let Subject of Subjects;\" value=\"{{Subject.SubjectId}}\">{{Subject.Name}}</option>\n              </select>\n\n              <div class=\"validation-error\" *ngIf=\"SubjectId.invalid && SubjectId.touched\">This field is required.</div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <label>Quiz Name</label>\n              <br />\n              <input type=\"text\" required name=\"QuizName\" #QuizName=\"ngModel\" [(ngModel)]=\"service.quizForm.QuizName\"\n                class=\"form-control\">\n              <div class=\"validation-error\" *ngIf=\"QuizName.invalid && QuizName.touched\">This field is required.</div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <label>Select Quiz Type</label>\n              <select name=\"QuizType\" required #QuizType=\"ngModel\" [(ngModel)]=\"service.quizForm.QuizType\"\n                class=\"form-control\">\n                <option value=\"\" disabled>Choose an option...</option>\n                <option value=\"Mock\">Mock</option>\n                <option value=\"Non-Mock\">Non-Mock</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"QuizType.invalid && QuizType.touched\">This field is required.\n              </div>\n            </div>\n          </div>\n          <div class=\"form-group\">\n            <button type=\"submit\" [disabled]=\"form.invalid\" class=\"btn btn-primary \">Create</button>\n\n          </div>\n        </form>\n      </ng-container>\n      <div *ngIf=\"val\">\n        <div class=\"card-body\">\n          <h5 *ngIf=\"length>0\" class=\"card-title\" style=\"text-align: center\">Choose Questions</h5><br />\n          <h5 *ngIf=\"length==0\" class=\"card-title\" style=\"text-align: center\">No Question Available</h5><br />\n          <form #Questionform=\"ngForm\" (submit)=\"onDetailsSubmit(Questionform)\" autocomplete=\"off\">\n            <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n              class=\"row-border hover table table-bordered table-striped\">\n              <thead class=\"thead-dark\">\n                <tr>\n                  <th>#S.NO.</th>\n                  <th>Tick</th>\n                  <th>Question</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr *ngFor=\"let x of questions; let i = index\">\n                  <td>{{i+1}}</td>\n                  <td><input [id]=\"'questions-'+i\" type=\"checkbox\" value=\"{{x.Question_ID}}\" [checked]=\"x.selected\"\n                      (change)=\"updateSelectedQuestions(i)\"></td>\n                  <td>{{x.QuestionStatement}}</td>\n                </tr>\n              </tbody>\n            </table>\n            <div *ngIf=\"length==0\">\n              <a (click)=\"add_new_ques()\">Click Here to Create Question</a>\n            </div>\n            <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n          </form>\n        </div>\n      </div>\n    </div>\n  </div>\n</mat-dialog-content>"
 
 /***/ }),
 
@@ -1390,18 +1424,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared_content_creator_service_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../shared/content-creator-service.service */ "./src/app/content-creator/shared/content-creator-service.service.ts");
 /* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
+/* harmony import */ var _create_questions_create_questions_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../create-questions/create-questions.component */ "./src/app/content-creator/create-questions/create-questions.component.ts");
 
 
 
 
+
+// import { MatDialogRef } from '@angular/material';
 
 
 var CreateQuizComponent = /** @class */ (function () {
-    function CreateQuizComponent(service, dialogRef, toastr) {
+    function CreateQuizComponent(service, dialogRef, toastr, dialog) {
         this.service = service;
         this.dialogRef = dialogRef;
         this.toastr = toastr;
+        this.dialog = dialog;
         this.dtOptions = {};
         this.val = false;
         this.count = 0;
@@ -1421,7 +1459,6 @@ var CreateQuizComponent = /** @class */ (function () {
         this.CCreatedBy = localStorage.getItem('uid');
         this.service.retrieveSubjects().subscribe(function (data) {
             _this.Subjects = data;
-            console.log(_this.Subjects);
         });
     };
     CreateQuizComponent.prototype.resetForm = function (form) {
@@ -1458,7 +1495,6 @@ var CreateQuizComponent = /** @class */ (function () {
             data.forEach(function (obj) { return obj.selected = false; });
             _this.questions = data;
             _this.length = _this.questions.length;
-            console.log(_this.questions);
             _this.dtTrigger.next();
             _this.checkVal();
         });
@@ -1473,10 +1509,22 @@ var CreateQuizComponent = /** @class */ (function () {
     CreateQuizComponent.prototype.onDetailsSubmit = function (form) {
         var _this = this;
         var QuestionId = this.questions.filter(function (QuestionId) { return QuestionId.selected; }).map(function (idSelected) { return idSelected.QuestionId; });
-        console.log(QuestionId);
         this.service.postQuestionsSelected(QuestionId).subscribe(function (res) {
             _this.toastr.success('Inserted successfully');
             _this.dialogRef.close('Inserted');
+        });
+    };
+    CreateQuizComponent.prototype.add_new_ques = function () {
+        var _this = this;
+        var dialogConfig = new _angular_material_dialog__WEBPACK_IMPORTED_MODULE_5__["MatDialogConfig"]();
+        dialogConfig.autoFocus = true;
+        dialogConfig.width = "70%";
+        dialogConfig.disableClose = true;
+        this.service.quesStat = true;
+        var dialogRef = this.dialog.open(_create_questions_create_questions_component__WEBPACK_IMPORTED_MODULE_6__["CreateQuestionsComponent"], dialogConfig);
+        dialogRef.afterClosed().subscribe(function (result) {
+            _this.dtTrigger.unsubscribe();
+            _this.dtTrigger.next();
         });
     };
     CreateQuizComponent.prototype.ngOnDestroy = function () {
@@ -1488,7 +1536,10 @@ var CreateQuizComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./create-quiz.component.html */ "./src/app/content-creator/retrieve-quiz/create-quiz/create-quiz.component.html"),
             styles: [__webpack_require__(/*! ./create-quiz.component.css */ "./src/app/content-creator/retrieve-quiz/create-quiz/create-quiz.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_content_creator_service_service__WEBPACK_IMPORTED_MODULE_2__["ContentCreatorServiceService"], _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatDialogRef"], ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_content_creator_service_service__WEBPACK_IMPORTED_MODULE_2__["ContentCreatorServiceService"],
+            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_5__["MatDialogRef"],
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"],
+            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_5__["MatDialog"]])
     ], CreateQuizComponent);
     return CreateQuizComponent;
 }());
@@ -1515,7 +1566,7 @@ module.exports = "th,\ntd {\n\ttext-align: center;\n\tcolor: black;\n}\n\n/*# so
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav>\n  <div>\n    <h1 style=\"text-align: center\">List of Quizzes</h1>\n    <button type=\"button\" (click)=\"onCreate()\" class=\"btn btn-primary\">Create Quiz</button>\n    <br /><br />\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n      class=\"row-border hover table table-bordered table-striped\">\n      <thead class=\"thead-dark\">\n        <tr>\n          <th scope=\"col\">#Quiz ID</th>\n          <th scope=\"col\">Quiz Type</th>\n          <th scope=\"col\">Difficulty</th>\n          <th scope=\"col\">Subject</th>\n          <th scope=\"col\">Name</th>\n          <th scope=\"col\">Total Questions</th>\n          <th scope=\"col\">Total Marks</th>\n          <th scope=\"col\">Action</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of QuizList;index as i\">\n          <th scope=\"row\">{{i+1}}</th>\n          <td scope=\"row\">{{item.QuizType}}</td>\n          <td scope=\"row\">{{item.Difficulty}}</td>\n          <td scope=\"row\">{{item.Subject}}</td>\n          <td scope=\"row\">{{item.QuizName}}</td>\n          <td scope=\"row\">{{item.TotalQuestions}}</td>\n          <td scope=\"row\">{{item.TotalMarks}}</td>\n          <td>\n            <a class=\"btn text-danger\" (click)=\"onEdit(item.QuizId)\"><i class=\"fa fa-edit fa-lg\"></i></a>\n            <a class=\"btn text-danger\" (click)=\"onArchive(item.QuizId)\"><i class=\"fa fa-trash fa-lg\"></i></a>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</app-main-nav>"
+module.exports = "<app-main-nav>\n  <div>\n    <h1 style=\"text-align: center\">List of Quizzes</h1>\n    <button type=\"button\" (click)=\"onCreate()\" class=\"btn btn-primary\">Create Quiz</button>\n    <br /><br />\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n      class=\"row-border hover table table-bordered table-striped\">\n      <thead class=\"thead-dark\">\n        <tr>\n          <th scope=\"col\">#S. No.</th>\n          <th scope=\"col\">Quiz Type</th>\n          <th scope=\"col\">Difficulty</th>\n          <th scope=\"col\">Subject</th>\n          <th scope=\"col\">Name</th>\n          <th scope=\"col\">Total Questions</th>\n          <th scope=\"col\">Total Marks</th>\n          <th scope=\"col\">Action</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of QuizList;index as i\">\n          <th scope=\"row\">{{i+1}}</th>\n          <td scope=\"row\">{{item.QuizType}}</td>\n          <td scope=\"row\">{{item.Difficulty}}</td>\n          <td scope=\"row\">{{item.Subject}}</td>\n          <td scope=\"row\">{{item.QuizName}}</td>\n          <td scope=\"row\">{{item.TotalQuestions}}</td>\n          <td scope=\"row\">{{item.TotalMarks}}</td>\n          <td>\n            <a class=\"btn text-danger\" (click)=\"onEdit(item.QuizId)\"><i class=\"fa fa-edit fa-lg\"></i></a>\n            <a class=\"btn text-danger\" (click)=\"onArchive(item.QuizId)\"><i class=\"fa fa-trash fa-lg\"></i></a>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</app-main-nav>"
 
 /***/ }),
 
@@ -1588,7 +1639,6 @@ var RetrieveQuizComponent = /** @class */ (function () {
     };
     RetrieveQuizComponent.prototype.onArchive = function (id) {
         var _this = this;
-        console.log(id);
         if (confirm('Are you sure you want to archive this quiz?')) {
             this.service.deleteQuiz(id).subscribe(function (res) {
                 _this.toastr.success('Archieved Successfully', 'Assesment System');
@@ -1608,7 +1658,6 @@ var RetrieveQuizComponent = /** @class */ (function () {
             dialogConfig.width = "70%";
             dialogConfig.disableClose = true;
             dialogConfig.data = _this.QuestionList;
-            console.log(dialogConfig.data);
             _this.dialog.open(_update_quiz_update_quiz_component__WEBPACK_IMPORTED_MODULE_7__["UpdateQuizComponent"], dialogConfig).afterClosed().subscribe(function (res) {
                 _this.loadQuiz();
                 _this.dtTrigger.unsubscribe();
@@ -1645,7 +1694,7 @@ var RetrieveQuizComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "th{\n    text-align: center;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29udGVudC1jcmVhdG9yL3JldHJpZXZlLXF1aXovdXBkYXRlLXF1aXovdXBkYXRlLXF1aXouY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGtCQUFrQjtBQUN0QiIsImZpbGUiOiJzcmMvYXBwL2NvbnRlbnQtY3JlYXRvci9yZXRyaWV2ZS1xdWl6L3VwZGF0ZS1xdWl6L3VwZGF0ZS1xdWl6LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJ0aHtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59Il19 */"
+module.exports = "th {\n\ttext-align: center;\n}\nmat-dialog-content {\n\tposition: relative;\n}\n.pos {\n\tposition: absolute;\n\tright: 1%;\n\ttop: 2%;\n\tz-index: 9999;\n\twidth: 35px;\n\theight: 35px;\n}\nmat-icon {\n\twidth: 30px;\n\theight: 30px;\n\tposition: absolute;\n\tleft: 10%;\n\ttop: 10%;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29udGVudC1jcmVhdG9yL3JldHJpZXZlLXF1aXovdXBkYXRlLXF1aXovdXBkYXRlLXF1aXouY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtDQUNDLGtCQUFrQjtBQUNuQjtBQUNBO0NBQ0Msa0JBQWtCO0FBQ25CO0FBQ0E7Q0FDQyxrQkFBa0I7Q0FDbEIsU0FBUztDQUNULE9BQU87Q0FDUCxhQUFhO0NBQ2IsV0FBVztDQUNYLFlBQVk7QUFDYjtBQUNBO0NBQ0MsV0FBVztDQUNYLFlBQVk7Q0FDWixrQkFBa0I7Q0FDbEIsU0FBUztDQUNULFFBQVE7QUFDVCIsImZpbGUiOiJzcmMvYXBwL2NvbnRlbnQtY3JlYXRvci9yZXRyaWV2ZS1xdWl6L3VwZGF0ZS1xdWl6L3VwZGF0ZS1xdWl6LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJ0aCB7XG5cdHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbm1hdC1kaWFsb2ctY29udGVudCB7XG5cdHBvc2l0aW9uOiByZWxhdGl2ZTtcbn1cbi5wb3Mge1xuXHRwb3NpdGlvbjogYWJzb2x1dGU7XG5cdHJpZ2h0OiAxJTtcblx0dG9wOiAyJTtcblx0ei1pbmRleDogOTk5OTtcblx0d2lkdGg6IDM1cHg7XG5cdGhlaWdodDogMzVweDtcbn1cbm1hdC1pY29uIHtcblx0d2lkdGg6IDMwcHg7XG5cdGhlaWdodDogMzBweDtcblx0cG9zaXRpb246IGFic29sdXRlO1xuXHRsZWZ0OiAxMCU7XG5cdHRvcDogMTAlO1xufVxuIl19 */"
 
 /***/ }),
 
@@ -1656,7 +1705,7 @@ module.exports = "th{\n    text-align: center;\n}\n/*# sourceMappingURL=data:app
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-dialog-content>\n  <button type=\"button\" (click)=\"onCreate()\" class=\"btn btn-primary\">Add Question</button>\n  <button style=\"margin-left: 68.5%\"type=\"button\" class=\"btn btn-primary btn-danger\" [mat-dialog-close]> Close</button>\n  <div>\n    <br /><br />\n    <h1 style=\"text-align: center\">Edit Quiz Details</h1>\n    <br />\n    <table class=\"table table-bordered table-striped\">\n      <thead class=\"thead-dark\">\n        <th scope=\"col\">#S.No.</th>\n        <th scope=\"col\">Question</th>\n        <th scope=\"col\">Marks</th>\n        <th scope=\"col\">Action</th>\n      </thead>\n\n      <tbody>\n        <ng-container *ngFor=\"let item of UpdateQuizQuestionList;index as i\">\n          <tr>\n            <th class=\"text-primary\" scope=\"row\">{{i+1}}</th>\n            <th class=\"text-primary\" scope=\"row\">{{item.QuestionStatement}}</th>\n            <td class=\"text-primary\" scope=\"row\">{{item.Marks}}</td>\n            <td>\n              <a class=\"btn text-danger\" (click)=\"onDelete(item.QuestionId)\"><i class=\"fa fa-trash fa-lg\"></i></a>\n            </td>\n          </tr>\n        </ng-container>\n      </tbody>\n    </table>\n  </div>\n</mat-dialog-content>"
+module.exports = "<mat-dialog-content>\n    <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\"><mat-icon>clear</mat-icon></button>\n  <button type=\"button\" (click)=\"onCreate()\" class=\"btn btn-primary\">Add Question</button>\n  <div>\n    <br /><br />\n    <h1 style=\"text-align: center\">Edit Quiz Details</h1>\n    <br />\n    <table class=\"table table-bordered table-striped\">\n      <thead class=\"thead-dark\">\n        <th scope=\"col\">#S.No.</th>\n        <th scope=\"col\">Question</th>\n        <th scope=\"col\">Marks</th>\n        <th scope=\"col\">Action</th>\n      </thead>\n      <tbody>\n        <ng-container *ngFor=\"let item of UpdateQuizQuestionList;index as i\">\n          <tr>\n            <th class=\"text-primary\" scope=\"row\">{{i+1}}</th>\n            <th class=\"text-primary\" scope=\"row\">{{item.QuestionStatement}}</th>\n            <td class=\"text-primary\" scope=\"row\">{{item.Marks}}</td>\n            <td>\n              <a class=\"btn text-danger\" (click)=\"onDelete(item.QuestionId)\"><i class=\"fa fa-trash fa-lg\"></i></a>\n            </td>\n          </tr>\n        </ng-container>\n      </tbody>\n    </table>\n  </div>\n</mat-dialog-content>"
 
 /***/ }),
 
@@ -1716,7 +1765,6 @@ var UpdateQuizComponent = /** @class */ (function () {
         dialogConfig.disableClose = true;
         this.service.getQuizQuestions(Number(localStorage.getItem('quizId'))).subscribe(function (res) {
             dialogConfig.data = res;
-            console.log(dialogConfig.data);
             _this.dialog.open(_add_ques_in_quiz_add_ques_in_quiz_component__WEBPACK_IMPORTED_MODULE_5__["AddQuesInQuizComponent"], dialogConfig).afterClosed().subscribe(function (res) {
                 _this.loadingData();
             });
@@ -1763,6 +1811,7 @@ var ContentCreatorServiceService = /** @class */ (function () {
     function ContentCreatorServiceService(http) {
         this.http = http;
         this.rootURL = src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].apiURl;
+        this.quesStat = false;
     }
     ContentCreatorServiceService.prototype.postQuestion = function (formData) {
         console.log(formData);
@@ -1863,7 +1912,7 @@ var ContentCreatorServiceService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbnRlbnQtY3JlYXRvci90YWcvY3JlYXRldGFnL2NyZWF0ZXRhZy5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "mat-dialog-content {\n\tposition: relative;\n}\n.pos {\n\tposition: absolute;\n\tright: 1%;\n\ttop: 2%;\n\tz-index: 9999;\n\twidth: 35px;\n\theight: 35px;\n}\nmat-icon {\n\twidth: 30px;\n\theight: 30px;\n\tposition: absolute;\n\tleft: 10%;\n\ttop: 10%;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29udGVudC1jcmVhdG9yL3RhZy9jcmVhdGV0YWcvY3JlYXRldGFnLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Q0FDQyxrQkFBa0I7QUFDbkI7QUFDQTtDQUNDLGtCQUFrQjtDQUNsQixTQUFTO0NBQ1QsT0FBTztDQUNQLGFBQWE7Q0FDYixXQUFXO0NBQ1gsWUFBWTtBQUNiO0FBQ0E7Q0FDQyxXQUFXO0NBQ1gsWUFBWTtDQUNaLGtCQUFrQjtDQUNsQixTQUFTO0NBQ1QsUUFBUTtBQUNUIiwiZmlsZSI6InNyYy9hcHAvY29udGVudC1jcmVhdG9yL3RhZy9jcmVhdGV0YWcvY3JlYXRldGFnLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJtYXQtZGlhbG9nLWNvbnRlbnQge1xuXHRwb3NpdGlvbjogcmVsYXRpdmU7XG59XG4ucG9zIHtcblx0cG9zaXRpb246IGFic29sdXRlO1xuXHRyaWdodDogMSU7XG5cdHRvcDogMiU7XG5cdHotaW5kZXg6IDk5OTk7XG5cdHdpZHRoOiAzNXB4O1xuXHRoZWlnaHQ6IDM1cHg7XG59XG5tYXQtaWNvbiB7XG5cdHdpZHRoOiAzMHB4O1xuXHRoZWlnaHQ6IDMwcHg7XG5cdHBvc2l0aW9uOiBhYnNvbHV0ZTtcblx0bGVmdDogMTAlO1xuXHR0b3A6IDEwJTtcbn1cbiJdfQ== */"
 
 /***/ }),
 
@@ -1874,7 +1923,7 @@ module.exports = "\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJz
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n  <div class=\"card\" style=\"width: 80%;\">\n    <div class=\"card-body\">\n      <h5 class=\"card-title\">{{Option}} Tag</h5>\n      <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n        <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"userId\">\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <input type=\"hidden\" name=\"SubjectId\" #SubjectId=\"ngModel\" [(ngModel)]=\"service.tagForm.SubjectId\" class=\"form-control\">\n          </div>\n        </div>\n        <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n                <label>Subject</label>\n                <input required type=\"text\" name=\"Name\" #Name=\"ngModel\" [(ngModel)]=\"service.tagForm.Name\"\n                  class=\"form-control\">\n                <div class=\"validation-error\" *ngIf=\"Name.invalid && Name.touched\">This field is required.</div>\n            </div>\n          <div class=\"form-group col-md-6\">\n            <label>Department</label>\n            <input required type=\"text\" name=\"Department\" #Department=\"ngModel\" [(ngModel)]=\"service.tagForm.Department\"\n              class=\"form-control\">\n            <div class=\"validation-error\" *ngIf=\"Department.invalid && Department.touched\">This field is required.</div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <button style=\"margin:0 5%\" type=\"submit\" [disabled]=\"form.invalid\" class=\"btn btn-primary\">Submit</button>\n          <button type=\"button\" class=\"btn btn-primary btn-danger\" [mat-dialog-close]> Close</button>\n        </div>\n      </form>\n    </div>\n  </div>\n"
+module.exports = "<div class=\"card\" >\n    <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\"><mat-icon>clear</mat-icon></button>\n  <div class=\"card-body\">\n    <h5 class=\"card-title\">{{Option}} Tag</h5>\n    <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n      <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"userId\">\n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\">\n          <input type=\"hidden\" name=\"SubjectId\" #SubjectId=\"ngModel\" [(ngModel)]=\"service.tagForm.SubjectId\"\n            class=\"form-control\">\n        </div>\n      </div>\n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\">\n          <label>Subject</label>\n          <input required type=\"text\" name=\"Name\" #Name=\"ngModel\" [(ngModel)]=\"service.tagForm.Name\"\n            class=\"form-control\">\n          <div class=\"validation-error\" *ngIf=\"Name.invalid && Name.touched\">This field is required.</div>\n        </div>\n        <div class=\"form-group col-md-6\">\n          <label>Department</label>\n          <input required type=\"text\" name=\"Department\" #Department=\"ngModel\" [(ngModel)]=\"service.tagForm.Department\"\n            class=\"form-control\">\n          <div class=\"validation-error\" *ngIf=\"Department.invalid && Department.touched\">This field is required.</div>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <button style=\"margin:0 5%\" type=\"submit\" [disabled]=\"form.invalid\" class=\"btn btn-primary\">Submit</button>\n      </div>\n    </form>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1974,7 +2023,7 @@ module.exports = "table {\n\twidth: 100%;\n\tmargin-top: 10px;\n\tcolor: black;\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav>\n  <div>\n    <button mat-raised-button (click)=\"onCreate()\">\n      <mat-icon>add</mat-icon>Create\n    </button>\n  </div>\n  <br>\n  <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th scope=\"col\">#Subject ID</th>\n        <th scope=\"col\">Subject</th>\n        <th scope=\"col\">Department</th>\n        <th scope=\"col\">Action</th>\n      </tr>\n    </thead>\n\n    <tbody>\n      <ng-container *ngFor=\"let tag of tagList;index as i;\">\n        <tr>\n          <th scope=\"row\">{{i+1}}</th>\n          <td scope=\"row\">{{tag.Name}}</td>\n          <td scope=\"row\">{{tag.Department}}</td>\n          <td>\n            <a class=\"btn btn-sm btn-info text-white\" (click)=\"onEdit(i+1)\"><i class=\"fa fa-pencil\"></i></a>\n          </td>\n\n        </tr>\n      </ng-container>\n    </tbody>\n  </table>\n</app-main-nav>"
+module.exports = "<app-main-nav>\n  <div>\n    <button mat-raised-button (click)=\"onCreate()\">\n      <mat-icon>add</mat-icon>Create\n    </button>\n  </div>\n  <br>\n  <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th scope=\"col\">#S. No.</th>\n        <th scope=\"col\">Subject</th>\n        <th scope=\"col\">Department</th>\n        <th scope=\"col\">Action</th>\n      </tr>\n    </thead>\n    <tbody>\n      <ng-container *ngFor=\"let tag of tagList;index as i;\">\n        <tr>\n          <th scope=\"row\">{{i+1}}</th>\n          <td scope=\"row\">{{tag.Name}}</td>\n          <td scope=\"row\">{{tag.Department}}</td>\n          <td>\n            <a class=\"btn btn-sm btn-info text-white\" (click)=\"onEdit(i+1)\"><i class=\"fa fa-pencil\"></i></a>\n          </td>\n        </tr>\n      </ng-container>\n    </tbody>\n  </table>\n</app-main-nav>"
 
 /***/ }),
 
@@ -2023,7 +2072,6 @@ var TagComponent = /** @class */ (function () {
     TagComponent.prototype.loadTags = function () {
         var _this = this;
         this.service.getTags().subscribe(function (res) {
-            console.log(res);
             _this.tagList = res;
             _this.dtTrigger.next();
         });
@@ -2037,22 +2085,18 @@ var TagComponent = /** @class */ (function () {
         var dialogRef = this.dialog.open(_createtag_createtag_component__WEBPACK_IMPORTED_MODULE_6__["CreatetagComponent"], dialogConfig);
         dialogRef.afterClosed().subscribe(function (result) {
             _this.loadTags();
-            _this.dtTrigger.unsubscribe();
             _this.dtTrigger.next();
         });
     };
     TagComponent.prototype.onEdit = function (id) {
         var _this = this;
-        // console.log(id);
         var dialogConfig = new _angular_material_dialog__WEBPACK_IMPORTED_MODULE_4__["MatDialogConfig"]();
         dialogConfig.autoFocus = true;
         dialogConfig.width = "70%";
         dialogConfig.disableClose = true;
         dialogConfig.data = this.tagList[id - 1];
-        console.log(dialogConfig.data);
         var dialogRef = this.dialog.open(_createtag_createtag_component__WEBPACK_IMPORTED_MODULE_6__["CreatetagComponent"], dialogConfig).afterClosed().subscribe(function (res) {
             _this.loadTags();
-            _this.dtTrigger.unsubscribe();
             _this.dtTrigger.next();
         });
     };
@@ -2084,7 +2128,7 @@ var TagComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbnRlbnQtY3JlYXRvci91cGRhdGUtcXVlc3Rpb24vdXBkYXRlLXF1ZXN0aW9uLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "mat-dialog-content {\n\tposition: relative;\n}\n.pos {\n\tposition: absolute;\n\tright: 1%;\n\ttop: 2%;\n\tz-index: 9999;\n\twidth: 35px;\n\theight: 35px;\n}\nmat-icon {\n\twidth: 30px;\n\theight: 30px;\n\tposition: absolute;\n\tleft: 10%;\n\ttop: 10%;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29udGVudC1jcmVhdG9yL3VwZGF0ZS1xdWVzdGlvbi91cGRhdGUtcXVlc3Rpb24uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtDQUNDLGtCQUFrQjtBQUNuQjtBQUNBO0NBQ0Msa0JBQWtCO0NBQ2xCLFNBQVM7Q0FDVCxPQUFPO0NBQ1AsYUFBYTtDQUNiLFdBQVc7Q0FDWCxZQUFZO0FBQ2I7QUFDQTtDQUNDLFdBQVc7Q0FDWCxZQUFZO0NBQ1osa0JBQWtCO0NBQ2xCLFNBQVM7Q0FDVCxRQUFRO0FBQ1QiLCJmaWxlIjoic3JjL2FwcC9jb250ZW50LWNyZWF0b3IvdXBkYXRlLXF1ZXN0aW9uL3VwZGF0ZS1xdWVzdGlvbi5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsibWF0LWRpYWxvZy1jb250ZW50IHtcblx0cG9zaXRpb246IHJlbGF0aXZlO1xufVxuLnBvcyB7XG5cdHBvc2l0aW9uOiBhYnNvbHV0ZTtcblx0cmlnaHQ6IDElO1xuXHR0b3A6IDIlO1xuXHR6LWluZGV4OiA5OTk5O1xuXHR3aWR0aDogMzVweDtcblx0aGVpZ2h0OiAzNXB4O1xufVxubWF0LWljb24ge1xuXHR3aWR0aDogMzBweDtcblx0aGVpZ2h0OiAzMHB4O1xuXHRwb3NpdGlvbjogYWJzb2x1dGU7XG5cdGxlZnQ6IDEwJTtcblx0dG9wOiAxMCU7XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -2095,7 +2139,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\" style=\"width: 80%;\">\n  <div class=\"card-body\">\n    <h5 class=\"card-title\">{{label}}</h5>\n    <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n      <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"CCreatedBy\">\n      <input type=\"hidden\" name=\"QuestionId\" #QuestionId=\"ngModel\" [(ngModel)]=\"service.formData.QuestionId\">\n      <div class=\"form-group\">\n        <label>Question</label>\n        <textarea class=\"form-control\" [readonly]=\"bool\" name=\"QuestionStatement\" #QuestionStatement=\"ngModel\"\n          [(ngModel)]=\"service.formData.QuestionStatement\" rows=\"3\"></textarea>\n        <div class=\"validation-error\" *ngIf=\"QuestionStatement.invalid && QuestionStatement.touched\">This field is\n          required.\n        </div>\n      </div>\n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\">\n          <label>Option 1</label>\n          <input required type=\"text\" [readonly]=\"bool\" name=\"Option1\" #Option1=\"ngModel\"\n            [(ngModel)]=\"service.formData.Option1\" class=\"form-control\">\n          <div class=\"validation-error\" *ngIf=\"Option1.invalid && Option1.touched\">This field is required.</div>\n        </div>\n        <div class=\"form-group col-md-6\">\n          <label>Option 2</label>\n          <input required type=\"text\" [readonly]=\"bool\" name=\"Option2\" #Option2=\"ngModel\"\n            [(ngModel)]=\"service.formData.Option2\" class=\"form-control\">\n          <div class=\"validation-error\" *ngIf=\"Option2.invalid && Option2.touched\">This field is required.</div>\n        </div>\n      </div>\n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\">\n          <label>Option 3</label>\n          <input required type=\"text\" [readonly]=\"bool\" name=\"Option3\" #Option3=\"ngModel\"\n            [(ngModel)]=\"service.formData.Option3\" class=\"form-control\">\n          <div class=\"validation-error\" *ngIf=\"Option3.invalid && Option3.touched\">This field is required.</div>\n        </div>\n        <div class=\"form-group col-md-6\">\n          <label>Option 4</label>\n          <input required type=\"text\" [readonly]=\"bool\" name=\"Option4\" #Option4=\"ngModel\"\n            [(ngModel)]=\"service.formData.Option4\" class=\"form-control\">\n          <div class=\"validation-error\" *ngIf=\"Option4.invalid && Option4.touched\">This field is required.</div>\n        </div>\n      </div>\n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\">\n          <label>Correct Option</label>\n            <select name=\"Answer\" [disabled]=\"bool\" required #Answer=\"ngModel\" [(ngModel)]=\"service.formData.Answer\"\n            class=\"form-control\">\n            <option value=\"\">Choose</option>\n            <option value=\"1\">1</option>\n            <option value=\"2\">2</option>\n            <option value=\"3\">3</option>\n            <option value=\"4\">4</option>\n          </select>\n          <div class=\"validation-error\" *ngIf=\"Answer.invalid && Answer.touched\">This field is required.\n          </div>\n        </div>\n        <div class=\"form-group col-md-6\">\n          <label>Marks</label>\n            <select name=\"Marks\" [disabled]=\"bool\" required #Marks=\"ngModel\" [(ngModel)]=\"service.formData.Marks\"\n            class=\"form-control\">\n            <option value=\"\">Choose</option>\n            <option value=\"1\">1</option>\n            <option value=\"2\">2</option>\n            <option value=\"3\">3</option>\n            <option value=\"5\">5</option>\n          </select>\n          <div class=\"validation-error\" *ngIf=\"Marks.invalid && Marks.touched\">This field is required.</div>\n        </div>\n      </div>\n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\">\n          <label>Select Subject</label>\n          <select name=\"SubjectId\" [disabled]=\"bool\" required #SubjectId=\"ngModel\"\n            [(ngModel)]=\"service.formData.SubjectId\" class=\"form-control\">\n            <option value=\"\">Choose</option>\n            <option *ngFor=\"let Subject of Subjects\" value=\"{{Subject.SubjectId}}\">{{Subject.Name}}</option>\n          </select>\n          <div class=\"validation-error\" *ngIf=\"SubjectId.invalid && SubjectId.touched\">This field is required.</div>\n        </div>\n        <div class=\"form-group col-md-6\">\n          <label>Select Difficulty-Level</label>\n          <select name=\"Difficulty\" [disabled]=\"bool\" required #Difficulty=\"ngModel\"\n            [(ngModel)]=\"service.formData.Difficulty\" class=\"form-control\">\n            <option value=\"\">Choose</option>\n            <option value=\"Beginner\">Beginner</option>\n            <option value=\"Intermediate\">Intermediate</option>\n            <option value=\"Advanced\">Advanced</option>\n          </select>\n          <div class=\"validation-error\" *ngIf=\"Difficulty.invalid && Difficulty.touched\">This field is required.</div>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <button [hidden] = \"bool\" style=\"margin:0 5%\" type=\"submit\" [disabled]=\"form.invalid || bool\"\n          class=\"btn btn-primary\">Submit</button>\n        <button type=\"button\" class=\"btn btn-primary btn-danger\" [mat-dialog-close]> Close</button>\n      </div>\n    </form>\n  </div>\n</div>"
+module.exports = "<div class=\"card\">\n    <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\"><mat-icon>clear</mat-icon></button>\n  <div class=\"card-body\">\n    <h5 class=\"card-title\">{{label}}</h5>\n    <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n      <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"CCreatedBy\">\n      <input type=\"hidden\" name=\"QuestionId\" #QuestionId=\"ngModel\" [(ngModel)]=\"service.formData.QuestionId\">\n      <div class=\"form-group\">\n        <label>Question</label>\n        <textarea class=\"form-control\" [readonly]=\"bool\" name=\"QuestionStatement\" #QuestionStatement=\"ngModel\"\n          [(ngModel)]=\"service.formData.QuestionStatement\" rows=\"3\"></textarea>\n        <div class=\"validation-error\" *ngIf=\"QuestionStatement.invalid && QuestionStatement.touched\">This field is\n          required.\n        </div>\n      </div>\n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\">\n          <label>Option 1</label>\n          <input required type=\"text\" [readonly]=\"bool\" name=\"Option1\" #Option1=\"ngModel\"\n            [(ngModel)]=\"service.formData.Option1\" class=\"form-control\">\n          <div class=\"validation-error\" *ngIf=\"Option1.invalid && Option1.touched\">This field is required.</div>\n        </div>\n        <div class=\"form-group col-md-6\">\n          <label>Option 2</label>\n          <input required type=\"text\" [readonly]=\"bool\" name=\"Option2\" #Option2=\"ngModel\"\n            [(ngModel)]=\"service.formData.Option2\" class=\"form-control\">\n          <div class=\"validation-error\" *ngIf=\"Option2.invalid && Option2.touched\">This field is required.</div>\n        </div>\n      </div>\n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\">\n          <label>Option 3</label>\n          <input required type=\"text\" [readonly]=\"bool\" name=\"Option3\" #Option3=\"ngModel\"\n            [(ngModel)]=\"service.formData.Option3\" class=\"form-control\">\n          <div class=\"validation-error\" *ngIf=\"Option3.invalid && Option3.touched\">This field is required.</div>\n        </div>\n        <div class=\"form-group col-md-6\">\n          <label>Option 4</label>\n          <input required type=\"text\" [readonly]=\"bool\" name=\"Option4\" #Option4=\"ngModel\"\n            [(ngModel)]=\"service.formData.Option4\" class=\"form-control\">\n          <div class=\"validation-error\" *ngIf=\"Option4.invalid && Option4.touched\">This field is required.</div>\n        </div>\n      </div>\n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\">\n          <label>Correct Option</label>\n          <select name=\"Answer\" [disabled]=\"bool\" required #Answer=\"ngModel\" [(ngModel)]=\"service.formData.Answer\"\n            class=\"form-control\">\n            <option value=\"\">Choose</option>\n            <option value=\"1\">1</option>\n            <option value=\"2\">2</option>\n            <option value=\"3\">3</option>\n            <option value=\"4\">4</option>\n          </select>\n          <div class=\"validation-error\" *ngIf=\"Answer.invalid && Answer.touched\">This field is required.\n          </div>\n        </div>\n        <div class=\"form-group col-md-6\">\n          <label>Marks</label>\n          <select name=\"Marks\" [disabled]=\"bool\" required #Marks=\"ngModel\" [(ngModel)]=\"service.formData.Marks\"\n            class=\"form-control\">\n            <option value=\"\">Choose</option>\n            <option value=\"1\">1</option>\n            <option value=\"2\">2</option>\n            <option value=\"3\">3</option>\n            <option value=\"5\">5</option>\n          </select>\n          <div class=\"validation-error\" *ngIf=\"Marks.invalid && Marks.touched\">This field is required.</div>\n        </div>\n      </div>\n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\">\n          <label>Select Subject</label>\n          <select name=\"SubjectId\" [disabled]=\"bool\" required #SubjectId=\"ngModel\"\n            [(ngModel)]=\"service.formData.SubjectId\" class=\"form-control\">\n            <option value=\"\">Choose</option>\n            <option *ngFor=\"let Subject of Subjects\" value=\"{{Subject.SubjectId}}\">{{Subject.Name}}</option>\n          </select>\n          <div class=\"validation-error\" *ngIf=\"SubjectId.invalid && SubjectId.touched\">This field is required.</div>\n        </div>\n        <div class=\"form-group col-md-6\">\n          <label>Select Difficulty-Level</label>\n          <select name=\"Difficulty\" [disabled]=\"bool\" required #Difficulty=\"ngModel\"\n            [(ngModel)]=\"service.formData.Difficulty\" class=\"form-control\">\n            <option value=\"\">Choose</option>\n            <option value=\"Beginner\">Beginner</option>\n            <option value=\"Intermediate\">Intermediate</option>\n            <option value=\"Advanced\">Advanced</option>\n          </select>\n          <div class=\"validation-error\" *ngIf=\"Difficulty.invalid && Difficulty.touched\">This field is required.</div>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <button [hidden]=\"bool\" style=\"margin:0 5%\" type=\"submit\" [disabled]=\"form.invalid || bool\"\n          class=\"btn btn-primary\">Submit</button>\n      </div>\n    </form>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -2207,7 +2251,7 @@ module.exports = "@import url(https://fonts.googleapis.com/css?family=Roboto);\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav>\n    <ngx-ui-loader [loaderId]=\"'loader-01'\" *ngIf = \"show\"></ngx-ui-loader>\n \n<div class=\"card\">\n  <div class=\"thumbnail\">\n    <img class=\"left\" src=\"{{ profileUrl }}\"/>\n  </div>\n  <div class=\"info\">\n      <h1><span>{{ Firstname}} </span> {{ Lastname }}</h1>\n      <!-- <div class=\"separator\"></div> -->\n      <h2><span>Email: </span>{{ email }}</h2>\n  </div>\n  <div class=\"right\">\n    <div class=\"one\">Quizzes Created\n      <h3>{{ Quizzes }}</h3>\n    </div>\n    <div class=\"two\">Tags Created\n      <h3>{{ Tags }}</h3>\n    </div>\n    <div class=\"three\">Questions Created\n      <h3>{{ Questions }}</h3>\n    </div>\n    <p></p>\n  </div>\n</div>\n    \n    \n    \n    \n    \n    \n    <!-- <div class=\"container\">\n        <div class=\"pic\">\n          <img src=\"../.././../assets/img/anime3.png\" alt=\"profile pic\">\n        </div>\n        <div class=\"details\">\n          <label>FirstName: <span>{{Firstname}}</span></label>\n          <label>LastName: <span>{{Lasttname}}</span></label>\n          <label>Email: <span>{{email}}</span></label>\n        </div>\n      </div>\n     -->\n    \n    \n    \n    \n    <!-- <div class=\"container parent\">\n    <div class=\"child1\">\n    <img class=\"card-img\" src=\"\" alt=\"Profile image\">\n    </div>\n  <div class=\"child2\">\n    <div class=\"card text-white bg-dark\">\n      <div class=\"card-header\">Profile</div>\n      <div class=\"card-body\">\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <label>Firstname: {{Firstname}}</label>\n          </div>\n          <div class=\"col-md-6\">\n            <label>Lastname: {{Lastname}}</label>\n          </div>\n          <div class=\"col-md-12\">\n            <label>Email: {{email}}</label>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"child3\">\n      <div class=\"card-deck\">\n          <div class=\"card\">\n            <div class=\"card-body\">\n              <h5 class=\"card-title\">Quizzes Created</h5>\n              <label>{{Quizzes}}</label>\n            </div>\n          </div>\n          <div class=\"card\">\n            <div class=\"card-body\">\n              <h5 class=\"card-title\">Questions Created</h5>\n              <label>{{Questions}}</label>\n            </div>\n          </div>\n          <div class=\"card\">\n            <div class=\"card-body\">\n              <h5 class=\"card-title\">Tags Created</h5>\n              <label>{{Tags}}</label>\n            </div>\n          </div>\n        </div>\n  </div>\n</div> -->\n</app-main-nav>"
+module.exports = "<app-main-nav>\n  <ngx-ui-loader [loaderId]=\"'loader-01'\" *ngIf=\"show\"></ngx-ui-loader>\n  <div class=\"card\">\n    <div class=\"thumbnail\">\n      <img class=\"left\" src=\"{{ profileUrl }}\" />\n    </div>\n    <div class=\"info\">\n      <h1><span>{{ Firstname}} </span> {{ Lastname }}</h1>\n      <h2><span>Email: </span>{{ email }}</h2>\n    </div>\n    <div class=\"right\">\n      <div class=\"one\">Quizzes Created\n        <h3>{{ Quizzes }}</h3>\n      </div>\n      <div class=\"two\">Tags Created\n        <h3>{{ Tags }}</h3>\n      </div>\n      <div class=\"three\">Questions Created\n        <h3>{{ Questions }}</h3>\n      </div>\n      <p></p>\n    </div>\n  </div>\n</app-main-nav>"
 
 /***/ }),
 
@@ -2237,9 +2281,8 @@ var UserDetailsComponent = /** @class */ (function () {
     }
     UserDetailsComponent.prototype.ngOnInit = function () {
         this.ngxService.startBackground('do-background-things');
-        // Do something here...
         this.ngxService.stopBackground('do-background-things');
-        this.ngxService.startLoader('loader-01'); // start foreground spinner of the loader "loader-01" with 'default' taskId
+        this.ngxService.startLoader('loader-01');
         this.profileUrl = localStorage.getItem('imgurl');
         console.log(this.profileUrl);
         this.loadUserDetails();
@@ -2248,7 +2291,6 @@ var UserDetailsComponent = /** @class */ (function () {
     UserDetailsComponent.prototype.loadUserDetails = function () {
         var _this = this;
         this.service.getUserDetails().subscribe(function (res) {
-            // console.log(res);
             _this.Firstname = res.FirstName;
             _this.Lastname = res.LastName;
             _this.email = res.Email;
@@ -2257,13 +2299,10 @@ var UserDetailsComponent = /** @class */ (function () {
     UserDetailsComponent.prototype.loadUserProgress = function () {
         var _this = this;
         this.service.getUserProgress().subscribe(function (res) {
-            console.log(res);
-            _this.Quizzes = res[0];
-            _this.Questions = res[1];
-            _this.Tags = res[2];
+            _this.Quizzes = res.QuizzesCreated;
+            _this.Questions = res.QuestionsCreated;
+            _this.Tags = res.TagsCreated;
             _this.show = false;
-            // console.log(this.show);
-            // console.log(this.Questions);
         });
     };
     UserDetailsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -2299,7 +2338,7 @@ module.exports = "/* .container{\n    width:50%;\n    height:50%;\n} */\n/* .cha
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav3>\n    <h1 style=\"text-align: center\">Detailed Report for</h1>\n    <h2 style=\"text-align: center; margin-bottom: 10%\">{{quizname}}</h2>\n    <div class=\"row\">\n        <div class=\"col-md-4\">\n            <canvas baseChart [data]=\"doughnutChartData1\" [labels]=\"doughnutChartLabels1\"\n                [chartType]=\"doughnutChartType1\" [options]=\"doughnutChartOptions1\">\n            </canvas>\n        </div>\n        <div class=\"col-md-4\">\n            <ngx-gauge [type]=\"gaugeType\" [value]=\"gaugeValue\" [label]=\"gaugeLabel\" [append]=\"gaugeAppendText\">\n            </ngx-gauge>\n        </div>\n        <div class=\"col-md-4\">\n            <canvas baseChart [data]=\"doughnutChartData2\" [labels]=\"doughnutChartLabels2\"\n                [chartType]=\"doughnutChartType2\" [options]=\"doughnutChartOptions2\">\n            </canvas>\n        </div>\n    </div>\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n        class=\"row-border hover table table-bordered table-striped\">\n        <thead class=\"thead-dark\">\n            <tr>\n                <th scope=\"col\">#S.No.</th>\n                <th scope=\"col\">Question</th>\n                <th scope=\"col\">Status</th>\n                <th scope=\"col\">View</th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr *ngFor=\"let item of reports;index as i\">\n\n                <th scope=\"row\">{{i+1}}</th>\n                <td scope=\"row\">{{item.QuestionStatement}}</td>\n                <td scope=\"row\">{{item.status}}</td>\n                <td scope=\"row\"><button type=\"button\" (click)=\"viewques(item.QuestionId,item.AttemptedAnswer)\" class=\"btn btn-info\"><i\n                            class=\"fa fa-paper-plane-o fa-lg\"></i></button>\n\n                </td>\n            </tr>\n        </tbody>\n    </table>\n\n</app-main-nav3>"
+module.exports = "<app-main-nav3>\n    <h1 style=\"text-align: center\">Detailed Report for</h1>\n    <h2 style=\"text-align: center; margin-bottom: 10%\">{{quizname}}</h2>\n    <div class=\"row\">\n        <div class=\"col-md-4\">\n            <canvas baseChart [data]=\"doughnutChartData1\" [labels]=\"doughnutChartLabels1\"\n                [chartType]=\"doughnutChartType1\" [options]=\"doughnutChartOptions1\">\n            </canvas>\n        </div>\n        <div class=\"col-md-4\">\n            <ngx-gauge [type]=\"gaugeType\" [value]=\"gaugeValue\" [label]=\"gaugeLabel\" [append]=\"gaugeAppendText\">\n            </ngx-gauge>\n        </div>\n        <div class=\"col-md-4\">\n            <canvas baseChart [data]=\"doughnutChartData2\" [labels]=\"doughnutChartLabels2\"\n                [chartType]=\"doughnutChartType2\" [options]=\"doughnutChartOptions2\">\n            </canvas>\n        </div>\n    </div>\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n        class=\"row-border hover table table-bordered table-striped\">\n        <thead class=\"thead-dark\">\n            <tr>\n                <th scope=\"col\">#S.No.</th>\n                <th scope=\"col\">Question</th>\n                <th scope=\"col\">Status</th>\n                <th scope=\"col\">View</th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr *ngFor=\"let item of reports;index as i\">\n\n                <th scope=\"row\">{{i+1}}</th>\n                <td scope=\"row\">{{item.QuestionStatement}}</td>\n                <td scope=\"row\">{{item.status}}</td>\n                <td scope=\"row\"><button type=\"button\" (click)=\"viewques(item.QuestionId,item.AttemptedAnswer)\"\n                        class=\"btn btn-info\"><i class=\"fa fa-paper-plane-o fa-lg\"></i></button>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n</app-main-nav3>"
 
 /***/ }),
 
@@ -2331,7 +2370,7 @@ var DetailedReportComponent = /** @class */ (function () {
         this.dialog = dialog;
         this.dtOptions = {};
         this.dtTrigger = new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
-        this.doughnutChartLabels1 = ['Attempted', 'UnAttempted'];
+        this.doughnutChartLabels1 = ['Attempted: ' + this.service.data.CorrectAnswers + this.service.data.WrongAnswers, 'UnAttempted: ' + this.service.data.UnattemptedAnswers];
         this.doughnutChartData1 = [this.service.data.CorrectAnswers + this.service.data.WrongAnswers, this.service.data.UnattemptedAnswers];
         this.doughnutChartType1 = 'doughnut';
         this.quizname = '';
@@ -2344,7 +2383,7 @@ var DetailedReportComponent = /** @class */ (function () {
         };
         this.doughnutChartColors2 = [{ backgroundColor: ["#FF713A", "#00B292"] }];
         this.doughnutChartColors1 = [{ backgroundColor: ["#3E00B2", "#FFF53A"] }];
-        this.doughnutChartLabels2 = ['Correct', 'InCorrect'];
+        this.doughnutChartLabels2 = ['Correct: ' + this.service.data.CorrectAnswers, 'InCorrect: ' + this.service.data.WrongAnswers];
         this.doughnutChartData2 = [this.service.data.CorrectAnswers, this.service.data.WrongAnswers];
         this.doughnutChartType2 = 'doughnut';
         this.doughnutChartOptions2 = {
@@ -2440,7 +2479,7 @@ module.exports = "@import url(https://fonts.googleapis.com/css?family=Roboto);\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav3>\n  <ngx-ui-loader [loaderId]=\"'loader-01'\" *ngIf = \"show\"></ngx-ui-loader>\n      \n  <div class=\"card\">\n  <div class=\"thumbnail\">\n    <img class=\"left\" src=\"{{ profileUrl }}\"/>\n  </div>\n  <div class=\"info\">\n      <h1><span>{{ Firstname}} </span> {{ Lastname }}</h1>\n      <!-- <div class=\"separator\"></div> -->\n      <h2><span>Email: </span>{{ email }}</h2>\n  </div>\n  <div class=\"right\">\n    <div class=\"one\">Mocks Taken\n      <h3>{{ count }}</h3>\n    </div>\n    <div class=\"two\">NoN-Mocks Taken\n        <h3>{{ count }}</h3>\n      </div>\n    <div class=\"three\">Recent Activity:\n        <h2>quiz3 taken</h2>\n    </div>\n    <div class=\"forth\">Accuracy:\n        <h3>{{ count }}</h3>\n    </div>\n  </div>\n  </div>\n</app-main-nav3>"
+module.exports = "<app-main-nav3>\n  <ngx-ui-loader [loaderId]=\"'loader-01'\" *ngIf = \"show\"></ngx-ui-loader>\n      \n  <div class=\"card\">\n  <div class=\"thumbnail\">\n    <img class=\"left\" src=\"{{ profileUrl }}\"/>\n  </div>\n  <div class=\"info\">\n      <h1><span>{{ Firstname}} </span> {{ Lastname }}</h1>\n      <h2><span>Email: </span>{{ email }}</h2>\n  </div>\n  <div class=\"right\">\n    <div class=\"one\">Mocks Taken\n      <h3>{{ count }}</h3>\n    </div>\n    <div class=\"two\">NoN-Mocks Taken\n        <h3>{{ count }}</h3>\n      </div>\n    <div class=\"three\">Recent Activity:\n        <h2>quiz3 taken</h2>\n    </div>\n    <div class=\"forth\">Accuracy:\n        <h3>{{ count }}</h3>\n    </div>\n  </div>\n  </div>\n</app-main-nav3>"
 
 /***/ }),
 
@@ -2469,9 +2508,6 @@ var EmployeeComponent = /** @class */ (function () {
         this.show = true;
     }
     EmployeeComponent.prototype.ngOnInit = function () {
-        // this.ngxService.startBackground('do-background-things');
-        // this.ngxService.stopBackground('do-background-things');
-        // this.ngxService.startLoader('loader-01');
         this.profileUrl = localStorage.getItem('imgurl');
         this.loadUserDetails();
     };
@@ -2517,7 +2553,7 @@ module.exports = ".sidenav-container {\n\theight: 100%;\n}\n.sidenav-container a
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-sidenav-container class=\"sidenav-container\">\n  <mat-sidenav #drawer class=\"sidenav\" fixedInViewport=\"true\"\n    [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\" [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\n    [opened]=\"!(isHandset$ | async)\">\n    <mat-toolbar><a mat-list-item routerLink=\"/emp-dash\">Dashboard</a></mat-toolbar>\n    <mat-nav-list>\n      <a mat-list-item routerLink=\"/non-mocks\">Scheduled Quizzes</a>\n      <a mat-list-item routerLink=\"/non-mock-report\">Scheduled Quizzes' Result</a>\n      <a mat-list-item routerLink=\"/mock-report\">Non-Scheduled Quizzes' Result</a>\n      <a mat-list-item routerLink=\"/mock\">Give Mocks</a>\n    </mat-nav-list>\n  </mat-sidenav>\n  <mat-sidenav-content>\n    <mat-toolbar color=\"primary\">\n      <button type=\"button\" aria-label=\"Toggle sidenav\" mat-icon-button (click)=\"drawer.toggle()\"\n        *ngIf=\"isHandset$ | async\">\n        <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\n      </button>\n      <span>Employee Dashboard</span>\n      <span class=\"spacer\"></span>\n      <a class=\"log\" (click)=\"logout()\">Log Out</a>\n    </mat-toolbar>\n    <div class=\"content\">\n      <ng-content></ng-content>\n    </div>\n  </mat-sidenav-content>\n</mat-sidenav-container>"
+module.exports = "<mat-sidenav-container class=\"sidenav-container\">\n  <mat-sidenav #drawer class=\"sidenav\" fixedInViewport=\"true\"\n    [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\" [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\n    [opened]=\"!(isHandset$ | async)\">\n    <mat-toolbar><a mat-list-item routerLink=\"/emp-dash\">Dashboard</a></mat-toolbar>\n    <mat-nav-list>\n      <a mat-list-item routerLink=\"/emp-dash/non-mocks\">Scheduled Quizzes</a>\n      <a mat-list-item routerLink=\"/emp-dash/quiz/non-mock-report\">Scheduled Quizzes' Result</a>\n      <a mat-list-item routerLink=\"/emp-dash/quiz/mock-report\">Non-Scheduled Quizzes' Result</a>\n      <a mat-list-item routerLink=\"/emp-dash/mock\">Give Mocks</a>\n    </mat-nav-list>\n  </mat-sidenav>\n  <mat-sidenav-content>\n    <mat-toolbar color=\"primary\">\n      <button type=\"button\" aria-label=\"Toggle sidenav\" mat-icon-button (click)=\"drawer.toggle()\"\n        *ngIf=\"isHandset$ | async\">\n        <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\n      </button>\n      <span>Employee Dashboard</span>\n      <span class=\"spacer\"></span>\n      <a class=\"log\" (click)=\"logout()\">Log Out</a>\n    </mat-toolbar>\n    <div class=\"content\">\n      <ng-content></ng-content>\n    </div>\n  </mat-sidenav-content>\n</mat-sidenav-container>"
 
 /***/ }),
 
@@ -2556,7 +2592,6 @@ var MainNav3Component = /** @class */ (function () {
         var _this = this;
         this.authService.authState.subscribe(function (user) {
             if (user != null) {
-                //	console.log(user);
             }
             else {
                 localStorage.clear();
@@ -2602,7 +2637,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav3>\n  <div class=\"container\">\n  </div>\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n      class=\"row-border hover table table-bordered table-striped\">\n      <thead class=\"thead-dark\">\n        <tr>\n          <th>#S No.</th>\n          <th>Quiz Name</th>\n          <th>Correct Answers</th>\n          <th>Wrong Answers</th>\n          <th>Unattempted Questions</th>\n          <th>Marks Scored</th>\n          <th>Total Marks</th>\n          <th>Accuracy</th>\n          <th>Time Taken</th>\n          <th>Efficiency</th>\n          <th>Action</th>\n        </tr>\n      </thead>   \n      <tbody>\n        <tr *ngFor=\"let quiz of mockReportList; index as i;\">\n          <th>{{i+1}}</th>\n          <td>{{quiz.QuizName}}</td>\n          <td>{{quiz.CorrectAnswers}}</td>\n          <td>{{quiz.WrongAnswers}}</td>\n          <td>{{quiz.UnattemptedAnswers}}</td>\n          <td>{{quiz.MarksScored}}</td>\n          <td>{{quiz.TotalMarks}}</td>\n          <td>{{quiz.Accuracy}}</td>\n          <td>{{quiz.TimeTaken}}</td>\n          <td>{{quiz.Efficiency}}</td>\n          <td>\n            <a class=\"btn btn-sm btn-info text-white\" (click)=\"viewDetailedReport(quiz.QuizId,i)\"><i\n            class=\"fa fa-file\"></i></a>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </app-main-nav3>"
+module.exports = "<app-main-nav3>\n  <div class=\"container\">\n  </div>\n  <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th>#S No.</th>\n        <th>Quiz Name</th>\n        <th>Correct Answers</th>\n        <th>Wrong Answers</th>\n        <th>Unattempted Questions</th>\n        <th>Marks Scored</th>\n        <th>Total Marks</th>\n        <th>Accuracy</th>\n        <th>Time Taken</th>\n        <th>Efficiency</th>\n        <th>Action</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let quiz of mockReportList; index as i;\">\n        <th>{{i+1}}</th>\n        <td>{{quiz.QuizName}}</td>\n        <td>{{quiz.CorrectAnswers}}</td>\n        <td>{{quiz.WrongAnswers}}</td>\n        <td>{{quiz.UnattemptedAnswers}}</td>\n        <td>{{quiz.MarksScored}}</td>\n        <td>{{quiz.TotalMarks}}</td>\n        <td>{{quiz.Accuracy}}</td>\n        <td>{{quiz.TimeTaken}}</td>\n        <td>{{quiz.Efficiency}}</td>\n        <td>\n          <a class=\"btn btn-sm btn-info text-white\" (click)=\"viewDetailedReport(quiz.QuizId,i)\"><i\n              class=\"fa fa-file\"></i></a>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</app-main-nav3>"
 
 /***/ }),
 
@@ -2709,15 +2744,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
 /* harmony import */ var _shared_employee_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../shared/employee.service */ "./src/app/employee/shared/employee.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
 
 
 
 
 
 var MockComponent = /** @class */ (function () {
-    function MockComponent(service, toastr) {
+    function MockComponent(service, toastr, router) {
         this.service = service;
         this.toastr = toastr;
+        this.router = router;
         this.dtOptions = {};
         this.dtTrigger = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
     }
@@ -2735,6 +2773,14 @@ var MockComponent = /** @class */ (function () {
             _this.dtTrigger.next();
         });
     };
+    MockComponent.prototype.takeMockQuiz = function (QuizId) {
+        var _this = this;
+        this.service.getMockQuesOfQuiz(QuizId).subscribe(function (res) {
+            _this.service.quesOfQuiz = res;
+            _this.service.QuizId = QuizId;
+            _this.router.navigate(['/emp-dash/quiz/take-quiz']);
+        });
+    };
     MockComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-mock',
@@ -2742,7 +2788,8 @@ var MockComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./mock.component.css */ "./src/app/employee/mock/mock.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_employee_service__WEBPACK_IMPORTED_MODULE_4__["EmployeeService"],
-            ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"]])
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
     ], MockComponent);
     return MockComponent;
 }());
@@ -2821,7 +2868,7 @@ var NonMockReportComponent = /** @class */ (function () {
     NonMockReportComponent.prototype.viewDetailedReport = function (qid, index) {
         this.service.data = this.nonMockReportList[index];
         this.service.QuizId = qid;
-        this.router.navigate(['/detailed-report']);
+        this.router.navigate(['/emp-dash/quiz/detailed-report']);
         this.dtTrigger.next();
     };
     NonMockReportComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -2859,7 +2906,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav3>\n  <div>\n    <br /><br /><br />\n    <h1 style=\"text-align: center\">List of Scheduled Quizzes</h1>\n    <br /><br />\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n      class=\"row-border hover table table-bordered table-striped\">\n      <thead class=\"thead-dark\">\n        <tr>\n          <th scope=\"col\">#Schedule ID</th>\n          <th scope=\"col\">Quiz Name</th>\n          <th scope=\"col\">Start Date/Time</th>\n          <th scope=\"col\">End Date/Time</th>\n          <th scope=\"col\">Action</th>\n        </tr>\n      </thead>\n\n      <tbody>\n        <ng-container *ngFor=\"let item of nonMockScheduleList;index as i;\">\n          <tr>\n            <th scope=\"row\">{{i+1}}</th>\n            <td scope=\"row\">{{item.QuizName}}</td>\n            <td scope=\"row\">{{item.StartDateTime}}</td>\n            <td scope=\"row\">{{item.EndDateTime}}</td>\n            <td style=\"text-align:center;\">\n              <a class=\"btn btn-sm btn-info text-white\" (click)=\"takeQuiz(item.QuizId,item.QuizScheduleId)\"><i\n                  class=\"fa fa-paper-plane\"></i></a>\n            </td>\n          </tr>\n        </ng-container>\n      </tbody>\n    </table>\n  </div>\n</app-main-nav3>"
+module.exports = "<app-main-nav3>\n  <div>\n    <br /><br /><br />\n    <h1 style=\"text-align: center\">List of Scheduled Quizzes</h1>\n    <br /><br />\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n      class=\"row-border hover table table-bordered table-striped\">\n      <thead class=\"thead-dark\">\n        <tr>\n          <th scope=\"col\">#S. No.</th>\n          <th scope=\"col\">Quiz Name</th>\n          <th scope=\"col\">Start Date/Time</th>\n          <th scope=\"col\">End Date/Time</th>\n          <th scope=\"col\">Action</th>\n        </tr>\n      </thead>\n      <tbody>\n        <ng-container *ngFor=\"let item of nonMockScheduleList;index as i;\">\n          <tr>\n            <th scope=\"row\">{{i+1}}</th>\n            <td scope=\"row\">{{item.QuizName}}</td>\n            <td scope=\"row\">{{item.StartDateTime}}</td>\n            <td scope=\"row\">{{item.EndDateTime}}</td>\n            <td style=\"text-align:center;\">\n              <a class=\"btn btn-sm btn-info text-white\" (click)=\"takeQuiz(item.QuizId,item.QuizScheduleId)\"><i\n                  class=\"fa fa-paper-plane\"></i></a>\n            </td>\n          </tr>\n        </ng-container>\n      </tbody>\n    </table>\n  </div>\n</app-main-nav3>"
 
 /***/ }),
 
@@ -2911,7 +2958,7 @@ var NonMockComponent = /** @class */ (function () {
             _this.service.quesOfQuiz = res;
             _this.service.QuizScheduleId = Id;
             _this.service.QuizId = QuizId;
-            _this.router.navigate(['/take-quiz']);
+            _this.router.navigate(['/emp-dash/quiz/take-quiz']);
         });
     };
     NonMockComponent.prototype.ngOnDestroy = function () {
@@ -3051,6 +3098,12 @@ var EmployeeService = /** @class */ (function () {
     EmployeeService.prototype.getQuesOfQuiz = function (QuizId) {
         return this.http.get(this.rootURL + 'Quiz/QuizQuestion/' + QuizId);
     };
+    EmployeeService.prototype.getMockQuesOfQuiz = function (QuizId) {
+        return this.http.get(this.rootURL + 'Quiz/MockQuizQuestion/' + QuizId);
+    };
+    EmployeeService.prototype.checkValidUser = function (id) {
+        return this.http.post(this.rootURL + 'UserSchedule/ValidQuizTaker/' + localStorage.getItem('uid'), id);
+    };
     EmployeeService.prototype.postanswers = function () {
         this.body.QuizScheduleId = this.QuizScheduleId;
         this.body.QuizId = this.QuizId;
@@ -3109,7 +3162,7 @@ module.exports = "#qid {\n    padding: 10px 15px;\n    border-radius: 20px;\n  }
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-progress-bar mode=\"determinate\" value=\"{{ bar }}\"></mat-progress-bar>\n<!-- <div class=\"progress\">\n  <div class=\"progress-bar progress-bar-striped progress-bar-animated\" style=\"width:'{{service.qnProgress*10 }}%;\"></div>\n</div> -->\n<div class=\"row\" *ngIf=\"service.quesOfQuiz\">\n  <div class=\"col s8 offset-s2\">\n    <span>Time Elapsed : {{service.displayTimeElapsed()}}</span>\n\n    <div class=\"container-fluid \">\n      <div class=\"modal-dialog\">\n        <div class=\"modal-content\">\n          <div class=\"modal-header\">\n            <h3><span class=\"label label-warning\" id=\"qid\"></span>\n              <p>{{service.qnProgress+1}})&nbsp;{{service.quesOfQuiz[service.qnProgress].QuestionStatement}}</p>\n            </h3>\n          </div>\n          <div class=\"modal-body\">\n            <div class=\"col-xs-3 col-xs-offset-5\">\n              <div id=\"loadbar\" style=\"display: none;\">\n                <div class=\"blockG\" id=\"rotateG_01\"></div>\n                <div class=\"blockG\" id=\"rotateG_02\"></div>\n                <div class=\"blockG\" id=\"rotateG_03\"></div>\n                <div class=\"blockG\" id=\"rotateG_04\"></div>\n                <div class=\"blockG\" id=\"rotateG_05\"></div>\n                <div class=\"blockG\" id=\"rotateG_06\"></div>\n                <div class=\"blockG\" id=\"rotateG_07\"></div>\n                <div class=\"blockG\" id=\"rotateG_08\"></div>\n              </div>\n            </div>\n\n            <div class=\"quiz\" *ngFor=\"let option of service.quesOfQuiz[service.qnProgress].Option;index as i\" id=\"quiz\"\n              data-toggle=\"buttons\">\n              <label *ngIf=\"option != null\" class=\"collection-item\"\n                (click)=\"Answer(service.quesOfQuiz[service.qnProgress].QuestionId,i+1)\"\n                class=\"element-animation1 btn btn-lg btn-primary btn-block\"><span class=\"btn-label\"><i\n                    class=\"glyphicon glyphicon-chevron-right\"></i></span> {{i+1}})&nbsp;&nbsp;{{option}}</label>\n            </div>\n            <div>\n              <a class=\"btn btn-sm btn-info text-white\"\n                (click)=\"Answer(service.quesOfQuiz[service.qnProgress].QuestionId,0)\"><i\n                  class=\"fa fa-forward\"></i>Skip</a>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n\n   "
+module.exports = "<mat-progress-bar mode=\"determinate\" value=\"{{ bar }}\"></mat-progress-bar>\n<div class=\"row\" *ngIf=\"service.quesOfQuiz\">\n  <div class=\"col s8 offset-s2\">\n    <span>Time Elapsed : {{service.displayTimeElapsed()}}</span>\n    <div class=\"container-fluid \">\n      <div class=\"modal-dialog\">\n        <div class=\"modal-content\">\n          <div class=\"modal-header\">\n            <h3><span class=\"label label-warning\" id=\"qid\"></span>\n              <p>{{service.qnProgress+1}})&nbsp;{{service.quesOfQuiz[service.qnProgress].QuestionStatement}}</p>\n            </h3>\n          </div>\n          <div class=\"modal-body\">\n            <div class=\"col-xs-3 col-xs-offset-5\">\n              <div id=\"loadbar\" style=\"display: none;\">\n                <div class=\"blockG\" id=\"rotateG_01\"></div>\n                <div class=\"blockG\" id=\"rotateG_02\"></div>\n                <div class=\"blockG\" id=\"rotateG_03\"></div>\n                <div class=\"blockG\" id=\"rotateG_04\"></div>\n                <div class=\"blockG\" id=\"rotateG_05\"></div>\n                <div class=\"blockG\" id=\"rotateG_06\"></div>\n                <div class=\"blockG\" id=\"rotateG_07\"></div>\n                <div class=\"blockG\" id=\"rotateG_08\"></div>\n              </div>\n            </div>\n            <div class=\"quiz\" *ngFor=\"let option of service.quesOfQuiz[service.qnProgress].Option;index as i\" id=\"quiz\"\n              data-toggle=\"buttons\">\n              <label *ngIf=\"option != null\" class=\"collection-item\"\n                (click)=\"Answer(service.quesOfQuiz[service.qnProgress].QuestionId,i+1)\"\n                class=\"element-animation1 btn btn-lg btn-primary btn-block\"><span class=\"btn-label\"><i\n                    class=\"glyphicon glyphicon-chevron-right\"></i></span> {{i+1}})&nbsp;&nbsp;{{option}}</label>\n            </div>\n            <div>\n              <a class=\"btn btn-sm btn-info text-white\"\n                (click)=\"Answer(service.quesOfQuiz[service.qnProgress].QuestionId,0)\"><i\n                  class=\"fa fa-forward\"></i>Skip</a>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n\n   "
 
 /***/ }),
 
@@ -3188,7 +3241,7 @@ var TakeQuizComponent = /** @class */ (function () {
         this.service.qnProgress++;
         if (this.service.qnProgress == this.noOfQues) {
             clearInterval(this.service.timer);
-            this.router.navigate(['/result']);
+            this.router.navigate(['/emp-dash/quiz/result']);
         }
     };
     TakeQuizComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -3213,7 +3266,7 @@ var TakeQuizComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2VtcGxveWVlL3ZpZXctYW5zd2VyL3ZpZXctYW5zd2VyLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "mat-dialog-content {\n\tposition: relative;\n}\n.pos {\n\tposition: absolute;\n\tright: 1%;\n\ttop: 2%;\n\tz-index: 9999;\n\twidth: 35px;\n\theight: 35px;\n}\nmat-icon {\n\twidth: 30px;\n\theight: 30px;\n\tposition: absolute;\n\tleft: 10%;\n\ttop: 10%;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZW1wbG95ZWUvdmlldy1hbnN3ZXIvdmlldy1hbnN3ZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtDQUNDLGtCQUFrQjtBQUNuQjtBQUNBO0NBQ0Msa0JBQWtCO0NBQ2xCLFNBQVM7Q0FDVCxPQUFPO0NBQ1AsYUFBYTtDQUNiLFdBQVc7Q0FDWCxZQUFZO0FBQ2I7QUFDQTtDQUNDLFdBQVc7Q0FDWCxZQUFZO0NBQ1osa0JBQWtCO0NBQ2xCLFNBQVM7Q0FDVCxRQUFRO0FBQ1QiLCJmaWxlIjoic3JjL2FwcC9lbXBsb3llZS92aWV3LWFuc3dlci92aWV3LWFuc3dlci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsibWF0LWRpYWxvZy1jb250ZW50IHtcblx0cG9zaXRpb246IHJlbGF0aXZlO1xufVxuLnBvcyB7XG5cdHBvc2l0aW9uOiBhYnNvbHV0ZTtcblx0cmlnaHQ6IDElO1xuXHR0b3A6IDIlO1xuXHR6LWluZGV4OiA5OTk5O1xuXHR3aWR0aDogMzVweDtcblx0aGVpZ2h0OiAzNXB4O1xufVxubWF0LWljb24ge1xuXHR3aWR0aDogMzBweDtcblx0aGVpZ2h0OiAzMHB4O1xuXHRwb3NpdGlvbjogYWJzb2x1dGU7XG5cdGxlZnQ6IDEwJTtcblx0dG9wOiAxMCU7XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -3224,7 +3277,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p *ngIf=\"ques\">\n  {{ques[0].QuestionStatement}}\n  <br>\n  <input name=\"a1\" disabled=\"true\" [checked]=\"flop1\" type=\"radio\">1){{ques[0].Option1}}\n  <label *ngIf=\"zlop1\">---You Marked This</label>\n  <br>\n  <input name=\"a1\" disabled=\"true\" [checked]=\"flop2\" type=\"radio\">{{ques[0].Option2}}\n  <label *ngIf=\"zlop2\">---You Marked This</label>\n  <br>\n  <input name=\"a1\" disabled=\"true\" [checked]=\"flop3\" type=\"radio\">{{ques[0].Option3}}\n  <label *ngIf=\"zlop3\">---You Marked This</label>\n  <br>\n  <input name=\"a1\" disabled=\"true\" [checked]=\"flop4\" type=\"radio\">{{ques[0].Option4}}\n  <label *ngIf=\"zlop4\">---You Marked This</label>\n  <br>\n</p>\n<button type=\"button\" class=\"btn btn-primary btn-danger\" [mat-dialog-close]> Close</button>"
+module.exports = "<button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\"><mat-icon>clear</mat-icon></button>\n<p *ngIf=\"ques\">\n  {{ques[0].QuestionStatement}}\n  <br>\n  <input name=\"a1\" disabled=\"true\" [checked]=\"flop1\" type=\"radio\">1){{ques[0].Option1}}\n  <label *ngIf=\"zlop1\">---You Marked This</label>\n  <br>\n  <input name=\"a1\" disabled=\"true\" [checked]=\"flop2\" type=\"radio\">{{ques[0].Option2}}\n  <label *ngIf=\"zlop2\">---You Marked This</label>\n  <br>\n  <input name=\"a1\" disabled=\"true\" [checked]=\"flop3\" type=\"radio\">{{ques[0].Option3}}\n  <label *ngIf=\"zlop3\">---You Marked This</label>\n  <br>\n  <input name=\"a1\" disabled=\"true\" [checked]=\"flop4\" type=\"radio\">{{ques[0].Option4}}\n  <label *ngIf=\"zlop4\">---You Marked This</label>\n  <br>\n</p>"
 
 /***/ }),
 
@@ -3361,7 +3414,8 @@ var HomeComponent = /** @class */ (function () {
         this.rooturl = src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiURl;
         this.role = '';
         this.uid = '';
-        this.check = localStorage.getItem('key');
+        this.checkqid = localStorage.getItem('key');
+        this.checksid = localStorage.getItem('key1');
     }
     HomeComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -3381,19 +3435,22 @@ var HomeComponent = /** @class */ (function () {
                     _this.role = res1.Roles[0].RoleId;
                     localStorage.setItem('uid', _this.uid);
                     localStorage.setItem('role', _this.role);
-                    //this.redirecttodash(this.role);
-                    // if (this.check != null) {
-                    // 	this.service.getQuesOfQuiz(+this.check).subscribe((res: any) => {
-                    // 		this.service.quesOfQuiz = res as any[];
-                    // 		this.service.QuizScheduleId = Id;
-                    // 		this.service.QuizId = QuizId;
-                    // 		this.router.navigate(['/take-quiz']);
-                    // 	  });
-                    // }
-                    // else {
-                    // 	this.redirecttodash(this.role);
-                    // }
-                    _this.redirecttodash(_this.role);
+                    console.log(_this.checkqid);
+                    if (_this.checkqid != 'null' && _this.checksid != 'null') {
+                        console.log("hii");
+                        _this.service.checkValidUser(+_this.checkqid).subscribe(function (res) {
+                            console.log(res);
+                            _this.service.getQuesOfQuiz(+_this.checkqid).subscribe(function (res) {
+                                _this.service.quesOfQuiz = res;
+                                _this.service.QuizScheduleId = +_this.checksid;
+                                _this.service.QuizId = +_this.checkqid;
+                                _this.router.navigate(['/emp-dash/quiz/take-quiz']);
+                            });
+                        });
+                    }
+                    else {
+                        _this.redirecttodash(_this.role);
+                    }
                 });
             });
         }
@@ -3416,6 +3473,49 @@ var HomeComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"], _employee_shared_employee_service__WEBPACK_IMPORTED_MODULE_5__["EmployeeService"]])
     ], HomeComponent);
     return HomeComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/http-error-interceptor.ts":
+/*!*******************************************!*\
+  !*** ./src/app/http-error-interceptor.ts ***!
+  \*******************************************/
+/*! exports provided: HttpErrorInterceptor */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpErrorInterceptor", function() { return HttpErrorInterceptor; });
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+
+
+var HttpErrorInterceptor = /** @class */ (function () {
+    function HttpErrorInterceptor() {
+    }
+    // constructor(private router: Router) {}
+    HttpErrorInterceptor.prototype.intercept = function (request, next) {
+        return next.handle(request)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["retry"])(1), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(function (error) {
+            var errorMessage = '';
+            if (error.error instanceof ErrorEvent) {
+                // client-side error
+                errorMessage = "Error: " + error.error.message;
+            }
+            else {
+                // server-side error
+                errorMessage = "Error Code: " + error.status + "\nMessage: " + error.message;
+            }
+            window.alert("Error has occured. Please reload! " + error.status + ' - ' + error.statusText);
+            // this.router.navigate(['/login']);
+            localStorage.clear();
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["throwError"])(errorMessage);
+        }));
+    };
+    return HttpErrorInterceptor;
 }());
 
 
@@ -3472,7 +3572,9 @@ var LoginComponent = /** @class */ (function () {
     LoginComponent.prototype.ngOnInit = function () {
         var _this = this;
         localStorage.setItem('key', this.route.snapshot.queryParamMap.get('take-quiz'));
+        localStorage.setItem('key1', this.route.snapshot.queryParamMap.get('schedule-id'));
         console.log(localStorage.getItem('key'));
+        console.log(localStorage.getItem('key1'));
         this.authService.authState.subscribe(function (user) {
             _this.user = user;
             if (user != null) {
@@ -3514,6 +3616,529 @@ var LoginComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/reporting-user/analytics-by-quiz/analytics-by-quiz.component.css":
+/*!**********************************************************************************!*\
+  !*** ./src/app/reporting-user/analytics-by-quiz/analytics-by-quiz.component.css ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3JlcG9ydGluZy11c2VyL2FuYWx5dGljcy1ieS1xdWl6L2FuYWx5dGljcy1ieS1xdWl6LmNvbXBvbmVudC5jc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/reporting-user/analytics-by-quiz/analytics-by-quiz.component.html":
+/*!***********************************************************************************!*\
+  !*** ./src/app/reporting-user/analytics-by-quiz/analytics-by-quiz.component.html ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<app-mainnav4>\n  <p>\n    analytics-by-quiz works!\n  </p>\n</app-mainnav4>"
+
+/***/ }),
+
+/***/ "./src/app/reporting-user/analytics-by-quiz/analytics-by-quiz.component.ts":
+/*!*********************************************************************************!*\
+  !*** ./src/app/reporting-user/analytics-by-quiz/analytics-by-quiz.component.ts ***!
+  \*********************************************************************************/
+/*! exports provided: AnalyticsByQuizComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnalyticsByQuizComponent", function() { return AnalyticsByQuizComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var AnalyticsByQuizComponent = /** @class */ (function () {
+    function AnalyticsByQuizComponent() {
+    }
+    AnalyticsByQuizComponent.prototype.ngOnInit = function () {
+    };
+    AnalyticsByQuizComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-analytics-by-quiz',
+            template: __webpack_require__(/*! ./analytics-by-quiz.component.html */ "./src/app/reporting-user/analytics-by-quiz/analytics-by-quiz.component.html"),
+            styles: [__webpack_require__(/*! ./analytics-by-quiz.component.css */ "./src/app/reporting-user/analytics-by-quiz/analytics-by-quiz.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], AnalyticsByQuizComponent);
+    return AnalyticsByQuizComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/reporting-user/analytics-by-tag/analytics-by-tag.component.css":
+/*!********************************************************************************!*\
+  !*** ./src/app/reporting-user/analytics-by-tag/analytics-by-tag.component.css ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3JlcG9ydGluZy11c2VyL2FuYWx5dGljcy1ieS10YWcvYW5hbHl0aWNzLWJ5LXRhZy5jb21wb25lbnQuY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/reporting-user/analytics-by-tag/analytics-by-tag.component.html":
+/*!*********************************************************************************!*\
+  !*** ./src/app/reporting-user/analytics-by-tag/analytics-by-tag.component.html ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<app-mainnav4>\n  <div>\n    <h1 style=\"text-align: center\">Analytics by Tag</h1>\n    <br /><br />\n    <div class=\"row\">\n      <div class=\"col-md-6\">\n        <div *ngIf=\"barChartLabels\">\n          <canvas baseChart \n          [datasets]=\"barChartData\" \n          [labels]=\"barChartLabels\" \n          [options]=\"barChartOptions\"\n          [plugins]=\"barChartPlugins\" \n          [legend]=\"barChartLegend\" \n          [chartType]=\"barChartType\">\n          </canvas>\n        </div>\n      </div>\n      <div class=\"col-md-6\">\n          <div *ngIf=\"radarChartLabels\">\n              <canvas baseChart\n              [datasets]=\"radarChartData\"\n              [options]=\"radarChartOptions\"\n              [labels]=\"radarChartLabels\"\n              [chartType]=\"radarChartType\">\n            </canvas>\n          </div>\n        </div>\n    </div>\n      <br /><br />\n      <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n        class=\"row-border hover table table-bordered table-striped\">\n        <thead class=\"thead-dark\">\n          <tr>\n            <th scope=\"col\">#S. No.</th>\n            <th scope=\"col\">Tag Name</th>\n            <th scope=\"col\">No. Of Quiz</th>\n            <th scope=\"col\">High Score</th>\n            <th scope=\"col\">Low Score</th>\n            <th scope=\"col\">Average Score</th>\n            <th scope=\"col\">Accuracy</th>\n          </tr>\n        </thead>\n        <tbody>\n          <ng-container *ngFor=\"let item of tagAnalysisList;index as i;\">\n            <tr>\n              <th scope=\"row\">{{i+1}}</th>\n              <td scope=\"row\">{{item.SubjectName}}</td>\n              <td scope=\"row\">{{item.Properties.NoOfQuiz}}</td>\n              <td scope=\"row\">{{item.Properties.HighestScore}}</td>\n              <td scope=\"row\">{{item.Properties.LowestScore}}</td>\n              <td scope=\"row\">{{item.Properties.AverageMarks}}</td>\n              <td scope=\"row\">{{item.Properties.Accuracy}}</td>\n            </tr>\n          </ng-container>\n        </tbody>\n      </table>\n    </div>\n</app-mainnav4>"
+
+/***/ }),
+
+/***/ "./src/app/reporting-user/analytics-by-tag/analytics-by-tag.component.ts":
+/*!*******************************************************************************!*\
+  !*** ./src/app/reporting-user/analytics-by-tag/analytics-by-tag.component.ts ***!
+  \*******************************************************************************/
+/*! exports provided: AnalyticsByTagComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnalyticsByTagComponent", function() { return AnalyticsByTagComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _shared_reporting_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../shared/reporting-user.service */ "./src/app/reporting-user/shared/reporting-user.service.ts");
+
+
+
+
+
+var AnalyticsByTagComponent = /** @class */ (function () {
+    function AnalyticsByTagComponent(service, router) {
+        this.service = service;
+        this.router = router;
+        this.panelOpenState = false;
+        this.highdata = [];
+        this.lowdata = [];
+        this.label = [];
+        this.accuracy = [];
+        this.name = 'high';
+        this.barChartOptions = {
+            responsive: true,
+            // We use these empty structures as placeholders for dynamic theming.
+            scales: { xAxes: [{}], yAxes: [{}] },
+            plugins: {
+                datalabels: {
+                    anchor: 'end',
+                    align: 'end',
+                }
+            }
+        };
+        this.barChartType = 'bar';
+        this.barChartLegend = true;
+        this.radarChartOptions = {
+            responsive: true,
+        };
+        this.radarChartData = [
+            { data: this.accuracy, label: 'Accuracy:' }
+        ];
+        this.radarChartType = 'radar';
+        this.dtTrigger = new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
+        this.dtOptions = {};
+    }
+    AnalyticsByTagComponent.prototype.ngOnInit = function () {
+        this.loadAnalyticOfTag();
+        this.dtOptions = {
+            pagingType: 'full_numbers',
+            pageLength: 10,
+        };
+    };
+    AnalyticsByTagComponent.prototype.loadAnalyticOfTag = function () {
+        var _this = this;
+        this.service.getTagAnalytics().subscribe(function (res) {
+            _this.tagAnalysisList = res;
+            for (var i = 0; i < 7; i++) {
+                _this.highdata.push(_this.tagAnalysisList[i].Properties.HighestScore);
+                _this.lowdata.push(_this.tagAnalysisList[i].Properties.LowestScore);
+                _this.label.push(_this.tagAnalysisList[i].SubjectName);
+                _this.accuracy.push(_this.tagAnalysisList[i].Properties.Accuracy);
+            }
+            console.log(_this.accuracy);
+            _this.barChartLabels = _this.label;
+            _this.radarChartLabels = _this.label;
+            _this.barChartData = [
+                { data: _this.highdata, label: 'Highest Score' },
+                { data: _this.lowdata, label: 'Lowest Score' }
+            ];
+            _this.dtTrigger.next();
+            console.log(_this.tagAnalysisList);
+        });
+    };
+    AnalyticsByTagComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-analytics-by-tag',
+            template: __webpack_require__(/*! ./analytics-by-tag.component.html */ "./src/app/reporting-user/analytics-by-tag/analytics-by-tag.component.html"),
+            styles: [__webpack_require__(/*! ./analytics-by-tag.component.css */ "./src/app/reporting-user/analytics-by-tag/analytics-by-tag.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_reporting_user_service__WEBPACK_IMPORTED_MODULE_4__["ReportingUserService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+    ], AnalyticsByTagComponent);
+    return AnalyticsByTagComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/reporting-user/analytics-by-user/analytics-by-user.component.css":
+/*!**********************************************************************************!*\
+  !*** ./src/app/reporting-user/analytics-by-user/analytics-by-user.component.css ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3JlcG9ydGluZy11c2VyL2FuYWx5dGljcy1ieS11c2VyL2FuYWx5dGljcy1ieS11c2VyLmNvbXBvbmVudC5jc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/reporting-user/analytics-by-user/analytics-by-user.component.html":
+/*!***********************************************************************************!*\
+  !*** ./src/app/reporting-user/analytics-by-user/analytics-by-user.component.html ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<app-mainnav4>\n  <br /><br />\n  <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th scope=\"col\">#S. No.</th>\n        <th scope=\"col\">User Name</th>\n        <th scope=\"col\">First Name</th>\n        <th scope=\"col\">E-Mail</th>\n        <th scope=\"col\">View Details</th>\n      </tr>\n    </thead>\n    <tbody>\n      <ng-container *ngFor=\"let item of allUsers;index as i;\">\n        <tr>\n          <th scope=\"row\">{{i+1}}</th>\n          <td scope=\"row\">{{item.UserName}}</td>\n          <td scope=\"row\">{{item.FirstName}}</td>\n          <td scope=\"row\">{{item.Email}}</td>\n          <td style=\"text-align:center;\">\n            <a class=\"btn btn-sm btn-info text-white\" (click)=\"viewUserDetails(i)\"><i class=\"fa fa-paper-plane\"></i></a>\n          </td>\n        </tr>\n      </ng-container>\n    </tbody>\n  </table>\n</app-mainnav4>"
+
+/***/ }),
+
+/***/ "./src/app/reporting-user/analytics-by-user/analytics-by-user.component.ts":
+/*!*********************************************************************************!*\
+  !*** ./src/app/reporting-user/analytics-by-user/analytics-by-user.component.ts ***!
+  \*********************************************************************************/
+/*! exports provided: AnalyticsByUserComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnalyticsByUserComponent", function() { return AnalyticsByUserComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _shared_reporting_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shared/reporting-user.service */ "./src/app/reporting-user/shared/reporting-user.service.ts");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
+/* harmony import */ var _view_user_details_view_user_details_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./view-user-details/view-user-details.component */ "./src/app/reporting-user/analytics-by-user/view-user-details/view-user-details.component.ts");
+
+
+
+
+
+
+var AnalyticsByUserComponent = /** @class */ (function () {
+    function AnalyticsByUserComponent(service, dialog) {
+        this.service = service;
+        this.dialog = dialog;
+        this.dtTrigger = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+        this.dtOptions = {};
+    }
+    AnalyticsByUserComponent.prototype.ngOnInit = function () {
+        this.loadAllEmployees();
+        this.dtOptions = {
+            pagingType: 'full_numbers',
+            pageLength: 10,
+        };
+    };
+    AnalyticsByUserComponent.prototype.loadAllEmployees = function () {
+        var _this = this;
+        this.service.getAllUsers().subscribe(function (res) {
+            _this.allUsers = res;
+            _this.dtTrigger.next();
+            console.log(_this.allUsers);
+        });
+    };
+    AnalyticsByUserComponent.prototype.viewUserDetails = function (index) {
+        console.log(index);
+        var dialogConfig = new _angular_material_dialog__WEBPACK_IMPORTED_MODULE_4__["MatDialogConfig"]();
+        dialogConfig.autoFocus = true;
+        dialogConfig.width = "90%";
+        dialogConfig.disableClose = true;
+        dialogConfig.data = this.allUsers[index];
+        this.dialog.open(_view_user_details_view_user_details_component__WEBPACK_IMPORTED_MODULE_5__["ViewUserDetailsComponent"], dialogConfig).afterClosed().subscribe(function (res) {
+        });
+    };
+    AnalyticsByUserComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-analytics-by-user',
+            template: __webpack_require__(/*! ./analytics-by-user.component.html */ "./src/app/reporting-user/analytics-by-user/analytics-by-user.component.html"),
+            styles: [__webpack_require__(/*! ./analytics-by-user.component.css */ "./src/app/reporting-user/analytics-by-user/analytics-by-user.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_reporting_user_service__WEBPACK_IMPORTED_MODULE_3__["ReportingUserService"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_4__["MatDialog"]])
+    ], AnalyticsByUserComponent);
+    return AnalyticsByUserComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/reporting-user/analytics-by-user/view-user-details/view-user-details.component.css":
+/*!****************************************************************************************************!*\
+  !*** ./src/app/reporting-user/analytics-by-user/view-user-details/view-user-details.component.css ***!
+  \****************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n.zoom {\n  \n  /* background-color: green; */\n  transition: -webkit-transform .2s;\n  transition: transform .2s;\n  transition: transform .2s, -webkit-transform .2s; /* Animation */\n  \n}\n\n.zoom:hover {width: 200px;\n    height: 200px;\n    margin: 0 auto;\n  -webkit-transform: scale(1.5);\n          transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcmVwb3J0aW5nLXVzZXIvYW5hbHl0aWNzLWJ5LXVzZXIvdmlldy11c2VyLWRldGFpbHMvdmlldy11c2VyLWRldGFpbHMuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQ0E7O0VBRUUsNkJBQTZCO0VBQzdCLGlDQUF5QjtFQUF6Qix5QkFBeUI7RUFBekIsZ0RBQXlCLEVBQUUsY0FBYzs7QUFFM0M7O0FBRUEsYUFBYSxZQUFZO0lBQ3JCLGFBQWE7SUFDYixjQUFjO0VBQ2hCLDZCQUFxQjtVQUFyQixxQkFBcUIsRUFBRSxxRkFBcUY7QUFDOUciLCJmaWxlIjoic3JjL2FwcC9yZXBvcnRpbmctdXNlci9hbmFseXRpY3MtYnktdXNlci92aWV3LXVzZXItZGV0YWlscy92aWV3LXVzZXItZGV0YWlscy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXG4uem9vbSB7XG4gIFxuICAvKiBiYWNrZ3JvdW5kLWNvbG9yOiBncmVlbjsgKi9cbiAgdHJhbnNpdGlvbjogdHJhbnNmb3JtIC4yczsgLyogQW5pbWF0aW9uICovXG4gIFxufVxuXG4uem9vbTpob3ZlciB7d2lkdGg6IDIwMHB4O1xuICAgIGhlaWdodDogMjAwcHg7XG4gICAgbWFyZ2luOiAwIGF1dG87XG4gIHRyYW5zZm9ybTogc2NhbGUoMS41KTsgLyogKDE1MCUgem9vbSAtIE5vdGU6IGlmIHRoZSB6b29tIGlzIHRvbyBsYXJnZSwgaXQgd2lsbCBnbyBvdXRzaWRlIG9mIHRoZSB2aWV3cG9ydCkgKi9cbn1cbiJdfQ== */"
+
+/***/ }),
+
+/***/ "./src/app/reporting-user/analytics-by-user/view-user-details/view-user-details.component.html":
+/*!*****************************************************************************************************!*\
+  !*** ./src/app/reporting-user/analytics-by-user/view-user-details/view-user-details.component.html ***!
+  \*****************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\n  <div class=\"col\">\n    <h3>{{data.FirstName}}&nbsp;&nbsp;{{data.LastName}}--Performance Metrics</h3>\n  </div>\n  <div style=\"align-items: flex-end;\" class=\"col\">\n    <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n      <mat-icon>clear</mat-icon>\n    </button>\n  </div>\n</div>\n<div *ngIf=\"data1\">\n  <div class=\"row\">\n    <div class=\"col zoom\">\n      <div class=\"card\" style=\"width: 18rem;\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">Highest-Score</h5>\n          <label class=\"card-text\">{{data1.HighestScore}}</label>\n        </div>\n      </div>\n    </div>\n    <div class=\"col zoom\">\n\n      <div class=\"card\" style=\"width: 18rem;\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">Lowest Score</h5>\n          <label class=\"card-text\">{{data1.LowestScore}}</label>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col\">\n      <div class=\"card\" style=\"width: 18rem;\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">Accuracy</h5>\n          <label class=\"card-text\">{{data1.Accuracy}}</label>\n        </div>\n      </div>\n    </div>\n  </div>\n  <br>\n  <div class=\"row\">\n    <div class=\"col\">\n      <div class=\"card\" style=\"width: 18rem;\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">Performance</h5>\n          <label class=\"card-text\">{{data1.Performance}}</label>\n        </div>\n      </div>\n    </div>\n    <div class=\"col\">\n\n      <div class=\"card\" style=\"width: 18rem;\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">Average Score</h5>\n          <label class=\"card-text\">{{data1.AverageScore}}</label>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col\">\n      <div class=\"card\" style=\"width: 18rem;\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">Total-Quiz-Count</h5>\n          <label class=\"card-text\">{{data1.TotalQuizCount}}</label>\n        </div>\n      </div>\n    </div>\n  </div>\n  <br>\n  <div class=\"row\">\n    <div class=\"col\">\n      <div class=\"card\" style=\"width: 18rem;\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">Scheduled Quizzes Given</h5>\n          <label class=\"card-text\">{{data1.NonMockCount}}</label>\n        </div>\n      </div>\n    </div>\n    <div class=\"col\">\n\n      <div class=\"card\" style=\"width: 18rem;\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">Practice Quizzes Given</h5>\n          <label class=\"card-text\">{{data1.MockCount}}</label>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col\">\n      <div class=\"card\" style=\"width: 18rem;\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">Probability of Correctness</h5>\n          <label class=\"card-text\">{{data1.ProbabilityAnsweringCorrectly}}</label>\n        </div>\n      </div>\n    </div>\n  </div>\n  <br>\n</div>\n<!-- \n<button type=\"button\" class=\"btn btn-primary btn-danger\" [mat-dialog-close]> Close</button> -->"
+
+/***/ }),
+
+/***/ "./src/app/reporting-user/analytics-by-user/view-user-details/view-user-details.component.ts":
+/*!***************************************************************************************************!*\
+  !*** ./src/app/reporting-user/analytics-by-user/view-user-details/view-user-details.component.ts ***!
+  \***************************************************************************************************/
+/*! exports provided: ViewUserDetailsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ViewUserDetailsComponent", function() { return ViewUserDetailsComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
+/* harmony import */ var _shared_reporting_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/reporting-user.service */ "./src/app/reporting-user/shared/reporting-user.service.ts");
+
+
+
+
+var ViewUserDetailsComponent = /** @class */ (function () {
+    function ViewUserDetailsComponent(data, dialogRef, service) {
+        this.data = data;
+        this.dialogRef = dialogRef;
+        this.service = service;
+    }
+    ViewUserDetailsComponent.prototype.ngOnInit = function () {
+        this.fetchAnalytics(this.data.Id);
+    };
+    ViewUserDetailsComponent.prototype.fetchAnalytics = function (id) {
+        var _this = this;
+        this.service.getUserAnalytics(id).subscribe(function (res) {
+            _this.data1 = res;
+            console.log(_this.data1);
+        });
+    };
+    ViewUserDetailsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-view-user-details',
+            template: __webpack_require__(/*! ./view-user-details.component.html */ "./src/app/reporting-user/analytics-by-user/view-user-details/view-user-details.component.html"),
+            styles: [__webpack_require__(/*! ./view-user-details.component.css */ "./src/app/reporting-user/analytics-by-user/view-user-details/view-user-details.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](0, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"])),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [Object, _angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"],
+            _shared_reporting_user_service__WEBPACK_IMPORTED_MODULE_3__["ReportingUserService"]])
+    ], ViewUserDetailsComponent);
+    return ViewUserDetailsComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/reporting-user/mainnav4/mainnav4.component.css":
+/*!****************************************************************!*\
+  !*** ./src/app/reporting-user/mainnav4/mainnav4.component.css ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".sidenav-container {\n\theight: 100%;\n}\n.sidenav-container a {\n\tcolor: white;\n}\n.sidenav-container a:hover,\n.sidenav-container a:focus {\n\tbackground-color: red !important;\n}\n.sidenav {\n\twidth: 250px;\n\tbackground-color: #021521;\n}\n.sidenav .mat-toolbar {\n\tbackground: inherit;\n}\n.mat-toolbar {\n\tbackground-color: #021521;\n\ttext-decoration: none;\n\tborder-bottom: .2px solid #030e13;\n}\n.mat-toolbar span {\n\tcolor: white;\n}\n.mat-list-item {\n\tmargin-top: 10px;\n}\n.log {\n\tfont-size: 15px;\n\tcursor: pointer;\n\tcolor: red !important;\n}\n.mat-toolbar.mat-primary {\n\tposition: -webkit-sticky;\n\tposition: sticky;\n\ttop: 0;\n\tz-index: 1;\n}\n.content {\n\tpadding: 30px 30px 0px 50px !important;\n\tmargin: 30px auto;\n}\n.mat-icon {\n\tcolor: white;\n}\n.spacer {\n\tflex: 1 1 auto;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcmVwb3J0aW5nLXVzZXIvbWFpbm5hdjQvbWFpbm5hdjQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtDQUNDLFlBQVk7QUFDYjtBQUNBO0NBQ0MsWUFBWTtBQUNiO0FBQ0E7O0NBRUMsZ0NBQWdDO0FBQ2pDO0FBQ0E7Q0FDQyxZQUFZO0NBQ1oseUJBQXlCO0FBQzFCO0FBRUE7Q0FDQyxtQkFBbUI7QUFDcEI7QUFDQTtDQUNDLHlCQUF5QjtDQUN6QixxQkFBcUI7Q0FDckIsaUNBQWlDO0FBQ2xDO0FBQ0E7Q0FDQyxZQUFZO0FBQ2I7QUFDQTtDQUNDLGdCQUFnQjtBQUNqQjtBQUNBO0NBQ0MsZUFBZTtDQUNmLGVBQWU7Q0FDZixxQkFBcUI7QUFDdEI7QUFDQTtDQUNDLHdCQUFnQjtDQUFoQixnQkFBZ0I7Q0FDaEIsTUFBTTtDQUNOLFVBQVU7QUFDWDtBQUNBO0NBQ0Msc0NBQXNDO0NBQ3RDLGlCQUFpQjtBQUNsQjtBQUNBO0NBQ0MsWUFBWTtBQUNiO0FBQ0E7Q0FDQyxjQUFjO0FBQ2YiLCJmaWxlIjoic3JjL2FwcC9yZXBvcnRpbmctdXNlci9tYWlubmF2NC9tYWlubmF2NC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnNpZGVuYXYtY29udGFpbmVyIHtcblx0aGVpZ2h0OiAxMDAlO1xufVxuLnNpZGVuYXYtY29udGFpbmVyIGEge1xuXHRjb2xvcjogd2hpdGU7XG59XG4uc2lkZW5hdi1jb250YWluZXIgYTpob3Zlcixcbi5zaWRlbmF2LWNvbnRhaW5lciBhOmZvY3VzIHtcblx0YmFja2dyb3VuZC1jb2xvcjogcmVkICFpbXBvcnRhbnQ7XG59XG4uc2lkZW5hdiB7XG5cdHdpZHRoOiAyNTBweDtcblx0YmFja2dyb3VuZC1jb2xvcjogIzAyMTUyMTtcbn1cblxuLnNpZGVuYXYgLm1hdC10b29sYmFyIHtcblx0YmFja2dyb3VuZDogaW5oZXJpdDtcbn1cbi5tYXQtdG9vbGJhciB7XG5cdGJhY2tncm91bmQtY29sb3I6ICMwMjE1MjE7XG5cdHRleHQtZGVjb3JhdGlvbjogbm9uZTtcblx0Ym9yZGVyLWJvdHRvbTogLjJweCBzb2xpZCAjMDMwZTEzO1xufVxuLm1hdC10b29sYmFyIHNwYW4ge1xuXHRjb2xvcjogd2hpdGU7XG59XG4ubWF0LWxpc3QtaXRlbSB7XG5cdG1hcmdpbi10b3A6IDEwcHg7XG59XG4ubG9nIHtcblx0Zm9udC1zaXplOiAxNXB4O1xuXHRjdXJzb3I6IHBvaW50ZXI7XG5cdGNvbG9yOiByZWQgIWltcG9ydGFudDtcbn1cbi5tYXQtdG9vbGJhci5tYXQtcHJpbWFyeSB7XG5cdHBvc2l0aW9uOiBzdGlja3k7XG5cdHRvcDogMDtcblx0ei1pbmRleDogMTtcbn1cbi5jb250ZW50IHtcblx0cGFkZGluZzogMzBweCAzMHB4IDBweCA1MHB4ICFpbXBvcnRhbnQ7XG5cdG1hcmdpbjogMzBweCBhdXRvO1xufVxuLm1hdC1pY29uIHtcblx0Y29sb3I6IHdoaXRlO1xufVxuLnNwYWNlciB7XG5cdGZsZXg6IDEgMSBhdXRvO1xufVxuIl19 */"
+
+/***/ }),
+
+/***/ "./src/app/reporting-user/mainnav4/mainnav4.component.html":
+/*!*****************************************************************!*\
+  !*** ./src/app/reporting-user/mainnav4/mainnav4.component.html ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<mat-sidenav-container class=\"sidenav-container\">\n  <mat-sidenav #drawer class=\"sidenav\" fixedInViewport=\"true\"\n      [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\"\n      [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\n      [opened]=\"!(isHandset$ | async)\">\n      <mat-toolbar><a mat-list-item routerLink=\"/ru-dash\">Dashboard</a></mat-toolbar>\n    <mat-nav-list>\n        <a mat-list-item routerLink=\"/ru-dash/ana-by-user\">Analytics By User</a>\n        <a mat-list-item routerLink=\"/ru-dash/ana-by-tag\">AnaLytics By Tag</a>\n        <a mat-list-item routerLink=\"/ru-dash/ana-by-quiz\">Analytics By Quiz</a>\n      </mat-nav-list>\n  </mat-sidenav>\n  <mat-sidenav-content>\n    <mat-toolbar color=\"primary\">\n      <button\n        type=\"button\"\n        aria-label=\"Toggle sidenav\"\n        mat-icon-button\n        (click)=\"drawer.toggle()\"\n        *ngIf=\"isHandset$ | async\">\n        <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\n      </button>\n      <span>Reporting User</span>\n      <span class=\"spacer\"></span>\n      <a class=\"log\" (click)=\"logout()\">Log Out</a>\n    </mat-toolbar>\n    <div class=\"content\">\n        <ng-content></ng-content>\n      </div>\n  </mat-sidenav-content>\n</mat-sidenav-container>\n"
+
+/***/ }),
+
+/***/ "./src/app/reporting-user/mainnav4/mainnav4.component.ts":
+/*!***************************************************************!*\
+  !*** ./src/app/reporting-user/mainnav4/mainnav4.component.ts ***!
+  \***************************************************************/
+/*! exports provided: Mainnav4Component */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Mainnav4Component", function() { return Mainnav4Component; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/cdk/layout */ "./node_modules/@angular/cdk/esm5/layout.es5.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var angularx_social_login__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! angularx-social-login */ "./node_modules/angularx-social-login/angularx-social-login.es5.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
+
+
+
+
+
+var Mainnav4Component = /** @class */ (function () {
+    function Mainnav4Component(breakpointObserver, authService, router) {
+        this.breakpointObserver = breakpointObserver;
+        this.authService = authService;
+        this.router = router;
+        this.isHandset$ = this.breakpointObserver.observe(_angular_cdk_layout__WEBPACK_IMPORTED_MODULE_2__["Breakpoints"].Handset)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (result) { return result.matches; }));
+    }
+    Mainnav4Component.prototype.ngOnInit = function () {
+        var _this = this;
+        this.authService.authState.subscribe(function (user) {
+            if (user != null) {
+            }
+            else {
+                localStorage.clear();
+                _this.router.navigate(['/login']);
+            }
+        });
+    };
+    Mainnav4Component.prototype.logout = function () {
+        this.authService.signOut();
+    };
+    Mainnav4Component = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-mainnav4',
+            template: __webpack_require__(/*! ./mainnav4.component.html */ "./src/app/reporting-user/mainnav4/mainnav4.component.html"),
+            styles: [__webpack_require__(/*! ./mainnav4.component.css */ "./src/app/reporting-user/mainnav4/mainnav4.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_cdk_layout__WEBPACK_IMPORTED_MODULE_2__["BreakpointObserver"],
+            angularx_social_login__WEBPACK_IMPORTED_MODULE_4__["AuthService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
+    ], Mainnav4Component);
+    return Mainnav4Component;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/reporting-user/reporting-user.component.css":
+/*!*************************************************************!*\
+  !*** ./src/app/reporting-user/reporting-user.component.css ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3JlcG9ydGluZy11c2VyL3JlcG9ydGluZy11c2VyLmNvbXBvbmVudC5jc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/reporting-user/reporting-user.component.html":
+/*!**************************************************************!*\
+  !*** ./src/app/reporting-user/reporting-user.component.html ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  reporting-user works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/reporting-user/reporting-user.component.ts":
+/*!************************************************************!*\
+  !*** ./src/app/reporting-user/reporting-user.component.ts ***!
+  \************************************************************/
+/*! exports provided: ReportingUserComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReportingUserComponent", function() { return ReportingUserComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var ReportingUserComponent = /** @class */ (function () {
+    function ReportingUserComponent() {
+    }
+    ReportingUserComponent.prototype.ngOnInit = function () {
+    };
+    ReportingUserComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-reporting-user',
+            template: __webpack_require__(/*! ./reporting-user.component.html */ "./src/app/reporting-user/reporting-user.component.html"),
+            styles: [__webpack_require__(/*! ./reporting-user.component.css */ "./src/app/reporting-user/reporting-user.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], ReportingUserComponent);
+    return ReportingUserComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/reporting-user/shared/reporting-user.service.ts":
+/*!*****************************************************************!*\
+  !*** ./src/app/reporting-user/shared/reporting-user.service.ts ***!
+  \*****************************************************************/
+/*! exports provided: ReportingUserService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReportingUserService", function() { return ReportingUserService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
+
+
+
+var ReportingUserService = /** @class */ (function () {
+    function ReportingUserService(http) {
+        this.http = http;
+        this.rootUrl = src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiURl;
+    }
+    ReportingUserService.prototype.getTagAnalytics = function () {
+        return this.http.get(this.rootUrl + "ReportingUser/AnalyticsByTag");
+    };
+    ReportingUserService.prototype.getAllUsers = function () {
+        return this.http.get(this.rootUrl + 'User/GetUserAll');
+    };
+    ReportingUserService.prototype.getUserAnalytics = function (id) {
+        return this.http.get(this.rootUrl + 'ReportingUser/AnalyticsByUser/' + id);
+    };
+    ReportingUserService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
+    ], ReportingUserService);
+    return ReportingUserService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/test-admin/add-user1/add-user1.component.css":
 /*!**************************************************************!*\
   !*** ./src/app/test-admin/add-user1/add-user1.component.css ***!
@@ -3521,7 +4146,7 @@ var LoginComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3Rlc3QtYWRtaW4vYWRkLXVzZXIxL2FkZC11c2VyMS5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "mat-dialog-content {\n\tposition: relative;\n}\n.pos {\n\tposition: absolute;\n\tright: 1%;\n\ttop: 2%;\n\tz-index: 9999;\n\twidth: 35px;\n\theight: 35px;\n}\nmat-icon {\n\twidth: 30px;\n\theight: 30px;\n\tposition: absolute;\n\tleft: 10%;\n\ttop: 10%;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGVzdC1hZG1pbi9hZGQtdXNlcjEvYWRkLXVzZXIxLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Q0FDQyxrQkFBa0I7QUFDbkI7QUFDQTtDQUNDLGtCQUFrQjtDQUNsQixTQUFTO0NBQ1QsT0FBTztDQUNQLGFBQWE7Q0FDYixXQUFXO0NBQ1gsWUFBWTtBQUNiO0FBQ0E7Q0FDQyxXQUFXO0NBQ1gsWUFBWTtDQUNaLGtCQUFrQjtDQUNsQixTQUFTO0NBQ1QsUUFBUTtBQUNUIiwiZmlsZSI6InNyYy9hcHAvdGVzdC1hZG1pbi9hZGQtdXNlcjEvYWRkLXVzZXIxLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJtYXQtZGlhbG9nLWNvbnRlbnQge1xuXHRwb3NpdGlvbjogcmVsYXRpdmU7XG59XG4ucG9zIHtcblx0cG9zaXRpb246IGFic29sdXRlO1xuXHRyaWdodDogMSU7XG5cdHRvcDogMiU7XG5cdHotaW5kZXg6IDk5OTk7XG5cdHdpZHRoOiAzNXB4O1xuXHRoZWlnaHQ6IDM1cHg7XG59XG5tYXQtaWNvbiB7XG5cdHdpZHRoOiAzMHB4O1xuXHRoZWlnaHQ6IDMwcHg7XG5cdHBvc2l0aW9uOiBhYnNvbHV0ZTtcblx0bGVmdDogMTAlO1xuXHR0b3A6IDEwJTtcbn1cbiJdfQ== */"
 
 /***/ }),
 
@@ -3532,7 +4157,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form #Userform=\"ngForm\" (submit)=\"onSubmit(Userform)\" autocomplete=\"off\">\n  <div *ngFor=\"let x of quiztakers; let i = index\"><br>\n    <input [id]=\"'quiztakers-'+i\" type=\"checkbox\" value=\"{{x.Id}}\" [checked]=\"x.selected\"\n      (change)=\"updateSelectedUsers(i)\">\n    <label>{{x.FirstName  }}{{x.LastName}}</label>\n  </div>\n  <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n  <button type=\"button\" [mat-dialog-close] class=\"btn btn-danger\">Close</button>\n</form>"
+module.exports = "<button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\"><mat-icon>clear</mat-icon></button>\n<form #Userform=\"ngForm\" (submit)=\"onSubmit(Userform)\" autocomplete=\"off\">\n  <div *ngFor=\"let x of quiztakers; let i = index\"><br>\n    <input [id]=\"'quiztakers-'+i\" type=\"checkbox\" value=\"{{x.Id}}\" [checked]=\"x.selected\"\n      (change)=\"updateSelectedUsers(i)\">\n    <label>{{x.FirstName  }}{{x.LastName}}</label>\n  </div>\n  <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n</form>"
 
 /***/ }),
 
@@ -3571,7 +4196,6 @@ var AddUser1Component = /** @class */ (function () {
         this.service.retrieveAllEmployees(this.data).subscribe(function (res) {
             res.forEach(function (obj) { return obj.selected = false; });
             _this.quiztakers = res;
-            console.log(_this.quiztakers);
         });
     };
     AddUser1Component.prototype.updateSelectedUsers = function (index) {
@@ -3580,7 +4204,6 @@ var AddUser1Component = /** @class */ (function () {
     AddUser1Component.prototype.onSubmit = function (form) {
         var _this = this;
         var quiztakerId = this.quiztakers.filter(function (Id) { return Id.selected; }).map(function (idSelected) { return idSelected.Id; });
-        console.log(quiztakerId);
         this.service.addUserInExistingSchedule(this.data, quiztakerId).subscribe(function (res) {
             _this.toastr.success('added succesfully');
             _this.dialogRef.close('Added');
@@ -3622,7 +4245,7 @@ module.exports = ".sidenav-container {\n\theight: 100%;\n}\n.sidenav-container a
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-sidenav-container class=\"sidenav-container\">\n  <mat-sidenav #drawer class=\"sidenav\" fixedInViewport=\"true\"\n    [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\" [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\n    [opened]=\"!(isHandset$ | async)\">\n    <mat-toolbar><a mat-list-item routerLink=\"/ta-dash\">Dashboard</a></mat-toolbar>\n    <mat-nav-list>\n      <a mat-list-item routerLink=\"/retrieve-schedule\">Retrieve/Edit Schedule</a>\n      <a mat-list-item routerLink=\"/testAdminCreateScheDule\">Create Schedule</a>\n      <a mat-list-item routerLink=\"/archive-schedule\">Archieved Schedule</a>\n      <a mat-list-item routerLink=\"/add-user\">Add User</a>\n\n    </mat-nav-list>\n  </mat-sidenav>\n  <mat-sidenav-content>\n    <mat-toolbar>\n      <button type=\"button\" aria-label=\"Toggle sidenav\" mat-icon-button (click)=\"drawer.toggle()\"\n        *ngIf=\"isHandset$ | async\">\n        <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\n      </button>\n      <span>Test Admin</span>\n      <span class=\"spacer\"></span>\n      <a class=\"log\" (click)=\"logout()\">Log Out</a>\n    </mat-toolbar>\n    <div class=\"content\">\n      <ng-content></ng-content>\n    </div>\n  </mat-sidenav-content>\n</mat-sidenav-container>"
+module.exports = "<mat-sidenav-container class=\"sidenav-container\">\n  <mat-sidenav #drawer class=\"sidenav\" fixedInViewport=\"true\"\n    [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\" [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\n    [opened]=\"!(isHandset$ | async)\">\n    <mat-toolbar><a mat-list-item routerLink=\"/ta-dash\">Dashboard</a></mat-toolbar>\n    <mat-nav-list>\n      <a mat-list-item routerLink=\"/ta-dash/retrieve-schedule\">Retrieve/Edit Schedule</a>\n      <a mat-list-item routerLink=\"/ta-dash/testAdminCreateScheDule\">Create Schedule</a>\n      <a mat-list-item routerLink=\"/ta-dash/archive-schedule\">Archieved Schedule</a>\n      <a mat-list-item routerLink=\"/ta-dash/add-user\">Add User</a>\n    </mat-nav-list>\n  </mat-sidenav>\n  <mat-sidenav-content>\n    <mat-toolbar>\n      <button type=\"button\" aria-label=\"Toggle sidenav\" mat-icon-button (click)=\"drawer.toggle()\"\n        *ngIf=\"isHandset$ | async\">\n        <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\n      </button>\n      <span>Test Admin</span>\n      <span class=\"spacer\"></span>\n      <a class=\"log\" (click)=\"logout()\">Log Out</a>\n    </mat-toolbar>\n    <div class=\"content\">\n      <ng-content></ng-content>\n    </div>\n  </mat-sidenav-content>\n</mat-sidenav-container>"
 
 /***/ }),
 
@@ -3661,7 +4284,6 @@ var MainNav2Component = /** @class */ (function () {
         var _this = this;
         this.authService.authState.subscribe(function (user) {
             if (user != null) {
-                //	console.log(user);
             }
             else {
                 localStorage.clear();
@@ -3706,7 +4328,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav2>\n  <!-- <form #Userform=\"ngForm\" (submit)=\"onSubmit(Userform)\" autocomplete=\"off\">\n    <div *ngFor=\"let x of quiztakers; let i = index\"><br>\n      <input [id]=\"'quiztakers-'+i\" type=\"checkbox\" value=\"{{x.Id}}\" [checked]=\"x.selected\"\n        (change)=\"updateSelectedUsers(i)\">\n      <label>{{x.FirstName  }}{{x.LastName}}</label>\n    </div>\n    <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n    <button type=\"button\" [mat-dialog-close] class=\"btn btn-danger\">Close</button>\n  </form> -->\n  <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th scope=\"col\">#Schedule ID</th>\n        <th scope=\"col\">Quiz Name</th>\n        <th scope=\"col\">Start Date/Time</th>\n        <th scope=\"col\">End Date/Time</th>\n        <th scope=\"col\">Action</th>\n      </tr>\n    </thead>\n\n    <tbody>\n      <ng-container *ngFor=\"let item of scheduleList;index as i;\">\n        <tr>\n          <th  scope=\"row\">{{i+1}}</th>\n          <td  scope=\"row\">{{item.QuizName}}</td>\n          <td  scope=\"row\">{{item.StartDateTime}}</td>\n          <td  scope=\"row\">{{item.EndDateTime}}</td>\n          <td>\n            <a class=\"btn btn-sm btn-info text-white\" (click)=\"addUserToSchedule(item.QuizScheduleId,i+1)\"><i\n                class=\"fa fa-user-plus\"></i></a>\n            <!-- <a class=\"btn btn-sm btn-danger text-white ml-1\" (click)=\"deleteSchedule(item.QuizScheduleId)\"><i\n                class=\"fa fa-trash\"></i></a> -->\n          </td>\n\n        </tr>\n      </ng-container>\n    </tbody>\n  </table>\n</app-main-nav2>"
+module.exports = "<app-main-nav2>\n  <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th scope=\"col\">#S. No.</th>\n        <th scope=\"col\">Quiz Name</th>\n        <th scope=\"col\">Start Date/Time</th>\n        <th scope=\"col\">End Date/Time</th>\n        <th scope=\"col\">Action</th>\n      </tr>\n    </thead>\n\n    <tbody>\n      <ng-container *ngFor=\"let item of scheduleList;index as i;\">\n        <tr>\n          <th  scope=\"row\">{{i+1}}</th>\n          <td  scope=\"row\">{{item.QuizName}}</td>\n          <td  scope=\"row\">{{item.StartDateTime}}</td>\n          <td  scope=\"row\">{{item.EndDateTime}}</td>\n          <td>\n            <a class=\"btn btn-sm btn-info text-white\" (click)=\"addUserToSchedule(item.QuizScheduleId,i+1)\"><i\n                class=\"fa fa-user-plus\"></i></a>\n          </td>\n\n        </tr>\n      </ng-container>\n    </tbody>\n  </table>\n</app-main-nav2>"
 
 /***/ }),
 
@@ -3924,7 +4546,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav2>\n  <h5 class=\"card-title\">Create Schedule</h5>\n  <!-- <button type=\"button\" (click)=\"adduser()\" class=\"btn btn-primary\">Add Users</button><br /><br /> -->\n  <form #form=\"ngForm\" (submit)=\"sub(form)\" autocomplete=\"off\">\n    <div class=\"form-row\">\n      <input type=\"hidden\" #CreatedBy=\"ngModel\" name=\"CreatedBy\" [(ngModel)]=\"CCreatedBy\">\n      <div class=\"form-group col-md-6\">\n        <label>Start Date Time:</label><br />\n        <input type=\"datetime-local\" required name=\"StartDateTime\" #StartDateTime=\"ngModel\" [(ngModel)]=\"q1\">\n        <div class=\"validation-error\" *ngIf=\"StartDateTime.invalid && StartDateTime.touched\">This field is\n          required.\n        </div>\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label>End Date Time</label><br />\n        <input type=\"datetime-local\" required name=\"EndDateTime\" #EndDateTime=\"ngModel\" [(ngModel)]=\"q2\">\n        <div class=\"validation-error\" *ngIf=\"EndDateTime.invalid && EndDateTime.touched\">This field is\n          required.\n        </div>\n      </div>\n    </div>\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\">\n        <label>Select Quiz</label>\n        <select name=\"QuizId\" required #QuizId=\"ngModel\" [(ngModel)]=\"q3\" class=\"form-control\">\n          <option value=\"\">Choose</option>\n          <option *ngFor=\"let Quiz of QuizList\" value=\"{{Quiz.QuizId}}\">\n            {{Quiz.QuizName}}</option>\n        </select>\n        <div class=\"validation-error\" *ngIf=\"QuizId.invalid && QuizId.touched\">This field is required.</div>\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <button type=\"submit\" [disabled]=\"btndisable || form.invalid\" class=\"btn btn-primary btn-block\">Submit</button>\n    </div>\n  </form>\n\n\n</app-main-nav2>"
+module.exports = "<app-main-nav2>\n  <h5 class=\"card-title\">Create Schedule</h5>\n  <form #form=\"ngForm\" (submit)=\"sub(form)\" autocomplete=\"off\">\n    <div class=\"form-row\">\n      <input type=\"hidden\" #CreatedBy=\"ngModel\" name=\"CreatedBy\" [(ngModel)]=\"CCreatedBy\">\n      <div class=\"form-group col-md-6\">\n        <label>Start Date Time:</label><br />\n        <input type=\"datetime-local\" required name=\"StartDateTime\" #StartDateTime=\"ngModel\" [(ngModel)]=\"q1\">\n        <div class=\"validation-error\" *ngIf=\"StartDateTime.invalid && StartDateTime.touched\">This field is\n          required.\n        </div>\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label>End Date Time</label><br />\n        <input type=\"datetime-local\" required name=\"EndDateTime\" #EndDateTime=\"ngModel\" [(ngModel)]=\"q2\">\n        <div class=\"validation-error\" *ngIf=\"EndDateTime.invalid && EndDateTime.touched\">This field is\n          required.\n        </div>\n      </div>\n    </div>\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\">\n        <label>Select Quiz</label>\n        <select name=\"QuizId\" required #QuizId=\"ngModel\" [(ngModel)]=\"q3\" class=\"form-control\">\n          <option value=\"\">Choose</option>\n          <option *ngFor=\"let Quiz of QuizList\" value=\"{{Quiz.QuizId}}\">\n            {{Quiz.QuizName}}</option>\n        </select>\n        <div class=\"validation-error\" *ngIf=\"QuizId.invalid && QuizId.touched\">This field is required.</div>\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <button type=\"submit\" [disabled]=\"btndisable || form.invalid\" class=\"btn btn-primary btn-block\">Submit</button>\n    </div>\n  </form>\n</app-main-nav2>"
 
 /***/ }),
 
@@ -4019,7 +4641,7 @@ module.exports = "th,td{\n    color: black;\n    text-align: center;\n}\n/*# sou
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav2>\n  <!-- <button type=\"button\" (click)=\"onCreate()\" class=\"btn btn-primary\">Create Schedule</button> -->\n  <br /><br />\n  <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th scope=\"col\">#Schedule ID</th>\n        <th scope=\"col\">Quiz Name</th>\n        <th scope=\"col\">Start Date/Time</th>\n        <th scope=\"col\">End Date/Time</th>\n        <th scope=\"col\">Action</th>\n      </tr>\n    </thead>\n\n    <tbody>\n      <ng-container *ngFor=\"let item of scheduleList;index as i;\">\n        <tr style=\"color:azure\">\n          <th (click)=\"viewSchedule(item.QuizScheduleId,i+1)\" scope=\"row\">{{i+1}}</th>\n          <td (click)=\"viewSchedule(item.QuizScheduleId,i+1)\" scope=\"row\">{{item.QuizName}}</td>\n          <td (click)=\"viewSchedule(item.QuizScheduleId,i+1)\" scope=\"row\">{{item.StartDateTime}}</td>\n          <td (click)=\"viewSchedule(item.QuizScheduleId,i+1)\" scope=\"row\">{{item.EndDateTime}}</td>\n          <td>\n            <a class=\"btn btn-sm btn-info text-white\" (click)=\"editSchedule(item.QuizScheduleId,i+1)\"><i\n                class=\"fa fa-pencil\"></i></a>\n            <a class=\"btn btn-sm btn-danger text-white ml-1\" (click)=\"deleteSchedule(item.QuizScheduleId)\"><i\n                class=\"fa fa-trash\"></i></a>\n          </td>\n\n        </tr>\n      </ng-container>\n    </tbody>\n  </table>\n</app-main-nav2>"
+module.exports = "<app-main-nav2>\n  <!-- <button type=\"button\" (click)=\"onCreate()\" class=\"btn btn-primary\">Create Schedule</button> -->\n  <br /><br />\n  <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th scope=\"col\">#S. No.</th>\n        <th scope=\"col\">Quiz Name</th>\n        <th scope=\"col\">Start Date/Time</th>\n        <th scope=\"col\">End Date/Time</th>\n        <th scope=\"col\">Action</th>\n      </tr>\n    </thead>\n\n    <tbody>\n      <ng-container *ngFor=\"let item of scheduleList;index as i;\">\n        <tr style=\"color:azure\">\n          <th (click)=\"viewSchedule(item.QuizScheduleId,i+1)\" scope=\"row\">{{i+1}}</th>\n          <td (click)=\"viewSchedule(item.QuizScheduleId,i+1)\" scope=\"row\">{{item.QuizName}}</td>\n          <td (click)=\"viewSchedule(item.QuizScheduleId,i+1)\" scope=\"row\">{{item.StartDateTime}}</td>\n          <td (click)=\"viewSchedule(item.QuizScheduleId,i+1)\" scope=\"row\">{{item.EndDateTime}}</td>\n          <td>\n            <a class=\"btn btn-sm btn-info text-white\" (click)=\"editSchedule(item.QuizScheduleId,i+1)\"><i\n                class=\"fa fa-pencil\"></i></a>\n            <a class=\"btn btn-sm btn-danger text-white ml-1\" (click)=\"deleteSchedule(item.QuizScheduleId)\"><i\n                class=\"fa fa-trash\"></i></a>\n          </td>\n\n        </tr>\n      </ng-container>\n    </tbody>\n  </table>\n</app-main-nav2>"
 
 /***/ }),
 
@@ -4141,7 +4763,7 @@ var RetrieveScheduleComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "th, td{\n    text-align: center;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGVzdC1hZG1pbi9yZXRyaWV2ZS1zY2hlZHVsZS92aWV3LXNjaGVkdWxlL3ZpZXctc2NoZWR1bGUuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGtCQUFrQjtBQUN0QiIsImZpbGUiOiJzcmMvYXBwL3Rlc3QtYWRtaW4vcmV0cmlldmUtc2NoZWR1bGUvdmlldy1zY2hlZHVsZS92aWV3LXNjaGVkdWxlLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJ0aCwgdGR7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufSJdfQ== */"
+module.exports = "th,\ntd {\n\ttext-align: center;\n}\nmat-dialog-content {\n\tposition: relative;\n}\n.pos {\n\tposition: absolute;\n\tright: 1%;\n\ttop: 2%;\n\tz-index: 9999;\n\twidth: 35px;\n\theight: 35px;\n}\nmat-icon {\n\twidth: 30px;\n\theight: 30px;\n\tposition: absolute;\n\tleft: 10%;\n\ttop: 10%;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGVzdC1hZG1pbi9yZXRyaWV2ZS1zY2hlZHVsZS92aWV3LXNjaGVkdWxlL3ZpZXctc2NoZWR1bGUuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7Q0FFQyxrQkFBa0I7QUFDbkI7QUFDQTtDQUNDLGtCQUFrQjtBQUNuQjtBQUNBO0NBQ0Msa0JBQWtCO0NBQ2xCLFNBQVM7Q0FDVCxPQUFPO0NBQ1AsYUFBYTtDQUNiLFdBQVc7Q0FDWCxZQUFZO0FBQ2I7QUFDQTtDQUNDLFdBQVc7Q0FDWCxZQUFZO0NBQ1osa0JBQWtCO0NBQ2xCLFNBQVM7Q0FDVCxRQUFRO0FBQ1QiLCJmaWxlIjoic3JjL2FwcC90ZXN0LWFkbWluL3JldHJpZXZlLXNjaGVkdWxlL3ZpZXctc2NoZWR1bGUvdmlldy1zY2hlZHVsZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsidGgsXG50ZCB7XG5cdHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbm1hdC1kaWFsb2ctY29udGVudCB7XG5cdHBvc2l0aW9uOiByZWxhdGl2ZTtcbn1cbi5wb3Mge1xuXHRwb3NpdGlvbjogYWJzb2x1dGU7XG5cdHJpZ2h0OiAxJTtcblx0dG9wOiAyJTtcblx0ei1pbmRleDogOTk5OTtcblx0d2lkdGg6IDM1cHg7XG5cdGhlaWdodDogMzVweDtcbn1cbm1hdC1pY29uIHtcblx0d2lkdGg6IDMwcHg7XG5cdGhlaWdodDogMzBweDtcblx0cG9zaXRpb246IGFic29sdXRlO1xuXHRsZWZ0OiAxMCU7XG5cdHRvcDogMTAlO1xufVxuIl19 */"
 
 /***/ }),
 
@@ -4152,7 +4774,7 @@ module.exports = "th, td{\n    text-align: center;\n}\n/*# sourceMappingURL=data
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "  <h5 class=\"card-title\">{{label}}</h5>\n  <button type=\"button\" [hidden]=\"bool\" (click)=\"onAdd()\" class=\"btn btn-primary\">Add Users</button>  <br/>\n  <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n    <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"this.CCreatedBy\">\n    <input type=\"hidden\" name=\"QuizId\" #QuizId=\"ngModel\" [(ngModel)]=\"service.formdata.QuizId\">\n    <input type=\"hidden\" name=\"ArchiveStatus\" #ArchiveStatus=\"ngModel\" [(ngModel)]=\"service.formdata.ArchiveStatus\">\n    <div class=\"form-group col-md-6\">\n      <label>Start Date Time</label>\n      <input type=\"datetime-local\" required name=\"StartDateTime\" #StartDateTime=\"ngModel\"\n        [(ngModel)]=service.formdata.StartDateTime [readonly]=\"bool\">\n      <div class=\"validation-error\" *ngIf=\"StartDateTime.invalid && StartDateTime.touched\">This field is required.\n      </div>\n    </div>\n    <div class=\"form-group col-md-6\">\n      <label>End Date Time</label>\n      <input type=\"datetime-local\" required name=\"EndDateTime\" #EndDateTime=\"ngModel\"\n        [(ngModel)]=\"service.formdata.EndDateTime\" [readonly]=\"bool\">\n      <div class=\"validation-error\" *ngIf=\"EndDateTime.invalid && EndDateTime.touched\">This field is required.\n      </div>\n    </div>\n    <mat-dialog-content>\n    <table class=\"table table-bordered table-striped\">\n      <thead class=\"thead-dark\">\n        <th scope=\"col\">#User ID</th>\n        <th scope=\"col\">UserName</th>\n        <th scope=\"col\">E-Mail</th>\n        <th scope=\"col\">Taken</th>\n        <th scope=\"col\">Action</th>\n      </thead>\n      <tbody>\n        <ng-container *ngFor=\"let user of usersList;index as i\">\n          <tr>\n            <th class=\"text-primary\" scope=\"row\">{{i+1}}</th>\n            <th class=\"text-primary\" scope=\"row\">{{user.UserName}}</th>\n            <td class=\"text-primary\" scope=\"row\">{{user.Email}}</td>\n            <td class=\"text-primary\" scope=\"row\">{{user.QuizTaken}}</td>\n            <td>\n              <button [disabled]=\"bool\" class=\"btn text-danger\" (click)=\"deleteUserFromSchedule(user.Id)\"><i\n                  class=\"fa fa-trash fa-lg\"></i></button>\n            </td>\n          </tr>\n        </ng-container>\n      </tbody>\n    </table>\n  </mat-dialog-content>\n    <div class=\"form-group\">\n      <button [hidden]=\"bool\" style=\"margin:0 5%\" type=\"submit\" [disabled]=\"form.invalid || bool\"\n        class=\"btn btn-primary\">Submit</button>\n      <button [hidden] =\"bool\" type=\"button\" class=\"btn btn-primary btn-danger\" [mat-dialog-close]> Close</button>\n    </div>\n  </form>"
+module.exports = "    <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\"><mat-icon>clear</mat-icon></button>\n  <h5 class=\"card-title\">{{label}}</h5>\n  <button type=\"button\" [hidden]=\"bool\" (click)=\"onAdd()\" class=\"btn btn-primary\">Add Users</button>  <br/>\n  <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n    <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"this.CCreatedBy\">\n    <input type=\"hidden\" name=\"QuizId\" #QuizId=\"ngModel\" [(ngModel)]=\"service.formdata.QuizId\">\n    <input type=\"hidden\" name=\"ArchiveStatus\" #ArchiveStatus=\"ngModel\" [(ngModel)]=\"service.formdata.ArchiveStatus\">\n    <div class=\"form-group col-md-6\">\n      <label>Start Date Time</label>\n      <input type=\"datetime-local\" required name=\"StartDateTime\" #StartDateTime=\"ngModel\"\n        [(ngModel)]=service.formdata.StartDateTime [readonly]=\"bool\">\n      <div class=\"validation-error\" *ngIf=\"StartDateTime.invalid && StartDateTime.touched\">This field is required.\n      </div>\n    </div>\n    <div class=\"form-group col-md-6\">\n      <label>End Date Time</label>\n      <input type=\"datetime-local\" required name=\"EndDateTime\" #EndDateTime=\"ngModel\"\n        [(ngModel)]=\"service.formdata.EndDateTime\" [readonly]=\"bool\">\n      <div class=\"validation-error\" *ngIf=\"EndDateTime.invalid && EndDateTime.touched\">This field is required.\n      </div>\n    </div>\n    <mat-dialog-content>\n    <table class=\"table table-bordered table-striped\">\n      <thead class=\"thead-dark\">\n        <th scope=\"col\">#User ID</th>\n        <th scope=\"col\">UserName</th>\n        <th scope=\"col\">E-Mail</th>\n        <th scope=\"col\">Taken</th>\n        <th scope=\"col\">Action</th>\n      </thead>\n      <tbody>\n        <ng-container *ngFor=\"let user of usersList;index as i\">\n          <tr>\n            <th class=\"text-primary\" scope=\"row\">{{i+1}}</th>\n            <th class=\"text-primary\" scope=\"row\">{{user.UserName}}</th>\n            <td class=\"text-primary\" scope=\"row\">{{user.Email}}</td>\n            <td class=\"text-primary\" scope=\"row\">{{user.QuizTaken}}</td>\n            <td>\n              <button [disabled]=\"bool\" class=\"btn text-danger\" (click)=\"deleteUserFromSchedule(user.Id)\"><i\n                  class=\"fa fa-trash fa-lg\"></i></button>\n            </td>\n          </tr>\n        </ng-container>\n      </tbody>\n    </table>\n  </mat-dialog-content>\n    <div class=\"form-group\">\n      <button [hidden]=\"bool\" style=\"margin:0 5%\" type=\"submit\" [disabled]=\"form.invalid || bool\"\n        class=\"btn btn-primary\">Submit</button>\n      <button [hidden] =\"bool\" type=\"button\" class=\"btn btn-primary btn-danger\" [mat-dialog-close]> Close</button>\n    </div>\n  </form>"
 
 /***/ }),
 

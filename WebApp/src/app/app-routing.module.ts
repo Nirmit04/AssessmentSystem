@@ -25,9 +25,8 @@ import { DetailedReportComponent } from './employee/detailed-report/detailed-rep
 import { MockComponent } from './employee/mock/mock.component';
 import { MockReportComponent } from './employee/mock-report/mock-report.component';
 import { AddUserComponent } from './test-admin/retrieve-schedule/add-user/add-user.component';
-// import { MainNav4Component } from './reporting-user/main-nav4/main-nav4.component';
-import { AnalyticsByUserComponent } from './reporting-user/analytics-by-user/analytics-by-user.component';
 import { AnalyticsByTagComponent } from './reporting-user/analytics-by-tag/analytics-by-tag.component';
+import { AnalyticsByUserComponent } from './reporting-user/analytics-by-user/analytics-by-user.component';
 import { AnalyticsByQuizComponent } from './reporting-user/analytics-by-quiz/analytics-by-quiz.component';
 import { Mainnav4Component } from './reporting-user/mainnav4/mainnav4.component';
 import { ReportingUserComponent } from './reporting-user/reporting-user.component';
@@ -37,7 +36,6 @@ const routes: Routes = [
 	{ path: 'app-root', component: AppComponent },
 	{ path: 'cc-dash', component: UserDetailsComponent, canActivate: [ AuthGuard ] },
 	{ path: 'login', component: LoginComponent },
-	{ path: 'cc-dash/tag', component: TagComponent, canActivate: [ AuthGuard ] },
 	{ path: 'cc-dash/quiz', component: RetrieveQuizComponent, canActivate: [ AuthGuard ] },
 	{ path: 'cc-dash/rqbank', component: RetrieveQuestionBankComponent, canActivate: [ AuthGuard ] },
 	{ path: 'cc-dash/create-question', component: CreateQuestionsComponent, canActivate: [ AuthGuard ] },
@@ -60,9 +58,3 @@ const routes: Routes = [
 	{ path: 'ru-dash/ana-by-tag', component: AnalyticsByTagComponent, canActivate: [ AuthGuard ] },
 	{ path: 'ru-dash/ana-by-quiz', component: AnalyticsByQuizComponent, canActivate: [ AuthGuard ] }
 ];
-
-@NgModule({
-	imports: [ RouterModule.forRoot(routes) ],
-	exports: [ RouterModule ]
-})
-export class AppRoutingModule {}
