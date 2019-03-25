@@ -36,6 +36,7 @@ const routes: Routes = [
 	{ path: 'app-root', component: AppComponent },
 	{ path: 'cc-dash', component: UserDetailsComponent, canActivate: [ AuthGuard ] },
 	{ path: 'login', component: LoginComponent },
+	{ path: 'cc-dash/tag', component: TagComponent, canActivate: [ AuthGuard ] },
 	{ path: 'cc-dash/quiz', component: RetrieveQuizComponent, canActivate: [ AuthGuard ] },
 	{ path: 'cc-dash/rqbank', component: RetrieveQuestionBankComponent, canActivate: [ AuthGuard ] },
 	{ path: 'cc-dash/create-question', component: CreateQuestionsComponent, canActivate: [ AuthGuard ] },
@@ -58,3 +59,9 @@ const routes: Routes = [
 	{ path: 'ru-dash/ana-by-tag', component: AnalyticsByTagComponent, canActivate: [ AuthGuard ] },
 	{ path: 'ru-dash/ana-by-quiz', component: AnalyticsByQuizComponent, canActivate: [ AuthGuard ] }
 ];
+
+@NgModule({
+	imports: [ RouterModule.forRoot(routes) ],
+	exports: [ RouterModule ]
+})
+export class AppRoutingModule {}

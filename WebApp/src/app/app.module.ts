@@ -59,10 +59,9 @@ import { ReportingUserComponent } from './reporting-user/reporting-user.componen
 import { AnalyticsByTagComponent } from './reporting-user/analytics-by-tag/analytics-by-tag.component';
 import { AnalyticsByQuizComponent } from './reporting-user/analytics-by-quiz/analytics-by-quiz.component';
 import { AnalyticsByUserComponent } from './reporting-user/analytics-by-user/analytics-by-user.component';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { HttpErrorInterceptor } from '../app/http-error-interceptor';
-import {Mainnav4Component} from './reporting-user/mainnav4/mainnav4.component';
-// import { Mainnav4Component } from './reporting-user/mainnav4/mainnav4.component';
+import { Mainnav4Component } from './reporting-user/mainnav4/mainnav4.component';
 import { ViewUserDetailsComponent } from './reporting-user/analytics-by-user/view-user-details/view-user-details.component';
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 	bgsColor: '#00ACC1',
@@ -167,7 +166,7 @@ export function provideConfig() {
 		MatProgressBarModule,
 		ChartsModule,
 		NgxGaugeModule,
-		MatExpansionModule,
+		MatExpansionModule
 	],
 	providers: [
 		AuthGuard,
@@ -180,9 +179,9 @@ export function provideConfig() {
 			provide: HTTP_INTERCEPTORS,
 			useClass: HttpErrorInterceptor,
 			multi: true
-		  }
+		}
 	],
-	bootstrap: [AppComponent],
+	bootstrap: [ AppComponent ],
 	entryComponents: [
 		CreatetagComponent,
 		UpdateQuestionComponent,
@@ -197,4 +196,4 @@ export function provideConfig() {
 		CreateQuestionsComponent
 	]
 })
-export class AppModule { }
+export class AppModule {}
