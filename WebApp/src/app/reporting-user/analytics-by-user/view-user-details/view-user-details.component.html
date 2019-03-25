@@ -49,6 +49,7 @@
 
 
 <button type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button> -->
+<h3>{{data.FirstName}}&nbsp;&nbsp;{{data.LastName}}--Performance Metrics</h3>
 <div *ngIf="data1">
   <div class="row">
     <div class="col">
@@ -56,27 +57,27 @@
         <div class="card-body">
           <h5 class="card-title">Highest-Score</h5>
           <label class="card-text">{{data1.HighestScore}}</label>
-        </div>
-      </div>
-    </div>
-    <div class="col">
+  </div>
+  </div>
+  </div>
+  <div class="col">
 
-      <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">Lowest Score</h5>
-          <label class="card-text">{{data1.LowestScore}}</label>
-        </div>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Lowest Score</h5>
+        <label class="card-text">{{data1.LowestScore}}</label>
       </div>
     </div>
+  </div>
 
-    <div class="col">
-      <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">Accuracy</h5>
-          <label class="card-text">{{data1.Accuracy}}</label>
-        </div>
+  <div class="col">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Accuracy</h5>
+        <label class="card-text">{{data1.Accuracy}}</label>
       </div>
     </div>
+  </div>
   </div>
   <br>
   <div class="row">
@@ -137,6 +138,6 @@
     </div>
   </div>
   <br>
-</div>
+  </div>
 
-<button type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button>
+  <button type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button>
