@@ -24,7 +24,6 @@ export class AddUser1Component implements OnInit {
     this.service.retrieveAllEmployees(this.data).subscribe((res: any) => {
       res.forEach(obj => obj.selected = false);
       this.quiztakers = res as User[];
-      console.log(this.quiztakers);
     });
   }
   updateSelectedUsers(index) {
@@ -32,7 +31,6 @@ export class AddUser1Component implements OnInit {
   }
   onSubmit(form: NgForm) {
     var quiztakerId = this.quiztakers.filter(Id => Id.selected).map(idSelected => idSelected.Id);
-    console.log(quiztakerId);
     this.service.addUserInExistingSchedule(this.data, quiztakerId).subscribe(res => {
       this.toastr.success('added succesfully');
       this.dialogRef.close('Added');

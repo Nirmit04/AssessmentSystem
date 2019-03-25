@@ -15,9 +15,6 @@ export class EmployeeComponent implements OnInit {
 	profileUrl: any;
 	show: boolean = true;
 	ngOnInit() {
-		// this.ngxService.startBackground('do-background-things');
-		// this.ngxService.stopBackground('do-background-things');
-		// this.ngxService.startLoader('loader-01');
 		this.profileUrl = localStorage.getItem('imgurl');
 		this.loadUserDetails();
 	}

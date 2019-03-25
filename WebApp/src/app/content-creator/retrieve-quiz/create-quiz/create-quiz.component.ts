@@ -33,7 +33,6 @@ export class CreateQuizComponent implements OnInit {
     this.CCreatedBy = localStorage.getItem('uid');
     this.service.retrieveSubjects().subscribe(data => {
       this.Subjects = data as any[];
-      console.log(this.Subjects);
     });
 
   }
@@ -72,7 +71,6 @@ export class CreateQuizComponent implements OnInit {
       data.forEach(obj => obj.selected = false);
       this.questions = data;
       this.length = this.questions.length;
-      console.log(this.questions);
       this.dtTrigger.next();
       this.checkVal();
     });
@@ -87,7 +85,6 @@ export class CreateQuizComponent implements OnInit {
 
   onDetailsSubmit(form: NgForm) {
     var QuestionId = this.questions.filter(QuestionId => QuestionId.selected).map(idSelected => idSelected.QuestionId);
-    console.log(QuestionId);
     this.service.postQuestionsSelected(QuestionId).subscribe(res => {
       this.toastr.success('Inserted successfully');
       this.dialogRef.close('Inserted');

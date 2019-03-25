@@ -34,27 +34,14 @@ export class ArchiveQuizComponent implements OnInit {
 			this.dtTrigger.next();
 		});
 	}
-	// filter(item: QuizModel) {
-	// 	return (
-	// 		(item.Subject.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1
-	// 			|| item.QuizType.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1)
-	// 		&& item.Difficulty.toLowerCase().indexOf(this.difficultyLevel.toLowerCase()) > -1
-	// 	);
-	// }
-
-	// filterSubject(event: any) {
-	// 	this.difficultyLevel = event.target.value;
-	// 	console.log(this.difficultyLevel);
-	// }
-
 	onUnArchived(id: number) {
 		console.log(id);
 		if (confirm('Are you sure you want to un-archive this quiz?')) {
 			this.service.unArchiveQuiz(id).subscribe((res: any) => {
 				console.log(res);
 				this.loadQuiz();
-				this.dtTrigger.next();
 				this.toastr.success('Un-Archived Successfully', 'Assesment System');
+				this.dtTrigger.next();
 			});
 		}
 	}

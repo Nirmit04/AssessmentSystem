@@ -56,7 +56,6 @@ export class RetrieveQuizComponent implements OnInit {
 	}
 
 	onArchive(id: number) {
-		console.log(id);
 		if (confirm('Are you sure you want to archive this quiz?')) {
 			this.service.deleteQuiz(id).subscribe((res: any) => {
 				this.toastr.success('Archieved Successfully', 'Assesment System');
@@ -75,7 +74,6 @@ export class RetrieveQuizComponent implements OnInit {
 			dialogConfig.width = "70%";
 			dialogConfig.disableClose = true;
 			dialogConfig.data = this.QuestionList;
-			console.log(dialogConfig.data);
 			this.dialog.open(UpdateQuizComponent, dialogConfig).afterClosed().subscribe(res => {
 				this.loadQuiz();
 				this.dtTrigger.unsubscribe();

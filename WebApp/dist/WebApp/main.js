@@ -378,24 +378,24 @@ var routes = [
     { path: 'app-root', component: _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"] },
     { path: 'cc-dash', component: _content_creator_user_details_user_details_component__WEBPACK_IMPORTED_MODULE_10__["UserDetailsComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
     { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_5__["LoginComponent"] },
-    { path: 'tag', component: _content_creator_tag_retrievetag_tag_component__WEBPACK_IMPORTED_MODULE_7__["TagComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'quiz', component: _content_creator_retrieve_quiz_retrieve_quiz_component__WEBPACK_IMPORTED_MODULE_8__["RetrieveQuizComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'rqbank', component: _content_creator_retrieve_question_bank_retrieve_question_bank_component__WEBPACK_IMPORTED_MODULE_3__["RetrieveQuestionBankComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'create-question', component: _content_creator_create_questions_create_questions_component__WEBPACK_IMPORTED_MODULE_9__["CreateQuestionsComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'archive-quiz', component: _content_creator_retrieve_quiz_archive_quiz_archive_quiz_component__WEBPACK_IMPORTED_MODULE_12__["ArchiveQuizComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'testAdminCreateScheDule', component: _test_admin_retrieve_schedule_create_schedule_create_schedule_component__WEBPACK_IMPORTED_MODULE_13__["CreateScheduleComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'retrieve-schedule', component: _test_admin_retrieve_schedule_retrieve_schedule_component__WEBPACK_IMPORTED_MODULE_14__["RetrieveScheduleComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
+    { path: 'cc-dash/tag', component: _content_creator_tag_retrievetag_tag_component__WEBPACK_IMPORTED_MODULE_7__["TagComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
+    { path: 'cc-dash/quiz', component: _content_creator_retrieve_quiz_retrieve_quiz_component__WEBPACK_IMPORTED_MODULE_8__["RetrieveQuizComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
+    { path: 'cc-dash/rqbank', component: _content_creator_retrieve_question_bank_retrieve_question_bank_component__WEBPACK_IMPORTED_MODULE_3__["RetrieveQuestionBankComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
+    { path: 'cc-dash/create-question', component: _content_creator_create_questions_create_questions_component__WEBPACK_IMPORTED_MODULE_9__["CreateQuestionsComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
+    { path: 'cc-dash/archive-quiz', component: _content_creator_retrieve_quiz_archive_quiz_archive_quiz_component__WEBPACK_IMPORTED_MODULE_12__["ArchiveQuizComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
+    { path: 'ta-dash/testAdminCreateScheDule', component: _test_admin_retrieve_schedule_create_schedule_create_schedule_component__WEBPACK_IMPORTED_MODULE_13__["CreateScheduleComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
+    { path: 'ta-dash/retrieve-schedule', component: _test_admin_retrieve_schedule_retrieve_schedule_component__WEBPACK_IMPORTED_MODULE_14__["RetrieveScheduleComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
     { path: 'ta-dash', component: _test_admin_test_admin_component__WEBPACK_IMPORTED_MODULE_16__["TestAdminComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'archive-schedule', component: _test_admin_retrieve_schedule_archived_schedule_archived_schedule_component__WEBPACK_IMPORTED_MODULE_15__["ArchivedScheduleComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'non-mocks', component: _employee_non_mock_non_mock_component__WEBPACK_IMPORTED_MODULE_17__["NonMockComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
+    { path: 'ta-dash/archive-schedule', component: _test_admin_retrieve_schedule_archived_schedule_archived_schedule_component__WEBPACK_IMPORTED_MODULE_15__["ArchivedScheduleComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
+    { path: 'emp-dash/non-mocks', component: _employee_non_mock_non_mock_component__WEBPACK_IMPORTED_MODULE_17__["NonMockComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
     { path: 'emp-dash', component: _employee_employee_component__WEBPACK_IMPORTED_MODULE_18__["EmployeeComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'take-quiz', component: _employee_take_quiz_take_quiz_component__WEBPACK_IMPORTED_MODULE_19__["TakeQuizComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'result', component: _employee_result_result_component__WEBPACK_IMPORTED_MODULE_20__["ResultComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'non-mock-report', component: _employee_non_mock_report_non_mock_report_component__WEBPACK_IMPORTED_MODULE_21__["NonMockReportComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'detailed-report', component: _employee_detailed_report_detailed_report_component__WEBPACK_IMPORTED_MODULE_22__["DetailedReportComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'mock', component: _employee_mock_mock_component__WEBPACK_IMPORTED_MODULE_23__["MockComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'mock-report', component: _employee_mock_report_mock_report_component__WEBPACK_IMPORTED_MODULE_24__["MockReportComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'add-user', component: _test_admin_retrieve_schedule_add_user_add_user_component__WEBPACK_IMPORTED_MODULE_25__["AddUserComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] }
+    { path: 'emp-dash/quiz/take-quiz', component: _employee_take_quiz_take_quiz_component__WEBPACK_IMPORTED_MODULE_19__["TakeQuizComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
+    { path: 'emp-dash/quiz/result', component: _employee_result_result_component__WEBPACK_IMPORTED_MODULE_20__["ResultComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
+    { path: 'em-dash/quiz/non-mock-report', component: _employee_non_mock_report_non_mock_report_component__WEBPACK_IMPORTED_MODULE_21__["NonMockReportComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
+    { path: 'qmp-dash/quiz/detailed-report', component: _employee_detailed_report_detailed_report_component__WEBPACK_IMPORTED_MODULE_22__["DetailedReportComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
+    { path: 'emp-dash/mock', component: _employee_mock_mock_component__WEBPACK_IMPORTED_MODULE_23__["MockComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
+    { path: 'emp-dash/mock-report', component: _employee_mock_report_mock_report_component__WEBPACK_IMPORTED_MODULE_24__["MockReportComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
+    { path: 'ta-dash/add-user', component: _test_admin_retrieve_schedule_add_user_add_user_component__WEBPACK_IMPORTED_MODULE_25__["AddUserComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -3557,10 +3557,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AddUser1Component = /** @class */ (function () {
-    function AddUser1Component(data, service, toastr) {
+    function AddUser1Component(data, service, toastr, dialogRef) {
         this.data = data;
         this.service = service;
         this.toastr = toastr;
+        this.dialogRef = dialogRef;
     }
     AddUser1Component.prototype.ngOnInit = function () {
         this.loadUsers();
@@ -3582,6 +3583,7 @@ var AddUser1Component = /** @class */ (function () {
         console.log(quiztakerId);
         this.service.addUserInExistingSchedule(this.data, quiztakerId).subscribe(function (res) {
             _this.toastr.success('added succesfully');
+            _this.dialogRef.close('Added');
         });
     };
     AddUser1Component = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -3592,7 +3594,8 @@ var AddUser1Component = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](0, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"])),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [Object, _shared_test_admin_service__WEBPACK_IMPORTED_MODULE_3__["TestAdminService"],
-            ngx_toastr__WEBPACK_IMPORTED_MODULE_4__["ToastrService"]])
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_4__["ToastrService"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"]])
     ], AddUser1Component);
     return AddUser1Component;
 }());
@@ -3732,37 +3735,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AddUserComponent = /** @class */ (function () {
-    function AddUserComponent(
-    // @Inject(MAT_DIALOG_DATA) public data,
-    // public dialogRef: MatDialogRef<AddUserComponent>,
-    toastr, dialog, service) {
+    function AddUserComponent(toastr, dialog, service) {
         this.toastr = toastr;
         this.dialog = dialog;
         this.service = service;
         this.dtOptions = {};
         this.dtTrigger = new rxjs__WEBPACK_IMPORTED_MODULE_5__["Subject"]();
     }
-    // quiztakers: any[];
     AddUserComponent.prototype.ngOnInit = function () {
         this.dtOptions = {
             pagingType: 'full_numbers',
             pageLength: 10,
         };
-        // if (this.data != null) {
-        //   console.log(this.data);
-        //   this.loadSpecificUsers(this.data);
-        // }
-        // // else {
-        //   this.loadUsers();
-        // }
         this.loadSchedule();
     };
-    // loadUsers() {
-    //   this.service.retrieveAllEmployees().subscribe((res: any) => {
-    //     res.forEach(obj => obj.selected = false);
-    //     this.quiztakers = res as User[];
-    //   })
-    // }
     AddUserComponent.prototype.loadSchedule = function () {
         var _this = this;
         this.service.getSchedule(localStorage.getItem('uid')).subscribe(function (res) {
@@ -3800,12 +3786,10 @@ var AddUserComponent = /** @class */ (function () {
         dialogConfig.disableClose = true;
         this.service.readonlyStatus = false;
         dialogConfig.data = scheduleid;
-        // this.service.formdata = this.scheduleList[arrayindex - 1];
-        // localStorage.setItem('sId', scheduleid.toString());
         this.dialog.open(_add_user1_add_user1_component__WEBPACK_IMPORTED_MODULE_6__["AddUser1Component"], dialogConfig).afterClosed().subscribe(function (res) {
             _this.loadSchedule();
             _this.dtTrigger.unsubscribe();
-            _this.dtTrigger.next(); // localStorage.removeItem('sId');
+            _this.dtTrigger.next();
         });
     };
     AddUserComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([

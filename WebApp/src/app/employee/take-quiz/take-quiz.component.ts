@@ -61,7 +61,7 @@ export class TakeQuizComponent implements OnInit {
 		this.service.qnProgress++;
 		if (this.service.qnProgress == this.noOfQues) {
 			clearInterval(this.service.timer);
-			this.router.navigate(['/result']);
+			this.router.navigate(['/emp-dash/quiz/result']);
 		}
 	}
 }

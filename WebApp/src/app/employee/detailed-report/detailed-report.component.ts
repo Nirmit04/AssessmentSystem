@@ -15,7 +15,7 @@ export class DetailedReportComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
-  public doughnutChartLabels1 = ['Attempted', 'UnAttempted'];
+  public doughnutChartLabels1 = ['Attempted: '+this.service.data.CorrectAnswers + this.service.data.WrongAnswers, 'UnAttempted: '+this.service.data.UnattemptedAnswers];
   public doughnutChartData1 = [this.service.data.CorrectAnswers + this.service.data.WrongAnswers, this.service.data.UnattemptedAnswers];
   public doughnutChartType1 = 'doughnut';
 
@@ -31,7 +31,7 @@ export class DetailedReportComponent implements OnInit {
   private doughnutChartColors1: any[] = [{ backgroundColor: ["#3E00B2", "#FFF53A"] }];
 
 
-  public doughnutChartLabels2 = ['Correct', 'InCorrect'];
+  public doughnutChartLabels2 = ['Correct: '+this.service.data.CorrectAnswers, 'InCorrect: '+this.service.data.WrongAnswers];
   public doughnutChartData2 = [this.service.data.CorrectAnswers, this.service.data.WrongAnswers];
   public doughnutChartType2 = 'doughnut';
   public doughnutChartOptions2 = {

@@ -1,11 +1,7 @@
 <mat-progress-bar mode="determinate" value="{{ bar }}"></mat-progress-bar>
-<!-- <div class="progress">
-  <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:'{{service.qnProgress*10 }}%;"></div>
-</div> -->
 <div class="row" *ngIf="service.quesOfQuiz">
   <div class="col s8 offset-s2">
     <span>Time Elapsed : {{service.displayTimeElapsed()}}</span>
-
     <div class="container-fluid ">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -27,7 +23,6 @@
                 <div class="blockG" id="rotateG_08"></div>
               </div>
             </div>
-
             <div class="quiz" *ngFor="let option of service.quesOfQuiz[service.qnProgress].Option;index as i" id="quiz"
               data-toggle="buttons">
               <label *ngIf="option != null" class="collection-item"

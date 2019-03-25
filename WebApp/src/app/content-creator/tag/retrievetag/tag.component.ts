@@ -31,7 +31,6 @@ export class TagComponent implements OnInit {
 	}
 	loadTags() {
 		this.service.getTags().subscribe((res: any) => {
-			console.log(res);
 			this.tagList = res as TagModel[];
 			this.dtTrigger.next();
 		});
@@ -49,13 +48,11 @@ export class TagComponent implements OnInit {
 		});
 	}
 	onEdit(id: number) {
-		// console.log(id);
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = "70%";
 		dialogConfig.disableClose = true;
 		dialogConfig.data = this.tagList[id - 1];
-		console.log(dialogConfig.data);
 		let dialogRef = this.dialog.open(CreatetagComponent, dialogConfig).afterClosed().subscribe(res => {
 			this.loadTags();
 			this.dtTrigger.unsubscribe();

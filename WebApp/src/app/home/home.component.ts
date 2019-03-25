@@ -14,7 +14,8 @@ export class HomeComponent implements OnInit {
 	rooturl = environment.apiURl;
 	role = '';
 	uid = '';
-	check: string = localStorage.getItem('key');
+	checkqid: string = localStorage.getItem('key');
+	checksid: string = localStorage.getItem('key1');
 	ngOnInit() {
 		if (localStorage.getItem('id') != null) {
 			const body = {
@@ -32,19 +33,21 @@ export class HomeComponent implements OnInit {
 						this.role = res1.Roles[0].RoleId;
 						localStorage.setItem('uid', this.uid);
 						localStorage.setItem('role', this.role);
-						//this.redirecttodash(this.role);
-						// if (this.check != null) {
-						// 	this.service.getQuesOfQuiz(+this.check).subscribe((res: any) => {
-						// 		this.service.quesOfQuiz = res as any[];
-						// 		this.service.QuizScheduleId = Id;
-						// 		this.service.QuizId = QuizId;
-						// 		this.router.navigate(['/take-quiz']);
-						// 	  });
-						// }
-						// else {
-						// 	this.redirecttodash(this.role);
-						// }
-						this.redirecttodash(this.role);
+						console.log(this.checkqid);
+						if (this.checkqid != 'null' && this.checksid != 'null') {
+							console.log("hii");
+							this.service.checkValidUser(+this.checkqid).subscribe((res: any) => {
+								console.log(res);
+								this.service.getQuesOfQuiz(+this.checkqid).subscribe((res: any) => {
+									this.service.quesOfQuiz = res as any[];
+									this.service.QuizScheduleId = +this.checksid;
+									this.service.QuizId = +this.checkqid;
+									this.router.navigate(['/emp-dash/quiz/take-quiz']);
+								});
+							})
+						} else {
+							this.redirecttodash(this.role);
+						}
 					});
 			});
 		} else {

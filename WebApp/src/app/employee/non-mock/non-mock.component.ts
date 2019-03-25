@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class NonMockComponent implements OnInit {
 
   constructor(private service: EmployeeService,
-  private router: Router) { }
+    private router: Router) { }
   nonMockScheduleList: any[];
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;

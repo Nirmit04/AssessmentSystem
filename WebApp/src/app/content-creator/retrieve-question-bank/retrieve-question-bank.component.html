@@ -1,36 +1,15 @@
 <app-main-nav>
-
-  <!-- <div class="row">
-   <div>
-<div class="row">
-  <div>
-    <input style="margin-left: 5%; width: 40rem" #searchField class="form-control mr-sm-2 border border-secondary"
-      placeholder="Filter.." aria-label="Filter" #searchInput="ngModel" [(ngModel)]="searchText">
-  </div> -->
-  <!-- <div>
-    <select (change)="filterSubject($event)" #dropdown style="margin-left :40%"
-      class="form-control border border-secondary">
-      <option selected value>Choose Difficulty Level</option>
-      <option value="Beginner">Beginner</option>
-      <option value="Intermediate">Intermediate</option>
-      <option value="Advanced">Advanced</option>
-    </select>
-  </div>
-</div>
-<br /><br/>  -->
-
   <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
     class="row-border hover table table-bordered table-striped">
     <thead class="thead-dark">
       <tr>
-        <th>#Question ID</th>
+        <th>#S. No.</th>
         <th>Question</th>
         <th>Subject</th>
         <th>Difficulty Level</th>
         <th>Action</th>
       </tr>
     </thead>
-
     <tbody>
       <tr *ngFor="let ques of questionList; index as i;">
         <td>{{i+1}}</td>
@@ -44,9 +23,6 @@
               class="fa fa-trash"></i></a>
         </td>
       </tr>
-
     </tbody>
-
   </table>
-
 </app-main-nav>

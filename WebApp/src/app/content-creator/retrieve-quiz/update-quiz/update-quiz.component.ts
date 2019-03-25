@@ -45,7 +45,6 @@ export class UpdateQuizComponent implements OnInit {
     dialogConfig.disableClose = true;
     this.service.getQuizQuestions(Number(localStorage.getItem('quizId'))).subscribe((res: any) => {
       dialogConfig.data = res;
-      console.log(dialogConfig.data);
       this.dialog.open(AddQuesInQuizComponent, dialogConfig).afterClosed().subscribe(res => {
         this.loadingData();
       });

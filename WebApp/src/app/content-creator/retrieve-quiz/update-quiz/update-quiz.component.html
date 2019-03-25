@@ -1,6 +1,6 @@
 <mat-dialog-content>
   <button type="button" (click)="onCreate()" class="btn btn-primary">Add Question</button>
-  <button style="margin-left: 68.5%"type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button>
+  <button style="margin-left: 68.5%" type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button>
   <div>
     <br /><br />
     <h1 style="text-align: center">Edit Quiz Details</h1>
@@ -12,7 +12,6 @@
         <th scope="col">Marks</th>
         <th scope="col">Action</th>
       </thead>
-
       <tbody>
         <ng-container *ngFor="let item of UpdateQuizQuestionList;index as i">
           <tr>

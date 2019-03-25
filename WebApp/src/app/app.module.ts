@@ -55,6 +55,10 @@ import { NonMockReportComponent } from './employee/non-mock-report/non-mock-repo
 import { ChartsModule } from 'ng2-charts';
 import { NgxGaugeModule } from 'ngx-gauge';
 import { AddUser1Component } from './test-admin/add-user1/add-user1.component';
+import { ReportingUserComponent } from './reporting-user/reporting-user.component';
+import { AnalyticsByTagComponent } from './reporting-user/analytics-by-tag/analytics-by-tag.component';
+import { AnalyticsByQuizComponent } from './reporting-user/analytics-by-quiz/analytics-by-quiz.component';
+import { AnalyticsByUserComponent } from './reporting-user/analytics-by-user/analytics-by-user.component';
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 	bgsColor: '#00ACC1',
 	bgsOpacity: 0.7,
@@ -128,7 +132,11 @@ export function provideConfig() {
 		MainNav3Component,
 		ResultComponent,
 		NonMockReportComponent,
-		AddUser1Component
+		AddUser1Component,
+		ReportingUserComponent,
+		AnalyticsByTagComponent,
+		AnalyticsByQuizComponent,
+		AnalyticsByUserComponent
 	],
 	imports: [
 		BrowserModule,

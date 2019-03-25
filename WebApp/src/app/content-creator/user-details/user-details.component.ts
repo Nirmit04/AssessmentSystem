@@ -20,10 +20,8 @@ export class UserDetailsComponent implements OnInit {
 	show: boolean = true;
 	ngOnInit() {
 		this.ngxService.startBackground('do-background-things');
-		// Do something here...
 		this.ngxService.stopBackground('do-background-things');
-
-		this.ngxService.startLoader('loader-01'); // start foreground spinner of the loader "loader-01" with 'default' taskId
+		this.ngxService.startLoader('loader-01');
 		this.profileUrl = localStorage.getItem('imgurl');
 		console.log(this.profileUrl);
 		this.loadUserDetails();
@@ -32,7 +30,6 @@ export class UserDetailsComponent implements OnInit {
 
 	loadUserDetails() {
 		this.service.getUserDetails().subscribe((res: any) => {
-			// console.log(res);
 			this.Firstname = res.FirstName;
 			this.Lastname = res.LastName;
 			this.email = res.Email;
@@ -41,14 +38,10 @@ export class UserDetailsComponent implements OnInit {
 
 	loadUserProgress() {
 		this.service.getUserProgress().subscribe((res: any) => {
-			console.log(res);
 			this.Quizzes = res[0];
 			this.Questions = res[1];
 			this.Tags = res[2];
 			this.show = false;
-			// console.log(this.show);
-
-			// console.log(this.Questions);
 		});
 	}
 }

@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 @Component({
 	selector: 'app-main-nav3',
 	templateUrl: './main-nav3.component.html',
-	styleUrls: [ './main-nav3.component.css' ]
+	styleUrls: ['./main-nav3.component.css']
 })
 export class MainNav3Component {
 	isHandset$: Observable<boolean> = this.breakpointObserver
@@ -19,14 +19,13 @@ export class MainNav3Component {
 		private breakpointObserver: BreakpointObserver,
 		private authService: AuthService,
 		private router: Router
-	) {}
+	) { }
 	ngOnInit() {
 		this.authService.authState.subscribe((user) => {
 			if (user != null) {
-				//	console.log(user);
 			} else {
 				localStorage.clear();
-				this.router.navigate([ '/login' ]);
+				this.router.navigate(['/login']);
 			}
 		});
 	}

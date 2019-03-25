@@ -20,7 +20,6 @@ export class MainNav2Component {
 	ngOnInit() {
 		this.authService.authState.subscribe((user) => {
 			if (user != null) {
-				//	console.log(user);
 			} else {
 				localStorage.clear();
 				this.router.navigate(['/login']);

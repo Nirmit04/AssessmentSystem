@@ -37,7 +37,6 @@ export class CreatetagComponent implements OnInit {
 		if (form != null) {
 			form.resetForm();
 		}
-
 		this.service.tagForm = {
 			SubjectId: null,
 			Name: '',

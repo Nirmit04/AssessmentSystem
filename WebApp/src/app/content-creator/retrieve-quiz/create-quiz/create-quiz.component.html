@@ -1,7 +1,7 @@
 <mat-dialog-content>
   <div class="card" style="width: 80%; overflow: auto">
     <div class="card-body">
-      <h5 class="card-title" style="text-align: center">Create A Quiz</h5><br/>
+      <h5 class="card-title" style="text-align: center">Create A Quiz</h5><br />
       <ng-container *ngIf="!val">
         <form #form="ngForm" (submit)="fetchReqQues(form)" autocomplete="off">
           <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="CCreatedBy">
@@ -30,8 +30,9 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label>Quiz Name</label>
-              <br/>
-              <input type="text" required name="QuizName" #QuizName="ngModel" [(ngModel)]="service.quizForm.QuizName" class="form-control">
+              <br />
+              <input type="text" required name="QuizName" #QuizName="ngModel" [(ngModel)]="service.quizForm.QuizName"
+                class="form-control">
               <div class="validation-error" *ngIf="QuizName.invalid && QuizName.touched">This field is required.</div>
             </div>
             <div class="form-group col-md-6">
@@ -54,8 +55,8 @@
       </ng-container>
       <div *ngIf="val">
         <div class="card-body">
-          <h5 *ngIf="length>0" class="card-title" style="text-align: center">Choose Questions</h5><br/>
-          <h5 *ngIf="length==0" class="card-title" style="text-align: center">No Question Available</h5><br/>
+          <h5 *ngIf="length>0" class="card-title" style="text-align: center">Choose Questions</h5><br />
+          <h5 *ngIf="length==0" class="card-title" style="text-align: center">No Question Available</h5><br />
           <form #Questionform="ngForm" (submit)="onDetailsSubmit(Questionform)" autocomplete="off">
             <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
               class="row-border hover table table-bordered table-striped">

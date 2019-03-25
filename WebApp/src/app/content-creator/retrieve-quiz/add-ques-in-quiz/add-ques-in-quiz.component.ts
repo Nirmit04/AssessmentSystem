@@ -18,15 +18,14 @@ export class AddQuesInQuizComponent implements OnInit {
   count: number = 0;
   CDifficulty = "";
   CSubjectID = null;
-  label:'';
-  constructor(@Inject(MAT_DIALOG_DATA) public data, 
-    public service: ContentCreatorServiceService, 
+  label: '';
+  constructor(@Inject(MAT_DIALOG_DATA) public data,
+    public service: ContentCreatorServiceService,
     public toastr: ToastrService,
     public dialog: MatDialog,
     private dialogref: MatDialogRef<AddQuesInQuizComponent>) { }
   ngOnInit() {
     this.questions = this.data;
-    console.log(this.questions);
     this.resetForm();
   }
   resetForm(form?: NgForm) {
@@ -44,7 +43,7 @@ export class AddQuesInQuizComponent implements OnInit {
         CreatedBy: '',
         QuestionIds: null,
         SubjectId: null,
-        QuizName:''
+        QuizName: ''
       }
       if (this.questions) {
         this.questions.map(y => y.selected = false);
@@ -57,11 +56,10 @@ export class AddQuesInQuizComponent implements OnInit {
 
   onDetailsSubmit(form: NgForm) {
     var QuestionId = this.questions.filter(QuestionId => QuestionId.selected).map(idSelected => idSelected.QuestionId);
-    console.log(QuestionId);
     this.service.putQuestionsSelected(QuestionId).subscribe(res => {
       this.toastr.success('Inserted successfully');
-    })    
-   this.dialogref.close('Inserted');
+    })
+    this.dialogref.close('Inserted');
   }
 
 }

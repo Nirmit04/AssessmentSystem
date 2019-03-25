@@ -43,7 +43,7 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label>Correct Option</label>
-            <select name="Answer" [disabled]="bool" required #Answer="ngModel" [(ngModel)]="service.formData.Answer"
+          <select name="Answer" [disabled]="bool" required #Answer="ngModel" [(ngModel)]="service.formData.Answer"
             class="form-control">
             <option value="">Choose</option>
             <option value="1">1</option>
@@ -56,7 +56,7 @@
         </div>
         <div class="form-group col-md-6">
           <label>Marks</label>
-            <select name="Marks" [disabled]="bool" required #Marks="ngModel" [(ngModel)]="service.formData.Marks"
+          <select name="Marks" [disabled]="bool" required #Marks="ngModel" [(ngModel)]="service.formData.Marks"
             class="form-control">
             <option value="">Choose</option>
             <option value="1">1</option>
@@ -90,7 +90,7 @@
         </div>
       </div>
       <div class="form-group">
-        <button [hidden] = "bool" style="margin:0 5%" type="submit" [disabled]="form.invalid || bool"
+        <button [hidden]="bool" style="margin:0 5%" type="submit" [disabled]="form.invalid || bool"
           class="btn btn-primary">Submit</button>
         <button type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button>
       </div>

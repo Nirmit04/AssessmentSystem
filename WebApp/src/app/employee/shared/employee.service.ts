@@ -26,6 +26,9 @@ export class EmployeeService {
   getQuesOfQuiz(QuizId: number) {
     return this.http.get(this.rootURL + 'Quiz/QuizQuestion/' + QuizId);
   }
+  checkValidUser(id: number)  {
+    return this.http.post(this.rootURL+'UserSchedule/ValidQuizTaker/'+localStorage.getItem('uid'), id);
+  }
   postanswers() {
     this.body.QuizScheduleId = this.QuizScheduleId;
     this.body.QuizId = this.QuizId;

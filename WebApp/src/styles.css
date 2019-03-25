@@ -30,3 +30,6 @@ body {
 	top: 50% !important;
 	left: 50% !important;
 }
+th, td{
+	text-align: center;
+}
