@@ -173,7 +173,7 @@ export function provideConfig() {
 			useFactory: provideConfig
 		}
 	],
-	bootstrap: [ AppComponent ],
+	bootstrap: [AppComponent],
 	entryComponents: [
 		CreatetagComponent,
 		UpdateQuestionComponent,
@@ -184,7 +184,8 @@ export function provideConfig() {
 		ViewScheduleComponent,
 		ViewAnswerComponent,
 		AddUser1Component,
-		ViewUserDetailsComponent
+		ViewUserDetailsComponent,
+		CreateQuestionsComponent
 	]
 })
-export class AppModule {}
+export class AppModule { }

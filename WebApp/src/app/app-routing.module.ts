@@ -25,7 +25,7 @@ import { DetailedReportComponent } from './employee/detailed-report/detailed-rep
 import { MockComponent } from './employee/mock/mock.component';
 import { MockReportComponent } from './employee/mock-report/mock-report.component';
 import { AddUserComponent } from './test-admin/retrieve-schedule/add-user/add-user.component';
-import { MainNav4Component } from './reporting-user/main-nav4/main-nav4.component';
+// import { MainNav4Component } from './reporting-user/main-nav4/main-nav4.component';
 import { AnalyticsByUserComponent } from './reporting-user/analytics-by-user/analytics-by-user.component';
 import { AnalyticsByTagComponent } from './reporting-user/analytics-by-tag/analytics-by-tag.component';
 import { AnalyticsByQuizComponent } from './reporting-user/analytics-by-quiz/analytics-by-quiz.component';

@@ -1,83 +1,41 @@
-<!-- <div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon3">Highest-Score</span>
+<div class="row">
+  <div class="col">
+    <h3>{{data.FirstName}}&nbsp;&nbsp;{{data.LastName}}--Performance Metrics</h3>
   </div>
-  <label class="form-control" id="basic-url">Hello</label>
-</div>
-
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon3">Lowest Score</span>
+  <div style="align-items: flex-end;" class="col">
+    <button type="button " [mat-dialog-close] class="btn btn-danger pos">
+      <mat-icon>clear</mat-icon>
+    </button>
   </div>
-  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
 </div>
-
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon3">Accuracy</span>
-  </div>
-  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-</div>
-
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon3">Performance</span>
-  </div>
-  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-</div>
-
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon3">Average Score</span>
-  </div>
-  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-</div>
-
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon3">Total-Quiz-Count</span>
-  </div>
-  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-</div>
-
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon3">Scheduled Quizzes Given</span>
-  </div>
-  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-</div>
-
-
-<button type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button> -->
-<h3>{{data.FirstName}}&nbsp;&nbsp;{{data.LastName}}--Performance Metrics</h3>
 <div *ngIf="data1">
   <div class="row">
-    <div class="col">
+    <div class="col zoom">
       <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">Highest-Score</h5>
           <label class="card-text">{{data1.HighestScore}}</label>
-  </div>
-  </div>
-  </div>
-  <div class="col">
-
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">Lowest Score</h5>
-        <label class="card-text">{{data1.LowestScore}}</label>
+        </div>
       </div>
     </div>
-  </div>
+    <div class="col zoom">
 
-  <div class="col">
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">Accuracy</h5>
-        <label class="card-text">{{data1.Accuracy}}</label>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Lowest Score</h5>
+          <label class="card-text">{{data1.LowestScore}}</label>
+        </div>
       </div>
     </div>
-  </div>
+
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Accuracy</h5>
+          <label class="card-text">{{data1.Accuracy}}</label>
+        </div>
+      </div>
+    </div>
   </div>
   <br>
   <div class="row">
@@ -138,6 +96,6 @@
     </div>
   </div>
   <br>
-  </div>
-
-  <button type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button>
+</div>
+<!-- 
+<button type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button> -->
