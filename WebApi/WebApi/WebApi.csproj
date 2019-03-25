@@ -187,6 +187,7 @@
     <Compile Include="Controllers\QuizController.cs" />
     <Compile Include="Controllers\QuizScheduleController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\ReportingUserController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\UserController.cs" />

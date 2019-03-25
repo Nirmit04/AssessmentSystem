@@ -129,12 +129,10 @@ namespace WebApi.Controllers
             var userSchedule = db.UserSchedules.FirstOrDefault(x => x.QuizId == QuizId && x.UserId == UserId);
             if (userSchedule != null)
             {
-                System.Diagnostics.Debug.WriteLine("Valid");
                 return Ok();
             }
             else
             {
-                System.Diagnostics.Debug.WriteLine("Invalid");
                 return BadRequest("UserIsNotEligibleForThisQuiz");
             }
         }
