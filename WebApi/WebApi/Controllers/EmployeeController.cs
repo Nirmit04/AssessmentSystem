@@ -34,7 +34,19 @@ namespace WebApi.Controllers
                     db.QuizSchedules.FirstOrDefault(y => y.QuizId == x.QuizId).EndDateTime
                 });
             return Ok(Quiz);
-        }     
+        }
 
+
+        [HttpGet]
+        [Route("api/Employee/TakenQuizCount/{UserId}")]
+        public IHttpActionResult TakenQuiz(string UserId)
+        {
+            Dictionary<string, int> QuizCount = new Dictionary<string, int>();
+            var MockCount = db.Reports.Where(x => x.UserId == UserId && x.QuizType == "Mock").Count();
+            var NonMockCount = db.Reports.Where(x => x.UserId == UserId && x.QuizType == "Non-Mock").Count();
+            QuizCount.Add("Mock", MockCount);
+            QuizCount.Add("Non-Mock", NonMockCount);
+            return Ok(QuizCount);
+        }
     }
 }

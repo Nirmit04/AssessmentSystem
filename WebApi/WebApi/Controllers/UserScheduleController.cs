@@ -18,7 +18,7 @@ namespace WebApi.Controllers
         {
             int QuizId = db.QuizSchedules.FirstOrDefault(z => z.QuizScheduleId == QuizScheduleId).QuizId;
             var userIds = db.UserSchedules.AsEnumerable()
-                .Where(x => x.QuizScheduleId == QuizScheduleId && x.QuizId == QuizId)
+                .Where(x => x.QuizId == QuizId)
                 .Select(y => y.UserId).ToList();
             var users = db.Users
                 .Where(x => !userIds.Contains(x.Id))
@@ -92,7 +92,7 @@ namespace WebApi.Controllers
                 db.SaveChanges();
             }
             var userEmails = db.Users.Where(x => UserIds.Contains(x.Id)).Select(y => y.Email).ToArray();
-            var EmailResponse = InviteController.InviteUser(userEmails, "Click on the Link Below to take Quiz. \n <a href=\"" + "http://c6f0a0ba.ngrok.io/api/QuizSchedule/GetAllQuizSchedule/" + db.QuizSchedules.Single(x => x.QuizScheduleId == QuizScheduleId).CreatedBy + "\">Click Here</a>");
+            var EmailResponse = InviteController.InviteUser(userEmails, "Click on the Link Below to take Quiz. \n <a href=\"" + "http://localhost:4200/?take-quiz=" + db.QuizSchedules.Single(x => x.QuizScheduleId == QuizScheduleId).QuizId +"&schedule-id="+ QuizScheduleId + "\">Click Here</a>");
             return Ok();
         }
 
@@ -119,6 +119,23 @@ namespace WebApi.Controllers
             else
             {
                 return BadRequest("false");
+            }
+        }
+
+        [HttpPost]
+        [Route("api/UserSchedule/ValidQuizTaker/{UserId}")]
+        public IHttpActionResult ValidQuizTaker(string UserId, [FromBody]int QuizId)
+        {
+            var userSchedule = db.UserSchedules.FirstOrDefault(x => x.QuizId == QuizId && x.UserId == UserId);
+            if (userSchedule != null)
+            {
+                System.Diagnostics.Debug.WriteLine("Valid");
+                return Ok();
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("Invalid");
+                return BadRequest("UserIsNotEligibleForThisQuiz");
             }
         }
     }
