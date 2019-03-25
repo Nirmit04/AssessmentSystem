@@ -16,43 +16,44 @@ namespace WebApi.Controllers
         [Route("api/ReportingUser/AnalyticsByUser/{UserId}")]
         public IHttpActionResult AnalyticsByUser(string UserId)
         {
-            UserAnalytics userAnalytics = new UserAnalytics();
-            var userReport = db.Reports.Where(x => x.UserId == UserId).ToList();
-            if (userReport.Count() != 0)
+            if (db.Users.Find(UserId) != null)
             {
-                userAnalytics.MockCount = db.Reports.Where(x => x.UserId == UserId && x.QuizType == "Mock").Count();
-                userAnalytics.NonMockCount = db.Reports.Where(x => x.UserId == UserId && x.QuizType == "Non-Mock").Count();
-                userAnalytics.TotalQuizCount = userAnalytics.MockCount + userAnalytics.NonMockCount;
-                int TotalReports = userReport.Count();
-
-                userAnalytics.HighestScore = userReport.Select(max => max.MarksScored).DefaultIfEmpty().Max();
-                userAnalytics.LowestScore = userReport.Select(max => max.MarksScored).DefaultIfEmpty().Min();
-                decimal TotalPerformance = 0, TotalAccuracy = 0;
-                int TotalCorrectAnswers = 0;
-                int TotalQuestions = 0;
-                foreach (var item in userReport)
+                UserAnalytics userAnalytics = new UserAnalytics();
+                var userReport = db.Reports.Where(x => x.UserId == UserId).ToList();
+                if (userReport.Count() != 0)
                 {
-                    int TotalQuizQuestions = (item.CorrectAnswers + item.WrongAnswers + item.UnattemptedAnswers);
-                    TotalPerformance = TotalPerformance + ((item.CorrectAnswers - (item.WrongAnswers + item.UnattemptedAnswers)) / TotalQuizQuestions);
-                    TotalAccuracy = TotalAccuracy + item.Accuracy;
-                    TotalQuestions = TotalQuestions + TotalQuizQuestions;
-                    TotalCorrectAnswers = TotalCorrectAnswers + item.CorrectAnswers;
-                }
-                if (userAnalytics.TotalQuizCount != 0)
-                {
-                    userAnalytics.Performance = Math.Round(TotalPerformance / userAnalytics.TotalQuizCount, 2);
-                    userAnalytics.Accuracy = Math.Round(TotalAccuracy / userAnalytics.TotalQuizCount, 2);
-                    userAnalytics.AverageScore = Math.Round((userAnalytics.HighestScore + userAnalytics.LowestScore) / userAnalytics.TotalQuizCount, 2);
-                    userAnalytics.ProbabilityAnsweringCorrectly = Math.Round((decimal)(TotalCorrectAnswers * 100) / TotalQuestions, 2);
+                    userAnalytics.MockCount = db.Reports.Where(x => x.UserId == UserId && x.QuizType == "Mock").Count();
+                    userAnalytics.NonMockCount = db.Reports.Where(x => x.UserId == UserId && x.QuizType == "Non-Mock").Count();
+                    userAnalytics.TotalQuizCount = userReport.Count();
+                    userAnalytics.HighestScore = userReport.Select(max => max.MarksScored).DefaultIfEmpty().Max();
+                    userAnalytics.LowestScore = userReport.Select(max => max.MarksScored).DefaultIfEmpty().Min();
+                    decimal TotalPerformance = 0, TotalAccuracy = 0;
+                    int TotalCorrectAnswers = 0, TotalQuestions = 0;
+                    foreach (var item in userReport)
+                    {
+                        int TotalQuizQuestions = (item.CorrectAnswers + item.WrongAnswers + item.UnattemptedAnswers);
+                        TotalPerformance += ((item.CorrectAnswers - (item.WrongAnswers + item.UnattemptedAnswers)) / TotalQuizQuestions);
+                        TotalAccuracy += item.Accuracy;
+                        TotalQuestions += TotalQuizQuestions;
+                        TotalCorrectAnswers += item.CorrectAnswers;
+                    }
+                    try
+                    {
+                        userAnalytics.Performance = Math.Round(TotalPerformance / userAnalytics.TotalQuizCount, 2);
+                        userAnalytics.Accuracy = Math.Round(TotalAccuracy / userAnalytics.TotalQuizCount, 2);
+                        userAnalytics.AverageScore = Math.Round((userAnalytics.HighestScore + userAnalytics.LowestScore) / userAnalytics.TotalQuizCount, 2);
+                        userAnalytics.ProbabilityAnsweringCorrectly = Math.Round((decimal)(TotalCorrectAnswers * 100) / TotalQuestions, 2);
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                    return Ok(userAnalytics);
                 }
                 else
                 {
-                    userAnalytics.Performance = 0;
-                    userAnalytics.Accuracy = 0;
-                    userAnalytics.AverageScore = 0;
-                    userAnalytics.ProbabilityAnsweringCorrectly = 0;
+                    return Ok(userAnalytics);
                 }
-                return Ok(userAnalytics);
             }
             else
             {
@@ -62,39 +63,41 @@ namespace WebApi.Controllers
 
 
         [HttpGet]
-        [Route("api/ReportingUser/AnalysisByQuiz/{QuizId}")]
-        public IHttpActionResult AnalysisByQuiz(int QuizId)
+        [Route("api/ReportingUser/AnalyticsByQuiz/{QuizId}")]
+        public IHttpActionResult AnalyticsByQuiz(int QuizId)
         {
-            var quizreports = db.Reports.Where(x => x.QuizId == QuizId).ToList();
-            decimal TotalAccuracy = 0,TotalMarks=0;
-            Property property = new Property();
-            if (quizreports.Count()!=0)
-            { 
-                property.HighestScore = quizreports.Select(x => x.MarksScored).DefaultIfEmpty().Max();
-                property.LowestScore = quizreports.Select(x => x.MarksScored).DefaultIfEmpty().Min();
-                property.NoOfQuiz = quizreports.Count();
-
-                foreach (var item in quizreports)
+            if (db.Quizs.Find(QuizId) != null)
+            {
+                var quizreports = db.Reports.Where(x => x.QuizId == QuizId).ToList();
+                decimal TotalAccuracy = 0, TotalMarks = 0;
+                Property property = new Property();
+                if (quizreports.Count() != 0)
                 {
-                    TotalAccuracy += item.Accuracy;
-                    TotalMarks += item.MarksScored;
-                }
-                try
-                {
-                    decimal avg = TotalMarks / property.NoOfQuiz;
-                    property.AverageMarks = avg;
-                    property.Accuracy = TotalAccuracy / property.NoOfQuiz;
-                }
-                catch(Exception e)
-                {
-                    return BadRequest();
+                    property.HighestScore = quizreports.Select(x => x.MarksScored).DefaultIfEmpty().Max();
+                    property.LowestScore = quizreports.Select(x => x.MarksScored).DefaultIfEmpty().Min();
+                    property.NoOfQuiz = quizreports.Count();
+                    foreach (var item in quizreports)
+                    {
+                        TotalAccuracy += item.Accuracy;
+                        TotalMarks += item.MarksScored;
+                    }
+                    try
+                    {
+                        property.AverageMarks = Math.Round(TotalMarks / property.NoOfQuiz, 2);
+                        property.Accuracy = Math.Round(TotalAccuracy / property.NoOfQuiz, 2);
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                    return Ok(property);
                 }
                 return Ok(property);
             }
             else
             {
                 return BadRequest("Quiz Does Not Exist");
-            }
+            }    
         }
 
         [HttpGet]
