@@ -40,10 +40,10 @@ namespace WebApi.Controllers
                 }
                 if (userAnalytics.TotalQuizCount != 0)
                 {
-                    userAnalytics.Performance = TotalPerformance / userAnalytics.TotalQuizCount;
-                    userAnalytics.Accuracy = TotalAccuracy / userAnalytics.TotalQuizCount;
-                    userAnalytics.AverageScore = (userAnalytics.HighestScore + userAnalytics.LowestScore) / userAnalytics.TotalQuizCount;
-                    userAnalytics.ProbabilityAnsweringCorrectly = (decimal)(TotalCorrectAnswers * 100) / TotalQuestions;
+                    userAnalytics.Performance = Math.Round(TotalPerformance / userAnalytics.TotalQuizCount, 2);
+                    userAnalytics.Accuracy = Math.Round(TotalAccuracy / userAnalytics.TotalQuizCount, 2);
+                    userAnalytics.AverageScore = Math.Round((userAnalytics.HighestScore + userAnalytics.LowestScore) / userAnalytics.TotalQuizCount, 2);
+                    userAnalytics.ProbabilityAnsweringCorrectly = Math.Round((decimal)(TotalCorrectAnswers * 100) / TotalQuestions, 2);
                 }
                 else
                 {
@@ -60,48 +60,80 @@ namespace WebApi.Controllers
             }
         }
 
+        //[HttpGet]
+        //[Route("api/ReportingUser/AnalyticsByQuiz")]
+        //public IHttpActionResult AnalyticsByQuiz()
+        //{
+        //    List<SubjectAnalytics> subjectAnalyticsList = new List<SubjectAnalytics>();
+           
+            
+        //    //var report = new List<Report>();
+        //    decimal tot = 0;
+        //    var quizId = db.Reports.Select(x =>x.QuizId).Distinct().ToList();
+        //    var SubjectId = db.Quizs.Where(x => quizId.Contains(x.QuizId)).Select(x=>x.SubjectId);
+        //    foreach (var item in quizId)
+        //    {
+        //        SubjectAnalytics subjectAnalysis = new SubjectAnalytics();
+        //        var report = db.Reports.AsEnumerable().Where(x => x.QuizId == item.QuizId).ToList();
+        //        subjectAnalysis.Properties.HighestScore = report.Max(x => x.MarksScored);
+        //        subjectAnalysis.Properties.LowestScore = report.Min(x => x.MarksScored);
+        //        subjectAnalysis.Properties.Accuracy = report.Max(x => x.Accuracy);
+        //        subjectAnalysis.Properties.NoOfQuiz = report.Count();
+        //        subjectAnalysis.SubjectId = db.Quizs.FirstOrDefault(x => x.QuizId == item.QuizId).SubjectId;
+        //        subjectAnalysis.SubjectName = db.Subjects.FirstOrDefault(x => x.SubjectId == subjectAnalysis.SubjectId).Name;
+        //        foreach (var rep in report)
+        //        {
+        //            tot += rep.MarksScored;
+        //        }
+        //        subjectAnalysis.Properties.Average = tot / report.Count();
+        //        subjectAnalyticsList.Add(subjectAnalysis);
+        //    }
+        //    return Ok(subjectAnalyticsList);
+        //}
+
         [HttpGet]
         [Route("api/ReportingUser/AnalyticsByTag")]
         public IHttpActionResult AnalyticsByTag()
         {
             List<SubjectAnalytics> subjectAnalyticsList = new List<SubjectAnalytics>();
 
-            SubjectAnalytics subjectAnalysis;
-            var report = new List<Report>();
-            decimal tot = 0;
-            var quizId = db.Reports.Select(x => new { x.QuizId }).Distinct().ToList();
-           
-            foreach (var item in quizId)
+            var SubjectIds = db.Subjects.Select(x => x.SubjectId).ToList();
+            if (SubjectIds != null)
             {
-
-                    subjectAnalysis = new SubjectAnalytics();
-                    
-                report = db.Reports.AsEnumerable().Where(x => x.QuizId == item.QuizId).ToList();
-                foreach (var it in report)
+                foreach (var subjectId in SubjectIds)
                 {
-                    System.Diagnostics.Debug.WriteLine(it.QuizId);
-
-                }
-                subjectAnalysis.SubjectId = db.Quizs.First(x => x.QuizId == item.QuizId).SubjectId;
-                System.Diagnostics.Debug.WriteLine(subjectAnalysis.SubjectId);
-                subjectAnalysis.SubjectName = db.Subjects.First(x => x.SubjectId == subjectAnalysis.SubjectId).Name;
-                System.Diagnostics.Debug.WriteLine(subjectAnalysis.SubjectName);
-
-
-                subjectAnalysis.Properties.HighestScore = report.Max(x => x.MarksScored);
-                    subjectAnalysis.Properties.LowestScore = report.Min(x => x.MarksScored);
-                    subjectAnalysis.Properties.Accuracy = report.Max(x => x.Accuracy);
-                    subjectAnalysis.Properties.NoOfQuiz = report.Count();
-                
-                    foreach (var rep in report)
+                    SubjectAnalytics subjectAnalysis = new SubjectAnalytics();
+                    subjectAnalysis.SubjectId = subjectId;
+                    subjectAnalysis.SubjectName = db.Subjects.FirstOrDefault(x => x.SubjectId == subjectId).Name;
+                    var QuizIds = db.Quizs.Where(x => x.SubjectId == subjectId).Select(x => x.QuizId).ToList();
+                    var quizReports = db.Reports.Where(x => QuizIds.Contains(x.QuizId)).ToList();
+                    if (quizReports != null)
                     {
-                        tot += rep.MarksScored;
+                        subjectAnalysis.Properties.HighestScore = quizReports.Select(max => max.MarksScored).DefaultIfEmpty().Max();
+                        subjectAnalysis.Properties.LowestScore = quizReports.Select(max => max.MarksScored).DefaultIfEmpty().Min();
+                        decimal TotalAccuracy = 0;
+                        decimal TotalMarks = 0;
+                        foreach (var item in quizReports)
+                        {
+                            TotalAccuracy = TotalAccuracy + item.Accuracy;
+                            TotalMarks = TotalMarks + item.MarksScored;
+                        }
+                        if (quizReports.Count() != 0)
+                        {
+                            subjectAnalysis.Properties.Accuracy = Math.Round(TotalAccuracy / quizReports.Count(),2);
+                            subjectAnalysis.Properties.NoOfQuiz = QuizIds.Count();
+                            subjectAnalysis.Properties.AverageMarks = Math.Round(TotalMarks / quizReports.Count(),2);
+                        }
+                        else
+                        {
+                            subjectAnalysis.Properties.Accuracy = 0;
+                            subjectAnalysis.Properties.AverageMarks = 0;
+                        }
                     }
-                    subjectAnalysis.Properties.Average = tot / report.Count();
-                subjectAnalyticsList.Add(subjectAnalysis);
-
+                    subjectAnalyticsList.Add(subjectAnalysis);
+                }
             }
-            return Ok(subjectAnalyticsList);
+            return Ok(subjectAnalyticsList.OrderByDescending(x => x.Properties.Accuracy));
         }
     }
 }

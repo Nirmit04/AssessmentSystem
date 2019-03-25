@@ -46,7 +46,7 @@ namespace WebApi.Controllers
             var NonMockCount = db.Reports.Where(x => x.UserId == UserId && x.QuizType == "Non-Mock").Count();
             var TotalAccuracy = db.Reports.Where(x => x.UserId == UserId).Select(y => y.Accuracy).Sum() / (MockCount + NonMockCount);
             employeeStats.Add("Mock", MockCount.ToString());
-            employeeStats.Add("Non-Mock", NonMockCount.ToString());
+            employeeStats.Add("NonMock", NonMockCount.ToString());
             employeeStats.Add("Accuracy", TotalAccuracy.ToString());
             return Ok(employeeStats);
         }

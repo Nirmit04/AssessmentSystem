@@ -13,6 +13,7 @@ namespace WebApi.Models
         }
         public string SubjectName { get; set; }
         public int SubjectId { get; set; }
+        
         public Property Properties { get; set; }
     }
     public class Property
@@ -21,6 +22,6 @@ namespace WebApi.Models
         public decimal LowestScore { get; set; }
         public int NoOfQuiz { get; set; }
         public decimal Accuracy { get; set; }
-        public decimal Average { get; set; }
+        public decimal AverageMarks { get; set; }
     }
 }
