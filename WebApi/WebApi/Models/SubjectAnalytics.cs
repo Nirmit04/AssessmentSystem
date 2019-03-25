@@ -22,6 +22,6 @@ namespace WebApi.Models
         public decimal LowestScore { get; set; }
         public int NoOfQuiz { get; set; }
         public decimal Accuracy { get; set; }
-        public decimal Average { get; set; }
+        public decimal AverageMarks { get; set; }
     }
 }
