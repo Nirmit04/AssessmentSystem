@@ -195,14 +195,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903230620398_ChangeInSchema.cs" />
-    <Compile Include="Migrations\201903230620398_ChangeInSchema.Designer.cs">
-      <DependentUpon>201903230620398_ChangeInSchema.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903230651308_ChangeInSchema1.cs" />
-    <Compile Include="Migrations\201903230651308_ChangeInSchema1.Designer.cs">
-      <DependentUpon>201903230651308_ChangeInSchema1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -218,6 +210,7 @@
     <Compile Include="Models\QuizSchedule.cs" />
     <Compile Include="Models\Report.cs" />
     <Compile Include="Models\Subject.cs" />
+    <Compile Include="Models\SubjectAnalytics.cs" />
     <Compile Include="Models\UserSchedule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
@@ -247,14 +240,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903230620398_ChangeInSchema.resx">
-      <DependentUpon>201903230620398_ChangeInSchema.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903230651308_ChangeInSchema1.resx">
-      <DependentUpon>201903230651308_ChangeInSchema1.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
