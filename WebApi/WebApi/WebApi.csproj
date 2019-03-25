@@ -194,13 +194,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903230620398_ChangeInSchema.cs" />
-    <Compile Include="Migrations\201903230620398_ChangeInSchema.Designer.cs">
-      <DependentUpon>201903230620398_ChangeInSchema.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903230651308_ChangeInSchema1.cs" />
-    <Compile Include="Migrations\201903230651308_ChangeInSchema1.Designer.cs">
-      <DependentUpon>201903230651308_ChangeInSchema1.cs</DependentUpon>
+    <Compile Include="Migrations\201903250433533_Marks.cs" />
+    <Compile Include="Migrations\201903250433533_Marks.Designer.cs">
+      <DependentUpon>201903250433533_Marks.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -248,11 +244,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903230620398_ChangeInSchema.resx">
-      <DependentUpon>201903230620398_ChangeInSchema.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903230651308_ChangeInSchema1.resx">
-      <DependentUpon>201903230651308_ChangeInSchema1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903250433533_Marks.resx">
+      <DependentUpon>201903250433533_Marks.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
