@@ -38,9 +38,9 @@ export class UserDetailsComponent implements OnInit {
 
 	loadUserProgress() {
 		this.service.getUserProgress().subscribe((res: any) => {
-			this.Quizzes = res[0];
-			this.Questions = res[1];
-			this.Tags = res[2];
+			this.Quizzes = res.QuizzesCreated;
+			this.Questions = res.QuestionsCreated;
+			this.Tags = res.TagsCreated;
 			this.show = false;
 		});
 	}

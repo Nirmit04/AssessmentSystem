@@ -12,6 +12,9 @@ export class ReportingUserService {
   constructor(private http: HttpClient) { }
 
   getTagAnalytics() {
-    return this.http.get(this.rootUrl+"");
+    return this.http.get(this.rootUrl + "");
+  }
+  getAllUsers() {
+    return this.http.get(this.rootUrl + 'User/GetUserAll');
   }
 }
