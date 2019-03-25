@@ -1,4 +1,4 @@
-<div *ngIf="polarAreaChartData">
+<div *ngIf="data1">
   <div>
     <div style="display: block">
       <canvas baseChart [data]="polarAreaChartData" [labels]="polarAreaChartLabels" [legend]="polarAreaLegend"
@@ -7,6 +7,7 @@
     </div>
   </div>
 </div>
+
 <div class="row">
   <div class="col">
     <h3>{{data.FirstName}}&nbsp;&nbsp;{{data.LastName}}--Performance Metrics</h3>

@@ -63,6 +63,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { HttpErrorInterceptor } from '../app/http-error-interceptor';
 import { Mainnav4Component } from './reporting-user/mainnav4/mainnav4.component';
 import { ViewUserDetailsComponent } from './reporting-user/analytics-by-user/view-user-details/view-user-details.component';
+import { DetailsComponent } from './reporting-user/analytics-by-quiz/details/details.component';
+
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 	bgsColor: '#00ACC1',
 	bgsOpacity: 0.7,
@@ -142,7 +144,8 @@ export function provideConfig() {
 		AnalyticsByQuizComponent,
 		AnalyticsByUserComponent,
 		Mainnav4Component,
-		ViewUserDetailsComponent
+		ViewUserDetailsComponent,
+		DetailsComponent
 	],
 	imports: [
 		BrowserModule,
@@ -166,7 +169,8 @@ export function provideConfig() {
 		MatProgressBarModule,
 		ChartsModule,
 		NgxGaugeModule,
-		MatExpansionModule
+		MatExpansionModule,
+		
 	],
 	providers: [
 		AuthGuard,
@@ -181,7 +185,7 @@ export function provideConfig() {
 			multi: true
 		}
 	],
-	bootstrap: [ AppComponent ],
+	bootstrap: [AppComponent],
 	entryComponents: [
 		CreatetagComponent,
 		UpdateQuestionComponent,
@@ -193,7 +197,8 @@ export function provideConfig() {
 		ViewAnswerComponent,
 		AddUser1Component,
 		ViewUserDetailsComponent,
-		CreateQuestionsComponent
+		CreateQuestionsComponent,
+		DetailsComponent
 	]
 })
-export class AppModule {}
+export class AppModule { }
