@@ -1,3 +1,38 @@
-<p>
-  reporting-user works!
-</p>
+<app-mainnav4>
+<div class="jumbotron">
+    <div class="pic">
+        <img class="left" src="{{ profileUrl }}" />
+    </div>
+    <div class="detail1">
+      <h3>{{ Firstname }} {{ Lastname }}</h3>
+      <h6>{{ email }}</h6>
+    </div>
+    <div class="elem">
+      <ul>
+        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true" style="color:#00acee;"></i></a></li>
+        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true" style="color:#00acee;"></i></a></li>
+        <li><a href="#"><i class="fa fa-github" aria-hidden="true" style="color:black;"></i></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+      <div class="box col-3">
+        <div class="boxhalf">
+          <h2>{{ Quizzes }}</h2>
+          <h6>Quizzes Created</h6>
+        </div>
+      </div>
+      <div class="box col-3">
+          <div class="boxhalf">
+            <h2>{{ Tags }}</h2>
+            <h6>Tags Created</h6>            
+          </div>
+      </div>
+      <div class="box col-3">
+          <div class="boxhalf">
+            <h2>{{ Questions }}</h2>
+            <h6>Questions Created</h6>
+          </div>
+      </div>
+</div>
+</app-mainnav4>
