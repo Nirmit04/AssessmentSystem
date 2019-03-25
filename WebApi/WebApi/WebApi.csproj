@@ -211,6 +211,7 @@
     <Compile Include="Models\Report.cs" />
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\SubjectAnalytics.cs" />
+    <Compile Include="Models\UserAnalytics.cs" />
     <Compile Include="Models\UserSchedule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />

@@ -37,7 +37,7 @@ namespace WebApi.Controllers
             decimal Performance = TotalPerformance / TotalQuizCount;
             decimal Accuracy = TotalAccuracy / TotalQuizCount;
             decimal AverageScore = (HighestScore + LowestScore) / TotalQuizCount;
-            decimal ProbabilityAnsweringCorrectly = (TotalCorrectAnswers * 100) / TotalQuestions;
+            decimal ProbabilityAnsweringCorrectly = (decimal)(TotalCorrectAnswers * 100) / TotalQuestions;
             Dictionary<string, string> UserAnalysis = new Dictionary<string, string>();
             UserAnalysis.Add("MockCount", MockCount.ToString());
             UserAnalysis.Add("Non-MockCount", NonMockCount.ToString());
@@ -57,25 +57,26 @@ namespace WebApi.Controllers
         {
             List<SubjectAnalytics> subjectAnalyticsList = new List<SubjectAnalytics>();
            
-            SubjectAnalytics subjectAnalysis = new SubjectAnalytics();
-            var report = new List<Report>();
+            
+            //var report = new List<Report>();
             decimal tot = 0;
-            var quizId = db.Reports.Distinct().Select(x => new { x.QuizId }).ToList();
+            var quizId = db.Reports.Select(x => new { x.QuizId }).Distinct().ToList();
 
             foreach (var item in quizId)
             {
-                report = db.Reports.Where(x => x.QuizId == item.QuizId).ToList();
-                subjectAnalysis.Properties.HighestScore = report.Max(x=>x.MarksScored);
+                SubjectAnalytics subjectAnalysis = new SubjectAnalytics();
+                var report = db.Reports.AsEnumerable().Where(x => x.QuizId == item.QuizId).ToList();
+                subjectAnalysis.Properties.HighestScore = report.Max(x => x.MarksScored);
                 subjectAnalysis.Properties.LowestScore = report.Min(x => x.MarksScored);
                 subjectAnalysis.Properties.Accuracy = report.Max(x => x.Accuracy);
-                subjectAnalysis.Properties.NoQuiz = report.Count();
-                subjectAnalysis.SubjectId= db.Quizs.FirstOrDefault(x=>x.QuizId==item.QuizId).SubjectId;
+                subjectAnalysis.Properties.NoOfQuiz = report.Count();
+                subjectAnalysis.SubjectId = db.Quizs.FirstOrDefault(x => x.QuizId == item.QuizId).SubjectId;
                 subjectAnalysis.SubjectName = db.Subjects.FirstOrDefault(x => x.SubjectId == subjectAnalysis.SubjectId).Name;
                 foreach (var rep in report)
                 {
                     tot += rep.MarksScored;
                 }
-                subjectAnalysis.Properties.Average =tot/ report.Count();
+                subjectAnalysis.Properties.Average = tot / report.Count();
                 subjectAnalyticsList.Add(subjectAnalysis);
             }
             return Ok(subjectAnalyticsList);
