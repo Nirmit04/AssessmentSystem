@@ -22,12 +22,12 @@ export class AnalyticsByTagComponent implements OnInit {
   label: any[];
 
 
-  public radarChartLabels = this.label;
-  public radarChartData = this.data; //[5,6]
-  public radarChartType = 'radar';
-  public radarChartOptions = {
-    responsive: true,
-  };
+  // public radarChartLabels = this.label;
+  // public radarChartData = this.data; //[5,6]
+  // public radarChartType = 'radar';
+  // public radarChartOptions = {
+  //   responsive: true,
+  // };
 
 
   dtTrigger: Subject<any> = new Subject();
@@ -45,10 +45,10 @@ export class AnalyticsByTagComponent implements OnInit {
   loadAnalyticOfTag() {
     this.service.getTagAnalytics().subscribe((res: any) => {
       this.tagAnalysisList = res as any[];
-      for (let i = 0; i < 5; i++) {
-        this.data[i] = this.tagAnalysisList[i].Accuracy;
-        this.label[i] = this.tagAnalysisList[i].TagName;
-      }
+      // for (let i = 0; i < 5; i++) {
+      //   this.data[i] = this.tagAnalysisList[i].Accuracy;
+      //   this.label[i] = this.tagAnalysisList[i].TagName;
+      // }
       this.dtTrigger.next();
       console.log(this.tagAnalysisList);
     });
