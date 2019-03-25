@@ -6,7 +6,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 @Component({
 	selector: 'app-user-details',
 	templateUrl: './user-details.component.html',
-	styleUrls: ['./user-details.component.css']
+	styleUrls: [ './user-details.component.css' ]
 })
 export class UserDetailsComponent implements OnInit {
 	Firstname: String;
@@ -16,7 +16,7 @@ export class UserDetailsComponent implements OnInit {
 	Questions: any;
 	Tags: any;
 	profileUrl: any;
-	constructor(private service: ContentCreatorServiceService, private ngxService: NgxUiLoaderService) { }
+	constructor(private service: ContentCreatorServiceService, private ngxService: NgxUiLoaderService) {}
 	show: boolean = true;
 	ngOnInit() {
 		this.ngxService.startBackground('do-background-things');
