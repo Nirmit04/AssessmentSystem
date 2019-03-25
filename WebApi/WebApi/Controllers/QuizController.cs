@@ -188,7 +188,8 @@ namespace WebApi.Controllers
                     TotalMarks = x.TotalMarks,
                     ArchiveStatus = x.ArchiveStatus,
                     QuizType = x.QuizType,
-                    Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name
+                    Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
+                    CreatedBy=db.Users.FirstOrDefault(z=>z.Id==x.CreatedBy).FirstName
                 }).ToList();
             return Ok(quiz);
         }
