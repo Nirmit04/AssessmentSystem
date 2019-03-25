@@ -17,8 +17,8 @@ namespace WebApi.Controllers
         public IHttpActionResult AnalyticsByUser(string UserId)
         {
             UserAnalytics userAnalytics = new UserAnalytics();
-            var userReport = db.Reports.AsEnumerable().Where(x => x.UserId == UserId);
-            if (userReport != null)
+            var userReport = db.Reports.Where(x => x.UserId == UserId).ToList();
+            if (userReport.Count() != 0)
             {
                 userAnalytics.MockCount = db.Reports.Where(x => x.UserId == UserId && x.QuizType == "Mock").Count();
                 userAnalytics.NonMockCount = db.Reports.Where(x => x.UserId == UserId && x.QuizType == "Non-Mock").Count();
