@@ -60,43 +60,11 @@ namespace WebApi.Controllers
             }
         }
 
-        //[HttpGet]
-        //[Route("api/ReportingUser/AnalyticsByQuiz")]
-        //public IHttpActionResult AnalyticsByQuiz()
-        //{
-        //    List<SubjectAnalytics> subjectAnalyticsList = new List<SubjectAnalytics>();
-           
-            
-        //    //var report = new List<Report>();
-        //    decimal tot = 0;
-        //    var quizId = db.Reports.Select(x =>x.QuizId).Distinct().ToList();
-        //    var SubjectId = db.Quizs.Where(x => quizId.Contains(x.QuizId)).Select(x=>x.SubjectId);
-        //    foreach (var item in quizId)
-        //    {
-        //        SubjectAnalytics subjectAnalysis = new SubjectAnalytics();
-        //        var report = db.Reports.AsEnumerable().Where(x => x.QuizId == item.QuizId).ToList();
-        //        subjectAnalysis.Properties.HighestScore = report.Max(x => x.MarksScored);
-        //        subjectAnalysis.Properties.LowestScore = report.Min(x => x.MarksScored);
-        //        subjectAnalysis.Properties.Accuracy = report.Max(x => x.Accuracy);
-        //        subjectAnalysis.Properties.NoOfQuiz = report.Count();
-        //        subjectAnalysis.SubjectId = db.Quizs.FirstOrDefault(x => x.QuizId == item.QuizId).SubjectId;
-        //        subjectAnalysis.SubjectName = db.Subjects.FirstOrDefault(x => x.SubjectId == subjectAnalysis.SubjectId).Name;
-        //        foreach (var rep in report)
-        //        {
-        //            tot += rep.MarksScored;
-        //        }
-        //        subjectAnalysis.Properties.Average = tot / report.Count();
-        //        subjectAnalyticsList.Add(subjectAnalysis);
-        //    }
-        //    return Ok(subjectAnalyticsList);
-        //}
-
         [HttpGet]
         [Route("api/ReportingUser/AnalyticsByTag")]
         public IHttpActionResult AnalyticsByTag()
         {
             List<SubjectAnalytics> subjectAnalyticsList = new List<SubjectAnalytics>();
-
             var SubjectIds = db.Subjects.Select(x => x.SubjectId).ToList();
             if (SubjectIds != null)
             {
@@ -135,5 +103,6 @@ namespace WebApi.Controllers
             }
             return Ok(subjectAnalyticsList.OrderByDescending(x => x.Properties.Accuracy));
         }
+
     }
 }
