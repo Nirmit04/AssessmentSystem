@@ -60,10 +60,47 @@ namespace WebApi.Controllers
             }
         }
 
+
+        [HttpGet]
+        [Route("api/ReportingUser/AnalysisByQuiz/{QuizId}")]
+        public IHttpActionResult AnalysisByQuiz(int QuizId)
+        {
+            var quizreports = db.Reports.Where(x => x.QuizId == QuizId).ToList();
+            decimal TotalAccuracy = 0,TotalMarks=0;
+            Property property = new Property();
+            if (quizreports.Count()!=0)
+            { 
+                property.HighestScore = quizreports.Select(x => x.MarksScored).DefaultIfEmpty().Max();
+                property.LowestScore = quizreports.Select(x => x.MarksScored).DefaultIfEmpty().Min();
+                property.NoOfQuiz = quizreports.Count();
+
+                foreach (var item in quizreports)
+                {
+                    TotalAccuracy += item.Accuracy;
+                    TotalMarks += item.MarksScored;
+                }
+                try
+                {
+                    decimal avg = TotalMarks / property.NoOfQuiz;
+                    property.AverageMarks = avg;
+                    property.Accuracy = TotalAccuracy / property.NoOfQuiz;
+                }
+                catch(Exception e)
+                {
+                    return BadRequest();
+                }
+                return Ok(property);
+            }
+            else
+            {
+                return BadRequest("Quiz Does Not Exist");
+            }
+        }
+
         [HttpGet]
         [Route("api/ReportingUser/AnalyticsByTag")]
         public IHttpActionResult AnalyticsByTag()
-        {
+        {        
             List<SubjectAnalytics> subjectAnalyticsList = new List<SubjectAnalytics>();
             var SubjectIds = db.Subjects.Select(x => x.SubjectId).ToList();
             if (SubjectIds != null)
