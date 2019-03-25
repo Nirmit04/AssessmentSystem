@@ -17,4 +17,7 @@ export class ReportingUserService {
   getAllUsers() {
     return this.http.get(this.rootUrl + 'User/GetUserAll');
   }
+  getUserAnalytics(id: string) {
+    return this.http.get(this.rootUrl + 'ReportingUser/AnalyticsByUser/' + id);
+  }
 }

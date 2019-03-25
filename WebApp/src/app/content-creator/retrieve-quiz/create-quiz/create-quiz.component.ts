@@ -5,7 +5,10 @@ import { ToastrService } from 'ngx-toastr';
 import { Question } from 'src/app/content-creator/shared/question.model';
 import { concat, Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
-import { MatDialogRef } from '@angular/material';
+// import { MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { CreateQuestionsComponent } from '../../create-questions/create-questions.component';
+
 @Component({
   selector: 'app-create-quiz',
   templateUrl: './create-quiz.component.html',
@@ -22,7 +25,10 @@ export class CreateQuizComponent implements OnInit {
   flag = 1;
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
-  constructor(private service: ContentCreatorServiceService, private dialogRef: MatDialogRef<CreateQuizComponent>, public toastr: ToastrService) { }
+  constructor(private service: ContentCreatorServiceService,
+    private dialogRef: MatDialogRef<CreateQuizComponent>,
+    public toastr: ToastrService,
+    private dialog: MatDialog, ) { }
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -89,6 +95,18 @@ export class CreateQuizComponent implements OnInit {
       this.toastr.success('Inserted successfully');
       this.dialogRef.close('Inserted');
     })
+  }
+  add_new_ques() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "70%";
+    dialogConfig.disableClose = true;
+    this.service.quesStat = true;
+    let dialogRef = this.dialog.open(CreateQuestionsComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      this.dtTrigger.unsubscribe();
+      this.dtTrigger.next();
+    });
   }
   ngOnDestroy() {
     this.dtTrigger.unsubscribe();

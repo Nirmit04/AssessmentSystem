@@ -60,6 +60,7 @@ import { AnalyticsByTagComponent } from './reporting-user/analytics-by-tag/analy
 import { AnalyticsByQuizComponent } from './reporting-user/analytics-by-quiz/analytics-by-quiz.component';
 import { AnalyticsByUserComponent } from './reporting-user/analytics-by-user/analytics-by-user.component';
 import { Mainnav4Component } from './reporting-user/mainnav4/mainnav4.component';
+import { ViewUserDetailsComponent } from './reporting-user/analytics-by-user/view-user-details/view-user-details.component';
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 	bgsColor: '#00ACC1',
 	bgsOpacity: 0.7,
@@ -138,7 +139,8 @@ export function provideConfig() {
 		AnalyticsByTagComponent,
 		AnalyticsByQuizComponent,
 		AnalyticsByUserComponent,
-		Mainnav4Component
+		Mainnav4Component,
+		ViewUserDetailsComponent
 	],
 	imports: [
 		BrowserModule,
@@ -171,7 +173,7 @@ export function provideConfig() {
 			useFactory: provideConfig
 		}
 	],
-	bootstrap: [ AppComponent ],
+	bootstrap: [AppComponent],
 	entryComponents: [
 		CreatetagComponent,
 		UpdateQuestionComponent,
@@ -181,7 +183,9 @@ export function provideConfig() {
 		AddUserComponent,
 		ViewScheduleComponent,
 		ViewAnswerComponent,
-		AddUser1Component
+		AddUser1Component,
+		ViewUserDetailsComponent,
+		CreateQuestionsComponent
 	]
 })
-export class AppModule {}
+export class AppModule { }

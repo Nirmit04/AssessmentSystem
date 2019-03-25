@@ -13,6 +13,7 @@ export class ContentCreatorServiceService {
 	quizForm: QuizModel;
 	readonlyStatus: boolean;
 	rootURL = environment.apiURl;
+	quesStat: boolean = false;
 	public createdBy;
 	constructor(private http: HttpClient) { }
 	postQuestion(formData: Question) {
