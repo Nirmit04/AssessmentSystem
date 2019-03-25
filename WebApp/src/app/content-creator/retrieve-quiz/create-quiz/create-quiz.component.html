@@ -1,4 +1,7 @@
 <mat-dialog-content>
+  <button type="button " [mat-dialog-close] class="btn btn-danger pos">
+    <mat-icon>clear</mat-icon>
+  </button>
   <div class="card" style="width: 80%; overflow: auto">
     <div class="card-body">
       <h5 class="card-title" style="text-align: center">Create A Quiz</h5><br />
@@ -49,7 +52,7 @@
           </div>
           <div class="form-group">
             <button type="submit" [disabled]="form.invalid" class="btn btn-primary ">Create</button>
-            <button type="button" [mat-dialog-close] class="btn btn-danger">Close</button>
+
           </div>
         </form>
       </ng-container>
@@ -77,10 +80,9 @@
               </tbody>
             </table>
             <div *ngIf="length==0">
-              <a routerLink='cc-dash/create-question' routerLinkActive='active'>Click Here to Create Question</a>
+              <a (click)="add_new_ques()">Click Here to Create Question</a>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="button" [mat-dialog-close] class="btn btn-danger">Close</button>
           </form>
         </div>
       </div>

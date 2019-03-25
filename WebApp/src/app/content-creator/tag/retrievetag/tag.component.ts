@@ -43,7 +43,6 @@ export class TagComponent implements OnInit {
 		let dialogRef = this.dialog.open(CreatetagComponent, dialogConfig);
 		dialogRef.afterClosed().subscribe(result => {
 			this.loadTags();
-			this.dtTrigger.unsubscribe();
 			this.dtTrigger.next();
 		});
 	}
@@ -55,7 +54,6 @@ export class TagComponent implements OnInit {
 		dialogConfig.data = this.tagList[id - 1];
 		let dialogRef = this.dialog.open(CreatetagComponent, dialogConfig).afterClosed().subscribe(res => {
 			this.loadTags();
-			this.dtTrigger.unsubscribe();
 			this.dtTrigger.next();
 		});
 	}
