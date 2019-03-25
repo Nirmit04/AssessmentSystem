@@ -56,8 +56,7 @@ export class UpdateQuestionComponent implements OnInit {
   onSubmit(form: NgForm) {
     this.service.updateQuestion(form.value).subscribe(res => {
       this.toastr.success('Updated successfully');
-      this.resetForm(form);
-      // this.router.navigate(['/cc-dash'])
+      this.dialogRef.close('Submitted');
     });;
   }
 

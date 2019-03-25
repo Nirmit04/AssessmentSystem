@@ -29,6 +29,9 @@ export class TestAdminService {
 		console.log(formdata);
 		return this.http.post(this.rooturl + 'QuizSchedule/ScheduleQuiz', formdata);
 	}
+	postUrl(url: string)	{
+		return this.http.post(this.rooturl + '', url);
+	}
 	getSchedule(id: string) {
 		return this.http.get(this.rooturl + 'QuizSchedule/GetAllQuizSchedule/' + id);
 	}

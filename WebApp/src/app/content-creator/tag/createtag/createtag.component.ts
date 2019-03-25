@@ -22,15 +22,12 @@ export class CreatetagComponent implements OnInit {
 		private toastr: ToastrService) { }
 
 	ngOnInit() {
-		// console.log(this.service.tagForm);
 		this.userId = localStorage.getItem('uid');
 		if (this.data === null) {
-			// console.log(this.service.tagForm);
 			this.Option = 'Create';
 			this.resetForm();
 		}
 		else {
-			// console.log(this.service.tagForm);
 			this.Option = 'Update';
 			this.service.tagForm = this.data;
 			console.log(this.service.tagForm);
@@ -52,6 +49,6 @@ export class CreatetagComponent implements OnInit {
 			this.toastr.success('Inserted successfully');
 			this.resetForm(form);
 		});;
-		//this.dialogRef.close();
+		this.dialogRef.close('Inserted');
 	}
 }

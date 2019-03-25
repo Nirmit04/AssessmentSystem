@@ -1,12 +1,13 @@
 <mat-dialog-content>
   <button type="button" (click)="onCreate()" class="btn btn-primary">Add Question</button>
+  <button style="margin-left: 68.5%"type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button>
   <div>
     <br /><br />
-    <h1 style="text-align: center">View Quiz Details</h1>
+    <h1 style="text-align: center">Edit Quiz Details</h1>
     <br />
     <table class="table table-bordered table-striped">
       <thead class="thead-dark">
-        <th scope="col">#Question ID</th>
+        <th scope="col">#S.No.</th>
         <th scope="col">Question</th>
         <th scope="col">Marks</th>
         <th scope="col">Action</th>
@@ -26,5 +27,4 @@
       </tbody>
     </table>
   </div>
-  <button type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button>
 </mat-dialog-content>

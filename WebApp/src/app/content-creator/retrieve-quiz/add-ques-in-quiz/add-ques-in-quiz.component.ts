@@ -61,7 +61,7 @@ export class AddQuesInQuizComponent implements OnInit {
     this.service.putQuestionsSelected(QuestionId).subscribe(res => {
       this.toastr.success('Inserted successfully');
     })    
-   // this.dialogref.close();
+   this.dialogref.close('Inserted');
   }
 
 }

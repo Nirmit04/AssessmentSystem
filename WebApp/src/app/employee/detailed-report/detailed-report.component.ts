@@ -27,6 +27,8 @@ export class DetailedReportComponent implements OnInit {
       }
     }
   }
+  private doughnutChartColors2: any[] = [{ backgroundColor: ["#FF713A", "#00B292"] }];
+  private doughnutChartColors1: any[] = [{ backgroundColor: ["#3E00B2", "#FFF53A"] }];
 
 
   public doughnutChartLabels2 = ['Correct', 'InCorrect'];

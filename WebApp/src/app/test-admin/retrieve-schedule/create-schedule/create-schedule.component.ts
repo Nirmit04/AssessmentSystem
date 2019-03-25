@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SystemJsNgModuleLoader } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { TestAdminService } from '../../shared/test-admin.service';
 import { QuizModel } from '../../../content-creator/shared/quiz.model';
@@ -16,6 +16,7 @@ export class CreateScheduleComponent implements OnInit {
   q3 = "";
   btndisable = false;
   CCreatedBy = "";
+  scheduleUrl = 'localhost:4200//emp-dash/take-quiz/';
   constructor(private service: TestAdminService,
     private dialog: MatDialog,
     public toastr: ToastrService) { }
@@ -24,7 +25,6 @@ export class CreateScheduleComponent implements OnInit {
     this.resetForm();
     this.CCreatedBy = localStorage.getItem('uid');
     this.service.retriveAllQuizzes().subscribe((res) => {
-      // console.log(res);
       this.QuizList = res as QuizModel[];
       console.log(this.QuizList);
 
@@ -41,9 +41,7 @@ export class CreateScheduleComponent implements OnInit {
   }
 
   sub(form: NgForm) {
-    // console.log(form.value);
     this.service.postSchedule(form.value).subscribe((res: any) => {
-      // console.log(res);
       this.toastr.success('Inserted successfully');
       this.resetForm(form);
     });

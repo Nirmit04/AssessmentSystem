@@ -32,7 +32,6 @@ export class NonMockComponent implements OnInit {
   }
   takeQuiz(QuizId: number, Id: number) {
     this.service.getQuesOfQuiz(QuizId).subscribe((res: any) => {
-      //console.log(res);
       this.service.quesOfQuiz = res as any[];
       this.service.QuizScheduleId = Id;
       this.service.QuizId = QuizId;

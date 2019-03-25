@@ -1,6 +1,5 @@
-<mat-dialog-content>
   <h5 class="card-title">{{label}}</h5>
-  <!-- <button type="button" [disabled]="bool" (click)="onAdd()" class="btn btn-primary">Add Users</button> -->
+  <button type="button" [hidden]="bool" (click)="onAdd()" class="btn btn-primary">Add Users</button>  <br/>
   <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
     <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="this.CCreatedBy">
     <input type="hidden" name="QuizId" #QuizId="ngModel" [(ngModel)]="service.formdata.QuizId">
@@ -19,6 +18,7 @@
       <div class="validation-error" *ngIf="EndDateTime.invalid && EndDateTime.touched">This field is required.
       </div>
     </div>
+    <mat-dialog-content>
     <table class="table table-bordered table-striped">
       <thead class="thead-dark">
         <th scope="col">#User ID</th>
@@ -42,10 +42,10 @@
         </ng-container>
       </tbody>
     </table>
+  </mat-dialog-content>
     <div class="form-group">
-      <button style="margin:0 5%" type="submit" [disabled]="form.invalid || bool"
+      <button [hidden]="bool" style="margin:0 5%" type="submit" [disabled]="form.invalid || bool"
         class="btn btn-primary">Submit</button>
-      <button type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button>
+      <button [hidden] ="bool" type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button>
     </div>
   </form>
-</mat-dialog-content>

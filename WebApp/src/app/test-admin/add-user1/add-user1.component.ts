@@ -14,7 +14,8 @@ export class AddUser1Component implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
     public service: TestAdminService,
-    public toastr: ToastrService) { }
+    public toastr: ToastrService,
+    private dialogRef: MatDialogRef<AddUser1Component>) { }
 
   ngOnInit() {
     this.loadUsers()
@@ -34,6 +35,7 @@ export class AddUser1Component implements OnInit {
     console.log(quiztakerId);
     this.service.addUserInExistingSchedule(this.data, quiztakerId).subscribe(res => {
       this.toastr.success('added succesfully');
+      this.dialogRef.close('Added');
     });
 
 
