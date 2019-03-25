@@ -49,7 +49,7 @@ const routes: Routes = [
 	{ path: 'emp-dash/quiz/take-quiz', component: TakeQuizComponent, canActivate: [AuthGuard] },
 	{ path: 'emp-dash/quiz/result', component: ResultComponent, canActivate: [AuthGuard] },
 	{ path: 'emp-dash/quiz/non-mock-report', component: NonMockReportComponent, canActivate: [AuthGuard] },
-	{ path: 'qmp-dash/quiz/detailed-report', component: DetailedReportComponent, canActivate: [AuthGuard] },
+	{ path: 'emp-dash/quiz/detailed-report', component: DetailedReportComponent, canActivate: [AuthGuard] },
 	{ path: 'emp-dash/mock', component: MockComponent, canActivate: [AuthGuard] },
 	{ path: 'emp-dash/quiz/mock-report', component: MockReportComponent, canActivate: [AuthGuard] },
 	{ path: 'ta-dash/add-user', component: AddUserComponent, canActivate: [AuthGuard] },

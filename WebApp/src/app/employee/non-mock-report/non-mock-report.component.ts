@@ -41,7 +41,7 @@ export class NonMockReportComponent implements OnInit {
   viewDetailedReport(qid: number, index: number) {
     this.service.data = this.nonMockReportList[index];
     this.service.QuizId = qid;
-    this.router.navigate(['/detailed-report']);
+    this.router.navigate(['/emp-dash/quiz/detailed-report']);
     this.dtTrigger.next();
   }
 }

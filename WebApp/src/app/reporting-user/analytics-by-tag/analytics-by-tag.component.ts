@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from 'src/app/employee/shared/employee.service';
 import { Router } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
 import { ReportingUserService } from '../shared/reporting-user.service';
-import { ChartDataSets, ChartType, ChartOptions } from 'chart.js';
+import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
 
 @Component({
@@ -18,23 +17,44 @@ export class AnalyticsByTagComponent implements OnInit {
 
   tagAnalysisList: any[];
   panelOpenState = false;
-  data: any[];
-  label: any[];
+  highdata = [];
+  lowdata = [];
+  label = [];
+  accuracy = [];
+  name = 'high';
+  public barChartOptions: ChartOptions = {
+    responsive: true,
+    // We use these empty structures as placeholders for dynamic theming.
+    scales: { xAxes: [{}], yAxes: [{}] },
+    plugins: {
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+      }
+    }
+  };
+  public barChartLabels: Label[];
+  public barChartType: ChartType = 'bar';
+  public barChartLegend = true;
 
+  public barChartData: ChartDataSets[];
 
-  // public radarChartLabels = this.label;
-  // public radarChartData = this.data; //[5,6]
-  // public radarChartType = 'radar';
-  // public radarChartOptions = {
-  //   responsive: true,
-  // };
+  public radarChartOptions: ChartOptions = {
+    responsive: true,
+  };
+  public radarChartLabels: Label[];
 
+  public radarChartData: ChartDataSets[] = [
+    { data: this.accuracy, label: 'Accuracy:'}
+  ];
+  public radarChartType: ChartType = 'radar';
 
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
   dtOptions: DataTables.Settings = {};
 
   ngOnInit() {
+
     this.loadAnalyticOfTag();
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -45,10 +65,28 @@ export class AnalyticsByTagComponent implements OnInit {
   loadAnalyticOfTag() {
     this.service.getTagAnalytics().subscribe((res: any) => {
       this.tagAnalysisList = res as any[];
-      // for (let i = 0; i < 5; i++) {
-      //   this.data[i] = this.tagAnalysisList[i].Accuracy;
-      //   this.label[i] = this.tagAnalysisList[i].TagName;
-      // }
+      for (let i = 0; i < 7; i++) {
+        this.highdata.push(
+          this.tagAnalysisList[i].Properties.HighestScore
+        );
+        this.lowdata.push(
+          this.tagAnalysisList[i].Properties.LowestScore
+        );
+        this.label.push(
+          this.tagAnalysisList[i].SubjectName
+        );
+        this.accuracy.push(
+          this.tagAnalysisList[i].Properties.Accuracy
+        );
+      }
+      console.log(this.accuracy);
+      this.barChartLabels = this.label;
+      this.radarChartLabels = this.label;
+      this.barChartData = [
+        { data: this.highdata, label: 'Highest Score' },
+        { data: this.lowdata, label: 'Lowest Score' }
+      ];
+
       this.dtTrigger.next();
       console.log(this.tagAnalysisList);
     });
