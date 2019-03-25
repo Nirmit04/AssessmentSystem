@@ -1,3 +1,12 @@
+<div *ngIf="polarAreaChartData">
+  <div>
+    <div style="display: block">
+      <canvas baseChart [data]="polarAreaChartData" [labels]="polarAreaChartLabels" [legend]="polarAreaLegend"
+        [chartType]="polarAreaChartType">
+      </canvas>
+    </div>
+  </div>
+</div>
 <div class="row">
   <div class="col">
     <h3>{{data.FirstName}}&nbsp;&nbsp;{{data.LastName}}--Performance Metrics</h3>
@@ -8,13 +17,13 @@
     </button>
   </div>
 </div>
-<div *ngIf="data1">
+<div *ngIf="data2">
   <div class="row">
     <div class="col zoom">
       <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">Highest-Score</h5>
-          <label class="card-text">{{data1.HighestScore}}</label>
+          <label class="card-text">{{data2.HighestScore}}</label>
         </div>
       </div>
     </div>
@@ -23,7 +32,7 @@
       <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">Lowest Score</h5>
-          <label class="card-text">{{data1.LowestScore}}</label>
+          <label class="card-text">{{data2.LowestScore}}</label>
         </div>
       </div>
     </div>
@@ -32,7 +41,7 @@
       <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">Accuracy</h5>
-          <label class="card-text">{{data1.Accuracy}}</label>
+          <label class="card-text">{{data2.Accuracy}}</label>
         </div>
       </div>
     </div>
@@ -43,7 +52,7 @@
       <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">Performance</h5>
-          <label class="card-text">{{data1.Performance}}</label>
+          <label class="card-text">{{data2.Performance}}</label>
         </div>
       </div>
     </div>
@@ -52,7 +61,7 @@
       <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">Average Score</h5>
-          <label class="card-text">{{data1.AverageScore}}</label>
+          <label class="card-text">{{data2.AverageScore}}</label>
         </div>
       </div>
     </div>
@@ -61,7 +70,7 @@
       <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">Total-Quiz-Count</h5>
-          <label class="card-text">{{data1.TotalQuizCount}}</label>
+          <label class="card-text">{{data2.TotalQuizCount}}</label>
         </div>
       </div>
     </div>
@@ -72,7 +81,7 @@
       <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">Scheduled Quizzes Given</h5>
-          <label class="card-text">{{data1.NonMockCount}}</label>
+          <label class="card-text">{{data2.NonMockCount}}</label>
         </div>
       </div>
     </div>
@@ -81,7 +90,7 @@
       <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">Practice Quizzes Given</h5>
-          <label class="card-text">{{data1.MockCount}}</label>
+          <label class="card-text">{{data2.MockCount}}</label>
         </div>
       </div>
     </div>
@@ -90,7 +99,7 @@
       <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">Probability of Correctness</h5>
-          <label class="card-text">{{data1.ProbabilityAnsweringCorrectly}}</label>
+          <label class="card-text">{{data2.ProbabilityAnsweringCorrectly}}</label>
         </div>
       </div>
     </div>
