@@ -115,7 +115,7 @@ namespace WebApi.Controllers
                     subjectAnalysis.SubjectName = db.Subjects.FirstOrDefault(x => x.SubjectId == subjectId).Name;
                     var QuizIds = db.Quizs.Where(x => x.SubjectId == subjectId).Select(x => x.QuizId).ToList();
                     var quizReports = db.Reports.Where(x => QuizIds.Contains(x.QuizId)).ToList();
-                    if (quizReports != null)
+                    if (quizReports.Count() != 0)
                     {
                         subjectAnalysis.Properties.HighestScore = quizReports.Select(max => max.MarksScored).DefaultIfEmpty().Max();
                         subjectAnalysis.Properties.LowestScore = quizReports.Select(max => max.MarksScored).DefaultIfEmpty().Min();
@@ -126,16 +126,15 @@ namespace WebApi.Controllers
                             TotalAccuracy = TotalAccuracy + item.Accuracy;
                             TotalMarks = TotalMarks + item.MarksScored;
                         }
-                        if (quizReports.Count() != 0)
+                        try
                         {
                             subjectAnalysis.Properties.Accuracy = Math.Round(TotalAccuracy / quizReports.Count(),2);
                             subjectAnalysis.Properties.NoOfQuiz = QuizIds.Count();
                             subjectAnalysis.Properties.AverageMarks = Math.Round(TotalMarks / quizReports.Count(),2);
                         }
-                        else
+                        catch(Exception)
                         {
-                            subjectAnalysis.Properties.Accuracy = 0;
-                            subjectAnalysis.Properties.AverageMarks = 0;
+                            throw;
                         }
                     }
                     subjectAnalyticsList.Add(subjectAnalysis);
