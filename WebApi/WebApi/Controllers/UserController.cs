@@ -137,13 +137,11 @@ namespace WebApi.Controllers
         [Route("api/Stats/{UserId}")]
         public IHttpActionResult UserStats(string UserId)
         {
-            int[] result = new int[3];
-            result[0]=db.Quizs.Where(x => x.CreatedBy == UserId).Count();
-            result[1]=db.Questions.Where(x => x.CreatedBy == UserId).Count();
-            result[2]=db.Subjects.Where(x => x.CreatedBy == UserId).Count();
-
-            //var json = JsonConvert.SerializeObject(result);
-            return Ok(result);
+            Dictionary<string, int> userStats = new Dictionary<string, int>();
+            userStats.Add("QuizzesCreated", db.Quizs.Where(x => x.CreatedBy == UserId).Count());
+            userStats.Add("QuestionsCreated", db.Questions.Where(x => x.CreatedBy == UserId).Count());
+            userStats.Add("TagsCreated", db.Subjects.Where(x => x.CreatedBy == UserId).Count());
+            return Ok(userStats);
         }
     }
 }
