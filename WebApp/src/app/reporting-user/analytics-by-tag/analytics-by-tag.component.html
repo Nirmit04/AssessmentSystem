@@ -1,28 +1,46 @@
 <app-main-nav3>
-  <!-- <div>
+  <div>
     <br /><br /><br />
     <h1 style="text-align: center">Analytics by Tag</h1>
     <br /><br />
-    <p>
-      <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
-              [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-        Toggle
-      </button>
-    </p>
-    <div id="collapseExample" [ngbCollapse]="isCollapsed">
-      <div class="card">
-        <div class="card-body">
-          You can collapse this card by clicking Toggle
-        </div>
-      </div>
-    </div> -->
-    <br/><br/>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Analysis Graph
+          </mat-panel-title>
+          <mat-panel-description>
+            Click to View Graphs
+          </mat-panel-description>
+          <div>
+            <div>
+              <div style="display: block">
+                <canvas baseChart
+                  [datasets]="radarChartData"
+                  [options]="radarChartOptions"
+                  [labels]="radarChartLabels"
+                  [chartType]="radarChartType">
+                </canvas>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel-header> 
+      </mat-expansion-panel>
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+      </mat-expansion-panel>
+    </mat-accordion>   
+    <br /><br />
     <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
       class="row-border hover table table-bordered table-striped">
       <thead class="thead-dark">
         <tr>
           <th scope="col">#S. No.</th>
           <th scope="col">Tag Name</th>
+          <th scope="col">No. Of Quiz</th>
+          <th scope="col">High Score</th>
+          <th scope="col">Low Score</th>
+          <th scope="col">Average Score</th>
           <th scope="col">Accuracy</th>
           <th scope="col">Efficiency</th>
         </tr>
@@ -31,12 +49,16 @@
         <ng-container *ngFor="let item of tagAnalysisList;index as i;">
           <tr>
             <th scope="row">{{i+1}}</th>
-            <td scope="row">{{item.QuizName}}</td>
-            <td scope="row">{{item.StartDateTime}}</td>
-            <td scope="row">{{item.EndDateTime}}</td>
+            <td scope="row">{{item.TagName}}</td>
+            <td scope="row">{{item.NoOfQuiz}}</td>
+            <td scope="row">{{item.HighScore}}</td>
+            <td scope="row">{{item.LowScore}}</td>
+            <td scope="row">{{item.AverageScore}}</td>
+            <td scope="row">{{item.Accuracy}}</td>
+            <td scope="row">{{item.Efficiency}}</td>
           </tr>
         </ng-container>
       </tbody>
     </table>
-  <!-- </div> -->
+  </div>
 </app-main-nav3>

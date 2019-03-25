@@ -59,6 +59,7 @@ import { ReportingUserComponent } from './reporting-user/reporting-user.componen
 import { AnalyticsByTagComponent } from './reporting-user/analytics-by-tag/analytics-by-tag.component';
 import { AnalyticsByQuizComponent } from './reporting-user/analytics-by-quiz/analytics-by-quiz.component';
 import { AnalyticsByUserComponent } from './reporting-user/analytics-by-user/analytics-by-user.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 	bgsColor: '#00ACC1',
 	bgsOpacity: 0.7,
@@ -136,7 +137,7 @@ export function provideConfig() {
 		ReportingUserComponent,
 		AnalyticsByTagComponent,
 		AnalyticsByQuizComponent,
-		AnalyticsByUserComponent
+		AnalyticsByUserComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -159,7 +160,8 @@ export function provideConfig() {
 		NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
 		MatProgressBarModule,
 		ChartsModule,
-		NgxGaugeModule
+		NgxGaugeModule,
+		MatExpansionModule
 	],
 	providers: [
 		AuthGuard,

@@ -35,7 +35,7 @@ export class NonMockComponent implements OnInit {
       this.service.quesOfQuiz = res as any[];
       this.service.QuizScheduleId = Id;
       this.service.QuizId = QuizId;
-      this.router.navigate(['/take-quiz']);
+      this.router.navigate(['/emp-dash/quiz/take-quiz']);
     });
 
   }
