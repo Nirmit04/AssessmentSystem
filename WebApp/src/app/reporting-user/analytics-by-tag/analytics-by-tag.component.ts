@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
 import { ReportingUserService } from '../shared/reporting-user.service';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
-import { Label } from 'ng2-charts';
+import { Label, SingleDataSet } from 'ng2-charts';
 
 @Component({
   selector: 'app-analytics-by-tag',
@@ -33,17 +33,16 @@ export class AnalyticsByTagComponent implements OnInit {
       }
     }
   };
+
   public barChartLabels: Label[];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
-
   public barChartData: ChartDataSets[];
 
   public radarChartOptions: ChartOptions = {
     responsive: true,
   };
   public radarChartLabels: Label[];
-
   public radarChartData: ChartDataSets[] = [
     { data: this.accuracy, label: 'Accuracy:'}
   ];
@@ -54,7 +53,6 @@ export class AnalyticsByTagComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
 
   ngOnInit() {
-
     this.loadAnalyticOfTag();
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -79,16 +77,14 @@ export class AnalyticsByTagComponent implements OnInit {
           this.tagAnalysisList[i].Properties.Accuracy
         );
       }
-      console.log(this.accuracy);
+
       this.barChartLabels = this.label;
       this.radarChartLabels = this.label;
       this.barChartData = [
         { data: this.highdata, label: 'Highest Score' },
         { data: this.lowdata, label: 'Lowest Score' }
       ];
-
       this.dtTrigger.next();
-      console.log(this.tagAnalysisList);
     });
   }
 
