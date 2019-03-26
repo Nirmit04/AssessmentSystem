@@ -31,6 +31,10 @@ export class ReportingUserService {
 	getQuizAnalysis(qid: string) {
 		return this.http.get(this.rootUrl + 'ReportingUser/AnalyticsByQuiz/' + qid)
 	}
+	getUserProgress(){
+		return this.http.get(this.rootUrl + '/ReportingUser/Stats');
+	}
+
 }
 
 

@@ -13,10 +13,14 @@ export class EmployeeComponent implements OnInit {
 	Lastname: String;
 	email: String;
 	profileUrl: any;
+	mocks: any;
+	nmocks: any;
+	accuracy: any;
 	show: boolean = true;
 	ngOnInit() {
 		this.profileUrl = localStorage.getItem('imgurl');
 		this.loadUserDetails();
+		this.loadUserProgress();
 	}
 	loadUserDetails() {
 		this.service.getUserDetails().subscribe((res: any) => {
@@ -25,5 +29,13 @@ export class EmployeeComponent implements OnInit {
 			this.Lastname = res.LastName;
 			this.email = res.Email;
 		});
+	}
+	loadUserProgress(){
+		this.service.getUserProgress().subscribe((res:any) =>{
+			console.log(res);
+			this.mocks = res.Mock;
+			this.nmocks = res.NonMock;
+			this.accuracy = res.Accuracy;
+		})
 	}
 }
