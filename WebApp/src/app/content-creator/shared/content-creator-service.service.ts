@@ -17,6 +17,8 @@ export class ContentCreatorServiceService {
 	public createdBy;
 	constructor(private http: HttpClient) { }
 	postQuestion(formData: Question) {
+		// const formData1 = new FormData();
+		// formData1.append('data',formData);
 		console.log(formData);
 		return this.http.post(this.rootURL + 'Question/CreateQuestion', formData);
 	}
