@@ -11,11 +11,12 @@ import { ChartType } from 'chart.js';
 export class ViewUserDetailsComponent implements OnInit {
 
   data1: any[];
-  public polarAreaChartLabels: Label[] = ['Highest-Score', 'Lowest Score', 'Accuracy', 'Average-Score'];
-  public polarAreaChartData = this.data1;
+  public polarAreaChartLabels: Label[];
+  public polarAreaChartData: SingleDataSet;
   public polarAreaLegend = true;
 
   public polarAreaChartType: ChartType = 'polarArea';
+
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<ViewUserDetailsComponent>,
@@ -32,11 +33,11 @@ export class ViewUserDetailsComponent implements OnInit {
       this.data1.push(this.data2.LowestScore);
       this.data1.push(this.data2.Accuracy);
       this.data1.push(this.data2.AverageScore);
-      console.log(this.data1);
-      console.log(this.data2);
-    })
-  }
-  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
+      this.polarAreaChartLabels = ['Highest Score', 'Lowest Score', 'Accuracy', 'Average Score'];
+      this.polarAreaChartData = this.data1;
+      console.log(this.polarAreaChartData);
+      console.log(this.polarAreaChartLabels);
+    });
+
   }
 }

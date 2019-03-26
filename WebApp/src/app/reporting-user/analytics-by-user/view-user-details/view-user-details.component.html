@@ -1,7 +1,15 @@
-<div *ngIf="polarAreaChartData">
-  <div>
+<div style="align-items:unset;" class="col">
+  <button type="button " [mat-dialog-close] class="btn btn-danger pos">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
+<div>
+  <div *ngIf="polarAreaChartData">
     <div style="display: block">
-      <canvas baseChart [data]="polarAreaChartData" [labels]="polarAreaChartLabels" [legend]="polarAreaLegend"
+      <canvas baseChart
+        [data]="polarAreaChartData"
+        [labels]="polarAreaChartLabels"
+        [legend]="polarAreaLegend"
         [chartType]="polarAreaChartType">
       </canvas>
     </div>
@@ -10,11 +18,6 @@
 <div class="row">
   <div class="col">
     <h3>{{data.FirstName}}&nbsp;&nbsp;{{data.LastName}}--Performance Metrics</h3>
-  </div>
-  <div style="align-items: flex-end;" class="col">
-    <button type="button " [mat-dialog-close] class="btn btn-danger pos">
-      <mat-icon>clear</mat-icon>
-    </button>
   </div>
 </div>
 <div *ngIf="data2">
@@ -106,5 +109,3 @@
   </div>
   <br>
 </div>
-<!-- 
-<button type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button> -->
