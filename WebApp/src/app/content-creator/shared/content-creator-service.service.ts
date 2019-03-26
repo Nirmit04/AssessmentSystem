@@ -4,6 +4,8 @@ import { Question } from '../shared/question.model';
 import { environment } from 'src/environments/environment';
 import { TagModel } from './tags.model';
 import { QuizModel } from './quiz.model';
+import { NgForOf } from '@angular/common';
+import { NgForm } from '@angular/forms';
 @Injectable({
 	providedIn: 'root'
 })
@@ -15,8 +17,11 @@ export class ContentCreatorServiceService {
 	rootURL = environment.apiURl;
 	quesStat: boolean = false;
 	public createdBy;
+public formDupli: NgForm;
 	constructor(private http: HttpClient) { }
 	postQuestion(formData: Question) {
+		// const formData1 = new FormData();
+		// formData1.append('data',formData);
 		console.log(formData);
 		return this.http.post(this.rootURL + 'Question/CreateQuestion', formData);
 	}

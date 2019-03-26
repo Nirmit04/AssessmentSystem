@@ -62,4 +62,8 @@ export class EmployeeService {
   getQues(id: number) {
     return this.http.get(this.rootURL + 'Question/' + id)
   }
+  // getUserProgress(){
+  //   // console.log(localStorage.getItem('uid'))
+  //   return this.http.get(this.rootURL + '/Employee/Stats/'+ localStorage.getItem('uid'));
+  // }
 }

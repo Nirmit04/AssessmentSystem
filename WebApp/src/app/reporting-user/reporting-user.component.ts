@@ -15,6 +15,10 @@ export class ReportingUserComponent implements OnInit {
 	Questions: any;
 	Tags: any;
 	profileUrl: any;
+	TotalQuiz: any;
+	TotalQues: any;
+	TotalUser: any;
+	TotalSub: any;
 	show: boolean = true;
 	constructor(private service: ReportingUserService, private ngxService: NgxUiLoaderService) {}
 
@@ -25,6 +29,7 @@ export class ReportingUserComponent implements OnInit {
 		this.profileUrl = localStorage.getItem('imgurl');
 		console.log(this.profileUrl);
 		this.loadUserDetails();
+		this.loadUserProgress();
 	}
 	loadUserDetails() {
 		this.service.getUserDetails().subscribe((res: any) => {
@@ -32,5 +37,14 @@ export class ReportingUserComponent implements OnInit {
 			this.Lastname = res.LastName;
 			this.email = res.Email;
 		});
+	}
+	loadUserProgress(){
+		this.service.getUserProgress().subscribe((res:any) => {
+			console.log(res);
+			this.TotalQuiz = res.QuizCount;
+			this.TotalQues = res.QuestionCount;
+			this.TotalSub = res.SubjectCount;
+			this.TotalUser = res.UserCount;
+		})
 	}
 }

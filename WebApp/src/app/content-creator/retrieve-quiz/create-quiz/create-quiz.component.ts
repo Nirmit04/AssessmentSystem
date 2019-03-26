@@ -23,6 +23,7 @@ export class CreateQuizComponent implements OnInit {
   CCreatedBy = "";
   length = 0;
   flag = 1;
+  form1: NgForm;
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
   constructor(private service: ContentCreatorServiceService,
@@ -72,6 +73,7 @@ export class CreateQuizComponent implements OnInit {
 
   fetchReqQues(form: NgForm) {
     console.log(form.value);
+    this.service.formDupli = form;
     this.service.quizForm = form.value;
     this.service.getQuesOfUserConstraints(form.value).subscribe((data: any) => {
       data.forEach(obj => obj.selected = false);
@@ -83,6 +85,7 @@ export class CreateQuizComponent implements OnInit {
   }
   checkVal() {
     this.val = true;
+    this.dtTrigger.unsubscribe();
     this.dtTrigger.next();
   }
   updateSelectedQuestions(index) {
@@ -96,6 +99,16 @@ export class CreateQuizComponent implements OnInit {
       this.dialogRef.close('Inserted');
     })
   }
+  reload(data1: any) {
+    this.service.getQuesOfUserConstraints(data1).subscribe((data: any) => {
+      data.forEach(obj => obj.selected = false);
+      this.questions = data;
+      this.length = this.questions.length;
+      this.checkVal();
+      this.dtTrigger.unsubscribe();
+      this.dtTrigger.next();
+    });
+  }
   add_new_ques() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
@@ -104,6 +117,9 @@ export class CreateQuizComponent implements OnInit {
     this.service.quesStat = true;
     let dialogRef = this.dialog.open(CreateQuestionsComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
+      this.service.quesStat = false;
+      console.log(this.service.quizForm);
+      this.reload(this.service.quizForm);
       this.dtTrigger.unsubscribe();
       this.dtTrigger.next();
     });
