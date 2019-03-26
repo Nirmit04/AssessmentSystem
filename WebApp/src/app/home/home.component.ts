@@ -24,12 +24,11 @@ export class HomeComponent implements OnInit {
 				FirstName: localStorage.getItem('firstname'),
 				LastName: localStorage.getItem('lastname'),
 				Email: localStorage.getItem('email'),
-				ImgURL: localStorage.getItem('imgurl'),
+				ImageURL: localStorage.getItem('imgurl'),
 				GoogleId: localStorage.getItem('id')
 			};
 			this.http.post(this.rooturl + 'User/Register', body).subscribe((res: any) => {
-				this.http
-					.get(this.rooturl + 'GetUserDetails?email=' + localStorage.getItem('email'))
+				this.http.get(this.rooturl + 'GetUserDetails?email=' + localStorage.getItem('email'))
 					.subscribe((res1: any) => {
 						this.uid = res1.Id;
 						this.role = res1.Roles[0].RoleId;
@@ -51,6 +50,7 @@ export class HomeComponent implements OnInit {
 							this.redirecttodash(this.role);
 						}
 					});
+				console.log(res);
 			});
 		} else {
 			this.router.navigate(['/login']);
