@@ -3760,7 +3760,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <!-- <div class=\"col\">\n    <h3>{{data.FirstName}}&nbsp;&nbsp;{{data.LastName}}--Performance Metrics</h3>\n  </div> -->\n  <div style=\"align-items: flex-end;\" class=\"col\">\n    <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n      <mat-icon>clear</mat-icon>\n    </button>\n  </div>\n</div>\n<div *ngIf=\"quizData\">\n  <div class=\"row\">\n    <div class=\"col zoom\">\n      <div class=\"card\" style=\"width: 18rem;\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">Highest-Score</h5>\n          <label class=\"card-text\">{{quizData.HighestScore}}</label>\n        </div>\n      </div>\n    </div>\n    <div class=\"col zoom\">\n\n      <div class=\"card\" style=\"width: 18rem;\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">Lowest Score</h5>\n          <label class=\"card-text\">{{quizData.LowestScore}}</label>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col\">\n      <div class=\"card\" style=\"width: 18rem;\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">Accuracy</h5>\n          <label class=\"card-text\">{{quizData.Accuracy}}</label>\n        </div>\n      </div>\n    </div>\n  </div>\n  <br>\n  <div class=\"row\">\n    <div class=\"card\" style=\"width: 18rem;\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\">Number of Schedules</h5>\n        <label class=\"card-text\">{{quizData.NoOfQuiz}}</label>\n      </div>\n    </div>\n    <div class=\"card\" style=\"width: 18rem;\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\">Average Score</h5>\n        <label class=\"card-text\">{{quizData.AverageMarks}}</label>\n      </div>\n    </div>\n  </div>\n  <br>\n  <br>\n</div>\n<!-- \n<button type=\"button\" class=\"btn btn-primary btn-danger\" [mat-dialog-close]> Close</button> -->"
+module.exports = "<mat-dialog-content>\n    <div class=\"row\">\n      <div style=\"display: block;\n      margin-left: auto;\n      margin-right: auto;\n      width: 50%;\" *ngIf=\"pieChartData\">\n        <div>\n          <div style=\"display: block\">\n            <canvas baseChart [data]=\"pieChartData\" [labels]=\"pieChartLabels\" [legend]=\"pieChartLegend\"\n              [chartType]=\"pieChartType\">\n            </canvas>\n          </div>\n        </div>\n      </div>\n      <div>\n        <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n          <mat-icon>clear</mat-icon>\n        </button>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col\">\n        <h3>Analysis</h3>\n      </div>\n     \n    </div>\n    <div *ngIf=\"quizData\">\n      <div class=\"row\">\n        <div class=\"col zoom\">\n          <div class=\"card\" style=\"width: 18rem;\">\n            <div class=\"card-body\">\n              <h5 class=\"card-title\">Highest-Score</h5>\n              <label class=\"card-text\">{{quizData.HighestScore}}</label>\n            </div>\n          </div>\n        </div>\n        <div class=\"col zoom\">\n  \n          <div class=\"card\" style=\"width: 18rem;\">\n            <div class=\"card-body\">\n              <h5 class=\"card-title\">Lowest Score</h5>\n              <label class=\"card-text\">{{quizData.LowestScore}}</label>\n            </div>\n          </div>\n        </div>\n  \n        <div class=\"col\">\n          <div class=\"card\" style=\"width: 18rem;\">\n            <div class=\"card-body\">\n              <h5 class=\"card-title\">Accuracy</h5>\n              <label class=\"card-text\">{{quizData.Accuracy}}</label>\n            </div>\n          </div>\n        </div>\n      </div>\n      <br>\n      <div class=\"row\">\n        <div class=\"col\">\n          <div class=\"card\" style=\"width: 18rem;\">\n            <div class=\"card-body\">\n              <h5 class=\"card-title\">Number of Schedules</h5>\n              <label class=\"card-text\">{{quizData.NoOfQuiz}}</label>\n            </div>\n          </div>\n        </div>\n        <div class=\"col\">\n  \n          <div class=\"card\" style=\"width: 18rem;\">\n            <div class=\"card-body\">\n              <h5 class=\"card-title\">Average Score</h5>\n              <label class=\"card-text\">{{quizData.AverageMarks}}</label>\n            </div>\n          </div>\n        </div>\n      </div>\n      <br>\n      <br>\n    </div>\n  </mat-dialog-content>\n  <!-- \n  <button type=\"button\" class=\"btn btn-primary btn-danger\" [mat-dialog-close]> Close</button> -->\n  "
 
 /***/ }),
 
@@ -3787,6 +3787,11 @@ var DetailsComponent = /** @class */ (function () {
         this.data = data;
         this.dialogRef = dialogRef;
         this.service = service;
+        this.pieChartOptions = {
+            responsive: true,
+        };
+        this.pieChartLabels = ['Highest-Score', 'Lowest Score', 'Average-Score', 'Number of Schedules'];
+        this.pieChartType = 'pie';
     }
     DetailsComponent.prototype.ngOnInit = function () {
         console.log(this.data);
@@ -3797,6 +3802,13 @@ var DetailsComponent = /** @class */ (function () {
         this.service.getQuizAnalysis(id).subscribe(function (res) {
             _this.quizData = res;
             console.log('i am here');
+            _this.chartData = [];
+            _this.chartData.push(_this.quizData.HighestScore);
+            _this.chartData.push(_this.quizData.LowestScore);
+            _this.chartData.push(_this.quizData.AverageMarks);
+            _this.chartData.push(_this.quizData.NoOfQuiz);
+            _this.pieChartData = _this.chartData;
+            // console.log('i am here');
             console.log(_this.quizData);
         });
     };
