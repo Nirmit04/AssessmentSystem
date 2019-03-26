@@ -18,6 +18,9 @@ export class EmployeeComponent implements OnInit {
 	accuracy: any;
 	show: boolean = true;
 	ngOnInit() {
+		this.ngxService.startBackground('do-background-things');
+		this.ngxService.stopBackground('do-background-things');
+		this.ngxService.startLoader('loader-01');
 		this.profileUrl = localStorage.getItem('imgurl');
 		this.loadUserDetails();
 		this.loadUserProgress();
@@ -36,6 +39,7 @@ export class EmployeeComponent implements OnInit {
 			this.mocks = res.Mock;
 			this.nmocks = res.NonMock;
 			this.accuracy = res.Accuracy;
+			this.show = false;
 		})
 	}
 }
