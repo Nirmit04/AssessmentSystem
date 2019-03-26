@@ -70,10 +70,10 @@ export class DetailedReportComponent implements OnInit {
   calculate() {
     for (let i = 0; i < this.reports.length; i++) {
       if (this.reports[i].AttemptedAnswer === this.reports[i].CorrectAnswer) {
-        this.reports[i].status = "Sahi";
+        this.reports[i].status = "Correct";
         this.reports[i].color = "background-color: green";
       } else {
-        this.reports[i].status = "Galat";
+        this.reports[i].status = "Incorrect";
         this.reports[i].color = "background-color: red";
       }
     }
