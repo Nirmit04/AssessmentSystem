@@ -1,0 +1,64 @@
+<div class="row">
+  <!-- <div class="col">
+    <h3>{{data.FirstName}}&nbsp;&nbsp;{{data.LastName}}--Performance Metrics</h3>
+  </div> -->
+  <div style="align-items: flex-end;" class="col">
+    <button type="button " [mat-dialog-close] class="btn btn-danger pos">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </div>
+</div>
+<div *ngIf="quizData">
+  <div class="row">
+    <div class="col zoom">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Highest-Score</h5>
+          <label class="card-text">{{quizData.HighestScore}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="col zoom">
+
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Lowest Score</h5>
+          <label class="card-text">{{quizData.LowestScore}}</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Accuracy</h5>
+          <label class="card-text">{{quizData.Accuracy}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Number of Schedules</h5>
+          <label class="card-text">{{quizData.NoOfQuiz}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Average Score</h5>
+          <label class="card-text">{{quizData.AverageMarks}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+</div>
+<!-- 
+<button type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button> -->

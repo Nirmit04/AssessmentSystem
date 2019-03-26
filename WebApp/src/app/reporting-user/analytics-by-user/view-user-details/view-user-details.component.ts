@@ -3,6 +3,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ReportingUserService } from '../../shared/reporting-user.service';
 import { SingleDataSet, Label } from 'ng2-charts';
 import { ChartType } from 'chart.js';
+
+
 @Component({
   selector: 'app-view-user-details',
   templateUrl: './view-user-details.component.html',
@@ -15,7 +17,13 @@ export class ViewUserDetailsComponent implements OnInit {
   public polarAreaChartData: SingleDataSet;
   public polarAreaLegend = true;
 
-  public polarAreaChartType: ChartType = 'polarArea';
+
+
+
+
+
+
+
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,

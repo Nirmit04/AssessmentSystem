@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class ReportingUserService {
 	rootUrl = environment.apiURl;
 
-	constructor(private http: HttpClient) {}
+	constructor(private http: HttpClient) { }
 
 	getTagAnalytics() {
 		return this.http.get(this.rootUrl + 'ReportingUser/AnalyticsByTag');
@@ -23,4 +23,15 @@ export class ReportingUserService {
 		console.log(localStorage.getItem('email'));
 		return this.http.get(this.rootUrl + 'GetUserDetails?email=' + localStorage.getItem('email'));
 	}
+
+	getAllQuizzes() {
+		return this.http.get(this.rootUrl + '/Quiz/GetAllQuiz');
+	}
+
+	getQuizAnalysis(qid: string) {
+		return this.http.get(this.rootUrl + 'ReportingUser/AnalyticsByQuiz/' + qid)
+	}
 }
+
+
+
