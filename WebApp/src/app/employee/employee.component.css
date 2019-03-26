@@ -26,8 +26,8 @@ hr {
 	border: 0;
 	background: #9b9b9b;
 }
-h3 {
-	font-size: 25px;
+h1 {
+	font-size: 35px;
 	font-weight: 80%;
 	color: rgb(1, 139, 188);
 }
@@ -35,13 +35,13 @@ h2 {
 	font-size: 60px;
 }
 h6 {
-	font-size: 10px;
+	font-size: 15px;
 }
 h5 {
 	font-size: 20px;
 }
 .row {
-	margin-left: 20% !important;
+	margin-left: 5% !important;
 }
 .pos {
 	position: absolute;
@@ -52,8 +52,7 @@ h5 {
 	position: relative;
 	background-color: rgb(2, 93, 140);
 	width: 70%;
-	height: 90px;
-	/* border-radius: 25px; */
+	height: 110px;
 	margin: 0 10px 0 10px;
 	z-index: 30;
 }
@@ -64,7 +63,6 @@ h5 {
 	z-index: 9999;
 	background-color: rgb(1, 139, 188);
 	color: white;
-	/* border-radius: 0px 25px 25px 0px; */
 	height: 100%;
 	text-align: center;
 }
@@ -72,8 +70,7 @@ h5 {
 	position: relative;
 	background-color: rgb(2, 93, 140);
 	width: 70%;
-	height: 40px;
-	/* border-radius: 25px; */
+	height:80px;
 	margin: 0 10px 0 10px;
 	z-index: 30;
 }
@@ -84,7 +81,6 @@ h5 {
 	z-index: 9999;
 	background-color: rgb(1, 139, 188);
 	color: white;
-	/* border-radius: 0px 25px 25px 0px; */
 	height: 100%;
 	text-align: center;
 }

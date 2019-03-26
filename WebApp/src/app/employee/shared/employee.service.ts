@@ -46,6 +46,9 @@ export class EmployeeService {
   getListOfMockQuizzes() {
     return this.http.get(this.rootURL + 'Quiz/MockQuiz');
   }
+  getUserProgress(){
+    return this.http.get(this.rootURL + '/Employee/Stats/'+ localStorage.getItem('uid'))
+  }
   getReportOfNonMockQuiz(id) {
     return this.http.get(this.rootURL + 'Report/NonMock/' + id);
   }

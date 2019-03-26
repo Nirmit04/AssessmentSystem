@@ -17,15 +17,6 @@ export class ViewUserDetailsComponent implements OnInit {
   public polarAreaChartData: SingleDataSet;
   public polarAreaLegend = true;
 
-
-
-
-
-
-
-
-
-
   constructor(@Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<ViewUserDetailsComponent>,
     public service: ReportingUserService) { }

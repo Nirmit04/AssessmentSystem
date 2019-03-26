@@ -23,9 +23,7 @@
 	border-bottom: 1px solid black;
 }
 .mat-toolbar {
-	/* background-color: rgb(185, 185, 185); */
 	text-decoration: none;
-	/* border-bottom: .2px solid #030e13; */
 }
 .ng-content {
 	background-color: rgb(185, 185, 185);
@@ -34,7 +32,7 @@
 	color: rgb(7, 7, 7);
 }
 .mat-sidenav-content .mat-toolbar {
-	background-color: rgb(230, 230, 230) !important;
+	background-color: rgb(190, 190, 190) !important;
 }
 .mat-sidenav-content {
 	background-color: rgb(235, 235, 235) !important;
