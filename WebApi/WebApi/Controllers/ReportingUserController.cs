@@ -143,5 +143,22 @@ namespace WebApi.Controllers
             return Ok(subjectAnalyticsList.OrderByDescending(x => x.Properties.Accuracy));
         }
 
+        [HttpGet]
+        [Route("api/ReportingUser/Stats")]
+        public IHttpActionResult AllStats()
+        {
+            Dictionary<string, string> allStats = new Dictionary<string, string>();
+            var quizCount = db.Quizs.Count();
+            var userCount = db.Users.Count();
+            var questionCount = db.Questions.Count();
+            var subjectCount = db.Subjects.Count();
+            allStats.Add("QuizCount",quizCount.ToString());
+            allStats.Add("QuestionCount", questionCount.ToString());
+            allStats.Add("UserCount", userCount.ToString());
+            allStats.Add("SubjectCount", subjectCount.ToString());
+
+            return Ok(allStats);
+        }
+
     }
 }

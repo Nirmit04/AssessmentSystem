@@ -20,7 +20,7 @@ namespace WebApi.Controllers
                 {
                     mailMessage.To.Add(id);
                 }
-                mailMessage.CC.Add("nirmit.agarwal@nineleaps.com");
+                //mailMessage.CC.Add("nirmit.agarwal@nineleaps.com");
                 mailMessage.Subject = "Assessment System - Nineleaps Technology Pvt. Ltd.";
                 mailMessage.IsBodyHtml = true;
                 mailMessage.Body = "Hi,\n\n" + Message + "\n\nRegards,\nAbhijeet Anand Shah";

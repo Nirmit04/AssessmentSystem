@@ -291,6 +291,9 @@ namespace WebApi.Controllers
             report.QuizType = db.Quizs.FirstOrDefault(x => x.QuizId == evalutionAnswer.QuizId).QuizType;
             report.UserId = evalutionAnswer.UserId;
             report.QuizId = evalutionAnswer.QuizId;
+            System.Diagnostics.Debug.WriteLine(evalutionAnswer.QuizScheduleId);
+            System.Diagnostics.Debug.WriteLine(evalutionAnswer.UserId);
+            System.Diagnostics.Debug.WriteLine(evalutionAnswer.QuizId);
             var userSchedule = db.UserSchedules.FirstOrDefault(x => x.QuizScheduleId == evalutionAnswer.QuizScheduleId && x.UserId == evalutionAnswer.UserId && x.QuizId == evalutionAnswer.QuizId);
             if (userSchedule != null)
             {
@@ -300,5 +303,6 @@ namespace WebApi.Controllers
             db.SaveChanges();
             return Ok();
         }
+       
     }
 }

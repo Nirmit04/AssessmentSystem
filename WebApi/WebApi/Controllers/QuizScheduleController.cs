@@ -35,21 +35,6 @@ namespace WebApi.Controllers
         {
             db.QuizSchedules.Add(quizSchedule);
             db.SaveChanges();
-            //UserSchedule userSchedule = new UserSchedule();
-            //foreach (var uId in quizSchedule.UserId)
-            //{
-            //    userSchedule.UserId = uId;
-            //    userSchedule.QuizScheduleId = quizSchedule.QuizScheduleId;
-            //    userSchedule.Taken = false;
-            //    db.UserSchedules.Add(userSchedule);
-            //    db.SaveChanges();
-            //}
-            //var userEmails = db.Users.Where(x => quizSchedule.UserId.Contains(x.Id)).Select(y => y.Email).ToArray();
-            //var EmailResponse = InviteController.InviteUser(userEmails, "Click on the Link Below to take Quiz. \n <a href=\"" + "http://c6f0a0ba.ngrok.io/api/QuizSchedule/GetAllQuizSchedule/" + quizSchedule.CreatedBy + "\">Click Here</a>");
-            //if (EmailResponse == "Invite Sent")
-            //    return Ok(quizSchedule);
-            //else
-            //    return BadRequest("Try Again !!!");
             return Ok(quizSchedule);
         }
 

@@ -126,7 +126,7 @@ namespace WebApi.Controllers
         [Route("api/UserSchedule/ValidQuizTaker/{UserId}")]
         public IHttpActionResult ValidQuizTaker(string UserId, [FromBody]int QuizId)
         {
-            var userSchedule = db.UserSchedules.FirstOrDefault(x => x.QuizId == QuizId && x.UserId == UserId);
+            var userSchedule = db.UserSchedules.FirstOrDefault(x => x.QuizId == QuizId && x.UserId == UserId && x.Taken == false);
             if (userSchedule != null)
             {
                 return Ok();
