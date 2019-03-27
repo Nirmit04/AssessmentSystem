@@ -16,6 +16,7 @@ export class EmployeeComponent implements OnInit {
 	mocks: any;
 	nmocks: any;
 	accuracy: any;
+	recentQuiz: any;
 	show: boolean = true;
 	ngOnInit() {
 		this.ngxService.startBackground('do-background-things');
@@ -39,6 +40,7 @@ export class EmployeeComponent implements OnInit {
 			this.mocks = res.Mock;
 			this.nmocks = res.NonMock;
 			this.accuracy = res.Accuracy;
+			this.recentQuiz = res.RecentActivity
 			this.show = false;
 		})
 	}

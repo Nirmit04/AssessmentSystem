@@ -65,6 +65,7 @@ import { Mainnav4Component } from './reporting-user/mainnav4/mainnav4.component'
 import { ViewUserDetailsComponent } from './reporting-user/analytics-by-user/view-user-details/view-user-details.component';
 import { DetailsComponent } from './reporting-user/analytics-by-quiz/details/details.component';
 import { HttpErrorInterceptor } from './http-error-interceptor';
+import { DatePipe } from '@angular/common';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 	bgsColor: '#00ACC1',
@@ -176,6 +177,7 @@ export function provideConfig() {
 	],
 	providers: [
 		AuthGuard,
+		DatePipe,
 		ContentCreatorServiceService,
 		{
 			provide: AuthServiceConfig,

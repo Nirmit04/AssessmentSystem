@@ -410,7 +410,7 @@ var routes = [
     { path: 'ru-dash/ana-by-user', component: _reporting_user_analytics_by_user_analytics_by_user_component__WEBPACK_IMPORTED_MODULE_27__["AnalyticsByUserComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
     { path: 'ru-dash/ana-by-tag', component: _reporting_user_analytics_by_tag_analytics_by_tag_component__WEBPACK_IMPORTED_MODULE_26__["AnalyticsByTagComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
     { path: 'ru-dash/ana-by-quiz', component: _reporting_user_analytics_by_quiz_analytics_by_quiz_component__WEBPACK_IMPORTED_MODULE_28__["AnalyticsByQuizComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'http-error', component: _http_interceptor_http_interceptor_component__WEBPACK_IMPORTED_MODULE_30__["HttpInterceptorComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] }
+    { path: 'http-error', component: _http_interceptor_http_interceptor_component__WEBPACK_IMPORTED_MODULE_30__["HttpInterceptorComponent"] }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -561,6 +561,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _reporting_user_analytics_by_user_view_user_details_view_user_details_component__WEBPACK_IMPORTED_MODULE_64__ = __webpack_require__(/*! ./reporting-user/analytics-by-user/view-user-details/view-user-details.component */ "./src/app/reporting-user/analytics-by-user/view-user-details/view-user-details.component.ts");
 /* harmony import */ var _reporting_user_analytics_by_quiz_details_details_component__WEBPACK_IMPORTED_MODULE_65__ = __webpack_require__(/*! ./reporting-user/analytics-by-quiz/details/details.component */ "./src/app/reporting-user/analytics-by-quiz/details/details.component.ts");
 /* harmony import */ var _http_error_interceptor__WEBPACK_IMPORTED_MODULE_66__ = __webpack_require__(/*! ./http-error-interceptor */ "./src/app/http-error-interceptor.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_67__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+
 
 
 
@@ -740,6 +742,7 @@ var AppModule = /** @class */ (function () {
             ],
             providers: [
                 _auth_guard__WEBPACK_IMPORTED_MODULE_32__["AuthGuard"],
+                _angular_common__WEBPACK_IMPORTED_MODULE_67__["DatePipe"],
                 _content_creator_shared_content_creator_service_service__WEBPACK_IMPORTED_MODULE_12__["ContentCreatorServiceService"],
                 {
                     provide: angularx_social_login__WEBPACK_IMPORTED_MODULE_13__["AuthServiceConfig"],
@@ -1850,7 +1853,7 @@ var ContentCreatorServiceService = /** @class */ (function () {
         return this.http.get(this.rootURL + 'Subject/GetSubjects');
     };
     ContentCreatorServiceService.prototype.getQuesOfUser = function (uid) {
-        return this.http.get(this.rootURL + 'Question/GetQuestionByUser/' + localStorage.getItem('uid'));
+        return this.http.get(this.rootURL + 'Question/GetuestionByUser/' + localStorage.getItem('uid'));
     };
     ContentCreatorServiceService.prototype.deleteQues = function (qid) {
         console.log(qid);
@@ -2395,7 +2398,7 @@ var DetailedReportComponent = /** @class */ (function () {
         this.dialog = dialog;
         this.dtOptions = {};
         this.dtTrigger = new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
-        this.doughnutChartLabels1 = ['Attempted: ' + this.service.data.CorrectAnswers + this.service.data.WrongAnswers, 'UnAttempted: ' + this.service.data.UnattemptedAnswers];
+        this.doughnutChartLabels1 = ['Attempted:' + ((parseInt(this.service.data.CorrectAnswers)) + (parseInt(this.service.data.WrongAnswers))).toString(), 'UnAttempted: ' + this.service.data.UnattemptedAnswers];
         this.doughnutChartData1 = [(parseInt(this.service.data.CorrectAnswers) + parseInt(this.service.data.WrongAnswers)).toString(), this.service.data.UnattemptedAnswers];
         this.doughnutChartType1 = 'doughnut';
         this.quizname = '';
@@ -2505,7 +2508,7 @@ module.exports = "@import url(https://fonts.googleapis.com/css?family=Roboto);\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav3>\n  <ngx-ui-loader [loaderId]=\"'loader-01'\" *ngIf = \"show\"></ngx-ui-loader>\n  <div class=\"jumbotron\">\n      <div class=\"pic\">\n          <img class=\"left\" src=\"{{ profileUrl }}\" />\n      </div>\n      <div class=\"detail1\">\n        <h1>{{ Firstname }} {{ Lastname }}</h1>\n        <h6>{{ email }}</h6>\n      </div>\n      <div class=\"elem\">\n        <ul>\n          <li><a href=\"#\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\" style=\"color:#00acee;\"></i></a></li>\n          <li><a href=\"#\"><i class=\"fa fa-twitter\" aria-hidden=\"true\" style=\"color:#00acee;\"></i></a></li>\n          <li><a href=\"#\"><i class=\"fa fa-github\" aria-hidden=\"true\" style=\"color:black;\"></i></a></li>\n        </ul>\n      </div>\n    </div>\n    <div class=\"row\">\n        <div style=\"width: 33.33%;\n        margin-left: auto ;\n        margin-right: auto ;\"\n        class=\"box col-3\">\n          <div class=\"boxhalf\">\n            <h2>{{ mocks }}</h2>\n            <h5>Mocks Taken</h5>\n          </div>\n        </div>\n        <div style=\"width: 33.33%;\n        margin-left: auto ;\n        margin-right: auto ;\"\n        class=\"box col-3\">\n            <div class=\"boxhalf\">\n              <h2>{{ nmocks }}</h2>\n              <h5>Non-Mocks Taken</h5>            \n            </div>\n        </div>\n        <div style=\"width: 33.33%;\n        margin-left: auto ;\n        margin-right: auto ;\"\n        class=\"box col-3\">\n            <div class=\"boxhalf\">\n              <h2>{{ accuracy }}</h2>\n              <h5>Accuracy</h5>\n            </div>\n        </div>\n  </div>\n  <br/><br/><br/>\n  <div class=\"row\">\n    <div style=\"width: 100%;\n    margin-left: auto ;\n    margin-right: auto ;\"class=\" box1 col-8\">\n      <div class=\"boxhalf1\">\n        <h4>Name of Recent Activity</h4>\n        <h6>Recent Activity</h6>\n      </div>\n    </div>\n  </div>\n</app-main-nav3>"
+module.exports = "<app-main-nav3>\n  <ngx-ui-loader [loaderId]=\"'loader-01'\" *ngIf = \"show\"></ngx-ui-loader>\n  <div class=\"jumbotron\">\n      <div class=\"pic\">\n          <img class=\"left\" src=\"{{ profileUrl }}\" />\n      </div>\n      <div class=\"detail1\">\n        <h1>{{ Firstname }} {{ Lastname }}</h1>\n        <h6>{{ email }}</h6>\n      </div>\n      <div class=\"elem\">\n        <ul>\n          <li><a href=\"#\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\" style=\"color:#00acee;\"></i></a></li>\n          <li><a href=\"#\"><i class=\"fa fa-twitter\" aria-hidden=\"true\" style=\"color:#00acee;\"></i></a></li>\n          <li><a href=\"#\"><i class=\"fa fa-github\" aria-hidden=\"true\" style=\"color:black;\"></i></a></li>\n        </ul>\n      </div>\n    </div>\n    <div class=\"row\">\n        <div style=\"width: 33.33%;\n        margin-left: auto ;\n        margin-right: auto ;\"\n        class=\"box col-3\">\n          <div class=\"boxhalf\">\n            <h2>{{ mocks }}</h2>\n            <h5>Mocks Taken</h5>\n          </div>\n        </div>\n        <div style=\"width: 33.33%;\n        margin-left: auto ;\n        margin-right: auto ;\"\n        class=\"box col-3\">\n            <div class=\"boxhalf\">\n              <h2>{{ nmocks }}</h2>\n              <h5>Non-Mocks Taken</h5>            \n            </div>\n        </div>\n        <div style=\"width: 33.33%;\n        margin-left: auto ;\n        margin-right: auto ;\"\n        class=\"box col-3\">\n            <div class=\"boxhalf\">\n              <h2>{{ accuracy }}</h2>\n              <h5>Accuracy</h5>\n            </div>\n        </div>\n  </div>\n  <br/><br/><br/>\n  <div class=\"row\">\n    <div style=\"width: 100%;\n    margin-left: auto ;\n    margin-right: auto ;\"class=\" box1 col-8\">\n      <div class=\"boxhalf1\">\n        <h4>Recent Quiz Taken</h4>\n        <h5>{{recentQuiz}}</h5>\n      </div>\n    </div>\n  </div>\n</app-main-nav3>"
 
 /***/ }),
 
@@ -2557,6 +2560,7 @@ var EmployeeComponent = /** @class */ (function () {
             _this.mocks = res.Mock;
             _this.nmocks = res.NonMock;
             _this.accuracy = res.Accuracy;
+            _this.recentQuiz = res.RecentActivity;
             _this.show = false;
         });
     };
@@ -3478,7 +3482,10 @@ var HomeComponent = /** @class */ (function () {
                     localStorage.setItem('uid', _this.uid);
                     localStorage.setItem('role', _this.role);
                     console.log(_this.checkqid);
-                    if (_this.checkqid != 'null' && _this.checksid != 'null') {
+                    if (_this.checkqid == 'null' && _this.checksid == 'null') {
+                        _this.redirecttodash(_this.role);
+                    }
+                    else if (_this.checkqid != 'null' && _this.checksid != 'null') {
                         console.log("hii");
                         _this.service.checkValidUser(+_this.checkqid).subscribe(function (res) {
                             console.log(res);
@@ -3491,7 +3498,9 @@ var HomeComponent = /** @class */ (function () {
                         });
                     }
                     else {
-                        _this.redirecttodash(_this.role);
+                        localStorage.setItem('errorCode', '405');
+                        localStorage.setItem('errorMsg', 'Not Allowed to entert he specified quiz.');
+                        _this.router.navigate(['/http-error']);
                     }
                 });
                 console.log(res);
@@ -3558,6 +3567,9 @@ var HttpErrorInterceptor = /** @class */ (function () {
             else {
                 // server-side error
                 errorMessage = "Error Code: " + error.status + "\nMessage: " + error.message;
+                _this.errorCode = error.status;
+                console.log(error.message);
+                localStorage.setItem('errorCode', _this.errorCode);
             }
             _this.router.navigate(['/http-error']);
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["throwError"])(errorMessage);
@@ -3581,7 +3593,7 @@ var HttpErrorInterceptor = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2h0dHAtaW50ZXJjZXB0b3IvaHR0cC1pbnRlcmNlcHRvci5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "h1 {\n    font-size: 50px;\n    color: aliceblue;\n}\n\nh2{\n    font-size: 30px;\n    color: black;\n}\n\n.btn-info{\n    width:100px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaHR0cC1pbnRlcmNlcHRvci9odHRwLWludGVyY2VwdG9yLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxlQUFlO0lBQ2YsZ0JBQWdCO0FBQ3BCOztBQUVBO0lBQ0ksZUFBZTtJQUNmLFlBQVk7QUFDaEI7O0FBQ0E7SUFDSSxXQUFXO0FBQ2YiLCJmaWxlIjoic3JjL2FwcC9odHRwLWludGVyY2VwdG9yL2h0dHAtaW50ZXJjZXB0b3IuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImgxIHtcbiAgICBmb250LXNpemU6IDUwcHg7XG4gICAgY29sb3I6IGFsaWNlYmx1ZTtcbn1cblxuaDJ7XG4gICAgZm9udC1zaXplOiAzMHB4O1xuICAgIGNvbG9yOiBibGFjaztcbn1cbi5idG4taW5mb3tcbiAgICB3aWR0aDoxMDBweDtcbn0iXX0= */"
 
 /***/ }),
 
@@ -3592,7 +3604,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  http-interceptor works!\n</p>\n"
+module.exports = "<div style=\"background:url('../../assets/img/404.jpg') no-repeat center center fixed; background-size:cover; height:100%;\" class=\"error\">\n  <h1 class=\"text-center\"><br/><br/>Oops...<br/>An error has Occured!</h1>\n  <br/>\n  <h1 class=\"text-center\">{{errorCode}} - \"{{errorMsg}}\"</h1>\n  <br/>\n  <br/>\n  <h2 class=\"text-center\"> Please cllick on the button to login again!</h2>\n  <br/>\n  <button style=\"margin-left:45%\" (click)=\"login()\" type=\"button\" class=\"btn btn-info\">Login</button>\n</div>"
 
 /***/ }),
 
@@ -3608,12 +3620,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpInterceptorComponent", function() { return HttpInterceptorComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
 
 
 var HttpInterceptorComponent = /** @class */ (function () {
-    function HttpInterceptorComponent() {
+    function HttpInterceptorComponent(router) {
+        this.router = router;
+        this.HTTP_CODES = {
+            0: 'Method Not Found',
+            203: 'Non-Authoritative Information',
+            400: 'Bad Request',
+            401: 'Unauthorized',
+            403: 'Forbidden',
+            404: 'Not Found',
+            405: 'Method Not Found',
+            408: 'Request Timeout',
+            500: 'Internal Server Error',
+            501: 'Not Implemented',
+            502: 'Bad Gateway',
+            503: 'Service Unavailabe',
+            504: 'Gateway Timeout',
+            505: 'HTTP Version Not Supported',
+        };
     }
     HttpInterceptorComponent.prototype.ngOnInit = function () {
+        this.errorCode = localStorage.getItem('errorCode');
+        this.errorMsg = this.HTTP_CODES[+this.errorCode];
+    };
+    HttpInterceptorComponent.prototype.login = function () {
+        localStorage.clear();
+        this.router.navigate(['/login']);
     };
     HttpInterceptorComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -3621,7 +3658,7 @@ var HttpInterceptorComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./http-interceptor.component.html */ "./src/app/http-interceptor/http-interceptor.component.html"),
             styles: [__webpack_require__(/*! ./http-interceptor.component.css */ "./src/app/http-interceptor/http-interceptor.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], HttpInterceptorComponent);
     return HttpInterceptorComponent;
 }());
@@ -3694,6 +3731,7 @@ var LoginComponent = /** @class */ (function () {
                 localStorage.setItem('id', _this.user.id);
                 localStorage.setItem('imgurl', _this.user.photoUrl);
                 localStorage.setItem('provider', _this.user.provider);
+                console.log("login");
                 _this.router.navigate(['/home']);
             }
             else {
@@ -4532,7 +4570,7 @@ module.exports = ".mat-sidenav-content {\n\toverflow-x: hidden;\n}\n.sidenav-con
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-sidenav-container class=\"sidenav-container\">\n  <mat-sidenav #drawer class=\"sidenav\" fixedInViewport=\"true\"\n    [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\" [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\n    [opened]=\"!(isHandset$ | async)\">\n    <mat-toolbar><a mat-list-item routerLink=\"/ta-dash\"><i class=\"fa fa-tachometer\" aria-hidden=\"true\"></i>  Dashboard</a></mat-toolbar>\n    <mat-nav-list>\n      <a mat-list-item routerLink=\"/ta-dash/retrieve-schedule\"><i class=\"fa fa-code\" aria-hidden=\"true\"></i> Retrieve/Edit Schedule</a>\n      <a mat-list-item routerLink=\"/ta-dash/testAdminCreateScheDule\"><i class=\"fa fa-retweet\" aria-hidden=\"true\"></i>  Create Schedule</a>\n      <a mat-list-item routerLink=\"/ta-dash/archive-schedule\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i> Archieved Schedule</a>\n      <a mat-list-item routerLink=\"/ta-dash/add-user\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i> Add User</a>\n    </mat-nav-list>\n  </mat-sidenav>\n  <mat-sidenav-content>\n    <mat-toolbar>\n      <button type=\"button\" aria-label=\"Toggle sidenav\" mat-icon-button (click)=\"drawer.toggle()\"\n        *ngIf=\"isHandset$ | async\">\n        <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\n      </button>\n      <span>Test Admin</span>\n      <span class=\"spacer\"></span>\n      <a class=\"log\" (click)=\"logout()\">Log Out</a>\n    </mat-toolbar>\n    <div class=\"content\">\n      <ng-content></ng-content>\n    </div>\n  </mat-sidenav-content>\n</mat-sidenav-container>"
+module.exports = "<mat-sidenav-container class=\"sidenav-container\">\n  <mat-sidenav #drawer class=\"sidenav\" fixedInViewport=\"true\"\n    [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\" [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\n    [opened]=\"!(isHandset$ | async)\">\n    <mat-toolbar><a mat-list-item routerLink=\"/ta-dash\"><i class=\"fa fa-tachometer\" aria-hidden=\"true\"></i>\n        Dashboard</a></mat-toolbar>\n    <mat-nav-list>\n      <a mat-list-item routerLink=\"/ta-dash/retrieve-schedule\"><i class=\"fa fa-code\" aria-hidden=\"true\"></i>\n        Retrieve/Edit Schedule</a>\n      <a mat-list-item routerLink=\"/ta-dash/testAdminCreateScheDule\"><i class=\"fa fa-retweet\" aria-hidden=\"true\"></i>\n        Create Schedule</a>\n      <a mat-list-item routerLink=\"/ta-dash/archive-schedule\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\n        Archieved Schedule</a>\n      <a mat-list-item routerLink=\"/ta-dash/add-user\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i> Add/Delete User</a>\n    </mat-nav-list>\n  </mat-sidenav>\n  <mat-sidenav-content>\n    <mat-toolbar>\n      <button type=\"button\" aria-label=\"Toggle sidenav\" mat-icon-button (click)=\"drawer.toggle()\"\n        *ngIf=\"isHandset$ | async\">\n        <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\n      </button>\n      <span>Test Admin</span>\n      <span class=\"spacer\"></span>\n      <a class=\"log\" (click)=\"logout()\">Log Out</a>\n    </mat-toolbar>\n    <div class=\"content\">\n      <ng-content></ng-content>\n    </div>\n  </mat-sidenav-content>\n</mat-sidenav-container>"
 
 /***/ }),
 
@@ -4615,7 +4653,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav2>\n  <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th scope=\"col\">#S. No.</th>\n        <th scope=\"col\">Quiz Name</th>\n        <th scope=\"col\">Start Date/Time</th>\n        <th scope=\"col\">End Date/Time</th>\n        <th scope=\"col\">Action</th>\n      </tr>\n    </thead>\n\n    <tbody>\n      <ng-container *ngFor=\"let item of scheduleList;index as i;\">\n        <tr>\n          <th  scope=\"row\">{{i+1}}</th>\n          <td  scope=\"row\">{{item.QuizName}}</td>\n          <td  scope=\"row\">{{item.StartDateTime}}</td>\n          <td  scope=\"row\">{{item.EndDateTime}}</td>\n          <td>\n            <a class=\"btn btn-sm btn-info text-white\" (click)=\"addUserToSchedule(item.QuizScheduleId,i+1)\"><i\n                class=\"fa fa-user-plus\"></i></a>\n          </td>\n\n        </tr>\n      </ng-container>\n    </tbody>\n  </table>\n</app-main-nav2>"
+module.exports = "<app-main-nav2>\n  <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th scope=\"col\">#S. No.</th>\n        <th scope=\"col\">Quiz Name</th>\n        <th scope=\"col\">Start Date/Time</th>\n        <th scope=\"col\">End Date/Time</th>\n        <th scope=\"col\">Action</th>\n      </tr>\n    </thead>\n\n    <tbody>\n      <ng-container *ngFor=\"let item of scheduleList;index as i;\">\n        <tr>\n          <th scope=\"row\">{{i+1}}</th>\n          <td scope=\"row\">{{item.QuizName}}</td>\n          <td scope=\"row\">{{item.StartDateTime}}</td>\n          <td scope=\"row\">{{item.EndDateTime}}</td>\n          <td>\n            <a class=\"btn btn-sm btn-info text-black\" (click)=\"addUserToSchedule(item.QuizScheduleId,i+1)\"><i\n                class=\"fa fa-user-plus\"></i></a>\n            <a class=\"btn btn-sm btn-danger text-black\" (click)=\"deleteUserfromSchedule(item.QuizScheduleId,i+1)\"><i\n                class=\"fa fa-user-times\"></i></a>\n          </td>\n\n        </tr>\n      </ng-container>\n    </tbody>\n  </table>\n</app-main-nav2>"
 
 /***/ }),
 
@@ -4636,6 +4674,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var _add_user1_add_user1_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../add-user1/add-user1.component */ "./src/app/test-admin/add-user1/add-user1.component.ts");
+/* harmony import */ var _view_schedule_view_schedule_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../view-schedule/view-schedule.component */ "./src/app/test-admin/retrieve-schedule/view-schedule/view-schedule.component.ts");
+
 
 
 
@@ -4693,10 +4733,26 @@ var AddUserComponent = /** @class */ (function () {
         dialogConfig.autoFocus = true;
         dialogConfig.width = "70%";
         dialogConfig.disableClose = true;
-        this.service.readonlyStatus = false;
+        // this.service.readonlyStatus = false;
         dialogConfig.data = scheduleid;
         this.dialog.open(_add_user1_add_user1_component__WEBPACK_IMPORTED_MODULE_6__["AddUser1Component"], dialogConfig).afterClosed().subscribe(function (res) {
             _this.loadSchedule();
+            _this.dtTrigger.unsubscribe();
+            _this.dtTrigger.next();
+        });
+    };
+    AddUserComponent.prototype.deleteUserfromSchedule = function (scheduleId, arrayIndex) {
+        var _this = this;
+        var dialogConfig = new _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialogConfig"]();
+        dialogConfig.autoFocus = true;
+        dialogConfig.width = "70%";
+        dialogConfig.disableClose = true;
+        // this.service.readonlyStatus = false;
+        dialogConfig.data = scheduleId;
+        this.service.deleteUserVisibility = true;
+        this.dialog.open(_view_schedule_view_schedule_component__WEBPACK_IMPORTED_MODULE_7__["ViewScheduleComponent"], dialogConfig).afterClosed().subscribe(function (res) {
+            _this.loadSchedule();
+            _this.service.deleteUserVisibility = false;
             _this.dtTrigger.unsubscribe();
             _this.dtTrigger.next();
         });
@@ -4833,7 +4889,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav2>\n  <h5 class=\"card-title\">Create Schedule</h5>\n  <form #form=\"ngForm\" (submit)=\"sub(form)\" autocomplete=\"off\">\n    <div class=\"form-row\">\n      <input type=\"hidden\" #CreatedBy=\"ngModel\" name=\"CreatedBy\" [(ngModel)]=\"CCreatedBy\">\n      <div class=\"form-group col-md-6\">\n        <label>Start Date Time:</label><br />\n        <input type=\"datetime-local\" required name=\"StartDateTime\" #StartDateTime=\"ngModel\" [(ngModel)]=\"q1\">\n        <div class=\"validation-error\" *ngIf=\"StartDateTime.invalid && StartDateTime.touched\">This field is\n          required.\n        </div>\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label>End Date Time</label><br />\n        <input type=\"datetime-local\" required name=\"EndDateTime\" #EndDateTime=\"ngModel\" [(ngModel)]=\"q2\">\n        <div class=\"validation-error\" *ngIf=\"EndDateTime.invalid && EndDateTime.touched\">This field is\n          required.\n        </div>\n      </div>\n    </div>\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\">\n        <label>Select Quiz</label>\n        <select name=\"QuizId\" required #QuizId=\"ngModel\" [(ngModel)]=\"q3\" class=\"form-control\">\n          <option value=\"\">Choose</option>\n          <option *ngFor=\"let Quiz of QuizList\" value=\"{{Quiz.QuizId}}\">\n            {{Quiz.QuizName}}</option>\n        </select>\n        <div class=\"validation-error\" *ngIf=\"QuizId.invalid && QuizId.touched\">This field is required.</div>\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <button type=\"submit\" [disabled]=\"btndisable || form.invalid\" class=\"btn btn-primary btn-block\">Submit</button>\n    </div>\n  </form>\n</app-main-nav2>"
+module.exports = "<app-main-nav2>\n  <h5 class=\"card-title\">Create Schedule</h5>\n  <form #form=\"ngForm\" (submit)=\"sub(form)\" autocomplete=\"off\">\n    <div class=\"form-row\">\n      <input type=\"hidden\" #CreatedBy=\"ngModel\" name=\"CreatedBy\" [(ngModel)]=\"CCreatedBy\">\n      <div class=\"form-group col-md-6\">\n        <label>Start Date Time:</label><br />\n        <input type=\"datetime-local\" [min]=\"date\" required name=\"StartDateTime\" #StartDateTime=\"ngModel\" [(ngModel)]=\"q1\">\n        <div class=\"validation-error\" *ngIf=\"StartDateTime.invalid && StartDateTime.touched\">This field is\n          required.\n        </div>\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label>End Date Time</label><br />\n        <input type=\"datetime-local\" [min]=\"q1\" required name=\"EndDateTime\" #EndDateTime=\"ngModel\" [(ngModel)]=\"q2\">\n        <div class=\"validation-error\" *ngIf=\"EndDateTime.invalid && EndDateTime.touched\">This field is\n          required.\n        </div>\n      </div>\n    </div>\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\">\n        <label>Select Quiz</label>\n        <select name=\"QuizId\" required #QuizId=\"ngModel\" [(ngModel)]=\"q3\" class=\"form-control\">\n          <option value=\"\">Choose</option>\n          <option *ngFor=\"let Quiz of QuizList\" value=\"{{Quiz.QuizId}}\">\n            {{Quiz.QuizName}}</option>\n        </select>\n        <div class=\"validation-error\" *ngIf=\"QuizId.invalid && QuizId.touched\">This field is required.</div>\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <button type=\"submit\" [disabled]=\"btndisable || form.invalid\" class=\"btn btn-primary btn-block\">Submit</button>\n    </div>\n  </form>\n</app-main-nav2>"
 
 /***/ }),
 
@@ -4852,21 +4908,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared_test_admin_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../shared/test-admin.service */ "./src/app/test-admin/shared/test-admin.service.ts");
 /* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
 /* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+
 
 
 
 
 
 var CreateScheduleComponent = /** @class */ (function () {
-    function CreateScheduleComponent(service, dialog, toastr) {
+    function CreateScheduleComponent(service, dialog, toastr, datePipe) {
         this.service = service;
         this.dialog = dialog;
         this.toastr = toastr;
+        this.datePipe = datePipe;
         this.q1 = "";
         this.q2 = "";
         this.q3 = "";
         this.btndisable = false;
         this.CCreatedBy = "";
+        this.date = this.datePipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
         this.scheduleUrl = 'localhost:4200//emp-dash/take-quiz/';
     }
     CreateScheduleComponent.prototype.ngOnInit = function () {
@@ -4875,9 +4935,13 @@ var CreateScheduleComponent = /** @class */ (function () {
         this.CCreatedBy = localStorage.getItem('uid');
         this.service.retriveAllQuizzes().subscribe(function (res) {
             _this.QuizList = res;
-            console.log(_this.QuizList);
+            // console.log(this.QuizList);
+            //this.dateValidation();
         });
     };
+    // dateValidation(){
+    //   this.date = ;
+    // }
     CreateScheduleComponent.prototype.resetForm = function (form) {
         if (form != null) {
             form.resetForm();
@@ -4901,7 +4965,8 @@ var CreateScheduleComponent = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_test_admin_service__WEBPACK_IMPORTED_MODULE_2__["TestAdminService"],
             _angular_material_dialog__WEBPACK_IMPORTED_MODULE_3__["MatDialog"],
-            ngx_toastr__WEBPACK_IMPORTED_MODULE_4__["ToastrService"]])
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_4__["ToastrService"],
+            _angular_common__WEBPACK_IMPORTED_MODULE_5__["DatePipe"]])
     ], CreateScheduleComponent);
     return CreateScheduleComponent;
 }());
@@ -4983,6 +5048,7 @@ var RetrieveScheduleComponent = /** @class */ (function () {
         var _this = this;
         this.service.getSchedule(localStorage.getItem('uid')).subscribe(function (res) {
             _this.scheduleList = res;
+            console.log('serdtifuuyytrsadfjyuilukutytersedfuyiuo');
             console.log(_this.scheduleList);
             _this.dtTrigger.next();
         });
@@ -5061,7 +5127,7 @@ module.exports = "th,\ntd {\n\ttext-align: center;\n}\nmat-dialog-content {\n\tp
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "  <mat-dialog-content>\n  <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\"><mat-icon>clear</mat-icon></button>\n  <h5 class=\"card-title\">{{label}}</h5>\n  <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n    <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"this.CCreatedBy\">\n    <input type=\"hidden\" name=\"QuizId\" #QuizId=\"ngModel\" [(ngModel)]=\"service.formdata.QuizId\">\n    <input type=\"hidden\" name=\"ArchiveStatus\" #ArchiveStatus=\"ngModel\" [(ngModel)]=\"service.formdata.ArchiveStatus\">\n    <div class=\"form-group col-md-6\">\n      <label>Start Date Time</label>\n      <input type=\"datetime-local\" required name=\"StartDateTime\" #StartDateTime=\"ngModel\"\n        [(ngModel)]=service.formdata.StartDateTime [readonly]=\"bool\">\n      <div class=\"validation-error\" *ngIf=\"StartDateTime.invalid && StartDateTime.touched\">This field is required.\n      </div>\n    </div>\n    <div class=\"form-group col-md-6\">\n      <label>End Date Time</label>\n      <input type=\"datetime-local\" required name=\"EndDateTime\" #EndDateTime=\"ngModel\"\n        [(ngModel)]=\"service.formdata.EndDateTime\" [readonly]=\"bool\">\n      <div class=\"validation-error\" *ngIf=\"EndDateTime.invalid && EndDateTime.touched\">This field is required.\n      </div>\n    </div>\n    <mat-dialog-content>\n    <table class=\"table table-bordered table-striped\">\n      <thead class=\"thead-dark\">\n        <th scope=\"col\">#User ID</th>\n        <th scope=\"col\">UserName</th>\n        <th scope=\"col\">E-Mail</th>\n        <th scope=\"col\">Taken</th>\n        <th scope=\"col\">Action</th>\n      </thead>\n      <tbody>\n        <ng-container *ngFor=\"let user of usersList;index as i\">\n          <tr>\n            <th class=\"text-primary\" scope=\"row\">{{i+1}}</th>\n            <th class=\"text-primary\" scope=\"row\">{{user.UserName}}</th>\n            <td class=\"text-primary\" scope=\"row\">{{user.Email}}</td>\n            <td class=\"text-primary\" scope=\"row\">{{user.QuizTaken}}</td>\n            <td>\n              <button [disabled]=\"bool\" class=\"btn text-danger\" (click)=\"deleteUserFromSchedule(user.Id)\"><i\n                  class=\"fa fa-trash fa-lg\"></i></button>\n            </td>\n          </tr>\n        </ng-container>\n      </tbody>\n    </table>\n  </mat-dialog-content>\n    <div class=\"form-group\">\n      <button [hidden]=\"bool\" style=\"margin:0 5%\" type=\"submit\" [disabled]=\"form.invalid || bool\"\n        class=\"btn btn-primary\">Submit</button>\n    </div>\n  </form>\n</mat-dialog-content>"
+module.exports = "<mat-dialog-content>\n  <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n    <mat-icon>clear</mat-icon>\n  </button>\n  <ng-container *ngIf=\"!service.deleteUserVisibility\">\n    <h5 class=\"card-title\">{{label}}</h5>\n    <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n      <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"this.CCreatedBy\">\n      <input type=\"hidden\" name=\"QuizId\" #QuizId=\"ngModel\" [(ngModel)]=\"service.formdata.QuizId\">\n      <input type=\"hidden\" name=\"ArchiveStatus\" #ArchiveStatus=\"ngModel\" [(ngModel)]=\"service.formdata.ArchiveStatus\">\n      <div class=\"form-group col-md-6\">\n        <label>Start Date Time</label>\n        <input type=\"datetime-local\" required name=\"StartDateTime\" #StartDateTime=\"ngModel\"\n          [(ngModel)]=\"q1\" [min]=\"date\" [readonly]=\"bool\">\n        <div class=\"validation-error\" *ngIf=\"StartDateTime.invalid && StartDateTime.touched\">This field is required.\n        </div>\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label>End Date Time</label>\n        <input type=\"datetime-local\" required name=\"EndDateTime\" #EndDateTime=\"ngModel\"\n          [(ngModel)]=\"service.formdata.EndDateTime\" [min]=\"q1\" [readonly]=\"bool\">\n        <div class=\"validation-error\" *ngIf=\"EndDateTime.invalid && EndDateTime.touched\">This field is required.\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <button [hidden]=\"bool\" style=\"margin:0 5%\" type=\"submit\" [disabled]=\"form.invalid || bool\"\n          class=\"btn btn-primary\">Submit</button>\n      </div>\n    </form>\n  </ng-container>\n  <table class=\"table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <th scope=\"col\">#User ID</th>\n      <th scope=\"col\">UserName</th>\n        <input type=\"datetime-local\" [min]=\"date\" required name=\"StartDateTime\" #StartDateTime=\"ngModel\" [(ngModel)]=\"q1\">\n        <th scope=\"col\">E-Mail</th>\n      <th scope=\"col\">Taken</th>\n      <th [hidden]=\"!service.deleteUserVisibility\" scope=\"col\">Action</th>\n    </thead>\n    <tbody>\n      <ng-container *ngFor=\"let user of usersList;index as i\">\n        <tr>\n          <th class=\"text-primary\" scope=\"row\">{{i+1}}</th>\n          <th class=\"text-primary\" scope=\"row\">{{user.UserName}}</th>\n          <td class=\"text-primary\" scope=\"row\">{{user.Email}}</td>\n          <td class=\"text-primary\" scope=\"row\">{{user.QuizTaken}}</td>\n          <td [hidden]=\"!service.deleteUserVisibility\">\n            <button  class=\"btn text-danger\" (click)=\"deleteUserFromSchedule(user.Id)\"><i\n                class=\"fa fa-trash fa-lg\"></i></button>\n          </td>\n        </tr>\n      </ng-container>\n    </tbody>\n  </table>\n</mat-dialog-content>"
 
 /***/ }),
 
@@ -5080,19 +5146,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared_test_admin_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../shared/test-admin.service */ "./src/app/test-admin/shared/test-admin.service.ts");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+
 
 
 
 
 
 var ViewScheduleComponent = /** @class */ (function () {
-    function ViewScheduleComponent(data, dialogRef, toastr, service, dialog) {
+    function ViewScheduleComponent(data, dialogRef, toastr, service, dialog, datePipe) {
         this.data = data;
         this.dialogRef = dialogRef;
         this.toastr = toastr;
         this.service = service;
         this.dialog = dialog;
+        this.datePipe = datePipe;
         this.CCreatedBy = '';
+        this.date = this.datePipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
+        this.q1 = this.service.formdata.StartDateTime;
     }
     ViewScheduleComponent.prototype.ngOnInit = function () {
         this.bool = this.service.readonlyStatus;
@@ -5148,7 +5219,8 @@ var ViewScheduleComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [Object, _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialogRef"],
             ngx_toastr__WEBPACK_IMPORTED_MODULE_4__["ToastrService"],
             _shared_test_admin_service__WEBPACK_IMPORTED_MODULE_2__["TestAdminService"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialog"]])
+            _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialog"],
+            _angular_common__WEBPACK_IMPORTED_MODULE_5__["DatePipe"]])
     ], ViewScheduleComponent);
     return ViewScheduleComponent;
 }());
@@ -5180,6 +5252,7 @@ var TestAdminService = /** @class */ (function () {
         this.http = http;
         this.rooturl = src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].apiURl;
         this.quiztakerId = null;
+        this.deleteUserVisibility = false;
     }
     TestAdminService.prototype.retriveAllQuizzes = function () {
         return this.http.get(this.rooturl + 'Quiz/GetAllQuiz');
@@ -5354,7 +5427,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 var environment = {
     production: false,
-    apiURl: 'http://c36fee5a.ngrok.io/api/',
+    apiURl: 'http://43c13a1d.ngrok.io/api/',
 };
 /*
  * For easier debugging in development mode, you can import the following file
