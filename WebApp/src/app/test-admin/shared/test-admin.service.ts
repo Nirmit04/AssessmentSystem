@@ -15,6 +15,7 @@ export class TestAdminService {
 	formdata: Schedule;
 	readonlyStatus: boolean;
 	scheduleQuizUsers: string[];
+	deleteUserVisibility:boolean=false;
 	retriveAllQuizzes() {
 		return this.http.get(this.rooturl + 'Quiz/GetAllQuiz');
 	}

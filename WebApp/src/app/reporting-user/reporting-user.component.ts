@@ -40,6 +40,7 @@ export class ReportingUserComponent implements OnInit {
 	}
 	loadUserProgress(){
 		this.service.getUserProgress().subscribe((res:any) => {
+			console.log(res);
 			this.TotalQuiz = res.QuizCount;
 			this.TotalQues = res.QuestionCount;
 			this.TotalSub = res.SubjectCount;

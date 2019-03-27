@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, EventEmitter, Output} from '@angular/core';
+import { Component, OnInit, Inject, EventEmitter, Output } from '@angular/core';
 import { TestAdminService } from '../../shared/test-admin.service';
 import { User } from 'src/app/test-admin/shared/user.model'
 import { NgForm } from '@angular/forms';
@@ -8,6 +8,7 @@ import { Schedule } from '../../shared/schedule.model';
 import { concat, Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
 import { AddUser1Component } from '../../add-user1/add-user1.component'
+import { ViewScheduleComponent } from '../view-schedule/view-schedule.component';
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
@@ -63,7 +64,7 @@ export class AddUserComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "70%";
     dialogConfig.disableClose = true;
-    this.service.readonlyStatus = false;
+   // this.service.readonlyStatus = false;
     dialogConfig.data = scheduleid;
     this.dialog.open(AddUser1Component, dialogConfig).afterClosed().subscribe((res: any) => {
       this.loadSchedule();
@@ -71,6 +72,21 @@ export class AddUserComponent implements OnInit {
       this.dtTrigger.next();
     });
 
+  }
+  deleteUserfromSchedule(scheduleId: number, arrayIndex: number) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "70%";
+    dialogConfig.disableClose = true;
+   // this.service.readonlyStatus = false;
+    dialogConfig.data = scheduleId;
+    this.service.deleteUserVisibility = true;
+    this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe((res: any) => {
+      this.loadSchedule();
+      this.service.deleteUserVisibility = false;
+      this.dtTrigger.unsubscribe();
+      this.dtTrigger.next();
+    });
   }
 }
 
