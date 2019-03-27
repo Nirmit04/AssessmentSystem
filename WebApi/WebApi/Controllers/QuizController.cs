@@ -228,6 +228,7 @@ namespace WebApi.Controllers
         {
             var Mock = db.Quizs.Where(x => x.QuizType == "Mock").Select(x => new
             {
+                x.QuizId,
                 x.QuizName,
                 x.Difficulty,
                 Subject = db.Subjects.FirstOrDefault(y => y.SubjectId == x.SubjectId).Name,

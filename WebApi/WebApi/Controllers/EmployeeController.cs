@@ -48,7 +48,7 @@ namespace WebApi.Controllers
             string recentActivity="----";
             try
             {
-                TotalAccuracy = db.Reports.Where(x => x.UserId == UserId).Select(y => y.Accuracy).Sum() / (decimal)(MockCount + NonMockCount);
+                TotalAccuracy = db.Reports.Where(x => x.UserId == UserId).Select(y => y.Accuracy).Sum() / (MockCount + NonMockCount);
                 var QuizId = db.UserSchedules.OrderByDescending(x => x.UserScheduleId).FirstOrDefault(x => x.UserId == UserId).QuizId;
                 recentActivity = db.Quizs.FirstOrDefault(x => x.QuizId == QuizId).QuizName;
             }
@@ -56,7 +56,7 @@ namespace WebApi.Controllers
             
             employeeStats.Add("Mock", MockCount.ToString());
             employeeStats.Add("NonMock", NonMockCount.ToString());
-            employeeStats.Add("Accuracy", TotalAccuracy.ToString());
+            employeeStats.Add("Accuracy", String.Format("{0:f2}",TotalAccuracy));
             employeeStats.Add("RecentActivity", recentActivity);
             return Ok(employeeStats);
         }
