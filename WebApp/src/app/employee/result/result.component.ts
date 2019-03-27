@@ -34,10 +34,11 @@ export class ResultComponent implements OnInit {
     }
     this.service.postanswers().subscribe(res => {
       this.dispCard = true;
+      this.service.QuizScheduleId=null;
       // setInterval(() => {
         
       // }, 3000);
-      this.router.navigate([('/emp-dash/quiz/non-mock-report')]);
+      this.router.navigate([('/emp-dash')]);
     });
   }
 
