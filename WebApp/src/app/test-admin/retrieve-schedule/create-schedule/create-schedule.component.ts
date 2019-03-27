@@ -4,6 +4,7 @@ import { TestAdminService } from '../../shared/test-admin.service';
 import { QuizModel } from '../../../content-creator/shared/quiz.model';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-create-schedule',
@@ -16,21 +17,27 @@ export class CreateScheduleComponent implements OnInit {
   q3 = "";
   btndisable = false;
   CCreatedBy = "";
+  date: any = this.datePipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
   scheduleUrl = 'localhost:4200//emp-dash/take-quiz/';
   constructor(private service: TestAdminService,
     private dialog: MatDialog,
-    public toastr: ToastrService) { }
+    public toastr: ToastrService,
+    private datePipe : DatePipe ) { }
   QuizList: QuizModel[];
   ngOnInit() {
     this.resetForm();
     this.CCreatedBy = localStorage.getItem('uid');
     this.service.retriveAllQuizzes().subscribe((res) => {
       this.QuizList = res as QuizModel[];
-      console.log(this.QuizList);
+      // console.log(this.QuizList);
+      //this.dateValidation();
 
     }
     )
   }
+  // dateValidation(){
+  //   this.date = ;
+  // }
   resetForm(form?: NgForm) {
     if (form != null) {
       form.resetForm();

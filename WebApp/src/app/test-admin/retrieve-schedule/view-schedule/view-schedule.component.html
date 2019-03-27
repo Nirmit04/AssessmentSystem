@@ -7,14 +7,14 @@
     <input type="hidden" name="ArchiveStatus" #ArchiveStatus="ngModel" [(ngModel)]="service.formdata.ArchiveStatus">
     <div class="form-group col-md-6">
       <label>Start Date Time</label>
-      <input type="datetime-local" required name="StartDateTime" #StartDateTime="ngModel"
-        [(ngModel)]=service.formdata.StartDateTime [readonly]="bool">
+      <input type="datetime-local" required name="StartDateTime" #StartDateTime="ngModel" [min]="date"
+        [(ngModel)]="q1" [readonly]="bool">
       <div class="validation-error" *ngIf="StartDateTime.invalid && StartDateTime.touched">This field is required.
       </div>
     </div>
     <div class="form-group col-md-6">
       <label>End Date Time</label>
-      <input type="datetime-local" required name="EndDateTime" #EndDateTime="ngModel"
+      <input type="datetime-local" required name="EndDateTime" #EndDateTime="ngModel" [min]="q1"
         [(ngModel)]="service.formdata.EndDateTime" [readonly]="bool">
       <div class="validation-error" *ngIf="EndDateTime.invalid && EndDateTime.touched">This field is required.
       </div>

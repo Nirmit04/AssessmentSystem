@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Schedule } from '../../shared/schedule.model';
 import { NgForm } from '@angular/forms';
 import { AddUserComponent } from '../add-user/add-user.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-view-schedule',
@@ -18,12 +19,15 @@ export class ViewScheduleComponent implements OnInit {
   bool: boolean;
   label: string;
   usersList: any[];
+  date: any = this.datePipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
+  q1 = this.service.formdata.StartDateTime;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<UpdateQuestionComponent>,
     public toastr: ToastrService,
     private service: TestAdminService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private datePipe: DatePipe) { }
 
   ngOnInit() {
     this.bool = this.service.readonlyStatus;
