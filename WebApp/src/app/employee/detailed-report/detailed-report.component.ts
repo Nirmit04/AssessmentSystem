@@ -15,8 +15,8 @@ export class DetailedReportComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
-  public doughnutChartLabels1 = ['Attempted: '+this.service.data.CorrectAnswers + this.service.data.WrongAnswers, 'UnAttempted: '+this.service.data.UnattemptedAnswers];
-  public doughnutChartData1 = [this.service.data.CorrectAnswers + this.service.data.WrongAnswers, this.service.data.UnattemptedAnswers];
+  public doughnutChartLabels1 = ['Attempted:'+ ((parseInt(this.service.data.CorrectAnswers)) + (parseInt(this.service.data.WrongAnswers))).toString(), 'UnAttempted: '+this.service.data.UnattemptedAnswers];
+  public doughnutChartData1 = [(parseInt(this.service.data.CorrectAnswers) + parseInt(this.service.data.WrongAnswers)).toString(), this.service.data.UnattemptedAnswers];
   public doughnutChartType1 = 'doughnut';
 
   quizname = '';
@@ -57,6 +57,7 @@ export class DetailedReportComponent implements OnInit {
       pageLength: 10,
     };
     this.loadDetail();
+    console.log((parseInt(this.service.data.CorrectAnswers)+parseInt(this.service.data.WrongAnswers)).toString());
   }
   loadDetail() {
     this.service.getDetailedReport().subscribe((res: any) => {
@@ -70,10 +71,10 @@ export class DetailedReportComponent implements OnInit {
   calculate() {
     for (let i = 0; i < this.reports.length; i++) {
       if (this.reports[i].AttemptedAnswer === this.reports[i].CorrectAnswer) {
-        this.reports[i].status = "Sahi";
+        this.reports[i].status = "Correct";
         this.reports[i].color = "background-color: green";
       } else {
-        this.reports[i].status = "Galat";
+        this.reports[i].status = "Incorrect";
         this.reports[i].color = "background-color: red";
       }
     }
