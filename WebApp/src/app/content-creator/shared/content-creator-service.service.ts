@@ -33,7 +33,7 @@ public formDupli: NgForm;
 		return this.http.get(this.rootURL + 'Subject/GetSubjects');
 	}
 	getQuesOfUser(uid: string) {
-		return this.http.get(this.rootURL + 'Question/GetQuestionByUser/' + localStorage.getItem('uid'));
+		return this.http.get(this.rootURL + 'Question/GetuestionByUser/' + localStorage.getItem('uid'));
 	}
 	deleteQues(qid) {
 		console.log(qid);

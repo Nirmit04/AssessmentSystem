@@ -24,19 +24,20 @@ export class HomeComponent implements OnInit {
 				FirstName: localStorage.getItem('firstname'),
 				LastName: localStorage.getItem('lastname'),
 				Email: localStorage.getItem('email'),
-				ImgURL: localStorage.getItem('imgurl'),
+				ImageURL: localStorage.getItem('imgurl'),
 				GoogleId: localStorage.getItem('id')
 			};
 			this.http.post(this.rooturl + 'User/Register', body).subscribe((res: any) => {
-				this.http
-					.get(this.rooturl + 'GetUserDetails?email=' + localStorage.getItem('email'))
+				this.http.get(this.rooturl + 'GetUserDetails?email=' + localStorage.getItem('email'))
 					.subscribe((res1: any) => {
 						this.uid = res1.Id;
 						this.role = res1.Roles[0].RoleId;
 						localStorage.setItem('uid', this.uid);
 						localStorage.setItem('role', this.role);
 						console.log(this.checkqid);
-						if (this.checkqid != 'null' && this.checksid != 'null') {
+						if (this.checkqid == 'null' && this.checksid == 'null') {
+							this.redirecttodash(this.role);	}
+						else if (this.checkqid != 'null' && this.checksid != 'null') {
 							console.log("hii");
 							this.service.checkValidUser(+this.checkqid).subscribe((res: any) => {
 								console.log(res);
@@ -48,9 +49,12 @@ export class HomeComponent implements OnInit {
 								});
 							})
 						} else {
-							this.redirecttodash(this.role);
+							localStorage.setItem('errorCode', '405');
+							localStorage.setItem('errorMsg', 'Not Allowed to entert he specified quiz.');
+							this.router.navigate(['/http-error']);
 						}
 					});
+				console.log(res);
 			});
 		} else {
 			this.router.navigate(['/login']);
