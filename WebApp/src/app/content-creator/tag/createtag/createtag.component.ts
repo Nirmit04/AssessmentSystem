@@ -47,7 +47,8 @@ export class CreatetagComponent implements OnInit {
 		this.service.postTags(form.value).subscribe(res => {
 			this.toastr.success('Inserted successfully');
 			this.resetForm(form);
+			this.dialogRef.close('Inserted');
 		});;
-		this.dialogRef.close('Inserted');
+		
 	}
 }
