@@ -51,7 +51,7 @@ public formDupli: NgForm;
 		return this.http.get(this.rootURL + 'Subject/GetSubjects/' + localStorage.getItem('uid'));
 	}
 	postTags(tagForm: TagModel) {
-		console.log(tagForm);
+		// console.log(tagForm);
 		if (tagForm.SubjectId === null) {
 			return this.http.post(this.rootURL + 'Subject/CreateSubject', tagForm);
 		} else {

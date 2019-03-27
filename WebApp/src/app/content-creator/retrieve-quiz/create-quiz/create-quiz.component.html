@@ -60,6 +60,9 @@
         <div class="card-body">
           <h5 *ngIf="length>0" class="card-title" style="text-align: center">Choose Questions</h5><br />
           <h5 *ngIf="length==0" class="card-title" style="text-align: center">No Question Available</h5><br />
+          <div>
+            <a (click)="add_new_ques()">Click Here to Create New Question</a>
+          </div>
           <form #Questionform="ngForm" (submit)="onDetailsSubmit(Questionform)" autocomplete="off">
             <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
               class="row-border hover table table-bordered table-striped">
@@ -79,9 +82,6 @@
                 </tr>
               </tbody>
             </table>
-            <div *ngIf="length==0">
-              <a (click)="add_new_ques()">Click Here to Create Question</a>
-            </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>
