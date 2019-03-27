@@ -279,8 +279,11 @@ namespace WebApi.Controllers
                     WAnswer++;
                 }
                 i++;
-                db.DetailedReports.Add(detailedReport);
-                db.SaveChanges();
+                if (db.Quizs.FirstOrDefault(x => x.QuizId == evalutionAnswer.QuizId).QuizType == "Non-Mock")
+                {
+                    db.DetailedReports.Add(detailedReport);
+                    db.SaveChanges();
+                }
             }
             report.CorrectAnswers = CAnswer;
             report.WrongAnswers = WAnswer;
@@ -292,9 +295,6 @@ namespace WebApi.Controllers
             report.QuizType = db.Quizs.FirstOrDefault(x => x.QuizId == evalutionAnswer.QuizId).QuizType;
             report.UserId = evalutionAnswer.UserId;
             report.QuizId = evalutionAnswer.QuizId;
-            System.Diagnostics.Debug.WriteLine(evalutionAnswer.QuizScheduleId);
-            System.Diagnostics.Debug.WriteLine(evalutionAnswer.UserId);
-            System.Diagnostics.Debug.WriteLine(evalutionAnswer.QuizId);
             var userSchedule = db.UserSchedules.FirstOrDefault(x => x.QuizScheduleId == evalutionAnswer.QuizScheduleId && x.UserId == evalutionAnswer.UserId && x.QuizId == evalutionAnswer.QuizId);
             if (userSchedule != null)
             {
