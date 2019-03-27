@@ -31,6 +31,7 @@ export class MockComponent implements OnInit {
   getMockList() {
     this.service.getListOfMockQuizzes().subscribe((res: any) => {
       this.mockList = res as any[];
+      console.log(this.mockList);
       this.dtTrigger.next();
     });
   }
