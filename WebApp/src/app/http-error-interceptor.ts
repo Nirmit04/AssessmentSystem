@@ -1,3 +1,4 @@
+import { Component, OnInit } from '@angular/core';
 import {
   HttpEvent,
   HttpInterceptor,
@@ -9,10 +10,16 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Router, RouterModule } from '@angular/router';
-
+import { AuthService } from 'angularx-social-login';
+import { Injectable, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+@Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
+  constructor(private router: Router) {}
 
-  // constructor(private router: Router) {}
+  errorCode:any;
+  errorMsg:string;
+
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request)
       .pipe(
@@ -25,13 +32,12 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           } else {
             // server-side error
             errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+            this.errorCode = error.status; 
+            console.log(error.message);
+            localStorage.setItem('errorCode',this.errorCode);
           }
-          window.alert("Error has occured. Please reload! " + error.status + ' - ' + error.statusText);
-          // this.router.navigate(['/login']);
-          localStorage.clear();
+        this.router.navigate(['/http-error']);
           return throwError(errorMessage);
-
-
         })
       )
   }

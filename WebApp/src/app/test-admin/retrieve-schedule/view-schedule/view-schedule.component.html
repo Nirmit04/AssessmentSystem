@@ -4,7 +4,6 @@
   </button>
   <ng-container *ngIf="!service.deleteUserVisibility">
     <h5 class="card-title">{{label}}</h5>
-    <!-- <button type="button" [hidden]="bool" (click)="onAdd()" class="btn btn-primary">Add Users</button>  <br/> -->
     <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
       <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="this.CCreatedBy">
       <input type="hidden" name="QuizId" #QuizId="ngModel" [(ngModel)]="service.formdata.QuizId">
@@ -41,7 +40,6 @@
       <div class="form-group">
         <button [hidden]="bool" style="margin:0 5%" type="submit" [disabled]="form.invalid || bool"
           class="btn btn-primary">Submit</button>
-        <!-- <button [hidden] ="bool" type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button> -->
       </div>
     </form>
   </ng-container>

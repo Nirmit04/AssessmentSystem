@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
 				localStorage.setItem('id', this.user.id);
 				localStorage.setItem('imgurl', this.user.photoUrl);
 				localStorage.setItem('provider', this.user.provider);
+				console.log("login");
 				this.router.navigate(['/home']);
 			} else {
 				localStorage.clear();

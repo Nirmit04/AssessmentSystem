@@ -37,9 +37,11 @@ export class ResultComponent implements OnInit {
     }
     this.service.postanswers().subscribe(res => {
       this.dispCard = true;
-      setInterval(() => {
-        this.router.navigate([('/emp-dash')]);
-      }, 3000);
+      this.service.QuizScheduleId=null;
+      // setInterval(() => {
+        
+      // }, 3000);
+      this.router.navigate([('/emp-dash')]);
     });
   }
   closeFullscreen(){

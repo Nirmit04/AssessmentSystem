@@ -27,7 +27,7 @@ export class EmployeeService {
     return this.http.get(this.rootURL + 'Quiz/QuizQuestion/' + QuizId);
   }
   getMockQuesOfQuiz(QuizId: number) {
-    return this.http.get(this.rootURL + 'Quiz/MockQuizQuestion/' + QuizId);
+    return this.http.get(this.rootURL + 'Quiz/QuizQuestion/' + QuizId);
   }
   checkValidUser(id: number)  {
     return this.http.post(this.rootURL+'UserSchedule/ValidQuizTaker/'+localStorage.getItem('uid'), id);

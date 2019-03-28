@@ -34,3 +34,6 @@ body {
 th,td {
 	text-align: center;
 }
+.validation-error {
+	color: red;
+}
