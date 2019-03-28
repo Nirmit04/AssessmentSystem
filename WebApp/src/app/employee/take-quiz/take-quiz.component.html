@@ -1,4 +1,5 @@
 <mat-progress-bar mode="determinate" value="{{ bar }}"></mat-progress-bar>
+<input (keydown.esc)="onKeydown($event)">
 <div class="row" *ngIf="service.quesOfQuiz">
   <div class="col s8 offset-s2">
     <span>Time Elapsed : {{service.displayTimeElapsed()}}</span>

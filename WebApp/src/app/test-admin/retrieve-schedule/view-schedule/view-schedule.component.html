@@ -10,18 +10,33 @@
       <input type="hidden" name="QuizId" #QuizId="ngModel" [(ngModel)]="service.formdata.QuizId">
       <input type="hidden" name="ArchiveStatus" #ArchiveStatus="ngModel" [(ngModel)]="service.formdata.ArchiveStatus">
       <div class="form-group col-md-6">
-        <label>Start Date Time</label>
-        <input type="datetime-local" required name="StartDateTime" #StartDateTime="ngModel"
-          [(ngModel)]="q1" [min]="date" [readonly]="bool">
-        <div class="validation-error" *ngIf="StartDateTime.invalid && StartDateTime.touched">This field is required.
+        <label>Start Date Time:
+          <input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" [min]="date" required [readonly]="bool"
+          name="StartDateTime" #StartDateTime="ngModel" [(ngModel)]="q1">
+          <owl-date-time [pickerType]="'both'" #dt1 ></owl-date-time>
+        <!-- <input type="datetime-local" required name="StartDateTime" #StartDateTime="ngModel"
+          [(ngModel)]="q1" [min]="date" [readonly]="bool"> -->
+          <div *ngIf="StartDateTime.invalid && StartDateTime.errors.owlDateTimeMin">
+              INVALID DATE !
+          </div>
+        <div class="validation-error" *ngIf="StartDateTime.invalid && StartDateTime.touched">This field is 
+          wrong and required.
         </div>
+      </label>
       </div>
       <div class="form-group col-md-6">
-        <label>End Date Time</label>
-        <input type="datetime-local" required name="EndDateTime" #EndDateTime="ngModel"
-          [(ngModel)]="service.formdata.EndDateTime" [min]="q1" [readonly]="bool">
+        <label>End Date Time:
+          <input [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" [min]="q1" required [readonly]="bool"
+            name="EndDateTime" #EndDateTime="ngModel" [(ngModel)]="service.formdata.EndDateTime">
+          <owl-date-time [pickerType]="'both'" #dt2 ></owl-date-time>  
+        <!-- <input type="datetime-local" required name="EndDateTime" #EndDateTime="ngModel"
+          [(ngModel)]="service.formdata.EndDateTime" [min]="q1" [readonly]="bool"> -->
+          <div *ngIf="EndDateTime.invalid && EndDateTime.errors.owlDateTimeMin">
+              INVALID DATE !
+          </div> 
         <div class="validation-error" *ngIf="EndDateTime.invalid && EndDateTime.touched">This field is required.
         </div>
+        </label>
       </div>
       <div class="form-group">
         <button [hidden]="bool" style="margin:0 5%" type="submit" [disabled]="form.invalid || bool"
@@ -34,7 +49,6 @@
     <thead class="thead-dark">
       <th scope="col">#User ID</th>
       <th scope="col">UserName</th>
-        <input type="datetime-local" [min]="date" required name="StartDateTime" #StartDateTime="ngModel" [(ngModel)]="q1">
         <th scope="col">E-Mail</th>
       <th scope="col">Taken</th>
       <th [hidden]="!service.deleteUserVisibility" scope="col">Action</th>

@@ -65,6 +65,7 @@ import { Mainnav4Component } from './reporting-user/mainnav4/mainnav4.component'
 import { ViewUserDetailsComponent } from './reporting-user/analytics-by-user/view-user-details/view-user-details.component';
 import { DetailsComponent } from './reporting-user/analytics-by-quiz/details/details.component';
 import { DatePipe } from '@angular/common';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 	bgsColor: '#00ACC1',
@@ -171,6 +172,8 @@ export function provideConfig() {
 		ChartsModule,
 		NgxGaugeModule,
 		MatExpansionModule,
+		OwlDateTimeModule,
+		OwlNativeDateTimeModule,
 		
 	],
 	providers: [

@@ -19,7 +19,7 @@ export class ViewScheduleComponent implements OnInit {
   bool: boolean;
   label: string;
   usersList: any[];
-  date: any = this.datePipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
+  date = new Date();
   q1 = this.service.formdata.StartDateTime;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,

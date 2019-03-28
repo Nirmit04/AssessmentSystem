@@ -23,6 +23,7 @@ export class NonMockComponent implements OnInit {
       pageLength: 10,
     };
   }
+  
   loadNonMockSchedules() {
     this.service.getNonMocks().subscribe((res: any) => {
       this.nonMockScheduleList = res as any[];
