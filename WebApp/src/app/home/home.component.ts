@@ -31,12 +31,14 @@ export class HomeComponent implements OnInit {
 				this.http.get(this.rooturl + 'GetUserDetails?email=' + localStorage.getItem('email'))
 					.subscribe((res1: any) => {
 						this.uid = res1.Id;
+						console.log(res1);
 						this.role = res1.Roles[0].RoleId;
 						localStorage.setItem('uid', this.uid);
 						localStorage.setItem('role', this.role);
 						console.log(this.checkqid);
 						if (this.checkqid == 'null' && this.checksid == 'null') {
-							this.redirecttodash(this.role);	}
+							this.redirecttodash(this.role);
+						}
 						else if (this.checkqid != 'null' && this.checksid != 'null') {
 							console.log("hii");
 							this.service.checkValidUser(+this.checkqid).subscribe((res: any) => {
@@ -61,17 +63,17 @@ export class HomeComponent implements OnInit {
 		}
 	}
 	redirecttodash(role: string) {
-		if(this.role === '1')	{
+		if (this.role === '1') {
 			this.router.navigate(['/ta-dash']);
 		}
 		else if (this.role === '2') {
 			console.log('i am content creator');
 			this.router.navigate(['/cc-dash']);
 		}
-		else if(this.role === '3')	{
+		else if (this.role === '3') {
 			this.router.navigate(['/emp-dash']);
 		}
-		else{
+		else {
 			this.router.navigate(['/ru-dash']);
 		}
 	}
