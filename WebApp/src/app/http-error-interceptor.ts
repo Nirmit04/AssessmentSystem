@@ -10,9 +10,7 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Router, RouterModule } from '@angular/router';
-import { AuthService } from 'angularx-social-login';
 import { Injectable, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
   constructor(private router: Router) {}

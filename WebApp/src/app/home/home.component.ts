@@ -61,9 +61,18 @@ export class HomeComponent implements OnInit {
 		}
 	}
 	redirecttodash(role: string) {
-		if (this.role === '2') {
+		if(this.role === '1')	{
+			this.router.navigate(['/ta-dash']);
+		}
+		else if (this.role === '2') {
 			console.log('i am content creator');
 			this.router.navigate(['/cc-dash']);
+		}
+		else if(this.role === '3')	{
+			this.router.navigate(['/emp-dash']);
+		}
+		else{
+			this.router.navigate(['/ru-dash']);
 		}
 	}
 }

@@ -10,7 +10,19 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 	constructor(private router: Router) { }
 	canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 		if (localStorage.getItem('uid') != null) {
-			return true;
+			let roles = next.data["roles"];
+			if (roles) {
+				if (roles === localStorage.getItem('role')) {
+					return true;
+				}
+				else {
+					localStorage.setItem('errorCode', '403');
+					this.router.navigate(['/http-error']);
+					return false;
+				}
+			}
+			else
+				return true;
 		}
 		localStorage.clear();
 		this.router.navigate(['/login']);

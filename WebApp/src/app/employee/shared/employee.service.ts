@@ -36,7 +36,6 @@ export class EmployeeService {
     this.body.QuizScheduleId = this.QuizScheduleId;
     this.body.QuizId = this.QuizId;
     this.body.UserId = localStorage.getItem('uid');
-    console.log(this.body);
     return this.http.post(this.rootURL + 'Quiz/EvaluateQuiz', this.body);
   }
   getUserDetails() {
@@ -56,14 +55,10 @@ export class EmployeeService {
     return this.http.get(this.rootURL + 'Report/Mock/' + id);
   }
   getDetailedReport() {
-    console.log(this.QuizId);
     return this.http.get(this.rootURL + '/DetailedReport/' + localStorage.getItem('uid') + '/' + this.QuizId);
   }
   getQues(id: number) {
     return this.http.get(this.rootURL + 'Question/' + id)
   }
-  // getUserProgress(){
-  //   // console.log(localStorage.getItem('uid'))
-  //   return this.http.get(this.rootURL + '/Employee/Stats/'+ localStorage.getItem('uid'));
-  // }
 }
+``
