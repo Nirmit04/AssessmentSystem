@@ -47,9 +47,9 @@
 	margin-top: 10px;
 }
 .log {
-	font-size: 15px;
+	font-size: 12px;
 	cursor: pointer;
-	color: rgb(255, 0, 0) !important;
+	color:black !important;
 }
 .mat-toolbar.mat-primary {
 	position: sticky;

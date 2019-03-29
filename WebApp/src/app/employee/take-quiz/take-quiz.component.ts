@@ -1,20 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject,  OnInit } from '@angular/core';
 import { EmployeeService } from '../shared/employee.service';
 import { Router } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
 @Component({
 	selector: 'app-take-quiz',
 	templateUrl: './take-quiz.component.html',
 	styleUrls: ['./take-quiz.component.css']
 })
 export class TakeQuizComponent implements OnInit {
-	constructor(private service: EmployeeService, private router: Router) { }
+	constructor(private service: EmployeeService, private router: Router,
+		@Inject(DOCUMENT) private document: any) { }
 	QuestionList: any[];
 	noOfQues: number;
 	bar: number;
+	elem: any;
 	ngOnInit() {
 		this.service.qnProgress = 0;
 		this.service.seconds = 0;
 		history.pushState(null, null, location.href);
+		this.elem = document.documentElement;
+		this.openFullscreen();
 		window.onpopstate = function () {
 			history.go(1);
 		};
@@ -37,9 +42,29 @@ export class TakeQuizComponent implements OnInit {
 					e.preventDefault();
 					e.returnValue = false;
 				}
+				// if((e.charCode || e.which || e.key)=='esc') {
+				// 	console.log('qewrfeadsjalwihfuaicnxnc ')
+				// 	e.preventDefault();
+				// 	e.returnValue = false;
+				// }
 			};
 		};
 		this.loadQues();
+		this.openFullscreen();
+	}
+	onKeydown(event) {
+		console.log('esc works');
+	  }
+	openFullscreen() {
+		if (this.elem.requestFullscreen) {
+		  this.elem.requestFullscreen();
+		} else if (this.elem.mozRequestFullScreen) {
+		  this.elem.mozRequestFullScreen();
+		} else if (this.elem.webkitRequestFullscreen) {
+		  this.elem.webkitRequestFullscreen();
+		} else if (this.elem.msRequestFullscreen) {
+		  this.elem.msRequestFullscreen();
+		}
 	}
 	loadQues() {
 		this.QuestionList = this.service.quesOfQuiz;

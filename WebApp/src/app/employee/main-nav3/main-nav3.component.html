@@ -6,7 +6,7 @@
     <mat-nav-list>
       <a mat-list-item routerLink="/emp-dash/non-mocks"><i class="fa fa-code" aria-hidden="true"></i> Scheduled Quizzes</a>
       <a mat-list-item routerLink="/emp-dash/quiz/non-mock-report"><i class="fa fa-retweet" aria-hidden="true"></i>  Scheduled Quizzes' Result</a>
-      <a mat-list-item routerLink="/emp-dash/mock-report"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Non-Scheduled Quizzes' Result</a>
+      <a mat-list-item routerLink="/emp-dash/mock-report"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Mock Quizzes' Result</a>
       <a mat-list-item routerLink="/emp-dash/mock"><i class="fa fa-check" aria-hidden="true"></i> Give Mocks</a>
     </mat-nav-list>
   </mat-sidenav>
@@ -18,7 +18,7 @@
       </button>
       <span>Employee Dashboard</span>
       <span class="spacer"></span>
-      <a class="log" (click)="logout()">Log Out</a>
+      <a class="log" (click)="logout()"><i class="fa fa-sign-out"></i>Log Out</a>
     </mat-toolbar>
     <div class="content">
       <ng-content></ng-content>
