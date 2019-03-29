@@ -45,6 +45,6 @@ export class CreateQuestionsComponent implements OnInit {
     this.service.postQuestion(form.value).subscribe((res) => {
       this.toastr.success('Inserted successfully');
       this.resetForm(form);
-    });;
+    });
   }
 }
