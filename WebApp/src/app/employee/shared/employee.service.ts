@@ -16,6 +16,7 @@ export class EmployeeService {
   body: postReport;
   QuizId: number;
   data: any;
+  correctAnswerCount = 0;
   constructor(private http: HttpClient) { }
   displayTimeElapsed() {
     return Math.floor(this.seconds / 3600) + ':' + Math.floor(this.seconds / 60) + ':' + Math.floor(this.seconds % 60);
@@ -29,8 +30,8 @@ export class EmployeeService {
   getMockQuesOfQuiz(QuizId: number) {
     return this.http.get(this.rootURL + 'Quiz/QuizQuestion/' + QuizId);
   }
-  checkValidUser(id: number)  {
-    return this.http.post(this.rootURL+'UserSchedule/ValidQuizTaker/'+localStorage.getItem('uid'), id);
+  checkValidUser(id: number) {
+    return this.http.post(this.rootURL + 'UserSchedule/ValidQuizTaker/' + localStorage.getItem('uid'), id);
   }
   postanswers() {
     this.body.QuizScheduleId = this.QuizScheduleId;
@@ -45,8 +46,8 @@ export class EmployeeService {
   getListOfMockQuizzes() {
     return this.http.get(this.rootURL + 'Quiz/MockQuiz');
   }
-  getUserProgress(){
-    return this.http.get(this.rootURL + '/Employee/Stats/'+ localStorage.getItem('uid'))
+  getUserProgress() {
+    return this.http.get(this.rootURL + '/Employee/Stats/' + localStorage.getItem('uid'))
   }
   getReportOfNonMockQuiz(id) {
     return this.http.get(this.rootURL + 'Report/NonMock/' + id);
@@ -59,6 +60,9 @@ export class EmployeeService {
   }
   getQues(id: number) {
     return this.http.get(this.rootURL + 'Question/' + id)
+  }
+  getAnswers() {
+    return this.http.get(this.rootURL + 'Quiz/EvaluateMockQuiz/' + this.QuizId);
   }
 }
 ``

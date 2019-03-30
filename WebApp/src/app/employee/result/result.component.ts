@@ -15,7 +15,29 @@ export class ResultComponent implements OnInit {
     @Inject(DOCUMENT) private document: any) { }
   timeTaken: any;
   dispCard = false;
+  QuesWithAns: any[];
+  correct: any[];
   ngOnInit() {
+    this.correct = [];
+    if (this.service.QuizScheduleId == null) {
+      this.service.getAnswers().subscribe((res: any) => {
+        this.QuesWithAns = res as any[];
+        // console.log(this.QuesWithAns);
+        this.service.correctAnswerCount = 0;
+        this.service.quesOfQuiz.forEach((e, i) => {
+          if (e.answer == this.QuesWithAns[i].Answer) {
+            this.service.correctAnswerCount++;
+          }
+          this.correct[i] = this.QuesWithAns[i].Answer;
+        });
+        // console.log(this.service.quesOfQuiz);
+        // console.log(this.correct);
+        // console.log(this.service.correctAnswerCount);
+        this.dispCard = true;
+      })
+
+    }
+
     var body = this.service.quesOfQuiz.map(x => x.QuestionId);
     var body1 = this.service.quesOfQuiz.map(x => x.answer);
     var dict = [];
@@ -35,26 +57,44 @@ export class ResultComponent implements OnInit {
       QuesAnswers: dict,
       TimeTaken: this.timeTaken
     }
-    this.service.postanswers().subscribe(res => {
-      this.dispCard = true;
-      this.service.QuizScheduleId=null;
-      // setInterval(() => {
-        
-      // }, 3000);
-      this.router.navigate([('/emp-dash')]);
-    });
-  }
-  closeFullscreen(){
 
-    if(this.document.exitFullscreen) {
+    this.service.postanswers().subscribe(res => {
+      // this.dispCard = true;
+      if (this.service.QuizScheduleId != null) {
+        this.service.QuizScheduleId = null;
+        this.service.quesOfQuiz = null;
+        this.service.correctAnswerCount = null;
+        this.service.QuizId = null;
+        this.service.body = null;
+        this.service.qnProgress = null;
+        this.dispCard = false;
+        this.router.navigate([('/emp-dash')]);
+      }
+    });
+
+
+
+  }
+  closeFullscreen() {
+
+    if (this.document.exitFullscreen) {
       this.document.exitFullscreen();
-    } else if(this.document.mozCancelFullscreen){
+    } else if (this.document.mozCancelFullscreen) {
       this.document.mozCancelFullscreen();
-    } else if(this.document.webkitExitFullscreen){
+    } else if (this.document.webkitExitFullscreen) {
       this.document.webkitExitFullscreen();
-    } else if(this.document.msExitFullscreen){
+    } else if (this.document.msExitFullscreen) {
       this.document.msExitFullscreen();
     }
-}
+  }
+  goToHome() {
+    this.service.quesOfQuiz = null;
+    this.service.correctAnswerCount = null;
+    this.service.QuizId = null;
+    this.service.body = null;
+    this.service.qnProgress = null;
+    this.dispCard = false;
+    this.router.navigate(['/emp-dash']);
+  }
 
 }
