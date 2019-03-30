@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
 					.subscribe((res1: any) => {
 						this.uid = res1.Id;
 						console.log(res1);
-						this.role = res1.Roles[0].RoleId;
+						this.role = res1.Roles[0];
 						localStorage.setItem('uid', this.uid);
 						localStorage.setItem('role', this.role);
 						console.log(this.checkqid);
@@ -70,7 +70,7 @@ export class HomeComponent implements OnInit {
 			console.log('i am content creator');
 			this.router.navigate(['/cc-dash']);
 		}
-		else if (this.role === '3') {
+		else if (this.role === 'Employee') {
 			this.router.navigate(['/emp-dash']);
 		}
 		else {
