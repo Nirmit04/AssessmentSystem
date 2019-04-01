@@ -49,13 +49,14 @@ namespace WebApi.Controllers
            var quiz = db.Quizs.Where(x => x.CreatedBy == CreatedBy && x.ArchiveStatus == false)
                 .Select(x => new
                 {
-                    QuizId = x.QuizId,
-                    QuizName = x.QuizName,
-                    Difficulty = x.Difficulty,
-                    TotalQuestions = x.TotalQuestions,
-                    TotalMarks = x.TotalMarks,
-                    ArchiveStatus = x.ArchiveStatus,
-                    QuizType = x.QuizType,
+                    x.QuizId,
+                    x.QuizName,
+                    x.Difficulty,
+                    x.TotalQuestions,
+                    x.TotalMarks,
+                    x.ArchiveStatus,
+                    x.QuizType,
+                    x.QuizTime,
                     Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name
                 }).ToList();
             return Ok(quiz);
@@ -106,7 +107,7 @@ namespace WebApi.Controllers
                     x.ImageName,
                     x.Marks,
                     x.Difficulty,
-                    x.CreatedBy
+                    x.CreatedBy,
                 }).ToList();
             return Ok(questions);
         }
@@ -137,18 +138,18 @@ namespace WebApi.Controllers
                 .Where(x => x.Difficulty == quiz.Difficulty && x.SubjectId == quiz.SubjectId && !qIds.Contains(x.QuestionId))
                 .Select(z => new
                 {
-                    QuestionId = z.QuestionId,
-                    QuestionStatement = z.QuestionStatement,
-                    Option1 = z.Option1,
-                    Option2 = z.Option2,
-                    Option3 = z.Option3,
-                    Option4 = z.Option4,
-                    Answer = z.Answer,
-                    Marks = z.Marks,
-                    SubjectId = z.SubjectId,
+                    z.QuestionId,
+                    z.QuestionStatement,
+                    z.Option1,
+                    z.Option2,
+                    z.Option3,
+                    z.Option4,
+                    z.Answer,
+                    z.Marks,
+                    z.SubjectId,
                     SubjectName = db.Subjects.Where(y => y.SubjectId == z.SubjectId).FirstOrDefault().Name,
-                    Difficulty = z.Difficulty,
-                    ImageName = z.ImageName
+                    z.Difficulty,
+                    z.ImageName
                 }).ToList();
             return Ok(questionsList);
         }
@@ -161,13 +162,14 @@ namespace WebApi.Controllers
             var quiz = db.Quizs.Where(x => x.CreatedBy == CreatedBy).Where(x => x.ArchiveStatus == true).
                 Select(x => new
                 {
-                    QuizId = x.QuizId,
-                    QuizName = x.QuizName,
-                    Difficulty = x.Difficulty,
-                    TotalQuestions = x.TotalQuestions,
-                    TotalMarks = x.TotalMarks,
-                    ArchiveStatus = x.ArchiveStatus,
-                    QuizType = x.QuizType,
+                    x.QuizId,
+                    x.QuizName,
+                    x.Difficulty,
+                    x.TotalQuestions,
+                    x.TotalMarks,
+                    x.ArchiveStatus,
+                    x.QuizType,
+                    x.QuizTime,
                     Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name
                 }).ToList();
             return Ok(quiz);
@@ -181,13 +183,14 @@ namespace WebApi.Controllers
             var quiz = db.Quizs.Where(x => x.ArchiveStatus == false).
                 Select(x => new
                 {
-                    QuizId = x.QuizId,
-                    QuizName = x.QuizName,
-                    Difficulty = x.Difficulty,
-                    TotalQuestions = x.TotalQuestions,
-                    TotalMarks = x.TotalMarks,
-                    ArchiveStatus = x.ArchiveStatus,
-                    QuizType = x.QuizType,
+                    x.QuizId,
+                    x.QuizName,
+                    x.Difficulty,
+                    x.TotalQuestions,
+                    x.TotalMarks,
+                    x.ArchiveStatus,
+                    x.QuizType,
+                    x.QuizTime,
                     Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
                     CreatedBy=db.Users.FirstOrDefault(z=>z.Id==x.CreatedBy).FirstName
                 }).ToList();
@@ -233,6 +236,7 @@ namespace WebApi.Controllers
                 x.Difficulty,
                 Subject = db.Subjects.FirstOrDefault(y => y.SubjectId == x.SubjectId).Name,
                 x.TotalMarks,
+                x.QuizTime,
                 x.TotalQuestions
             }).ToList();
             return Ok(Mock);
