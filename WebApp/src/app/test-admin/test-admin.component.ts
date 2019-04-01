@@ -24,7 +24,6 @@ export class TestAdminComponent implements OnInit {
 	}
 	loadUserDetails() {
 		this.service.getUserDetails().subscribe((res: any) => {
-			// console.log(res);
 			this.Firstname = res.FirstName;
 			this.Lastname = res.LastName;
 			this.email = res.Email;
@@ -32,9 +31,7 @@ export class TestAdminComponent implements OnInit {
 	}
 	loadcount() {
 		this.service.getschedulecount().subscribe((res: any) => {
-			// console.log(res);
 			this.count = res;
-			//console.log(this.count);
 			this.show = false;
 		});
 	}

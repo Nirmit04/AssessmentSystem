@@ -19,12 +19,9 @@ export class LoginComponent implements OnInit {
 	ngOnInit() {
 		localStorage.setItem('key',this.route.snapshot.queryParamMap.get('take-quiz'));
 		localStorage.setItem('key1',this.route.snapshot.queryParamMap.get('schedule-id'));
-		console.log(localStorage.getItem('key'));
-		console.log(localStorage.getItem('key1'));
 		this.authService.authState.subscribe((user) => {
 			this.user = user;
 			if (user != null) {
-				console.log(this.user);
 				localStorage.setItem('token', this.user.idToken);
 				localStorage.setItem('email', this.user.email);
 				localStorage.setItem('firstname', this.user.firstName);
@@ -32,7 +29,6 @@ export class LoginComponent implements OnInit {
 				localStorage.setItem('id', this.user.id);
 				localStorage.setItem('imgurl', this.user.photoUrl);
 				localStorage.setItem('provider', this.user.provider);
-				console.log("login");
 				this.router.navigate(['/home']);
 			} else {
 				localStorage.clear();
