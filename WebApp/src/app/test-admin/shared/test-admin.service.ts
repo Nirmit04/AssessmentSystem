@@ -26,8 +26,6 @@ export class TestAdminService {
 		return this.http.get(this.rooturl + 'UserSchedule/UserNotAssignedQuiz/' + sId);
 	}
 	postSchedule(formdata: Schedule) {
-		// formdata.UserId = this.quiztakerId;
-		console.log(formdata);
 		return this.http.post(this.rooturl + 'QuizSchedule/ScheduleQuiz', formdata);
 	}
 	postUrl(url: string)	{
@@ -37,7 +35,6 @@ export class TestAdminService {
 		return this.http.get(this.rooturl + 'QuizSchedule/GetAllQuizSchedule/' + id);
 	}
 	getScheduleQuizUsers(id: number) {
-		console.log(1);
 		return this.http.get(this.rooturl + 'UserSchedule/UserAssignedQuiz/' + id);
 	}
 	deleteSchedule(id: number) {
@@ -50,11 +47,9 @@ export class TestAdminService {
 		const body = {
 			UserIds: UserIds
 		};
-		console.log(body);
 		return this.http.post(this.rooturl + 'UserSchedule/UserAdd/' + QuizScheuleId, UserIds);
 	}
 	editSchedule(QuizScheduleId, formData) {
-		console.log(formData);
 		return this.http.put(this.rooturl + 'QuizSchedule/EditQuizSchedule/' + QuizScheduleId, formData);
 	}
 	getArchivedSchedules() {
@@ -64,11 +59,9 @@ export class TestAdminService {
 		var body = {
 			QuizScheduleId: id
 		}
-		console.log(body);
 		return this.http.delete(this.rooturl + 'QuizSchedule/Unarchive/' + id);
 	}
 	getUserDetails() {
-		console.log(localStorage.getItem('email'));
 		return this.http.get(this.rooturl + 'GetUserDetails?email=' + localStorage.getItem('email'));
 	}
 	getschedulecount() {

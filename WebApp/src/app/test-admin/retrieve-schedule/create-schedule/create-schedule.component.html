@@ -8,7 +8,6 @@
           <input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" [min]="date" required placeholder="mm/dd/yyyy,hh:mm"
           name="StartDateTime" #StartDateTime="ngModel" [(ngModel)]="q1" >
           <owl-date-time [pickerType]="'both'"  #dt1></owl-date-time> 
-        <!-- <input  [min]="date" required name="StartDateTime" #StartDateTime="ngModel" [(ngModel)]="q1"> -->
         <div *ngIf="StartDateTime.invalid && StartDateTime.errors.owlDateTimeMin">
           INVALID DATE !
         </div>
@@ -23,7 +22,6 @@
           <input [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" [min]="q1" required placeholder="mm/dd/yyyy,hh:mm"
           name="EndDateTime" #EndDateTime="ngModel" [(ngModel)]="q2">
           <owl-date-time [pickerType]="'both'" #dt2></owl-date-time>
-        <!-- <input type="datetime-local" [min]="q1" required name="EndDateTime" #EndDateTime="ngModel" [(ngModel)]="q2"> -->
         <div *ngIf="EndDateTime.invalid && EndDateTime.errors.owlDateTimeMin">
             INVALID DATE !
           </div>

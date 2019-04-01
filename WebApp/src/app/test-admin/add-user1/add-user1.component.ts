@@ -35,7 +35,5 @@ export class AddUser1Component implements OnInit {
       this.toastr.success('added succesfully');
       this.dialogRef.close('Added');
     });
-
-
   }
 }

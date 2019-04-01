@@ -17,6 +17,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
   errorCode:any;
   errorMsg:string;
+  show: boolean = true;
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request)
@@ -31,7 +32,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
             // server-side error
             errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
             this.errorCode = error.status; 
-            console.log(error.message);
             localStorage.setItem('errorCode',this.errorCode);
           }
         this.router.navigate(['/http-error']);

@@ -35,11 +35,12 @@ export class HomeComponent implements OnInit {
 						console.log(res1);
 						this.uid = res1.Id;
 						this.role = res1.Roles;
-						console.log(this.role);
+						// console.log(this.role);
 						localStorage.setItem('uid', this.uid);
 						localStorage.setItem('role', this.role);
-						console.log(this.checkqid);
-						console.log(this.checksid);
+						// console.log(this.checkqid);
+						// console.log(this.checksid);
+						console.log(localStorage.getItem('role'));
 						if (this.checkqid == 'null' && this.checksid == 'null') {
 							this.redirecttodash(this.role[0]);
 						}

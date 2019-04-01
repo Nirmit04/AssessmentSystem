@@ -1,5 +1,4 @@
 <app-main-nav2>
-  <!-- <button type="button" (click)="onCreate()" class="btn btn-primary">Create Schedule</button> -->
   <br /><br />
   <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
     class="row-border hover table table-bordered table-striped">
@@ -12,7 +11,6 @@
         <th scope="col">Action</th>
       </tr>
     </thead>
-
     <tbody>
       <ng-container *ngFor="let item of scheduleList;index as i;">
         <tr style="color:azure">
@@ -26,7 +24,6 @@
             <a class="btn btn-sm btn-danger text-white ml-1" (click)="deleteSchedule(item.QuizScheduleId)"><i
                 class="fa fa-trash"></i></a>
           </td>
-
         </tr>
       </ng-container>
     </tbody>
