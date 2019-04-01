@@ -37,23 +37,17 @@ namespace WebApi.Controllers
                 user.GoogleId = model.GoogleId;
                 string id = user.Id;
                 IdentityResult result = manager.Create(user);
-
-
                 try
                 {
-                    var user1 = manager.FindByEmail(user.Email);
-                    System.Diagnostics.Debug.WriteLine(user1.Id + " 11");
-                    manager.AddToRole(user1.Id, "content-creator");
-
+                    var tempuser = manager.FindByEmail(user.Email);
+                    manager.AddToRole(tempuser.Id, "Employee");
                 }
-                catch
-                {
-                    System.Diagnostics.Debug.WriteLine("Failed");
-                }
-
+                catch(Exception)
+                { }
                 return result;
             }
-            else {
+            else
+            {
                 return IdentityResult.Failed();
             }
             
@@ -89,37 +83,13 @@ namespace WebApi.Controllers
                 });
             }
             return userlist.AsQueryable();
-            //ApplicationDbContext db = new ApplicationDbContext();
-            //var u=db.Users.ToList();
-            //return u.AsQueryable();
         }
 
-        //[HttpGet]
-        //[AllowAnonymous]
-        //[Route("api/GetUserClaims")]
-        ///**
-        // * GetUserClaims returns claims
-        // * @returns A model with the required information
-        // **/
-        //public Account GetUserClaims()
-        //{
-        //    var identityClaims = (ClaimsIdentity)User.Identity;
-        //    IEnumerable<Claim> claims = identityClaims.Claims;
-        //    Account model = new Account()
-        //    {
-        //        UserName = identityClaims.FindFirst("Username").Value,
-        //        Email = identityClaims.FindFirst("Email").Value,
-        //        FirstName = identityClaims.FindFirst("FirstName").Value,
-        //        LastName = identityClaims.FindFirst("LastName").Value,
-        //        Id = identityClaims.FindFirst("Id").Value
-        //    };
-        //    return model;
-        //}
 
         [HttpGet]
         [AllowAnonymous]
         [Route("api/GetUserDetails")]
-        public ApplicationUser UserDetails(string email)
+        public IHttpActionResult UserDetails(string email)
         {
             if (email == null)
             {
@@ -128,8 +98,20 @@ namespace WebApi.Controllers
             var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
             var manager = new UserManager<ApplicationUser>(userStore);
             System.Diagnostics.Debug.WriteLine(email);
-            var modelvar = manager.FindByEmail(email);
-            return modelvar;
+            var applicationUser = manager.FindByEmail(email);
+            var roles = manager.GetRoles(applicationUser.Id);
+            //Dictionary<string, object> user = new Dictionary<string, object>();
+            //user.Add("UserDetails", applicationUser);
+            //user.Add("Roles", roles);
+            Account user = new Account();
+            user.Id = applicationUser.Id;
+            user.Email = applicationUser.Email;
+            user.FirstName = applicationUser.FirstName;
+            user.LastName = applicationUser.LastName;
+            user.UserName = applicationUser.UserName;
+            user.GoogleId = applicationUser.GoogleId;
+            user.Roles = roles.ToArray();
+            return Ok(user);
         }
 
 

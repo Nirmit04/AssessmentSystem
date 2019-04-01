@@ -304,6 +304,28 @@ namespace WebApi.Controllers
             db.SaveChanges();
             return Ok();
         }
-       
+
+        [HttpGet]
+        [Route("api/Quiz/EvaluateMockQuiz/{QuizId}")]
+        public IHttpActionResult EvaluateMockQuiz(int QuizId)
+        {
+            var qIDs = db.QuizQuestions.Where(x => x.QuizId == QuizId).Select(y => y.QuestionId).ToList();
+            var QuestionAnswers = db.Questions
+                .AsEnumerable()
+                .Where(x => qIDs.Contains(x.QuestionId))
+                .Select(z => new
+                {
+                    z.QuestionId,
+                    z.QuestionStatement,
+                    z.Option1,
+                    z.Option2,
+                    z.Option3,
+                    z.Option4,
+                    z.ImageName,
+                    z.Answer
+                }).ToList();
+            return Ok(QuestionAnswers);
+        }
+
     }
 }

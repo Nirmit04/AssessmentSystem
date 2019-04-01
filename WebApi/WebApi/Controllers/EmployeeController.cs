@@ -26,6 +26,7 @@ namespace WebApi.Controllers
                 .Where(x => x.UserId == UserId && x.Taken == false)
                 .Select(x => new
                 {
+                    x.UserScheduleId,
                     x.QuizScheduleId,
                     x.QuizId,
                     db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId && y.QuizType == "Non-Mock").QuizName,
@@ -33,6 +34,18 @@ namespace WebApi.Controllers
                     db.QuizSchedules.FirstOrDefault(y => y.QuizScheduleId == x.QuizScheduleId).EndDateTime
                 })
                 .ToList();
+            foreach (var item in quizzesScheduled)
+            {
+                if (DateTime.Now > item.EndDateTime)
+                {
+                    var userSchedule = db.UserSchedules.FirstOrDefault(x => x.UserScheduleId == item.UserScheduleId);
+                    var quizSchedule = db.QuizSchedules.FirstOrDefault(x => x.QuizScheduleId == item.QuizScheduleId);
+                    userSchedule.Taken = true;
+                    quizSchedule.ArchiveStatus = true;
+                    db.SaveChanges();
+                    quizzesScheduled.Remove(item);
+                }
+            }
             return Ok(quizzesScheduled);
         }
 
