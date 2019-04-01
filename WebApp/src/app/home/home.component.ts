@@ -14,11 +14,13 @@ import { retry, catchError } from 'rxjs/operators';
 export class HomeComponent implements OnInit {
 	constructor(private router: Router, private http: HttpClient, private service: EmployeeService) { }
 	rooturl = environment.apiURl;
-	role = '';
+	role = "";
 	uid = '';
-	checkqid: string = localStorage.getItem('key');
-	checksid: string = localStorage.getItem('key1');
+	checkqid: string = null;
+	checksid: string = null;
 	ngOnInit() {
+		this.checkqid = localStorage.getItem('key');
+		this.checksid = localStorage.getItem('key1');
 		if (localStorage.getItem('id') != null) {
 			const body = {
 				FirstName: localStorage.getItem('firstname'),
@@ -30,13 +32,21 @@ export class HomeComponent implements OnInit {
 			this.http.post(this.rooturl + 'User/Register', body).subscribe((res: any) => {
 				this.http.get(this.rooturl + 'GetUserDetails?email=' + localStorage.getItem('email'))
 					.subscribe((res1: any) => {
+						console.log(res1);
 						this.uid = res1.Id;
-						this.role = res1.Roles[0].RoleId;
+						this.role = res1.Roles;
+						console.log(this.role);
 						localStorage.setItem('uid', this.uid);
 						localStorage.setItem('role', this.role);
 						console.log(this.checkqid);
+						console.log(this.checksid);
 						if (this.checkqid == 'null' && this.checksid == 'null') {
-							this.redirecttodash(this.role);	}
+							this.redirecttodash(this.role[0]);
+						}
+						else if (this.checkqid == null && this.checksid == null) {
+							this.redirecttodash(this.role[0]);
+						}
+
 						else if (this.checkqid != 'null' && this.checksid != 'null') {
 							console.log("hii");
 							this.service.checkValidUser(+this.checkqid).subscribe((res: any) => {
@@ -50,7 +60,7 @@ export class HomeComponent implements OnInit {
 							})
 						} else {
 							localStorage.setItem('errorCode', '405');
-							localStorage.setItem('errorMsg', 'Not Allowed to entert he specified quiz.');
+							localStorage.setItem('errorMsg', 'Not Allowed to enter the specified quiz.');
 							this.router.navigate(['/http-error']);
 						}
 					});
@@ -61,9 +71,19 @@ export class HomeComponent implements OnInit {
 		}
 	}
 	redirecttodash(role: string) {
-		if (this.role === '2') {
+		console.log(role);
+		if (role === 'Test-Administrator') {
+			this.router.navigate(['/ta-dash']);
+		}
+		else if (role === 'Content-Creator') {
 			console.log('i am content creator');
 			this.router.navigate(['/cc-dash']);
+		}
+		else if (role === 'Employee') {
+			this.router.navigate(['/emp-dash']);
+		}
+		else {
+			this.router.navigate(['/ru-dash']);
 		}
 	}
 }

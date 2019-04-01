@@ -38,7 +38,7 @@ export class HttpInterceptorComponent implements OnInit {
 
   login() {
     localStorage.clear();
-    this.router.navigate(['/login']);
+    this.router.navigate([""]);
   }
 
 }

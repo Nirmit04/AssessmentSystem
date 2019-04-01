@@ -10,7 +10,18 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 	constructor(private router: Router) { }
 	canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 		if (localStorage.getItem('uid') != null) {
-			return true;
+			let roles = next.data["roles"] as Array<string>;
+			console.log(roles);
+			if (roles) {
+				var match = this.roleMatch(roles);
+				if (match) return true;
+				else {
+					this.router.navigate(['/http-error']);
+					return false;
+				}
+			}
+			else
+				return true;
 		}
 		localStorage.clear();
 		this.router.navigate(['/login']);
@@ -22,4 +33,20 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 	): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 		return true;
 	}
+
+	roleMatch(allowedRoles): boolean {
+		var isMatch = false;
+		console.log(localStorage.getItem('role'));
+		var userRoles: string = localStorage.getItem('role');
+		console.log(userRoles);
+		allowedRoles.forEach(element => {
+			console.log(userRoles.indexOf(element));
+		  if (userRoles.indexOf(element) > -1) {
+			isMatch = true;
+			return false;
+		  }
+		});
+		return isMatch;
+	
+	  }
 }

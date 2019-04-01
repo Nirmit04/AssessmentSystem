@@ -16,6 +16,7 @@ export class EmployeeService {
   body: postReport;
   QuizId: number;
   data: any;
+  correctAnswerCount = 0;
   constructor(private http: HttpClient) { }
   displayTimeElapsed() {
     return Math.floor(this.seconds / 3600) + ':' + Math.floor(this.seconds / 60) + ':' + Math.floor(this.seconds % 60);
@@ -29,14 +30,13 @@ export class EmployeeService {
   getMockQuesOfQuiz(QuizId: number) {
     return this.http.get(this.rootURL + 'Quiz/QuizQuestion/' + QuizId);
   }
-  checkValidUser(id: number)  {
-    return this.http.post(this.rootURL+'UserSchedule/ValidQuizTaker/'+localStorage.getItem('uid'), id);
+  checkValidUser(id: number) {
+    return this.http.post(this.rootURL + 'UserSchedule/ValidQuizTaker/' + localStorage.getItem('uid'), id);
   }
   postanswers() {
     this.body.QuizScheduleId = this.QuizScheduleId;
     this.body.QuizId = this.QuizId;
     this.body.UserId = localStorage.getItem('uid');
-    console.log(this.body);
     return this.http.post(this.rootURL + 'Quiz/EvaluateQuiz', this.body);
   }
   getUserDetails() {
@@ -46,8 +46,8 @@ export class EmployeeService {
   getListOfMockQuizzes() {
     return this.http.get(this.rootURL + 'Quiz/MockQuiz');
   }
-  getUserProgress(){
-    return this.http.get(this.rootURL + '/Employee/Stats/'+ localStorage.getItem('uid'))
+  getUserProgress() {
+    return this.http.get(this.rootURL + '/Employee/Stats/' + localStorage.getItem('uid'))
   }
   getReportOfNonMockQuiz(id) {
     return this.http.get(this.rootURL + 'Report/NonMock/' + id);
@@ -56,14 +56,13 @@ export class EmployeeService {
     return this.http.get(this.rootURL + 'Report/Mock/' + id);
   }
   getDetailedReport() {
-    console.log(this.QuizId);
     return this.http.get(this.rootURL + '/DetailedReport/' + localStorage.getItem('uid') + '/' + this.QuizId);
   }
   getQues(id: number) {
     return this.http.get(this.rootURL + 'Question/' + id)
   }
-  // getUserProgress(){
-  //   // console.log(localStorage.getItem('uid'))
-  //   return this.http.get(this.rootURL + '/Employee/Stats/'+ localStorage.getItem('uid'));
-  // }
+  getAnswers() {
+    return this.http.get(this.rootURL + 'Quiz/EvaluateMockQuiz/' + this.QuizId);
+  }
 }
+``
