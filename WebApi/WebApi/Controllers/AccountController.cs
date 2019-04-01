@@ -109,38 +109,6 @@ namespace WebApi.Controllers
             return Ok(user);
         }
 
-        private const string GoogleApiTokenInfoUrl = "https://www.googleapis.com/oauth2/v3/tokeninfo?id_token={0}";
-
-        // POST api/Account/GetExternalUserDetails
-        [HttpPost]
-        [Route("GetExternalUserDetails")]
-        public GoogleApiTokenInfo GetExternalUserDetails()
-        {
-            string IdToken = HttpContext.Current.Request.Form["IdToken"];
-            var httpClient = new HttpClient();
-            var requestUri = new Uri(string.Format(GoogleApiTokenInfoUrl, IdToken));
-
-            HttpResponseMessage httpResponseMessage;
-            try
-            {
-                httpResponseMessage = httpClient.GetAsync(requestUri).Result;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
-            if (httpResponseMessage.StatusCode != HttpStatusCode.OK)
-            {
-                return null;
-            }
-
-            var response = httpResponseMessage.Content.ReadAsStringAsync().Result;
-            var googleApiTokenInfo = JsonConvert.DeserializeObject<GoogleApiTokenInfo>(response);
-
-            return googleApiTokenInfo;
-        }
-
         // POST api/Account/Logout
         [Route("Logout")]
         public IHttpActionResult Logout()
