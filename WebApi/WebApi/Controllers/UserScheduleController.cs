@@ -129,7 +129,17 @@ namespace WebApi.Controllers
             var userSchedule = db.UserSchedules.FirstOrDefault(x => x.QuizId == QuizId && x.UserId == UserId && x.Taken == false);
             if (userSchedule != null)
             {
-                return Ok();
+                var quizSchedule = db.QuizSchedules.FirstOrDefault(x => x.QuizId == QuizId && x.QuizScheduleId == userSchedule.QuizScheduleId);
+                if (quizSchedule.EndDateTime >= DateTime.Now)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    quizSchedule.ArchiveStatus = true;
+                    userSchedule.Taken = true;
+                    return BadRequest("Quiz has Expired");
+                }
             }
             else
             {
