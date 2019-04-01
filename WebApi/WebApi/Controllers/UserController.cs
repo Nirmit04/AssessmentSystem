@@ -58,7 +58,31 @@ namespace WebApi.Controllers
         [Route("api/ForContent-CreatorRole")]
         public string ForContentCreator()
         {
-            return "Content-Creator";
+            return "For Content-Creator Role";
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Employee")]
+        [Route("EmployeeRole")]
+        public string Employee()
+        {
+            return "For Employee Role";
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Reporting-User")]
+        [Route("ReportingUser")]
+        public string Intern()
+        {
+            return "For Reporting-User Role";
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Test-Administrator")]
+        [Route("TestAdministratorRole")]
+        public string TestAdministrator()
+        {
+            return "For Test-Administrator Role";
         }
 
         [HttpGet]
@@ -78,6 +102,7 @@ namespace WebApi.Controllers
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Email = user.Email,
+                    Roles = manager.GetRoles(user.Id).ToArray(),
                     ImageURL = user.ImageURL,
                     GoogleId = user.GoogleId,
                 });
@@ -97,12 +122,8 @@ namespace WebApi.Controllers
             }
             var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
             var manager = new UserManager<ApplicationUser>(userStore);
-            System.Diagnostics.Debug.WriteLine(email);
             var applicationUser = manager.FindByEmail(email);
             var roles = manager.GetRoles(applicationUser.Id);
-            //Dictionary<string, object> user = new Dictionary<string, object>();
-            //user.Add("UserDetails", applicationUser);
-            //user.Add("Roles", roles);
             Account user = new Account();
             user.Id = applicationUser.Id;
             user.Email = applicationUser.Email;
