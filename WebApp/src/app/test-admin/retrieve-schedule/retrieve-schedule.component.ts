@@ -17,6 +17,7 @@ export class RetrieveScheduleComponent implements OnInit {
 	onCreate() {
 		this.router.navigate(['/testAdminCreateScheDule']);
 	}
+
 	scheduleList: Schedule[];
 	searchText = '';
 	difficultyLevel = '';
@@ -35,12 +36,14 @@ export class RetrieveScheduleComponent implements OnInit {
 		};
 		this.loadSchedule();
 	}
+
 	loadSchedule() {
 		this.service.getSchedule(localStorage.getItem('uid')).subscribe((res: any) => {
 			this.scheduleList = res as Schedule[];
 			this.dtTrigger.next();
 		});
 	}
+
 	deleteSchedule(scheduleId) {
 		this.service.deleteSchedule(scheduleId).subscribe((res: any) => {
 			this.toastr.success('Deleted Successfully', 'Assesment System');
@@ -49,6 +52,7 @@ export class RetrieveScheduleComponent implements OnInit {
 			this.dtTrigger.next();
 		});
 	}
+
 	viewSchedule(scheduleid: number, arrayindex: number) {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
@@ -59,8 +63,8 @@ export class RetrieveScheduleComponent implements OnInit {
 		this.service.formdata = this.scheduleList[arrayindex - 1];
 		this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe((res: any) => {
 		});
-
 	}
+
 	editSchedule(scheduleid: number, arrayindex: number) {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
@@ -74,8 +78,8 @@ export class RetrieveScheduleComponent implements OnInit {
 			this.dtTrigger.unsubscribe();
 			this.dtTrigger.next();
 		});
-
 	}
+
 	ngOnDestroy() {
 		this.dtTrigger.unsubscribe();
 	}

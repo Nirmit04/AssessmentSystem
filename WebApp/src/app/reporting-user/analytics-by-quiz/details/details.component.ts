@@ -9,15 +9,17 @@ import { ChartType, ChartOptions } from 'chart.js';
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css']
 })
+
 export class DetailsComponent implements OnInit {
   quizData: any;
+
   public pieChartOptions: ChartOptions = {
     responsive: true,
   };
+
   public pieChartLabels: Label[] = ['Highest-Score', 'Lowest Score', 'Average-Score', 'Number of Schedules'];
   public pieChartData: any[]
   public pieChartLegend: boolean;
-
   public pieChartType: ChartType = 'pie';
   chartData: any[];
 
@@ -26,7 +28,6 @@ export class DetailsComponent implements OnInit {
     public service: ReportingUserService) { }
 
   ngOnInit() {
-    console.log(this.data);
     this.getDetails(this.data.QuizId);
   }
 
@@ -39,8 +40,6 @@ export class DetailsComponent implements OnInit {
       this.chartData.push(this.quizData.AverageMarks);
       this.chartData.push(this.quizData.NoOfQuiz);
       this.pieChartData = this.chartData;
-      // console.log('i am here');
-      console.log(this.quizData);
     })
   }
 

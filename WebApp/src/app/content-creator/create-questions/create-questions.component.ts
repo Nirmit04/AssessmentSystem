@@ -10,12 +10,13 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./create-questions.component.css']
 })
 export class CreateQuestionsComponent implements OnInit {
+
   public Subjects: Subject[];
   CCreatedBy = "";
-  constructor(// @Inject(MAT_DIALOG_DATA) public data,
-    // public dialogRef: MatDialogRef<CreateQuestionsComponent>,
-    public service: ContentCreatorServiceService, public toastr: ToastrService,
+
+  constructor(public service: ContentCreatorServiceService, public toastr: ToastrService,
   ) { }
+
   ngOnInit() {
     this.resetForm();
     this.CCreatedBy = localStorage.getItem('uid');
@@ -41,10 +42,12 @@ export class CreateQuestionsComponent implements OnInit {
       SubjectId: "",
     }
   }
+
   onSubmit(form: NgForm) {
     this.service.postQuestion(form.value).subscribe((res) => {
       this.toastr.success('Inserted successfully');
       this.resetForm(form);
     });
   }
+
 }

@@ -4,7 +4,7 @@ import { TestAdminService } from './shared/test-admin.service';
 @Component({
 	selector: 'app-test-admin',
 	templateUrl: './test-admin.component.html',
-	styleUrls: [ './test-admin.component.css' ]
+	styleUrls: ['./test-admin.component.css']
 })
 export class TestAdminComponent implements OnInit {
 	Firstname: String;
@@ -12,8 +12,10 @@ export class TestAdminComponent implements OnInit {
 	email: String;
 	count: any;
 	profileUrl: any;
-	constructor(private service: TestAdminService, private ngxService: NgxUiLoaderService) {}
 	show: boolean = true;
+
+	constructor(private service: TestAdminService, private ngxService: NgxUiLoaderService) { }
+
 	ngOnInit() {
 		this.ngxService.startBackground('do-background-things');
 		this.ngxService.stopBackground('do-background-things');
@@ -22,6 +24,7 @@ export class TestAdminComponent implements OnInit {
 		this.loadUserDetails();
 		this.loadcount();
 	}
+
 	loadUserDetails() {
 		this.service.getUserDetails().subscribe((res: any) => {
 			this.Firstname = res.FirstName;
@@ -29,10 +32,12 @@ export class TestAdminComponent implements OnInit {
 			this.email = res.Email;
 		});
 	}
+
 	loadcount() {
 		this.service.getschedulecount().subscribe((res: any) => {
 			this.count = res;
 			this.show = false;
 		});
 	}
+
 }

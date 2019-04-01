@@ -15,6 +15,7 @@ export class AnalyticsByUserComponent implements OnInit {
   subscription: Subscription;
   dtOptions: DataTables.Settings = {};
   allUsers: any[];
+
   ngOnInit() {
     this.loadAllEmployees();
     this.dtOptions = {
@@ -22,15 +23,15 @@ export class AnalyticsByUserComponent implements OnInit {
       pageLength: 10,
     };
   }
+
   loadAllEmployees() {
     this.service.getAllUsers().subscribe((res: any) => {
       this.allUsers = res as any[];
       this.dtTrigger.next();
-      console.log(this.allUsers);
     });
   }
+
   viewUserDetails(index: string) {
-    console.log(index);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = "90%";
@@ -38,6 +39,6 @@ export class AnalyticsByUserComponent implements OnInit {
     dialogConfig.data = this.allUsers[index];
     this.dialog.open(ViewUserDetailsComponent, dialogConfig).afterClosed().subscribe((res: any) => {
     });
-
   }
+
 }

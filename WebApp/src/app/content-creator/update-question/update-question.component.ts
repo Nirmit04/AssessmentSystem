@@ -11,11 +11,14 @@ import { Router } from '@angular/router'
   templateUrl: './update-question.component.html',
   styleUrls: ['./update-question.component.css']
 })
+
 export class UpdateQuestionComponent implements OnInit {
+
   public Subjects: Subject[];
   public CCreatedBy = '';
   bool = false;
   label: string;
+
   constructor(@Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<UpdateQuestionComponent>,
     public service: ContentCreatorServiceService,
@@ -57,7 +60,7 @@ export class UpdateQuestionComponent implements OnInit {
     this.service.updateQuestion(form.value).subscribe(res => {
       this.toastr.success('Updated successfully');
       this.dialogRef.close('Submitted');
-    });;
+    });
   }
 
 }

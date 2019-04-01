@@ -9,14 +9,13 @@ import { Router } from '@angular/router';
   templateUrl: './non-mock-report.component.html',
   styleUrls: ['./non-mock-report.component.css']
 })
+
 export class NonMockReportComponent implements OnInit {
 
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
-
   bool: false;
-
   nonMockReportList: any[];
 
   constructor(private service: EmployeeService,
@@ -34,14 +33,15 @@ export class NonMockReportComponent implements OnInit {
   getNonMockReport() {
     this.service.getReportOfNonMockQuiz(localStorage.getItem('uid')).subscribe((res: any) => {
       this.nonMockReportList = res as any[];
-      console.log(this.nonMockReportList);
       this.dtTrigger.next();
     });
   }
+
   viewDetailedReport(qid: number, index: number) {
     this.service.data = this.nonMockReportList[index];
     this.service.QuizId = qid;
     this.router.navigate(['/emp-dash/quiz/detailed-report']);
     this.dtTrigger.next();
   }
+
 }

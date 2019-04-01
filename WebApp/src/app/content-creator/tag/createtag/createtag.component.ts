@@ -11,10 +11,13 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 	templateUrl: './createtag.component.html',
 	styleUrls: ['./createtag.component.css']
 })
+
 export class CreatetagComponent implements OnInit {
+
 	public model: TagModel;
 	userId = "";
 	Option: string = '';
+
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data,
 		public dialogRef: MatDialogRef<CreatetagComponent>,
@@ -30,9 +33,9 @@ export class CreatetagComponent implements OnInit {
 		else {
 			this.Option = 'Update';
 			this.service.tagForm = this.data;
-			console.log(this.service.tagForm);
 		}
 	}
+
 	resetForm(form?: NgForm) {
 		if (form != null) {
 			form.resetForm();
@@ -43,12 +46,13 @@ export class CreatetagComponent implements OnInit {
 			Department: ''
 		};
 	}
+
 	onSubmit(form: NgForm) {
 		this.service.postTags(form.value).subscribe(res => {
 			this.toastr.success('Inserted successfully');
 			this.resetForm(form);
 			this.dialogRef.close('Inserted');
 		});;
-		
 	}
+
 }

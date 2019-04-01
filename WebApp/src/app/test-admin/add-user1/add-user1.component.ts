@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './add-user1.component.html',
   styleUrls: ['./add-user1.component.css']
 })
+
 export class AddUser1Component implements OnInit {
   quiztakers: any[];
 
@@ -20,15 +21,18 @@ export class AddUser1Component implements OnInit {
   ngOnInit() {
     this.loadUsers()
   }
+
   loadUsers() {
     this.service.retrieveAllEmployees(this.data).subscribe((res: any) => {
       res.forEach(obj => obj.selected = false);
       this.quiztakers = res as User[];
     });
   }
+
   updateSelectedUsers(index) {
     this.quiztakers[index].selected = !this.quiztakers[index].selected;
   }
+
   onSubmit(form: NgForm) {
     var quiztakerId = this.quiztakers.filter(Id => Id.selected).map(idSelected => idSelected.Id);
     this.service.addUserInExistingSchedule(this.data, quiztakerId).subscribe(res => {
@@ -36,4 +40,5 @@ export class AddUser1Component implements OnInit {
       this.dialogRef.close('Added');
     });
   }
+
 }

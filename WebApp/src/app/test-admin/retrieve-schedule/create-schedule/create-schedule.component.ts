@@ -20,19 +20,21 @@ export class CreateScheduleComponent implements OnInit {
   btndisable = false;
   CCreatedBy = "";
   scheduleUrl = 'localhost:4200//emp-dash/take-quiz/';
+  QuizList: QuizModel[];
+
   constructor(private service: TestAdminService,
     private dialog: MatDialog,
     public toastr: ToastrService,
     private datePipe: DatePipe, ) { }
-  QuizList: QuizModel[];
+
   ngOnInit() {
     this.resetForm();
     this.CCreatedBy = localStorage.getItem('uid');
     this.service.retriveAllQuizzes().subscribe((res) => {
       this.QuizList = res as QuizModel[];
-    }
-    )
+    });
   }
+
   resetForm(form?: NgForm) {
     if (form != null) {
       form.resetForm();
@@ -48,4 +50,5 @@ export class CreateScheduleComponent implements OnInit {
       this.resetForm(form);
     });
   }
+
 }

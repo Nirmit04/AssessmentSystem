@@ -5,19 +5,22 @@ import { EmployeeService } from './shared/employee.service';
 @Component({
 	selector: 'app-employee',
 	templateUrl: './employee.component.html',
-	styleUrls: [ './employee.component.css' ]
+	styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent implements OnInit {
-	constructor(private ngxService: NgxUiLoaderService, private service: EmployeeService) {}
-	Firstname: String;
-	Lastname: String;
-	email: String;
+
+	Firstname: string;
+	Lastname: string;
+	email: string;
 	profileUrl: any;
 	mocks: any;
 	nmocks: any;
 	accuracy: any;
 	recentQuiz: any;
 	show: boolean = true;
+
+	constructor(private ngxService: NgxUiLoaderService, private service: EmployeeService) { }
+
 	ngOnInit() {
 		this.ngxService.startBackground('do-background-things');
 		this.ngxService.stopBackground('do-background-things');
@@ -26,17 +29,17 @@ export class EmployeeComponent implements OnInit {
 		this.loadUserDetails();
 		this.loadUserProgress();
 	}
+
 	loadUserDetails() {
 		this.service.getUserDetails().subscribe((res: any) => {
-			console.log(res);
 			this.Firstname = res.FirstName;
 			this.Lastname = res.LastName;
 			this.email = res.Email;
 		});
 	}
-	loadUserProgress(){
-		this.service.getUserProgress().subscribe((res:any) =>{
-			console.log(res);
+
+	loadUserProgress() {
+		this.service.getUserProgress().subscribe((res: any) => {
 			this.mocks = res.Mock;
 			this.nmocks = res.NonMock;
 			this.accuracy = res.Accuracy;
@@ -44,4 +47,5 @@ export class EmployeeComponent implements OnInit {
 			this.show = false;
 		})
 	}
+
 }
