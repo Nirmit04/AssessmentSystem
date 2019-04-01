@@ -18,22 +18,40 @@ export class Mainnav4Component {
       map(result => result.matches)
     );
 
-  
-    constructor(
-      private breakpointObserver: BreakpointObserver,
-      private authService: AuthService,
-      private router: Router
-    ) { }
-    ngOnInit() {
-      this.authService.authState.subscribe((user) => {
-        if (user != null) {
-        } else {
-          localStorage.clear();
-          this.router.navigate(['/login']);
-        }
-      });
-    }
-    logout() {
-      this.authService.signOut();
-    }
+
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private authService: AuthService,
+    private router: Router
+  ) { }
+  ngOnInit() {
+    this.authService.authState.subscribe((user) => {
+      if (user != null) {
+      } else {
+        localStorage.clear();
+        this.router.navigate(['/login']);
+      }
+    });
+  }
+  roleMatch(allowedRoles): boolean {
+    var isMatch = false;
+    //	console.log(localStorage.getItem('role'));
+    var userRoles: string = localStorage.getItem('role');
+    //	console.log(userRoles);
+    allowedRoles.forEach(element => {
+      //	console.log(userRoles.indexOf(element));
+      if (userRoles.indexOf(element) > -1) {
+        isMatch = true;
+        return false;
+      }
+    });
+    return isMatch;
+
+  }
+  aab(role: string) {
+    this.router.navigate([role]);
+  }
+  logout() {
+    this.authService.signOut();
+  }
 }
