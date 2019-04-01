@@ -62,7 +62,7 @@ namespace WebApi.Controllers
             try
             {
                 TotalAccuracy = db.Reports.Where(x => x.UserId == UserId).Select(y => y.Accuracy).Sum() / (MockCount + NonMockCount);
-                var QuizId = db.UserSchedules.OrderByDescending(x => x.UserScheduleId).FirstOrDefault(x => x.UserId == UserId).QuizId;
+                var QuizId = db.UserSchedules.OrderByDescending(x => x.UserScheduleId).FirstOrDefault(x => x.UserId == UserId && x.Taken==true).QuizId;
                 recentActivity = db.Quizs.FirstOrDefault(x => x.QuizId == QuizId).QuizName;
             }
             catch (Exception) { }
