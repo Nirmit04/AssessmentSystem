@@ -28,19 +28,15 @@ export class ArchivedScheduleComponent implements OnInit {
   loadArchivedSchedules() {
     this.service.getArchivedSchedules().subscribe((res: any) => {
       this.ScheduleList = res as Schedule[];
-      // this.dtTrigger.unsubscribe();
       this.dtTrigger.next();
-      console.log(this.ScheduleList);
     })
   }
   unarchiveSchedule(id) {
     console.log(id);
     if (confirm('Are you sure you want to un-archive this quiz?')) {
       this.service.unArchiveSchedule(id).subscribe((res: any) => {
-        // console.log(res);
         this.toastr.success('Un-Archived Successfully', 'Assesment System');
         this.loadArchivedSchedules();
-        // this.dtTrigger.unsubscribe();
         this.dtTrigger.next();
       });
     }

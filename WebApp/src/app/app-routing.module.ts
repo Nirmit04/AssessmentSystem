@@ -7,13 +7,11 @@ import { AppComponent } from './app.component';
 import { TagComponent } from './content-creator/tag/retrievetag/tag.component';
 import { RetrieveQuizComponent } from './content-creator/retrieve-quiz/retrieve-quiz.component';
 import { CreateQuestionsComponent } from './content-creator/create-questions/create-questions.component';
-import { MainNavComponent } from './content-creator/main-nav/main-nav.component';
 import { UserDetailsComponent } from './content-creator/user-details/user-details.component';
 import { AuthGuard } from './auth.guard';
 import { ArchiveQuizComponent } from './content-creator/retrieve-quiz/archive-quiz/archive-quiz.component';
 import { CreateScheduleComponent } from './test-admin/retrieve-schedule/create-schedule/create-schedule.component';
 import { RetrieveScheduleComponent } from './test-admin/retrieve-schedule/retrieve-schedule.component';
-import { MainNav2Component } from './test-admin/main-nav2/main-nav2.component';
 import { ArchivedScheduleComponent } from './test-admin/retrieve-schedule/archived-schedule/archived-schedule.component';
 import { TestAdminComponent } from './test-admin/test-admin.component';
 import { NonMockComponent } from './employee/non-mock/non-mock.component';
@@ -28,7 +26,6 @@ import { AddUserComponent } from './test-admin/retrieve-schedule/add-user/add-us
 import { AnalyticsByTagComponent } from './reporting-user/analytics-by-tag/analytics-by-tag.component';
 import { AnalyticsByUserComponent } from './reporting-user/analytics-by-user/analytics-by-user.component';
 import { AnalyticsByQuizComponent } from './reporting-user/analytics-by-quiz/analytics-by-quiz.component';
-import { Mainnav4Component } from './reporting-user/mainnav4/mainnav4.component';
 import { ReportingUserComponent } from './reporting-user/reporting-user.component';
 import { HttpInterceptorComponent } from './http-interceptor/http-interceptor.component';
 const routes: Routes = [
