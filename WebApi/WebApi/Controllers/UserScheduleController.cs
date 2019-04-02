@@ -24,13 +24,13 @@ namespace WebApi.Controllers
                 .Where(x => !userIds.Contains(x.Id))
                 .Select(z => new
                 {
-                    Id = z.Id,
-                    UserName = z.UserName,
-                    FirstName = z.FirstName,
-                    LastName = z.LastName,
-                    Email = z.Email,
-                    ImageURL = z.ImageURL,
-                    GoogleId = z.GoogleId
+                    z.Id,
+                    z.UserName,
+                    z.FirstName,
+                    z.LastName,
+                    z.Email,
+                    z.ImageURL,
+                    z.GoogleId
                 }).ToList();
             return Ok(users);
         }
@@ -46,13 +46,13 @@ namespace WebApi.Controllers
                 .Where(x => userScheduleUserIds.Contains(x.Id))
                 .Select(z => new
                 {
-                    Id = z.Id,
-                    UserName = z.UserName,
-                    FirstName = z.FirstName,
-                    LastName = z.LastName,
-                    Email = z.Email,
-                    ImageURL = z.ImageURL,
-                    GoogleId = z.GoogleId,
+                    z.Id,
+                    z.UserName,
+                    z.FirstName,
+                    z.LastName,
+                    z.Email,
+                    z.ImageURL,
+                    z.GoogleId,
                     QuizTaken = db.UserSchedules.Where(x => x.UserId == z.Id && x.QuizScheduleId == QuizScheduleId).Select(y => y.Taken)
                 }).ToList();
             return Ok(userIds);

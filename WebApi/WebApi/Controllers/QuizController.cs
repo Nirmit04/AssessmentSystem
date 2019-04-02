@@ -90,7 +90,7 @@ namespace WebApi.Controllers
                 .Where(x => x.QuizId == QuizId)
                 .Select(x => x.QuestionId)
                 .ToList();
-
+             
             List<int> questionIds = new List<int>();
             foreach (int qId in qIds)
             {

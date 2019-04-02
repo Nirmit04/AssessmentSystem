@@ -21,10 +21,10 @@ namespace WebApi.Controllers
             var subject = db.Subjects.
                 Select(x => new
                 {
-                    SubjectId=x.SubjectId,
-                    Name=x.Name,
-                    Department=x.Department,
-                    CreatedBy=x.CreatedBy
+                   x.SubjectId,
+                   x.Name,
+                   x.Department,
+                   x.CreatedBy
                 }).ToList();
             return Ok(subject);
         }
@@ -68,10 +68,10 @@ namespace WebApi.Controllers
             var subject = db.Subjects.Where(x=>x.CreatedBy==UserId).
                 Select(x => new
                 {
-                    SubjectId = x.SubjectId,
-                    Name = x.Name,
-                    Department = x.Department,
-                    CreatedBy = x.CreatedBy
+                    x.SubjectId,
+                    x.Name,
+                    x.Department,
+                    x.CreatedBy
                 }).ToList();
             return Ok(subject);
         }

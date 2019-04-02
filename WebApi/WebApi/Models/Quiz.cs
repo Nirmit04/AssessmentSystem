@@ -19,6 +19,7 @@ namespace WebApi.Models
         public string QuizType { get; set; } = "Non-Mock";
         public int[] QuestionIds { get; set; }
         public string QuizTime { get; set; } = null;
+
         [ForeignKey("Subject")]
         public int SubjectId { get; set; }
         public virtual Subject Subject { get; set; }
