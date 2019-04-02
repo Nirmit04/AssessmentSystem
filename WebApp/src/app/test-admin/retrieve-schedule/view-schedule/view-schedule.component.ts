@@ -16,11 +16,14 @@ import { DatePipe } from '@angular/common';
 export class ViewScheduleComponent implements OnInit {
   public Schedule: Schedule[];
   public CCreatedBy = '';
+  date: string;
   bool: boolean;
   label: string;
   usersList: any[];
-  date = new Date();
+  startDateValid = false;
+  endDateValid = false;
   q1;
+  stdate;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<UpdateQuestionComponent>,
@@ -30,6 +33,8 @@ export class ViewScheduleComponent implements OnInit {
     private datePipe: DatePipe) { }
 
   ngOnInit() {
+    //s\ this.usersList[0].QuizTaken = "false";
+    this.date = this.datePipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
     this.bool = this.service.readonlyStatus;
     if (this.bool === true) {
       this.label = "View Schedule";
@@ -60,5 +65,29 @@ export class ViewScheduleComponent implements OnInit {
       this.dialogRef.close('Saved');
     })
   }
+  
+  checkStartDate(date1: NgForm) {
+    this.stdate = date1.value;
+    this.date = (this.datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm'));
+    console.log(this.date);
+    if (date1.value < this.date) {
+      console.log('invalid')
+      this.startDateValid = true;
+    } else {
+      this.startDateValid = false;
+      console.log('valid');
+    }
+  }
 
+  checkEndDate(date2: NgForm) {
+    this.date = (this.datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm'));
+    console.log(this.date);
+    if (date2.value <= this.stdate || date2.value < this.date) {
+      console.log("invalid");
+      this.endDateValid = true;
+    } else {
+      this.endDateValid = false;
+      console.log('valid');
+    }
+  }
 }

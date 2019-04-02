@@ -54,6 +54,7 @@ export class AddUserComponent implements OnInit {
   }
 
   deleteUserfromSchedule(scheduleId: number, arrayIndex: number) {
+    console.log('delete user function');
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = "70%";
