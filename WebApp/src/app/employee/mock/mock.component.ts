@@ -9,11 +9,12 @@ import { Router } from '@angular/router';
   templateUrl: './mock.component.html',
   styleUrls: ['./mock.component.css']
 })
+
 export class MockComponent implements OnInit {
+
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
-
   mockList: any[];
 
   constructor(private service: EmployeeService,
@@ -31,7 +32,6 @@ export class MockComponent implements OnInit {
   getMockList() {
     this.service.getListOfMockQuizzes().subscribe((res: any) => {
       this.mockList = res as any[];
-      console.log(this.mockList);
       this.dtTrigger.next();
     });
   }
@@ -42,7 +42,6 @@ export class MockComponent implements OnInit {
       this.service.QuizId = QuizId;
       this.router.navigate(['/emp-dash/quiz/take-quiz']);
     });
-
   }
 
 }

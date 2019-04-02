@@ -9,11 +9,14 @@ import { Subject } from 'rxjs';
   templateUrl: './archived-schedule.component.html',
   styleUrls: ['./archived-schedule.component.css']
 })
+
 export class ArchivedScheduleComponent implements OnInit {
+
   ScheduleList: Schedule[];
   dtTrigger: Subject<Schedule> = new Subject();
   subscription: Subscription;
   dtOptions: DataTables.Settings = {};
+
   constructor(private service: TestAdminService,
     private toastr: ToastrService) { }
 
@@ -31,8 +34,8 @@ export class ArchivedScheduleComponent implements OnInit {
       this.dtTrigger.next();
     })
   }
+
   unarchiveSchedule(id) {
-    console.log(id);
     if (confirm('Are you sure you want to un-archive this quiz?')) {
       this.service.unArchiveSchedule(id).subscribe((res: any) => {
         this.toastr.success('Un-Archived Successfully', 'Assesment System');
@@ -41,6 +44,7 @@ export class ArchivedScheduleComponent implements OnInit {
       });
     }
   }
+
   ngOnDestroy() {
     this.dtTrigger.unsubscribe();
   }

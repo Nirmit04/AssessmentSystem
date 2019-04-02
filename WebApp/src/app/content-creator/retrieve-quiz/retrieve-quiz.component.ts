@@ -15,7 +15,9 @@ import { Subject } from 'rxjs';
 	templateUrl: './retrieve-quiz.component.html',
 	styleUrls: ['./retrieve-quiz.component.css']
 })
+
 export class RetrieveQuizComponent implements OnInit {
+
 	QuizList: QuizModel[];
 	searchText = '';
 	difficultyLevel = '';
@@ -24,6 +26,7 @@ export class RetrieveQuizComponent implements OnInit {
 	dtOptions: DataTables.Settings = {};
 	dtTrigger: Subject<QuizModel> = new Subject();
 	subscription: Subscription;
+
 	constructor(private service: ContentCreatorServiceService,
 		private router: Router,
 		private dialog: MatDialog,
@@ -36,12 +39,14 @@ export class RetrieveQuizComponent implements OnInit {
 		};
 		this.loadQuiz();
 	}
+
 	loadQuiz() {
 		this.service.getQuizzes().subscribe((res: any) => {
 			this.QuizList = res as QuizModel[];
 			this.dtTrigger.next();
 		});
 	}
+
 	onCreate() {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
@@ -65,6 +70,7 @@ export class RetrieveQuizComponent implements OnInit {
 			});
 		}
 	}
+
 	onEdit(id: number) {
 		localStorage.setItem('quizId', id.toString());
 		this.service.getQuestionsByQuiz(id).subscribe((res: any) => {
@@ -83,7 +89,9 @@ export class RetrieveQuizComponent implements OnInit {
 		});
 
 	}
+
 	ngOnDestroy() {
 		this.dtTrigger.unsubscribe();
 	}
+
 }

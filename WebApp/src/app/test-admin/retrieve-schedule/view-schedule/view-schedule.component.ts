@@ -33,7 +33,6 @@ export class ViewScheduleComponent implements OnInit {
     this.bool = this.service.readonlyStatus;
     if (this.bool === true) {
       this.label = "View Schedule";
-      console.log(this.service.formdata.StartDateTime);
       this.q1 = this.service.formdata.StartDateTime;
     } else {
       this.label = "Edit Schedule";
@@ -41,21 +40,25 @@ export class ViewScheduleComponent implements OnInit {
     this.CCreatedBy = localStorage.getItem('uid');
     this.loadExistingUsers(+this.data);
   }
+
   loadExistingUsers(scheduleQuizId: number) {
     this.service.getScheduleQuizUsers(scheduleQuizId).subscribe((res: any) => {
       this.usersList = res as any[];
     });
   }
+
   deleteUserFromSchedule(UserId: string) {
     this.service.deleteUserFromSchedule(+this.data, UserId).subscribe((res: any) => {
       this.toastr.error('removed successfully');
       this.loadExistingUsers(+this.data);
     });
   }
+
   onSubmit(form: NgForm) {
     this.service.editSchedule(this.data, form.value).subscribe(res => {
       this.toastr.success('Changes Saved');
       this.dialogRef.close('Saved');
     })
   }
+
 }

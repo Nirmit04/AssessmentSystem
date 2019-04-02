@@ -14,14 +14,12 @@ export class MockReportComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
-
   bool: false;
-
   mockReportList: any[];
 
   constructor(private service: EmployeeService,
-              private toastr: ToastrService,
-              private router: Router) { }
+    private toastr: ToastrService,
+    private router: Router) { }
 
   ngOnInit() {
     this.dtOptions = {
@@ -37,9 +35,11 @@ export class MockReportComponent implements OnInit {
       this.dtTrigger.next();
     });
   }
+
   viewDetailedReport(qid: number, index: number) {
     this.service.data = this.mockReportList[index];
     this.service.QuizId = qid;
     this.router.navigate(['/emp-dash/quiz/detailed-report']);
   }
+
 }

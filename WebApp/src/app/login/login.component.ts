@@ -10,15 +10,17 @@ import { Router, ActivatedRoute } from '@angular/router';
 	styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
 	user: SocialUser;
 	returnURL: string;
-	constructor(private authService: AuthService, 
+
+	constructor(private authService: AuthService,
 		private router: Router,
 		private route: ActivatedRoute) { }
 
 	ngOnInit() {
-		localStorage.setItem('key',this.route.snapshot.queryParamMap.get('take-quiz'));
-		localStorage.setItem('key1',this.route.snapshot.queryParamMap.get('schedule-id'));
+		localStorage.setItem('key', this.route.snapshot.queryParamMap.get('take-quiz'));
+		localStorage.setItem('key1', this.route.snapshot.queryParamMap.get('schedule-id'));
 		this.authService.authState.subscribe((user) => {
 			this.user = user;
 			if (user != null) {
@@ -35,10 +37,13 @@ export class LoginComponent implements OnInit {
 			}
 		});
 	}
+
 	signInWithGoogle(): void {
 		this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
 	}
+
 	signOut(): void {
 		this.authService.signOut();
 	}
+
 }

@@ -14,6 +14,7 @@ import { ViewScheduleComponent } from '../view-schedule/view-schedule.component'
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.css']
 })
+
 export class AddUserComponent implements OnInit {
   scheduleList: Schedule[];
   dtOptions: DataTables.Settings = {};
@@ -31,12 +32,14 @@ export class AddUserComponent implements OnInit {
     };
     this.loadSchedule();
   }
+
   loadSchedule() {
     this.service.getSchedule(localStorage.getItem('uid')).subscribe((res: any) => {
       this.scheduleList = res as Schedule[];
       this.dtTrigger.next();
     })
   }
+
   addUserToSchedule(scheduleid: number, arrayindex: number) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
@@ -48,15 +51,14 @@ export class AddUserComponent implements OnInit {
       this.dtTrigger.unsubscribe();
       this.dtTrigger.next();
     });
-
   }
+
   deleteUserfromSchedule(scheduleId: number, arrayIndex: number) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = "70%";
     dialogConfig.disableClose = true;
     dialogConfig.data = scheduleId;
-    console.log(scheduleId);
     this.service.deleteUserVisibility = true;
     this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe((res: any) => {
       this.loadSchedule();
@@ -65,5 +67,6 @@ export class AddUserComponent implements OnInit {
       this.dtTrigger.next();
     });
   }
+
 }
 
