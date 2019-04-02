@@ -18,7 +18,7 @@ declare var $: any;
 	styleUrls: ['./retrieve-question-bank.component.css']
 })
 export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
-	
+
 	dtOptions: DataTables.Settings = {};
 	questionList: Question[];
 	searchText = '';
@@ -51,9 +51,9 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 		if (confirm('Are you sure you want to delete this record?')) {
 			this.service.deleteQues(qid).subscribe((res: any) => {
 				this.toastr.success('Deleted Successfully', 'Assesment System');
-				this.getQuesOfUser(localStorage.getItem('uid'));
 				this.dtTrigger.unsubscribe();
 				this.dtTrigger.next();
+				this.getQuesOfUser(localStorage.getItem('uid'));
 			});
 		}
 	}
@@ -66,9 +66,9 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 		this.service.readonlyStatus = false;
 		this.service.formData = this.questionList[arrayindex - 1];
 		this.dialog.open(UpdateQuestionComponent, dialogConfig).afterClosed().subscribe((res: any) => {
-			this.getQuesOfUser(localStorage.getItem('uid'));
 			this.dtTrigger.unsubscribe();
 			this.dtTrigger.next();
+			this.getQuesOfUser(localStorage.getItem('uid'));
 		});
 	}
 
@@ -86,5 +86,5 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 	ngOnDestroy() {
 		this.dtTrigger.unsubscribe();
 	}
-	
+
 }
