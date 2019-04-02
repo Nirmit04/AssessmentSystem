@@ -30,6 +30,7 @@ export class ArchivedScheduleComponent implements OnInit {
 
   loadArchivedSchedules() {
     this.service.getArchivedSchedules().subscribe((res: any) => {
+      this.dtTrigger.unsubscribe();
       this.ScheduleList = res as Schedule[];
       this.dtTrigger.next();
     })
