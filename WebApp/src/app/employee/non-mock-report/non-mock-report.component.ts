@@ -26,7 +26,7 @@ export class NonMockReportComponent implements OnInit {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
-      responsive: true,
+   //   responsive: true,
       // scrollX: true
     };
     this.getNonMockReport();
