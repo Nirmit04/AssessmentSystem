@@ -107,7 +107,7 @@ namespace WebApi.Controllers
                     x.ImageName,
                     x.Marks,
                     x.Difficulty,
-                    x.CreatedBy,
+                    x.CreatedBy
                 }).ToList();
             return Ok(questions);
         }
@@ -192,7 +192,7 @@ namespace WebApi.Controllers
                     x.QuizType,
                     x.QuizTime,
                     Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
-                    CreatedBy=db.Users.FirstOrDefault(z=>z.Id==x.CreatedBy).FirstName
+                    CreatedBy = db.Users.FirstOrDefault(z=>z.Id==x.CreatedBy).FirstName
                 }).ToList();
             return Ok(quiz);
         }

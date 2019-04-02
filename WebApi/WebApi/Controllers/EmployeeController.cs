@@ -30,6 +30,7 @@ namespace WebApi.Controllers
                     x.QuizScheduleId,
                     x.QuizId,
                     db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId && y.QuizType == "Non-Mock").QuizName,
+                    db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId && y.QuizType == "Non-Mock").QuizTime,
                     db.QuizSchedules.FirstOrDefault(y => y.QuizScheduleId == x.QuizScheduleId).StartDateTime,
                     db.QuizSchedules.FirstOrDefault(y => y.QuizScheduleId == x.QuizScheduleId).EndDateTime
                 })

@@ -102,7 +102,6 @@ namespace WebApi.Controllers
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Email = user.Email,
-                    Roles = manager.GetRoles(user.Id).ToArray(),
                     ImageURL = user.ImageURL,
                     GoogleId = user.GoogleId,
                 });
