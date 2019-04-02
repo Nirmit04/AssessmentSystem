@@ -228,6 +228,23 @@ namespace WebApi.Controllers
             return Ok(questions);
         }
 
+        [HttpPost]
+        [Route("api/Question/GetQuestion/{Difficulty}/{SubjectId}/{MaxQuestions}")]
+        public IHttpActionResult GenerateRandomQuestions(string Difficulty, int SubjectId,int MaxQuestions)
+        {
+            var questionsIds = db.Questions
+               .Where(z => z.Difficulty == Difficulty && z.SubjectId == SubjectId).Select(z => z.QuestionId).ToArray();
+            Random random = new Random();
+            int i = 1;
+            while (i<=MaxQuestions)
+            {
+                random.Next(questionsIds.Min(), questionsIds.Max());
+
+            }
+            return Ok();
+
+
+        }
 
     }
 }
