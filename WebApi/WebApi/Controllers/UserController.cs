@@ -29,7 +29,7 @@ namespace WebApi.Controllers
             var dumuser = manager.FindByEmail(model.Email);
             if (dumuser == null)
             {
-                ApplicationUser user = new ApplicationUser() { UserName = model.FirstName + model.LastName + rnd.Next(), Email = model.Email };
+                ApplicationUser user = new ApplicationUser() { UserName = model.Email.Substring(0, model.Email.LastIndexOf("@")), Email = model.Email };
 
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
