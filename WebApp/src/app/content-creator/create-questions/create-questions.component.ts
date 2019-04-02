@@ -14,7 +14,9 @@ export class CreateQuestionsComponent implements OnInit {
   public Subjects: Subject[];
   CCreatedBy = "";
 
-  constructor(public service: ContentCreatorServiceService, public toastr: ToastrService,
+  constructor(public service: ContentCreatorServiceService,
+    public toastr: ToastrService,
+   // public dialogRef: MatDialogRef<CreateQuestionsComponent>
   ) { }
 
   ngOnInit() {
@@ -48,6 +50,7 @@ export class CreateQuestionsComponent implements OnInit {
     this.service.postQuestion(form.value).subscribe((res) => {
       this.toastr.success('Inserted successfully');
       this.resetForm(form);
+     // this.dialogRef.close();
     });
   }
 

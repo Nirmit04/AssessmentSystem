@@ -72,7 +72,6 @@ export class CreatetagComponent implements OnInit {
 				this.tagExists = false;
 			}
 		}
-
 		console.log(this.tagExists);
 	}
 }

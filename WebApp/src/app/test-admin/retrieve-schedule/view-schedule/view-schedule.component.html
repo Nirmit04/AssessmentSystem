@@ -10,27 +10,22 @@
       <input type="hidden" name="ArchiveStatus" #ArchiveStatus="ngModel" [(ngModel)]="service.formdata.ArchiveStatus">
       <div class="form-group col-md-6">
         <label>Start Date Time:
-          <input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" [min]="date" required [readonly]="bool"
-          name="StartDateTime" #StartDateTime="ngModel" [(ngModel)]="q1">
-          <owl-date-time [pickerType]="'both'" #dt1 ></owl-date-time>
-          <div *ngIf="StartDateTime.invalid && StartDateTime.errors.owlDateTimeMin">
-              INVALID DATE !
+          <input type="datetime-local" (focusout)="checkStartDate(StartDateTime)" [min]="date" required
+            [readonly]="bool" name="StartDateTime" #StartDateTime="ngModel" [(ngModel)]="service.formdata.StartDateTime">
+          <owl-date-time [pickerType]="'both'" #dt1></owl-date-time>
+          <div class="validation-error" *ngIf="StartDateTime.invalid && StartDateTime.touched || startDateValid">This
+            field is
+            wrong and required.
           </div>
-        <div class="validation-error" *ngIf="StartDateTime.invalid && StartDateTime.touched">This field is 
-          wrong and required.
-        </div>
-      </label>
+        </label>
       </div>
       <div class="form-group col-md-6">
         <label>End Date Time:
-          <input [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" [min]="q1" required [readonly]="bool"
+          <input type="datetime-local" (focusout)="checkEndDate(EndDateTime)" [min]="q1" required [readonly]="bool"
             name="EndDateTime" #EndDateTime="ngModel" [(ngModel)]="service.formdata.EndDateTime">
-          <owl-date-time [pickerType]="'both'" #dt2 ></owl-date-time>  
-          <div *ngIf="EndDateTime.invalid && EndDateTime.errors.owlDateTimeMin">
-              INVALID DATE !
-          </div> 
-        <div class="validation-error" *ngIf="EndDateTime.invalid && EndDateTime.touched">This field is required.
-        </div>
+          <div class="validation-error" *ngIf="EndDateTime.invalid && EndDateTime.touched || endDateValid">This field is
+            Wrong.
+          </div>
         </label>
       </div>
       <div class="form-group">
@@ -43,7 +38,7 @@
     <thead class="thead-dark">
       <th scope="col">#User ID</th>
       <th scope="col">UserName</th>
-        <th scope="col">E-Mail</th>
+      <th scope="col">E-Mail</th>
       <th scope="col">Taken</th>
       <th [hidden]="!service.deleteUserVisibility" scope="col">Action</th>
     </thead>
@@ -55,8 +50,8 @@
           <td class="text-primary" scope="row">{{user.Email}}</td>
           <td class="text-primary" scope="row">{{user.QuizTaken}}</td>
           <td [hidden]="!service.deleteUserVisibility">
-            <button  class="btn text-danger" (click)="deleteUserFromSchedule(user.Id)"><i
-                class="fa fa-trash fa-lg"></i></button>
+            <button class="btn text-danger" [hidden]="user.QuizTaken[0]" (click)="deleteUserFromSchedule(user.Id)"><i
+                class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
           </td>
         </tr>
       </ng-container>
