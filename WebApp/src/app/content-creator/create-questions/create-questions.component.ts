@@ -19,7 +19,7 @@ export class CreateQuestionsComponent implements OnInit {
 
   ngOnInit() {
     this.resetForm();
-    this.CCreatedBy = localStorage.getItem('uid');
+    // this.CCreatedBy = localStorage.getItem('uid');
     this.service.retrieveSubjects().subscribe(res => {
       this.Subjects = res as Subject[];
     });
@@ -27,6 +27,7 @@ export class CreateQuestionsComponent implements OnInit {
 
   resetForm(form?: NgForm) {
     if (form != null) {
+    // this.CCreatedBy = localStorage.getItem('uid');
       form.resetForm();
     }
     this.service.formData = {

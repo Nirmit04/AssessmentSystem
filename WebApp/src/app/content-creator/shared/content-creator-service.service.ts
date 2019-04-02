@@ -23,6 +23,8 @@ export class ContentCreatorServiceService {
 	constructor(private http: HttpClient) { }
 
 	postQuestion(formData: Question) {
+		formData.CreatedBy= localStorage.getItem('uid');
+		console.log(formData);
 		return this.http.post(this.rootURL + 'Question/CreateQuestion', formData);
 	}
 
