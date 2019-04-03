@@ -12,9 +12,6 @@ import { Label, SingleDataSet } from 'ng2-charts';
 })
 export class AnalyticsByTagComponent implements OnInit {
 
-  constructor(private service: ReportingUserService,
-    private router: Router) { }
-
   tagAnalysisList: any[];
   panelOpenState = false;
   highdata = [];
@@ -22,6 +19,11 @@ export class AnalyticsByTagComponent implements OnInit {
   label = [];
   accuracy = [];
   name = 'high';
+
+  constructor(private service: ReportingUserService,
+    private router: Router) { }
+
+
   public barChartOptions: ChartOptions = {
     responsive: true,
     scales: { xAxes: [{}], yAxes: [{}] },
@@ -37,7 +39,6 @@ export class AnalyticsByTagComponent implements OnInit {
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
   public barChartData: ChartDataSets[];
-
   public radarChartOptions: ChartOptions = {
     responsive: true,
   };
@@ -46,7 +47,6 @@ export class AnalyticsByTagComponent implements OnInit {
     { data: this.accuracy, label: 'Accuracy:' }
   ];
   public radarChartType: ChartType = 'radar';
-
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
   dtOptions: DataTables.Settings = {};

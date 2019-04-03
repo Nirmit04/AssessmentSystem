@@ -11,15 +11,17 @@ import { ViewAnswerComponent } from '../view-answer/view-answer.component';
   templateUrl: './detailed-report.component.html',
   styleUrls: ['./detailed-report.component.css']
 })
+
 export class DetailedReportComponent implements OnInit {
+
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
   public doughnutChartLabels1 = ['Attempted:' + ((parseInt(this.service.data.CorrectAnswers)) + (parseInt(this.service.data.WrongAnswers))).toString(), 'UnAttempted: ' + this.service.data.UnattemptedAnswers];
   public doughnutChartData1 = [(parseInt(this.service.data.CorrectAnswers) + parseInt(this.service.data.WrongAnswers)).toString(), this.service.data.UnattemptedAnswers];
   public doughnutChartType1 = 'doughnut';
-
   quizname = '';
+
   public doughnutChartOptions1 = {
     legend: {
       onClick: function (e) {
@@ -27,6 +29,7 @@ export class DetailedReportComponent implements OnInit {
       }
     }
   }
+
   private doughnutChartColors2: any[] = [{ backgroundColor: ["#FF713A", "#00B292"] }];
   private doughnutChartColors1: any[] = [{ backgroundColor: ["#3E00B2", "#FFF53A"] }];
 
@@ -34,6 +37,7 @@ export class DetailedReportComponent implements OnInit {
   public doughnutChartLabels2 = ['Correct: ' + this.service.data.CorrectAnswers, 'InCorrect: ' + this.service.data.WrongAnswers];
   public doughnutChartData2 = [this.service.data.CorrectAnswers, this.service.data.WrongAnswers];
   public doughnutChartType2 = 'doughnut';
+
   public doughnutChartOptions2 = {
     legend: {
       onClick: function (e) {
@@ -58,6 +62,7 @@ export class DetailedReportComponent implements OnInit {
     };
     this.loadDetail();
   }
+
   loadDetail() {
     this.service.getDetailedReport().subscribe((res: any) => {
       this.reports = res as any[];
@@ -66,6 +71,7 @@ export class DetailedReportComponent implements OnInit {
       this.dtTrigger.next();
     })
   }
+
   calculate() {
     for (let i = 0; i < this.reports.length; i++) {
       if (this.reports[i].AttemptedAnswer === this.reports[i].CorrectAnswer) {
@@ -77,6 +83,7 @@ export class DetailedReportComponent implements OnInit {
       }
     }
   }
+
   viewques(id: number, markedanswer: number) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
@@ -91,9 +98,9 @@ export class DetailedReportComponent implements OnInit {
       this.dtTrigger.next();
     });
   }
+
   ngOnDestroy() {
     this.dtTrigger.unsubscribe();
   }
-
 
 }

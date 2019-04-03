@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 	styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
 	user: SocialUser;
 	returnURL: string;
 	constructor(private authService: AuthService,
@@ -35,10 +36,13 @@ export class LoginComponent implements OnInit {
 			}
 		});
 	}
+
 	signInWithGoogle(): void {
 		this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
 	}
+
 	signOut(): void {
 		this.authService.signOut();
 	}
+
 }

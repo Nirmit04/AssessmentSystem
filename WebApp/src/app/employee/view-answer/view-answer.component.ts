@@ -17,21 +17,21 @@ export class ViewAnswerComponent implements OnInit {
   zlop2 = false;
   zlop3 = false;
   zlop4 = false;
+
   constructor(private service: EmployeeService,
     @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit() {
     this.sda();
   }
-  sda() {
 
+  sda() {
     this.service.getQues(this.data.id).subscribe((res: any) => {
       this.ques = res as Question[];
       if (this.ques[0].Answer === 1) {
         this.flop1 = true;
       } else if (this.ques[0].Answer === 2) {
         this.flop2 = true;
-
       } else if (this.ques[0].Answer === 3) {
         this.flop3 = true;
       } else if (this.ques[0].Answer === 4) {
@@ -48,4 +48,5 @@ export class ViewAnswerComponent implements OnInit {
       }
     });
   }
+
 }

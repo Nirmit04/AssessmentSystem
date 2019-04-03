@@ -13,14 +13,16 @@ export class ReportingUserService {
 	getTagAnalytics() {
 		return this.http.get(this.rootUrl + 'ReportingUser/AnalyticsByTag');
 	}
+
 	getAllUsers() {
 		return this.http.get(this.rootUrl + 'User/GetUserAll');
 	}
+
 	getUserAnalytics(id: string) {
 		return this.http.get(this.rootUrl + 'ReportingUser/AnalyticsByUser/' + id);
 	}
+
 	getUserDetails() {
-		console.log(localStorage.getItem('email'));
 		return this.http.get(this.rootUrl + 'GetUserDetails?email=' + localStorage.getItem('email'));
 	}
 
@@ -31,8 +33,8 @@ export class ReportingUserService {
 	getQuizAnalysis(qid: string) {
 		return this.http.get(this.rootUrl + 'ReportingUser/AnalyticsByQuiz/' + qid)
 	}
-	getUserProgress(){
-		
+
+	getUserProgress() {
 		return this.http.get(this.rootUrl + '/ReportingUser/Stats');
 	}
 

@@ -15,56 +15,73 @@ export class TestAdminService {
 	formdata: Schedule;
 	readonlyStatus: boolean;
 	scheduleQuizUsers: string[];
-	deleteUserVisibility:boolean=false;
+	deleteUserVisibility: boolean = false;
+
 	retriveAllQuizzes() {
 		return this.http.get(this.rooturl + 'Quiz/GetAllQuiz');
 	}
-	retrieveAllEmployees(id:number) {
-		return this.http.get(this.rooturl + 'UserSchedule/UserNotAssignedQuiz/'+id);
+
+	retrieveAllEmployees(id: number) {
+		return this.http.get(this.rooturl + 'UserSchedule/UserNotAssignedQuiz/' + id);
 	}
+
 	retrieveSpecificEmployees(sId) {
 		return this.http.get(this.rooturl + 'UserSchedule/UserNotAssignedQuiz/' + sId);
 	}
+
 	postSchedule(formdata: Schedule) {
+		console.log(formdata);
 		return this.http.post(this.rooturl + 'QuizSchedule/ScheduleQuiz', formdata);
 	}
-	postUrl(url: string)	{
+
+	postUrl(url: string) {
 		return this.http.post(this.rooturl + '', url);
 	}
+
 	getSchedule(id: string) {
 		return this.http.get(this.rooturl + 'QuizSchedule/GetAllQuizSchedule/' + id);
 	}
+
 	getScheduleQuizUsers(id: number) {
 		return this.http.get(this.rooturl + 'UserSchedule/UserAssignedQuiz/' + id);
 	}
+
 	deleteSchedule(id: number) {
 		return this.http.delete(this.rooturl + 'QuizSchedule/DeleteQuizSchedule/' + id);
 	}
+
 	deleteUserFromSchedule(QuizScheduleId: number, UserId: string) {
 		return this.http.delete(this.rooturl + 'UserSchedule/UserDelete/' + QuizScheduleId + '/' + UserId);
 	}
+
 	addUserInExistingSchedule(QuizScheuleId: number, UserIds: string[]) {
 		const body = {
 			UserIds: UserIds
 		};
 		return this.http.post(this.rooturl + 'UserSchedule/UserAdd/' + QuizScheuleId, UserIds);
 	}
+
 	editSchedule(QuizScheduleId, formData) {
 		return this.http.put(this.rooturl + 'QuizSchedule/EditQuizSchedule/' + QuizScheduleId, formData);
 	}
+
 	getArchivedSchedules() {
 		return this.http.get(this.rooturl + 'QuizSchedule/ArchivedList/' + localStorage.getItem('uid'));
 	}
+
 	unArchiveSchedule(id: number) {
 		var body = {
 			QuizScheduleId: id
 		}
 		return this.http.delete(this.rooturl + 'QuizSchedule/Unarchive/' + id);
 	}
+
 	getUserDetails() {
 		return this.http.get(this.rooturl + 'GetUserDetails?email=' + localStorage.getItem('email'));
 	}
+
 	getschedulecount() {
 		return this.http.get(this.rooturl + 'QuizSchedule/Stats/' + localStorage.getItem('uid'));
 	}
+
 }

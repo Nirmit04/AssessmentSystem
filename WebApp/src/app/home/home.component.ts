@@ -12,15 +12,19 @@ import { retry, catchError } from 'rxjs/operators';
 	styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
 	constructor(private router: Router, private http: HttpClient, private service: EmployeeService) { }
+
 	rooturl = environment.apiURl;
 	role = "";
 	uid = '';
 	checkqid: string = null;
 	checksid: string = null;
+
 	ngOnInit() {
 		this.checkqid = localStorage.getItem('key');
 		this.checksid = localStorage.getItem('key1');
+
 		if (localStorage.getItem('id') != null) {
 			const body = {
 				FirstName: localStorage.getItem('firstname'),
@@ -29,6 +33,7 @@ export class HomeComponent implements OnInit {
 				ImageURL: localStorage.getItem('imgurl'),
 				GoogleId: localStorage.getItem('id')
 			};
+
 			this.http.post(this.rooturl + 'User/Register', body).subscribe((res: any) => {
 				this.http.get(this.rooturl + 'GetUserDetails?email=' + localStorage.getItem('email'))
 					.subscribe((res1: any) => {
@@ -42,9 +47,10 @@ export class HomeComponent implements OnInit {
 						else if (this.checkqid == null && this.checksid == null) {
 							this.redirecttodash(this.role[0]);
 						}
-
 						else if (this.checkqid != 'null' && this.checksid != 'null') {
+
 							this.service.checkValidUser(+this.checkqid).subscribe((res: any) => {
+
 								this.service.getQuesOfQuiz(+this.checkqid).subscribe((res: any) => {
 									this.service.quesOfQuiz = res as any[];
 									this.service.QuizScheduleId = +this.checksid;
@@ -63,6 +69,8 @@ export class HomeComponent implements OnInit {
 			this.router.navigate(['/login']);
 		}
 	}
+
+
 	redirecttodash(role: string) {
 		if (role === 'Test-Administrator') {
 			this.router.navigate(['/ta-dash']);
@@ -77,4 +85,5 @@ export class HomeComponent implements OnInit {
 			this.router.navigate(['/ru-dash']);
 		}
 	}
+
 }

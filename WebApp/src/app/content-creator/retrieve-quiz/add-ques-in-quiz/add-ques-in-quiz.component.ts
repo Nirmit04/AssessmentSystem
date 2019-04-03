@@ -14,25 +14,27 @@ export class AddQuesInQuizComponent implements OnInit {
 
   public Subjects: Subject[];
   questions: any[];
-  val: Boolean = false;
+  val: boolean = false;
   count: number = 0;
   CDifficulty = "";
   CSubjectID = null;
   label: '';
+
   constructor(@Inject(MAT_DIALOG_DATA) public data,
     public service: ContentCreatorServiceService,
     public toastr: ToastrService,
     public dialog: MatDialog,
     private dialogref: MatDialogRef<AddQuesInQuizComponent>) { }
+
   ngOnInit() {
     this.questions = this.data;
     this.resetForm();
   }
+
   resetForm(form?: NgForm) {
     if (form != null) {
       form.resetForm();
-    }
-    else {
+    } else {
       this.service.quizForm = {
         QuizId: null,
         Difficulty: '',
@@ -50,6 +52,7 @@ export class AddQuesInQuizComponent implements OnInit {
       }
     }
   }
+
   updateSelectedQuestions(index) {
     this.questions[index].selected = !this.questions[index].selected;
   }

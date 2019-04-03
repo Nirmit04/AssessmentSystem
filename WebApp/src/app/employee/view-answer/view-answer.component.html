@@ -1,8 +1,8 @@
-<button type="button " [mat-dialog-close] class="btn btn-danger pos">
-  <mat-icon>clear</mat-icon>
-</button>
-<p *ngIf="ques">
+<div *ngIf="ques">
   {{ques[0].QuestionStatement}}
+  <button style="float: right;" type="button " [mat-dialog-close] class="btn btn-danger">
+    <i class="fa fa-times" aria-hidden="true"></i>
+  </button>
   <br>
   <input name="a1" disabled="true" [checked]="flop1" type="radio">1){{ques[0].Option1}}
   <label *ngIf="zlop1">---You Marked This</label>
@@ -16,4 +16,4 @@
   <input name="a1" disabled="true" [checked]="flop4" type="radio">{{ques[0].Option4}}
   <label *ngIf="zlop4">---You Marked This</label>
   <br>
-</p>
+</div>

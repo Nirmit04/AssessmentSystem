@@ -23,16 +23,14 @@ export class AnalyticsByQuizComponent implements OnInit {
       pagingType: 'full_numbers',
       pageLength: 10,
     };
-
     this.loadQuizDetails();
   }
 
   loadQuizDetails() {
     this.service.getAllQuizzes().subscribe((res: any) => {
-
       this.quizDetails = res as any[];
       this.dtTrigger.next();
-    })
+    });
   }
 
   onClick(index: any) {

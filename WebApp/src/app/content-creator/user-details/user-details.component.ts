@@ -8,15 +8,18 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 	styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent implements OnInit {
-	Firstname: String;
-	Lastname: String;
-	email: String;
+
+	Firstname: string;
+	Lastname: string;
+	email: string;
 	Quizzes: any;
 	Questions: any;
 	Tags: any;
 	profileUrl: any;
-	constructor(private service: ContentCreatorServiceService, private ngxService: NgxUiLoaderService) { }
 	show: boolean = true;
+
+	constructor(private service: ContentCreatorServiceService, private ngxService: NgxUiLoaderService) { }
+
 	ngOnInit() {
 		this.ngxService.startBackground('do-background-things');
 		this.ngxService.stopBackground('do-background-things');
@@ -42,4 +45,5 @@ export class UserDetailsComponent implements OnInit {
 			this.show = false;
 		});
 	}
+
 }

@@ -5,29 +5,21 @@
       <input type="hidden" #CreatedBy="ngModel" name="CreatedBy" [(ngModel)]="CCreatedBy">
       <div class="form-group col-md-6">
         <label>Start Date Time:<br />
-          <input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" [min]="date" required placeholder="mm/dd/yyyy,hh:mm"
-          name="StartDateTime" #StartDateTime="ngModel" [(ngModel)]="q1" >
-          <owl-date-time [pickerType]="'both'"  #dt1></owl-date-time> 
-        <div *ngIf="StartDateTime.invalid && StartDateTime.errors.owlDateTimeMin">
-          INVALID DATE !
-        </div>
-        <div class="validation-error" *ngIf="StartDateTime.invalid && StartDateTime.touched ">This field is
-          wrong and required.
-        </div>
-        
-      </label>
+          <input type="datetime-local" (focusout)="checkStartDate(StartDateTime)" [min]="date" required
+            name="StartDateTime" #StartDateTime="ngModel" [(ngModel)]="q1">
+          <div class="validation-error" *ngIf="(StartDateTime.invalid && StartDateTime.touched) || startDateValid ">This
+            field is wrong and required.
+          </div>
+        </label>
       </div>
       <div class="form-group col-md-6">
         <label>End Date Time<br />
-          <input [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" [min]="q1" required placeholder="mm/dd/yyyy,hh:mm"
-          name="EndDateTime" #EndDateTime="ngModel" [(ngModel)]="q2">
-          <owl-date-time [pickerType]="'both'" #dt2></owl-date-time>
-        <div *ngIf="EndDateTime.invalid && EndDateTime.errors.owlDateTimeMin">
-            INVALID DATE !
+          <input type="datetime-local" (focusout)="checkEndDate(EndDateTime)" required name="EndDateTime" [min]="q1"
+            #EndDateTime="ngModel" [(ngModel)]="q2">
+          <div class="validation-error" *ngIf="(EndDateTime.invalid && EndDateTime.touched) || endDateValid">This field
+            is
+            wrong and required.
           </div>
-        <div class="validation-error" *ngIf="EndDateTime.invalid && EndDateTime.touched && EndDateTime.errors.owlDateTimeMin">This field is
-          wrong and required.
-        </div>
         </label>
       </div>
     </div>
@@ -43,7 +35,8 @@
       </div>
     </div>
     <div class="form-group">
-      <button type="submit" [disabled]="btndisable || form.invalid" class="btn btn-primary btn-block">Submit</button>
+      <button type="submit" [disabled]="form.invalid || startDateValid || endDateValid"
+        class="btn btn-primary btn-block">Submit</button>
     </div>
   </form>
 </app-main-nav2>

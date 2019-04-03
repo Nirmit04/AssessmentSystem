@@ -16,7 +16,8 @@
         <div class="form-group col-md-6">
           <label>Subject</label>
           <input required type="text" name="Name" #Name="ngModel" [(ngModel)]="service.tagForm.Name"
-            class="form-control">
+            (input)="check_avail(Name)" class="form-control">
+          <label *ngIf="tagExists">Tag Already Exists</label>
           <div class="validation-error" *ngIf="Name.invalid && Name.touched">This field is required.</div>
         </div>
         <div class="form-group col-md-6">
@@ -27,7 +28,7 @@
         </div>
       </div>
       <div class="form-group">
-        <button style="margin:0 5%" type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
+        <button style="margin:0 5%" type="submit" [disabled]="form.invalid || tagExists" class="btn btn-primary">Submit</button>
       </div>
     </form>
   </div>

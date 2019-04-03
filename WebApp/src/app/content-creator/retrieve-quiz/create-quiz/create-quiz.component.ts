@@ -13,11 +13,13 @@ import { AmazingTimePickerService } from 'amazing-time-picker';
   templateUrl: './create-quiz.component.html',
   styleUrls: ['./create-quiz.component.css']
 })
+
 export class CreateQuizComponent implements OnInit {
+
   dtOptions: DataTables.Settings = {};
   public Subjects: any[];
   questions: any[];
-  val: Boolean = false;
+  val: boolean = false;
   count: number = 0;
   CCreatedBy = "";
   length = 0;
@@ -46,13 +48,12 @@ export class CreateQuizComponent implements OnInit {
     this.service.retrieveSubjects().subscribe(data => {
       this.Subjects = data as any[];
     });
-
   }
+
   resetForm(form?: NgForm) {
     if (form != null) {
       form.resetForm();
-    }
-    else {
+    } else {
       this.service.quizForm = {
         QuizId: null,
         Difficulty: '',
@@ -77,7 +78,6 @@ export class CreateQuizComponent implements OnInit {
   }
 
   fetchReqQues(form: NgForm) {
-    console.log(form.value.QuizTime);
     this.service.formDupli = form;
     this.service.quizForm = form.value;
     this.QuizHour = this.service.QuizHour.toString();
@@ -105,11 +105,13 @@ export class CreateQuizComponent implements OnInit {
       });
     }
   }
+
   checkVal() {
     this.val = true;
     this.dtTrigger.unsubscribe();
     this.dtTrigger.next();
   }
+
   updateSelectedQuestions(index) {
     this.questions[index].selected = !this.questions[index].selected;
   }
@@ -122,6 +124,7 @@ export class CreateQuizComponent implements OnInit {
       this.dialogRef.close('Inserted');
     })
   }
+
   reload(data1: any) {
     this.service.getQuesOfUserConstraints(data1).subscribe((data: any) => {
       data.forEach(obj => obj.selected = false);
@@ -132,6 +135,7 @@ export class CreateQuizComponent implements OnInit {
       this.dtTrigger.next();
     });
   }
+
   add_new_ques() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
@@ -141,13 +145,14 @@ export class CreateQuizComponent implements OnInit {
     let dialogRef = this.dialog.open(CreateQuestionsComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       this.service.quesStat = false;
-      console.log(this.service.quizForm);
       this.reload(this.service.quizForm);
       this.dtTrigger.unsubscribe();
       this.dtTrigger.next();
     });
   }
+
   ngOnDestroy() {
     this.dtTrigger.unsubscribe();
   }
+
 }

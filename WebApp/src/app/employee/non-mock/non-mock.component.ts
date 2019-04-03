@@ -8,15 +8,18 @@ import { Router } from '@angular/router';
   templateUrl: './non-mock.component.html',
   styleUrls: ['./non-mock.component.css']
 })
+
 export class NonMockComponent implements OnInit {
 
-  constructor(private service: EmployeeService,
-    private router: Router) { }
   nonMockScheduleList: any[];
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
   dtOptions: DataTables.Settings = {};
   time: any[];
+
+  constructor(private service: EmployeeService,
+    private router: Router) { }
+
   ngOnInit() {
     this.loadNonMockSchedules();
     this.dtOptions = {
@@ -41,9 +44,10 @@ export class NonMockComponent implements OnInit {
       this.service.QuizId = QuizId;
       this.router.navigate(['/emp-dash/quiz/take-quiz']);
     });
-
   }
+
   ngOnDestroy() {
     this.dtTrigger.unsubscribe();
   }
+
 }

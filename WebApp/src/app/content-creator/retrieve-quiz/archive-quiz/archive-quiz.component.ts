@@ -10,6 +10,7 @@ import { Subject } from 'rxjs';
 	styleUrls: ['./archive-quiz.component.css']
 })
 export class ArchiveQuizComponent implements OnInit {
+
 	QuizList: QuizModel[];
 	searchText = '';
 	difficultyLevel = '';
@@ -18,6 +19,7 @@ export class ArchiveQuizComponent implements OnInit {
 	dtOptions: DataTables.Settings = {};
 	dtTrigger: Subject<QuizModel> = new Subject();
 	subscription: Subscription;
+
 	constructor(private service: ContentCreatorServiceService,
 		private toastr: ToastrService) { }
 
@@ -28,12 +30,14 @@ export class ArchiveQuizComponent implements OnInit {
 		};
 		this.loadQuiz();
 	}
+
 	loadQuiz() {
 		this.service.getArchivedQuizzes().subscribe((res: any) => {
 			this.QuizList = res as QuizModel[];
 			this.dtTrigger.next();
 		});
 	}
+
 	onUnArchived(id: number) {
 		if (confirm('Are you sure you want to un-archive this quiz?')) {
 			this.service.unArchiveQuiz(id).subscribe((res: any) => {
@@ -43,6 +47,7 @@ export class ArchiveQuizComponent implements OnInit {
 			});
 		}
 	}
+
 	ngOnDestroy() {
 		this.dtTrigger.unsubscribe();
 	}

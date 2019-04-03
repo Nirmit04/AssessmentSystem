@@ -33,7 +33,25 @@ export class Mainnav4Component {
       }
     });
   }
+
+  roleMatch(allowedRoles): boolean {
+    var isMatch = false;
+    var userRoles: string = localStorage.getItem('role');
+    allowedRoles.forEach(element => {
+      if (userRoles.indexOf(element) > -1) {
+        isMatch = true;
+        return false;
+      }
+    });
+    return isMatch;
+  }
+
+  aab(role: string) {
+    this.router.navigate([role]);
+  }
+
   logout() {
     this.authService.signOut();
   }
+
 }

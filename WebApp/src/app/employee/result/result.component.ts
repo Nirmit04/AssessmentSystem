@@ -10,13 +10,15 @@ import { DOCUMENT } from '@angular/common';
 })
 export class ResultComponent implements OnInit {
 
-  constructor(private service: EmployeeService,
-    private router: Router,
-    @Inject(DOCUMENT) private document: any) { }
   timeTaken: any;
   dispCard = false;
   QuesWithAns: any[];
   correct: any[];
+
+  constructor(private service: EmployeeService,
+    private router: Router,
+    @Inject(DOCUMENT) private document: any) { }
+
   ngOnInit() {
     this.correct = [];
     if (this.service.QuizScheduleId == null) {
@@ -31,7 +33,6 @@ export class ResultComponent implements OnInit {
         });
         this.dispCard = true;
       })
-
     }
 
     var body = this.service.quesOfQuiz.map(x => x.QuestionId);
@@ -65,12 +66,9 @@ export class ResultComponent implements OnInit {
         this.router.navigate([('/emp-dash')]);
       }
     });
-
-
-
   }
-  closeFullscreen() {
 
+  closeFullscreen() {
     if (this.document.exitFullscreen) {
       this.document.exitFullscreen();
     } else if (this.document.mozCancelFullscreen) {
@@ -81,6 +79,7 @@ export class ResultComponent implements OnInit {
       this.document.msExitFullscreen();
     }
   }
+  
   goToHome() {
     this.service.quesOfQuiz = null;
     this.service.correctAnswerCount = null;

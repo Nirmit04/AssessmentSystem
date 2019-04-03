@@ -9,7 +9,9 @@ import { Router } from '@angular/router';
   templateUrl: './mock.component.html',
   styleUrls: ['./mock.component.css']
 })
+
 export class MockComponent implements OnInit {
+
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
@@ -45,7 +47,6 @@ export class MockComponent implements OnInit {
       this.service.QuizId = QuizId;
       this.router.navigate(['/emp-dash/quiz/take-quiz']);
     });
-
   }
 
 }

@@ -12,11 +12,14 @@ import { Subject } from 'rxjs';
 	templateUrl: './tag.component.html',
 	styleUrls: ['./tag.component.css']
 })
+
 export class TagComponent implements OnInit {
+
 	tagList: TagModel[];
 	dtOptions: DataTables.Settings = {};
 	dtTrigger: Subject<TagModel> = new Subject();
 	subscription: Subscription;
+
 	constructor(private service: ContentCreatorServiceService,
 		private router: Router,
 		private dialog: MatDialog,
@@ -29,6 +32,7 @@ export class TagComponent implements OnInit {
 		};
 		this.loadTags();
 	}
+
 	loadTags() {
 		this.service.getTags().subscribe((res: any) => {
 			this.tagList = res as TagModel[];
@@ -36,6 +40,7 @@ export class TagComponent implements OnInit {
 			this.dtTrigger.next();
 		});
 	}
+
 	onCreate() {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
@@ -45,6 +50,7 @@ export class TagComponent implements OnInit {
 			this.loadTags();
 		});
 	}
+
 	onEdit(id: number) {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
@@ -55,7 +61,9 @@ export class TagComponent implements OnInit {
 			this.loadTags();
 		});
 	}
+
 	ngOnDestroy() {
 		this.dtTrigger.unsubscribe();
 	}
+
 }

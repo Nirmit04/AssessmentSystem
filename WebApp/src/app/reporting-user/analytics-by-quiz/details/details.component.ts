@@ -9,15 +9,17 @@ import { ChartType, ChartOptions } from 'chart.js';
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css']
 })
+
 export class DetailsComponent implements OnInit {
   quizData: any;
+
   public pieChartOptions: ChartOptions = {
     responsive: true,
   };
+
   public pieChartLabels: Label[] = ['Highest-Score', 'Lowest Score', 'Average-Score', 'Number of Schedules'];
   public pieChartData: any[]
   public pieChartLegend: boolean;
-
   public pieChartType: ChartType = 'pie';
   chartData: any[];
 

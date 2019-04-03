@@ -22,7 +22,26 @@
       </button>
       <span>Employee Dashboard</span>
       <span class="spacer"></span>
-      <a class="log" (click)="logout()"><i class="fa fa-sign-out"></i>Log Out</a>
+      <div class="btn-group">
+        <button type="button" class="btn btn-success btn-sm">Choose-Role</button>
+        <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" style="color:black" (click)="aab('/ta-dash')"
+            *ngIf="roleMatch(['Test-Administrator'])">
+            Test-Administrator</a>
+          <a class="dropdown-item" style="color:black" (click)="aab('/emp-dash')" *ngIf="roleMatch(['Employee'])">
+            Employee</a>
+          <a class="dropdown-item" style="color:black" (click)="aab('/cc-dash')" *ngIf="roleMatch(['Content-Creator'])">
+            Content-Creator</a>
+          <a class="dropdown-item" style="color:black" (click)="aab('/ru-dash')" *ngIf="roleMatch(['Reporting-User'])">
+            Reporting-User</a>
+        </div>
+      </div>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <a class="log" (click)="logout()"><i aria-hidden="true" class="fa fa-sign-out"></i>Log Out</a>
     </mat-toolbar>
     <div class="content">
       <ng-content></ng-content>
