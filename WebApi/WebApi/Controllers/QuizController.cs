@@ -332,7 +332,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        [Route("api/Quiz/GetQuestion")]
+        [Route("api/Quiz/GetRandomQuestion")]
         public IHttpActionResult GenerateMockQuiz([FromBody]Quiz quiz, [FromUri]int TotalQuestion)
         {
             var questions = db.Questions
