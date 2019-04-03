@@ -331,5 +331,32 @@ namespace WebApi.Controllers
             return Ok(QuestionAnswers);
         }
 
+        [HttpPost]
+        [Route("api/Quiz/GetQuestion")]
+        public IHttpActionResult GenerateMockQuiz([FromBody]Quiz quiz, [FromUri]int TotalQuestion)
+        {
+            var questions = db.Questions
+                .AsEnumerable()
+                .Where(y => y.SubjectId == quiz.SubjectId && y.Difficulty == quiz.Difficulty)
+                .Select(x => new { x.QuestionId, x.QuestionStatement, x.Option1, x.Option2, x.Option3, x.Option4, x.ImageName, x.Marks })
+                .OrderBy(y => Guid.NewGuid())
+                .Take(TotalQuestion)
+                .ToList();
+            foreach (var item in questions)
+            {
+                quiz.TotalMarks += item.Marks;
+            }
+            quiz.TotalQuestions = TotalQuestion;
+            quiz.QuizType = "Mock";
+            db.Quizs.Add(quiz);
+            db.SaveChanges();
+            foreach (var item in questions)
+            {
+                db.QuizQuestions.Add(new QuizQuestion() { QuizId = quiz.QuizId, QuestionId = item.QuestionId });
+                db.SaveChanges();
+            }
+            return Ok(questions);
+        }
+
     }
 }

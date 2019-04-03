@@ -14,7 +14,7 @@ namespace WebApi.Models
         public string QuizName { get; set; }
         public string Difficulty { get; set; }
         public int TotalQuestions { get; set; }
-        public decimal TotalMarks { get; set; }
+        public decimal TotalMarks { get; set; } = 0.00m;
         public bool ArchiveStatus { get; set; } = false;
         public string QuizType { get; set; } = "Non-Mock";
         public int[] QuestionIds { get; set; }
