@@ -15,7 +15,7 @@ export class DetailedReportComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
-  public doughnutChartLabels1 = ['Attempted:'+ ((parseInt(this.service.data.CorrectAnswers)) + (parseInt(this.service.data.WrongAnswers))).toString(), 'UnAttempted: '+this.service.data.UnattemptedAnswers];
+  public doughnutChartLabels1 = ['Attempted:' + ((parseInt(this.service.data.CorrectAnswers)) + (parseInt(this.service.data.WrongAnswers))).toString(), 'UnAttempted: ' + this.service.data.UnattemptedAnswers];
   public doughnutChartData1 = [(parseInt(this.service.data.CorrectAnswers) + parseInt(this.service.data.WrongAnswers)).toString(), this.service.data.UnattemptedAnswers];
   public doughnutChartType1 = 'doughnut';
 
@@ -31,7 +31,7 @@ export class DetailedReportComponent implements OnInit {
   private doughnutChartColors1: any[] = [{ backgroundColor: ["#3E00B2", "#FFF53A"] }];
 
 
-  public doughnutChartLabels2 = ['Correct: '+this.service.data.CorrectAnswers, 'InCorrect: '+this.service.data.WrongAnswers];
+  public doughnutChartLabels2 = ['Correct: ' + this.service.data.CorrectAnswers, 'InCorrect: ' + this.service.data.WrongAnswers];
   public doughnutChartData2 = [this.service.data.CorrectAnswers, this.service.data.WrongAnswers];
   public doughnutChartType2 = 'doughnut';
   public doughnutChartOptions2 = {
@@ -57,12 +57,10 @@ export class DetailedReportComponent implements OnInit {
       pageLength: 10,
     };
     this.loadDetail();
-    console.log((parseInt(this.service.data.CorrectAnswers)+parseInt(this.service.data.WrongAnswers)).toString());
   }
   loadDetail() {
     this.service.getDetailedReport().subscribe((res: any) => {
       this.reports = res as any[];
-      console.log(this.reports);
       this.quizname = this.reports[0].QuizName;
       this.calculate();
       this.dtTrigger.next();

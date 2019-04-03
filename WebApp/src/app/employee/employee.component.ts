@@ -28,7 +28,6 @@ export class EmployeeComponent implements OnInit {
 	}
 	loadUserDetails() {
 		this.service.getUserDetails().subscribe((res: any) => {
-			console.log(res);
 			this.Firstname = res.FirstName;
 			this.Lastname = res.LastName;
 			this.email = res.Email;
@@ -36,7 +35,6 @@ export class EmployeeComponent implements OnInit {
 	}
 	loadUserProgress(){
 		this.service.getUserProgress().subscribe((res:any) =>{
-			console.log(res);
 			this.mocks = res.Mock;
 			this.nmocks = res.NonMock;
 			this.accuracy = res.Accuracy;

@@ -13,6 +13,7 @@ export class MockComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
+  time: any[];
 
   mockList: any[];
 
@@ -31,13 +32,15 @@ export class MockComponent implements OnInit {
   getMockList() {
     this.service.getListOfMockQuizzes().subscribe((res: any) => {
       this.mockList = res as any[];
-      console.log(this.mockList);
       this.dtTrigger.next();
     });
   }
 
-  takeMockQuiz(QuizId: number) {
+  takeMockQuiz(QuizId: number, index: number) {
     this.service.getMockQuesOfQuiz(QuizId).subscribe((res: any) => {
+      this.time = this.mockList[index].QuizTime.split(":");
+      this.service.hours = parseInt(this.time[0]);
+      this.service.minutes = parseInt(this.time[1]);
       this.service.quesOfQuiz = res as any[];
       this.service.QuizId = QuizId;
       this.router.navigate(['/emp-dash/quiz/take-quiz']);

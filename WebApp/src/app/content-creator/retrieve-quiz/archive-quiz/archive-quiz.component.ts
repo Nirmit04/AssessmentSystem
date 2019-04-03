@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { QuizModel } from '../../shared/quiz.model';
 import { ContentCreatorServiceService } from '../../shared/content-creator-service.service';
 import { ToastrService } from 'ngx-toastr';
-import { concat, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
 @Component({
 	selector: 'app-archive-quiz',
@@ -35,10 +35,8 @@ export class ArchiveQuizComponent implements OnInit {
 		});
 	}
 	onUnArchived(id: number) {
-		console.log(id);
 		if (confirm('Are you sure you want to un-archive this quiz?')) {
 			this.service.unArchiveQuiz(id).subscribe((res: any) => {
-				console.log(res);
 				this.loadQuiz();
 				this.toastr.success('Un-Archived Successfully', 'Assesment System');
 				this.dtTrigger.next();

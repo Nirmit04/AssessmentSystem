@@ -20,8 +20,8 @@ export class MockReportComponent implements OnInit {
   mockReportList: any[];
 
   constructor(private service: EmployeeService,
-              private toastr: ToastrService,
-              private router: Router) { }
+    private toastr: ToastrService,
+    private router: Router) { }
 
   ngOnInit() {
     this.dtOptions = {

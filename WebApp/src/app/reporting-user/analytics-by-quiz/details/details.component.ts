@@ -26,7 +26,6 @@ export class DetailsComponent implements OnInit {
     public service: ReportingUserService) { }
 
   ngOnInit() {
-    console.log(this.data);
     this.getDetails(this.data.QuizId);
   }
 
@@ -39,8 +38,6 @@ export class DetailsComponent implements OnInit {
       this.chartData.push(this.quizData.AverageMarks);
       this.chartData.push(this.quizData.NoOfQuiz);
       this.pieChartData = this.chartData;
-      // console.log('i am here');
-      console.log(this.quizData);
     })
   }
 

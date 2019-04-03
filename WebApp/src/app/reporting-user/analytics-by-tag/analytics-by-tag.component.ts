@@ -24,7 +24,6 @@ export class AnalyticsByTagComponent implements OnInit {
   name = 'high';
   public barChartOptions: ChartOptions = {
     responsive: true,
-    // We use these empty structures as placeholders for dynamic theming.
     scales: { xAxes: [{}], yAxes: [{}] },
     plugins: {
       datalabels: {
@@ -44,7 +43,7 @@ export class AnalyticsByTagComponent implements OnInit {
   };
   public radarChartLabels: Label[];
   public radarChartData: ChartDataSets[] = [
-    { data: this.accuracy, label: 'Accuracy:'}
+    { data: this.accuracy, label: 'Accuracy:' }
   ];
   public radarChartType: ChartType = 'radar';
 

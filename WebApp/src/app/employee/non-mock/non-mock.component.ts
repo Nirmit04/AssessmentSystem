@@ -16,6 +16,7 @@ export class NonMockComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
   dtOptions: DataTables.Settings = {};
+  time: any[];
   ngOnInit() {
     this.loadNonMockSchedules();
     this.dtOptions = {
@@ -23,17 +24,19 @@ export class NonMockComponent implements OnInit {
       pageLength: 10,
     };
   }
-  
+
   loadNonMockSchedules() {
     this.service.getNonMocks().subscribe((res: any) => {
       this.nonMockScheduleList = res as any[];
       this.dtTrigger.next();
-      console.log(this.nonMockScheduleList);
     });
   }
-  takeQuiz(QuizId: number, Id: number) {
+  takeQuiz(QuizId: number, Id: number, index: number) {
     this.service.getQuesOfQuiz(QuizId).subscribe((res: any) => {
       this.service.quesOfQuiz = res as any[];
+      this.time = this.nonMockScheduleList[index].QuizTime.split(":");
+      this.service.hours = parseInt(this.time[0]);
+      this.service.minutes = parseInt(this.time[1]);
       this.service.QuizScheduleId = Id;
       this.service.QuizId = QuizId;
       this.router.navigate(['/emp-dash/quiz/take-quiz']);

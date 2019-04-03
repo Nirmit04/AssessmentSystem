@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { CreatetagComponent } from '../createtag/createtag.component';
-import { concat, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
 @Component({
 	selector: 'app-tag',
@@ -32,7 +32,6 @@ export class TagComponent implements OnInit {
 	loadTags() {
 		this.service.getTags().subscribe((res: any) => {
 			this.tagList = res as TagModel[];
-			console.log(this.tagList);
 			this.dtTrigger.unsubscribe();
 			this.dtTrigger.next();
 		});

@@ -8,7 +8,9 @@ import { postReport } from './postReport.model';
 export class EmployeeService {
   rootURL = environment.apiURl;
   quesOfQuiz: any[];
+  hours: number;
   seconds: number;
+  minutes: number;
   timer;
   qnProgress: number;
   size: number;
@@ -40,7 +42,6 @@ export class EmployeeService {
     return this.http.post(this.rootURL + 'Quiz/EvaluateQuiz', this.body);
   }
   getUserDetails() {
-    console.log(localStorage.getItem('email'));
     return this.http.get(this.rootURL + 'GetUserDetails?email=' + localStorage.getItem('email'));
   }
   getListOfMockQuizzes() {

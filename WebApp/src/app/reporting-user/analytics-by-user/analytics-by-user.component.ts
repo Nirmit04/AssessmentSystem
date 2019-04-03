@@ -26,11 +26,9 @@ export class AnalyticsByUserComponent implements OnInit {
     this.service.getAllUsers().subscribe((res: any) => {
       this.allUsers = res as any[];
       this.dtTrigger.next();
-      console.log(this.allUsers);
     });
   }
   viewUserDetails(index: string) {
-    console.log(index);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = "90%";

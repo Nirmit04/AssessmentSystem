@@ -9,6 +9,7 @@
         <th>Difficulty Level</th>
         <th>Total Questions</th>
         <th>Total Marks</th>
+        <th>Time</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -21,8 +22,9 @@
         <td>{{mock.Difficulty}}</td>
         <td>{{mock.TotalQuestions}}</td>
         <td>{{mock.TotalMarks}}</td>
+        <td>{{mock.QuizTime}}</td>
         <td>
-          <a class="btn btn-sm btn-info text-white" (click)="takeMockQuiz(mock.QuizId)"><i
+          <a class="btn btn-sm btn-info text-white" (click)="takeMockQuiz(mock.QuizId, i)"><i
               class="fa fa-paper-plane"></i></a>
         </td>
       </tr>

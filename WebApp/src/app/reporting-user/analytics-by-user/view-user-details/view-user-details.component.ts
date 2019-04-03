@@ -11,7 +11,7 @@ import { ChartType } from 'chart.js';
 export class ViewUserDetailsComponent implements OnInit {
 
   data1: any[];
-  
+
   public polarAreaChartLabels: Label[] = ['Highest-Score', 'Lowest Score', 'Accuracy', 'Average-Score'];
   public polarAreaChartData: any[]
   public polarAreaLegend: boolean
@@ -22,7 +22,7 @@ export class ViewUserDetailsComponent implements OnInit {
     public dialogRef: MatDialogRef<ViewUserDetailsComponent>,
     public service: ReportingUserService) { }
   data2: any;
-  
+
   ngOnInit() {
     this.fetchAnalytics(this.data.Id);
   }
@@ -35,11 +35,8 @@ export class ViewUserDetailsComponent implements OnInit {
       this.data1.push(this.data2.Accuracy);
       this.data1.push(this.data2.AverageScore);
       this.polarAreaChartData = this.data1;
-      console.log(this.polarAreaChartData);
-      console.log(this.data2);
     })
   }
   public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
   }
 }

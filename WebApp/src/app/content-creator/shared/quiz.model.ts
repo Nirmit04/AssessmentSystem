@@ -8,5 +8,6 @@ export class QuizModel {
     CreatedBy?: string;
     QuestionIds: number[];
     SubjectId: number;
-    QuizName: string
+    QuizName: string;
+    QuizTime?: string
 }

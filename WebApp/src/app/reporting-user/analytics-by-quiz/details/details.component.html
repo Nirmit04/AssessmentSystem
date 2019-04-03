@@ -1,82 +1,79 @@
 <mat-dialog-content>
-    <div class="row">
-      <div style="display: block;
+  <div class="row">
+    <div style="display: block;
       margin-left: auto;
       margin-right: auto;
       width: 50%;" *ngIf="pieChartData">
-        <div>
-          <div style="display: block">
-            <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [legend]="pieChartLegend"
-              [chartType]="pieChartType">
-            </canvas>
+      <div>
+        <div style="display: block">
+          <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [legend]="pieChartLegend"
+            [chartType]="pieChartType">
+          </canvas>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button type="button " [mat-dialog-close] class="btn btn-danger pos">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h3>Analysis</h3>
+    </div>
+
+  </div>
+  <div *ngIf="quizData">
+    <div class="row">
+      <div class="col zoom">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Highest-Score</h5>
+            <label class="card-text">{{quizData.HighestScore}}</label>
           </div>
         </div>
       </div>
-      <div>
-        <button type="button " [mat-dialog-close] class="btn btn-danger pos">
-          <mat-icon>clear</mat-icon>
-        </button>
+      <div class="col zoom">
+
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Lowest Score</h5>
+            <label class="card-text">{{quizData.LowestScore}}</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Accuracy</h5>
+            <label class="card-text">{{quizData.Accuracy}}</label>
+          </div>
+        </div>
       </div>
     </div>
+    <br>
     <div class="row">
       <div class="col">
-        <h3>Analysis</h3>
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Number of Schedules</h5>
+            <label class="card-text">{{quizData.NoOfQuiz}}</label>
+          </div>
+        </div>
       </div>
-     
+      <div class="col">
+
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Average Score</h5>
+            <label class="card-text">{{quizData.AverageMarks}}</label>
+          </div>
+        </div>
+      </div>
     </div>
-    <div *ngIf="quizData">
-      <div class="row">
-        <div class="col zoom">
-          <div class="card" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">Highest-Score</h5>
-              <label class="card-text">{{quizData.HighestScore}}</label>
-            </div>
-          </div>
-        </div>
-        <div class="col zoom">
-  
-          <div class="card" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">Lowest Score</h5>
-              <label class="card-text">{{quizData.LowestScore}}</label>
-            </div>
-          </div>
-        </div>
-  
-        <div class="col">
-          <div class="card" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">Accuracy</h5>
-              <label class="card-text">{{quizData.Accuracy}}</label>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col">
-          <div class="card" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">Number of Schedules</h5>
-              <label class="card-text">{{quizData.NoOfQuiz}}</label>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-  
-          <div class="card" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">Average Score</h5>
-              <label class="card-text">{{quizData.AverageMarks}}</label>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-      <br>
-    </div>
-  </mat-dialog-content>
-  <!-- 
-  <button type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button> -->
-  
+    <br>
+    <br>
+  </div>
+</mat-dialog-content>

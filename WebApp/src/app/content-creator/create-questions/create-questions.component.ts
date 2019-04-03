@@ -12,10 +12,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class CreateQuestionsComponent implements OnInit {
   public Subjects: Subject[];
   CCreatedBy = "";
-  constructor(// @Inject(MAT_DIALOG_DATA) public data,
-    // public dialogRef: MatDialogRef<CreateQuestionsComponent>,
-    public service: ContentCreatorServiceService, public toastr: ToastrService,
-  ) { }
+  constructor(public service: ContentCreatorServiceService, public toastr: ToastrService, ) { }
   ngOnInit() {
     this.resetForm();
     this.CCreatedBy = localStorage.getItem('uid');

@@ -1,53 +1,50 @@
 <app-main-nav>
-    <ngx-ui-loader [loaderId]="'loader-01'" *ngIf = "show"></ngx-ui-loader>
-    <div class="jumbotron">
-      <div class="pic">
-          <img class="left" src="{{ profileUrl }}" />
-      </div>
-      <div class="detail1">
-        <h3>{{ Firstname }} {{ Lastname }}</h3>
-        <h6>{{ email }}</h6>
-      </div>
-      <div class="elem">
-        <ul>
-          <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true" style="color:#00acee;"></i></a></li>
-          <li><a href="#"><i class="fa fa-twitter" aria-hidden="true" style="color:#00acee;"></i></a></li>
-          <li><a href="#"><i class="fa fa-github" aria-hidden="true" style="color:black;"></i></a></li>
-        </ul>
+  <ngx-ui-loader [loaderId]="'loader-01'" *ngIf="show"></ngx-ui-loader>
+  <div class="jumbotron">
+    <div class="pic">
+      <img class="left" src="{{ profileUrl }}" />
+    </div>
+    <div class="detail1">
+      <h3>{{ Firstname }} {{ Lastname }}</h3>
+      <h6>{{ email }}</h6>
+    </div>
+    <div class="elem">
+      <ul>
+        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true" style="color:#00acee;"></i></a></li>
+        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true" style="color:#00acee;"></i></a></li>
+        <li><a href="#"><i class="fa fa-github" aria-hidden="true" style="color:black;"></i></a></li>
+      </ul>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div style="width: 50%;
+        margin-left: auto ;
+        margin-right: auto ;" class="box col-4">
+      <div class="boxhalf">
+        <h2>{{ Quizzes }}</h2>
+        <h5>Quizzes Created</h5>
       </div>
     </div>
-    <br/>
-    <div class="row">
-        <div style="width: 50%;
-        margin-left: auto ;
-        margin-right: auto ;"
-        class="box col-4">
-          <div class="boxhalf">
-            <h2>{{ Quizzes }}</h2>
-            <h5>Quizzes Created</h5>
-          </div>
-        </div>
 
-        <div style="width: 50%;
+    <div style="width: 50%;
         margin-left: auto ;
-        margin-right: auto ;"
-        class="box col-4">
-            <div class="boxhalf">
-              <h2>{{ Tags }}</h2>
-              <h5>Tags Created</h5>            
-            </div>
-        </div>
+        margin-right: auto ;" class="box col-4">
+      <div class="boxhalf">
+        <h2>{{ Tags }}</h2>
+        <h5>Tags Created</h5>
+      </div>
     </div>
-    <br/><br/><br/>
-    <div class="row">
-      <div style="width: 100%;
+  </div>
+  <br /><br /><br />
+  <div class="row">
+    <div style="width: 100%;
       margin-left: auto ;
-      margin-right: auto ;"
-      class="box col-4">
-            <div class="boxhalf">
-              <h2>{{ Questions }}</h2>
-              <h5>Questions Created</h5>
-            </div>
-        </div>
+      margin-right: auto ;" class="box col-4">
+      <div class="boxhalf">
+        <h2>{{ Questions }}</h2>
+        <h5>Questions Created</h5>
+      </div>
+    </div>
   </div>
 </app-main-nav>

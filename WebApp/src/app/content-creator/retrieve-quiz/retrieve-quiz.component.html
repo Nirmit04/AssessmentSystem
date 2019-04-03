@@ -14,6 +14,7 @@
           <th scope="col">Name</th>
           <th scope="col">Total Questions</th>
           <th scope="col">Total Marks</th>
+          <th scope="col">Time</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
@@ -26,6 +27,7 @@
           <td scope="row">{{item.QuizName}}</td>
           <td scope="row">{{item.TotalQuestions}}</td>
           <td scope="row">{{item.TotalMarks}}</td>
+          <td scope="row">{{item.QuizTime}}</td>
           <td>
             <a class="btn text-danger" (click)="onEdit(item.QuizId)"><i class="fa fa-edit fa-lg"></i></a>
             <a class="btn text-danger" (click)="onArchive(item.QuizId)"><i class="fa fa-trash fa-lg"></i></a>

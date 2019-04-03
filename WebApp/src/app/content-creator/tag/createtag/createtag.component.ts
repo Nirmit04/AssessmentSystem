@@ -30,7 +30,6 @@ export class CreatetagComponent implements OnInit {
 		else {
 			this.Option = 'Update';
 			this.service.tagForm = this.data;
-			console.log(this.service.tagForm);
 		}
 	}
 	resetForm(form?: NgForm) {
@@ -49,6 +48,6 @@ export class CreatetagComponent implements OnInit {
 			this.resetForm(form);
 			this.dialogRef.close('Inserted');
 		});;
-		
+
 	}
 }

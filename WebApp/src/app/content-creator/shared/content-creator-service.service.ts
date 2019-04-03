@@ -14,10 +14,12 @@ export class ContentCreatorServiceService {
 	formData: Question;
 	quizForm: QuizModel;
 	readonlyStatus: boolean;
+	QuizHour: number;
+	QuizMinute: number;
 	rootURL = environment.apiURl;
 	quesStat: boolean = false;
 	public createdBy;
-public formDupli: NgForm;
+	public formDupli: NgForm;
 	constructor(private http: HttpClient) { }
 	postQuestion(formData: Question) {
 		return this.http.post(this.rootURL + 'Question/CreateQuestion', formData);
@@ -63,6 +65,9 @@ public formDupli: NgForm;
 
 	getQuesOfUserConstraints(form: any) {
 		return this.http.get(this.rootURL + 'Question/GetQuestion/' + form.Difficulty + '/' + form.SubjectId);
+	}
+	generateRandom(form: any, question: number) {
+		return this.http.post(this.rootURL + 'Quiz/GetRandomQuestion?TotalQuestion='+question, form);
 	}
 	postQuestionsSelected(questions: number[]) {
 		this.quizForm.QuestionIds = questions;

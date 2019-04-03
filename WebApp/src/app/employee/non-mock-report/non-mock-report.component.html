@@ -1,40 +1,40 @@
 <app-main-nav3>
-    <div class="container">
-    </div>
-      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
-        class="row-border hover table table-bordered table-striped">
-        <thead class="thead-dark">
-          <tr>
-            <th>#S No.</th>
-            <th>Quiz Name</th>
-            <th>Correct Answers</th>
-            <th>Wrong Answers</th>
-            <th>Unattempted Questions</th>
-            <th>Marks Scored</th>
-            <th>Total Marks</th>
-            <th>Accuracy</th>
-            <th>Time Taken</th>
-            <th>Efficiency</th>
-            <th>Action</th>
-          </tr>
-        </thead>   
-        <tbody>
-          <tr *ngFor="let quiz of nonMockReportList; index as i;">
-            <th>{{i+1}}</th>
-            <td>{{quiz.QuizName}}</td>
-            <td>{{quiz.CorrectAnswers}}</td>
-            <td>{{quiz.WrongAnswers}}</td>
-            <td>{{quiz.UnattemptedAnswers}}</td>
-            <td>{{quiz.MarksScored}}</td>
-            <td>{{quiz.TotalMarks}}</td>
-            <td>{{quiz.Accuracy}}</td>
-            <td>{{quiz.TimeTaken}}</td>
-            <td>{{quiz.Efficiency}}</td>
-            <td>
-              <a class="btn btn-sm btn-info text-white" (click)="viewDetailedReport(quiz.QuizId,i)"><i
+  <div class="container">
+  </div>
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+    class="row-border hover table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>#S No.</th>
+        <th>Quiz Name</th>
+        <th>Correct Answers</th>
+        <th>Wrong Answers</th>
+        <th>Unattempted Questions</th>
+        <th>Marks Scored</th>
+        <th>Total Marks</th>
+        <th>Accuracy</th>
+        <th>Time Taken</th>
+        <th>Efficiency</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let quiz of nonMockReportList; index as i;">
+        <th>{{i+1}}</th>
+        <td>{{quiz.QuizName}}</td>
+        <td>{{quiz.CorrectAnswers}}</td>
+        <td>{{quiz.WrongAnswers}}</td>
+        <td>{{quiz.UnattemptedAnswers}}</td>
+        <td>{{quiz.MarksScored}}</td>
+        <td>{{quiz.TotalMarks}}</td>
+        <td>{{quiz.Accuracy}}</td>
+        <td>{{quiz.TimeTaken}}</td>
+        <td>{{quiz.Efficiency}}</td>
+        <td>
+          <a class="btn btn-sm btn-info text-white" (click)="viewDetailedReport(quiz.QuizId,i)"><i
               class="fa fa-file"></i></a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </app-main-nav3>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</app-main-nav3>

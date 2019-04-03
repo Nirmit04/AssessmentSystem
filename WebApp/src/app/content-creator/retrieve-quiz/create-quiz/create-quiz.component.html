@@ -50,9 +50,39 @@
               </div>
             </div>
           </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Quiz Time (hh:mm)</label><br />
+              <input type="number" name="QuizHour" placeholder="hh" min="0" max="24" #QuizHour="ngModel"
+                [(ngModel)]="service.QuizHour">
+              <b>:</b>
+              <input type="number" name="QuizMinute" placeholder="mm" min="0" max="60" #QuizMinute="ngModel"
+                [(ngModel)]="service.QuizMinute">
+              <div class="validation-error"
+                *ngIf="QuizHour.invalid && QuizHour.touched && QuizMinutes.invalid && QuizMinutes.touched">This field is
+                required.</div>
+            </div>
+            <div *ngIf="service.quizForm.QuizType == 'Mock'" class="form-group col-md-6">
+              <label>Select Mock Quiz</label>
+              <select name="MockTypess" required #MockTypess="ngModel" [(ngModel)]="MockType" class="form-control">
+                <option value="" disabled>Choose an option...</option>
+                <option value="Random">Random</option>
+                <option value="Personalized">Personalized</option>
+              </select>
+              <div class="validation-error" *ngIf="MockTypess.invalid && MockTypess.touched">This field is required.
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div *ngIf="MockType == 'Random'" class="form-group col-md-6">
+              <label>Number Of Questions</label>
+              <input type="text" name="Questions" #Questions="ngModel" [(ngModel)]="TotalQuestions"
+              class="form-control">
+            <div class="validation-error" *ngIf="Questions.invalid && Questions.touched">This field is required.</div>
+            </div>
+          </div>
           <div class="form-group">
             <button type="submit" [disabled]="form.invalid" class="btn btn-primary ">Create</button>
-
           </div>
         </form>
       </ng-container>

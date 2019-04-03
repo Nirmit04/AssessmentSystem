@@ -26,9 +26,7 @@
 	border-bottom: 1px solid black;
 }
 .mat-toolbar {
-	/* background-color: rgb(185, 185, 185); */
 	text-decoration: none;
-	/* border-bottom: .2px solid #030e13; */
 }
 .ng-content {
 	background-color: rgb(185, 185, 185);

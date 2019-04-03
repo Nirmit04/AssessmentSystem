@@ -34,7 +34,6 @@ export class NonMockReportComponent implements OnInit {
   getNonMockReport() {
     this.service.getReportOfNonMockQuiz(localStorage.getItem('uid')).subscribe((res: any) => {
       this.nonMockReportList = res as any[];
-      console.log(this.nonMockReportList);
       this.dtTrigger.next();
     });
   }

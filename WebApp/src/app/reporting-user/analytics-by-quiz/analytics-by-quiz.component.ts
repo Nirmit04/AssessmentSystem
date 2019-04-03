@@ -32,18 +32,15 @@ export class AnalyticsByQuizComponent implements OnInit {
 
       this.quizDetails = res as any[];
       this.dtTrigger.next();
-      console.log(this.quizDetails);
     })
   }
 
   onClick(index: any) {
-    console.log(index);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = "90%";
     dialogConfig.disableClose = true;
     dialogConfig.data = this.quizDetails[index];
-    console.log(dialogConfig.data);
     this.dialog.open(DetailsComponent, dialogConfig).afterClosed().subscribe((res: any) => {
     });
   }

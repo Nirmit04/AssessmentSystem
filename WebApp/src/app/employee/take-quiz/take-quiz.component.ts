@@ -1,4 +1,4 @@
-import { Component, Inject,  OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { EmployeeService } from '../shared/employee.service';
 import { Router } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
@@ -14,9 +14,15 @@ export class TakeQuizComponent implements OnInit {
 	noOfQues: number;
 	bar: number;
 	elem: any;
+	seconds: number;
+	minutes: number;
+	hours: number;
+	totaltime:number;
 	ngOnInit() {
 		this.service.qnProgress = 0;
-		this.service.seconds = 0;
+		this.hours=this.service.hours;
+		this.minutes = this.service.minutes;
+		this.seconds = 0;
 		history.pushState(null, null, location.href);
 		this.elem = document.documentElement;
 		this.openFullscreen();
@@ -42,28 +48,22 @@ export class TakeQuizComponent implements OnInit {
 					e.preventDefault();
 					e.returnValue = false;
 				}
-				// if((e.charCode || e.which || e.key)=='esc') {
-				// 	console.log('qewrfeadsjalwihfuaicnxnc ')
-				// 	e.preventDefault();
-				// 	e.returnValue = false;
-				// }
 			};
 		};
 		this.loadQues();
 		this.openFullscreen();
 	}
 	onKeydown(event) {
-		console.log('esc works');
-	  }
+	}
 	openFullscreen() {
 		if (this.elem.requestFullscreen) {
-		  this.elem.requestFullscreen();
+			this.elem.requestFullscreen();
 		} else if (this.elem.mozRequestFullScreen) {
-		  this.elem.mozRequestFullScreen();
+			this.elem.mozRequestFullScreen();
 		} else if (this.elem.webkitRequestFullscreen) {
-		  this.elem.webkitRequestFullscreen();
+			this.elem.webkitRequestFullscreen();
 		} else if (this.elem.msRequestFullscreen) {
-		  this.elem.msRequestFullscreen();
+			this.elem.msRequestFullscreen();
 		}
 	}
 	loadQues() {
@@ -76,8 +76,24 @@ export class TakeQuizComponent implements OnInit {
 	}
 	startTimer() {
 		this.service.timer = setInterval(() => {
-			this.service.seconds++;
-			localStorage.setItem('seconds', this.service.seconds.toString());
+			if (this.hours == 0 && this.minutes == 0 && this.seconds == 0) {
+				this.router.navigate(['/emp-dash/quiz/result']);
+			}
+			else if (this.seconds == 0) {
+				if (this.hours == 1) {
+					this.hours = 0;
+					this.minutes = 59;
+					this.seconds = 60;
+				}
+				if(this.minutes==0)	{
+					this.hours = this.hours-1;
+					this.minutes = 59;
+					this.seconds = 60;
+				}
+				this.minutes=this.minutes-1;
+				this.seconds = 60;	
+			}
+			this.seconds--;
 		}, 1000);
 	}
 	Answer(QuestionId, choice) {
@@ -85,7 +101,15 @@ export class TakeQuizComponent implements OnInit {
 		this.service.quesOfQuiz[this.service.qnProgress].answer = choice;
 		this.service.qnProgress++;
 		if (this.service.qnProgress == this.noOfQues) {
-			clearInterval(this.service.timer);
+			console.log(this.service.hours*60*60 + this.service.minutes*60);
+			console.log(this.hours*60*60 + this.minutes*60 + this.seconds);
+			this.totaltime = (this.service.hours*60*60 + this.service.minutes*60)-(this.hours*60*60 + this.minutes*60 + this.seconds);
+			console.log(this.totaltime);
+			this.service.hours = parseInt((this.totaltime/3600).toPrecision(1));
+			this.totaltime=this.totaltime%3600;
+			this.service.minutes = parseInt((this.totaltime/60).toPrecision(1));
+			this.totaltime=this.totaltime%60;
+			this.service.seconds = this.totaltime;
 			this.router.navigate(['/emp-dash/quiz/result']);
 		}
 	}

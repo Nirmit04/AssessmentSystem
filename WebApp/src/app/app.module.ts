@@ -60,13 +60,14 @@ import { AnalyticsByTagComponent } from './reporting-user/analytics-by-tag/analy
 import { AnalyticsByQuizComponent } from './reporting-user/analytics-by-quiz/analytics-by-quiz.component';
 import { AnalyticsByUserComponent } from './reporting-user/analytics-by-user/analytics-by-user.component';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { HttpInterceptorComponent} from './http-interceptor/http-interceptor.component';
+import { HttpInterceptorComponent } from './http-interceptor/http-interceptor.component';
 import { Mainnav4Component } from './reporting-user/mainnav4/mainnav4.component';
 import { ViewUserDetailsComponent } from './reporting-user/analytics-by-user/view-user-details/view-user-details.component';
 import { DetailsComponent } from './reporting-user/analytics-by-quiz/details/details.component';
 import { HttpErrorInterceptor } from './http-error-interceptor';
 import { DatePipe } from '@angular/common';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 	bgsColor: '#00ACC1',
@@ -176,7 +177,7 @@ export function provideConfig() {
 		MatExpansionModule,
 		OwlDateTimeModule,
 		OwlNativeDateTimeModule,
-		
+		AmazingTimePickerModule
 	],
 	providers: [
 		AuthGuard,

@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ContentCreatorServiceService } from '../../shared/content-creator-service.service';
 import { ToastrService } from 'ngx-toastr';
-import { Question } from 'src/app/content-creator/shared/question.model';
-import { concat, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
-// import { MatDialogRef } from '@angular/material';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { CreateQuestionsComponent } from '../../create-questions/create-questions.component';
+import { AmazingTimePickerService } from 'amazing-time-picker';
 
 @Component({
   selector: 'app-create-quiz',
@@ -26,10 +25,16 @@ export class CreateQuizComponent implements OnInit {
   form1: NgForm;
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
+  QuizHour: string;
+  QuizMinute: string;
+  MockType: string;
+  TotalQuestions: number;
+  RandomQuizTime: number;
   constructor(private service: ContentCreatorServiceService,
     private dialogRef: MatDialogRef<CreateQuizComponent>,
     public toastr: ToastrService,
-    private dialog: MatDialog, ) { }
+    private dialog: MatDialog,
+    private atp: AmazingTimePickerService) { }
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -72,16 +77,33 @@ export class CreateQuizComponent implements OnInit {
   }
 
   fetchReqQues(form: NgForm) {
-    console.log(form.value);
+    console.log(form.value.QuizTime);
     this.service.formDupli = form;
     this.service.quizForm = form.value;
-    this.service.getQuesOfUserConstraints(form.value).subscribe((data: any) => {
-      data.forEach(obj => obj.selected = false);
-      this.questions = data;
-      this.length = this.questions.length;
-      this.dtTrigger.next();
-      this.checkVal();
-    });
+    this.QuizHour = this.service.QuizHour.toString();
+    this.QuizMinute = this.service.QuizMinute.toString();
+    if (this.service.QuizHour < 10) {
+      this.QuizHour = '0' + this.service.QuizHour.toString();
+    }
+    if (this.service.QuizMinute < 10) {
+      this.QuizMinute = '0' + this.service.QuizMinute.toString();
+    }
+    this.service.quizForm.QuizTime = this.QuizHour + ":" + this.QuizMinute;
+    if (this.MockType == 'Random') {
+      this.service.generateRandom(form.value,this.TotalQuestions).subscribe((res: any) => {
+        this.toastr.success('Random Quiz Created successfully');
+        this.dialogRef.close('Inserted');
+      })
+    }
+    else {
+      this.service.getQuesOfUserConstraints(form.value).subscribe((data: any) => {
+        data.forEach(obj => obj.selected = false);
+        this.questions = data;
+        this.length = this.questions.length;
+        this.dtTrigger.next();
+        this.checkVal();
+      });
+    }
   }
   checkVal() {
     this.val = true;
@@ -95,6 +117,7 @@ export class CreateQuizComponent implements OnInit {
   onDetailsSubmit(form: NgForm) {
     var QuestionId = this.questions.filter(QuestionId => QuestionId.selected).map(idSelected => idSelected.QuestionId);
     this.service.postQuestionsSelected(QuestionId).subscribe(res => {
+
       this.toastr.success('Inserted successfully');
       this.dialogRef.close('Inserted');
     })

@@ -32,14 +32,10 @@ export class HomeComponent implements OnInit {
 			this.http.post(this.rooturl + 'User/Register', body).subscribe((res: any) => {
 				this.http.get(this.rooturl + 'GetUserDetails?email=' + localStorage.getItem('email'))
 					.subscribe((res1: any) => {
-						console.log(res1);
 						this.uid = res1.Id;
 						this.role = res1.Roles;
-						console.log(this.role);
 						localStorage.setItem('uid', this.uid);
 						localStorage.setItem('role', this.role);
-						console.log(this.checkqid);
-						console.log(this.checksid);
 						if (this.checkqid == 'null' && this.checksid == 'null') {
 							this.redirecttodash(this.role[0]);
 						}
@@ -48,9 +44,7 @@ export class HomeComponent implements OnInit {
 						}
 
 						else if (this.checkqid != 'null' && this.checksid != 'null') {
-							console.log("hii");
 							this.service.checkValidUser(+this.checkqid).subscribe((res: any) => {
-								console.log(res);
 								this.service.getQuesOfQuiz(+this.checkqid).subscribe((res: any) => {
 									this.service.quesOfQuiz = res as any[];
 									this.service.QuizScheduleId = +this.checksid;
@@ -64,19 +58,16 @@ export class HomeComponent implements OnInit {
 							this.router.navigate(['/http-error']);
 						}
 					});
-				console.log(res);
 			});
 		} else {
 			this.router.navigate(['/login']);
 		}
 	}
 	redirecttodash(role: string) {
-		console.log(role);
 		if (role === 'Test-Administrator') {
 			this.router.navigate(['/ta-dash']);
 		}
 		else if (role === 'Content-Creator') {
-			console.log('i am content creator');
 			this.router.navigate(['/cc-dash']);
 		}
 		else if (role === 'Employee') {

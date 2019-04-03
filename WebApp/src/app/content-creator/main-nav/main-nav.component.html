@@ -2,13 +2,18 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="!(isHandset$ | async)">
-    <mat-toolbar><a mat-list-item routerLink="/cc-dash"><i class="fa fa-tachometer" aria-hidden="true"></i>  Dashboard</a></mat-toolbar>
+    <mat-toolbar><a mat-list-item routerLink="/cc-dash"><i class="fa fa-tachometer" aria-hidden="true"></i>
+        Dashboard</a></mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/cc-dash/create-question"><i class="fa fa-code" aria-hidden="true"></i> Create Question</a>
-      <a mat-list-item routerLink="/cc-dash/quiz"><i class="fa fa-retweet" aria-hidden="true"></i>  Create/Retrieve Quiz</a>
-      <a mat-list-item routerLink="/cc-dash/tag"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Create / Edit Tag</a>
+      <a mat-list-item routerLink="/cc-dash/create-question"><i class="fa fa-code" aria-hidden="true"></i> Create
+        Question</a>
+      <a mat-list-item routerLink="/cc-dash/quiz"><i class="fa fa-retweet" aria-hidden="true"></i> Create/Retrieve
+        Quiz</a>
+      <a mat-list-item routerLink="/cc-dash/tag"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Create / Edit
+        Tag</a>
       <a mat-list-item routerLink="/cc-dash/rqbank"><i class="fa fa-check" aria-hidden="true"></i> Questions Created</a>
-      <a mat-list-item routerLink="/cc-dash/archive-quiz"><i class="fa fa-archive" aria-hidden="true"></i>  Archive Quizes</a>
+      <a mat-list-item routerLink="/cc-dash/archive-quiz"><i class="fa fa-archive" aria-hidden="true"></i> Archive
+        Quizes</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

@@ -5,7 +5,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 @Component({
 	selector: 'app-reporting-user',
 	templateUrl: './reporting-user.component.html',
-	styleUrls: [ './reporting-user.component.css' ]
+	styleUrls: ['./reporting-user.component.css']
 })
 export class ReportingUserComponent implements OnInit {
 	Firstname: String;
@@ -20,14 +20,13 @@ export class ReportingUserComponent implements OnInit {
 	TotalUser: any;
 	TotalSub: any;
 	show: boolean = true;
-	constructor(private service: ReportingUserService, private ngxService: NgxUiLoaderService) {}
+	constructor(private service: ReportingUserService, private ngxService: NgxUiLoaderService) { }
 
 	ngOnInit() {
 		this.ngxService.startBackground('do-background-things');
 		this.ngxService.stopBackground('do-background-things');
 		this.ngxService.startLoader('loader-01');
 		this.profileUrl = localStorage.getItem('imgurl');
-		console.log(this.profileUrl);
 		this.loadUserDetails();
 		this.loadUserProgress();
 	}
@@ -38,9 +37,8 @@ export class ReportingUserComponent implements OnInit {
 			this.email = res.Email;
 		});
 	}
-	loadUserProgress(){
-		this.service.getUserProgress().subscribe((res:any) => {
-			console.log(res);
+	loadUserProgress() {
+		this.service.getUserProgress().subscribe((res: any) => {
 			this.TotalQuiz = res.QuizCount;
 			this.TotalQues = res.QuestionCount;
 			this.TotalSub = res.SubjectCount;

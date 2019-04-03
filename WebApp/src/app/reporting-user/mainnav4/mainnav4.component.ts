@@ -18,22 +18,22 @@ export class Mainnav4Component {
       map(result => result.matches)
     );
 
-  
-    constructor(
-      private breakpointObserver: BreakpointObserver,
-      private authService: AuthService,
-      private router: Router
-    ) { }
-    ngOnInit() {
-      this.authService.authState.subscribe((user) => {
-        if (user != null) {
-        } else {
-          localStorage.clear();
-          this.router.navigate(['/login']);
-        }
-      });
-    }
-    logout() {
-      this.authService.signOut();
-    }
+
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private authService: AuthService,
+    private router: Router
+  ) { }
+  ngOnInit() {
+    this.authService.authState.subscribe((user) => {
+      if (user != null) {
+      } else {
+        localStorage.clear();
+        this.router.navigate(['/login']);
+      }
+    });
+  }
+  logout() {
+    this.authService.signOut();
+  }
 }

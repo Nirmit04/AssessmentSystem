@@ -22,7 +22,6 @@ export class ResultComponent implements OnInit {
     if (this.service.QuizScheduleId == null) {
       this.service.getAnswers().subscribe((res: any) => {
         this.QuesWithAns = res as any[];
-        // console.log(this.QuesWithAns);
         this.service.correctAnswerCount = 0;
         this.service.quesOfQuiz.forEach((e, i) => {
           if (e.answer == this.QuesWithAns[i].Answer) {
@@ -30,9 +29,6 @@ export class ResultComponent implements OnInit {
           }
           this.correct[i] = this.QuesWithAns[i].Answer;
         });
-        // console.log(this.service.quesOfQuiz);
-        // console.log(this.correct);
-        // console.log(this.service.correctAnswerCount);
         this.dispCard = true;
       })
 
@@ -51,15 +47,13 @@ export class ResultComponent implements OnInit {
         }
       )
     }
-    this.timeTaken = this.service.displayTimeElapsed();
-
+    this.timeTaken = this.service.hours.toString() + ':' + this.service.minutes.toString() + ':' + this.service.seconds.toString();
     this.service.body = {
       QuesAnswers: dict,
       TimeTaken: this.timeTaken
     }
 
     this.service.postanswers().subscribe(res => {
-      // this.dispCard = true;
       if (this.service.QuizScheduleId != null) {
         this.service.QuizScheduleId = null;
         this.service.quesOfQuiz = null;

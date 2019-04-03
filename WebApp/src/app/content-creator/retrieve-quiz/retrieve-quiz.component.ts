@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TagModel } from '../shared/tags.model';
 import { ContentCreatorServiceService } from '../shared/content-creator-service.service';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
@@ -7,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { QuizModel } from '../shared/quiz.model';
 import { CreateQuizComponent } from './create-quiz/create-quiz.component';
 import { UpdateQuizComponent } from './update-quiz/update-quiz.component';
-import { concat, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
 
 @Component({
