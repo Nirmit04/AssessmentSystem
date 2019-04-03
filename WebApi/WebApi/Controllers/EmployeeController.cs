@@ -1,9 +1,12 @@
 ﻿
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using WebApi.Models;
 
@@ -59,20 +62,49 @@ namespace WebApi.Controllers
             var MockCount = db.Reports.Where(x => x.UserId == UserId && x.QuizType == "Mock").Count();
             var NonMockCount = db.Reports.Where(x => x.UserId == UserId && x.QuizType == "Non-Mock").Count();
             decimal TotalAccuracy = 0.00m;
-            string recentActivity="----";
+            string recentActivity = "----";
             try
             {
                 TotalAccuracy = db.Reports.Where(x => x.UserId == UserId).Select(y => y.Accuracy).Sum() / (MockCount + NonMockCount);
-                var QuizId = db.UserSchedules.OrderByDescending(x => x.UserScheduleId).FirstOrDefault(x => x.UserId == UserId && x.Taken==true).QuizId;
+                var QuizId = db.UserSchedules.OrderByDescending(x => x.UserScheduleId).FirstOrDefault(x => x.UserId == UserId && x.Taken == true).QuizId;
                 recentActivity = db.Quizs.FirstOrDefault(x => x.QuizId == QuizId).QuizName;
             }
             catch (Exception) { }
-            
+
             employeeStats.Add("Mock", MockCount.ToString());
             employeeStats.Add("NonMock", NonMockCount.ToString());
-            employeeStats.Add("Accuracy", String.Format("{0:f2}",TotalAccuracy));
+            employeeStats.Add("Accuracy", String.Format("{0:f2}", TotalAccuracy));
             employeeStats.Add("RecentActivity", recentActivity);
             return Ok(employeeStats);
         }
+
+        [HttpPost]
+        [Route("api/Employee/Sample")]
+        public IHttpActionResult Sample([FromBody]Sample sample)
+        {
+            
+
+            System.Diagnostics.Debug.WriteLine(sample.companyname);
+            System.Diagnostics.Debug.WriteLine(sample.designation);
+           // System.Diagnostics.Debug.WriteLine(file.FileName);
+
+            string imageName = null;
+                var httpRequest = HttpContext.Current.Request;
+                var postedFile = httpRequest.Files["Image"];
+
+                if (postedFile != null)
+                {
+                    var ImageDirectoryUrl = HttpContext.Current.Server.MapPath("/Images/");
+                    imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).ToArray()).Replace(" ", "-");
+                    imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
+                    var filePath = ImageDirectoryUrl + imageName;
+                    sample.jd = imageName;
+                    postedFile.SaveAs(filePath);
+                    System.Diagnostics.Debug.WriteLine("in if");
+                }
+            System.Diagnostics.Debug.WriteLine(sample.jd);
+            return Ok();
+            }
+        }
     }
-}
+
