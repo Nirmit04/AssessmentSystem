@@ -18,6 +18,7 @@ namespace WebApi.Models
         public decimal Marks { get; set; }
         public string ImageName { get; set; }
         public string Difficulty { get; set; }
+        public string QuestionType { get; set; } = "Non-Mock";
 
         [ForeignKey("Subject")]
         public int SubjectId { get; set; }
