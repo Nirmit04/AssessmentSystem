@@ -89,10 +89,11 @@ namespace WebApi.Controllers
            // System.Diagnostics.Debug.WriteLine(file.FileName);
 
             string imageName = null;
-                var httpRequest = HttpContext.Current.Request;
-                var postedFile = httpRequest.Files["Image"];
+            var httpRequest = HttpContext.Current.Request;
+            var postedFile = httpRequest.Files["Image"];
+           
 
-                if (postedFile != null)
+            if (postedFile != null)
                 {
                     var ImageDirectoryUrl = HttpContext.Current.Server.MapPath("/Images/");
                     imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).ToArray()).Replace(" ", "-");
