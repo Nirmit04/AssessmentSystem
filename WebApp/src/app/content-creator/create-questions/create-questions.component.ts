@@ -26,6 +26,7 @@ export class CreateQuestionsComponent implements OnInit {
       form.resetForm();
     }
     this.service.formData = {
+      Type: "",
       QuestionId: null,
       QuestionStatement: "",
       Option1: "",
@@ -43,7 +44,19 @@ export class CreateQuestionsComponent implements OnInit {
     this.service.postQuestion(form.value).subscribe((res) => {
       this.toastr.success('Inserted successfully');
       this.resetForm(form);
+      this.sleep(5000);    //it waits for 5 seconds before reloading. Can be changed.
+      location.reload();
+      console.log('reloaded');
     });
+  }
+
+  sleep(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+      if ((new Date().getTime() - start) > milliseconds){
+        break;
+      }
+    }
   }
 
 }

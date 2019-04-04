@@ -1,4 +1,5 @@
 export class Question {
+	Type: String;
 	QuestionId: String;
 	QuestionStatement: String;
 	Option1: String;

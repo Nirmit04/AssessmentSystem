@@ -6,6 +6,7 @@ import { AuthService } from 'angularx-social-login';
 import { Router } from '@angular/router';
 import { addAllToArray } from '@angular/core/src/render3/util';
 import { stringify } from '@angular/core/src/util';
+import { ContentCreatorServiceService } from '../shared/content-creator-service.service';
 
 @Component({
 	selector: 'app-main-nav',
@@ -20,7 +21,8 @@ export class MainNavComponent {
 	constructor(
 		private breakpointObserver: BreakpointObserver,
 		private authService: AuthService,
-		private router: Router
+		private router: Router,
+		private service: ContentCreatorServiceService,
 	) { }
 	Val: string[];
 	showSpinnner: boolean = true;
@@ -58,6 +60,20 @@ export class MainNavComponent {
 	logout() {
 		localStorage.clear();
 		this.authService.signOut();
+	}
+
+	scheduleTypeQuestion(){
+		// location.reload();
+		this.service.QuestionType = 'Scheduled';
+		console.log(this.service.QuestionType);
+		this.router.navigate(['/cc-dash/create-question'])
+	}
+
+	mockTypeQuestion(){
+		// location.reload();
+		this.service.QuestionType = 'Mock';
+		console.log(this.service.QuestionType);
+		this.router.navigate(['/cc-dash/create-question'])
 	}
 
 }

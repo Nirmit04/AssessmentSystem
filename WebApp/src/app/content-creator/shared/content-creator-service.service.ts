@@ -11,6 +11,7 @@ import { NgForm } from '@angular/forms';
 })
 export class ContentCreatorServiceService {
 
+	QuestionType: String;
 	tagForm: TagModel;
 	formData: Question;
 	quizForm: QuizModel;
@@ -25,6 +26,8 @@ export class ContentCreatorServiceService {
 
 	postQuestion(formData: Question) {
 		formData.CreatedBy = localStorage.getItem('uid');
+		formData.Type = this.QuestionType;
+		console.log(formData.Type);
 		return this.http.post(this.rootURL + 'Question/CreateQuestion', formData);
 	}
 
