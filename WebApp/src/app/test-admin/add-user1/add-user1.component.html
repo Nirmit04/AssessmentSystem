@@ -2,10 +2,28 @@
   <mat-icon>clear</mat-icon>
 </button>
 <form #Userform="ngForm" (submit)="onSubmit(Userform)" autocomplete="off">
-  <div *ngFor="let x of quiztakers; let i = index"><br>
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+    class="row-border hover table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>#S.NO.</th>
+        <th>Tick</th>
+        <th>Users</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let x of quiztakers; let i = index">
+          <td>{{i+1}}</td>
+          <td><input [id]="'quiztakers-'+i" type="checkbox" value="{{x.Id}}" [checked]="x.selected"
+            (change)="updateSelectedUsers(i)"></td>
+          <td>{{x.FirstName  }}{{x.LastName}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- <div *ngFor="let x of quiztakers; let i = index"><br>
     <input [id]="'quiztakers-'+i" type="checkbox" value="{{x.Id}}" [checked]="x.selected"
       (change)="updateSelectedUsers(i)">
     <label>{{x.FirstName  }}{{x.LastName}}</label>
-  </div>
+  </div> -->
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
