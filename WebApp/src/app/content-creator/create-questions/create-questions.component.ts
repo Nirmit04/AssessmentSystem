@@ -19,6 +19,7 @@ export class CreateQuestionsComponent implements OnInit {
     this.service.retrieveSubjects().subscribe(res => {
       this.Subjects = res as Subject[];
     });
+    
   }
 
   resetForm(form?: NgForm) {
