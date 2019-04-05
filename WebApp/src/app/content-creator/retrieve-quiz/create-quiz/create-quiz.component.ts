@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { CreateQuestionsComponent } from '../../create-questions/create-questions.component';
-import { AmazingTimePickerService } from 'amazing-time-picker';
+
 
 @Component({
   selector: 'app-create-quiz',
@@ -36,7 +36,7 @@ export class CreateQuizComponent implements OnInit {
     private dialogRef: MatDialogRef<CreateQuizComponent>,
     public toastr: ToastrService,
     private dialog: MatDialog,
-    private atp: AmazingTimePickerService) { }
+    ) { }
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'full_numbers',

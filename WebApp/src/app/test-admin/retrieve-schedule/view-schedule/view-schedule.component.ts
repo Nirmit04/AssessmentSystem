@@ -47,8 +47,10 @@ export class ViewScheduleComponent implements OnInit {
   }
 
   loadExistingUsers(scheduleQuizId: number) {
+    console.log(scheduleQuizId);
     this.service.getScheduleQuizUsers(scheduleQuizId).subscribe((res: any) => {
       this.usersList = res as any[];
+      console.log(this.usersList);
     });
   }
 
@@ -65,7 +67,7 @@ export class ViewScheduleComponent implements OnInit {
       this.dialogRef.close('Saved');
     })
   }
-  
+
   checkStartDate(date1: NgForm) {
     this.stdate = date1.value;
     this.date = (this.datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm'));
