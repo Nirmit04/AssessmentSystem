@@ -67,7 +67,7 @@ import { DetailsComponent } from './reporting-user/analytics-by-quiz/details/det
 import { HttpErrorInterceptor } from './http-error-interceptor';
 import { DatePipe } from '@angular/common';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
-import { AmazingTimePickerModule } from 'amazing-time-picker';
+
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 	bgsColor: '#00ACC1',
@@ -177,7 +177,7 @@ export function provideConfig() {
 		MatExpansionModule,
 		OwlDateTimeModule,
 		OwlNativeDateTimeModule,
-		AmazingTimePickerModule
+	
 	],
 	providers: [
 		AuthGuard,

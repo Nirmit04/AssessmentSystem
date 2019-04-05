@@ -26,7 +26,7 @@ export class CreateQuestionsComponent implements OnInit {
       form.resetForm();
     }
     this.service.formData = {
-      Type: "",
+      QuestionType: "",
       QuestionId: null,
       QuestionStatement: "",
       Option1: "",
