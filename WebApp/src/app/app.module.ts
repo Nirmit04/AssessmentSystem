@@ -67,7 +67,6 @@ import { DetailsComponent } from './reporting-user/analytics-by-quiz/details/det
 import { HttpErrorInterceptor } from './http-error-interceptor';
 import { DatePipe } from '@angular/common';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
-import { AmazingTimePickerModule } from 'amazing-time-picker';
 import { LoaderComponent } from './loader/loader.component';
 import { LoaderInterceptorService} from '../app/services/loader-interceptor.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -182,7 +181,6 @@ export function provideConfig() {
 		MatExpansionModule,
 		OwlDateTimeModule,
 		OwlNativeDateTimeModule,
-		AmazingTimePickerModule,
 		MatProgressSpinnerModule
 	],
 	providers: [

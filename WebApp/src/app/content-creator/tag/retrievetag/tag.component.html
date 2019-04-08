@@ -1,28 +1,26 @@
 <app-main-nav>
   <div>
-    <button mat-raised-button (click)="onCreate()">
-      <mat-icon>add</mat-icon>Create
-    </button>
+    <button type="button" (click)="onCreate()" class="btn btn-primary">Create Tag</button>
   </div>
   <br>
   <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
     class="row-border hover table table-bordered table-striped">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">#S. No.</th>
-        <th scope="col">Subject</th>
-        <th scope="col">Department</th>
-        <th scope="col">Action</th>
+        <th>#S. No.</th>
+        <th>Subject</th>
+        <th>Department</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
       <ng-container *ngFor="let tag of tagList;index as i;">
         <tr>
-          <th scope="row">{{i+1}}</th>
-          <td scope="row">{{tag.Name}}</td>
-          <td scope="row">{{tag.Department}}</td>
+          <th>{{i+1}}</th>
+          <td>{{tag.Name}}</td>
+          <td>{{tag.Department}}</td>
           <td>
-            <a class="btn btn-sm btn-info text-white" (click)="onEdit(i+1)"><i class="fa fa-pencil"></i></a>
+            <a class="btn btn-sm btn-info text-white" (click)="onEdit(i+1)"><i aria-hidden="true" class="fa fa-pencil"></i></a>
           </td>
         </tr>
       </ng-container>

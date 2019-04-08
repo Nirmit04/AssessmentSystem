@@ -7,30 +7,30 @@
       class="row-border hover table table-bordered table-striped">
       <thead class="thead-dark">
         <tr>
-          <th scope="col">#S. No.</th>
-          <th scope="col">Quiz Type</th>
-          <th scope="col">Difficulty</th>
-          <th scope="col">Subject</th>
-          <th scope="col">Name</th>
-          <th scope="col">Total Questions</th>
-          <th scope="col">Total Marks</th>
-          <th scope="col">Time</th>
-          <th scope="col">Action</th>
+          <th>#S. No.</th>
+          <th>Quiz Name</th>
+          <th>Subject</th>
+          <th>Difficulty</th>
+          <th>Quiz Type</th>
+          <th>Total Questions</th>
+          <th>Total Marks</th>
+          <th>Time</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of QuizList;index as i">
-          <th scope="row">{{i+1}}</th>
-          <td scope="row">{{item.QuizType}}</td>
-          <td scope="row">{{item.Difficulty}}</td>
-          <td scope="row">{{item.Subject}}</td>
-          <td scope="row">{{item.QuizName}}</td>
-          <td scope="row">{{item.TotalQuestions}}</td>
-          <td scope="row">{{item.TotalMarks}}</td>
-          <td scope="row">{{item.QuizTime}}</td>
+          <th>{{i+1}}</th>
+          <td>{{item.QuizName}}</td>
+          <td>{{item.Subject}}</td>
+          <td>{{item.Difficulty}}</td>
+          <td>{{item.QuizType}}</td>
+          <td>{{item.TotalQuestions}}</td>
+          <td>{{item.TotalMarks}}</td>
+          <td>{{item.QuizTime}}</td>
           <td>
-            <a class="btn text-danger" (click)="onEdit(item.QuizId)"><i class="fa fa-edit fa-lg"></i></a>
-            <a class="btn text-danger" (click)="onArchive(item.QuizId)"><i class="fa fa-trash fa-lg"></i></a>
+            <a class="btn text-danger" (click)="onEdit(item.QuizId)"><i aria-hidden="true" lass="fa fa-edit fa-lg"></i></a>
+            <a class="btn text-danger" (click)="onArchive(item.QuizId)"><i aria-hidden="true" class="fa fa-trash fa-lg"></i></a>
           </td>
         </tr>
       </tbody>

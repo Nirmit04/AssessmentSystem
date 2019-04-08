@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { CreateQuestionsComponent } from '../../create-questions/create-questions.component';
-import { AmazingTimePickerService } from 'amazing-time-picker';
+
 
 @Component({
   selector: 'app-create-quiz',
@@ -36,7 +36,7 @@ export class CreateQuizComponent implements OnInit {
     private dialogRef: MatDialogRef<CreateQuizComponent>,
     public toastr: ToastrService,
     private dialog: MatDialog,
-    private atp: AmazingTimePickerService) { }
+  ) { }
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -67,7 +67,7 @@ export class CreateQuizComponent implements OnInit {
         QuizName: ''
       }
       if (this.questions) {
-        this.questions.map(y => y.selected = false);
+        this.questions.forEach(y => y.selected = false);
       }
     }
   }
@@ -78,6 +78,12 @@ export class CreateQuizComponent implements OnInit {
   }
 
   fetchReqQues(form: NgForm) {
+    console.log(form.value.QuizType);
+    if (form.value.QuestionType === 'Non-Mock') {
+      this.service.QuestionType = 'Scheduled';
+    } else {
+      this.service.QuestionType = 'Mock'
+    }
     this.service.formDupli = form;
     this.service.quizForm = form.value;
     this.QuizHour = this.service.QuizHour.toString();
@@ -90,10 +96,15 @@ export class CreateQuizComponent implements OnInit {
     }
     this.service.quizForm.QuizTime = this.QuizHour + ":" + this.QuizMinute;
     if (this.MockType == 'Random') {
-      this.service.generateRandom(form.value,this.TotalQuestions).subscribe((res: any) => {
-        this.toastr.success('Random Quiz Created successfully');
+      this.service.generateRandom(form.value, this.TotalQuestions).subscribe((res: any) => {
+        if (res == 0) {
+          this.toastr.error('No Questions Available!')
+        }
+        else {
+          this.toastr.success('Random Quiz Created successfully with ' + res + ' questions.');
+        }
         this.dialogRef.close('Inserted');
-      })
+      });
     }
     else {
       this.service.getQuesOfUserConstraints(form.value).subscribe((data: any) => {
@@ -137,6 +148,8 @@ export class CreateQuizComponent implements OnInit {
   }
 
   add_new_ques() {
+    console.log(this.service.quizForm.QuizType);
+
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = "70%";

@@ -43,6 +43,7 @@ export class UpdateQuestionComponent implements OnInit {
       form.resetForm();
     }
     this.service.formData = {
+      QuestionType:"",
       QuestionId: null,
       QuestionStatement: "",
       Option1: "",

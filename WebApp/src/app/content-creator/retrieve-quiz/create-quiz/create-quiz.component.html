@@ -4,13 +4,13 @@
   </button>
   <div class="card" style="width: 80%; overflow: auto">
     <div class="card-body">
-      <h5 class="card-title" style="text-align: center">Create A Quiz</h5><br />
+      <strong><h2 class="card-title" style="text-align: center">Create A Quiz</h2><br /></strong>
       <ng-container *ngIf="!val">
         <form #form="ngForm" (submit)="fetchReqQues(form)" autocomplete="off">
           <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="CCreatedBy">
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label>Select Difficulty-Level</label>
+              <strong><label>Select Difficulty-Level</label></strong>
               <select name="Difficulty" required #Difficulty="ngModel" [(ngModel)]="service.quizForm.Difficulty"
                 class="form-control">
                 <option value="Beginner">Beginner</option>
@@ -21,30 +21,29 @@
               </div>
             </div>
             <div class="form-group col-md-6">
-              <label>Select Subject</label>
+              <strong><label>Select Subject</label></strong>
               <select name="SubjectId" required #SubjectId="ngModel" [(ngModel)]="service.quizForm.SubjectId"
                 class="form-control">
                 <option *ngFor="let Subject of Subjects;" value="{{Subject.SubjectId}}">{{Subject.Name}}</option>
               </select>
-
               <div class="validation-error" *ngIf="SubjectId.invalid && SubjectId.touched">This field is required.</div>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label>Quiz Name</label>
+              <strong><label>Quiz Name</label></strong>
               <br />
               <input type="text" required name="QuizName" #QuizName="ngModel" [(ngModel)]="service.quizForm.QuizName"
                 class="form-control">
               <div class="validation-error" *ngIf="QuizName.invalid && QuizName.touched">This field is required.</div>
             </div>
             <div class="form-group col-md-6">
-              <label>Select Quiz Type</label>
+              <strong><label>Select Quiz Type</label></strong>
               <select name="QuizType" required #QuizType="ngModel" [(ngModel)]="service.quizForm.QuizType"
                 class="form-control">
                 <option value="" disabled>Choose an option...</option>
                 <option value="Mock">Mock</option>
-                <option value="Non-Mock">Scheduled</option>
+                <option value="Scheduled">Scheduled</option>
               </select>
               <div class="validation-error" *ngIf="QuizType.invalid && QuizType.touched">This field is required.
               </div>
@@ -52,18 +51,18 @@
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label>Quiz Time (hh:mm)</label><br />
-              <input type="number" name="QuizHour" placeholder="hh" min="0" max="24" #QuizHour="ngModel"
-                [(ngModel)]="service.QuizHour">
-              <b>:</b>
-              <input type="number" name="QuizMinute" placeholder="mm" min="0" max="60" #QuizMinute="ngModel"
+              <strong><label>Quiz Time (hh:mm)</label><br /></strong>
+              <input required type="number" name="QuizHour" placeholder="hh" min="0" max="24" #QuizHour="ngModel"
+                [(ngModel)]="service.QuizHour">&nbsp;
+              <strong>:</strong>&nbsp;
+              <input required type="number" name="QuizMinute" placeholder="mm" min="0" max="60" #QuizMinute="ngModel"
                 [(ngModel)]="service.QuizMinute">
               <div class="validation-error"
                 *ngIf="QuizHour.invalid && QuizHour.touched && QuizMinutes.invalid && QuizMinutes.touched">This field is
                 required.</div>
             </div>
             <div *ngIf="service.quizForm.QuizType == 'Mock'" class="form-group col-md-6">
-              <label>Select Mock Quiz</label>
+              <strong><label>Select Mock Quiz</label></strong>
               <select name="MockTypess" required #MockTypess="ngModel" [(ngModel)]="MockType" class="form-control">
                 <option value="" disabled>Choose an option...</option>
                 <option value="Random">Random</option>
@@ -75,14 +74,14 @@
           </div>
           <div class="form-row">
             <div *ngIf="MockType == 'Random'" class="form-group col-md-6">
-              <label>Number Of Questions</label>
+              <strong><label>Number Of Questions</label></strong>
               <input type="text" name="Questions" #Questions="ngModel" [(ngModel)]="TotalQuestions"
               class="form-control">
             <div class="validation-error" *ngIf="Questions.invalid && Questions.touched">This field is required.</div>
             </div>
           </div>
-          <div class="form-group">
-            <button type="submit" [disabled]="form.invalid" class="btn btn-primary ">Create</button>
+          <div class="form-group" style="margin-top: 3%">
+            <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Create</button>
           </div>
         </form>
       </ng-container>
@@ -91,7 +90,7 @@
           <h5 *ngIf="length>0" class="card-title" style="text-align: center">Choose Questions</h5><br />
           <h5 *ngIf="length==0" class="card-title" style="text-align: center">No Question Available</h5><br />
           <div>
-            <a (click)="add_new_ques()">Click Here to Create New Question</a>
+            <strong><a (click)="add_new_ques()">Click Here to Create New Question</a></strong>
           </div>
           <form #Questionform="ngForm" (submit)="onDetailsSubmit(Questionform)" autocomplete="off">
             <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"

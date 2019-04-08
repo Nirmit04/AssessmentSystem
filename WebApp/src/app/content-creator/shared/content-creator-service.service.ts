@@ -11,6 +11,7 @@ import { NgForm } from '@angular/forms';
 })
 export class ContentCreatorServiceService {
 
+	QuestionType: string;
 	tagForm: TagModel;
 	formData: Question;
 	quizForm: QuizModel;
@@ -25,6 +26,7 @@ export class ContentCreatorServiceService {
 
 	postQuestion(formData: Question) {
 		formData.CreatedBy = localStorage.getItem('uid');
+		formData.QuestionType = this.QuestionType;
 		return this.http.post(this.rootURL + 'Question/CreateQuestion', formData);
 	}
 
@@ -77,10 +79,10 @@ export class ContentCreatorServiceService {
 	}
 
 	getQuesOfUserConstraints(form: any) {
-		return this.http.get(this.rootURL + 'Question/GetQuestion/' + form.Difficulty + '/' + form.SubjectId);
+		return this.http.get(this.rootURL + 'Question/GetQuestion/?Difficulty=' + form.Difficulty + '&SubjectId=' + form.SubjectId + '&QuestionType=' + form.QuizType);
 	}
 	generateRandom(form: any, question: number) {
-		return this.http.post(this.rootURL + 'Quiz/GetRandomQuestion?TotalQuestion='+question, form);
+		return this.http.post(this.rootURL + 'Quiz/GetRandomQuestion?TotalQuestion=' + question, form);
 	}
 	postQuestionsSelected(questions: number[]) {
 		this.quizForm.QuestionIds = questions;

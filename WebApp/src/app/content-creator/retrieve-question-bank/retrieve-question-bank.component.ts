@@ -37,6 +37,7 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 
 	getQuesOfUser(uid: string) {
 		this.service.getQuesOfUser(uid).subscribe((data: any) => {
+			console.log(data);
 			this.questionList = data as Question[];
 			this.dtTrigger.next();
 		})

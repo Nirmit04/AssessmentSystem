@@ -1,11 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { TestAdminService } from '../../shared/test-admin.service';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig, MatDialog } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
 import { UpdateQuestionComponent } from 'src/app/content-creator/update-question/update-question.component';
 import { ToastrService } from 'ngx-toastr';
 import { Schedule } from '../../shared/schedule.model';
 import { NgForm } from '@angular/forms';
-import { AddUserComponent } from '../add-user/add-user.component';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -42,7 +41,7 @@ export class ViewScheduleComponent implements OnInit {
       this.label = 'Edit Schedule';
     }
     this.CCreatedBy = localStorage.getItem('uid');
-    this.loadExistingUsers(+this.data);
+    this.usersList = this.data as any[];
   }
 
   loadExistingUsers(scheduleQuizId: number) {
@@ -64,29 +63,23 @@ export class ViewScheduleComponent implements OnInit {
       this.dialogRef.close('Saved');
     })
   }
-  
+
   checkStartDate(date1: NgForm) {
     this.stdate = date1.value;
     this.date = (this.datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm'));
-    console.log(this.date);
     if (date1.value < this.date) {
-      console.log('invalid')
       this.startDateValid = true;
     } else {
       this.startDateValid = false;
-      console.log('valid');
     }
   }
 
   checkEndDate(date2: NgForm) {
     this.date = (this.datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm'));
-    console.log(this.date);
     if (date2.value <= this.stdate || date2.value < this.date) {
-      console.log('invalid');
       this.endDateValid = true;
     } else {
       this.endDateValid = false;
-      console.log('valid');
     }
   }
 }
