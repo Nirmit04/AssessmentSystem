@@ -21,7 +21,7 @@
             <th class="text-primary" scope="row">{{item.QuestionStatement}}</th>
             <td class="text-primary" scope="row">{{item.Marks}}</td>
             <td>
-              <a class="btn text-danger" (click)="onDelete(item.QuestionId)"><i class="fa fa-trash fa-lg"></i></a>
+              <a class="btn text-danger" (click)="onDelete(item.QuestionId)"><i aria-hidden="true" class="fa fa-trash fa-lg"></i></a>
             </td>
           </tr>
         </ng-container>

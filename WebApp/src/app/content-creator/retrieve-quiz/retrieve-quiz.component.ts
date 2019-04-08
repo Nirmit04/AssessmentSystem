@@ -35,6 +35,7 @@ export class RetrieveQuizComponent implements OnInit {
 		this.dtOptions = {
 			pagingType: 'full_numbers',
 			pageLength: 10,
+			responsive: true,
 		};
 		this.loadQuiz();
 	}
