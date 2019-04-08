@@ -43,6 +43,7 @@ export class ArchiveQuizComponent implements OnInit {
 			this.service.unArchiveQuiz(id).subscribe((res: any) => {
 				this.loadQuiz();
 				this.toastr.success('Un-Archived Successfully', 'Assesment System');
+				this.dtTrigger.unsubscribe();
 				this.dtTrigger.next();
 			});
 		}
