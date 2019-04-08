@@ -29,7 +29,7 @@ export class EmployeeService {
   }
 
   getNonMocks() {
-    return this.http.get(this.rootURL + 'Employee/NonMock/' + localStorage.getItem('uid'));
+    return this.http.get(this.rootURL + 'Employee/Scheduled/' + localStorage.getItem('uid'));
   }
 
   getQuesOfQuiz(QuizId: number) {
@@ -64,7 +64,7 @@ export class EmployeeService {
   }
 
   getReportOfNonMockQuiz(id) {
-    return this.http.get(this.rootURL + 'Report/NonMock/' + id);
+    return this.http.get(this.rootURL + 'Report/Scheduled/' + id);
   }
 
   getReportOfMockQuiz(id) {

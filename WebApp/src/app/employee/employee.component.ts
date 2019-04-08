@@ -40,7 +40,7 @@ export class EmployeeComponent implements OnInit {
 	loadUserProgress(){
 		this.service.getUserProgress().subscribe((res:any) =>{
 			this.mocks = res.Mock;
-			this.nmocks = res.NonMock;
+			this.nmocks = res.Scheduled;
 			this.accuracy = res.Accuracy;
 			this.recentQuiz = res.RecentActivity
 			this.show = false;
