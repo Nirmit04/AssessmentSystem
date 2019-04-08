@@ -1,5 +1,5 @@
 export class Question {
-	QuestionType: String;
+	QuestionType?: String;
 	QuestionId: String;
 	QuestionStatement: String;
 	Option1: String;

@@ -46,6 +46,7 @@ export class AddUserComponent implements OnInit {
     dialogConfig.width = "70%";
     dialogConfig.disableClose = true;
     dialogConfig.data = scheduleid;
+    // this.dtTrigger.unsubscribe();
     this.dialog.open(AddUser1Component, dialogConfig).afterClosed().subscribe((res: any) => {
       this.loadSchedule();
       this.dtTrigger.unsubscribe();

@@ -48,7 +48,6 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 			this.service.deleteQues(qid).subscribe((res: any) => {
 				this.toastr.success('Deleted Successfully', 'Assesment System');
 				this.dtTrigger.unsubscribe();
-				this.dtTrigger.next();
 				this.getQuesOfUser(localStorage.getItem('uid'));
 			});
 		}
