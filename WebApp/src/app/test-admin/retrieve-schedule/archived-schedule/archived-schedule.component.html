@@ -17,12 +17,12 @@
       <tbody>
         <ng-container *ngFor="let item of ScheduleList;index as i;">
           <tr>
-            <th scope="row">{{i+1}}</th>
-            <td scope="row">{{item.QuizName}}</td>
-            <td scope="row">{{item.StartDateTime}}</td>
-            <td scope="row">{{item.EndDateTime}}</td>
+            <th>{{i+1}}</th>
+            <td>{{item.QuizName}}</td>
+            <td>{{item.StartDateTime}}</td>
+            <td>{{item.EndDateTime}}</td>
             <td style="text-align:center;">
-              <a class="btn btn-sm btn-info text-white" (click)="unarchiveSchedule(item.QuizScheduleId)"><i
+              <a class="btn btn-sm btn-info text-white" (click)="unarchiveSchedule(item.QuizScheduleId)"><i aria-hidden="true"
                   class="fa fa-pencil"></i></a>
             </td>
           </tr>

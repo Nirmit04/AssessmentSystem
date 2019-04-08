@@ -45,10 +45,10 @@
     <tbody>
       <ng-container *ngFor="let user of usersList;index as i">
         <tr>
-          <th class="text-primary" scope="row">{{i+1}}</th>
-          <th class="text-primary" scope="row">{{user.UserName}}</th>
-          <td class="text-primary" scope="row">{{user.Email}}</td>
-          <td class="text-primary" scope="row">{{user.QuizTaken}}</td>
+          <th class="text-primary">{{i+1}}</th>
+          <th class="text-primary">{{user.UserName}}</th>
+          <td class="text-primary">{{user.Email}}</td>
+          <td class="text-primary">{{user.QuizTaken}}</td>
           <td [hidden]="!service.deleteUserVisibility">
             <button class="btn text-danger" [hidden]="user.QuizTaken[0]" (click)="deleteUserFromSchedule(user.Id)"><i
                 class="fa fa-trash fa-lg" aria-hidden="true"></i></button>

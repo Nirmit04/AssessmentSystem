@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { allResolved } from 'q';
 
 @Injectable({
 	providedIn: 'root'
@@ -10,7 +11,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 	constructor(private router: Router) { }
 	canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 		if (localStorage.getItem('uid') != null) {
-			let roles = next.data["roles"] as Array<string>;
+			const roles = next.data['roles'] as Array<string>;
 			if (roles) {
 				var match = this.roleMatch(roles);
 				if (match) return true;
@@ -34,14 +35,15 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 	}
 
 	roleMatch(allowedRoles): boolean {
+		console.log(allowedRoles);
 		var isMatch = false;
 		var userRoles: string = localStorage.getItem('role');
 		allowedRoles.forEach(element => {
-		  if (userRoles.indexOf(element) > -1) {
-			isMatch = true;
-			//return false;
-		  }
+			if (userRoles.indexOf(element) > -1) {
+				isMatch = true;
+				//return false;
+			}
 		});
 		return isMatch;
-	  }
+	}
 }

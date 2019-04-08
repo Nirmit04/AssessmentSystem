@@ -33,14 +33,13 @@ export class ViewScheduleComponent implements OnInit {
     private datePipe: DatePipe) { }
 
   ngOnInit() {
-    //s\ this.usersList[0].QuizTaken = "false";
     this.date = this.datePipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
     this.bool = this.service.readonlyStatus;
     if (this.bool === true) {
-      this.label = "View Schedule";
+      this.label = 'View Schedule';
       this.q1 = this.service.formdata.StartDateTime;
     } else {
-      this.label = "Edit Schedule";
+      this.label = 'Edit Schedule';
     }
     this.CCreatedBy = localStorage.getItem('uid');
     this.loadExistingUsers(+this.data);
@@ -83,7 +82,7 @@ export class ViewScheduleComponent implements OnInit {
     this.date = (this.datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm'));
     console.log(this.date);
     if (date2.value <= this.stdate || date2.value < this.date) {
-      console.log("invalid");
+      console.log('invalid');
       this.endDateValid = true;
     } else {
       this.endDateValid = false;

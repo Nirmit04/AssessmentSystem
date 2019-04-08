@@ -386,30 +386,30 @@ var routes = [
     { path: 'home', component: _home_home_component__WEBPACK_IMPORTED_MODULE_4__["HomeComponent"] },
     { path: '', component: _login_login_component__WEBPACK_IMPORTED_MODULE_5__["LoginComponent"], pathMatch: 'full' },
     { path: 'app-root', component: _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"] },
-    { path: 'cc-dash', component: _content_creator_user_details_user_details_component__WEBPACK_IMPORTED_MODULE_10__["UserDetailsComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
+    { path: 'cc-dash', component: _content_creator_user_details_user_details_component__WEBPACK_IMPORTED_MODULE_10__["UserDetailsComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]], data: { roles: ['Content-Creator'] } },
     { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_5__["LoginComponent"] },
-    { path: 'cc-dash/tag', component: _content_creator_tag_retrievetag_tag_component__WEBPACK_IMPORTED_MODULE_7__["TagComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'cc-dash/quiz', component: _content_creator_retrieve_quiz_retrieve_quiz_component__WEBPACK_IMPORTED_MODULE_8__["RetrieveQuizComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'cc-dash/rqbank', component: _content_creator_retrieve_question_bank_retrieve_question_bank_component__WEBPACK_IMPORTED_MODULE_3__["RetrieveQuestionBankComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'cc-dash/create-question', component: _content_creator_create_questions_create_questions_component__WEBPACK_IMPORTED_MODULE_9__["CreateQuestionsComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'cc-dash/archive-quiz', component: _content_creator_retrieve_quiz_archive_quiz_archive_quiz_component__WEBPACK_IMPORTED_MODULE_12__["ArchiveQuizComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'ta-dash/testAdminCreateScheDule', component: _test_admin_retrieve_schedule_create_schedule_create_schedule_component__WEBPACK_IMPORTED_MODULE_13__["CreateScheduleComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'ta-dash/retrieve-schedule', component: _test_admin_retrieve_schedule_retrieve_schedule_component__WEBPACK_IMPORTED_MODULE_14__["RetrieveScheduleComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'ta-dash', component: _test_admin_test_admin_component__WEBPACK_IMPORTED_MODULE_16__["TestAdminComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'ta-dash/archive-schedule', component: _test_admin_retrieve_schedule_archived_schedule_archived_schedule_component__WEBPACK_IMPORTED_MODULE_15__["ArchivedScheduleComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'emp-dash/non-mocks', component: _employee_non_mock_non_mock_component__WEBPACK_IMPORTED_MODULE_17__["NonMockComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'emp-dash', component: _employee_employee_component__WEBPACK_IMPORTED_MODULE_18__["EmployeeComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'emp-dash/quiz/take-quiz', component: _employee_take_quiz_take_quiz_component__WEBPACK_IMPORTED_MODULE_19__["TakeQuizComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'emp-dash/quiz/result', component: _employee_result_result_component__WEBPACK_IMPORTED_MODULE_20__["ResultComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'emp-dash/quiz/non-mock-report', component: _employee_non_mock_report_non_mock_report_component__WEBPACK_IMPORTED_MODULE_21__["NonMockReportComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'emp-dash/quiz/detailed-report', component: _employee_detailed_report_detailed_report_component__WEBPACK_IMPORTED_MODULE_22__["DetailedReportComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'emp-dash/mock', component: _employee_mock_mock_component__WEBPACK_IMPORTED_MODULE_23__["MockComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'emp-dash/mock-report', component: _employee_mock_report_mock_report_component__WEBPACK_IMPORTED_MODULE_24__["MockReportComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'ta-dash/add-user', component: _test_admin_retrieve_schedule_add_user_add_user_component__WEBPACK_IMPORTED_MODULE_25__["AddUserComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'ru-dash', component: _reporting_user_reporting_user_component__WEBPACK_IMPORTED_MODULE_29__["ReportingUserComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'ru-dash/ana-by-user', component: _reporting_user_analytics_by_user_analytics_by_user_component__WEBPACK_IMPORTED_MODULE_27__["AnalyticsByUserComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'ru-dash/ana-by-tag', component: _reporting_user_analytics_by_tag_analytics_by_tag_component__WEBPACK_IMPORTED_MODULE_26__["AnalyticsByTagComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
-    { path: 'ru-dash/ana-by-quiz', component: _reporting_user_analytics_by_quiz_analytics_by_quiz_component__WEBPACK_IMPORTED_MODULE_28__["AnalyticsByQuizComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]] },
+    { path: 'cc-dash/tag', component: _content_creator_tag_retrievetag_tag_component__WEBPACK_IMPORTED_MODULE_7__["TagComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]], data: { roles: ['Content-Creator'] } },
+    { path: 'cc-dash/quiz', component: _content_creator_retrieve_quiz_retrieve_quiz_component__WEBPACK_IMPORTED_MODULE_8__["RetrieveQuizComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]], data: { roles: ['Content-Creator'] } },
+    { path: 'cc-dash/rqbank', component: _content_creator_retrieve_question_bank_retrieve_question_bank_component__WEBPACK_IMPORTED_MODULE_3__["RetrieveQuestionBankComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]], data: { roles: ['Content-Creator'] } },
+    { path: 'cc-dash/create-question', component: _content_creator_create_questions_create_questions_component__WEBPACK_IMPORTED_MODULE_9__["CreateQuestionsComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]], data: { roles: ['Content-Creator'] } },
+    { path: 'cc-dash/archive-quiz', component: _content_creator_retrieve_quiz_archive_quiz_archive_quiz_component__WEBPACK_IMPORTED_MODULE_12__["ArchiveQuizComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]], data: { roles: ['Content-Creator'] } },
+    { path: 'ta-dash/testAdminCreateScheDule', component: _test_admin_retrieve_schedule_create_schedule_create_schedule_component__WEBPACK_IMPORTED_MODULE_13__["CreateScheduleComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]], data: { roles: ['Test-Administrator'] } },
+    { path: 'ta-dash/retrieve-schedule', component: _test_admin_retrieve_schedule_retrieve_schedule_component__WEBPACK_IMPORTED_MODULE_14__["RetrieveScheduleComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]], data: { roles: ['Test-Administrator'] } },
+    { path: 'ta-dash', component: _test_admin_test_admin_component__WEBPACK_IMPORTED_MODULE_16__["TestAdminComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]], data: { roles: ['Test-Administrator'] } },
+    { path: 'ta-dash/archive-schedule', component: _test_admin_retrieve_schedule_archived_schedule_archived_schedule_component__WEBPACK_IMPORTED_MODULE_15__["ArchivedScheduleComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]], data: { roles: ['Test-Administrator'] } },
+    { path: 'emp-dash/non-mocks', component: _employee_non_mock_non_mock_component__WEBPACK_IMPORTED_MODULE_17__["NonMockComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]], data: { roles: ['Employee'] } },
+    { path: 'emp-dash', component: _employee_employee_component__WEBPACK_IMPORTED_MODULE_18__["EmployeeComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]], data: { roles: ['Employee'] } },
+    { path: 'emp-dash/quiz/take-quiz', component: _employee_take_quiz_take_quiz_component__WEBPACK_IMPORTED_MODULE_19__["TakeQuizComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]], data: { roles: ['Employee'] } },
+    { path: 'emp-dash/quiz/result', component: _employee_result_result_component__WEBPACK_IMPORTED_MODULE_20__["ResultComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]], data: { roles: ['Employee'] } },
+    { path: 'emp-dash/quiz/non-mock-report', component: _employee_non_mock_report_non_mock_report_component__WEBPACK_IMPORTED_MODULE_21__["NonMockReportComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]], data: { roles: ['Employee'] } },
+    { path: 'emp-dash/quiz/detailed-report', component: _employee_detailed_report_detailed_report_component__WEBPACK_IMPORTED_MODULE_22__["DetailedReportComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]], data: { roles: ['Employee'] } },
+    { path: 'emp-dash/mock', component: _employee_mock_mock_component__WEBPACK_IMPORTED_MODULE_23__["MockComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]], data: { roles: ['Employee'] } },
+    { path: 'emp-dash/mock-report', component: _employee_mock_report_mock_report_component__WEBPACK_IMPORTED_MODULE_24__["MockReportComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]], data: { roles: ['Employee'] } },
+    { path: 'ta-dash/add-user', component: _test_admin_retrieve_schedule_add_user_add_user_component__WEBPACK_IMPORTED_MODULE_25__["AddUserComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]], data: { roles: ['Test-Administrator'] } },
+    { path: 'ru-dash', component: _reporting_user_reporting_user_component__WEBPACK_IMPORTED_MODULE_29__["ReportingUserComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]], data: { roles: ['Reporting-User'] } },
+    { path: 'ru-dash/ana-by-user', component: _reporting_user_analytics_by_user_analytics_by_user_component__WEBPACK_IMPORTED_MODULE_27__["AnalyticsByUserComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]], data: { roles: ['Reporting-User'] } },
+    { path: 'ru-dash/ana-by-tag', component: _reporting_user_analytics_by_tag_analytics_by_tag_component__WEBPACK_IMPORTED_MODULE_26__["AnalyticsByTagComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]], data: { roles: ['Reporting-User'] } },
+    { path: 'ru-dash/ana-by-quiz', component: _reporting_user_analytics_by_quiz_analytics_by_quiz_component__WEBPACK_IMPORTED_MODULE_28__["AnalyticsByQuizComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"]], data: { roles: ['Reporting-User'] } },
     { path: 'http-error', component: _http_interceptor_http_interceptor_component__WEBPACK_IMPORTED_MODULE_30__["HttpInterceptorComponent"] }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -446,7 +446,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <app-login></app-login> -->\n<!-- <app-main-nav></app-main-nav> -->\n<router-outlet></router-outlet>\n"
+module.exports = "<router-outlet></router-outlet>\n"
 
 /***/ }),
 
@@ -560,8 +560,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _reporting_user_mainnav4_mainnav4_component__WEBPACK_IMPORTED_MODULE_63__ = __webpack_require__(/*! ./reporting-user/mainnav4/mainnav4.component */ "./src/app/reporting-user/mainnav4/mainnav4.component.ts");
 /* harmony import */ var _reporting_user_analytics_by_user_view_user_details_view_user_details_component__WEBPACK_IMPORTED_MODULE_64__ = __webpack_require__(/*! ./reporting-user/analytics-by-user/view-user-details/view-user-details.component */ "./src/app/reporting-user/analytics-by-user/view-user-details/view-user-details.component.ts");
 /* harmony import */ var _reporting_user_analytics_by_quiz_details_details_component__WEBPACK_IMPORTED_MODULE_65__ = __webpack_require__(/*! ./reporting-user/analytics-by-quiz/details/details.component */ "./src/app/reporting-user/analytics-by-quiz/details/details.component.ts");
-/* harmony import */ var _http_error_interceptor__WEBPACK_IMPORTED_MODULE_66__ = __webpack_require__(/*! ./http-error-interceptor */ "./src/app/http-error-interceptor.ts");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_67__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_66__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var ng_pick_datetime__WEBPACK_IMPORTED_MODULE_67__ = __webpack_require__(/*! ng-pick-datetime */ "./node_modules/ng-pick-datetime/picker.js");
+/* harmony import */ var amazing_time_picker__WEBPACK_IMPORTED_MODULE_68__ = __webpack_require__(/*! amazing-time-picker */ "./node_modules/amazing-time-picker/amazing-time-picker.es5.js");
+/* harmony import */ var _loader_loader_component__WEBPACK_IMPORTED_MODULE_69__ = __webpack_require__(/*! ./loader/loader.component */ "./src/app/loader/loader.component.ts");
+/* harmony import */ var _app_services_loader_interceptor_service__WEBPACK_IMPORTED_MODULE_70__ = __webpack_require__(/*! ../app/services/loader-interceptor.service */ "./src/app/services/loader-interceptor.service.ts");
+
+
+
 
 
 
@@ -714,7 +720,8 @@ var AppModule = /** @class */ (function () {
                 _reporting_user_mainnav4_mainnav4_component__WEBPACK_IMPORTED_MODULE_63__["Mainnav4Component"],
                 _reporting_user_analytics_by_user_view_user_details_view_user_details_component__WEBPACK_IMPORTED_MODULE_64__["ViewUserDetailsComponent"],
                 _reporting_user_analytics_by_quiz_details_details_component__WEBPACK_IMPORTED_MODULE_65__["DetailsComponent"],
-                _http_interceptor_http_interceptor_component__WEBPACK_IMPORTED_MODULE_62__["HttpInterceptorComponent"]
+                _http_interceptor_http_interceptor_component__WEBPACK_IMPORTED_MODULE_62__["HttpInterceptorComponent"],
+                _loader_loader_component__WEBPACK_IMPORTED_MODULE_69__["LoaderComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -739,10 +746,13 @@ var AppModule = /** @class */ (function () {
                 ng2_charts__WEBPACK_IMPORTED_MODULE_54__["ChartsModule"],
                 ngx_gauge__WEBPACK_IMPORTED_MODULE_55__["NgxGaugeModule"],
                 _angular_material_expansion__WEBPACK_IMPORTED_MODULE_61__["MatExpansionModule"],
+                ng_pick_datetime__WEBPACK_IMPORTED_MODULE_67__["OwlDateTimeModule"],
+                ng_pick_datetime__WEBPACK_IMPORTED_MODULE_67__["OwlNativeDateTimeModule"],
+                amazing_time_picker__WEBPACK_IMPORTED_MODULE_68__["AmazingTimePickerModule"]
             ],
             providers: [
                 _auth_guard__WEBPACK_IMPORTED_MODULE_32__["AuthGuard"],
-                _angular_common__WEBPACK_IMPORTED_MODULE_67__["DatePipe"],
+                _angular_common__WEBPACK_IMPORTED_MODULE_66__["DatePipe"],
                 _content_creator_shared_content_creator_service_service__WEBPACK_IMPORTED_MODULE_12__["ContentCreatorServiceService"],
                 {
                     provide: angularx_social_login__WEBPACK_IMPORTED_MODULE_13__["AuthServiceConfig"],
@@ -750,7 +760,12 @@ var AppModule = /** @class */ (function () {
                 },
                 {
                     provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HTTP_INTERCEPTORS"],
-                    useClass: _http_error_interceptor__WEBPACK_IMPORTED_MODULE_66__["HttpErrorInterceptor"],
+                    useClass: _app_services_loader_interceptor_service__WEBPACK_IMPORTED_MODULE_70__["LoaderInterceptorService"],
+                    multi: true
+                },
+                {
+                    provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HTTP_INTERCEPTORS"],
+                    useClass: _http_interceptor_http_interceptor_component__WEBPACK_IMPORTED_MODULE_62__["HttpInterceptorComponent"],
                     multi: true
                 }
             ],
@@ -800,7 +815,18 @@ var AuthGuard = /** @class */ (function () {
     }
     AuthGuard.prototype.canActivate = function (next, state) {
         if (localStorage.getItem('uid') != null) {
-            return true;
+            var roles = next.data['roles'];
+            if (roles) {
+                var match = this.roleMatch(roles);
+                if (match)
+                    return true;
+                else {
+                    this.router.navigate(['/http-error']);
+                    return false;
+                }
+            }
+            else
+                return true;
         }
         localStorage.clear();
         this.router.navigate(['/login']);
@@ -808,6 +834,18 @@ var AuthGuard = /** @class */ (function () {
     };
     AuthGuard.prototype.canActivateChild = function (next, state) {
         return true;
+    };
+    AuthGuard.prototype.roleMatch = function (allowedRoles) {
+        console.log(allowedRoles);
+        var isMatch = false;
+        var userRoles = localStorage.getItem('role');
+        allowedRoles.forEach(function (element) {
+            if (userRoles.indexOf(element) > -1) {
+                isMatch = true;
+                //return false;
+            }
+        });
+        return isMatch;
     };
     AuthGuard = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -896,7 +934,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-container *ngIf=\"!service.quesStat\">\n  <app-main-nav>\n    <div class=\"card\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\">Add Questions</h5>\n        <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n          <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"CCreatedBy\">\n          <div class=\"form-group\">\n            <label>Question</label>\n            <textarea class=\"form-control\" name=\"QuestionStatement\" #QuestionStatement=\"ngModel\"\n              [(ngModel)]=\"service.formData.QuestionStatement\" rows=\"3\" required></textarea>\n            <div class=\"validation-error\" *ngIf=\"QuestionStatement.invalid && QuestionStatement.touched\">This field is\n              required.\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <label>Option 1</label>\n              <input required type=\"text\" name=\"Option1\" #Option1=\"ngModel\" [(ngModel)]=\"service.formData.Option1\"\n                class=\"form-control\">\n              <div class=\"validation-error\" *ngIf=\"Option1.invalid && Option1.touched\">This field is required.</div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <label>Option 2</label>\n              <input required type=\"text\" name=\"Option2\" #Option2=\"ngModel\" [(ngModel)]=\"service.formData.Option2\"\n                class=\"form-control\">\n              <div class=\"validation-error\" *ngIf=\"Option2.invalid && Option2.touched\">This field is required.</div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <label>Option 3</label>\n              <input type=\"text\" name=\"Option3\" #Option3=\"ngModel\" [(ngModel)]=\"service.formData.Option3\"\n                class=\"form-control\">\n            </div>\n            <div class=\"form-group col-md-6\">\n              <label>Option 4</label>\n              <input type=\"text\" name=\"Option4\" #Option4=\"ngModel\" [(ngModel)]=\"service.formData.Option4\"\n                class=\"form-control\">\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <label>Correct Option</label>\n              <select name=\"Answer\" [disabled]=\"bool\" required #Answer=\"ngModel\" [(ngModel)]=\"service.formData.Answer\"\n                class=\"form-control\">\n                <option selected disabled value=\"\">Choose</option>\n                <option value=\"1\">1</option>\n                <option value=\"2\">2</option>\n                <option value=\"3\">3</option>\n                <option value=\"4\">4</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Answer.invalid && Answer.touched\">This field is required.\n              </div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <label>Marks</label>\n              <select name=\"Marks\" [disabled]=\"bool\" required #Marks=\"ngModel\" [(ngModel)]=\"service.formData.Marks\"\n                class=\"form-control\">\n                <option selected disabled value=\"\">Choose</option>\n                <option value=\"1\">1</option>\n                <option value=\"2\">2</option>\n                <option value=\"3\">3</option>\n                <option value=\"5\">5</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Marks.invalid && Marks.touched\">This field is required.</div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <label>Select Subject</label>\n              <select name=\"SubjectId\" required #SubjectId=\"ngModel\" [(ngModel)]=\"service.formData.SubjectId\"\n                class=\"form-control\">\n                <option selected disabled value=\"\">Choose an option..</option>\n                <option *ngFor=\"let Subject of Subjects\" value=\"{{Subject.SubjectId}}\">{{Subject.Name}}</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"SubjectId.invalid && SubjectId.touched\">This field is required.</div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <label>Select Difficulty-Level</label>\n              <select name=\"Difficulty\" required #Difficulty=\"ngModel\" [(ngModel)]=\"service.formData.Difficulty\"\n                class=\"form-control\">\n                <option selected disabled value=\"\">Choose an option...</option>\n                <option value=\"Beginner\">Beginner</option>\n                <option value=\"Intermediate\">Intermediate</option>\n                <option value=\"Advanced\">Advanced</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Difficulty.invalid && Difficulty.touched\">This field is required.\n              </div>\n            </div>\n          </div>\n          <div class=\"form-group\" style=\"margin-top: 3%\">\n            <button type=\"submit\" [disabled]=\"form.invalid\" class=\"btn btn-primary btn-block\">Submit</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  </app-main-nav>\n</ng-container>\n<ng-container *ngIf=\"service.quesStat\">\n  <mat-dialog-content>\n  <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n    <mat-icon>clear</mat-icon>\n  </button>\n  <div class=\"card\">\n    <div class=\"card-body\">\n      <h3 style=\"text-align: center\" class=\"card-title\">Add Questions</h3>\n      <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n        <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"CCreatedBy\">\n        <div class=\"form-group\">\n          <label>Question</label>\n          <textarea class=\"form-control\" name=\"QuestionStatement\" #QuestionStatement=\"ngModel\"\n            [(ngModel)]=\"service.formData.QuestionStatement\" rows=\"3\" required></textarea>\n          <div class=\"validation-error\" *ngIf=\"QuestionStatement.invalid && QuestionStatement.touched\">This field is\n            required.\n          </div>\n        </div>\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label>Option 1</label>\n            <input required type=\"text\" name=\"Option1\" #Option1=\"ngModel\" [(ngModel)]=\"service.formData.Option1\"\n              class=\"form-control\">\n            <div class=\"validation-error\" *ngIf=\"Option1.invalid && Option1.touched\">This field is required.</div>\n          </div>\n          <div class=\"form-group col-md-6\">\n            <label>Option 2</label>\n            <input required type=\"text\" name=\"Option2\" #Option2=\"ngModel\" [(ngModel)]=\"service.formData.Option2\"\n              class=\"form-control\">\n            <div class=\"validation-error\" *ngIf=\"Option2.invalid && Option2.touched\">This field is required.</div>\n          </div>\n        </div>\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label>Option 3</label>\n            <input type=\"text\" name=\"Option3\" #Option3=\"ngModel\" [(ngModel)]=\"service.formData.Option3\"\n              class=\"form-control\">\n          </div>\n          <div class=\"form-group col-md-6\">\n            <label>Option 4</label>\n            <input type=\"text\" name=\"Option4\" #Option4=\"ngModel\" [(ngModel)]=\"service.formData.Option4\"\n              class=\"form-control\">\n          </div>\n        </div>\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label>Correct Option</label>\n            <select name=\"Answer\" [disabled]=\"bool\" required #Answer=\"ngModel\" [(ngModel)]=\"service.formData.Answer\"\n              class=\"form-control\">\n              <option selected disabled value=\"\">Choose</option>\n              <option value=\"1\">1</option>\n              <option value=\"2\">2</option>\n              <option value=\"3\">3</option>\n              <option value=\"4\">4</option>\n            </select>\n            <div class=\"validation-error\" *ngIf=\"Answer.invalid && Answer.touched\">This field is required.\n            </div>\n          </div>\n          <div class=\"form-group col-md-6\">\n            <label>Marks</label>\n            <select name=\"Marks\" [disabled]=\"bool\" required #Marks=\"ngModel\" [(ngModel)]=\"service.formData.Marks\"\n              class=\"form-control\">\n              <option selected disabled value=\"\">Choose</option>\n              <option value=\"1\">1</option>\n              <option value=\"2\">2</option>\n              <option value=\"3\">3</option>\n              <option value=\"5\">5</option>\n            </select>\n            <div class=\"validation-error\" *ngIf=\"Marks.invalid && Marks.touched\">This field is required.</div>\n          </div>\n        </div>\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label>Select Subject</label>\n            <select name=\"SubjectId\" required #SubjectId=\"ngModel\" [(ngModel)]=\"service.formData.SubjectId\"\n              class=\"form-control\">\n              <option selected disabled value=\"\">Choose an option..</option>\n              <option *ngFor=\"let Subject of Subjects\" value=\"{{Subject.SubjectId}}\">{{Subject.Name}}</option>\n            </select>\n            <div class=\"validation-error\" *ngIf=\"SubjectId.invalid && SubjectId.touched\">This field is required.</div>\n          </div>\n          <div class=\"form-group col-md-6\">\n            <label>Select Difficulty-Level</label>\n            <select name=\"Difficulty\" required #Difficulty=\"ngModel\" [(ngModel)]=\"service.formData.Difficulty\"\n              class=\"form-control\">\n              <option selected disabled value=\"\">Choose an option...</option>\n              <option value=\"Beginner\">Beginner</option>\n              <option value=\"Intermediate\">Intermediate</option>\n              <option value=\"Advanced\">Advanced</option>\n            </select>\n            <div class=\"validation-error\" *ngIf=\"Difficulty.invalid && Difficulty.touched\">This field is required.</div>\n          </div>\n        </div>\n        <div class=\"form-group\" style=\"margin-top: 3%\">\n          <button type=\"submit\" [disabled]=\"form.invalid\" class=\"btn btn-primary btn-block\">Submit</button>\n        </div>\n      </form>\n    </div>\n  </div>\n</mat-dialog-content>\n</ng-container>"
+module.exports = "<ng-container *ngIf=\"!service.quesStat\">\n  <app-main-nav>\n    <div class=\"card\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\">Add Questions</h5>\n        <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n          <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"CCreatedBy\">\n          <div class=\"form-group\">\n            <label>Question</label>\n            <textarea class=\"form-control\" name=\"QuestionStatement\" #QuestionStatement=\"ngModel\"\n              [(ngModel)]=\"service.formData.QuestionStatement\" rows=\"3\" required></textarea>\n            <div class=\"validation-error\" *ngIf=\"QuestionStatement.invalid && QuestionStatement.touched\">This field is\n              required.\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <label>Option 1</label>\n              <input required type=\"text\" name=\"Option1\" #Option1=\"ngModel\" [(ngModel)]=\"service.formData.Option1\"\n                class=\"form-control\">\n              <div class=\"validation-error\" *ngIf=\"Option1.invalid && Option1.touched\">This field is required.</div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <label>Option 2</label>\n              <input required type=\"text\" name=\"Option2\" #Option2=\"ngModel\" [(ngModel)]=\"service.formData.Option2\"\n                class=\"form-control\">\n              <div class=\"validation-error\" *ngIf=\"Option2.invalid && Option2.touched\">This field is required.</div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <label>Option 3</label>\n              <input type=\"text\" name=\"Option3\" #Option3=\"ngModel\" [(ngModel)]=\"service.formData.Option3\"\n                class=\"form-control\">\n            </div>\n            <div class=\"form-group col-md-6\">\n              <label>Option 4</label>\n              <input type=\"text\" name=\"Option4\" #Option4=\"ngModel\" [(ngModel)]=\"service.formData.Option4\"\n                class=\"form-control\">\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <label>Correct Option</label>\n              <select name=\"Answer\" [disabled]=\"bool\" required #Answer=\"ngModel\" [(ngModel)]=\"service.formData.Answer\"\n                class=\"form-control\">\n                <option selected disabled value=\"\">Choose</option>\n                <option value=\"1\">1</option>\n                <option value=\"2\">2</option>\n                <option value=\"3\">3</option>\n                <option value=\"4\">4</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Answer.invalid && Answer.touched\">This field is required.\n              </div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <label>Marks</label>\n              <select name=\"Marks\" [disabled]=\"bool\" required #Marks=\"ngModel\" [(ngModel)]=\"service.formData.Marks\"\n                class=\"form-control\">\n                <option selected disabled value=\"\">Choose</option>\n                <option value=\"1\">1</option>\n                <option value=\"2\">2</option>\n                <option value=\"3\">3</option>\n                <option value=\"5\">5</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Marks.invalid && Marks.touched\">This field is required.</div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <label>Select Subject</label>\n              <select name=\"SubjectId\" required #SubjectId=\"ngModel\" [(ngModel)]=\"service.formData.SubjectId\"\n                class=\"form-control\">\n                <option selected disabled value=\"\">Choose an option..</option>\n                <option *ngFor=\"let Subject of Subjects\" value=\"{{Subject.SubjectId}}\">{{Subject.Name}}</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"SubjectId.invalid && SubjectId.touched\">This field is required.</div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <label>Select Difficulty-Level</label>\n              <select name=\"Difficulty\" required #Difficulty=\"ngModel\" [(ngModel)]=\"service.formData.Difficulty\"\n                class=\"form-control\">\n                <option selected disabled value=\"\">Choose an option...</option>\n                <option value=\"Beginner\">Beginner</option>\n                <option value=\"Intermediate\">Intermediate</option>\n                <option value=\"Advanced\">Advanced</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Difficulty.invalid && Difficulty.touched\">This field is required.\n              </div>\n            </div>\n          </div>\n          <div class=\"form-group\" style=\"margin-top: 3%\">\n            <button type=\"submit\" [disabled]=\"form.invalid\" class=\"btn btn-primary btn-block\">Submit</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  </app-main-nav>\n</ng-container>\n<ng-container *ngIf=\"service.quesStat\">\n  <mat-dialog-content>\n    <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n      <mat-icon>clear</mat-icon>\n    </button>\n    <div class=\"card\">\n      <div class=\"card-body\">\n        <h3 style=\"text-align: center\" class=\"card-title\">Add Questions</h3>\n        <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n          <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"CCreatedBy\">\n          <div class=\"form-group\">\n            <label>Question</label>\n            <textarea class=\"form-control\" name=\"QuestionStatement\" #QuestionStatement=\"ngModel\"\n              [(ngModel)]=\"service.formData.QuestionStatement\" rows=\"3\" required></textarea>\n            <div class=\"validation-error\" *ngIf=\"QuestionStatement.invalid && QuestionStatement.touched\">This field is\n              required.\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <label>Option 1</label>\n              <input required type=\"text\" name=\"Option1\" #Option1=\"ngModel\" [(ngModel)]=\"service.formData.Option1\"\n                class=\"form-control\">\n              <div class=\"validation-error\" *ngIf=\"Option1.invalid && Option1.touched\">This field is required.</div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <label>Option 2</label>\n              <input required type=\"text\" name=\"Option2\" #Option2=\"ngModel\" [(ngModel)]=\"service.formData.Option2\"\n                class=\"form-control\">\n              <div class=\"validation-error\" *ngIf=\"Option2.invalid && Option2.touched\">This field is required.</div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <label>Option 3</label>\n              <input type=\"text\" name=\"Option3\" #Option3=\"ngModel\" [(ngModel)]=\"service.formData.Option3\"\n                class=\"form-control\">\n            </div>\n            <div class=\"form-group col-md-6\">\n              <label>Option 4</label>\n              <input type=\"text\" name=\"Option4\" #Option4=\"ngModel\" [(ngModel)]=\"service.formData.Option4\"\n                class=\"form-control\">\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <label>Correct Option</label>\n              <select name=\"Answer\" [disabled]=\"bool\" required #Answer=\"ngModel\" [(ngModel)]=\"service.formData.Answer\"\n                class=\"form-control\">\n                <option selected disabled value=\"\">Choose</option>\n                <option value=\"1\">1</option>\n                <option value=\"2\">2</option>\n                <option value=\"3\">3</option>\n                <option value=\"4\">4</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Answer.invalid && Answer.touched\">This field is required.\n              </div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <label>Marks</label>\n              <select name=\"Marks\" [disabled]=\"bool\" required #Marks=\"ngModel\" [(ngModel)]=\"service.formData.Marks\"\n                class=\"form-control\">\n                <option selected disabled value=\"\">Choose</option>\n                <option value=\"1\">1</option>\n                <option value=\"2\">2</option>\n                <option value=\"3\">3</option>\n                <option value=\"5\">5</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Marks.invalid && Marks.touched\">This field is required.</div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <label>Select Subject</label>\n              <select name=\"SubjectId\" required #SubjectId=\"ngModel\" [(ngModel)]=\"service.formData.SubjectId\"\n                class=\"form-control\">\n                <option selected disabled value=\"\">Choose an option..</option>\n                <option *ngFor=\"let Subject of Subjects\" value=\"{{Subject.SubjectId}}\">{{Subject.Name}}</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"SubjectId.invalid && SubjectId.touched\">This field is required.</div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <label>Select Difficulty-Level</label>\n              <select name=\"Difficulty\" required #Difficulty=\"ngModel\" [(ngModel)]=\"service.formData.Difficulty\"\n                class=\"form-control\">\n                <option selected disabled value=\"\">Choose an option...</option>\n                <option value=\"Beginner\">Beginner</option>\n                <option value=\"Intermediate\">Intermediate</option>\n                <option value=\"Advanced\">Advanced</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Difficulty.invalid && Difficulty.touched\">This field is required.\n              </div>\n            </div>\n          </div>\n          <div class=\"form-group\" style=\"margin-top: 3%\">\n            <button type=\"submit\" [disabled]=\"form.invalid\" class=\"btn btn-primary btn-block\">Submit</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  </mat-dialog-content>\n</ng-container>"
 
 /***/ }),
 
@@ -919,9 +957,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var CreateQuestionsComponent = /** @class */ (function () {
-    function CreateQuestionsComponent(// @Inject(MAT_DIALOG_DATA) public data,
-    // public dialogRef: MatDialogRef<CreateQuestionsComponent>,
-    service, toastr) {
+    function CreateQuestionsComponent(service, toastr) {
         this.service = service;
         this.toastr = toastr;
         this.CCreatedBy = "";
@@ -929,7 +965,6 @@ var CreateQuestionsComponent = /** @class */ (function () {
     CreateQuestionsComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.resetForm();
-        this.CCreatedBy = localStorage.getItem('uid');
         this.service.retrieveSubjects().subscribe(function (res) {
             _this.Subjects = res;
         });
@@ -957,7 +992,6 @@ var CreateQuestionsComponent = /** @class */ (function () {
             _this.toastr.success('Inserted successfully');
             _this.resetForm(form);
         });
-        ;
     };
     CreateQuestionsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -981,7 +1015,7 @@ var CreateQuestionsComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".mat-sidenav-content {\n\toverflow-x: hidden;\n}\n.sidenav-container {\n\theight: 100%;\n}\n.sidenav-container a {\n\tcolor: rgb(255, 255, 255);\n\tfont-size: 16px;\n\tfont-family: 'Encode Sans Expanded', sans-serif;\n}\n.sidenav-container a i {\n\tmargin-right: 10px;\n}\n.sidenav-container a:hover,\n.sidenav-container a:focus {\n\tbackground-color: rgb(2, 93, 140) !important;\n}\n.sidenav {\n\twidth: 250px;\n\tbackground-color: rgb(1, 139, 188);\n}\n.sidenav .mat-toolbar {\n\tbackground: inherit;\n\tborder-bottom: 1px solid black;\n}\n.mat-toolbar {\n\t/* background-color: rgb(185, 185, 185); */\n\ttext-decoration: none;\n\t/* border-bottom: .2px solid #030e13; */\n}\n.ng-content {\n\tbackground-color: rgb(185, 185, 185);\n}\n.mat-toolbar span {\n\tcolor: rgb(7, 7, 7);\n}\n.mat-sidenav-content .mat-toolbar {\n\tbackground-color: rgb(190, 190, 190) !important;\n}\n.mat-sidenav-content {\n\tbackground-color: rgb(235, 235, 235) !important;\n}\n.mat-toolbar a {\n\tfont-size: 22px;\n}\n.mat-list-item {\n\tmargin-top: 10px;\n}\n.log {\n\tfont-size: 15px;\n\tcursor: pointer;\n\tcolor: rgb(255, 0, 0) !important;\n}\n.mat-toolbar.mat-primary {\n\tposition: -webkit-sticky;\n\tposition: sticky;\n\ttop: 0;\n\tz-index: 1;\n}\n.content {\n\tpadding: 0px 30px 0px 30px !important;\n\tmargin: 30px auto;\n}\n.spacer {\n\tflex: 1 1 auto;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29udGVudC1jcmVhdG9yL21haW4tbmF2L21haW4tbmF2LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Q0FDQyxrQkFBa0I7QUFDbkI7QUFDQTtDQUNDLFlBQVk7QUFDYjtBQUNBO0NBQ0MseUJBQXlCO0NBQ3pCLGVBQWU7Q0FDZiwrQ0FBK0M7QUFDaEQ7QUFDQTtDQUNDLGtCQUFrQjtBQUNuQjtBQUNBOztDQUVDLDRDQUE0QztBQUM3QztBQUNBO0NBQ0MsWUFBWTtDQUNaLGtDQUFrQztBQUNuQztBQUVBO0NBQ0MsbUJBQW1CO0NBQ25CLDhCQUE4QjtBQUMvQjtBQUNBO0NBQ0MsMENBQTBDO0NBQzFDLHFCQUFxQjtDQUNyQix1Q0FBdUM7QUFDeEM7QUFDQTtDQUNDLG9DQUFvQztBQUNyQztBQUNBO0NBQ0MsbUJBQW1CO0FBQ3BCO0FBQ0E7Q0FDQywrQ0FBK0M7QUFDaEQ7QUFDQTtDQUNDLCtDQUErQztBQUNoRDtBQUNBO0NBQ0MsZUFBZTtBQUNoQjtBQUNBO0NBQ0MsZ0JBQWdCO0FBQ2pCO0FBQ0E7Q0FDQyxlQUFlO0NBQ2YsZUFBZTtDQUNmLGdDQUFnQztBQUNqQztBQUNBO0NBQ0Msd0JBQWdCO0NBQWhCLGdCQUFnQjtDQUNoQixNQUFNO0NBQ04sVUFBVTtBQUNYO0FBQ0E7Q0FDQyxxQ0FBcUM7Q0FDckMsaUJBQWlCO0FBQ2xCO0FBQ0E7Q0FDQyxjQUFjO0FBQ2YiLCJmaWxlIjoic3JjL2FwcC9jb250ZW50LWNyZWF0b3IvbWFpbi1uYXYvbWFpbi1uYXYuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tYXQtc2lkZW5hdi1jb250ZW50IHtcblx0b3ZlcmZsb3cteDogaGlkZGVuO1xufVxuLnNpZGVuYXYtY29udGFpbmVyIHtcblx0aGVpZ2h0OiAxMDAlO1xufVxuLnNpZGVuYXYtY29udGFpbmVyIGEge1xuXHRjb2xvcjogcmdiKDI1NSwgMjU1LCAyNTUpO1xuXHRmb250LXNpemU6IDE2cHg7XG5cdGZvbnQtZmFtaWx5OiAnRW5jb2RlIFNhbnMgRXhwYW5kZWQnLCBzYW5zLXNlcmlmO1xufVxuLnNpZGVuYXYtY29udGFpbmVyIGEgaSB7XG5cdG1hcmdpbi1yaWdodDogMTBweDtcbn1cbi5zaWRlbmF2LWNvbnRhaW5lciBhOmhvdmVyLFxuLnNpZGVuYXYtY29udGFpbmVyIGE6Zm9jdXMge1xuXHRiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMiwgOTMsIDE0MCkgIWltcG9ydGFudDtcbn1cbi5zaWRlbmF2IHtcblx0d2lkdGg6IDI1MHB4O1xuXHRiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMSwgMTM5LCAxODgpO1xufVxuXG4uc2lkZW5hdiAubWF0LXRvb2xiYXIge1xuXHRiYWNrZ3JvdW5kOiBpbmhlcml0O1xuXHRib3JkZXItYm90dG9tOiAxcHggc29saWQgYmxhY2s7XG59XG4ubWF0LXRvb2xiYXIge1xuXHQvKiBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMTg1LCAxODUsIDE4NSk7ICovXG5cdHRleHQtZGVjb3JhdGlvbjogbm9uZTtcblx0LyogYm9yZGVyLWJvdHRvbTogLjJweCBzb2xpZCAjMDMwZTEzOyAqL1xufVxuLm5nLWNvbnRlbnQge1xuXHRiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMTg1LCAxODUsIDE4NSk7XG59XG4ubWF0LXRvb2xiYXIgc3BhbiB7XG5cdGNvbG9yOiByZ2IoNywgNywgNyk7XG59XG4ubWF0LXNpZGVuYXYtY29udGVudCAubWF0LXRvb2xiYXIge1xuXHRiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMTkwLCAxOTAsIDE5MCkgIWltcG9ydGFudDtcbn1cbi5tYXQtc2lkZW5hdi1jb250ZW50IHtcblx0YmFja2dyb3VuZC1jb2xvcjogcmdiKDIzNSwgMjM1LCAyMzUpICFpbXBvcnRhbnQ7XG59XG4ubWF0LXRvb2xiYXIgYSB7XG5cdGZvbnQtc2l6ZTogMjJweDtcbn1cbi5tYXQtbGlzdC1pdGVtIHtcblx0bWFyZ2luLXRvcDogMTBweDtcbn1cbi5sb2cge1xuXHRmb250LXNpemU6IDE1cHg7XG5cdGN1cnNvcjogcG9pbnRlcjtcblx0Y29sb3I6IHJnYigyNTUsIDAsIDApICFpbXBvcnRhbnQ7XG59XG4ubWF0LXRvb2xiYXIubWF0LXByaW1hcnkge1xuXHRwb3NpdGlvbjogc3RpY2t5O1xuXHR0b3A6IDA7XG5cdHotaW5kZXg6IDE7XG59XG4uY29udGVudCB7XG5cdHBhZGRpbmc6IDBweCAzMHB4IDBweCAzMHB4ICFpbXBvcnRhbnQ7XG5cdG1hcmdpbjogMzBweCBhdXRvO1xufVxuLnNwYWNlciB7XG5cdGZsZXg6IDEgMSBhdXRvO1xufVxuIl19 */"
+module.exports = ".mat-sidenav-content {\n\toverflow-x: hidden;\n}\n.sidenav-container {\n\theight: 100%;\n}\n.sidenav-container a {\n\tcolor: rgb(255, 255, 255);\n\tfont-size: 16px;\n\tfont-family: 'Encode Sans Expanded', sans-serif;\n}\n.sidenav-container a i {\n\tmargin-right: 10px;\n}\n.sidenav-container a:hover,\n.sidenav-container a:focus {\n\tbackground-color: rgb(2, 93, 140) !important;\n}\n.sidenav {\n\twidth: 250px;\n\tbackground-color: rgb(1, 139, 188);\n}\n.sidenav .mat-toolbar {\n\tbackground: inherit;\n\tborder-bottom: 1px solid black;\n}\n.mat-toolbar {\n\ttext-decoration: none;\n}\n.ng-content {\n\tbackground-color: rgb(185, 185, 185);\n}\n.mat-toolbar span {\n\tcolor: rgb(7, 7, 7);\n}\n.mat-sidenav-content .mat-toolbar {\n\tbackground-color: rgb(190, 190, 190) !important;\n}\n.mat-sidenav-content {\n\tbackground-color: rgb(235, 235, 235) !important;\n}\n.mat-toolbar a {\n\tfont-size: 22px;\n}\n.mat-list-item {\n\tmargin-top: 10px;\n}\n.log {\n\tfont-size: 12px;\n\tcursor: pointer;\n\tcolor:black !important;\n}\n.mat-toolbar.mat-primary {\n\tposition: -webkit-sticky;\n\tposition: sticky;\n\ttop: 0;\n\tz-index: 1;\n}\n.content {\n\tpadding: 0px 30px 0px 30px !important;\n\tmargin: 30px auto;\n}\n.spacer {\n\tflex: 1 1 auto;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29udGVudC1jcmVhdG9yL21haW4tbmF2L21haW4tbmF2LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Q0FDQyxrQkFBa0I7QUFDbkI7QUFDQTtDQUNDLFlBQVk7QUFDYjtBQUNBO0NBQ0MseUJBQXlCO0NBQ3pCLGVBQWU7Q0FDZiwrQ0FBK0M7QUFDaEQ7QUFDQTtDQUNDLGtCQUFrQjtBQUNuQjtBQUNBOztDQUVDLDRDQUE0QztBQUM3QztBQUNBO0NBQ0MsWUFBWTtDQUNaLGtDQUFrQztBQUNuQztBQUVBO0NBQ0MsbUJBQW1CO0NBQ25CLDhCQUE4QjtBQUMvQjtBQUNBO0NBQ0MscUJBQXFCO0FBQ3RCO0FBQ0E7Q0FDQyxvQ0FBb0M7QUFDckM7QUFDQTtDQUNDLG1CQUFtQjtBQUNwQjtBQUNBO0NBQ0MsK0NBQStDO0FBQ2hEO0FBQ0E7Q0FDQywrQ0FBK0M7QUFDaEQ7QUFDQTtDQUNDLGVBQWU7QUFDaEI7QUFDQTtDQUNDLGdCQUFnQjtBQUNqQjtBQUNBO0NBQ0MsZUFBZTtDQUNmLGVBQWU7Q0FDZixzQkFBc0I7QUFDdkI7QUFDQTtDQUNDLHdCQUFnQjtDQUFoQixnQkFBZ0I7Q0FDaEIsTUFBTTtDQUNOLFVBQVU7QUFDWDtBQUNBO0NBQ0MscUNBQXFDO0NBQ3JDLGlCQUFpQjtBQUNsQjtBQUNBO0NBQ0MsY0FBYztBQUNmIiwiZmlsZSI6InNyYy9hcHAvY29udGVudC1jcmVhdG9yL21haW4tbmF2L21haW4tbmF2LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubWF0LXNpZGVuYXYtY29udGVudCB7XG5cdG92ZXJmbG93LXg6IGhpZGRlbjtcbn1cbi5zaWRlbmF2LWNvbnRhaW5lciB7XG5cdGhlaWdodDogMTAwJTtcbn1cbi5zaWRlbmF2LWNvbnRhaW5lciBhIHtcblx0Y29sb3I6IHJnYigyNTUsIDI1NSwgMjU1KTtcblx0Zm9udC1zaXplOiAxNnB4O1xuXHRmb250LWZhbWlseTogJ0VuY29kZSBTYW5zIEV4cGFuZGVkJywgc2Fucy1zZXJpZjtcbn1cbi5zaWRlbmF2LWNvbnRhaW5lciBhIGkge1xuXHRtYXJnaW4tcmlnaHQ6IDEwcHg7XG59XG4uc2lkZW5hdi1jb250YWluZXIgYTpob3Zlcixcbi5zaWRlbmF2LWNvbnRhaW5lciBhOmZvY3VzIHtcblx0YmFja2dyb3VuZC1jb2xvcjogcmdiKDIsIDkzLCAxNDApICFpbXBvcnRhbnQ7XG59XG4uc2lkZW5hdiB7XG5cdHdpZHRoOiAyNTBweDtcblx0YmFja2dyb3VuZC1jb2xvcjogcmdiKDEsIDEzOSwgMTg4KTtcbn1cblxuLnNpZGVuYXYgLm1hdC10b29sYmFyIHtcblx0YmFja2dyb3VuZDogaW5oZXJpdDtcblx0Ym9yZGVyLWJvdHRvbTogMXB4IHNvbGlkIGJsYWNrO1xufVxuLm1hdC10b29sYmFyIHtcblx0dGV4dC1kZWNvcmF0aW9uOiBub25lO1xufVxuLm5nLWNvbnRlbnQge1xuXHRiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMTg1LCAxODUsIDE4NSk7XG59XG4ubWF0LXRvb2xiYXIgc3BhbiB7XG5cdGNvbG9yOiByZ2IoNywgNywgNyk7XG59XG4ubWF0LXNpZGVuYXYtY29udGVudCAubWF0LXRvb2xiYXIge1xuXHRiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMTkwLCAxOTAsIDE5MCkgIWltcG9ydGFudDtcbn1cbi5tYXQtc2lkZW5hdi1jb250ZW50IHtcblx0YmFja2dyb3VuZC1jb2xvcjogcmdiKDIzNSwgMjM1LCAyMzUpICFpbXBvcnRhbnQ7XG59XG4ubWF0LXRvb2xiYXIgYSB7XG5cdGZvbnQtc2l6ZTogMjJweDtcbn1cbi5tYXQtbGlzdC1pdGVtIHtcblx0bWFyZ2luLXRvcDogMTBweDtcbn1cbi5sb2cge1xuXHRmb250LXNpemU6IDEycHg7XG5cdGN1cnNvcjogcG9pbnRlcjtcblx0Y29sb3I6YmxhY2sgIWltcG9ydGFudDtcbn1cbi5tYXQtdG9vbGJhci5tYXQtcHJpbWFyeSB7XG5cdHBvc2l0aW9uOiBzdGlja3k7XG5cdHRvcDogMDtcblx0ei1pbmRleDogMTtcbn1cbi5jb250ZW50IHtcblx0cGFkZGluZzogMHB4IDMwcHggMHB4IDMwcHggIWltcG9ydGFudDtcblx0bWFyZ2luOiAzMHB4IGF1dG87XG59XG4uc3BhY2VyIHtcblx0ZmxleDogMSAxIGF1dG87XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -992,7 +1026,7 @@ module.exports = ".mat-sidenav-content {\n\toverflow-x: hidden;\n}\n.sidenav-con
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-sidenav-container class=\"sidenav-container\">\n  <mat-sidenav #drawer class=\"sidenav\" fixedInViewport=\"true\"\n    [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\" [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\n    [opened]=\"!(isHandset$ | async)\">\n    <mat-toolbar><a mat-list-item routerLink=\"/cc-dash\"><i class=\"fa fa-tachometer\" aria-hidden=\"true\"></i>  Dashboard</a></mat-toolbar>\n    <mat-nav-list>\n      <a mat-list-item routerLink=\"/cc-dash/create-question\"><i class=\"fa fa-code\" aria-hidden=\"true\"></i> Create Question</a>\n      <a mat-list-item routerLink=\"/cc-dash/quiz\"><i class=\"fa fa-retweet\" aria-hidden=\"true\"></i>  Create/Retrieve Quiz</a>\n      <a mat-list-item routerLink=\"/cc-dash/tag\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i> Create / Edit Tag</a>\n      <a mat-list-item routerLink=\"/cc-dash/rqbank\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i> Questions Created</a>\n      <a mat-list-item routerLink=\"/cc-dash/archive-quiz\"><i class=\"fa fa-archive\" aria-hidden=\"true\"></i>  Archive Quizes</a>\n    </mat-nav-list>\n  </mat-sidenav>\n  <mat-sidenav-content>\n    <mat-toolbar>\n      <button type=\"button\" aria-label=\"Toggle sidenav\" mat-icon-button (click)=\"drawer.toggle()\"\n        *ngIf=\"isHandset$ | async\">\n        <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\n      </button>\n      <span>Content Creator</span>\n      <span class=\"spacer\"></span>\n      <a class=\"log\" (click)=\"logout()\">Log Out</a>\n    </mat-toolbar>\n    <div class=\"content\">\n      <ng-content></ng-content>\n    </div>\n  </mat-sidenav-content>\n</mat-sidenav-container>"
+module.exports = "<mat-sidenav-container class=\"sidenav-container\">\n  <mat-sidenav #drawer class=\"sidenav\" fixedInViewport=\"true\"\n    [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\" [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\n    [opened]=\"!(isHandset$ | async)\">\n    <mat-toolbar><a mat-list-item routerLink=\"/cc-dash\"><i class=\"fa fa-tachometer\" aria-hidden=\"true\"></i>\n        Dashboard</a></mat-toolbar>\n    <mat-nav-list>\n      <a mat-list-item routerLink=\"/cc-dash/create-question\"><i class=\"fa fa-code\" aria-hidden=\"true\"></i> Create\n        Question</a>\n      <a mat-list-item routerLink=\"/cc-dash/quiz\"><i class=\"fa fa-retweet\" aria-hidden=\"true\"></i> Create/Retrieve\n        Quiz</a>\n      <a mat-list-item routerLink=\"/cc-dash/tag\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i> Create / Edit\n        Tag</a>\n      <a mat-list-item routerLink=\"/cc-dash/rqbank\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i> Questions Created</a>\n      <a mat-list-item routerLink=\"/cc-dash/archive-quiz\"><i class=\"fa fa-archive\" aria-hidden=\"true\"></i> Archive\n        Quizes</a>\n    </mat-nav-list>\n  </mat-sidenav>\n  <mat-sidenav-content>\n    <mat-toolbar>\n      <button type=\"button\" aria-label=\"Toggle sidenav\" mat-icon-button (click)=\"drawer.toggle()\"\n        *ngIf=\"isHandset$ | async\">\n        <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\n      </button>\n      <span>Content Creator</span>\n      <span class=\"spacer\"></span>\n      <div class=\"btn-group\">\n        <button type=\"button\" class=\"btn btn-success btn-sm\">Choose-Role</button>\n        <button type=\"button\" class=\"btn btn-info dropdown-toggle dropdown-toggle-split\" data-toggle=\"dropdown\"\n          aria-haspopup=\"true\" aria-expanded=\"false\">\n          <span class=\"sr-only\">Toggle Dropdown</span>\n        </button>\n        <div class=\"dropdown-menu\">\n          <a class=\"dropdown-item\" style=\"color:black\" (click)=\"aab('/ta-dash')\"\n            *ngIf=\"roleMatch(['Test-Administrator'])\">\n            Test-Administrator</a>\n          <a class=\"dropdown-item\" style=\"color:black\" (click)=\"aab('/emp-dash')\" *ngIf=\"roleMatch(['Employee'])\">\n            Employee</a>\n          <a class=\"dropdown-item\" style=\"color:black\" (click)=\"aab('/cc-dash')\" *ngIf=\"roleMatch(['Content-Creator'])\">\n            Content-Creator</a>\n          <a class=\"dropdown-item\" style=\"color:black\" (click)=\"aab('/ru-dash')\" *ngIf=\"roleMatch(['Reporting-User'])\">\n            Reporting-User</a>\n        </div>\n      </div>\n      &nbsp;&nbsp;&nbsp;&nbsp;\n      <a class=\"log\" (click)=\"logout()\"><i aria-hidden=\"true\" class=\"fa fa-sign-out\"></i>Log Out</a>\n    </mat-toolbar>\n    <div class=\"content\">\n      <ng-content></ng-content>\n    </div>\n  </mat-sidenav-content>\n</mat-sidenav-container>"
 
 /***/ }),
 
@@ -1041,6 +1075,20 @@ var MainNavComponent = /** @class */ (function () {
                 _this.router.navigate(['/login']);
             }
         });
+    };
+    MainNavComponent.prototype.roleMatch = function (allowedRoles) {
+        var isMatch = false;
+        var userRoles = localStorage.getItem('role');
+        allowedRoles.forEach(function (element) {
+            if (userRoles.indexOf(element) > -1) {
+                isMatch = true;
+                return false;
+            }
+        });
+        return isMatch;
+    };
+    MainNavComponent.prototype.aab = function (role) {
+        this.router.navigate([role]);
     };
     MainNavComponent.prototype.logout = function () {
         localStorage.clear();
@@ -1131,7 +1179,6 @@ var RetrieveQuestionBankComponent = /** @class */ (function () {
         var _this = this;
         this.service.getQuesOfUser(uid).subscribe(function (data) {
             _this.questionList = data;
-            console.log(_this.questionList);
             _this.dtTrigger.next();
         });
     };
@@ -1140,9 +1187,9 @@ var RetrieveQuestionBankComponent = /** @class */ (function () {
         if (confirm('Are you sure you want to delete this record?')) {
             this.service.deleteQues(qid).subscribe(function (res) {
                 _this.toastr.success('Deleted Successfully', 'Assesment System');
-                _this.getQuesOfUser(localStorage.getItem('uid'));
                 _this.dtTrigger.unsubscribe();
                 _this.dtTrigger.next();
+                _this.getQuesOfUser(localStorage.getItem('uid'));
             });
         }
     };
@@ -1155,9 +1202,9 @@ var RetrieveQuestionBankComponent = /** @class */ (function () {
         this.service.readonlyStatus = false;
         this.service.formData = this.questionList[arrayindex - 1];
         this.dialog.open(_update_question_update_question_component__WEBPACK_IMPORTED_MODULE_5__["UpdateQuestionComponent"], dialogConfig).afterClosed().subscribe(function (res) {
-            _this.getQuesOfUser(localStorage.getItem('uid'));
             _this.dtTrigger.unsubscribe();
             _this.dtTrigger.next();
+            _this.getQuesOfUser(localStorage.getItem('uid'));
         });
     };
     RetrieveQuestionBankComponent.prototype.viewUserQues = function (quesid, arrayindex) {
@@ -1208,7 +1255,7 @@ module.exports = "mat-dialog-content {\n\tposition: relative;\n}\n.pos {\n\tposi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\"><mat-icon>clear</mat-icon></button>\n<div class=\"card-body\">\n  <h5 class=\"card-title\" style=\"text-align: center\">Choose Questions</h5><br>\n  <form #Questionform=\"ngForm\" (submit)=\"onDetailsSubmit(Questionform)\" autocomplete=\"off\">\n    <div *ngFor=\"let x of questions; let i = index\"><br>\n      <input [id]=\"'questions-'+i\" type=\"checkbox\" value=\"{{x.Question_ID}}\" [checked]=\"x.selected\"\n        (change)=\"updateSelectedQuestions(i)\">\n      <label>{{x.QuestionStatement}}</label>\n    </div>\n    <button style=\"margin-left:5%; margin-right: 5%\" type=\"submit\" class=\"btn btn-primary\">Submit</button>\n  </form>\n</div>"
+module.exports = "<button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n  <mat-icon>clear</mat-icon>\n</button>\n<div class=\"card-body\">\n  <h5 class=\"card-title\" style=\"text-align: center\">Choose Questions</h5><br>\n  <form #Questionform=\"ngForm\" (submit)=\"onDetailsSubmit(Questionform)\" autocomplete=\"off\">\n    <div *ngFor=\"let x of questions; let i = index\"><br>\n      <input [id]=\"'questions-'+i\" type=\"checkbox\" value=\"{{x.Question_ID}}\" [checked]=\"x.selected\"\n        (change)=\"updateSelectedQuestions(i)\">\n      <label>{{x.QuestionStatement}}</label>\n    </div>\n    <button style=\"margin-left:5%; margin-right: 5%\" type=\"submit\" class=\"btn btn-primary\">Submit</button>\n  </form>\n</div>"
 
 /***/ }),
 
@@ -1368,10 +1415,8 @@ var ArchiveQuizComponent = /** @class */ (function () {
     };
     ArchiveQuizComponent.prototype.onUnArchived = function (id) {
         var _this = this;
-        console.log(id);
         if (confirm('Are you sure you want to un-archive this quiz?')) {
             this.service.unArchiveQuiz(id).subscribe(function (res) {
-                console.log(res);
                 _this.loadQuiz();
                 _this.toastr.success('Un-Archived Successfully', 'Assesment System');
                 _this.dtTrigger.next();
@@ -1415,7 +1460,7 @@ module.exports = ".card {\n\tmargin: 9px auto;\n}\n.container {\n\tmax-width: in
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-dialog-content>\n  <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n    <mat-icon>clear</mat-icon>\n  </button>\n  <div class=\"card\" style=\"width: 80%; overflow: auto\">\n    <div class=\"card-body\">\n      <h5 class=\"card-title\" style=\"text-align: center\">Create A Quiz</h5><br />\n      <ng-container *ngIf=\"!val\">\n        <form #form=\"ngForm\" (submit)=\"fetchReqQues(form)\" autocomplete=\"off\">\n          <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"CCreatedBy\">\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <label>Select Difficulty-Level</label>\n              <select name=\"Difficulty\" required #Difficulty=\"ngModel\" [(ngModel)]=\"service.quizForm.Difficulty\"\n                class=\"form-control\">\n                <option value=\"Beginner\">Beginner</option>\n                <option value=\"Intermediate\">Intermediate</option>\n                <option value=\"Advanced\">Advanced</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Difficulty.invalid && Difficulty.touched\">This field is required.\n              </div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <label>Select Subject</label>\n              <select name=\"SubjectId\" required #SubjectId=\"ngModel\" [(ngModel)]=\"service.quizForm.SubjectId\"\n                class=\"form-control\">\n                <option *ngFor=\"let Subject of Subjects;\" value=\"{{Subject.SubjectId}}\">{{Subject.Name}}</option>\n              </select>\n\n              <div class=\"validation-error\" *ngIf=\"SubjectId.invalid && SubjectId.touched\">This field is required.</div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <label>Quiz Name</label>\n              <br />\n              <input type=\"text\" required name=\"QuizName\" #QuizName=\"ngModel\" [(ngModel)]=\"service.quizForm.QuizName\"\n                class=\"form-control\">\n              <div class=\"validation-error\" *ngIf=\"QuizName.invalid && QuizName.touched\">This field is required.</div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <label>Select Quiz Type</label>\n              <select name=\"QuizType\" required #QuizType=\"ngModel\" [(ngModel)]=\"service.quizForm.QuizType\"\n                class=\"form-control\">\n                <option value=\"\" disabled>Choose an option...</option>\n                <option value=\"Mock\">Mock</option>\n                <option value=\"Non-Mock\">Scheduled</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"QuizType.invalid && QuizType.touched\">This field is required.\n              </div>\n            </div>\n          </div>\n          <div class=\"form-group\">\n            <button type=\"submit\" [disabled]=\"form.invalid\" class=\"btn btn-primary \">Create</button>\n\n          </div>\n        </form>\n      </ng-container>\n      <div *ngIf=\"val\">\n        <div class=\"card-body\">\n          <h5 *ngIf=\"length>0\" class=\"card-title\" style=\"text-align: center\">Choose Questions</h5><br />\n          <h5 *ngIf=\"length==0\" class=\"card-title\" style=\"text-align: center\">No Question Available</h5><br />\n          <form #Questionform=\"ngForm\" (submit)=\"onDetailsSubmit(Questionform)\" autocomplete=\"off\">\n            <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n              class=\"row-border hover table table-bordered table-striped\">\n              <thead class=\"thead-dark\">\n                <tr>\n                  <th>#S.NO.</th>\n                  <th>Tick</th>\n                  <th>Question</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr *ngFor=\"let x of questions; let i = index\">\n                  <td>{{i+1}}</td>\n                  <td><input [id]=\"'questions-'+i\" type=\"checkbox\" value=\"{{x.Question_ID}}\" [checked]=\"x.selected\"\n                      (change)=\"updateSelectedQuestions(i)\"></td>\n                  <td>{{x.QuestionStatement}}</td>\n                </tr>\n              </tbody>\n            </table>\n            <div *ngIf=\"length==0\">\n              <a (click)=\"add_new_ques()\">Click Here to Create Question</a>\n            </div>\n            <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n          </form>\n        </div>\n      </div>\n    </div>\n  </div>\n</mat-dialog-content>"
+module.exports = "<mat-dialog-content>\n  <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n    <mat-icon>clear</mat-icon>\n  </button>\n  <div class=\"card\" style=\"width: 80%; overflow: auto\">\n    <div class=\"card-body\">\n      <h5 class=\"card-title\" style=\"text-align: center\">Create A Quiz</h5><br />\n      <ng-container *ngIf=\"!val\">\n        <form #form=\"ngForm\" (submit)=\"fetchReqQues(form)\" autocomplete=\"off\">\n          <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"CCreatedBy\">\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <label>Select Difficulty-Level</label>\n              <select name=\"Difficulty\" required #Difficulty=\"ngModel\" [(ngModel)]=\"service.quizForm.Difficulty\"\n                class=\"form-control\">\n                <option value=\"Beginner\">Beginner</option>\n                <option value=\"Intermediate\">Intermediate</option>\n                <option value=\"Advanced\">Advanced</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Difficulty.invalid && Difficulty.touched\">This field is required.\n              </div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <label>Select Subject</label>\n              <select name=\"SubjectId\" required #SubjectId=\"ngModel\" [(ngModel)]=\"service.quizForm.SubjectId\"\n                class=\"form-control\">\n                <option *ngFor=\"let Subject of Subjects;\" value=\"{{Subject.SubjectId}}\">{{Subject.Name}}</option>\n              </select>\n\n              <div class=\"validation-error\" *ngIf=\"SubjectId.invalid && SubjectId.touched\">This field is required.</div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <label>Quiz Name</label>\n              <br />\n              <input type=\"text\" required name=\"QuizName\" #QuizName=\"ngModel\" [(ngModel)]=\"service.quizForm.QuizName\"\n                class=\"form-control\">\n              <div class=\"validation-error\" *ngIf=\"QuizName.invalid && QuizName.touched\">This field is required.</div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <label>Select Quiz Type</label>\n              <select name=\"QuizType\" required #QuizType=\"ngModel\" [(ngModel)]=\"service.quizForm.QuizType\"\n                class=\"form-control\">\n                <option value=\"\" disabled>Choose an option...</option>\n                <option value=\"Mock\">Mock</option>\n                <option value=\"Non-Mock\">Scheduled</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"QuizType.invalid && QuizType.touched\">This field is required.\n              </div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <label>Quiz Time (hh:mm)</label><br />\n              <input type=\"number\" name=\"QuizHour\" placeholder=\"hh\" min=\"0\" max=\"24\" #QuizHour=\"ngModel\"\n                [(ngModel)]=\"service.QuizHour\">\n              <b>:</b>\n              <input type=\"number\" name=\"QuizMinute\" placeholder=\"mm\" min=\"0\" max=\"60\" #QuizMinute=\"ngModel\"\n                [(ngModel)]=\"service.QuizMinute\">\n              <div class=\"validation-error\"\n                *ngIf=\"QuizHour.invalid && QuizHour.touched && QuizMinutes.invalid && QuizMinutes.touched\">This field is\n                required.</div>\n            </div>\n            <div *ngIf=\"service.quizForm.QuizType == 'Mock'\" class=\"form-group col-md-6\">\n              <label>Select Mock Quiz</label>\n              <select name=\"MockTypess\" required #MockTypess=\"ngModel\" [(ngModel)]=\"MockType\" class=\"form-control\">\n                <option value=\"\" disabled>Choose an option...</option>\n                <option value=\"Random\">Random</option>\n                <option value=\"Personalized\">Personalized</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"MockTypess.invalid && MockTypess.touched\">This field is required.\n              </div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div *ngIf=\"MockType == 'Random'\" class=\"form-group col-md-6\">\n              <label>Number Of Questions</label>\n              <input type=\"text\" name=\"Questions\" #Questions=\"ngModel\" [(ngModel)]=\"TotalQuestions\"\n              class=\"form-control\">\n            <div class=\"validation-error\" *ngIf=\"Questions.invalid && Questions.touched\">This field is required.</div>\n            </div>\n          </div>\n          <div class=\"form-group\">\n            <button type=\"submit\" [disabled]=\"form.invalid\" class=\"btn btn-primary \">Create</button>\n          </div>\n        </form>\n      </ng-container>\n      <div *ngIf=\"val\">\n        <div class=\"card-body\">\n          <h5 *ngIf=\"length>0\" class=\"card-title\" style=\"text-align: center\">Choose Questions</h5><br />\n          <h5 *ngIf=\"length==0\" class=\"card-title\" style=\"text-align: center\">No Question Available</h5><br />\n          <div>\n            <a (click)=\"add_new_ques()\">Click Here to Create New Question</a>\n          </div>\n          <form #Questionform=\"ngForm\" (submit)=\"onDetailsSubmit(Questionform)\" autocomplete=\"off\">\n            <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n              class=\"row-border hover table table-bordered table-striped\">\n              <thead class=\"thead-dark\">\n                <tr>\n                  <th>#S.NO.</th>\n                  <th>Tick</th>\n                  <th>Question</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr *ngFor=\"let x of questions; let i = index\">\n                  <td>{{i+1}}</td>\n                  <td><input [id]=\"'questions-'+i\" type=\"checkbox\" value=\"{{x.Question_ID}}\" [checked]=\"x.selected\"\n                      (change)=\"updateSelectedQuestions(i)\"></td>\n                  <td>{{x.QuestionStatement}}</td>\n                </tr>\n              </tbody>\n            </table>\n            <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n          </form>\n        </div>\n      </div>\n    </div>\n  </div>\n</mat-dialog-content>"
 
 /***/ }),
 
@@ -1436,20 +1481,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
 /* harmony import */ var _create_questions_create_questions_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../create-questions/create-questions.component */ "./src/app/content-creator/create-questions/create-questions.component.ts");
+/* harmony import */ var amazing_time_picker__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! amazing-time-picker */ "./node_modules/amazing-time-picker/amazing-time-picker.es5.js");
 
 
 
 
 
-// import { MatDialogRef } from '@angular/material';
+
 
 
 var CreateQuizComponent = /** @class */ (function () {
-    function CreateQuizComponent(service, dialogRef, toastr, dialog) {
+    function CreateQuizComponent(service, dialogRef, toastr, dialog, atp) {
         this.service = service;
         this.dialogRef = dialogRef;
         this.toastr = toastr;
         this.dialog = dialog;
+        this.atp = atp;
         this.dtOptions = {};
         this.val = false;
         this.count = 0;
@@ -1499,16 +1546,32 @@ var CreateQuizComponent = /** @class */ (function () {
     };
     CreateQuizComponent.prototype.fetchReqQues = function (form) {
         var _this = this;
-        console.log(form.value);
         this.service.formDupli = form;
         this.service.quizForm = form.value;
-        this.service.getQuesOfUserConstraints(form.value).subscribe(function (data) {
-            data.forEach(function (obj) { return obj.selected = false; });
-            _this.questions = data;
-            _this.length = _this.questions.length;
-            _this.dtTrigger.next();
-            _this.checkVal();
-        });
+        this.QuizHour = this.service.QuizHour.toString();
+        this.QuizMinute = this.service.QuizMinute.toString();
+        if (this.service.QuizHour < 10) {
+            this.QuizHour = '0' + this.service.QuizHour.toString();
+        }
+        if (this.service.QuizMinute < 10) {
+            this.QuizMinute = '0' + this.service.QuizMinute.toString();
+        }
+        this.service.quizForm.QuizTime = this.QuizHour + ":" + this.QuizMinute;
+        if (this.MockType == 'Random') {
+            this.service.generateRandom(form.value, this.TotalQuestions).subscribe(function (res) {
+                _this.toastr.success('Random Quiz Created successfully');
+                _this.dialogRef.close('Inserted');
+            });
+        }
+        else {
+            this.service.getQuesOfUserConstraints(form.value).subscribe(function (data) {
+                data.forEach(function (obj) { return obj.selected = false; });
+                _this.questions = data;
+                _this.length = _this.questions.length;
+                _this.dtTrigger.next();
+                _this.checkVal();
+            });
+        }
     };
     CreateQuizComponent.prototype.checkVal = function () {
         this.val = true;
@@ -1547,7 +1610,6 @@ var CreateQuizComponent = /** @class */ (function () {
         var dialogRef = this.dialog.open(_create_questions_create_questions_component__WEBPACK_IMPORTED_MODULE_6__["CreateQuestionsComponent"], dialogConfig);
         dialogRef.afterClosed().subscribe(function (result) {
             _this.service.quesStat = false;
-            console.log(_this.service.quizForm);
             _this.reload(_this.service.quizForm);
             _this.dtTrigger.unsubscribe();
             _this.dtTrigger.next();
@@ -1565,7 +1627,8 @@ var CreateQuizComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_content_creator_service_service__WEBPACK_IMPORTED_MODULE_2__["ContentCreatorServiceService"],
             _angular_material_dialog__WEBPACK_IMPORTED_MODULE_5__["MatDialogRef"],
             ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"],
-            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_5__["MatDialog"]])
+            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_5__["MatDialog"],
+            amazing_time_picker__WEBPACK_IMPORTED_MODULE_7__["AmazingTimePickerService"]])
     ], CreateQuizComponent);
     return CreateQuizComponent;
 }());
@@ -1592,7 +1655,7 @@ module.exports = "th,\ntd {\n\ttext-align: center;\n\tcolor: black;\n}\n\n/*# so
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav>\n  <div>\n    <h1 style=\"text-align: center\">List of Quizzes</h1>\n    <button type=\"button\" (click)=\"onCreate()\" class=\"btn btn-primary\">Create Quiz</button>\n    <br /><br />\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n      class=\"row-border hover table table-bordered table-striped\">\n      <thead class=\"thead-dark\">\n        <tr>\n          <th scope=\"col\">#S. No.</th>\n          <th scope=\"col\">Quiz Type</th>\n          <th scope=\"col\">Difficulty</th>\n          <th scope=\"col\">Subject</th>\n          <th scope=\"col\">Name</th>\n          <th scope=\"col\">Total Questions</th>\n          <th scope=\"col\">Total Marks</th>\n          <th scope=\"col\">Action</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of QuizList;index as i\">\n          <th scope=\"row\">{{i+1}}</th>\n          <td scope=\"row\">{{item.QuizType}}</td>\n          <td scope=\"row\">{{item.Difficulty}}</td>\n          <td scope=\"row\">{{item.Subject}}</td>\n          <td scope=\"row\">{{item.QuizName}}</td>\n          <td scope=\"row\">{{item.TotalQuestions}}</td>\n          <td scope=\"row\">{{item.TotalMarks}}</td>\n          <td>\n            <a class=\"btn text-danger\" (click)=\"onEdit(item.QuizId)\"><i class=\"fa fa-edit fa-lg\"></i></a>\n            <a class=\"btn text-danger\" (click)=\"onArchive(item.QuizId)\"><i class=\"fa fa-trash fa-lg\"></i></a>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</app-main-nav>"
+module.exports = "<app-main-nav>\n  <div>\n    <h1 style=\"text-align: center\">List of Quizzes</h1>\n    <button type=\"button\" (click)=\"onCreate()\" class=\"btn btn-primary\">Create Quiz</button>\n    <br /><br />\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n      class=\"row-border hover table table-bordered table-striped\">\n      <thead class=\"thead-dark\">\n        <tr>\n          <th scope=\"col\">#S. No.</th>\n          <th scope=\"col\">Quiz Type</th>\n          <th scope=\"col\">Difficulty</th>\n          <th scope=\"col\">Subject</th>\n          <th scope=\"col\">Name</th>\n          <th scope=\"col\">Total Questions</th>\n          <th scope=\"col\">Total Marks</th>\n          <th scope=\"col\">Time</th>\n          <th scope=\"col\">Action</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of QuizList;index as i\">\n          <th scope=\"row\">{{i+1}}</th>\n          <td scope=\"row\">{{item.QuizType}}</td>\n          <td scope=\"row\">{{item.Difficulty}}</td>\n          <td scope=\"row\">{{item.Subject}}</td>\n          <td scope=\"row\">{{item.QuizName}}</td>\n          <td scope=\"row\">{{item.TotalQuestions}}</td>\n          <td scope=\"row\">{{item.TotalMarks}}</td>\n          <td scope=\"row\">{{item.QuizTime}}</td>\n          <td>\n            <a class=\"btn text-danger\" (click)=\"onEdit(item.QuizId)\"><i class=\"fa fa-edit fa-lg\"></i></a>\n            <a class=\"btn text-danger\" (click)=\"onArchive(item.QuizId)\"><i class=\"fa fa-trash fa-lg\"></i></a>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</app-main-nav>"
 
 /***/ }),
 
@@ -1731,7 +1794,7 @@ module.exports = "th {\n\ttext-align: center;\n}\nmat-dialog-content {\n\tpositi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-dialog-content>\n    <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\"><mat-icon>clear</mat-icon></button>\n  <button type=\"button\" (click)=\"onCreate()\" class=\"btn btn-primary\">Add Question</button>\n  <div>\n    <br /><br />\n    <h1 style=\"text-align: center\">Edit Quiz Details</h1>\n    <br />\n    <table class=\"table table-bordered table-striped\">\n      <thead class=\"thead-dark\">\n        <th scope=\"col\">#S.No.</th>\n        <th scope=\"col\">Question</th>\n        <th scope=\"col\">Marks</th>\n        <th scope=\"col\">Action</th>\n      </thead>\n      <tbody>\n        <ng-container *ngFor=\"let item of UpdateQuizQuestionList;index as i\">\n          <tr>\n            <th class=\"text-primary\" scope=\"row\">{{i+1}}</th>\n            <th class=\"text-primary\" scope=\"row\">{{item.QuestionStatement}}</th>\n            <td class=\"text-primary\" scope=\"row\">{{item.Marks}}</td>\n            <td>\n              <a class=\"btn text-danger\" (click)=\"onDelete(item.QuestionId)\"><i class=\"fa fa-trash fa-lg\"></i></a>\n            </td>\n          </tr>\n        </ng-container>\n      </tbody>\n    </table>\n  </div>\n</mat-dialog-content>"
+module.exports = "<mat-dialog-content>\n  <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n    <mat-icon>clear</mat-icon>\n  </button>\n  <button type=\"button\" (click)=\"onCreate()\" class=\"btn btn-primary\">Add Question</button>\n  <div>\n    <br /><br />\n    <h1 style=\"text-align: center\">Edit Quiz Details</h1>\n    <br />\n    <table class=\"table table-bordered table-striped\">\n      <thead class=\"thead-dark\">\n        <th scope=\"col\">#S.No.</th>\n        <th scope=\"col\">Question</th>\n        <th scope=\"col\">Marks</th>\n        <th scope=\"col\">Action</th>\n      </thead>\n      <tbody>\n        <ng-container *ngFor=\"let item of UpdateQuizQuestionList;index as i\">\n          <tr>\n            <th class=\"text-primary\" scope=\"row\">{{i+1}}</th>\n            <th class=\"text-primary\" scope=\"row\">{{item.QuestionStatement}}</th>\n            <td class=\"text-primary\" scope=\"row\">{{item.Marks}}</td>\n            <td>\n              <a class=\"btn text-danger\" (click)=\"onDelete(item.QuestionId)\"><i class=\"fa fa-trash fa-lg\"></i></a>\n            </td>\n          </tr>\n        </ng-container>\n      </tbody>\n    </table>\n  </div>\n</mat-dialog-content>"
 
 /***/ }),
 
@@ -1840,37 +1903,31 @@ var ContentCreatorServiceService = /** @class */ (function () {
         this.quesStat = false;
     }
     ContentCreatorServiceService.prototype.postQuestion = function (formData) {
-        // const formData1 = new FormData();
-        // formData1.append('data',formData);
-        console.log(formData);
+        formData.CreatedBy = localStorage.getItem('uid');
         return this.http.post(this.rootURL + 'Question/CreateQuestion', formData);
     };
     ContentCreatorServiceService.prototype.updateQuestion = function (formData) {
-        console.log(formData);
         return this.http.put(this.rootURL + 'Question/Edit/' + formData.QuestionId, formData);
     };
     ContentCreatorServiceService.prototype.retrieveSubjects = function () {
         return this.http.get(this.rootURL + 'Subject/GetSubjects');
     };
     ContentCreatorServiceService.prototype.getQuesOfUser = function (uid) {
-        return this.http.get(this.rootURL + 'Question/GetuestionByUser/' + localStorage.getItem('uid'));
+        return this.http.get(this.rootURL + 'Question/GetQuestionByUser/' + localStorage.getItem('uid'));
     };
     ContentCreatorServiceService.prototype.deleteQues = function (qid) {
-        console.log(qid);
         return this.http.delete(this.rootURL + '/Question/Delete/' + qid);
     };
     ContentCreatorServiceService.prototype.getArchivedQuizzes = function () {
         return this.http.get(this.rootURL + 'Quiz/Archived/' + localStorage.getItem('uid'));
     };
     ContentCreatorServiceService.prototype.unArchiveQuiz = function (id) {
-        console.log(id);
         return this.http.put(this.rootURL + '/Quiz/UnArchive', id);
     };
     ContentCreatorServiceService.prototype.getTags = function () {
         return this.http.get(this.rootURL + 'Subject/GetSubjects/' + localStorage.getItem('uid'));
     };
     ContentCreatorServiceService.prototype.postTags = function (tagForm) {
-        console.log(tagForm);
         if (tagForm.SubjectId === null) {
             return this.http.post(this.rootURL + 'Subject/CreateSubject', tagForm);
         }
@@ -1890,20 +1947,19 @@ var ContentCreatorServiceService = /** @class */ (function () {
     ContentCreatorServiceService.prototype.getQuesOfUserConstraints = function (form) {
         return this.http.get(this.rootURL + 'Question/GetQuestion/' + form.Difficulty + '/' + form.SubjectId);
     };
+    ContentCreatorServiceService.prototype.generateRandom = function (form, question) {
+        return this.http.post(this.rootURL + 'Quiz/GetRandomQuestion?TotalQuestion=' + question, form);
+    };
     ContentCreatorServiceService.prototype.postQuestionsSelected = function (questions) {
         this.quizForm.QuestionIds = questions;
-        console.log(this.quizForm);
         return this.http.post(this.rootURL + 'Quiz/CreateQuiz', this.quizForm);
     };
-    // pulkit's methods
     ContentCreatorServiceService.prototype.putQuestionsSelected = function (questions) {
         this.quizForm.QuestionIds = questions;
         this.quizForm.CreatedBy = localStorage.getItem('uid');
-        console.log(this.quizForm.QuestionIds);
         return this.http.put(this.rootURL + 'Quiz/EditQuiz/AddQuestion/' + Number(localStorage.getItem('quizId')), this.quizForm.QuestionIds);
     };
     ContentCreatorServiceService.prototype.deleteQuesOfQuiz = function (id) {
-        console.log(id);
         return this.http.delete(this.rootURL + 'Quiz/QuizQuestion/Delete/' + Number(localStorage.getItem('quizId')) + '/' + id);
     };
     ContentCreatorServiceService.prototype.getQuestionsByQuiz = function (id) {
@@ -1913,11 +1969,9 @@ var ContentCreatorServiceService = /** @class */ (function () {
         return this.http.get(this.rootURL + 'Quiz/GetQuestionsNotInQuiz/' + qid);
     };
     ContentCreatorServiceService.prototype.getUserDetails = function () {
-        console.log(localStorage.getItem('email'));
         return this.http.get(this.rootURL + 'GetUserDetails?email=' + localStorage.getItem('email'));
     };
     ContentCreatorServiceService.prototype.getUserProgress = function () {
-        console.log(localStorage.getItem('uid'));
         return this.http.get(this.rootURL + 'Stats/' + localStorage.getItem('uid'));
     };
     ContentCreatorServiceService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1951,7 +2005,7 @@ module.exports = "mat-dialog-content {\n\tposition: relative;\n}\n.pos {\n\tposi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\" >\n    <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\"><mat-icon>clear</mat-icon></button>\n  <div class=\"card-body\">\n    <h5 class=\"card-title\">{{Option}} Tag</h5>\n    <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n      <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"userId\">\n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\">\n          <input type=\"hidden\" name=\"SubjectId\" #SubjectId=\"ngModel\" [(ngModel)]=\"service.tagForm.SubjectId\"\n            class=\"form-control\">\n        </div>\n      </div>\n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\">\n          <label>Subject</label>\n          <input required type=\"text\" name=\"Name\" #Name=\"ngModel\" [(ngModel)]=\"service.tagForm.Name\"\n            class=\"form-control\">\n          <div class=\"validation-error\" *ngIf=\"Name.invalid && Name.touched\">This field is required.</div>\n        </div>\n        <div class=\"form-group col-md-6\">\n          <label>Department</label>\n          <input required type=\"text\" name=\"Department\" #Department=\"ngModel\" [(ngModel)]=\"service.tagForm.Department\"\n            class=\"form-control\">\n          <div class=\"validation-error\" *ngIf=\"Department.invalid && Department.touched\">This field is required.</div>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <button style=\"margin:0 5%\" type=\"submit\" [disabled]=\"form.invalid\" class=\"btn btn-primary\">Submit</button>\n      </div>\n    </form>\n  </div>\n</div>"
+module.exports = "<div class=\"card\">\n  <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n    <mat-icon>clear</mat-icon>\n  </button>\n  <div class=\"card-body\">\n    <h5 class=\"card-title\">{{Option}} Tag</h5>\n    <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n      <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"userId\">\n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\">\n          <input type=\"hidden\" name=\"SubjectId\" #SubjectId=\"ngModel\" [(ngModel)]=\"service.tagForm.SubjectId\"\n            class=\"form-control\">\n        </div>\n      </div>\n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\">\n          <label>Subject</label>\n          <input required type=\"text\" name=\"Name\" #Name=\"ngModel\" [(ngModel)]=\"service.tagForm.Name\"\n            (input)=\"check_avail(Name)\" class=\"form-control\">\n          <label *ngIf=\"tagExists\">Tag Already Exists</label>\n          <div class=\"validation-error\" *ngIf=\"Name.invalid && Name.touched\">This field is required.</div>\n        </div>\n        <div class=\"form-group col-md-6\">\n          <label>Department</label>\n          <input required type=\"text\" name=\"Department\" #Department=\"ngModel\" [(ngModel)]=\"service.tagForm.Department\"\n            class=\"form-control\">\n          <div class=\"validation-error\" *ngIf=\"Department.invalid && Department.touched\">This field is required.</div>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <button style=\"margin:0 5%\" type=\"submit\" [disabled]=\"form.invalid || tagExists\" class=\"btn btn-primary\">Submit</button>\n      </div>\n    </form>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1983,8 +2037,10 @@ var CreatetagComponent = /** @class */ (function () {
         this.toastr = toastr;
         this.userId = "";
         this.Option = '';
+        this.tagExists = false;
     }
     CreatetagComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.userId = localStorage.getItem('uid');
         if (this.data === null) {
             this.Option = 'Create';
@@ -1993,8 +2049,11 @@ var CreatetagComponent = /** @class */ (function () {
         else {
             this.Option = 'Update';
             this.service.tagForm = this.data;
-            console.log(this.service.tagForm);
         }
+        this.service.retrieveSubjects().subscribe(function (res) {
+            _this.existingTags = res;
+            console.log(_this.existingTags);
+        });
     };
     CreatetagComponent.prototype.resetForm = function (form) {
         if (form != null) {
@@ -2011,9 +2070,20 @@ var CreatetagComponent = /** @class */ (function () {
         this.service.postTags(form.value).subscribe(function (res) {
             _this.toastr.success('Inserted successfully');
             _this.resetForm(form);
+            _this.dialogRef.close('Inserted');
         });
-        ;
-        this.dialogRef.close('Inserted');
+    };
+    CreatetagComponent.prototype.check_avail = function (name1) {
+        for (var _i = 0, _a = this.existingTags; _i < _a.length; _i++) {
+            var tag = _a[_i];
+            if (tag.Name.toString().toLowerCase() === name1.value.toString().toLowerCase()) {
+                this.tagExists = true;
+                break;
+            }
+            else {
+                this.tagExists = false;
+            }
+        }
     };
     CreatetagComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -2101,6 +2171,7 @@ var TagComponent = /** @class */ (function () {
         var _this = this;
         this.service.getTags().subscribe(function (res) {
             _this.tagList = res;
+            _this.dtTrigger.unsubscribe();
             _this.dtTrigger.next();
         });
     };
@@ -2110,10 +2181,8 @@ var TagComponent = /** @class */ (function () {
         dialogConfig.autoFocus = true;
         dialogConfig.width = "70%";
         dialogConfig.disableClose = true;
-        var dialogRef = this.dialog.open(_createtag_createtag_component__WEBPACK_IMPORTED_MODULE_6__["CreatetagComponent"], dialogConfig);
-        dialogRef.afterClosed().subscribe(function (result) {
+        var dialogRef = this.dialog.open(_createtag_createtag_component__WEBPACK_IMPORTED_MODULE_6__["CreatetagComponent"], dialogConfig).afterClosed().subscribe(function (result) {
             _this.loadTags();
-            _this.dtTrigger.next();
         });
     };
     TagComponent.prototype.onEdit = function (id) {
@@ -2125,7 +2194,6 @@ var TagComponent = /** @class */ (function () {
         dialogConfig.data = this.tagList[id - 1];
         var dialogRef = this.dialog.open(_createtag_createtag_component__WEBPACK_IMPORTED_MODULE_6__["CreatetagComponent"], dialogConfig).afterClosed().subscribe(function (res) {
             _this.loadTags();
-            _this.dtTrigger.next();
         });
     };
     TagComponent.prototype.ngOnDestroy = function () {
@@ -2167,7 +2235,7 @@ module.exports = "mat-dialog-content {\n\tposition: relative;\n}\n.pos {\n\tposi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\n    <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\"><mat-icon>clear</mat-icon></button>\n  <div class=\"card-body\">\n    <h5 class=\"card-title\">{{label}}</h5>\n    <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n      <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"CCreatedBy\">\n      <input type=\"hidden\" name=\"QuestionId\" #QuestionId=\"ngModel\" [(ngModel)]=\"service.formData.QuestionId\">\n      <div class=\"form-group\">\n        <label>Question</label>\n        <textarea class=\"form-control\" [readonly]=\"bool\" name=\"QuestionStatement\" #QuestionStatement=\"ngModel\"\n          [(ngModel)]=\"service.formData.QuestionStatement\" rows=\"3\"></textarea>\n        <div class=\"validation-error\" *ngIf=\"QuestionStatement.invalid && QuestionStatement.touched\">This field is\n          required.\n        </div>\n      </div>\n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\">\n          <label>Option 1</label>\n          <input required type=\"text\" [readonly]=\"bool\" name=\"Option1\" #Option1=\"ngModel\"\n            [(ngModel)]=\"service.formData.Option1\" class=\"form-control\">\n          <div class=\"validation-error\" *ngIf=\"Option1.invalid && Option1.touched\">This field is required.</div>\n        </div>\n        <div class=\"form-group col-md-6\">\n          <label>Option 2</label>\n          <input required type=\"text\" [readonly]=\"bool\" name=\"Option2\" #Option2=\"ngModel\"\n            [(ngModel)]=\"service.formData.Option2\" class=\"form-control\">\n          <div class=\"validation-error\" *ngIf=\"Option2.invalid && Option2.touched\">This field is required.</div>\n        </div>\n      </div>\n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\">\n          <label>Option 3</label>\n          <input required type=\"text\" [readonly]=\"bool\" name=\"Option3\" #Option3=\"ngModel\"\n            [(ngModel)]=\"service.formData.Option3\" class=\"form-control\">\n          <div class=\"validation-error\" *ngIf=\"Option3.invalid && Option3.touched\">This field is required.</div>\n        </div>\n        <div class=\"form-group col-md-6\">\n          <label>Option 4</label>\n          <input required type=\"text\" [readonly]=\"bool\" name=\"Option4\" #Option4=\"ngModel\"\n            [(ngModel)]=\"service.formData.Option4\" class=\"form-control\">\n          <div class=\"validation-error\" *ngIf=\"Option4.invalid && Option4.touched\">This field is required.</div>\n        </div>\n      </div>\n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\">\n          <label>Correct Option</label>\n          <select name=\"Answer\" [disabled]=\"bool\" required #Answer=\"ngModel\" [(ngModel)]=\"service.formData.Answer\"\n            class=\"form-control\">\n            <option value=\"\">Choose</option>\n            <option value=\"1\">1</option>\n            <option value=\"2\">2</option>\n            <option value=\"3\">3</option>\n            <option value=\"4\">4</option>\n          </select>\n          <div class=\"validation-error\" *ngIf=\"Answer.invalid && Answer.touched\">This field is required.\n          </div>\n        </div>\n        <div class=\"form-group col-md-6\">\n          <label>Marks</label>\n          <select name=\"Marks\" [disabled]=\"bool\" required #Marks=\"ngModel\" [(ngModel)]=\"service.formData.Marks\"\n            class=\"form-control\">\n            <option value=\"\">Choose</option>\n            <option value=\"1\">1</option>\n            <option value=\"2\">2</option>\n            <option value=\"3\">3</option>\n            <option value=\"5\">5</option>\n          </select>\n          <div class=\"validation-error\" *ngIf=\"Marks.invalid && Marks.touched\">This field is required.</div>\n        </div>\n      </div>\n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\">\n          <label>Select Subject</label>\n          <select name=\"SubjectId\" [disabled]=\"bool\" required #SubjectId=\"ngModel\"\n            [(ngModel)]=\"service.formData.SubjectId\" class=\"form-control\">\n            <option value=\"\">Choose</option>\n            <option *ngFor=\"let Subject of Subjects\" value=\"{{Subject.SubjectId}}\">{{Subject.Name}}</option>\n          </select>\n          <div class=\"validation-error\" *ngIf=\"SubjectId.invalid && SubjectId.touched\">This field is required.</div>\n        </div>\n        <div class=\"form-group col-md-6\">\n          <label>Select Difficulty-Level</label>\n          <select name=\"Difficulty\" [disabled]=\"bool\" required #Difficulty=\"ngModel\"\n            [(ngModel)]=\"service.formData.Difficulty\" class=\"form-control\">\n            <option value=\"\">Choose</option>\n            <option value=\"Beginner\">Beginner</option>\n            <option value=\"Intermediate\">Intermediate</option>\n            <option value=\"Advanced\">Advanced</option>\n          </select>\n          <div class=\"validation-error\" *ngIf=\"Difficulty.invalid && Difficulty.touched\">This field is required.</div>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <button [hidden]=\"bool\" style=\"margin:0 5%\" type=\"submit\" [disabled]=\"form.invalid || bool\"\n          class=\"btn btn-primary\">Submit</button>\n      </div>\n    </form>\n  </div>\n</div>"
+module.exports = "<div class=\"card\">\n  <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n    <mat-icon>clear</mat-icon>\n  </button>\n  <div class=\"card-body\">\n    <h5 class=\"card-title\">{{label}}</h5>\n    <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n      <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"CCreatedBy\">\n      <input type=\"hidden\" name=\"QuestionId\" #QuestionId=\"ngModel\" [(ngModel)]=\"service.formData.QuestionId\">\n      <div class=\"form-group\">\n        <label>Question</label>\n        <textarea class=\"form-control\" [readonly]=\"bool\" name=\"QuestionStatement\" #QuestionStatement=\"ngModel\"\n          [(ngModel)]=\"service.formData.QuestionStatement\" rows=\"3\"></textarea>\n        <div class=\"validation-error\" *ngIf=\"QuestionStatement.invalid && QuestionStatement.touched\">This field is\n          required.\n        </div>\n      </div>\n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\">\n          <label>Option 1</label>\n          <input required type=\"text\" [readonly]=\"bool\" name=\"Option1\" #Option1=\"ngModel\"\n            [(ngModel)]=\"service.formData.Option1\" class=\"form-control\">\n          <div class=\"validation-error\" *ngIf=\"Option1.invalid && Option1.touched\">This field is required.</div>\n        </div>\n        <div class=\"form-group col-md-6\">\n          <label>Option 2</label>\n          <input required type=\"text\" [readonly]=\"bool\" name=\"Option2\" #Option2=\"ngModel\"\n            [(ngModel)]=\"service.formData.Option2\" class=\"form-control\">\n          <div class=\"validation-error\" *ngIf=\"Option2.invalid && Option2.touched\">This field is required.</div>\n        </div>\n      </div>\n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\">\n          <label>Option 3</label>\n          <input type=\"text\" [readonly]=\"bool\" name=\"Option3\" #Option3=\"ngModel\" [(ngModel)]=\"service.formData.Option3\"\n            class=\"form-control\">\n        </div>\n        <div class=\"form-group col-md-6\">\n          <label>Option 4</label>\n          <input type=\"text\" [readonly]=\"bool\" name=\"Option4\" #Option4=\"ngModel\" [(ngModel)]=\"service.formData.Option4\"\n            class=\"form-control\">\n        </div>\n      </div>\n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\">\n          <label>Correct Option</label>\n          <select name=\"Answer\" [disabled]=\"bool\" required #Answer=\"ngModel\" [(ngModel)]=\"service.formData.Answer\"\n            class=\"form-control\">\n            <option value=\"\">Choose</option>\n            <option value=\"1\">1</option>\n            <option value=\"2\">2</option>\n            <option value=\"3\">3</option>\n            <option value=\"4\">4</option>\n          </select>\n          <div class=\"validation-error\" *ngIf=\"Answer.invalid && Answer.touched\">This field is required.\n          </div>\n        </div>\n        <div class=\"form-group col-md-6\">\n          <label>Marks</label>\n          <select name=\"Marks\" [disabled]=\"bool\" required #Marks=\"ngModel\" [(ngModel)]=\"service.formData.Marks\"\n            class=\"form-control\">\n            <option value=\"\">Choose</option>\n            <option value=\"1\">1</option>\n            <option value=\"2\">2</option>\n            <option value=\"3\">3</option>\n            <option value=\"5\">5</option>\n          </select>\n          <div class=\"validation-error\" *ngIf=\"Marks.invalid && Marks.touched\">This field is required.</div>\n        </div>\n      </div>\n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\">\n          <label>Select Subject</label>\n          <select name=\"SubjectId\" [disabled]=\"bool\" required #SubjectId=\"ngModel\"\n            [(ngModel)]=\"service.formData.SubjectId\" class=\"form-control\">\n            <option value=\"\">Choose</option>\n            <option *ngFor=\"let Subject of Subjects\" value=\"{{Subject.SubjectId}}\">{{Subject.Name}}</option>\n          </select>\n          <div class=\"validation-error\" *ngIf=\"SubjectId.invalid && SubjectId.touched\">This field is required.</div>\n        </div>\n        <div class=\"form-group col-md-6\">\n          <label>Select Difficulty-Level</label>\n          <select name=\"Difficulty\" [disabled]=\"bool\" required #Difficulty=\"ngModel\"\n            [(ngModel)]=\"service.formData.Difficulty\" class=\"form-control\">\n            <option value=\"\">Choose</option>\n            <option value=\"Beginner\">Beginner</option>\n            <option value=\"Intermediate\">Intermediate</option>\n            <option value=\"Advanced\">Advanced</option>\n          </select>\n          <div class=\"validation-error\" *ngIf=\"Difficulty.invalid && Difficulty.touched\">This field is required.</div>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <button [hidden]=\"bool\" style=\"margin:0 5%\" type=\"submit\" [disabled]=\"form.invalid || bool\"\n          class=\"btn btn-primary\">Submit</button>\n      </div>\n    </form>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -2240,7 +2308,6 @@ var UpdateQuestionComponent = /** @class */ (function () {
             _this.toastr.success('Updated successfully');
             _this.dialogRef.close('Submitted');
         });
-        ;
     };
     UpdateQuestionComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -2279,7 +2346,7 @@ module.exports = "@import url(https://fonts.googleapis.com/css?family=Roboto);\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav>\n    <ngx-ui-loader [loaderId]=\"'loader-01'\" *ngIf = \"show\"></ngx-ui-loader>\n    <div class=\"jumbotron\">\n      <div class=\"pic\">\n          <img class=\"left\" src=\"{{ profileUrl }}\" />\n      </div>\n      <div class=\"detail1\">\n        <h3>{{ Firstname }} {{ Lastname }}</h3>\n        <h6>{{ email }}</h6>\n      </div>\n      <div class=\"elem\">\n        <ul>\n          <li><a href=\"#\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\" style=\"color:#00acee;\"></i></a></li>\n          <li><a href=\"#\"><i class=\"fa fa-twitter\" aria-hidden=\"true\" style=\"color:#00acee;\"></i></a></li>\n          <li><a href=\"#\"><i class=\"fa fa-github\" aria-hidden=\"true\" style=\"color:black;\"></i></a></li>\n        </ul>\n      </div>\n    </div>\n    <br/>\n    <div class=\"row\">\n        <div style=\"width: 50%;\n        margin-left: auto ;\n        margin-right: auto ;\"\n        class=\"box col-4\">\n          <div class=\"boxhalf\">\n            <h2>{{ Quizzes }}</h2>\n            <h5>Quizzes Created</h5>\n          </div>\n        </div>\n\n        <div style=\"width: 50%;\n        margin-left: auto ;\n        margin-right: auto ;\"\n        class=\"box col-4\">\n            <div class=\"boxhalf\">\n              <h2>{{ Tags }}</h2>\n              <h5>Tags Created</h5>            \n            </div>\n        </div>\n    </div>\n    <br/><br/><br/>\n    <div class=\"row\">\n      <div style=\"width: 100%;\n      margin-left: auto ;\n      margin-right: auto ;\"\n      class=\"box col-4\">\n            <div class=\"boxhalf\">\n              <h2>{{ Questions }}</h2>\n              <h5>Questions Created</h5>\n            </div>\n        </div>\n  </div>\n</app-main-nav>"
+module.exports = "<app-main-nav>\n  <ngx-ui-loader [loaderId]=\"'loader-01'\" *ngIf=\"show\"></ngx-ui-loader>\n  <div class=\"jumbotron\">\n    <div class=\"pic\">\n      <img class=\"left\" src=\"{{ profileUrl }}\" />\n    </div>\n    <div class=\"detail1\">\n      <h3>{{ Firstname }} {{ Lastname }}</h3>\n      <h6>{{ email }}</h6>\n    </div>\n    <div class=\"elem\">\n      <ul>\n        <li><a href=\"#\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\" style=\"color:#00acee;\"></i></a></li>\n        <li><a href=\"#\"><i class=\"fa fa-twitter\" aria-hidden=\"true\" style=\"color:#00acee;\"></i></a></li>\n        <li><a href=\"#\"><i class=\"fa fa-github\" aria-hidden=\"true\" style=\"color:black;\"></i></a></li>\n      </ul>\n    </div>\n  </div>\n  <br />\n  <div class=\"row\">\n    <div style=\"width: 50%;\n        margin-left: auto ;\n        margin-right: auto ;\" class=\"box col-4\">\n      <div class=\"boxhalf\">\n        <h2>{{ Quizzes }}</h2>\n        <h5>Quizzes Created</h5>\n      </div>\n    </div>\n\n    <div style=\"width: 50%;\n        margin-left: auto ;\n        margin-right: auto ;\" class=\"box col-4\">\n      <div class=\"boxhalf\">\n        <h2>{{ Tags }}</h2>\n        <h5>Tags Created</h5>\n      </div>\n    </div>\n  </div>\n  <br /><br /><br />\n  <div class=\"row\">\n    <div style=\"width: 100%;\n      margin-left: auto ;\n      margin-right: auto ;\" class=\"box col-4\">\n      <div class=\"boxhalf\">\n        <h2>{{ Questions }}</h2>\n        <h5>Questions Created</h5>\n      </div>\n    </div>\n  </div>\n</app-main-nav>"
 
 /***/ }),
 
@@ -2312,7 +2379,6 @@ var UserDetailsComponent = /** @class */ (function () {
         this.ngxService.stopBackground('do-background-things');
         this.ngxService.startLoader('loader-01');
         this.profileUrl = localStorage.getItem('imgurl');
-        console.log(this.profileUrl);
         this.loadUserDetails();
         this.loadUserProgress();
     };
@@ -2355,7 +2421,7 @@ var UserDetailsComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* .container{\n    width:50%;\n    height:50%;\n} */\n/* .chartjs-render-monitor{\n    width:100%;\n    height:100%;\n    display: block;\n} */\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZW1wbG95ZWUvZGV0YWlsZWQtcmVwb3J0L2RldGFpbGVkLXJlcG9ydC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOzs7R0FHRztBQUNIOzs7O0dBSUciLCJmaWxlIjoic3JjL2FwcC9lbXBsb3llZS9kZXRhaWxlZC1yZXBvcnQvZGV0YWlsZWQtcmVwb3J0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiAuY29udGFpbmVye1xuICAgIHdpZHRoOjUwJTtcbiAgICBoZWlnaHQ6NTAlO1xufSAqL1xuLyogLmNoYXJ0anMtcmVuZGVyLW1vbml0b3J7XG4gICAgd2lkdGg6MTAwJTtcbiAgICBoZWlnaHQ6MTAwJTtcbiAgICBkaXNwbGF5OiBibG9jaztcbn0gKi8iXX0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2VtcGxveWVlL2RldGFpbGVkLXJlcG9ydC9kZXRhaWxlZC1yZXBvcnQuY29tcG9uZW50LmNzcyJ9 */"
 
 /***/ }),
 
@@ -2432,13 +2498,11 @@ var DetailedReportComponent = /** @class */ (function () {
             pageLength: 10,
         };
         this.loadDetail();
-        console.log((parseInt(this.service.data.CorrectAnswers) + parseInt(this.service.data.WrongAnswers)).toString());
     };
     DetailedReportComponent.prototype.loadDetail = function () {
         var _this = this;
         this.service.getDetailedReport().subscribe(function (res) {
             _this.reports = res;
-            console.log(_this.reports);
             _this.quizname = _this.reports[0].QuizName;
             _this.calculate();
             _this.dtTrigger.next();
@@ -2508,7 +2572,7 @@ module.exports = "@import url(https://fonts.googleapis.com/css?family=Roboto);\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav3>\n  <ngx-ui-loader [loaderId]=\"'loader-01'\" *ngIf = \"show\"></ngx-ui-loader>\n  <div class=\"jumbotron\">\n      <div class=\"pic\">\n          <img class=\"left\" src=\"{{ profileUrl }}\" />\n      </div>\n      <div class=\"detail1\">\n        <h1>{{ Firstname }} {{ Lastname }}</h1>\n        <h6>{{ email }}</h6>\n      </div>\n      <div class=\"elem\">\n        <ul>\n          <li><a href=\"#\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\" style=\"color:#00acee;\"></i></a></li>\n          <li><a href=\"#\"><i class=\"fa fa-twitter\" aria-hidden=\"true\" style=\"color:#00acee;\"></i></a></li>\n          <li><a href=\"#\"><i class=\"fa fa-github\" aria-hidden=\"true\" style=\"color:black;\"></i></a></li>\n        </ul>\n      </div>\n    </div>\n    <div class=\"row\">\n        <div style=\"width: 33.33%;\n        margin-left: auto ;\n        margin-right: auto ;\"\n        class=\"box col-3\">\n          <div class=\"boxhalf\">\n            <h2>{{ mocks }}</h2>\n            <h5>Mocks Taken</h5>\n          </div>\n        </div>\n        <div style=\"width: 33.33%;\n        margin-left: auto ;\n        margin-right: auto ;\"\n        class=\"box col-3\">\n            <div class=\"boxhalf\">\n              <h2>{{ nmocks }}</h2>\n              <h5>Non-Mocks Taken</h5>            \n            </div>\n        </div>\n        <div style=\"width: 33.33%;\n        margin-left: auto ;\n        margin-right: auto ;\"\n        class=\"box col-3\">\n            <div class=\"boxhalf\">\n              <h2>{{ accuracy }}</h2>\n              <h5>Accuracy</h5>\n            </div>\n        </div>\n  </div>\n  <br/><br/><br/>\n  <div class=\"row\">\n    <div style=\"width: 100%;\n    margin-left: auto ;\n    margin-right: auto ;\"class=\" box1 col-8\">\n      <div class=\"boxhalf1\">\n        <h4>Recent Quiz Taken</h4>\n        <h5>{{recentQuiz}}</h5>\n      </div>\n    </div>\n  </div>\n</app-main-nav3>"
+module.exports = "<app-main-nav3>\n  <ngx-ui-loader [loaderId]=\"'loader-01'\" *ngIf=\"show\"></ngx-ui-loader>\n  <div class=\"jumbotron\">\n    <div class=\"pic\">\n      <img class=\"left\" src=\"{{ profileUrl }}\" />\n    </div>\n    <div class=\"detail1\">\n      <h1>{{ Firstname }} {{ Lastname }}</h1>\n      <h6>{{ email }}</h6>\n    </div>\n    <div class=\"elem\">\n      <ul>\n        <li><a href=\"#\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\" style=\"color:#00acee;\"></i></a></li>\n        <li><a href=\"#\"><i class=\"fa fa-twitter\" aria-hidden=\"true\" style=\"color:#00acee;\"></i></a></li>\n        <li><a href=\"#\"><i class=\"fa fa-github\" aria-hidden=\"true\" style=\"color:black;\"></i></a></li>\n      </ul>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div style=\"width: 33.33%;\n        margin-left: auto ;\n        margin-right: auto ;\" class=\"box col-3\">\n      <div class=\"boxhalf\">\n        <h2>{{ mocks }}</h2>\n        <h5>Mocks Taken</h5>\n      </div>\n    </div>\n    <div style=\"width: 33.33%;\n        margin-left: auto ;\n        margin-right: auto ;\" class=\"box col-3\">\n      <div class=\"boxhalf\">\n        <h2>{{ nmocks }}</h2>\n        <h5>Schedule Quiz Taken</h5>\n      </div>\n    </div>\n    <div style=\"width: 33.33%;\n        margin-left: auto ;\n        margin-right: auto ;\" class=\"box col-3\">\n      <div class=\"boxhalf\">\n        <h2>{{ accuracy }}</h2>\n        <h5>Accuracy</h5>\n      </div>\n    </div>\n  </div>\n  <br /><br /><br />\n  <div class=\"row\">\n    <div style=\"width: 100%;\n    margin-left: auto ;\n    margin-right: auto ;\" class=\" box1 col-8\">\n      <div class=\"boxhalf1\">\n        <h4>Recent Quiz Taken</h4>\n        <h5>{{recentQuiz}}</h5>\n      </div>\n    </div>\n  </div>\n</app-main-nav3>"
 
 /***/ }),
 
@@ -2547,7 +2611,6 @@ var EmployeeComponent = /** @class */ (function () {
     EmployeeComponent.prototype.loadUserDetails = function () {
         var _this = this;
         this.service.getUserDetails().subscribe(function (res) {
-            console.log(res);
             _this.Firstname = res.FirstName;
             _this.Lastname = res.LastName;
             _this.email = res.Email;
@@ -2556,7 +2619,6 @@ var EmployeeComponent = /** @class */ (function () {
     EmployeeComponent.prototype.loadUserProgress = function () {
         var _this = this;
         this.service.getUserProgress().subscribe(function (res) {
-            console.log(res);
             _this.mocks = res.Mock;
             _this.nmocks = res.NonMock;
             _this.accuracy = res.Accuracy;
@@ -2586,7 +2648,7 @@ var EmployeeComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".mat-sidenav-content {\n\toverflow-x: hidden;\n}\n.sidenav-container {\n\theight: 100%;\n}\n.sidenav-container a {\n\tcolor: rgb(255, 255, 255);\n\tfont-size: 16px;\n\tfont-family: 'Encode Sans Expanded', sans-serif;\n}\n.sidenav-container a i {\n\tmargin-right: 10px;\n}\n.sidenav-container a:hover,\n.sidenav-container a:focus {\n\tbackground-color: rgb(2, 93, 140) !important;\n}\n.sidenav {\n\twidth: 250px;\n\tbackground-color: rgb(1, 139, 188);\n}\n.sidenav .mat-toolbar {\n\tbackground: inherit;\n\tborder-bottom: 1px solid black;\n}\n.mat-toolbar {\n\ttext-decoration: none;\n}\n.ng-content {\n\tbackground-color: rgb(185, 185, 185);\n}\n.mat-toolbar span {\n\tcolor: rgb(7, 7, 7);\n}\n.mat-sidenav-content .mat-toolbar {\n\tbackground-color: rgb(190, 190, 190) !important;\n}\n.mat-sidenav-content {\n\tbackground-color: rgb(235, 235, 235) !important;\n}\n.mat-toolbar a {\n\tfont-size: 22px;\n}\n.mat-list-item {\n\tmargin-top: 10px;\n}\n.log {\n\tfont-size: 15px;\n\tcursor: pointer;\n\tcolor: rgb(255, 0, 0) !important;\n}\n.mat-toolbar.mat-primary {\n\tposition: -webkit-sticky;\n\tposition: sticky;\n\ttop: 0;\n\tz-index: 1;\n}\n.content {\n\tpadding: 30px 30px 0px 50px !important;\n\tmargin: 30px auto;\n}\n.spacer {\n\tflex: 1 1 auto;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZW1wbG95ZWUvbWFpbi1uYXYzL21haW4tbmF2My5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0NBQ0Msa0JBQWtCO0FBQ25CO0FBQ0E7Q0FDQyxZQUFZO0FBQ2I7QUFDQTtDQUNDLHlCQUF5QjtDQUN6QixlQUFlO0NBQ2YsK0NBQStDO0FBQ2hEO0FBQ0E7Q0FDQyxrQkFBa0I7QUFDbkI7QUFDQTs7Q0FFQyw0Q0FBNEM7QUFDN0M7QUFDQTtDQUNDLFlBQVk7Q0FDWixrQ0FBa0M7QUFDbkM7QUFFQTtDQUNDLG1CQUFtQjtDQUNuQiw4QkFBOEI7QUFDL0I7QUFDQTtDQUNDLHFCQUFxQjtBQUN0QjtBQUNBO0NBQ0Msb0NBQW9DO0FBQ3JDO0FBQ0E7Q0FDQyxtQkFBbUI7QUFDcEI7QUFDQTtDQUNDLCtDQUErQztBQUNoRDtBQUNBO0NBQ0MsK0NBQStDO0FBQ2hEO0FBQ0E7Q0FDQyxlQUFlO0FBQ2hCO0FBQ0E7Q0FDQyxnQkFBZ0I7QUFDakI7QUFDQTtDQUNDLGVBQWU7Q0FDZixlQUFlO0NBQ2YsZ0NBQWdDO0FBQ2pDO0FBQ0E7Q0FDQyx3QkFBZ0I7Q0FBaEIsZ0JBQWdCO0NBQ2hCLE1BQU07Q0FDTixVQUFVO0FBQ1g7QUFDQTtDQUNDLHNDQUFzQztDQUN0QyxpQkFBaUI7QUFDbEI7QUFDQTtDQUNDLGNBQWM7QUFDZiIsImZpbGUiOiJzcmMvYXBwL2VtcGxveWVlL21haW4tbmF2My9tYWluLW5hdjMuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tYXQtc2lkZW5hdi1jb250ZW50IHtcblx0b3ZlcmZsb3cteDogaGlkZGVuO1xufVxuLnNpZGVuYXYtY29udGFpbmVyIHtcblx0aGVpZ2h0OiAxMDAlO1xufVxuLnNpZGVuYXYtY29udGFpbmVyIGEge1xuXHRjb2xvcjogcmdiKDI1NSwgMjU1LCAyNTUpO1xuXHRmb250LXNpemU6IDE2cHg7XG5cdGZvbnQtZmFtaWx5OiAnRW5jb2RlIFNhbnMgRXhwYW5kZWQnLCBzYW5zLXNlcmlmO1xufVxuLnNpZGVuYXYtY29udGFpbmVyIGEgaSB7XG5cdG1hcmdpbi1yaWdodDogMTBweDtcbn1cbi5zaWRlbmF2LWNvbnRhaW5lciBhOmhvdmVyLFxuLnNpZGVuYXYtY29udGFpbmVyIGE6Zm9jdXMge1xuXHRiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMiwgOTMsIDE0MCkgIWltcG9ydGFudDtcbn1cbi5zaWRlbmF2IHtcblx0d2lkdGg6IDI1MHB4O1xuXHRiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMSwgMTM5LCAxODgpO1xufVxuXG4uc2lkZW5hdiAubWF0LXRvb2xiYXIge1xuXHRiYWNrZ3JvdW5kOiBpbmhlcml0O1xuXHRib3JkZXItYm90dG9tOiAxcHggc29saWQgYmxhY2s7XG59XG4ubWF0LXRvb2xiYXIge1xuXHR0ZXh0LWRlY29yYXRpb246IG5vbmU7XG59XG4ubmctY29udGVudCB7XG5cdGJhY2tncm91bmQtY29sb3I6IHJnYigxODUsIDE4NSwgMTg1KTtcbn1cbi5tYXQtdG9vbGJhciBzcGFuIHtcblx0Y29sb3I6IHJnYig3LCA3LCA3KTtcbn1cbi5tYXQtc2lkZW5hdi1jb250ZW50IC5tYXQtdG9vbGJhciB7XG5cdGJhY2tncm91bmQtY29sb3I6IHJnYigxOTAsIDE5MCwgMTkwKSAhaW1wb3J0YW50O1xufVxuLm1hdC1zaWRlbmF2LWNvbnRlbnQge1xuXHRiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjM1LCAyMzUsIDIzNSkgIWltcG9ydGFudDtcbn1cbi5tYXQtdG9vbGJhciBhIHtcblx0Zm9udC1zaXplOiAyMnB4O1xufVxuLm1hdC1saXN0LWl0ZW0ge1xuXHRtYXJnaW4tdG9wOiAxMHB4O1xufVxuLmxvZyB7XG5cdGZvbnQtc2l6ZTogMTVweDtcblx0Y3Vyc29yOiBwb2ludGVyO1xuXHRjb2xvcjogcmdiKDI1NSwgMCwgMCkgIWltcG9ydGFudDtcbn1cbi5tYXQtdG9vbGJhci5tYXQtcHJpbWFyeSB7XG5cdHBvc2l0aW9uOiBzdGlja3k7XG5cdHRvcDogMDtcblx0ei1pbmRleDogMTtcbn1cbi5jb250ZW50IHtcblx0cGFkZGluZzogMzBweCAzMHB4IDBweCA1MHB4ICFpbXBvcnRhbnQ7XG5cdG1hcmdpbjogMzBweCBhdXRvO1xufVxuLnNwYWNlciB7XG5cdGZsZXg6IDEgMSBhdXRvO1xufVxuIl19 */"
+module.exports = ".mat-sidenav-content {\n\toverflow-x: hidden;\n}\n.sidenav-container {\n\theight: 100%;\n}\n.sidenav-container a {\n\tcolor: rgb(255, 255, 255);\n\tfont-size: 16px;\n\tfont-family: 'Encode Sans Expanded', sans-serif;\n}\n.sidenav-container a i {\n\tmargin-right: 10px;\n}\n.sidenav-container a:hover,\n.sidenav-container a:focus {\n\tbackground-color: rgb(2, 93, 140) !important;\n}\n.sidenav {\n\twidth: 250px;\n\tbackground-color: rgb(1, 139, 188);\n}\n.sidenav .mat-toolbar {\n\tbackground: inherit;\n\tborder-bottom: 1px solid black;\n}\n.mat-toolbar {\n\ttext-decoration: none;\n}\n.ng-content {\n\tbackground-color: rgb(185, 185, 185);\n}\n.mat-toolbar span {\n\tcolor: rgb(7, 7, 7);\n}\n.mat-sidenav-content .mat-toolbar {\n\tbackground-color: rgb(190, 190, 190) !important;\n}\n.mat-sidenav-content {\n\tbackground-color: rgb(235, 235, 235) !important;\n}\n.mat-toolbar a {\n\tfont-size: 22px;\n}\n.mat-list-item {\n\tmargin-top: 10px;\n}\n.log {\n\tfont-size: 12px;\n\tcursor: pointer;\n\tcolor:black !important;\n}\n.mat-toolbar.mat-primary {\n\tposition: -webkit-sticky;\n\tposition: sticky;\n\ttop: 0;\n\tz-index: 1;\n}\n.content {\n\tpadding: 30px 30px 0px 50px !important;\n\tmargin: 30px auto;\n}\n.spacer {\n\tflex: 1 1 auto;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZW1wbG95ZWUvbWFpbi1uYXYzL21haW4tbmF2My5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0NBQ0Msa0JBQWtCO0FBQ25CO0FBQ0E7Q0FDQyxZQUFZO0FBQ2I7QUFDQTtDQUNDLHlCQUF5QjtDQUN6QixlQUFlO0NBQ2YsK0NBQStDO0FBQ2hEO0FBQ0E7Q0FDQyxrQkFBa0I7QUFDbkI7QUFDQTs7Q0FFQyw0Q0FBNEM7QUFDN0M7QUFDQTtDQUNDLFlBQVk7Q0FDWixrQ0FBa0M7QUFDbkM7QUFFQTtDQUNDLG1CQUFtQjtDQUNuQiw4QkFBOEI7QUFDL0I7QUFDQTtDQUNDLHFCQUFxQjtBQUN0QjtBQUNBO0NBQ0Msb0NBQW9DO0FBQ3JDO0FBQ0E7Q0FDQyxtQkFBbUI7QUFDcEI7QUFDQTtDQUNDLCtDQUErQztBQUNoRDtBQUNBO0NBQ0MsK0NBQStDO0FBQ2hEO0FBQ0E7Q0FDQyxlQUFlO0FBQ2hCO0FBQ0E7Q0FDQyxnQkFBZ0I7QUFDakI7QUFDQTtDQUNDLGVBQWU7Q0FDZixlQUFlO0NBQ2Ysc0JBQXNCO0FBQ3ZCO0FBQ0E7Q0FDQyx3QkFBZ0I7Q0FBaEIsZ0JBQWdCO0NBQ2hCLE1BQU07Q0FDTixVQUFVO0FBQ1g7QUFDQTtDQUNDLHNDQUFzQztDQUN0QyxpQkFBaUI7QUFDbEI7QUFDQTtDQUNDLGNBQWM7QUFDZiIsImZpbGUiOiJzcmMvYXBwL2VtcGxveWVlL21haW4tbmF2My9tYWluLW5hdjMuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tYXQtc2lkZW5hdi1jb250ZW50IHtcblx0b3ZlcmZsb3cteDogaGlkZGVuO1xufVxuLnNpZGVuYXYtY29udGFpbmVyIHtcblx0aGVpZ2h0OiAxMDAlO1xufVxuLnNpZGVuYXYtY29udGFpbmVyIGEge1xuXHRjb2xvcjogcmdiKDI1NSwgMjU1LCAyNTUpO1xuXHRmb250LXNpemU6IDE2cHg7XG5cdGZvbnQtZmFtaWx5OiAnRW5jb2RlIFNhbnMgRXhwYW5kZWQnLCBzYW5zLXNlcmlmO1xufVxuLnNpZGVuYXYtY29udGFpbmVyIGEgaSB7XG5cdG1hcmdpbi1yaWdodDogMTBweDtcbn1cbi5zaWRlbmF2LWNvbnRhaW5lciBhOmhvdmVyLFxuLnNpZGVuYXYtY29udGFpbmVyIGE6Zm9jdXMge1xuXHRiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMiwgOTMsIDE0MCkgIWltcG9ydGFudDtcbn1cbi5zaWRlbmF2IHtcblx0d2lkdGg6IDI1MHB4O1xuXHRiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMSwgMTM5LCAxODgpO1xufVxuXG4uc2lkZW5hdiAubWF0LXRvb2xiYXIge1xuXHRiYWNrZ3JvdW5kOiBpbmhlcml0O1xuXHRib3JkZXItYm90dG9tOiAxcHggc29saWQgYmxhY2s7XG59XG4ubWF0LXRvb2xiYXIge1xuXHR0ZXh0LWRlY29yYXRpb246IG5vbmU7XG59XG4ubmctY29udGVudCB7XG5cdGJhY2tncm91bmQtY29sb3I6IHJnYigxODUsIDE4NSwgMTg1KTtcbn1cbi5tYXQtdG9vbGJhciBzcGFuIHtcblx0Y29sb3I6IHJnYig3LCA3LCA3KTtcbn1cbi5tYXQtc2lkZW5hdi1jb250ZW50IC5tYXQtdG9vbGJhciB7XG5cdGJhY2tncm91bmQtY29sb3I6IHJnYigxOTAsIDE5MCwgMTkwKSAhaW1wb3J0YW50O1xufVxuLm1hdC1zaWRlbmF2LWNvbnRlbnQge1xuXHRiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjM1LCAyMzUsIDIzNSkgIWltcG9ydGFudDtcbn1cbi5tYXQtdG9vbGJhciBhIHtcblx0Zm9udC1zaXplOiAyMnB4O1xufVxuLm1hdC1saXN0LWl0ZW0ge1xuXHRtYXJnaW4tdG9wOiAxMHB4O1xufVxuLmxvZyB7XG5cdGZvbnQtc2l6ZTogMTJweDtcblx0Y3Vyc29yOiBwb2ludGVyO1xuXHRjb2xvcjpibGFjayAhaW1wb3J0YW50O1xufVxuLm1hdC10b29sYmFyLm1hdC1wcmltYXJ5IHtcblx0cG9zaXRpb246IHN0aWNreTtcblx0dG9wOiAwO1xuXHR6LWluZGV4OiAxO1xufVxuLmNvbnRlbnQge1xuXHRwYWRkaW5nOiAzMHB4IDMwcHggMHB4IDUwcHggIWltcG9ydGFudDtcblx0bWFyZ2luOiAzMHB4IGF1dG87XG59XG4uc3BhY2VyIHtcblx0ZmxleDogMSAxIGF1dG87XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -2597,7 +2659,7 @@ module.exports = ".mat-sidenav-content {\n\toverflow-x: hidden;\n}\n.sidenav-con
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-sidenav-container class=\"sidenav-container\">\n  <mat-sidenav #drawer class=\"sidenav\" fixedInViewport=\"true\"\n    [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\" [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\n    [opened]=\"!(isHandset$ | async)\">\n    <mat-toolbar><a mat-list-item routerLink=\"/emp-dash\"><i class=\"fa fa-tachometer\" aria-hidden=\"true\"></i>  Dashboard</a></mat-toolbar>\n    <mat-nav-list>\n      <a mat-list-item routerLink=\"/emp-dash/non-mocks\"><i class=\"fa fa-code\" aria-hidden=\"true\"></i> Scheduled Quizzes</a>\n      <a mat-list-item routerLink=\"/emp-dash/quiz/non-mock-report\"><i class=\"fa fa-retweet\" aria-hidden=\"true\"></i>  Scheduled Quizzes' Result</a>\n      <a mat-list-item routerLink=\"/emp-dash/mock-report\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i> Non-Scheduled Quizzes' Result</a>\n      <a mat-list-item routerLink=\"/emp-dash/mock\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i> Give Mocks</a>\n    </mat-nav-list>\n  </mat-sidenav>\n  <mat-sidenav-content>\n    <mat-toolbar color=\"primary\">\n      <button type=\"button\" aria-label=\"Toggle sidenav\" mat-icon-button (click)=\"drawer.toggle()\"\n        *ngIf=\"isHandset$ | async\">\n        <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\n      </button>\n      <span>Employee Dashboard</span>\n      <span class=\"spacer\"></span>\n      <a class=\"log\" (click)=\"logout()\">Log Out</a>\n    </mat-toolbar>\n    <div class=\"content\">\n      <ng-content></ng-content>\n    </div>\n  </mat-sidenav-content>\n</mat-sidenav-container>"
+module.exports = "<mat-sidenav-container class=\"sidenav-container\">\n  <mat-sidenav #drawer class=\"sidenav\" fixedInViewport=\"true\"\n    [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\" [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\n    [opened]=\"!(isHandset$ | async)\">\n    <mat-toolbar><a mat-list-item routerLink=\"/emp-dash\"><i class=\"fa fa-tachometer\" aria-hidden=\"true\"></i>\n        Dashboard</a></mat-toolbar>\n    <mat-nav-list>\n      <a mat-list-item routerLink=\"/emp-dash/non-mocks\"><i class=\"fa fa-code\" aria-hidden=\"true\"></i> Scheduled\n        Quizzes</a>\n      <a mat-list-item routerLink=\"/emp-dash/quiz/non-mock-report\"><i class=\"fa fa-retweet\" aria-hidden=\"true\"></i>\n        Scheduled Quizzes' Result</a>\n      <a mat-list-item routerLink=\"/emp-dash/mock-report\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i> Mock\n        Quizzes' Result</a>\n      <a mat-list-item routerLink=\"/emp-dash/mock\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i> Give Mocks</a>\n    </mat-nav-list>\n  </mat-sidenav>\n  <mat-sidenav-content>\n    <mat-toolbar color=\"primary\">\n      <button type=\"button\" aria-label=\"Toggle sidenav\" mat-icon-button (click)=\"drawer.toggle()\"\n        *ngIf=\"isHandset$ | async\">\n        <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\n      </button>\n      <span>Employee Dashboard</span>\n      <span class=\"spacer\"></span>\n      <div class=\"btn-group\">\n        <button type=\"button\" class=\"btn btn-success btn-sm\">Choose-Role</button>\n        <button type=\"button\" class=\"btn btn-info dropdown-toggle dropdown-toggle-split\" data-toggle=\"dropdown\"\n          aria-haspopup=\"true\" aria-expanded=\"false\">\n          <span class=\"sr-only\">Toggle Dropdown</span>\n        </button>\n        <div class=\"dropdown-menu\">\n          <a class=\"dropdown-item\" style=\"color:black\" (click)=\"aab('/ta-dash')\"\n            *ngIf=\"roleMatch(['Test-Administrator'])\">\n            Test-Administrator</a>\n          <a class=\"dropdown-item\" style=\"color:black\" (click)=\"aab('/emp-dash')\" *ngIf=\"roleMatch(['Employee'])\">\n            Employee</a>\n          <a class=\"dropdown-item\" style=\"color:black\" (click)=\"aab('/cc-dash')\" *ngIf=\"roleMatch(['Content-Creator'])\">\n            Content-Creator</a>\n          <a class=\"dropdown-item\" style=\"color:black\" (click)=\"aab('/ru-dash')\" *ngIf=\"roleMatch(['Reporting-User'])\">\n            Reporting-User</a>\n        </div>\n      </div>\n      &nbsp;&nbsp;&nbsp;&nbsp;\n      <a class=\"log\" (click)=\"logout()\"><i aria-hidden=\"true\" class=\"fa fa-sign-out\"></i>Log Out</a>\n    </mat-toolbar>\n    <div class=\"content\">\n      <ng-content></ng-content>\n    </div>\n  </mat-sidenav-content>\n</mat-sidenav-container>"
 
 /***/ }),
 
@@ -2643,6 +2705,20 @@ var MainNav3Component = /** @class */ (function () {
             }
         });
     };
+    MainNav3Component.prototype.roleMatch = function (allowedRoles) {
+        var isMatch = false;
+        var userRoles = localStorage.getItem('role');
+        allowedRoles.forEach(function (element) {
+            if (userRoles.indexOf(element) > -1) {
+                isMatch = true;
+                return false;
+            }
+        });
+        return isMatch;
+    };
+    MainNav3Component.prototype.aab = function (role) {
+        this.router.navigate([role]);
+    };
     MainNav3Component.prototype.logout = function () {
         this.authService.signOut();
     };
@@ -2681,7 +2757,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav3>\n  <div class=\"container\">\n  </div>\n  <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th>#S No.</th>\n        <th>Quiz Name</th>\n        <th>Correct Answers</th>\n        <th>Wrong Answers</th>\n        <th>Unattempted Questions</th>\n        <th>Marks Scored</th>\n        <th>Total Marks</th>\n        <th>Accuracy</th>\n        <th>Time Taken</th>\n        <th>Efficiency</th>\n        <th>Action</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let quiz of mockReportList; index as i;\">\n        <th>{{i+1}}</th>\n        <td>{{quiz.QuizName}}</td>\n        <td>{{quiz.CorrectAnswers}}</td>\n        <td>{{quiz.WrongAnswers}}</td>\n        <td>{{quiz.UnattemptedAnswers}}</td>\n        <td>{{quiz.MarksScored}}</td>\n        <td>{{quiz.TotalMarks}}</td>\n        <td>{{quiz.Accuracy}}</td>\n        <td>{{quiz.TimeTaken}}</td>\n        <td>{{quiz.Efficiency}}</td>\n        <td>\n          <a class=\"btn btn-sm btn-info text-white\" (click)=\"viewDetailedReport(quiz.QuizId,i)\"><i\n              class=\"fa fa-file\"></i></a>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</app-main-nav3>"
+module.exports = "<app-main-nav3>\n  <div class=\"container\">\n  </div>\n  <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th>#S No.</th>\n        <th>Quiz Name</th>\n        <th>Correct Answers</th>\n        <th>Wrong Answers</th>\n        <th>Unattempted Questions</th>\n        <th>Marks Scored</th>\n        <th>Total Marks</th>\n        <th>Accuracy</th>\n        <th>Time Taken</th>\n        <th>Efficiency</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let quiz of mockReportList; index as i;\">\n        <td>{{i+1}}</td>\n        <td>{{quiz.QuizName}}</td>\n        <td>{{quiz.CorrectAnswers}}</td>\n        <td>{{quiz.WrongAnswers}}</td>\n        <td>{{quiz.UnattemptedAnswers}}</td>\n        <td>{{quiz.MarksScored}}</td>\n        <td>{{quiz.TotalMarks}}</td>\n        <td>{{quiz.Accuracy}}</td>\n        <td>{{quiz.TimeTaken}}</td>\n        <td>{{quiz.Efficiency}}</td>\n      </tr>\n    </tbody>\n  </table>\n</app-main-nav3>"
 
 /***/ }),
 
@@ -2732,7 +2808,7 @@ var MockReportComponent = /** @class */ (function () {
     MockReportComponent.prototype.viewDetailedReport = function (qid, index) {
         this.service.data = this.mockReportList[index];
         this.service.QuizId = qid;
-        this.router.navigate(['/detailed-report']);
+        this.router.navigate(['/emp-dash/quiz/detailed-report']);
     };
     MockReportComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -2769,7 +2845,7 @@ module.exports = "th, td{\n    text-align: center;\n}\n/*# sourceMappingURL=data
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav3>\n  <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th>#S No.</th>\n        <th>Quiz Name</th>\n        <th>Subject</th>\n        <th>Difficulty Level</th>\n        <th>Total Questions</th>\n        <th>Total Marks</th>\n        <th>Action</th>\n      </tr>\n    </thead>\n\n    <tbody>\n      <tr *ngFor=\"let mock of mockList; index as i;\">\n        <th>{{i+1}}</th>\n        <td>{{mock.QuizName}}</td>\n        <td>{{mock.Subject}}</td>\n        <td>{{mock.Difficulty}}</td>\n        <td>{{mock.TotalQuestions}}</td>\n        <td>{{mock.TotalMarks}}</td>\n        <td>\n          <a class=\"btn btn-sm btn-info text-white\" (click)=\"takeMockQuiz(mock.MockId)\"><i\n              class=\"fa fa-paper-plane\"></i></a>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</app-main-nav3>\n"
+module.exports = "<app-main-nav3>\n  <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th>#S No.</th>\n        <th>Quiz Name</th>\n        <th>Subject</th>\n        <th>Difficulty Level</th>\n        <th>Total Questions</th>\n        <th>Total Marks</th>\n        <th>Time</th>\n        <th>Action</th>\n      </tr>\n    </thead>\n\n    <tbody>\n      <tr *ngFor=\"let mock of mockList; index as i;\">\n        <th>{{i+1}}</th>\n        <td>{{mock.QuizName}}</td>\n        <td>{{mock.Subject}}</td>\n        <td>{{mock.Difficulty}}</td>\n        <td>{{mock.TotalQuestions}}</td>\n        <td>{{mock.TotalMarks}}</td>\n        <td>{{mock.QuizTime}}</td>\n        <td>\n          <a class=\"btn btn-sm btn-info text-white\" (click)=\"takeMockQuiz(mock.QuizId, i)\"><i\n              class=\"fa fa-paper-plane\"></i></a>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</app-main-nav3>"
 
 /***/ }),
 
@@ -2817,9 +2893,12 @@ var MockComponent = /** @class */ (function () {
             _this.dtTrigger.next();
         });
     };
-    MockComponent.prototype.takeMockQuiz = function (QuizId) {
+    MockComponent.prototype.takeMockQuiz = function (QuizId, index) {
         var _this = this;
         this.service.getMockQuesOfQuiz(QuizId).subscribe(function (res) {
+            _this.time = _this.mockList[index].QuizTime.split(":");
+            _this.service.hours = parseInt(_this.time[0]);
+            _this.service.minutes = parseInt(_this.time[1]);
             _this.service.quesOfQuiz = res;
             _this.service.QuizId = QuizId;
             _this.router.navigate(['/emp-dash/quiz/take-quiz']);
@@ -2860,7 +2939,7 @@ module.exports = "th,td{\n    text-align: center;\n}\n/*# sourceMappingURL=data:
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav3>\n    <div class=\"container\">\n    </div>\n      <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n        class=\"row-border hover table table-bordered table-striped\">\n        <thead class=\"thead-dark\">\n          <tr>\n            <th>#S No.</th>\n            <th>Quiz Name</th>\n            <th>Correct Answers</th>\n            <th>Wrong Answers</th>\n            <th>Unattempted Questions</th>\n            <th>Marks Scored</th>\n            <th>Total Marks</th>\n            <th>Accuracy</th>\n            <th>Time Taken</th>\n            <th>Efficiency</th>\n            <th>Action</th>\n          </tr>\n        </thead>   \n        <tbody>\n          <tr *ngFor=\"let quiz of nonMockReportList; index as i;\">\n            <th>{{i+1}}</th>\n            <td>{{quiz.QuizName}}</td>\n            <td>{{quiz.CorrectAnswers}}</td>\n            <td>{{quiz.WrongAnswers}}</td>\n            <td>{{quiz.UnattemptedAnswers}}</td>\n            <td>{{quiz.MarksScored}}</td>\n            <td>{{quiz.TotalMarks}}</td>\n            <td>{{quiz.Accuracy}}</td>\n            <td>{{quiz.TimeTaken}}</td>\n            <td>{{quiz.Efficiency}}</td>\n            <td>\n              <a class=\"btn btn-sm btn-info text-white\" (click)=\"viewDetailedReport(quiz.QuizId,i)\"><i\n              class=\"fa fa-file\"></i></a>\n            </td>\n          </tr>\n        </tbody>\n      </table>\n    </app-main-nav3>"
+module.exports = "<app-main-nav3>\n  <div class=\"container\">\n  </div>\n  <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th>#S No.</th>\n        <th>Quiz Name</th>\n        <th>Correct Answers</th>\n        <th>Wrong Answers</th>\n        <th>Unattempted Questions</th>\n        <th>Marks Scored</th>\n        <th>Total Marks</th>\n        <th>Accuracy</th>\n        <th>Time Taken</th>\n        <th>Efficiency</th>\n        <th>Action</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let quiz of nonMockReportList; index as i;\">\n        <th>{{i+1}}</th>\n        <td>{{quiz.QuizName}}</td>\n        <td>{{quiz.CorrectAnswers}}</td>\n        <td>{{quiz.WrongAnswers}}</td>\n        <td>{{quiz.UnattemptedAnswers}}</td>\n        <td>{{quiz.MarksScored}}</td>\n        <td>{{quiz.TotalMarks}}</td>\n        <td>{{quiz.Accuracy}}</td>\n        <td>{{quiz.TimeTaken}}</td>\n        <td>{{quiz.Efficiency}}</td>\n        <td>\n          <a class=\"btn btn-sm btn-info text-white\" (click)=\"viewDetailedReport(quiz.QuizId,i)\"><i\n              class=\"fa fa-file\"></i></a>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</app-main-nav3>\n"
 
 /***/ }),
 
@@ -2905,7 +2984,6 @@ var NonMockReportComponent = /** @class */ (function () {
         var _this = this;
         this.service.getReportOfNonMockQuiz(localStorage.getItem('uid')).subscribe(function (res) {
             _this.nonMockReportList = res;
-            console.log(_this.nonMockReportList);
             _this.dtTrigger.next();
         });
     };
@@ -2950,7 +3028,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav3>\n  <div>\n    <br /><br /><br />\n    <h1 style=\"text-align: center\">List of Scheduled Quizzes</h1>\n    <br /><br />\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n      class=\"row-border hover table table-bordered table-striped\">\n      <thead class=\"thead-dark\">\n        <tr>\n          <th scope=\"col\">#S. No.</th>\n          <th scope=\"col\">Quiz Name</th>\n          <th scope=\"col\">Start Date/Time</th>\n          <th scope=\"col\">End Date/Time</th>\n          <th scope=\"col\">Action</th>\n        </tr>\n      </thead>\n      <tbody>\n        <ng-container *ngFor=\"let item of nonMockScheduleList;index as i;\">\n          <tr>\n            <th scope=\"row\">{{i+1}}</th>\n            <td scope=\"row\">{{item.QuizName}}</td>\n            <td scope=\"row\">{{item.StartDateTime}}</td>\n            <td scope=\"row\">{{item.EndDateTime}}</td>\n            <td style=\"text-align:center;\">\n              <a class=\"btn btn-sm btn-info text-white\" (click)=\"takeQuiz(item.QuizId,item.QuizScheduleId)\"><i\n                  class=\"fa fa-paper-plane\"></i></a>\n            </td>\n          </tr>\n        </ng-container>\n      </tbody>\n    </table>\n  </div>\n</app-main-nav3>"
+module.exports = "<app-main-nav3>\n  <div>\n    <br /><br /><br />\n    <h1 style=\"text-align: center\">List of Scheduled Quizzes</h1>\n    <br /><br />\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n      class=\"row-border hover table table-bordered table-striped\">\n      <thead class=\"thead-dark\">\n        <tr>\n          <th scope=\"col\">#S. No.</th>\n          <th scope=\"col\">Quiz Name</th>\n          <th scope=\"col\">Start Date/Time</th>\n          <th scope=\"col\">End Date/Time</th>\n          <th scope=\"col\">Time</th>\n          <th scope=\"col\">Action</th>\n        </tr>\n      </thead>\n      <tbody>\n        <ng-container *ngFor=\"let item of nonMockScheduleList;index as i;\">\n          <tr>\n            <th scope=\"row\">{{i+1}}</th>\n            <td scope=\"row\">{{item.QuizName}}</td>\n            <td scope=\"row\">{{item.StartDateTime}}</td>\n            <td scope=\"row\">{{item.EndDateTime}}</td>\n            <td scope=\"row\">{{item.QuizTime}}</td>\n            <td style=\"text-align:center;\">\n              <a class=\"btn btn-sm btn-info text-white\" (click)=\"takeQuiz(item.QuizId,item.QuizScheduleId,i)\"><i\n                  class=\"fa fa-paper-plane\"></i></a>\n            </td>\n          </tr>\n        </ng-container>\n      </tbody>\n    </table>\n  </div>\n</app-main-nav3>"
 
 /***/ }),
 
@@ -2993,13 +3071,15 @@ var NonMockComponent = /** @class */ (function () {
         this.service.getNonMocks().subscribe(function (res) {
             _this.nonMockScheduleList = res;
             _this.dtTrigger.next();
-            console.log(_this.nonMockScheduleList);
         });
     };
-    NonMockComponent.prototype.takeQuiz = function (QuizId, Id) {
+    NonMockComponent.prototype.takeQuiz = function (QuizId, Id, index) {
         var _this = this;
         this.service.getQuesOfQuiz(QuizId).subscribe(function (res) {
             _this.service.quesOfQuiz = res;
+            _this.time = _this.nonMockScheduleList[index].QuizTime.split(":");
+            _this.service.hours = parseInt(_this.time[0]);
+            _this.service.minutes = parseInt(_this.time[1]);
             _this.service.QuizScheduleId = Id;
             _this.service.QuizId = QuizId;
             _this.router.navigate(['/emp-dash/quiz/take-quiz']);
@@ -3042,7 +3122,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"dispCard\" style=\"color:antiquewhite;\">\n  <h2>Successfully Submitted</h2>\n</div>"
+module.exports = "<div *ngIf=\"dispCard\">\n\n  <h3>Questions with correct answer</h3>\n  <ng-container *ngFor=\"let qn of service.quesOfQuiz;index as i\">\n    <div class=\"card blue-grey darken-1\">\n      <div class=\"card-content white-text\">\n        <span class=\"card-title\">{{i+1}}</span>\n        <p>{{qn.QuestionStatement}}</p><br>\n        <span style=\"font-weight: bold;color: royalblue;\" *ngIf=\"qn.answer==0\">This Question Was Skipped</span>\n      </div>\n\n      <div>\n        <ul>\n          <ng-container *ngFor=\"let option of qn.Option;index as j\">\n            <li *ngIf=\"option != null\">\n              {{option}}\n              <span style=\"color: green\" *ngIf=\"correct[i]-1==j\"><i class=\"fa fa-check-circle-o\"></i> correct </span>\n              <span style=\"color: red\" *ngIf=\"qn.answer-1==j && (correct[i]-1)!=j\"><i\n                  class=\"fa fa-times-circle-o\"></i>Incorrect</span>\n            </li>\n          </ng-container>\n        </ul>\n      </div>\n    </div>\n  </ng-container>\n  <button type=\"button\" (click)=\"goToHome()\" class=\"btn btn-primary\">Home</button>\n</div>"
 
 /***/ }),
 
@@ -3060,39 +3140,86 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _shared_employee_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shared/employee.service */ "./src/app/employee/shared/employee.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+
 
 
 
 
 var ResultComponent = /** @class */ (function () {
-    function ResultComponent(service, router) {
+    function ResultComponent(service, router, document) {
         this.service = service;
         this.router = router;
+        this.document = document;
         this.dispCard = false;
     }
     ResultComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.correct = [];
+        if (this.service.QuizScheduleId == null) {
+            this.service.getAnswers().subscribe(function (res) {
+                _this.QuesWithAns = res;
+                _this.service.correctAnswerCount = 0;
+                _this.service.quesOfQuiz.forEach(function (e, i) {
+                    if (e.answer == _this.QuesWithAns[i].Answer) {
+                        _this.service.correctAnswerCount++;
+                    }
+                    _this.correct[i] = _this.QuesWithAns[i].Answer;
+                });
+                _this.dispCard = true;
+            });
+        }
         var body = this.service.quesOfQuiz.map(function (x) { return x.QuestionId; });
         var body1 = this.service.quesOfQuiz.map(function (x) { return x.answer; });
         var dict = [];
         var x = body.length;
+        this.closeFullscreen();
         for (var i = 0; i < x; i++) {
             dict.push({
                 QuestionId: body[i],
                 MarkedAnswer: body1[i]
             });
         }
-        this.timeTaken = this.service.displayTimeElapsed();
+        this.timeTaken = this.service.hours.toString() + ':' + this.service.minutes.toString() + ':' + this.service.seconds.toString();
         this.service.body = {
             QuesAnswers: dict,
             TimeTaken: this.timeTaken
         };
         this.service.postanswers().subscribe(function (res) {
-            _this.dispCard = true;
-            setInterval(function () {
+            if (_this.service.QuizScheduleId != null) {
+                _this.service.QuizScheduleId = null;
+                _this.service.quesOfQuiz = null;
+                _this.service.correctAnswerCount = null;
+                _this.service.QuizId = null;
+                _this.service.body = null;
+                _this.service.qnProgress = null;
+                _this.dispCard = false;
                 _this.router.navigate([('/emp-dash')]);
-            }, 3000);
+            }
         });
+    };
+    ResultComponent.prototype.closeFullscreen = function () {
+        if (this.document.exitFullscreen) {
+            this.document.exitFullscreen();
+        }
+        else if (this.document.mozCancelFullscreen) {
+            this.document.mozCancelFullscreen();
+        }
+        else if (this.document.webkitExitFullscreen) {
+            this.document.webkitExitFullscreen();
+        }
+        else if (this.document.msExitFullscreen) {
+            this.document.msExitFullscreen();
+        }
+    };
+    ResultComponent.prototype.goToHome = function () {
+        this.service.quesOfQuiz = null;
+        this.service.correctAnswerCount = null;
+        this.service.QuizId = null;
+        this.service.body = null;
+        this.service.qnProgress = null;
+        this.dispCard = false;
+        this.router.navigate(['/emp-dash']);
     };
     ResultComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -3100,8 +3227,9 @@ var ResultComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./result.component.html */ "./src/app/employee/result/result.component.html"),
             styles: [__webpack_require__(/*! ./result.component.css */ "./src/app/employee/result/result.component.css")]
         }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](2, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_common__WEBPACK_IMPORTED_MODULE_4__["DOCUMENT"])),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_employee_service__WEBPACK_IMPORTED_MODULE_2__["EmployeeService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], Object])
     ], ResultComponent);
     return ResultComponent;
 }());
@@ -3132,6 +3260,7 @@ var EmployeeService = /** @class */ (function () {
     function EmployeeService(http) {
         this.http = http;
         this.rootURL = src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].apiURl;
+        this.correctAnswerCount = 0;
     }
     EmployeeService.prototype.displayTimeElapsed = function () {
         return Math.floor(this.seconds / 3600) + ':' + Math.floor(this.seconds / 60) + ':' + Math.floor(this.seconds % 60);
@@ -3143,7 +3272,7 @@ var EmployeeService = /** @class */ (function () {
         return this.http.get(this.rootURL + 'Quiz/QuizQuestion/' + QuizId);
     };
     EmployeeService.prototype.getMockQuesOfQuiz = function (QuizId) {
-        return this.http.get(this.rootURL + 'Quiz/MockQuizQuestion/' + QuizId);
+        return this.http.get(this.rootURL + 'Quiz/QuizQuestion/' + QuizId);
     };
     EmployeeService.prototype.checkValidUser = function (id) {
         return this.http.post(this.rootURL + 'UserSchedule/ValidQuizTaker/' + localStorage.getItem('uid'), id);
@@ -3152,11 +3281,9 @@ var EmployeeService = /** @class */ (function () {
         this.body.QuizScheduleId = this.QuizScheduleId;
         this.body.QuizId = this.QuizId;
         this.body.UserId = localStorage.getItem('uid');
-        console.log(this.body);
         return this.http.post(this.rootURL + 'Quiz/EvaluateQuiz', this.body);
     };
     EmployeeService.prototype.getUserDetails = function () {
-        console.log(localStorage.getItem('email'));
         return this.http.get(this.rootURL + 'GetUserDetails?email=' + localStorage.getItem('email'));
     };
     EmployeeService.prototype.getListOfMockQuizzes = function () {
@@ -3172,11 +3299,13 @@ var EmployeeService = /** @class */ (function () {
         return this.http.get(this.rootURL + 'Report/Mock/' + id);
     };
     EmployeeService.prototype.getDetailedReport = function () {
-        console.log(this.QuizId);
         return this.http.get(this.rootURL + '/DetailedReport/' + localStorage.getItem('uid') + '/' + this.QuizId);
     };
     EmployeeService.prototype.getQues = function (id) {
         return this.http.get(this.rootURL + 'Question/' + id);
+    };
+    EmployeeService.prototype.getAnswers = function () {
+        return this.http.get(this.rootURL + 'Quiz/EvaluateMockQuiz/' + this.QuizId);
     };
     EmployeeService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -3209,7 +3338,7 @@ module.exports = "#qid {\n    padding: 10px 15px;\n    border-radius: 20px;\n  }
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-progress-bar mode=\"determinate\" value=\"{{ bar }}\"></mat-progress-bar>\n<div class=\"row\" *ngIf=\"service.quesOfQuiz\">\n  <div class=\"col s8 offset-s2\">\n    <span>Time Elapsed : {{service.displayTimeElapsed()}}</span>\n    <div class=\"container-fluid \">\n      <div class=\"modal-dialog\">\n        <div class=\"modal-content\">\n          <div class=\"modal-header\">\n            <h3><span class=\"label label-warning\" id=\"qid\"></span>\n              <p>{{service.qnProgress+1}})&nbsp;{{service.quesOfQuiz[service.qnProgress].QuestionStatement}}</p>\n            </h3>\n          </div>\n          <div class=\"modal-body\">\n            <div class=\"col-xs-3 col-xs-offset-5\">\n              <div id=\"loadbar\" style=\"display: none;\">\n                <div class=\"blockG\" id=\"rotateG_01\"></div>\n                <div class=\"blockG\" id=\"rotateG_02\"></div>\n                <div class=\"blockG\" id=\"rotateG_03\"></div>\n                <div class=\"blockG\" id=\"rotateG_04\"></div>\n                <div class=\"blockG\" id=\"rotateG_05\"></div>\n                <div class=\"blockG\" id=\"rotateG_06\"></div>\n                <div class=\"blockG\" id=\"rotateG_07\"></div>\n                <div class=\"blockG\" id=\"rotateG_08\"></div>\n              </div>\n            </div>\n            <div class=\"quiz\" *ngFor=\"let option of service.quesOfQuiz[service.qnProgress].Option;index as i\" id=\"quiz\"\n              data-toggle=\"buttons\">\n              <label *ngIf=\"option != null\" class=\"collection-item\"\n                (click)=\"Answer(service.quesOfQuiz[service.qnProgress].QuestionId,i+1)\"\n                class=\"element-animation1 btn btn-lg btn-primary btn-block\"><span class=\"btn-label\"><i\n                    class=\"glyphicon glyphicon-chevron-right\"></i></span> {{i+1}})&nbsp;&nbsp;{{option}}</label>\n            </div>\n            <div>\n              <a class=\"btn btn-sm btn-info text-white\"\n                (click)=\"Answer(service.quesOfQuiz[service.qnProgress].QuestionId,0)\"><i\n                  class=\"fa fa-forward\"></i>Skip</a>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n\n   "
+module.exports = "<mat-progress-bar mode=\"determinate\" value=\"{{ bar }}\"></mat-progress-bar>\n<div class=\"row\" *ngIf=\"service.quesOfQuiz\">\n  <div class=\"col s8 offset-s2\">\n    <span>Time Left : {{this.hours}}:{{this.minutes}}:{{this.seconds}}</span>\n    <div class=\"container-fluid \">\n      <div class=\"modal-dialog\">\n        <div class=\"modal-content\">\n          <div class=\"modal-header\">\n            <h3><span class=\"label label-warning\" id=\"qid\"></span>\n              <p>{{service.qnProgress+1}})&nbsp;{{service.quesOfQuiz[service.qnProgress].QuestionStatement}}</p>\n            </h3>\n          </div>\n          <div class=\"modal-body\">\n            <div class=\"col-xs-3 col-xs-offset-5\">\n              <div id=\"loadbar\" style=\"display: none;\">\n                <div class=\"blockG\" id=\"rotateG_01\"></div>\n                <div class=\"blockG\" id=\"rotateG_02\"></div>\n                <div class=\"blockG\" id=\"rotateG_03\"></div>\n                <div class=\"blockG\" id=\"rotateG_04\"></div>\n                <div class=\"blockG\" id=\"rotateG_05\"></div>\n                <div class=\"blockG\" id=\"rotateG_06\"></div>\n                <div class=\"blockG\" id=\"rotateG_07\"></div>\n                <div class=\"blockG\" id=\"rotateG_08\"></div>\n              </div>\n            </div>\n            <div class=\"quiz\" *ngFor=\"let option of service.quesOfQuiz[service.qnProgress].Option;index as i\" id=\"quiz\"\n              data-toggle=\"buttons\">\n              <label *ngIf=\"option != null\" class=\"collection-item\"\n                (click)=\"Answer(service.quesOfQuiz[service.qnProgress].QuestionId,i+1)\"\n                class=\"element-animation1 btn btn-lg btn-primary btn-block\"><span class=\"btn-label\"><i\n                    class=\"glyphicon glyphicon-chevron-right\"></i></span> {{i+1}})&nbsp;&nbsp;{{option}}</label>\n            </div>\n            <div>\n              <a class=\"btn btn-sm btn-info text-white\"\n                (click)=\"Answer(service.quesOfQuiz[service.qnProgress].QuestionId,0)\"><i\n                  class=\"fa fa-forward\"></i>Skip</a>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>"
 
 /***/ }),
 
@@ -3227,19 +3356,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _shared_employee_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shared/employee.service */ "./src/app/employee/shared/employee.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+
 
 
 
 
 var TakeQuizComponent = /** @class */ (function () {
-    function TakeQuizComponent(service, router) {
+    function TakeQuizComponent(service, router, document) {
         this.service = service;
         this.router = router;
+        this.document = document;
     }
     TakeQuizComponent.prototype.ngOnInit = function () {
         this.service.qnProgress = 0;
-        this.service.seconds = 0;
+        this.hours = this.service.hours;
+        this.minutes = this.service.minutes;
+        this.seconds = 0;
         history.pushState(null, null, location.href);
+        this.elem = document.documentElement;
+        this.openFullscreen();
         window.onpopstate = function () {
             history.go(1);
         };
@@ -3266,20 +3402,51 @@ var TakeQuizComponent = /** @class */ (function () {
             };
         };
         this.loadQues();
+        this.openFullscreen();
+    };
+    TakeQuizComponent.prototype.onKeydown = function (event) {
+    };
+    TakeQuizComponent.prototype.openFullscreen = function () {
+        if (this.elem.requestFullscreen) {
+            this.elem.requestFullscreen();
+        }
+        else if (this.elem.mozRequestFullScreen) {
+            this.elem.mozRequestFullScreen();
+        }
+        else if (this.elem.webkitRequestFullscreen) {
+            this.elem.webkitRequestFullscreen();
+        }
+        else if (this.elem.msRequestFullscreen) {
+            this.elem.msRequestFullscreen();
+        }
     };
     TakeQuizComponent.prototype.loadQues = function () {
         this.QuestionList = this.service.quesOfQuiz;
-        console.log(this.service.quesOfQuiz);
         this.noOfQues = this.QuestionList.length;
         this.service.size = this.noOfQues;
-        console.log(this.noOfQues);
         this.startTimer();
     };
     TakeQuizComponent.prototype.startTimer = function () {
         var _this = this;
         this.service.timer = setInterval(function () {
-            _this.service.seconds++;
-            localStorage.setItem('seconds', _this.service.seconds.toString());
+            if (_this.hours == 0 && _this.minutes == 0 && _this.seconds == 0) {
+                _this.router.navigate(['/emp-dash/quiz/result']);
+            }
+            else if (_this.seconds == 0) {
+                if (_this.hours == 1) {
+                    _this.hours = 0;
+                    _this.minutes = 59;
+                    _this.seconds = 60;
+                }
+                if (_this.minutes == 0) {
+                    _this.hours = _this.hours - 1;
+                    _this.minutes = 59;
+                    _this.seconds = 60;
+                }
+                _this.minutes = _this.minutes - 1;
+                _this.seconds = 60;
+            }
+            _this.seconds--;
         }, 1000);
     };
     TakeQuizComponent.prototype.Answer = function (QuestionId, choice) {
@@ -3287,7 +3454,12 @@ var TakeQuizComponent = /** @class */ (function () {
         this.service.quesOfQuiz[this.service.qnProgress].answer = choice;
         this.service.qnProgress++;
         if (this.service.qnProgress == this.noOfQues) {
-            clearInterval(this.service.timer);
+            this.totaltime = (this.service.hours * 60 * 60 + this.service.minutes * 60) - (this.hours * 60 * 60 + this.minutes * 60 + this.seconds);
+            this.service.hours = parseInt((this.totaltime / 3600).toPrecision(1));
+            this.totaltime = this.totaltime % 3600;
+            this.service.minutes = parseInt((this.totaltime / 60).toPrecision(1));
+            this.totaltime = this.totaltime % 60;
+            this.service.seconds = this.totaltime;
             this.router.navigate(['/emp-dash/quiz/result']);
         }
     };
@@ -3297,7 +3469,8 @@ var TakeQuizComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./take-quiz.component.html */ "./src/app/employee/take-quiz/take-quiz.component.html"),
             styles: [__webpack_require__(/*! ./take-quiz.component.css */ "./src/app/employee/take-quiz/take-quiz.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_employee_service__WEBPACK_IMPORTED_MODULE_2__["EmployeeService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](2, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_common__WEBPACK_IMPORTED_MODULE_4__["DOCUMENT"])),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_employee_service__WEBPACK_IMPORTED_MODULE_2__["EmployeeService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], Object])
     ], TakeQuizComponent);
     return TakeQuizComponent;
 }());
@@ -3324,7 +3497,7 @@ module.exports = "mat-dialog-content {\n\tposition: relative;\n}\n.pos {\n\tposi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\"><mat-icon>clear</mat-icon></button>\n<p *ngIf=\"ques\">\n  {{ques[0].QuestionStatement}}\n  <br>\n  <input name=\"a1\" disabled=\"true\" [checked]=\"flop1\" type=\"radio\">1){{ques[0].Option1}}\n  <label *ngIf=\"zlop1\">---You Marked This</label>\n  <br>\n  <input name=\"a1\" disabled=\"true\" [checked]=\"flop2\" type=\"radio\">{{ques[0].Option2}}\n  <label *ngIf=\"zlop2\">---You Marked This</label>\n  <br>\n  <input name=\"a1\" disabled=\"true\" [checked]=\"flop3\" type=\"radio\">{{ques[0].Option3}}\n  <label *ngIf=\"zlop3\">---You Marked This</label>\n  <br>\n  <input name=\"a1\" disabled=\"true\" [checked]=\"flop4\" type=\"radio\">{{ques[0].Option4}}\n  <label *ngIf=\"zlop4\">---You Marked This</label>\n  <br>\n</p>"
+module.exports = "<div *ngIf=\"ques\">\n  {{ques[0].QuestionStatement}}\n  <button style=\"float: right;\" type=\"button \" [mat-dialog-close] class=\"btn btn-danger\">\n    <i class=\"fa fa-times\" aria-hidden=\"true\"></i>\n  </button>\n  <br>\n  <input name=\"a1\" disabled=\"true\" [checked]=\"flop1\" type=\"radio\">1){{ques[0].Option1}}\n  <label *ngIf=\"zlop1\">---You Marked This</label>\n  <br>\n  <input name=\"a1\" disabled=\"true\" [checked]=\"flop2\" type=\"radio\">{{ques[0].Option2}}\n  <label *ngIf=\"zlop2\">---You Marked This</label>\n  <br>\n  <input name=\"a1\" disabled=\"true\" [checked]=\"flop3\" type=\"radio\">{{ques[0].Option3}}\n  <label *ngIf=\"zlop3\">---You Marked This</label>\n  <br>\n  <input name=\"a1\" disabled=\"true\" [checked]=\"flop4\" type=\"radio\">{{ques[0].Option4}}\n  <label *ngIf=\"zlop4\">---You Marked This</label>\n  <br>\n</div>"
 
 /***/ }),
 
@@ -3366,7 +3539,6 @@ var ViewAnswerComponent = /** @class */ (function () {
         var _this = this;
         this.service.getQues(this.data.id).subscribe(function (res) {
             _this.ques = res;
-            console.log(_this.ques);
             if (_this.ques[0].Answer === 1) {
                 _this.flop1 = true;
             }
@@ -3459,13 +3631,15 @@ var HomeComponent = /** @class */ (function () {
         this.http = http;
         this.service = service;
         this.rooturl = src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiURl;
-        this.role = '';
+        this.role = "";
         this.uid = '';
-        this.checkqid = localStorage.getItem('key');
-        this.checksid = localStorage.getItem('key1');
+        this.checkqid = null;
+        this.checksid = null;
     }
     HomeComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.checkqid = localStorage.getItem('key');
+        this.checksid = localStorage.getItem('key1');
         if (localStorage.getItem('id') != null) {
             var body = {
                 FirstName: localStorage.getItem('firstname'),
@@ -3478,17 +3652,17 @@ var HomeComponent = /** @class */ (function () {
                 _this.http.get(_this.rooturl + 'GetUserDetails?email=' + localStorage.getItem('email'))
                     .subscribe(function (res1) {
                     _this.uid = res1.Id;
-                    _this.role = res1.Roles[0].RoleId;
+                    _this.role = res1.Roles;
                     localStorage.setItem('uid', _this.uid);
                     localStorage.setItem('role', _this.role);
-                    console.log(_this.checkqid);
                     if (_this.checkqid == 'null' && _this.checksid == 'null') {
-                        _this.redirecttodash(_this.role);
+                        _this.redirecttodash(_this.role[0]);
+                    }
+                    else if (_this.checkqid == null && _this.checksid == null) {
+                        _this.redirecttodash(_this.role[0]);
                     }
                     else if (_this.checkqid != 'null' && _this.checksid != 'null') {
-                        console.log("hii");
                         _this.service.checkValidUser(+_this.checkqid).subscribe(function (res) {
-                            console.log(res);
                             _this.service.getQuesOfQuiz(+_this.checkqid).subscribe(function (res) {
                                 _this.service.quesOfQuiz = res;
                                 _this.service.QuizScheduleId = +_this.checksid;
@@ -3499,11 +3673,10 @@ var HomeComponent = /** @class */ (function () {
                     }
                     else {
                         localStorage.setItem('errorCode', '405');
-                        localStorage.setItem('errorMsg', 'Not Allowed to entert he specified quiz.');
+                        localStorage.setItem('errorMsg', 'Not Allowed to enter the specified quiz.');
                         _this.router.navigate(['/http-error']);
                     }
                 });
-                console.log(res);
             });
         }
         else {
@@ -3511,9 +3684,17 @@ var HomeComponent = /** @class */ (function () {
         }
     };
     HomeComponent.prototype.redirecttodash = function (role) {
-        if (this.role === '2') {
-            console.log('i am content creator');
+        if (role === 'Test-Administrator') {
+            this.router.navigate(['/ta-dash']);
+        }
+        else if (role === 'Content-Creator') {
             this.router.navigate(['/cc-dash']);
+        }
+        else if (role === 'Employee') {
+            this.router.navigate(['/emp-dash']);
+        }
+        else {
+            this.router.navigate(['/ru-dash']);
         }
     };
     HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -3531,61 +3712,6 @@ var HomeComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/http-error-interceptor.ts":
-/*!*******************************************!*\
-  !*** ./src/app/http-error-interceptor.ts ***!
-  \*******************************************/
-/*! exports provided: HttpErrorInterceptor */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpErrorInterceptor", function() { return HttpErrorInterceptor; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-
-
-
-
-
-var HttpErrorInterceptor = /** @class */ (function () {
-    function HttpErrorInterceptor(router) {
-        this.router = router;
-    }
-    HttpErrorInterceptor.prototype.intercept = function (request, next) {
-        var _this = this;
-        return next.handle(request)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["retry"])(1), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["catchError"])(function (error) {
-            var errorMessage = '';
-            if (error.error instanceof ErrorEvent) {
-                // client-side error
-                errorMessage = "Error: " + error.error.message;
-            }
-            else {
-                // server-side error
-                errorMessage = "Error Code: " + error.status + "\nMessage: " + error.message;
-                _this.errorCode = error.status;
-                console.log(error.message);
-                localStorage.setItem('errorCode', _this.errorCode);
-            }
-            _this.router.navigate(['/http-error']);
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["throwError"])(errorMessage);
-        }));
-    };
-    HttpErrorInterceptor = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["Injectable"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
-    ], HttpErrorInterceptor);
-    return HttpErrorInterceptor;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/http-interceptor/http-interceptor.component.css":
 /*!*****************************************************************!*\
   !*** ./src/app/http-interceptor/http-interceptor.component.css ***!
@@ -3593,7 +3719,7 @@ var HttpErrorInterceptor = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "h1 {\n    font-size: 50px;\n    color: aliceblue;\n}\n\nh2{\n    font-size: 30px;\n    color: black;\n}\n\n.btn-info{\n    width:100px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaHR0cC1pbnRlcmNlcHRvci9odHRwLWludGVyY2VwdG9yLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxlQUFlO0lBQ2YsZ0JBQWdCO0FBQ3BCOztBQUVBO0lBQ0ksZUFBZTtJQUNmLFlBQVk7QUFDaEI7O0FBQ0E7SUFDSSxXQUFXO0FBQ2YiLCJmaWxlIjoic3JjL2FwcC9odHRwLWludGVyY2VwdG9yL2h0dHAtaW50ZXJjZXB0b3IuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImgxIHtcbiAgICBmb250LXNpemU6IDUwcHg7XG4gICAgY29sb3I6IGFsaWNlYmx1ZTtcbn1cblxuaDJ7XG4gICAgZm9udC1zaXplOiAzMHB4O1xuICAgIGNvbG9yOiBibGFjaztcbn1cbi5idG4taW5mb3tcbiAgICB3aWR0aDoxMDBweDtcbn0iXX0= */"
+module.exports = "h1 {\n    font-size: 50px;\n    color: aliceblue;\n}\n\nh2{\n    font-size: 30px;\n    color: black;\n}\n\n.btn-info{\n    width:100px;\n}\n\n.ppc{\n    background-image: url('404.jpg');\n    background-repeat: no-repeat;\n    background-size: 50% 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaHR0cC1pbnRlcmNlcHRvci9odHRwLWludGVyY2VwdG9yLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxlQUFlO0lBQ2YsZ0JBQWdCO0FBQ3BCOztBQUVBO0lBQ0ksZUFBZTtJQUNmLFlBQVk7QUFDaEI7O0FBQ0E7SUFDSSxXQUFXO0FBQ2Y7O0FBQ0E7SUFDSSxnQ0FBaUQ7SUFDakQsNEJBQTRCO0lBQzVCLHlCQUF5QjtBQUM3QiIsImZpbGUiOiJzcmMvYXBwL2h0dHAtaW50ZXJjZXB0b3IvaHR0cC1pbnRlcmNlcHRvci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaDEge1xuICAgIGZvbnQtc2l6ZTogNTBweDtcbiAgICBjb2xvcjogYWxpY2VibHVlO1xufVxuXG5oMntcbiAgICBmb250LXNpemU6IDMwcHg7XG4gICAgY29sb3I6IGJsYWNrO1xufVxuLmJ0bi1pbmZve1xuICAgIHdpZHRoOjEwMHB4O1xufVxuLnBwY3tcbiAgICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoJy4uLy4uL2Fzc2V0cy9pbWcvNDA0LmpwZycpO1xuICAgIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XG4gICAgYmFja2dyb3VuZC1zaXplOiA1MCUgMTAwJTtcbn0iXX0= */"
 
 /***/ }),
 
@@ -3604,7 +3730,7 @@ module.exports = "h1 {\n    font-size: 50px;\n    color: aliceblue;\n}\n\nh2{\n 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"background:url('../../assets/img/404.jpg') no-repeat center center fixed; background-size:cover; height:100%;\" class=\"error\">\n  <h1 class=\"text-center\"><br/><br/>Oops...<br/>An error has Occured!</h1>\n  <br/>\n  <h1 class=\"text-center\">{{errorCode}} - \"{{errorMsg}}\"</h1>\n  <br/>\n  <br/>\n  <h2 class=\"text-center\"> Please cllick on the button to login again!</h2>\n  <br/>\n  <button style=\"margin-left:45%\" (click)=\"login()\" type=\"button\" class=\"btn btn-info\">Login</button>\n</div>"
+module.exports = "<div\n  style=\"background:url('../../assets/img/404.jpg') no-repeat center center fixed; background-size:cover; height:100%;\"\n  class=\"error\">\n  <h1 class=\"text-center\"><br /><br />Oops...<br />An error has Occured!</h1>\n  <br />\n  <h1 class=\"text-center\">{{errorCode}} - \"{{errorMsg}}\"</h1>\n  <br />\n  <br />\n  <h2 class=\"text-center\"> Please cllick on the button to login again!</h2>\n  <br />\n  <button style=\"margin-left:45%\" (click)=\"login()\" type=\"button\" class=\"btn btn-info\">Login</button>\n</div>"
 
 /***/ }),
 
@@ -3650,7 +3776,7 @@ var HttpInterceptorComponent = /** @class */ (function () {
     };
     HttpInterceptorComponent.prototype.login = function () {
         localStorage.clear();
-        this.router.navigate(['/login']);
+        this.router.navigate([""]);
     };
     HttpInterceptorComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -3661,6 +3787,74 @@ var HttpInterceptorComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], HttpInterceptorComponent);
     return HttpInterceptorComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/loader/loader.component.css":
+/*!*********************************************!*\
+  !*** ./src/app/loader/loader.component.css ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".hidden {\n    visibility: hidden;\n  }\n  .loader-overlay {\n    position: absolute;\n    width: 100%;\n    z-index: 500000;\n    top: 0;\n  }\n  .loader {\n    height: 4px;\n    width: 100%;\n    position: relative;\n    overflow: hidden;\n    background-color: #FFF;\n  }\n  .loader:before {\n    display: block;\n    position: absolute;\n    content: \"\";\n    left: -200px;\n    width: 200px;\n    height: 4px;\n    background-color: red;\n    -webkit-animation: loading 2s linear infinite;\n            animation: loading 2s linear infinite;\n  }\n  @-webkit-keyframes loading {\n    from {left: -200px; width: 30%;}\n    50% {width: 30%;}\n    70% {width: 70%;}\n    80% {left: 50%;}\n    95% {left: 120%;}\n    to {left: 100%;}\n  }\n  @keyframes loading {\n    from {left: -200px; width: 30%;}\n    50% {width: 30%;}\n    70% {width: 70%;}\n    80% {left: 50%;}\n    95% {left: 120%;}\n    to {left: 100%;}\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbG9hZGVyL2xvYWRlci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksa0JBQWtCO0VBQ3BCO0VBQ0E7SUFDRSxrQkFBa0I7SUFDbEIsV0FBVztJQUNYLGVBQWU7SUFDZixNQUFNO0VBQ1I7RUFDQTtJQUNFLFdBQVc7SUFDWCxXQUFXO0lBQ1gsa0JBQWtCO0lBQ2xCLGdCQUFnQjtJQUNoQixzQkFBc0I7RUFDeEI7RUFDQTtJQUNFLGNBQWM7SUFDZCxrQkFBa0I7SUFDbEIsV0FBVztJQUNYLFlBQVk7SUFDWixZQUFZO0lBQ1osV0FBVztJQUNYLHFCQUFxQjtJQUNyQiw2Q0FBcUM7WUFBckMscUNBQXFDO0VBQ3ZDO0VBQ0E7SUFDRSxNQUFNLFlBQVksRUFBRSxVQUFVLENBQUM7SUFDL0IsS0FBSyxVQUFVLENBQUM7SUFDaEIsS0FBSyxVQUFVLENBQUM7SUFDaEIsS0FBSyxTQUFTLENBQUM7SUFDZixLQUFLLFVBQVUsQ0FBQztJQUNoQixJQUFJLFVBQVUsQ0FBQztFQUNqQjtFQVBBO0lBQ0UsTUFBTSxZQUFZLEVBQUUsVUFBVSxDQUFDO0lBQy9CLEtBQUssVUFBVSxDQUFDO0lBQ2hCLEtBQUssVUFBVSxDQUFDO0lBQ2hCLEtBQUssU0FBUyxDQUFDO0lBQ2YsS0FBSyxVQUFVLENBQUM7SUFDaEIsSUFBSSxVQUFVLENBQUM7RUFDakIiLCJmaWxlIjoic3JjL2FwcC9sb2FkZXIvbG9hZGVyLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuaGlkZGVuIHtcbiAgICB2aXNpYmlsaXR5OiBoaWRkZW47XG4gIH1cbiAgLmxvYWRlci1vdmVybGF5IHtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgei1pbmRleDogNTAwMDAwO1xuICAgIHRvcDogMDtcbiAgfVxuICAubG9hZGVyIHtcbiAgICBoZWlnaHQ6IDRweDtcbiAgICB3aWR0aDogMTAwJTtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjRkZGO1xuICB9XG4gIC5sb2FkZXI6YmVmb3JlIHtcbiAgICBkaXNwbGF5OiBibG9jaztcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgY29udGVudDogXCJcIjtcbiAgICBsZWZ0OiAtMjAwcHg7XG4gICAgd2lkdGg6IDIwMHB4O1xuICAgIGhlaWdodDogNHB4O1xuICAgIGJhY2tncm91bmQtY29sb3I6IHJlZDtcbiAgICBhbmltYXRpb246IGxvYWRpbmcgMnMgbGluZWFyIGluZmluaXRlO1xuICB9XG4gIEBrZXlmcmFtZXMgbG9hZGluZyB7XG4gICAgZnJvbSB7bGVmdDogLTIwMHB4OyB3aWR0aDogMzAlO31cbiAgICA1MCUge3dpZHRoOiAzMCU7fVxuICAgIDcwJSB7d2lkdGg6IDcwJTt9XG4gICAgODAlIHtsZWZ0OiA1MCU7fVxuICAgIDk1JSB7bGVmdDogMTIwJTt9XG4gICAgdG8ge2xlZnQ6IDEwMCU7fVxuICB9Il19 */"
+
+/***/ }),
+
+/***/ "./src/app/loader/loader.component.html":
+/*!**********************************************!*\
+  !*** ./src/app/loader/loader.component.html ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div [class.hidden]=\"!show\">\n  <div class=\"loader-overlay\">\n    <div *ngIf=\"show\" class=\"loader\"></div>\n  </div>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/loader/loader.component.ts":
+/*!********************************************!*\
+  !*** ./src/app/loader/loader.component.ts ***!
+  \********************************************/
+/*! exports provided: LoaderComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoaderComponent", function() { return LoaderComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_loader_service_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/loader-service.service */ "./src/app/services/loader-service.service.ts");
+
+
+
+var LoaderComponent = /** @class */ (function () {
+    function LoaderComponent(loaderService) {
+        this.loaderService = loaderService;
+        this.show = false;
+    }
+    LoaderComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.subscription = this.loaderService.loaderState
+            .subscribe(function (state) {
+            _this.show = state.show;
+        });
+    };
+    LoaderComponent.prototype.ngOnDestroy = function () {
+        this.subscription.unsubscribe();
+    };
+    LoaderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-loader',
+            template: __webpack_require__(/*! ./loader.component.html */ "./src/app/loader/loader.component.html"),
+            styles: [__webpack_require__(/*! ./loader.component.css */ "./src/app/loader/loader.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_loader_service_service__WEBPACK_IMPORTED_MODULE_2__["LoaderServiceService"]])
+    ], LoaderComponent);
+    return LoaderComponent;
 }());
 
 
@@ -3685,7 +3879,7 @@ module.exports = "@import url('https://fonts.googleapis.com/css?family=Merriweat
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <mat-toolbar>  \n        <mat-toolbar-row>\n          <a href=\"https://www.nineleaps.com/\">\n            <span>NINELEAPS</span>\n          </a>\n          <span class=\"example-spacer\"></span>\n          <a href=\"#\">Contact Us</a>\n          <a href=\"#aboutus\">About Us</a>\n        </mat-toolbar-row>\n      </mat-toolbar>\n  <div class=\"name\">\n    <h1>Assessment System</h1>\n  </div>\n    <div class=\"card-block\">\n        <button class=\"btn btn-success\" (click)=\"signInWithGoogle()\">\n          <span class=\"buttonText\">Sign in with:</span>\n          <span><i class=\"fa fa-google\" aria-hidden=\"true\"></i></span>\n        </button>\n      </div>\n      <div class=\"card-block\" *ngIf=\"user\">\n        <button class=\"btn btn-danger\" (click)=\"signOut()\">Sign out</button>\n      </div>  \n      \n</div>\n<div class=\"container1 aboutcontainer\" id=\"aboutus\">\n  <h4>ABOUT US</h4>\n  <br />\n  <blockquote><p>The goal of Assessment Systems is to provide software and consulting services utilizing best practices in psychometrics, helping our clients to produce the best assessments possible, thereby providing the best information about people’s skills, knowledge, abilities, and traits. This allows better decisions to be made about people, or people to make decisions about themselves. Testing is our profession, not just our business.</p></blockquote>\n  <div class=\"row\">\n    <div class=\"col-md-4\">\n        <div class=\"blog-card spring-fever\" style=\"background: url(../../assets/pulkit.png) no-repeat;\">\n            <!-- /.title-content -->\n            <div class=\"card-info\">\n                <div class=\"title-content\">\n                    <h3>PULKIT VERMA</h3>\n                    <hr />\n                    <!-- <div class=\"intro\">Team: Aster</div> -->\n                    <h6>Team ASTER</h6>\n                    <h6>Nineleaps Intern</h6>\n                  </div> \n                  <div class=\"utility-info\">\n                      <ul class=\"utility-list\">\n                        <li><a href=\"\"><i class=\"fa fa-linkedin-square\" aria-hidden=\"true\"></i></a></li>\n                        <li><a href=\"\"><i class=\"fa fa-twitter-square\" aria-hidden=\"true\"></i></a></li>\n                        <li><a href=\"\"><i class=\"fa fa-google-plus-square\" aria-hidden=\"true\"></i></a></li>\n                      </ul>\n              </div><!-- /.utility-info -->\n            </div><!-- /.card-info -->\n            \n            <!-- overlays -->\n            <div class=\"gradient-overlay\"></div>\n            <div class=\"color-overlay\"></div>\n          </div><!-- /.blog-card -->\n    </div>\n    <div class=\"col-md-4\">\n        <div class=\"blog-card spring-fever\" style=\"background: url(../../assets/logo.jpg) no-repeat;\">\n            <!-- /.title-content -->\n            <div class=\"card-info\">\n                <div class=\"title-content\">\n                    <h3>NIRMIT AGARWAL</h3>\n                    <hr />\n                    <!-- <div class=\"intro\">Team: Aster</div> -->\n                    <h6>Team ASTER</h6>\n                    <h6>Nineleaps Intern</h6>\n                  </div> \n                  <div class=\"utility-info\">\n                      <ul class=\"utility-list\">\n                        <li><a href=\"\"><i class=\"fa fa-linkedin-square\" aria-hidden=\"true\"></i></a></li>\n                        <li><a href=\"\"><i class=\"fa fa-twitter-square\" aria-hidden=\"true\"></i></a></li>\n                        <li><a href=\"\"><i class=\"fa fa-google-plus-square\" aria-hidden=\"true\"></i></a></li>\n                      </ul>\n              </div><!-- /.utility-info -->\n            </div><!-- /.card-info -->\n            <!-- overlays -->\n            <div class=\"gradient-overlay\"></div>\n            <div class=\"color-overlay\"></div>\n          </div><!-- /.blog-card -->\n    </div>\n    <div class=\"col-md-4\">\n        <div class=\"blog-card spring-fever\" style=\"background: url(../../assets/anand.jpg) no-repeat;image-orientation: 90deg flip; \">\n            <!-- /.title-content -->\n            <div class=\"card-info\">\n                <div class=\"title-content\">\n                    <h3>ANAND ROY</h3>\n                    <hr />\n                    <!-- <div class=\"intro\">Team: Aster</div> -->\n                    <h6>Team ASTER</h6>\n                    <h6>Nineleaps Intern</h6>\n                  </div> \n                  <div class=\"utility-info\">\n                      <ul class=\"utility-list\">\n                        <li><a href=\"\"><i class=\"fa fa-linkedin-square\" aria-hidden=\"true\"></i></a></li>\n                        <li><a href=\"\"><i class=\"fa fa-twitter-square\" aria-hidden=\"true\"></i></a></li>\n                        <li><a href=\"\"><i class=\"fa fa-google-plus-square\" aria-hidden=\"true\"></i></a></li>\n                      </ul>\n              </div><!-- /.utility-info -->\n            </div><!-- /.card-info -->\n            <!-- overlays -->\n            <div class=\"gradient-overlay\"></div>\n            <div class=\"color-overlay\"></div>\n          </div><!-- /.blog-card -->\n    </div>\n  </div>\n  <div class=\"row\">\n      <div class=\"col-md-4\">\n          <div class=\"blog-card1 spring-fever\" style=\"background: url(../../assets/abhi.jpg) no-repeat;\">\n              <!-- /.title-content -->\n              <div class=\"card-info\">\n                  <div class=\"title-content\">\n                      <h3>ABHIJEET ANAND SHAH</h3>\n                      <hr />\n                      <!-- <div class=\"intro\">Team: Aster</div> -->\n                      <h6>Team ASTER</h6>\n                      <h6>Nineleaps Intern</h6>\n                    </div> \n                    <div class=\"utility-info\">\n                        <ul class=\"utility-list\">\n                          <li><a href=\"\"><i class=\"fa fa-linkedin-square\" aria-hidden=\"true\"></i></a></li>\n                          <li><a href=\"\"><i class=\"fa fa-twitter-square\" aria-hidden=\"true\"></i></a></li>\n                          <li><a href=\"\"><i class=\"fa fa-google-plus-square\" aria-hidden=\"true\"></i></a></li>\n                        </ul>\n                </div><!-- /.utility-info -->\n              </div><!-- /.card-info -->\n              <!-- overlays -->\n              <div class=\"gradient-overlay\"></div>\n              <div class=\"color-overlay\"></div>\n            </div><!-- /.blog-card -->\n      </div>\n      <div class=\"col-md-4\">\n          <div class=\"blog-card1 spring-fever\" style=\"background: url(../../assets/meg.jpg) no-repeat;\">\n              <!-- /.title-content -->\n              <div class=\"card-info\">\n                  <div class=\"title-content\">\n                      <h3>SREEMEGHANA K S</h3>\n                      <hr />\n                      <!-- <div class=\"intro\">Team: Aster</div> -->\n                      <h6>Team ASTER</h6>\n                      <h6>Nineleaps Intern</h6>\n                    </div> \n                    <div class=\"utility-info\">\n                        <ul class=\"utility-list\">\n                          <li><a href=\"\"><i class=\"fa fa-linkedin-square\" aria-hidden=\"true\"></i></a></li>\n                          <li><a href=\"\"><i class=\"fa fa-twitter-square\" aria-hidden=\"true\"></i></a></li>\n                          <li><a href=\"\"><i class=\"fa fa-google-plus-square\" aria-hidden=\"true\"></i></a></li>\n                        </ul>\n                </div><!-- /.utility-info -->\n              </div><!-- /.card-info -->\n              <!-- overlays -->\n              <div class=\"gradient-overlay\"></div>\n              <div class=\"color-overlay\"></div>\n            </div><!-- /.blog-card -->\n      </div>\n      <div class=\"col-md-4\">\n          <div class=\"blog-card1 spring-fever\" style=\"background: url(../../assets/mandeep.png) no-repeat;\">\n              <!-- /.title-content -->\n              <div class=\"card-info\">\n                  <div class=\"title-content\">\n                      <h3>MANDEEP JAIN</h3>\n                      <hr />\n                      <!-- <div class=\"intro\">Team: Aster</div> -->\n                      <h6>Team ASTER</h6>\n                      <h6>Nineleaps Intern</h6>\n                    </div> \n                    <div class=\"utility-info\">\n                        <ul class=\"utility-list\">\n                          <li><a href=\"\"><i class=\"fa fa-linkedin-square\" aria-hidden=\"true\"></i></a></li>\n                          <li><a href=\"\"><i class=\"fa fa-twitter-square\" aria-hidden=\"true\"></i></a></li>\n                          <li><a href=\"\"><i class=\"fa fa-google-plus-square\" aria-hidden=\"true\"></i></a></li>\n                        </ul>\n                </div><!-- /.utility-info -->\n              </div><!-- /.card-info -->\n              <!-- overlays -->\n              <div class=\"gradient-overlay\"></div>\n              <div class=\"color-overlay\"></div>\n            </div><!-- /.blog-card -->\n      </div>\n    </div>\n    <br />\n<br />\n</div>\n<!-- <div class=\"footer\">\n  <div class=\"row\"></div>\n</div> -->\n"
+module.exports = "<div class=\"container\">\n  <mat-toolbar>\n    <mat-toolbar-row>\n      <a href=\"https://www.nineleaps.com/\">\n        <span>NINELEAPS</span>\n      </a>\n      <span class=\"example-spacer\"></span>\n      <a href=\"#\">Contact Us</a>\n      <a href=\"#aboutus\">About Us</a>\n    </mat-toolbar-row>\n  </mat-toolbar>\n  <div class=\"name\">\n    <h1>Assessment System</h1>\n  </div>\n  <div class=\"card-block\">\n    <button class=\"btn btn-success\" (click)=\"signInWithGoogle()\">\n      <span class=\"buttonText\">Sign in with:</span>\n      <span><i class=\"fa fa-google\" aria-hidden=\"true\"></i></span>\n    </button>\n  </div>\n  <div class=\"card-block\" *ngIf=\"user\">\n    <button class=\"btn btn-danger\" (click)=\"signOut()\">Sign out</button>\n  </div>\n\n</div>\n<div class=\"container1 aboutcontainer\" id=\"aboutus\">\n  <h4>ABOUT US</h4>\n  <br />\n  <blockquote>\n    <p>The goal of Assessment Systems is to provide software and consulting services utilizing best practices in\n      psychometrics, helping our clients to produce the best assessments possible, thereby providing the best\n      information about people’s skills, knowledge, abilities, and traits. This allows better decisions to be made about\n      people, or people to make decisions about themselves. Testing is our profession, not just our business.</p>\n  </blockquote>\n  <div class=\"row\">\n    <div class=\"col-md-4\">\n      <div class=\"blog-card spring-fever\" style=\"background: url(../../assets/pulkit.png) no-repeat;\">\n        <div class=\"card-info\">\n          <div class=\"title-content\">\n            <h3>PULKIT VERMA</h3>\n            <hr />\n            <h6>Team ASTER</h6>\n            <h6>Nineleaps Intern</h6>\n          </div>\n          <div class=\"utility-info\">\n            <ul class=\"utility-list\">\n              <li><a href=\"\"><i class=\"fa fa-linkedin-square\" aria-hidden=\"true\"></i></a></li>\n              <li><a href=\"\"><i class=\"fa fa-twitter-square\" aria-hidden=\"true\"></i></a></li>\n              <li><a href=\"\"><i class=\"fa fa-google-plus-square\" aria-hidden=\"true\"></i></a></li>\n            </ul>\n          </div>\n        </div>\n\n        <div class=\"gradient-overlay\"></div>\n        <div class=\"color-overlay\"></div>\n      </div>\n    </div>\n    <div class=\"col-md-4\">\n      <div class=\"blog-card spring-fever\" style=\"background: url(../../assets/logo.jpg) no-repeat;\">\n\n        <div class=\"card-info\">\n          <div class=\"title-content\">\n            <h3>NIRMIT AGARWAL</h3>\n            <hr />\n            <h6>Team ASTER</h6>\n            <h6>Nineleaps Intern</h6>\n          </div>\n          <div class=\"utility-info\">\n            <ul class=\"utility-list\">\n              <li><a href=\"\"><i class=\"fa fa-linkedin-square\" aria-hidden=\"true\"></i></a></li>\n              <li><a href=\"\"><i class=\"fa fa-twitter-square\" aria-hidden=\"true\"></i></a></li>\n              <li><a href=\"\"><i class=\"fa fa-google-plus-square\" aria-hidden=\"true\"></i></a></li>\n            </ul>\n          </div>\n        </div>\n        <div class=\"gradient-overlay\"></div>\n        <div class=\"color-overlay\"></div>\n      </div>\n    </div>\n    <div class=\"col-md-4\">\n      <div class=\"blog-card spring-fever\"\n        style=\"background: url(../../assets/anand.jpg) no-repeat;image-orientation: 90deg flip; \">\n        <div class=\"card-info\">\n          <div class=\"title-content\">\n            <h3>ANAND ROY</h3>\n            <hr />\n            <h6>Team ASTER</h6>\n            <h6>Nineleaps Intern</h6>\n          </div>\n          <div class=\"utility-info\">\n            <ul class=\"utility-list\">\n              <li><a href=\"\"><i class=\"fa fa-linkedin-square\" aria-hidden=\"true\"></i></a></li>\n              <li><a href=\"\"><i class=\"fa fa-twitter-square\" aria-hidden=\"true\"></i></a></li>\n              <li><a href=\"\"><i class=\"fa fa-google-plus-square\" aria-hidden=\"true\"></i></a></li>\n            </ul>\n          </div>\n        </div>\n\n        <div class=\"gradient-overlay\"></div>\n        <div class=\"color-overlay\"></div>\n      </div>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-4\">\n      <div class=\"blog-card1 spring-fever\" style=\"background: url(../../assets/abhi.jpg) no-repeat;\">\n        <div class=\"card-info\">\n          <div class=\"title-content\">\n            <h3>ABHIJEET ANAND SHAH</h3>\n            <hr />\n            <h6>Team ASTER</h6>\n            <h6>Nineleaps Intern</h6>\n          </div>\n          <div class=\"utility-info\">\n            <ul class=\"utility-list\">\n              <li><a href=\"\"><i class=\"fa fa-linkedin-square\" aria-hidden=\"true\"></i></a></li>\n              <li><a href=\"\"><i class=\"fa fa-twitter-square\" aria-hidden=\"true\"></i></a></li>\n              <li><a href=\"\"><i class=\"fa fa-google-plus-square\" aria-hidden=\"true\"></i></a></li>\n            </ul>\n          </div>\n        </div>\n        <div class=\"gradient-overlay\"></div>\n        <div class=\"color-overlay\"></div>\n      </div>\n    </div>\n    <div class=\"col-md-4\">\n      <div class=\"blog-card1 spring-fever\" style=\"background: url(../../assets/meg.jpg) no-repeat;\">\n        <div class=\"card-info\">\n          <div class=\"title-content\">\n            <h3>SREEMEGHANA K S</h3>\n            <hr />\n            <h6>Team ASTER</h6>\n            <h6>Nineleaps Intern</h6>\n          </div>\n          <div class=\"utility-info\">\n            <ul class=\"utility-list\">\n              <li><a href=\"\"><i class=\"fa fa-linkedin-square\" aria-hidden=\"true\"></i></a></li>\n              <li><a href=\"\"><i class=\"fa fa-twitter-square\" aria-hidden=\"true\"></i></a></li>\n              <li><a href=\"\"><i class=\"fa fa-google-plus-square\" aria-hidden=\"true\"></i></a></li>\n            </ul>\n          </div>\n        </div>\n\n        <div class=\"gradient-overlay\"></div>\n        <div class=\"color-overlay\"></div>\n      </div>\n    </div>\n    <div class=\"col-md-4\">\n      <div class=\"blog-card1 spring-fever\" style=\"background: url(../../assets/mandeep.png) no-repeat;\">\n\n        <div class=\"card-info\">\n          <div class=\"title-content\">\n            <h3>MANDEEP JAIN</h3>\n            <hr />\n\n            <h6>Team ASTER</h6>\n            <h6>Nineleaps Intern</h6>\n          </div>\n          <div class=\"utility-info\">\n            <ul class=\"utility-list\">\n              <li><a href=\"\"><i class=\"fa fa-linkedin-square\" aria-hidden=\"true\"></i></a></li>\n              <li><a href=\"\"><i class=\"fa fa-twitter-square\" aria-hidden=\"true\"></i></a></li>\n              <li><a href=\"\"><i class=\"fa fa-google-plus-square\" aria-hidden=\"true\"></i></a></li>\n            </ul>\n          </div>\n        </div>\n\n        <div class=\"gradient-overlay\"></div>\n        <div class=\"color-overlay\"></div>\n      </div>\n    </div>\n  </div>\n  <br />\n  <br />\n</div>"
 
 /***/ }),
 
@@ -3718,12 +3912,9 @@ var LoginComponent = /** @class */ (function () {
         var _this = this;
         localStorage.setItem('key', this.route.snapshot.queryParamMap.get('take-quiz'));
         localStorage.setItem('key1', this.route.snapshot.queryParamMap.get('schedule-id'));
-        console.log(localStorage.getItem('key'));
-        console.log(localStorage.getItem('key1'));
         this.authService.authState.subscribe(function (user) {
             _this.user = user;
             if (user != null) {
-                console.log(_this.user);
                 localStorage.setItem('token', _this.user.idToken);
                 localStorage.setItem('email', _this.user.email);
                 localStorage.setItem('firstname', _this.user.firstName);
@@ -3731,7 +3922,6 @@ var LoginComponent = /** @class */ (function () {
                 localStorage.setItem('id', _this.user.id);
                 localStorage.setItem('imgurl', _this.user.photoUrl);
                 localStorage.setItem('provider', _this.user.provider);
-                console.log("login");
                 _this.router.navigate(['/home']);
             }
             else {
@@ -3825,17 +4015,14 @@ var AnalyticsByQuizComponent = /** @class */ (function () {
         this.service.getAllQuizzes().subscribe(function (res) {
             _this.quizDetails = res;
             _this.dtTrigger.next();
-            console.log(_this.quizDetails);
         });
     };
     AnalyticsByQuizComponent.prototype.onClick = function (index) {
-        console.log(index);
         var dialogConfig = new _angular_material_dialog__WEBPACK_IMPORTED_MODULE_4__["MatDialogConfig"]();
         dialogConfig.autoFocus = true;
         dialogConfig.width = "90%";
         dialogConfig.disableClose = true;
         dialogConfig.data = this.quizDetails[index];
-        console.log(dialogConfig.data);
         this.dialog.open(_details_details_component__WEBPACK_IMPORTED_MODULE_5__["DetailsComponent"], dialogConfig).afterClosed().subscribe(function (res) {
         });
     };
@@ -3873,7 +4060,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-dialog-content>\n    <div class=\"row\">\n      <div style=\"display: block;\n      margin-left: auto;\n      margin-right: auto;\n      width: 50%;\" *ngIf=\"pieChartData\">\n        <div>\n          <div style=\"display: block\">\n            <canvas baseChart [data]=\"pieChartData\" [labels]=\"pieChartLabels\" [legend]=\"pieChartLegend\"\n              [chartType]=\"pieChartType\">\n            </canvas>\n          </div>\n        </div>\n      </div>\n      <div>\n        <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n          <mat-icon>clear</mat-icon>\n        </button>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col\">\n        <h3>Analysis</h3>\n      </div>\n     \n    </div>\n    <div *ngIf=\"quizData\">\n      <div class=\"row\">\n        <div class=\"col zoom\">\n          <div class=\"card\" style=\"width: 18rem;\">\n            <div class=\"card-body\">\n              <h5 class=\"card-title\">Highest-Score</h5>\n              <label class=\"card-text\">{{quizData.HighestScore}}</label>\n            </div>\n          </div>\n        </div>\n        <div class=\"col zoom\">\n  \n          <div class=\"card\" style=\"width: 18rem;\">\n            <div class=\"card-body\">\n              <h5 class=\"card-title\">Lowest Score</h5>\n              <label class=\"card-text\">{{quizData.LowestScore}}</label>\n            </div>\n          </div>\n        </div>\n  \n        <div class=\"col\">\n          <div class=\"card\" style=\"width: 18rem;\">\n            <div class=\"card-body\">\n              <h5 class=\"card-title\">Accuracy</h5>\n              <label class=\"card-text\">{{quizData.Accuracy}}</label>\n            </div>\n          </div>\n        </div>\n      </div>\n      <br>\n      <div class=\"row\">\n        <div class=\"col\">\n          <div class=\"card\" style=\"width: 18rem;\">\n            <div class=\"card-body\">\n              <h5 class=\"card-title\">Number of Schedules</h5>\n              <label class=\"card-text\">{{quizData.NoOfQuiz}}</label>\n            </div>\n          </div>\n        </div>\n        <div class=\"col\">\n  \n          <div class=\"card\" style=\"width: 18rem;\">\n            <div class=\"card-body\">\n              <h5 class=\"card-title\">Average Score</h5>\n              <label class=\"card-text\">{{quizData.AverageMarks}}</label>\n            </div>\n          </div>\n        </div>\n      </div>\n      <br>\n      <br>\n    </div>\n  </mat-dialog-content>\n  <!-- \n  <button type=\"button\" class=\"btn btn-primary btn-danger\" [mat-dialog-close]> Close</button> -->\n  "
+module.exports = "<mat-dialog-content>\n  <div class=\"row\">\n    <div style=\"display: block;\n      margin-left: auto;\n      margin-right: auto;\n      width: 50%;\" *ngIf=\"pieChartData\">\n      <div>\n        <div style=\"display: block\">\n          <canvas baseChart [data]=\"pieChartData\" [labels]=\"pieChartLabels\" [legend]=\"pieChartLegend\"\n            [chartType]=\"pieChartType\">\n          </canvas>\n        </div>\n      </div>\n    </div>\n    <div>\n      <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n        <mat-icon>clear</mat-icon>\n      </button>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col\">\n      <h3>Analysis</h3>\n    </div>\n\n  </div>\n  <div *ngIf=\"quizData\">\n    <div class=\"row\">\n      <div class=\"col zoom\">\n        <div class=\"card\" style=\"width: 18rem;\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">Highest-Score</h5>\n            <label class=\"card-text\">{{quizData.HighestScore}}</label>\n          </div>\n        </div>\n      </div>\n      <div class=\"col zoom\">\n\n        <div class=\"card\" style=\"width: 18rem;\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">Lowest Score</h5>\n            <label class=\"card-text\">{{quizData.LowestScore}}</label>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"col\">\n        <div class=\"card\" style=\"width: 18rem;\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">Accuracy</h5>\n            <label class=\"card-text\">{{quizData.Accuracy}}</label>\n          </div>\n        </div>\n      </div>\n    </div>\n    <br>\n    <div class=\"row\">\n      <div class=\"col\">\n        <div class=\"card\" style=\"width: 18rem;\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">Number of Schedules</h5>\n            <label class=\"card-text\">{{quizData.NoOfQuiz}}</label>\n          </div>\n        </div>\n      </div>\n      <div class=\"col\">\n\n        <div class=\"card\" style=\"width: 18rem;\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">Average Score</h5>\n            <label class=\"card-text\">{{quizData.AverageMarks}}</label>\n          </div>\n        </div>\n      </div>\n    </div>\n    <br>\n    <br>\n  </div>\n</mat-dialog-content>"
 
 /***/ }),
 
@@ -3907,7 +4094,6 @@ var DetailsComponent = /** @class */ (function () {
         this.pieChartType = 'pie';
     }
     DetailsComponent.prototype.ngOnInit = function () {
-        console.log(this.data);
         this.getDetails(this.data.QuizId);
     };
     DetailsComponent.prototype.getDetails = function (id) {
@@ -3920,8 +4106,6 @@ var DetailsComponent = /** @class */ (function () {
             _this.chartData.push(_this.quizData.AverageMarks);
             _this.chartData.push(_this.quizData.NoOfQuiz);
             _this.pieChartData = _this.chartData;
-            // console.log('i am here');
-            console.log(_this.quizData);
         });
     };
     DetailsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -3959,7 +4143,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-mainnav4>\n  <div>\n    <h1 style=\"text-align: center\">Analytics by Tag</h1>\n    <br /><br />\n    <div id=\"accordion\">\n      <div class=\"card\">\n        <div class=\"card-header\" id=\"headingOne\">\n          <h5 class=\"mb-0\">\n            <button class=\"btn btn-link\" data-toggle=\"collapse\" data-animation=\"false\" data-target=\"#collapseOne\" aria-expanded=\"false\"\n              aria-controls=\"collapseOne\">\n              Collapsible Group Item #1\n            </button>\n          </h5>\n        </div>\n\n        <div id=\"collapseOne\" class=\"collapse show\" aria-labelledby=\"headingOne\" data-parent=\"#accordion\">\n          <div class=\"card-body\">\n            <div class=\"row\">\n              <div class=\"col-md-6\">\n                <div *ngIf=\"barChartLabels\">\n                  <canvas baseChart [datasets]=\"barChartData\" [labels]=\"barChartLabels\" [options]=\"barChartOptions\"\n                    [plugins]=\"barChartPlugins\" [legend]=\"barChartLegend\" [chartType]=\"barChartType\">\n                  </canvas>\n                </div>\n              </div>\n              <div class=\"col-md-6\">\n                <div *ngIf=\"radarChartLabels\">\n                  <canvas baseChart [datasets]=\"radarChartData\" [options]=\"radarChartOptions\"\n                    [labels]=\"radarChartLabels\" [chartType]=\"radarChartType\">\n                  </canvas>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <br /><br />\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n      class=\"row-border hover table table-bordered table-striped\">\n      <thead class=\"thead-dark\">\n        <tr>\n          <th scope=\"col\">#S. No.</th>\n          <th scope=\"col\">Tag Name</th>\n          <th scope=\"col\">No. Of Quiz</th>\n          <th scope=\"col\">High Score</th>\n          <th scope=\"col\">Low Score</th>\n          <th scope=\"col\">Average Score</th>\n          <th scope=\"col\">Accuracy</th>\n        </tr>\n      </thead>\n      <tbody>\n        <ng-container *ngFor=\"let item of tagAnalysisList;index as i;\">\n          <tr>\n            <th scope=\"row\">{{i+1}}</th>\n            <td scope=\"row\">{{item.SubjectName}}</td>\n            <td scope=\"row\">{{item.Properties.NoOfQuiz}}</td>\n            <td scope=\"row\">{{item.Properties.HighestScore}}</td>\n            <td scope=\"row\">{{item.Properties.LowestScore}}</td>\n            <td scope=\"row\">{{item.Properties.AverageMarks}}</td>\n            <td scope=\"row\">{{item.Properties.Accuracy}}</td>\n          </tr>\n        </ng-container>\n      </tbody>\n    </table>\n  </div>\n</app-mainnav4>\n\n"
+module.exports = "<app-mainnav4>\n  <div>\n    <h1 style=\"text-align: center\">Analytics by Tag</h1>\n    <br /><br />\n    <div id=\"accordion\">\n      <div class=\"card\">\n        <div class=\"card-header\" id=\"headingOne\">\n          <h5 class=\"mb-0\">\n            <button class=\"btn btn-link\" data-toggle=\"collapse\" data-animation=\"false\" data-target=\"#collapseOne\"\n              aria-expanded=\"false\" aria-controls=\"collapseOne\">\n              Collapsible Group Item #1\n            </button>\n          </h5>\n        </div>\n\n        <div id=\"collapseOne\" class=\"collapse show\" aria-labelledby=\"headingOne\" data-parent=\"#accordion\">\n          <div class=\"card-body\">\n            <div class=\"row\">\n              <div class=\"col-md-6\">\n                <div *ngIf=\"barChartLabels\">\n                  <canvas baseChart [datasets]=\"barChartData\" [labels]=\"barChartLabels\" [options]=\"barChartOptions\"\n                    [plugins]=\"barChartPlugins\" [legend]=\"barChartLegend\" [chartType]=\"barChartType\">\n                  </canvas>\n                </div>\n              </div>\n              <div class=\"col-md-6\">\n                <div *ngIf=\"radarChartLabels\">\n                  <canvas baseChart [datasets]=\"radarChartData\" [options]=\"radarChartOptions\"\n                    [labels]=\"radarChartLabels\" [chartType]=\"radarChartType\">\n                  </canvas>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <br /><br />\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n      class=\"row-border hover table table-bordered table-striped\">\n      <thead class=\"thead-dark\">\n        <tr>\n          <th scope=\"col\">#S. No.</th>\n          <th scope=\"col\">Tag Name</th>\n          <th scope=\"col\">No. Of Quiz</th>\n          <th scope=\"col\">High Score</th>\n          <th scope=\"col\">Low Score</th>\n          <th scope=\"col\">Average Score</th>\n          <th scope=\"col\">Accuracy</th>\n        </tr>\n      </thead>\n      <tbody>\n        <ng-container *ngFor=\"let item of tagAnalysisList;index as i;\">\n          <tr>\n            <th scope=\"row\">{{i+1}}</th>\n            <td scope=\"row\">{{item.SubjectName}}</td>\n            <td scope=\"row\">{{item.Properties.NoOfQuiz}}</td>\n            <td scope=\"row\">{{item.Properties.HighestScore}}</td>\n            <td scope=\"row\">{{item.Properties.LowestScore}}</td>\n            <td scope=\"row\">{{item.Properties.AverageMarks}}</td>\n            <td scope=\"row\">{{item.Properties.Accuracy}}</td>\n          </tr>\n        </ng-container>\n      </tbody>\n    </table>\n  </div>\n</app-mainnav4>"
 
 /***/ }),
 
@@ -3995,7 +4179,6 @@ var AnalyticsByTagComponent = /** @class */ (function () {
         this.name = 'high';
         this.barChartOptions = {
             responsive: true,
-            // We use these empty structures as placeholders for dynamic theming.
             scales: { xAxes: [{}], yAxes: [{}] },
             plugins: {
                 datalabels: {
@@ -4121,11 +4304,9 @@ var AnalyticsByUserComponent = /** @class */ (function () {
         this.service.getAllUsers().subscribe(function (res) {
             _this.allUsers = res;
             _this.dtTrigger.next();
-            console.log(_this.allUsers);
         });
     };
     AnalyticsByUserComponent.prototype.viewUserDetails = function (index) {
-        console.log(index);
         var dialogConfig = new _angular_material_dialog__WEBPACK_IMPORTED_MODULE_4__["MatDialogConfig"]();
         dialogConfig.autoFocus = true;
         dialogConfig.width = "90%";
@@ -4156,7 +4337,7 @@ var AnalyticsByUserComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n.zoom {\n  \n  /* background-color: green; */\n  transition: -webkit-transform .2s;\n  transition: transform .2s;\n  transition: transform .2s, -webkit-transform .2s; /* Animation */\n  \n}\n\n.zoom:hover {\n    margin: 0 auto;\n  -webkit-transform: scale(1.5);\n          transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcmVwb3J0aW5nLXVzZXIvYW5hbHl0aWNzLWJ5LXVzZXIvdmlldy11c2VyLWRldGFpbHMvdmlldy11c2VyLWRldGFpbHMuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQ0E7O0VBRUUsNkJBQTZCO0VBQzdCLGlDQUF5QjtFQUF6Qix5QkFBeUI7RUFBekIsZ0RBQXlCLEVBQUUsY0FBYzs7QUFFM0M7O0FBRUE7SUFDSSxjQUFjO0VBQ2hCLDZCQUFxQjtVQUFyQixxQkFBcUIsRUFBRSxxRkFBcUY7QUFDOUciLCJmaWxlIjoic3JjL2FwcC9yZXBvcnRpbmctdXNlci9hbmFseXRpY3MtYnktdXNlci92aWV3LXVzZXItZGV0YWlscy92aWV3LXVzZXItZGV0YWlscy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXG4uem9vbSB7XG4gIFxuICAvKiBiYWNrZ3JvdW5kLWNvbG9yOiBncmVlbjsgKi9cbiAgdHJhbnNpdGlvbjogdHJhbnNmb3JtIC4yczsgLyogQW5pbWF0aW9uICovXG4gIFxufVxuXG4uem9vbTpob3ZlciB7XG4gICAgbWFyZ2luOiAwIGF1dG87XG4gIHRyYW5zZm9ybTogc2NhbGUoMS41KTsgLyogKDE1MCUgem9vbSAtIE5vdGU6IGlmIHRoZSB6b29tIGlzIHRvbyBsYXJnZSwgaXQgd2lsbCBnbyBvdXRzaWRlIG9mIHRoZSB2aWV3cG9ydCkgKi9cbn1cbiJdfQ== */"
+module.exports = "\n.zoom {\n  transition: -webkit-transform .2s;\n  transition: transform .2s;\n  transition: transform .2s, -webkit-transform .2s;\n}\n\n.zoom:hover {\n    margin: 0 auto;\n  -webkit-transform: scale(1.5);\n          transform: scale(1.5); \n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcmVwb3J0aW5nLXVzZXIvYW5hbHl0aWNzLWJ5LXVzZXIvdmlldy11c2VyLWRldGFpbHMvdmlldy11c2VyLWRldGFpbHMuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQ0E7RUFDRSxpQ0FBeUI7RUFBekIseUJBQXlCO0VBQXpCLGdEQUF5QjtBQUMzQjs7QUFFQTtJQUNJLGNBQWM7RUFDaEIsNkJBQXFCO1VBQXJCLHFCQUFxQjtBQUN2QiIsImZpbGUiOiJzcmMvYXBwL3JlcG9ydGluZy11c2VyL2FuYWx5dGljcy1ieS11c2VyL3ZpZXctdXNlci1kZXRhaWxzL3ZpZXctdXNlci1kZXRhaWxzLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcbi56b29tIHtcbiAgdHJhbnNpdGlvbjogdHJhbnNmb3JtIC4ycztcbn1cblxuLnpvb206aG92ZXIge1xuICAgIG1hcmdpbjogMCBhdXRvO1xuICB0cmFuc2Zvcm06IHNjYWxlKDEuNSk7IFxufVxuIl19 */"
 
 /***/ }),
 
@@ -4167,7 +4348,7 @@ module.exports = "\n.zoom {\n  \n  /* background-color: green; */\n  transition:
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-dialog-content>\n  <div class=\"row\">\n    <div style=\"display: block;\n    margin-left: auto;\n    margin-right: auto;\n    width: 50%;\" *ngIf=\"polarAreaChartData\">\n      <div>\n        <div style=\"display: block\">\n          <canvas baseChart [data]=\"polarAreaChartData\" [labels]=\"polarAreaChartLabels\" [legend]=\"polarAreaLegend\"\n            [chartType]=\"polarAreaChartType\">\n          </canvas>\n        </div>\n      </div>\n    </div>\n    <div>\n      <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n        <mat-icon>clear</mat-icon>\n      </button>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col\">\n      <h3>{{data.FirstName}}&nbsp;&nbsp;{{data.LastName}}--Performance Metrics</h3>\n    </div>\n   \n  </div>\n  <div *ngIf=\"data2\">\n    <div class=\"row\">\n      <div class=\"col zoom\">\n        <div class=\"card\" style=\"width: 18rem;\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">Highest-Score</h5>\n            <label class=\"card-text\">{{data2.HighestScore}}</label>\n          </div>\n        </div>\n      </div>\n      <div class=\"col zoom\">\n\n        <div class=\"card\" style=\"width: 18rem;\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">Lowest Score</h5>\n            <label class=\"card-text\">{{data2.LowestScore}}</label>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"col\">\n        <div class=\"card\" style=\"width: 18rem;\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">Accuracy</h5>\n            <label class=\"card-text\">{{data2.Accuracy}}</label>\n          </div>\n        </div>\n      </div>\n    </div>\n    <br>\n    <div class=\"row\">\n      <div class=\"col\">\n        <div class=\"card\" style=\"width: 18rem;\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">Performance</h5>\n            <label class=\"card-text\">{{data2.Performance}}</label>\n          </div>\n        </div>\n      </div>\n      <div class=\"col\">\n\n        <div class=\"card\" style=\"width: 18rem;\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">Average Score</h5>\n            <label class=\"card-text\">{{data2.AverageScore}}</label>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"col\">\n        <div class=\"card\" style=\"width: 18rem;\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">Total-Quiz-Count</h5>\n            <label class=\"card-text\">{{data2.TotalQuizCount}}</label>\n          </div>\n        </div>\n      </div>\n    </div>\n    <br>\n    <div class=\"row\">\n      <div class=\"col\">\n        <div class=\"card\" style=\"width: 18rem;\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">Scheduled Quizzes Given</h5>\n            <label class=\"card-text\">{{data2.NonMockCount}}</label>\n          </div>\n        </div>\n      </div>\n      <div class=\"col\">\n\n        <div class=\"card\" style=\"width: 18rem;\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">Practice Quizzes Given</h5>\n            <label class=\"card-text\">{{data2.MockCount}}</label>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"col\">\n        <div class=\"card\" style=\"width: 18rem;\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">Probability of Correctness</h5>\n            <label class=\"card-text\">{{data2.ProbabilityAnsweringCorrectly}}</label>\n          </div>\n        </div>\n      </div>\n    </div>\n    <br>\n  </div>\n</mat-dialog-content>\n<!-- \n<button type=\"button\" class=\"btn btn-primary btn-danger\" [mat-dialog-close]> Close</button> -->\n"
+module.exports = "<mat-dialog-content>\n  <div class=\"row\">\n    <div style=\"display: block;\n    margin-left: auto;\n    margin-right: auto;\n    width: 50%;\" *ngIf=\"polarAreaChartData\">\n      <div>\n        <div style=\"display: block\">\n          <canvas baseChart [data]=\"polarAreaChartData\" [labels]=\"polarAreaChartLabels\" [legend]=\"polarAreaLegend\"\n            [chartType]=\"polarAreaChartType\">\n          </canvas>\n        </div>\n      </div>\n    </div>\n    <div>\n      <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n        <mat-icon>clear</mat-icon>\n      </button>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col\">\n      <h3>{{data.FirstName}}&nbsp;&nbsp;{{data.LastName}}--Performance Metrics</h3>\n    </div>\n\n  </div>\n  <div *ngIf=\"data2\">\n    <div class=\"row\">\n      <div class=\"col sm-4\">\n        <div class=\"card\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">Highest-Score</h5>\n            <label class=\"card-text\">{{data2.HighestScore}}</label>\n          </div>\n        </div>\n      </div>\n      <div class=\"col sm-4\">\n        <div class=\"card\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">Lowest Score</h5>\n            <label class=\"card-text\">{{data2.LowestScore}}</label>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"col sm-4\">\n        <div class=\"card\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">Accuracy</h5>\n            <label class=\"card-text\">{{data2.Accuracy}}</label>\n          </div>\n        </div>\n      </div>\n    </div>\n    <br>\n    <div class=\"row\">\n      <div class=\"col sm-4\">\n        <div class=\"card\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">Performance</h5>\n            <label class=\"card-text\">{{data2.Performance}}</label>\n          </div>\n        </div>\n      </div>\n      <div class=\"col sm-4\">\n\n        <div class=\"card\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">Average Score</h5>\n            <label class=\"card-text\">{{data2.AverageScore}}</label>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"col sm-4\">\n        <div class=\"card\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">Total-Quiz-Count</h5>\n            <label class=\"card-text\">{{data2.TotalQuizCount}}</label>\n          </div>\n        </div>\n      </div>\n    </div>\n    <br>\n    <div class=\"row\">\n      <div class=\"col sm-4\">\n        <div class=\"card\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">Scheduled Quizzes Given</h5>\n            <label class=\"card-text\">{{data2.NonMockCount}}</label>\n          </div>\n        </div>\n      </div>\n      <div class=\"col sm-4\">\n\n        <div class=\"card\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">Practice Quizzes Given</h5>\n            <label class=\"card-text\">{{data2.MockCount}}</label>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"col sm-4\">\n        <div class=\"card\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">Probability of Correctness</h5>\n            <label class=\"card-text\">{{data2.ProbabilityAnsweringCorrectly}}</label>\n          </div>\n        </div>\n      </div>\n    </div>\n    <br>\n  </div>\n</mat-dialog-content>"
 
 /***/ }),
 
@@ -4210,13 +4391,10 @@ var ViewUserDetailsComponent = /** @class */ (function () {
             _this.data1.push(_this.data2.Accuracy);
             _this.data1.push(_this.data2.AverageScore);
             _this.polarAreaChartData = _this.data1;
-            console.log(_this.polarAreaChartData);
-            console.log(_this.data2);
         });
     };
     ViewUserDetailsComponent.prototype.chartHovered = function (_a) {
         var event = _a.event, active = _a.active;
-        console.log(event, active);
     };
     ViewUserDetailsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -4242,7 +4420,7 @@ var ViewUserDetailsComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".mat-sidenav-content {\n\toverflow-x: hidden;\n}\n.sidenav-container {\n\theight: 100%;\n}\n.sidenav-container a {\n\tcolor: rgb(255, 255, 255);\n\tfont-size: 16px;\n\tfont-family: 'Encode Sans Expanded', sans-serif;\n}\n.sidenav-container a i {\n\tmargin-right: 10px;\n}\n.sidenav-container a:hover,\n.sidenav-container a:focus {\n\tbackground-color: rgb(2, 93, 140) !important;\n}\n.sidenav {\n\twidth: 250px;\n\tbackground-color: rgb(1, 139, 188);\n}\n.sidenav .mat-toolbar {\n\tbackground: inherit;\n\tborder-bottom: 1px solid black;\n}\n.mat-toolbar {\n\t/* background-color: rgb(185, 185, 185); */\n\ttext-decoration: none;\n\t/* border-bottom: .2px solid #030e13; */\n}\n.ng-content {\n\tbackground-color: rgb(185, 185, 185);\n}\n.mat-toolbar span {\n\tcolor: rgb(7, 7, 7);\n}\n.mat-sidenav-content .mat-toolbar {\n\tbackground-color: rgb(190, 190, 190) !important;\n}\n.mat-sidenav-content {\n\tbackground-color: rgb(235, 235, 235) !important;\n}\n.mat-toolbar a {\n\tfont-size: 22px;\n}\n.mat-list-item {\n\tmargin-top: 10px;\n}\n.log {\n\tfont-size: 15px;\n\tcursor: pointer;\n\tcolor: rgb(255, 0, 0) !important;\n}\n.mat-toolbar.mat-primary {\n\tposition: -webkit-sticky;\n\tposition: sticky;\n\ttop: 0;\n\tz-index: 1;\n}\n.content {\n\tpadding: 30px 30px 0px 50px !important;\n\tmargin: 30px auto;\n}\n.spacer {\n\tflex: 1 1 auto;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcmVwb3J0aW5nLXVzZXIvbWFpbm5hdjQvbWFpbm5hdjQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtDQUNDLGtCQUFrQjtBQUNuQjtBQUNBO0NBQ0MsWUFBWTtBQUNiO0FBQ0E7Q0FDQyx5QkFBeUI7Q0FDekIsZUFBZTtDQUNmLCtDQUErQztBQUNoRDtBQUNBO0NBQ0Msa0JBQWtCO0FBQ25CO0FBQ0E7O0NBRUMsNENBQTRDO0FBQzdDO0FBQ0E7Q0FDQyxZQUFZO0NBQ1osa0NBQWtDO0FBQ25DO0FBRUE7Q0FDQyxtQkFBbUI7Q0FDbkIsOEJBQThCO0FBQy9CO0FBQ0E7Q0FDQywwQ0FBMEM7Q0FDMUMscUJBQXFCO0NBQ3JCLHVDQUF1QztBQUN4QztBQUNBO0NBQ0Msb0NBQW9DO0FBQ3JDO0FBQ0E7Q0FDQyxtQkFBbUI7QUFDcEI7QUFDQTtDQUNDLCtDQUErQztBQUNoRDtBQUNBO0NBQ0MsK0NBQStDO0FBQ2hEO0FBQ0E7Q0FDQyxlQUFlO0FBQ2hCO0FBQ0E7Q0FDQyxnQkFBZ0I7QUFDakI7QUFDQTtDQUNDLGVBQWU7Q0FDZixlQUFlO0NBQ2YsZ0NBQWdDO0FBQ2pDO0FBQ0E7Q0FDQyx3QkFBZ0I7Q0FBaEIsZ0JBQWdCO0NBQ2hCLE1BQU07Q0FDTixVQUFVO0FBQ1g7QUFDQTtDQUNDLHNDQUFzQztDQUN0QyxpQkFBaUI7QUFDbEI7QUFDQTtDQUNDLGNBQWM7QUFDZiIsImZpbGUiOiJzcmMvYXBwL3JlcG9ydGluZy11c2VyL21haW5uYXY0L21haW5uYXY0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubWF0LXNpZGVuYXYtY29udGVudCB7XG5cdG92ZXJmbG93LXg6IGhpZGRlbjtcbn1cbi5zaWRlbmF2LWNvbnRhaW5lciB7XG5cdGhlaWdodDogMTAwJTtcbn1cbi5zaWRlbmF2LWNvbnRhaW5lciBhIHtcblx0Y29sb3I6IHJnYigyNTUsIDI1NSwgMjU1KTtcblx0Zm9udC1zaXplOiAxNnB4O1xuXHRmb250LWZhbWlseTogJ0VuY29kZSBTYW5zIEV4cGFuZGVkJywgc2Fucy1zZXJpZjtcbn1cbi5zaWRlbmF2LWNvbnRhaW5lciBhIGkge1xuXHRtYXJnaW4tcmlnaHQ6IDEwcHg7XG59XG4uc2lkZW5hdi1jb250YWluZXIgYTpob3Zlcixcbi5zaWRlbmF2LWNvbnRhaW5lciBhOmZvY3VzIHtcblx0YmFja2dyb3VuZC1jb2xvcjogcmdiKDIsIDkzLCAxNDApICFpbXBvcnRhbnQ7XG59XG4uc2lkZW5hdiB7XG5cdHdpZHRoOiAyNTBweDtcblx0YmFja2dyb3VuZC1jb2xvcjogcmdiKDEsIDEzOSwgMTg4KTtcbn1cblxuLnNpZGVuYXYgLm1hdC10b29sYmFyIHtcblx0YmFja2dyb3VuZDogaW5oZXJpdDtcblx0Ym9yZGVyLWJvdHRvbTogMXB4IHNvbGlkIGJsYWNrO1xufVxuLm1hdC10b29sYmFyIHtcblx0LyogYmFja2dyb3VuZC1jb2xvcjogcmdiKDE4NSwgMTg1LCAxODUpOyAqL1xuXHR0ZXh0LWRlY29yYXRpb246IG5vbmU7XG5cdC8qIGJvcmRlci1ib3R0b206IC4ycHggc29saWQgIzAzMGUxMzsgKi9cbn1cbi5uZy1jb250ZW50IHtcblx0YmFja2dyb3VuZC1jb2xvcjogcmdiKDE4NSwgMTg1LCAxODUpO1xufVxuLm1hdC10b29sYmFyIHNwYW4ge1xuXHRjb2xvcjogcmdiKDcsIDcsIDcpO1xufVxuLm1hdC1zaWRlbmF2LWNvbnRlbnQgLm1hdC10b29sYmFyIHtcblx0YmFja2dyb3VuZC1jb2xvcjogcmdiKDE5MCwgMTkwLCAxOTApICFpbXBvcnRhbnQ7XG59XG4ubWF0LXNpZGVuYXYtY29udGVudCB7XG5cdGJhY2tncm91bmQtY29sb3I6IHJnYigyMzUsIDIzNSwgMjM1KSAhaW1wb3J0YW50O1xufVxuLm1hdC10b29sYmFyIGEge1xuXHRmb250LXNpemU6IDIycHg7XG59XG4ubWF0LWxpc3QtaXRlbSB7XG5cdG1hcmdpbi10b3A6IDEwcHg7XG59XG4ubG9nIHtcblx0Zm9udC1zaXplOiAxNXB4O1xuXHRjdXJzb3I6IHBvaW50ZXI7XG5cdGNvbG9yOiByZ2IoMjU1LCAwLCAwKSAhaW1wb3J0YW50O1xufVxuLm1hdC10b29sYmFyLm1hdC1wcmltYXJ5IHtcblx0cG9zaXRpb246IHN0aWNreTtcblx0dG9wOiAwO1xuXHR6LWluZGV4OiAxO1xufVxuLmNvbnRlbnQge1xuXHRwYWRkaW5nOiAzMHB4IDMwcHggMHB4IDUwcHggIWltcG9ydGFudDtcblx0bWFyZ2luOiAzMHB4IGF1dG87XG59XG4uc3BhY2VyIHtcblx0ZmxleDogMSAxIGF1dG87XG59XG4iXX0= */"
+module.exports = ".mat-sidenav-content {\n\toverflow-x: hidden;\n}\n.sidenav-container {\n\theight: 100%;\n}\n.sidenav-container a {\n\tcolor: rgb(255, 255, 255);\n\tfont-size: 16px;\n\tfont-family: 'Encode Sans Expanded', sans-serif;\n}\n.sidenav-container a i {\n\tmargin-right: 10px;\n}\n.sidenav-container a:hover,\n.sidenav-container a:focus {\n\tbackground-color: rgb(2, 93, 140) !important;\n}\n.sidenav {\n\twidth: 250px;\n\tbackground-color: rgb(1, 139, 188);\n}\n.sidenav .mat-toolbar {\n\tbackground: inherit;\n\tborder-bottom: 1px solid black;\n}\n.mat-toolbar {\n\ttext-decoration: none;\n}\n.ng-content {\n\tbackground-color: rgb(185, 185, 185);\n}\n.mat-toolbar span {\n\tcolor: rgb(7, 7, 7);\n}\n.mat-sidenav-content .mat-toolbar {\n\tbackground-color: rgb(190, 190, 190) !important;\n}\n.mat-sidenav-content {\n\tbackground-color: rgb(235, 235, 235) !important;\n}\n.mat-toolbar a {\n\tfont-size: 22px;\n}\n.mat-list-item {\n\tmargin-top: 10px;\n}\n.log {\n\tfont-size: 12px;\n\tcursor: pointer;\n\tcolor:black !important;\n}\n.mat-toolbar.mat-primary {\n\tposition: -webkit-sticky;\n\tposition: sticky;\n\ttop: 0;\n\tz-index: 1;\n}\n.content {\n\tpadding: 30px 30px 0px 50px !important;\n\tmargin: 30px auto;\n}\n.spacer {\n\tflex: 1 1 auto;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcmVwb3J0aW5nLXVzZXIvbWFpbm5hdjQvbWFpbm5hdjQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtDQUNDLGtCQUFrQjtBQUNuQjtBQUNBO0NBQ0MsWUFBWTtBQUNiO0FBQ0E7Q0FDQyx5QkFBeUI7Q0FDekIsZUFBZTtDQUNmLCtDQUErQztBQUNoRDtBQUNBO0NBQ0Msa0JBQWtCO0FBQ25CO0FBQ0E7O0NBRUMsNENBQTRDO0FBQzdDO0FBQ0E7Q0FDQyxZQUFZO0NBQ1osa0NBQWtDO0FBQ25DO0FBRUE7Q0FDQyxtQkFBbUI7Q0FDbkIsOEJBQThCO0FBQy9CO0FBQ0E7Q0FDQyxxQkFBcUI7QUFDdEI7QUFDQTtDQUNDLG9DQUFvQztBQUNyQztBQUNBO0NBQ0MsbUJBQW1CO0FBQ3BCO0FBQ0E7Q0FDQywrQ0FBK0M7QUFDaEQ7QUFDQTtDQUNDLCtDQUErQztBQUNoRDtBQUNBO0NBQ0MsZUFBZTtBQUNoQjtBQUNBO0NBQ0MsZ0JBQWdCO0FBQ2pCO0FBQ0E7Q0FDQyxlQUFlO0NBQ2YsZUFBZTtDQUNmLHNCQUFzQjtBQUN2QjtBQUNBO0NBQ0Msd0JBQWdCO0NBQWhCLGdCQUFnQjtDQUNoQixNQUFNO0NBQ04sVUFBVTtBQUNYO0FBQ0E7Q0FDQyxzQ0FBc0M7Q0FDdEMsaUJBQWlCO0FBQ2xCO0FBQ0E7Q0FDQyxjQUFjO0FBQ2YiLCJmaWxlIjoic3JjL2FwcC9yZXBvcnRpbmctdXNlci9tYWlubmF2NC9tYWlubmF2NC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm1hdC1zaWRlbmF2LWNvbnRlbnQge1xuXHRvdmVyZmxvdy14OiBoaWRkZW47XG59XG4uc2lkZW5hdi1jb250YWluZXIge1xuXHRoZWlnaHQ6IDEwMCU7XG59XG4uc2lkZW5hdi1jb250YWluZXIgYSB7XG5cdGNvbG9yOiByZ2IoMjU1LCAyNTUsIDI1NSk7XG5cdGZvbnQtc2l6ZTogMTZweDtcblx0Zm9udC1mYW1pbHk6ICdFbmNvZGUgU2FucyBFeHBhbmRlZCcsIHNhbnMtc2VyaWY7XG59XG4uc2lkZW5hdi1jb250YWluZXIgYSBpIHtcblx0bWFyZ2luLXJpZ2h0OiAxMHB4O1xufVxuLnNpZGVuYXYtY29udGFpbmVyIGE6aG92ZXIsXG4uc2lkZW5hdi1jb250YWluZXIgYTpmb2N1cyB7XG5cdGJhY2tncm91bmQtY29sb3I6IHJnYigyLCA5MywgMTQwKSAhaW1wb3J0YW50O1xufVxuLnNpZGVuYXYge1xuXHR3aWR0aDogMjUwcHg7XG5cdGJhY2tncm91bmQtY29sb3I6IHJnYigxLCAxMzksIDE4OCk7XG59XG5cbi5zaWRlbmF2IC5tYXQtdG9vbGJhciB7XG5cdGJhY2tncm91bmQ6IGluaGVyaXQ7XG5cdGJvcmRlci1ib3R0b206IDFweCBzb2xpZCBibGFjaztcbn1cbi5tYXQtdG9vbGJhciB7XG5cdHRleHQtZGVjb3JhdGlvbjogbm9uZTtcbn1cbi5uZy1jb250ZW50IHtcblx0YmFja2dyb3VuZC1jb2xvcjogcmdiKDE4NSwgMTg1LCAxODUpO1xufVxuLm1hdC10b29sYmFyIHNwYW4ge1xuXHRjb2xvcjogcmdiKDcsIDcsIDcpO1xufVxuLm1hdC1zaWRlbmF2LWNvbnRlbnQgLm1hdC10b29sYmFyIHtcblx0YmFja2dyb3VuZC1jb2xvcjogcmdiKDE5MCwgMTkwLCAxOTApICFpbXBvcnRhbnQ7XG59XG4ubWF0LXNpZGVuYXYtY29udGVudCB7XG5cdGJhY2tncm91bmQtY29sb3I6IHJnYigyMzUsIDIzNSwgMjM1KSAhaW1wb3J0YW50O1xufVxuLm1hdC10b29sYmFyIGEge1xuXHRmb250LXNpemU6IDIycHg7XG59XG4ubWF0LWxpc3QtaXRlbSB7XG5cdG1hcmdpbi10b3A6IDEwcHg7XG59XG4ubG9nIHtcblx0Zm9udC1zaXplOiAxMnB4O1xuXHRjdXJzb3I6IHBvaW50ZXI7XG5cdGNvbG9yOmJsYWNrICFpbXBvcnRhbnQ7XG59XG4ubWF0LXRvb2xiYXIubWF0LXByaW1hcnkge1xuXHRwb3NpdGlvbjogc3RpY2t5O1xuXHR0b3A6IDA7XG5cdHotaW5kZXg6IDE7XG59XG4uY29udGVudCB7XG5cdHBhZGRpbmc6IDMwcHggMzBweCAwcHggNTBweCAhaW1wb3J0YW50O1xuXHRtYXJnaW46IDMwcHggYXV0bztcbn1cbi5zcGFjZXIge1xuXHRmbGV4OiAxIDEgYXV0bztcbn1cbiJdfQ== */"
 
 /***/ }),
 
@@ -4253,7 +4431,7 @@ module.exports = ".mat-sidenav-content {\n\toverflow-x: hidden;\n}\n.sidenav-con
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-sidenav-container class=\"sidenav-container\">\n  <mat-sidenav #drawer class=\"sidenav\" fixedInViewport=\"true\"\n      [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\"\n      [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\n      [opened]=\"!(isHandset$ | async)\">\n      <mat-toolbar><a mat-list-item routerLink=\"/ru-dash\"><i class=\"fa fa-tachometer\" aria-hidden=\"true\"></i>  Dashboard</a></mat-toolbar>\n    <mat-nav-list>\n        <a mat-list-item routerLink=\"/ru-dash/ana-by-user\"><i class=\"fa fa-code\" aria-hidden=\"true\"></i> Analytics By User</a>\n        <a mat-list-item routerLink=\"/ru-dash/ana-by-tag\"><i class=\"fa fa-retweet\" aria-hidden=\"true\"></i>  AnaLytics By Tag</a>\n        <a mat-list-item routerLink=\"/ru-dash/ana-by-quiz\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i> Analytics By Quiz</a>\n      </mat-nav-list>\n  </mat-sidenav>\n  <mat-sidenav-content>\n    <mat-toolbar color=\"primary\">\n      <button\n        type=\"button\"\n        aria-label=\"Toggle sidenav\"\n        mat-icon-button\n        (click)=\"drawer.toggle()\"\n        *ngIf=\"isHandset$ | async\">\n        <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\n      </button>\n      <span>Reporting User</span>\n      <span class=\"spacer\"></span>\n      <a class=\"log\" (click)=\"logout()\">Log Out</a>\n    </mat-toolbar>\n    <div class=\"content\">\n        <ng-content></ng-content>\n      </div>\n  </mat-sidenav-content>\n</mat-sidenav-container>\n"
+module.exports = "<mat-sidenav-container class=\"sidenav-container\">\n  <mat-sidenav #drawer class=\"sidenav\" fixedInViewport=\"true\"\n    [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\" [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\n    [opened]=\"!(isHandset$ | async)\">\n    <mat-toolbar><a mat-list-item routerLink=\"/ru-dash\"><i class=\"fa fa-tachometer\" aria-hidden=\"true\"></i>\n        Dashboard</a></mat-toolbar>\n    <mat-nav-list>\n      <a mat-list-item routerLink=\"/ru-dash/ana-by-user\"><i class=\"fa fa-code\" aria-hidden=\"true\"></i> Analytics By\n        User</a>\n      <a mat-list-item routerLink=\"/ru-dash/ana-by-tag\"><i class=\"fa fa-retweet\" aria-hidden=\"true\"></i> AnaLytics By\n        Tag</a>\n      <a mat-list-item routerLink=\"/ru-dash/ana-by-quiz\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\n        Analytics By Quiz</a>\n    </mat-nav-list>\n  </mat-sidenav>\n  <mat-sidenav-content>\n    <mat-toolbar color=\"primary\">\n      <button type=\"button\" aria-label=\"Toggle sidenav\" mat-icon-button (click)=\"drawer.toggle()\"\n        *ngIf=\"isHandset$ | async\">\n        <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\n      </button>\n      <span>Reporting User</span>\n      <span class=\"spacer\"></span>\n      <div class=\"btn-group\">\n        <button type=\"button\" class=\"btn btn-success btn-sm\">Choose-Role</button>\n        <button type=\"button\" class=\"btn btn-info dropdown-toggle dropdown-toggle-split\" data-toggle=\"dropdown\"\n          aria-haspopup=\"true\" aria-expanded=\"false\">\n          <span class=\"sr-only\">Toggle Dropdown</span>\n        </button>\n        <div class=\"dropdown-menu\">\n          <a class=\"dropdown-item\" style=\"color:black\" (click)=\"aab('/ta-dash')\"\n            *ngIf=\"roleMatch(['Test-Administrator'])\">\n            Test-Administrator</a>\n          <a class=\"dropdown-item\" style=\"color:black\" (click)=\"aab('/emp-dash')\" *ngIf=\"roleMatch(['Employee'])\">\n            Employee</a>\n          <a class=\"dropdown-item\" style=\"color:black\" (click)=\"aab('/cc-dash')\" *ngIf=\"roleMatch(['Content-Creator'])\">\n            Content-Creator</a>\n          <a class=\"dropdown-item\" style=\"color:black\" (click)=\"aab('/ru-dash')\" *ngIf=\"roleMatch(['Reporting-User'])\">\n            Reporting-User</a>\n        </div>\n      </div>\n      &nbsp;&nbsp;&nbsp;&nbsp;\n      <a class=\"log\" (click)=\"logout()\"><i aria-hidden=\"true\" class=\"fa fa-sign-out\"></i>Log Out</a>\n    </mat-toolbar>\n    <div class=\"content\">\n      <ng-content></ng-content>\n    </div>\n  </mat-sidenav-content>\n</mat-sidenav-container>"
 
 /***/ }),
 
@@ -4298,6 +4476,20 @@ var Mainnav4Component = /** @class */ (function () {
             }
         });
     };
+    Mainnav4Component.prototype.roleMatch = function (allowedRoles) {
+        var isMatch = false;
+        var userRoles = localStorage.getItem('role');
+        allowedRoles.forEach(function (element) {
+            if (userRoles.indexOf(element) > -1) {
+                isMatch = true;
+                return false;
+            }
+        });
+        return isMatch;
+    };
+    Mainnav4Component.prototype.aab = function (role) {
+        this.router.navigate([role]);
+    };
     Mainnav4Component.prototype.logout = function () {
         this.authService.signOut();
     };
@@ -4336,7 +4528,7 @@ module.exports = "@import url(https://fonts.googleapis.com/css?family=Roboto);\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-mainnav4>\n<div class=\"jumbotron\">\n    <div class=\"pic\">\n        <img class=\"left\" src=\"{{ profileUrl }}\" />\n    </div>\n    <div class=\"detail1\">\n      <h3>{{ Firstname }} {{ Lastname }}</h3>\n      <h6>{{ email }}</h6>\n    </div>\n    <div class=\"elem\">\n      <ul>\n        <li><a href=\"#\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\" style=\"color:#00acee;\"></i></a></li>\n        <li><a href=\"#\"><i class=\"fa fa-twitter\" aria-hidden=\"true\" style=\"color:#00acee;\"></i></a></li>\n        <li><a href=\"#\"><i class=\"fa fa-github\" aria-hidden=\"true\" style=\"color:black;\"></i></a></li>\n      </ul>\n    </div>\n  </div>\n  <div class=\"row\">\n      <div style=\"width: 50%;\n      margin-left: auto ;\n      margin-right: auto ;\"\n      class=\"box col-4\">\n        <div class=\"boxhalf\">\n          <h2>{{ TotalQuiz }}</h2>\n          <h6>Total Quizzess</h6>\n        </div>\n      </div>\n      <div style=\"width: 50%;\n        margin-left: auto ;\n        margin-right: auto ;\"\n        class=\"box col-4\">\n          <div class=\"boxhalf\">\n            <h2>{{ TotalQues }}</h2>\n            <h6>Total Questions</h6>            \n          </div>\n      </div>\n  </div>\n  <br/><br/>\n  <div class=\"row\">\n    <div style=\"width: 50%;\n    margin-left: auto ;\n    margin-right: auto ;\"\n    class=\"box col-4\">\n        <div class=\"boxhalf\">\n          <h2>{{ TotalSub }}</h2>\n          <h6>Total Subjects</h6>            \n        </div>\n    </div>\n    <div style=\"width: 50%;\n    margin-left: auto ;\n    margin-right: auto ;\"\n    class=\"box col-4\">\n        <div class=\"boxhalf\">\n          <h2>{{ TotalUser }}</h2>\n          <h6>User Registered</h6>\n        </div>\n    </div>\n  </div>\n</app-mainnav4>"
+module.exports = "<app-mainnav4>\n  <div class=\"jumbotron\">\n    <div class=\"pic\">\n      <img class=\"left\" src=\"{{ profileUrl }}\" />\n    </div>\n    <div class=\"detail1\">\n      <h3>{{ Firstname }} {{ Lastname }}</h3>\n      <h6>{{ email }}</h6>\n    </div>\n    <div class=\"elem\">\n      <ul>\n        <li><a href=\"#\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\" style=\"color:#00acee;\"></i></a></li>\n        <li><a href=\"#\"><i class=\"fa fa-twitter\" aria-hidden=\"true\" style=\"color:#00acee;\"></i></a></li>\n        <li><a href=\"#\"><i class=\"fa fa-github\" aria-hidden=\"true\" style=\"color:black;\"></i></a></li>\n      </ul>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div style=\"width: 50%;\n      margin-left: auto ;\n      margin-right: auto ;\" class=\"box col-4\">\n      <div class=\"boxhalf\">\n        <h2>{{ TotalQuiz }}</h2>\n        <h6>Total Quizzess</h6>\n      </div>\n    </div>\n    <div style=\"width: 50%;\n        margin-left: auto ;\n        margin-right: auto ;\" class=\"box col-4\">\n      <div class=\"boxhalf\">\n        <h2>{{ TotalQues }}</h2>\n        <h6>Total Questions</h6>\n      </div>\n    </div>\n  </div>\n  <br /><br />\n  <div class=\"row\">\n    <div style=\"width: 50%;\n    margin-left: auto ;\n    margin-right: auto ;\" class=\"box col-4\">\n      <div class=\"boxhalf\">\n        <h2>{{ TotalSub }}</h2>\n        <h6>Total Subjects</h6>\n      </div>\n    </div>\n    <div style=\"width: 50%;\n    margin-left: auto ;\n    margin-right: auto ;\" class=\"box col-4\">\n      <div class=\"boxhalf\">\n        <h2>{{ TotalUser }}</h2>\n        <h6>User Registered</h6>\n      </div>\n    </div>\n  </div>\n</app-mainnav4>"
 
 /***/ }),
 
@@ -4369,7 +4561,6 @@ var ReportingUserComponent = /** @class */ (function () {
         this.ngxService.stopBackground('do-background-things');
         this.ngxService.startLoader('loader-01');
         this.profileUrl = localStorage.getItem('imgurl');
-        console.log(this.profileUrl);
         this.loadUserDetails();
         this.loadUserProgress();
     };
@@ -4384,7 +4575,6 @@ var ReportingUserComponent = /** @class */ (function () {
     ReportingUserComponent.prototype.loadUserProgress = function () {
         var _this = this;
         this.service.getUserProgress().subscribe(function (res) {
-            console.log(res);
             _this.TotalQuiz = res.QuizCount;
             _this.TotalQues = res.QuestionCount;
             _this.TotalSub = res.SubjectCount;
@@ -4439,7 +4629,6 @@ var ReportingUserService = /** @class */ (function () {
         return this.http.get(this.rootUrl + 'ReportingUser/AnalyticsByUser/' + id);
     };
     ReportingUserService.prototype.getUserDetails = function () {
-        console.log(localStorage.getItem('email'));
         return this.http.get(this.rootUrl + 'GetUserDetails?email=' + localStorage.getItem('email'));
     };
     ReportingUserService.prototype.getAllQuizzes = function () {
@@ -4464,6 +4653,103 @@ var ReportingUserService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/services/loader-interceptor.service.ts":
+/*!********************************************************!*\
+  !*** ./src/app/services/loader-interceptor.service.ts ***!
+  \********************************************************/
+/*! exports provided: LoaderInterceptorService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoaderInterceptorService", function() { return LoaderInterceptorService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _services_loader_service_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/loader-service.service */ "./src/app/services/loader-service.service.ts");
+
+
+
+
+
+var LoaderInterceptorService = /** @class */ (function () {
+    function LoaderInterceptorService(loaderService) {
+        this.loaderService = loaderService;
+    }
+    LoaderInterceptorService.prototype.intercept = function (req, next) {
+        var _this = this;
+        this.showLoader();
+        return next.handle(req).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (event) {
+            if (event instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpResponse"]) {
+                _this.onEnd();
+            }
+        }, function (err) {
+            _this.onEnd();
+        }));
+    };
+    LoaderInterceptorService.prototype.onEnd = function () {
+        this.hideLoader();
+    };
+    LoaderInterceptorService.prototype.showLoader = function () {
+        this.loaderService.show();
+    };
+    LoaderInterceptorService.prototype.hideLoader = function () {
+        this.loaderService.hide();
+    };
+    LoaderInterceptorService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_loader_service_service__WEBPACK_IMPORTED_MODULE_4__["LoaderServiceService"]])
+    ], LoaderInterceptorService);
+    return LoaderInterceptorService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/loader-service.service.ts":
+/*!****************************************************!*\
+  !*** ./src/app/services/loader-service.service.ts ***!
+  \****************************************************/
+/*! exports provided: LoaderServiceService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoaderServiceService", function() { return LoaderServiceService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+
+
+
+var LoaderServiceService = /** @class */ (function () {
+    function LoaderServiceService() {
+        this.loaderSubject = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+        this.loaderState = this.loaderSubject.asObservable();
+    }
+    LoaderServiceService.prototype.show = function () {
+        this.loaderSubject.next({ show: true });
+    };
+    LoaderServiceService.prototype.hide = function () {
+        this.loaderSubject.next({ show: false });
+    };
+    LoaderServiceService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], LoaderServiceService);
+    return LoaderServiceService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/test-admin/add-user1/add-user1.component.css":
 /*!**************************************************************!*\
   !*** ./src/app/test-admin/add-user1/add-user1.component.css ***!
@@ -4482,7 +4768,7 @@ module.exports = "mat-dialog-content {\n\tposition: relative;\n}\n.pos {\n\tposi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\"><mat-icon>clear</mat-icon></button>\n<form #Userform=\"ngForm\" (submit)=\"onSubmit(Userform)\" autocomplete=\"off\">\n  <div *ngFor=\"let x of quiztakers; let i = index\"><br>\n    <input [id]=\"'quiztakers-'+i\" type=\"checkbox\" value=\"{{x.Id}}\" [checked]=\"x.selected\"\n      (change)=\"updateSelectedUsers(i)\">\n    <label>{{x.FirstName  }}{{x.LastName}}</label>\n  </div>\n  <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n</form>"
+module.exports = "<button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n  <mat-icon>clear</mat-icon>\n</button>\n<form #Userform=\"ngForm\" (submit)=\"onSubmit(Userform)\" autocomplete=\"off\">\n  <div *ngFor=\"let x of quiztakers; let i = index\"><br>\n    <input [id]=\"'quiztakers-'+i\" type=\"checkbox\" value=\"{{x.Id}}\" [checked]=\"x.selected\"\n      (change)=\"updateSelectedUsers(i)\">\n    <label>{{x.FirstName  }}{{x.LastName}}</label>\n  </div>\n  <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n</form>"
 
 /***/ }),
 
@@ -4559,7 +4845,7 @@ var AddUser1Component = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".mat-sidenav-content {\n\toverflow-x: hidden;\n}\n.sidenav-container {\n\theight: 100%;\n}\n.sidenav-container a {\n\tcolor: rgb(255, 255, 255);\n\tfont-size: 16px;\n\tfont-family: 'Encode Sans Expanded', sans-serif;\n}\n.sidenav-container a i {\n\tmargin-right: 10px;\n}\n.sidenav-container a:hover,\n.sidenav-container a:focus {\n\tbackground-color: rgb(2, 93, 140) !important;\n}\n.sidenav {\n\twidth: 250px;\n\tbackground-color: rgb(1, 139, 188);\n}\n.sidenav .mat-toolbar {\n\tbackground: inherit;\n\tborder-bottom: 1px solid black;\n}\n.mat-toolbar {\n\t/* background-color: rgb(185, 185, 185); */\n\ttext-decoration: none;\n\t/* border-bottom: .2px solid #030e13; */\n}\n.ng-content {\n\tbackground-color: rgb(185, 185, 185);\n}\n.mat-toolbar span {\n\tcolor: rgb(7, 7, 7);\n}\n.mat-sidenav-content .mat-toolbar {\n\tbackground-color: rgb(190, 190, 190) !important;\n}\n.mat-sidenav-content {\n\tbackground-color: rgb(235, 235, 235) !important;\n}\n.mat-toolbar a {\n\tfont-size: 22px;\n}\n.mat-list-item {\n\tmargin-top: 10px;\n}\n.log {\n\tfont-size: 15px;\n\tcursor: pointer;\n\tcolor: rgb(255, 0, 0) !important;\n}\n.mat-toolbar.mat-primary {\n\tposition: -webkit-sticky;\n\tposition: sticky;\n\ttop: 0;\n\tz-index: 1;\n}\n.content {\n\tpadding: 30px 30px 0px 50px !important;\n\tmargin: 30px auto;\n}\n.spacer {\n\tflex: 1 1 auto;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGVzdC1hZG1pbi9tYWluLW5hdjIvbWFpbi1uYXYyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Q0FDQyxrQkFBa0I7QUFDbkI7QUFDQTtDQUNDLFlBQVk7QUFDYjtBQUNBO0NBQ0MseUJBQXlCO0NBQ3pCLGVBQWU7Q0FDZiwrQ0FBK0M7QUFDaEQ7QUFDQTtDQUNDLGtCQUFrQjtBQUNuQjtBQUNBOztDQUVDLDRDQUE0QztBQUM3QztBQUNBO0NBQ0MsWUFBWTtDQUNaLGtDQUFrQztBQUNuQztBQUVBO0NBQ0MsbUJBQW1CO0NBQ25CLDhCQUE4QjtBQUMvQjtBQUNBO0NBQ0MsMENBQTBDO0NBQzFDLHFCQUFxQjtDQUNyQix1Q0FBdUM7QUFDeEM7QUFDQTtDQUNDLG9DQUFvQztBQUNyQztBQUNBO0NBQ0MsbUJBQW1CO0FBQ3BCO0FBQ0E7Q0FDQywrQ0FBK0M7QUFDaEQ7QUFDQTtDQUNDLCtDQUErQztBQUNoRDtBQUNBO0NBQ0MsZUFBZTtBQUNoQjtBQUNBO0NBQ0MsZ0JBQWdCO0FBQ2pCO0FBQ0E7Q0FDQyxlQUFlO0NBQ2YsZUFBZTtDQUNmLGdDQUFnQztBQUNqQztBQUNBO0NBQ0Msd0JBQWdCO0NBQWhCLGdCQUFnQjtDQUNoQixNQUFNO0NBQ04sVUFBVTtBQUNYO0FBQ0E7Q0FDQyxzQ0FBc0M7Q0FDdEMsaUJBQWlCO0FBQ2xCO0FBQ0E7Q0FDQyxjQUFjO0FBQ2YiLCJmaWxlIjoic3JjL2FwcC90ZXN0LWFkbWluL21haW4tbmF2Mi9tYWluLW5hdjIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tYXQtc2lkZW5hdi1jb250ZW50IHtcblx0b3ZlcmZsb3cteDogaGlkZGVuO1xufVxuLnNpZGVuYXYtY29udGFpbmVyIHtcblx0aGVpZ2h0OiAxMDAlO1xufVxuLnNpZGVuYXYtY29udGFpbmVyIGEge1xuXHRjb2xvcjogcmdiKDI1NSwgMjU1LCAyNTUpO1xuXHRmb250LXNpemU6IDE2cHg7XG5cdGZvbnQtZmFtaWx5OiAnRW5jb2RlIFNhbnMgRXhwYW5kZWQnLCBzYW5zLXNlcmlmO1xufVxuLnNpZGVuYXYtY29udGFpbmVyIGEgaSB7XG5cdG1hcmdpbi1yaWdodDogMTBweDtcbn1cbi5zaWRlbmF2LWNvbnRhaW5lciBhOmhvdmVyLFxuLnNpZGVuYXYtY29udGFpbmVyIGE6Zm9jdXMge1xuXHRiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMiwgOTMsIDE0MCkgIWltcG9ydGFudDtcbn1cbi5zaWRlbmF2IHtcblx0d2lkdGg6IDI1MHB4O1xuXHRiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMSwgMTM5LCAxODgpO1xufVxuXG4uc2lkZW5hdiAubWF0LXRvb2xiYXIge1xuXHRiYWNrZ3JvdW5kOiBpbmhlcml0O1xuXHRib3JkZXItYm90dG9tOiAxcHggc29saWQgYmxhY2s7XG59XG4ubWF0LXRvb2xiYXIge1xuXHQvKiBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMTg1LCAxODUsIDE4NSk7ICovXG5cdHRleHQtZGVjb3JhdGlvbjogbm9uZTtcblx0LyogYm9yZGVyLWJvdHRvbTogLjJweCBzb2xpZCAjMDMwZTEzOyAqL1xufVxuLm5nLWNvbnRlbnQge1xuXHRiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMTg1LCAxODUsIDE4NSk7XG59XG4ubWF0LXRvb2xiYXIgc3BhbiB7XG5cdGNvbG9yOiByZ2IoNywgNywgNyk7XG59XG4ubWF0LXNpZGVuYXYtY29udGVudCAubWF0LXRvb2xiYXIge1xuXHRiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMTkwLCAxOTAsIDE5MCkgIWltcG9ydGFudDtcbn1cbi5tYXQtc2lkZW5hdi1jb250ZW50IHtcblx0YmFja2dyb3VuZC1jb2xvcjogcmdiKDIzNSwgMjM1LCAyMzUpICFpbXBvcnRhbnQ7XG59XG4ubWF0LXRvb2xiYXIgYSB7XG5cdGZvbnQtc2l6ZTogMjJweDtcbn1cbi5tYXQtbGlzdC1pdGVtIHtcblx0bWFyZ2luLXRvcDogMTBweDtcbn1cbi5sb2cge1xuXHRmb250LXNpemU6IDE1cHg7XG5cdGN1cnNvcjogcG9pbnRlcjtcblx0Y29sb3I6IHJnYigyNTUsIDAsIDApICFpbXBvcnRhbnQ7XG59XG4ubWF0LXRvb2xiYXIubWF0LXByaW1hcnkge1xuXHRwb3NpdGlvbjogc3RpY2t5O1xuXHR0b3A6IDA7XG5cdHotaW5kZXg6IDE7XG59XG4uY29udGVudCB7XG5cdHBhZGRpbmc6IDMwcHggMzBweCAwcHggNTBweCAhaW1wb3J0YW50O1xuXHRtYXJnaW46IDMwcHggYXV0bztcbn1cbi5zcGFjZXIge1xuXHRmbGV4OiAxIDEgYXV0bztcbn1cbiJdfQ== */"
+module.exports = ".mat-sidenav-content {\n\toverflow-x: hidden;\n}\n.sidenav-container {\n\theight: 100%;\n}\n.sidenav-container a {\n\tcolor: rgb(255, 255, 255);\n\tfont-size: 16px;\n\tfont-family: 'Encode Sans Expanded', sans-serif;\n}\n.sidenav-container a i {\n\tmargin-right: 10px;\n}\n.sidenav-container a:hover,\n.sidenav-container a:focus {\n\tbackground-color: rgb(2, 93, 140) !important;\n}\n.sidenav {\n\twidth: 250px;\n\tbackground-color: rgb(1, 139, 188);\n}\n.sidenav .mat-toolbar {\n\tbackground: inherit;\n\tborder-bottom: 1px solid black;\n}\n.mat-toolbar {\n\t/* background-color: rgb(185, 185, 185); */\n\ttext-decoration: none;\n\t/* border-bottom: .2px solid #030e13; */\n}\n.ng-content {\n\tbackground-color: rgb(185, 185, 185);\n}\n.mat-toolbar span {\n\tcolor: rgb(7, 7, 7);\n}\n.mat-sidenav-content .mat-toolbar {\n\tbackground-color: rgb(190, 190, 190) !important;\n}\n.mat-sidenav-content {\n\tbackground-color: rgb(235, 235, 235) !important;\n}\n.mat-toolbar a {\n\tfont-size: 22px;\n}\n.mat-list-item {\n\tmargin-top: 10px;\n}\n.log {\n\tfont-size: 12px;\n\tcursor: pointer;\n\tcolor:black !important;\n}\n.mat-toolbar.mat-primary {\n\tposition: -webkit-sticky;\n\tposition: sticky;\n\ttop: 0;\n\tz-index: 1;\n}\n.content {\n\tpadding: 30px 30px 0px 50px !important;\n\tmargin: 30px auto;\n}\n.spacer {\n\tflex: 1 1 auto;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGVzdC1hZG1pbi9tYWluLW5hdjIvbWFpbi1uYXYyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Q0FDQyxrQkFBa0I7QUFDbkI7QUFDQTtDQUNDLFlBQVk7QUFDYjtBQUNBO0NBQ0MseUJBQXlCO0NBQ3pCLGVBQWU7Q0FDZiwrQ0FBK0M7QUFDaEQ7QUFDQTtDQUNDLGtCQUFrQjtBQUNuQjtBQUNBOztDQUVDLDRDQUE0QztBQUM3QztBQUNBO0NBQ0MsWUFBWTtDQUNaLGtDQUFrQztBQUNuQztBQUVBO0NBQ0MsbUJBQW1CO0NBQ25CLDhCQUE4QjtBQUMvQjtBQUNBO0NBQ0MsMENBQTBDO0NBQzFDLHFCQUFxQjtDQUNyQix1Q0FBdUM7QUFDeEM7QUFDQTtDQUNDLG9DQUFvQztBQUNyQztBQUNBO0NBQ0MsbUJBQW1CO0FBQ3BCO0FBQ0E7Q0FDQywrQ0FBK0M7QUFDaEQ7QUFDQTtDQUNDLCtDQUErQztBQUNoRDtBQUNBO0NBQ0MsZUFBZTtBQUNoQjtBQUNBO0NBQ0MsZ0JBQWdCO0FBQ2pCO0FBQ0E7Q0FDQyxlQUFlO0NBQ2YsZUFBZTtDQUNmLHNCQUFzQjtBQUN2QjtBQUNBO0NBQ0Msd0JBQWdCO0NBQWhCLGdCQUFnQjtDQUNoQixNQUFNO0NBQ04sVUFBVTtBQUNYO0FBQ0E7Q0FDQyxzQ0FBc0M7Q0FDdEMsaUJBQWlCO0FBQ2xCO0FBQ0E7Q0FDQyxjQUFjO0FBQ2YiLCJmaWxlIjoic3JjL2FwcC90ZXN0LWFkbWluL21haW4tbmF2Mi9tYWluLW5hdjIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tYXQtc2lkZW5hdi1jb250ZW50IHtcblx0b3ZlcmZsb3cteDogaGlkZGVuO1xufVxuLnNpZGVuYXYtY29udGFpbmVyIHtcblx0aGVpZ2h0OiAxMDAlO1xufVxuLnNpZGVuYXYtY29udGFpbmVyIGEge1xuXHRjb2xvcjogcmdiKDI1NSwgMjU1LCAyNTUpO1xuXHRmb250LXNpemU6IDE2cHg7XG5cdGZvbnQtZmFtaWx5OiAnRW5jb2RlIFNhbnMgRXhwYW5kZWQnLCBzYW5zLXNlcmlmO1xufVxuLnNpZGVuYXYtY29udGFpbmVyIGEgaSB7XG5cdG1hcmdpbi1yaWdodDogMTBweDtcbn1cbi5zaWRlbmF2LWNvbnRhaW5lciBhOmhvdmVyLFxuLnNpZGVuYXYtY29udGFpbmVyIGE6Zm9jdXMge1xuXHRiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMiwgOTMsIDE0MCkgIWltcG9ydGFudDtcbn1cbi5zaWRlbmF2IHtcblx0d2lkdGg6IDI1MHB4O1xuXHRiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMSwgMTM5LCAxODgpO1xufVxuXG4uc2lkZW5hdiAubWF0LXRvb2xiYXIge1xuXHRiYWNrZ3JvdW5kOiBpbmhlcml0O1xuXHRib3JkZXItYm90dG9tOiAxcHggc29saWQgYmxhY2s7XG59XG4ubWF0LXRvb2xiYXIge1xuXHQvKiBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMTg1LCAxODUsIDE4NSk7ICovXG5cdHRleHQtZGVjb3JhdGlvbjogbm9uZTtcblx0LyogYm9yZGVyLWJvdHRvbTogLjJweCBzb2xpZCAjMDMwZTEzOyAqL1xufVxuLm5nLWNvbnRlbnQge1xuXHRiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMTg1LCAxODUsIDE4NSk7XG59XG4ubWF0LXRvb2xiYXIgc3BhbiB7XG5cdGNvbG9yOiByZ2IoNywgNywgNyk7XG59XG4ubWF0LXNpZGVuYXYtY29udGVudCAubWF0LXRvb2xiYXIge1xuXHRiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMTkwLCAxOTAsIDE5MCkgIWltcG9ydGFudDtcbn1cbi5tYXQtc2lkZW5hdi1jb250ZW50IHtcblx0YmFja2dyb3VuZC1jb2xvcjogcmdiKDIzNSwgMjM1LCAyMzUpICFpbXBvcnRhbnQ7XG59XG4ubWF0LXRvb2xiYXIgYSB7XG5cdGZvbnQtc2l6ZTogMjJweDtcbn1cbi5tYXQtbGlzdC1pdGVtIHtcblx0bWFyZ2luLXRvcDogMTBweDtcbn1cbi5sb2cge1xuXHRmb250LXNpemU6IDEycHg7XG5cdGN1cnNvcjogcG9pbnRlcjtcblx0Y29sb3I6YmxhY2sgIWltcG9ydGFudDtcbn1cbi5tYXQtdG9vbGJhci5tYXQtcHJpbWFyeSB7XG5cdHBvc2l0aW9uOiBzdGlja3k7XG5cdHRvcDogMDtcblx0ei1pbmRleDogMTtcbn1cbi5jb250ZW50IHtcblx0cGFkZGluZzogMzBweCAzMHB4IDBweCA1MHB4ICFpbXBvcnRhbnQ7XG5cdG1hcmdpbjogMzBweCBhdXRvO1xufVxuLnNwYWNlciB7XG5cdGZsZXg6IDEgMSBhdXRvO1xufVxuIl19 */"
 
 /***/ }),
 
@@ -4570,7 +4856,7 @@ module.exports = ".mat-sidenav-content {\n\toverflow-x: hidden;\n}\n.sidenav-con
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-sidenav-container class=\"sidenav-container\">\n  <mat-sidenav #drawer class=\"sidenav\" fixedInViewport=\"true\"\n    [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\" [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\n    [opened]=\"!(isHandset$ | async)\">\n    <mat-toolbar><a mat-list-item routerLink=\"/ta-dash\"><i class=\"fa fa-tachometer\" aria-hidden=\"true\"></i>\n        Dashboard</a></mat-toolbar>\n    <mat-nav-list>\n      <a mat-list-item routerLink=\"/ta-dash/retrieve-schedule\"><i class=\"fa fa-code\" aria-hidden=\"true\"></i>\n        Retrieve/Edit Schedule</a>\n      <a mat-list-item routerLink=\"/ta-dash/testAdminCreateScheDule\"><i class=\"fa fa-retweet\" aria-hidden=\"true\"></i>\n        Create Schedule</a>\n      <a mat-list-item routerLink=\"/ta-dash/archive-schedule\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\n        Archieved Schedule</a>\n      <a mat-list-item routerLink=\"/ta-dash/add-user\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i> Add/Delete User</a>\n    </mat-nav-list>\n  </mat-sidenav>\n  <mat-sidenav-content>\n    <mat-toolbar>\n      <button type=\"button\" aria-label=\"Toggle sidenav\" mat-icon-button (click)=\"drawer.toggle()\"\n        *ngIf=\"isHandset$ | async\">\n        <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\n      </button>\n      <span>Test Admin</span>\n      <span class=\"spacer\"></span>\n      <a class=\"log\" (click)=\"logout()\">Log Out</a>\n    </mat-toolbar>\n    <div class=\"content\">\n      <ng-content></ng-content>\n    </div>\n  </mat-sidenav-content>\n</mat-sidenav-container>"
+module.exports = "<mat-sidenav-container class=\"sidenav-container\">\n  <mat-sidenav #drawer class=\"sidenav\" fixedInViewport=\"true\"\n    [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\" [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\n    [opened]=\"!(isHandset$ | async)\">\n    <mat-toolbar><a mat-list-item routerLink=\"/ta-dash\"><i class=\"fa fa-tachometer\" aria-hidden=\"true\"></i>\n        Dashboard</a></mat-toolbar>\n    <mat-nav-list>\n      <a mat-list-item routerLink=\"/ta-dash/retrieve-schedule\"><i class=\"fa fa-code\" aria-hidden=\"true\"></i>\n        Retrieve/Edit Schedule</a>\n      <a mat-list-item routerLink=\"/ta-dash/testAdminCreateScheDule\"><i class=\"fa fa-retweet\" aria-hidden=\"true\"></i>\n        Create Schedule</a>\n      <a mat-list-item routerLink=\"/ta-dash/archive-schedule\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\n        Archieved Schedule</a>\n      <a mat-list-item routerLink=\"/ta-dash/add-user\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i> Add/Delete User</a>\n    </mat-nav-list>\n  </mat-sidenav>\n  <mat-sidenav-content>\n    <mat-toolbar>\n      <button type=\"button\" aria-label=\"Toggle sidenav\" mat-icon-button (click)=\"drawer.toggle()\"\n        *ngIf=\"isHandset$ | async\">\n        <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\n      </button>\n      <span>Test Admin</span>\n      <span class=\"spacer\"></span>\n      <div class=\"btn-group\">\n        <button type=\"button\" class=\"btn btn-success btn-sm\">Choose-Role</button>\n        <button type=\"button\" class=\"btn btn-info dropdown-toggle dropdown-toggle-split\" data-toggle=\"dropdown\"\n          aria-haspopup=\"true\" aria-expanded=\"false\">\n          <span class=\"sr-only\">Toggle Dropdown</span>\n        </button>\n        <div class=\"dropdown-menu\">\n          <a class=\"dropdown-item\" style=\"color:black\" (click)=\"aab('/ta-dash')\"\n            *ngIf=\"roleMatch(['Test-Administrator'])\">\n            Test-Administrator</a>\n          <a class=\"dropdown-item\" style=\"color:black\" (click)=\"aab('/emp-dash')\" *ngIf=\"roleMatch(['Employee'])\">\n            Employee</a>\n          <a class=\"dropdown-item\" style=\"color:black\" (click)=\"aab('/cc-dash')\" *ngIf=\"roleMatch(['Content-Creator'])\">\n            Content-Creator</a>\n          <a class=\"dropdown-item\" style=\"color:black\" (click)=\"aab('/ru-dash')\" *ngIf=\"roleMatch(['Reporting-User'])\">\n            Reporting-User</a>\n        </div>\n      </div>\n      &nbsp;&nbsp;&nbsp;&nbsp;\n      <a class=\"log\" (click)=\"logout()\"><i aria-hidden=\"true\" class=\"fa fa-sign-out\"></i>Log Out</a>\n    </mat-toolbar>\n    <div class=\"content\">\n      <ng-content></ng-content>\n    </div>\n  </mat-sidenav-content>\n</mat-sidenav-container>"
 
 /***/ }),
 
@@ -4616,6 +4902,20 @@ var MainNav2Component = /** @class */ (function () {
             }
         });
     };
+    MainNav2Component.prototype.roleMatch = function (allowedRoles) {
+        var isMatch = false;
+        var userRoles = localStorage.getItem('role');
+        allowedRoles.forEach(function (element) {
+            if (userRoles.indexOf(element) > -1) {
+                isMatch = true;
+                return false;
+            }
+        });
+        return isMatch;
+    };
+    MainNav2Component.prototype.aab = function (role) {
+        this.router.navigate([role]);
+    };
     MainNav2Component.prototype.logout = function () {
         this.authService.signOut();
     };
@@ -4653,7 +4953,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav2>\n  <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th scope=\"col\">#S. No.</th>\n        <th scope=\"col\">Quiz Name</th>\n        <th scope=\"col\">Start Date/Time</th>\n        <th scope=\"col\">End Date/Time</th>\n        <th scope=\"col\">Action</th>\n      </tr>\n    </thead>\n\n    <tbody>\n      <ng-container *ngFor=\"let item of scheduleList;index as i;\">\n        <tr>\n          <th scope=\"row\">{{i+1}}</th>\n          <td scope=\"row\">{{item.QuizName}}</td>\n          <td scope=\"row\">{{item.StartDateTime}}</td>\n          <td scope=\"row\">{{item.EndDateTime}}</td>\n          <td>\n            <a class=\"btn btn-sm btn-info text-black\" (click)=\"addUserToSchedule(item.QuizScheduleId,i+1)\"><i\n                class=\"fa fa-user-plus\"></i></a>\n            <a class=\"btn btn-sm btn-danger text-black\" (click)=\"deleteUserfromSchedule(item.QuizScheduleId,i+1)\"><i\n                class=\"fa fa-user-times\"></i></a>\n          </td>\n\n        </tr>\n      </ng-container>\n    </tbody>\n  </table>\n</app-main-nav2>"
+module.exports = "<app-main-nav2>\n  <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th scope=\"col\">#S. No.</th>\n        <th scope=\"col\">Quiz Name</th>\n        <th scope=\"col\">Start Date/Time</th>\n        <th scope=\"col\">End Date/Time</th>\n        <th scope=\"col\">Action</th>\n      </tr>\n    </thead>\n\n    <tbody>\n      <ng-container *ngFor=\"let item of scheduleList;index as i;\">\n        <tr>\n          <th>{{i+1}}</th>\n          <td>{{item.QuizName}}</td>\n          <td>{{item.StartDateTime}}</td>\n          <td>{{item.EndDateTime}}</td>\n          <td>\n            <a class=\"btn btn-sm btn-info text-black\" (click)=\"addUserToSchedule(item.QuizScheduleId,i+1)\"><i aria-hidden=\"true\"\n                class=\"fa fa-user-plus\"></i></a>\n            <a class=\"btn btn-sm btn-danger text-black\" (click)=\"deleteUserfromSchedule(item.QuizScheduleId,i+1)\"><i aria-hidden=\"true\"\n                class=\"fa fa-user-times\"></i></a>\n          </td>\n\n        </tr>\n      </ng-container>\n    </tbody>\n  </table>\n</app-main-nav2>"
 
 /***/ }),
 
@@ -4702,38 +5002,15 @@ var AddUserComponent = /** @class */ (function () {
         var _this = this;
         this.service.getSchedule(localStorage.getItem('uid')).subscribe(function (res) {
             _this.scheduleList = res;
-            console.log(_this.scheduleList);
             _this.dtTrigger.next();
         });
     };
-    // loadSpecificUsers(id: number) {
-    //   this.service.retrieveSpecificEmployees(id).subscribe((res: any) => {
-    //     res.forEach(obj => obj.selected = false);
-    //     this.quiztakers = res as User[];
-    //   })
-    // }
-    // updateSelectedUsers(index) {
-    //   this.quiztakers[index].selected = !this.quiztakers[index].selected;
-    // }
-    // onSubmit(form: NgForm) {
-    //   var quiztakerId = this.quiztakers.filter(Id => Id.selected).map(idSelected => idSelected.Id);
-    //   console.log(quiztakerId);
-    //   if (this.data != null) {
-    //     this.service.addUserInExistingSchedule(this.data, quiztakerId).subscribe(res => {
-    //       this.toastr.success('added succesfully');
-    //     });
-    //   }
-    //   else {
-    //     this.service.quiztakerId = quiztakerId;
-    //   }
-    // }
     AddUserComponent.prototype.addUserToSchedule = function (scheduleid, arrayindex) {
         var _this = this;
         var dialogConfig = new _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialogConfig"]();
         dialogConfig.autoFocus = true;
-        dialogConfig.width = "70%";
+        dialogConfig.width = '70%';
         dialogConfig.disableClose = true;
-        // this.service.readonlyStatus = false;
         dialogConfig.data = scheduleid;
         this.dialog.open(_add_user1_add_user1_component__WEBPACK_IMPORTED_MODULE_6__["AddUser1Component"], dialogConfig).afterClosed().subscribe(function (res) {
             _this.loadSchedule();
@@ -4743,11 +5020,11 @@ var AddUserComponent = /** @class */ (function () {
     };
     AddUserComponent.prototype.deleteUserfromSchedule = function (scheduleId, arrayIndex) {
         var _this = this;
+        console.log('delete user function');
         var dialogConfig = new _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialogConfig"]();
         dialogConfig.autoFocus = true;
-        dialogConfig.width = "70%";
+        dialogConfig.width = '70%';
         dialogConfig.disableClose = true;
-        // this.service.readonlyStatus = false;
         dialogConfig.data = scheduleId;
         this.service.deleteUserVisibility = true;
         this.dialog.open(_view_schedule_view_schedule_component__WEBPACK_IMPORTED_MODULE_7__["ViewScheduleComponent"], dialogConfig).afterClosed().subscribe(function (res) {
@@ -4792,7 +5069,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav2>\n  <div>\n    <br /><br /><br />\n    <h1 style=\"text-align: center\">List of Archived Schedules</h1>\n    <!-- <div class=\"row\">\n    <div>\n      <input style=\"margin-left: 5%; width: 40rem\" #searchField class=\"form-control mr-sm-2 border border-secondary\"\n        placeholder=\"Filter..\" aria-label=\"Filter\" #searchInput=\"ngModel\" [(ngModel)]=\"searchText\">\n    </div>\n    <div>\n      <select (change)=\"filterSubject($event)\" #dropdown style=\"margin-left :40%\" class=\"form-control border border-secondary\">\n        <option  selected value>Choose Difficulty Level</option>\n        <option value=\"Beginner\">Beginner</option>\n        <option value=\"Intermediate\">Intermediate</option>\n        <option value=\"Advanced\">Advanced</option>\n      </select>\n    </div>\n  </div> -->\n    <br /><br />\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n      class=\"row-border hover table table-bordered table-striped\">\n      <thead class=\"thead-dark\">\n        <tr>\n          <th scope=\"col\">#Schedule ID</th>\n          <th scope=\"col\">Quiz Name</th>\n          <th scope=\"col\">Start Date/Time</th>\n          <th scope=\"col\">End Date/Time</th>\n          <th scope=\"col\">Un-Archive</th>\n        </tr>\n      </thead>\n\n      <tbody>\n        <ng-container *ngFor=\"let item of ScheduleList;index as i;\">\n          <tr>\n            <th scope=\"row\">{{i+1}}</th>\n            <td scope=\"row\">{{item.QuizName}}</td>\n            <td scope=\"row\">{{item.StartDateTime}}</td>\n            <td scope=\"row\">{{item.EndDateTime}}</td>\n            <td style=\"text-align:center;\">\n              <a class=\"btn btn-sm btn-info text-white\" (click)=\"unarchiveSchedule(item.QuizScheduleId)\"><i\n                  class=\"fa fa-pencil\"></i></a>\n            </td>\n          </tr>\n        </ng-container>\n      </tbody>\n    </table>\n  </div>\n</app-main-nav2>"
+module.exports = "<app-main-nav2>\n  <div>\n    <br /><br /><br />\n    <h1 style=\"text-align: center\">List of Archived Schedules</h1>\n    <br /><br />\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n      class=\"row-border hover table table-bordered table-striped\">\n      <thead class=\"thead-dark\">\n        <tr>\n          <th scope=\"col\">#Schedule ID</th>\n          <th scope=\"col\">Quiz Name</th>\n          <th scope=\"col\">Start Date/Time</th>\n          <th scope=\"col\">End Date/Time</th>\n          <th scope=\"col\">Un-Archive</th>\n        </tr>\n      </thead>\n      <tbody>\n        <ng-container *ngFor=\"let item of ScheduleList;index as i;\">\n          <tr>\n            <th>{{i+1}}</th>\n            <td>{{item.QuizName}}</td>\n            <td>{{item.StartDateTime}}</td>\n            <td>{{item.EndDateTime}}</td>\n            <td style=\"text-align:center;\">\n              <a class=\"btn btn-sm btn-info text-white\" (click)=\"unarchiveSchedule(item.QuizScheduleId)\"><i aria-hidden=\"true\"\n                  class=\"fa fa-pencil\"></i></a>\n            </td>\n          </tr>\n        </ng-container>\n      </tbody>\n    </table>\n  </div>\n</app-main-nav2>"
 
 /***/ }),
 
@@ -4834,21 +5111,16 @@ var ArchivedScheduleComponent = /** @class */ (function () {
         var _this = this;
         this.service.getArchivedSchedules().subscribe(function (res) {
             _this.ScheduleList = res;
-            // this.dtTrigger.unsubscribe();
             _this.dtTrigger.next();
-            console.log(_this.ScheduleList);
         });
     };
     ArchivedScheduleComponent.prototype.unarchiveSchedule = function (id) {
         var _this = this;
-        console.log(id);
-        if (confirm('Are you sure you want to un-archive this quiz?')) {
+        if (confirm('Are you sure you want to un-archive this')) {
             this.service.unArchiveSchedule(id).subscribe(function (res) {
-                // console.log(res);
                 _this.toastr.success('Un-Archived Successfully', 'Assesment System');
+                _this.dtTrigger.unsubscribe();
                 _this.loadArchivedSchedules();
-                // this.dtTrigger.unsubscribe();
-                _this.dtTrigger.next();
             });
         }
     };
@@ -4889,7 +5161,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav2>\n  <h5 class=\"card-title\">Create Schedule</h5>\n  <form #form=\"ngForm\" (submit)=\"sub(form)\" autocomplete=\"off\">\n    <div class=\"form-row\">\n      <input type=\"hidden\" #CreatedBy=\"ngModel\" name=\"CreatedBy\" [(ngModel)]=\"CCreatedBy\">\n      <div class=\"form-group col-md-6\">\n        <label>Start Date Time:</label><br />\n        <input type=\"datetime-local\" [min]=\"date\" required name=\"StartDateTime\" #StartDateTime=\"ngModel\" [(ngModel)]=\"q1\">\n        <div class=\"validation-error\" *ngIf=\"StartDateTime.invalid && StartDateTime.touched\">This field is\n          required.\n        </div>\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label>End Date Time</label><br />\n        <input type=\"datetime-local\" [min]=\"q1\" required name=\"EndDateTime\" #EndDateTime=\"ngModel\" [(ngModel)]=\"q2\">\n        <div class=\"validation-error\" *ngIf=\"EndDateTime.invalid && EndDateTime.touched\">This field is\n          required.\n        </div>\n      </div>\n    </div>\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\">\n        <label>Select Quiz</label>\n        <select name=\"QuizId\" required #QuizId=\"ngModel\" [(ngModel)]=\"q3\" class=\"form-control\">\n          <option value=\"\">Choose</option>\n          <option *ngFor=\"let Quiz of QuizList\" value=\"{{Quiz.QuizId}}\">\n            {{Quiz.QuizName}}</option>\n        </select>\n        <div class=\"validation-error\" *ngIf=\"QuizId.invalid && QuizId.touched\">This field is required.</div>\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <button type=\"submit\" [disabled]=\"btndisable || form.invalid\" class=\"btn btn-primary btn-block\">Submit</button>\n    </div>\n  </form>\n</app-main-nav2>"
+module.exports = "<app-main-nav2>\n  <h5 class=\"card-title\">Create Schedule</h5>\n  <form #form=\"ngForm\" (submit)=\"sub(form)\" autocomplete=\"off\">\n    <div class=\"form-row\">\n      <input type=\"hidden\" #CreatedBy=\"ngModel\" name=\"CreatedBy\" [(ngModel)]=\"CCreatedBy\">\n      <div class=\"form-group col-md-6\">\n        <label>Start Date Time:<br />\n          <input type=\"datetime-local\" (focusout)=\"checkStartDate(StartDateTime)\" [min]=\"date\" required\n            name=\"StartDateTime\" #StartDateTime=\"ngModel\" [(ngModel)]=\"q1\">\n          <div class=\"validation-error\" *ngIf=\"(StartDateTime.invalid && StartDateTime.touched) || startDateValid \">This\n            field is wrong and required.\n          </div>\n        </label>\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label>End Date Time<br />\n          <input type=\"datetime-local\" (focusout)=\"checkEndDate(EndDateTime)\" required name=\"EndDateTime\" [min]=\"q1\"\n            #EndDateTime=\"ngModel\" [(ngModel)]=\"q2\">\n          <div class=\"validation-error\" *ngIf=\"(EndDateTime.invalid && EndDateTime.touched) || endDateValid\">This field\n            is\n            wrong and required.\n          </div>\n        </label>\n      </div>\n    </div>\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\">\n        <label>Select Quiz</label>\n        <select name=\"QuizId\" required #QuizId=\"ngModel\" [(ngModel)]=\"q3\" class=\"form-control\">\n          <option value=\"\">Choose</option>\n          <option *ngFor=\"let Quiz of QuizList\" value=\"{{Quiz.QuizId}}\">\n            {{Quiz.QuizName}}</option>\n        </select>\n        <div class=\"validation-error\" *ngIf=\"QuizId.invalid && QuizId.touched\">This field is required.</div>\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <button type=\"submit\" [disabled]=\"form.invalid || startDateValid || endDateValid\"\n        class=\"btn btn-primary btn-block\">Submit</button>\n    </div>\n  </form>\n</app-main-nav2>"
 
 /***/ }),
 
@@ -4921,34 +5193,31 @@ var CreateScheduleComponent = /** @class */ (function () {
         this.dialog = dialog;
         this.toastr = toastr;
         this.datePipe = datePipe;
-        this.q1 = "";
-        this.q2 = "";
-        this.q3 = "";
-        this.btndisable = false;
-        this.CCreatedBy = "";
-        this.date = this.datePipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
+        this.q1 = '';
+        this.q2 = '';
+        this.q3 = '';
+        this.btndisable = true;
+        this.startDateValid = false;
+        this.endDateValid = false;
+        this.CCreatedBy = '';
         this.scheduleUrl = 'localhost:4200//emp-dash/take-quiz/';
     }
     CreateScheduleComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.resetForm();
+        this.date = this.datePipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
         this.CCreatedBy = localStorage.getItem('uid');
         this.service.retriveAllQuizzes().subscribe(function (res) {
             _this.QuizList = res;
-            // console.log(this.QuizList);
-            //this.dateValidation();
         });
     };
-    // dateValidation(){
-    //   this.date = ;
-    // }
     CreateScheduleComponent.prototype.resetForm = function (form) {
         if (form != null) {
             form.resetForm();
         }
-        this.q1 = "";
-        this.q2 = "";
-        this.q3 = "";
+        this.q1 = '';
+        this.q2 = '';
+        this.q3 = '';
     };
     CreateScheduleComponent.prototype.sub = function (form) {
         var _this = this;
@@ -4956,6 +5225,31 @@ var CreateScheduleComponent = /** @class */ (function () {
             _this.toastr.success('Inserted successfully');
             _this.resetForm(form);
         });
+    };
+    CreateScheduleComponent.prototype.checkStartDate = function (date1) {
+        this.stdate = date1.value;
+        this.date = (this.datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm'));
+        console.log(this.date);
+        if (date1.value < this.date) {
+            console.log('invalid');
+            this.startDateValid = true;
+        }
+        else {
+            this.startDateValid = false;
+            console.log('valid');
+        }
+    };
+    CreateScheduleComponent.prototype.checkEndDate = function (date2) {
+        this.date = (this.datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm'));
+        console.log(this.date);
+        if (date2.value <= this.stdate || date2.value < this.date) {
+            console.log('invalid');
+            this.endDateValid = true;
+        }
+        else {
+            this.endDateValid = false;
+            console.log('valid');
+        }
     };
     CreateScheduleComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -4993,7 +5287,7 @@ module.exports = "th,td{\n    color: black;\n    text-align: center;\n}\n/*# sou
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav2>\n  <!-- <button type=\"button\" (click)=\"onCreate()\" class=\"btn btn-primary\">Create Schedule</button> -->\n  <br /><br />\n  <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th scope=\"col\">#S. No.</th>\n        <th scope=\"col\">Quiz Name</th>\n        <th scope=\"col\">Start Date/Time</th>\n        <th scope=\"col\">End Date/Time</th>\n        <th scope=\"col\">Action</th>\n      </tr>\n    </thead>\n\n    <tbody>\n      <ng-container *ngFor=\"let item of scheduleList;index as i;\">\n        <tr style=\"color:azure\">\n          <th (click)=\"viewSchedule(item.QuizScheduleId,i+1)\" scope=\"row\">{{i+1}}</th>\n          <td (click)=\"viewSchedule(item.QuizScheduleId,i+1)\" scope=\"row\">{{item.QuizName}}</td>\n          <td (click)=\"viewSchedule(item.QuizScheduleId,i+1)\" scope=\"row\">{{item.StartDateTime}}</td>\n          <td (click)=\"viewSchedule(item.QuizScheduleId,i+1)\" scope=\"row\">{{item.EndDateTime}}</td>\n          <td>\n            <a class=\"btn btn-sm btn-info text-white\" (click)=\"editSchedule(item.QuizScheduleId,i+1)\"><i\n                class=\"fa fa-pencil\"></i></a>\n            <a class=\"btn btn-sm btn-danger text-white ml-1\" (click)=\"deleteSchedule(item.QuizScheduleId)\"><i\n                class=\"fa fa-trash\"></i></a>\n          </td>\n\n        </tr>\n      </ng-container>\n    </tbody>\n  </table>\n</app-main-nav2>"
+module.exports = "<app-main-nav2>\n  <br /><br />\n  <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th scope=\"col\">#S. No.</th>\n        <th scope=\"col\">Quiz Name</th>\n        <th scope=\"col\">Start Date/Time</th>\n        <th scope=\"col\">End Date/Time</th>\n        <th scope=\"col\">Action</th>\n      </tr>\n    </thead>\n    <tbody>\n      <ng-container *ngFor=\"let item of scheduleList;index as i;\">\n        <tr style=\"color:azure\">\n          <th (click)=\"viewSchedule(item.QuizScheduleId,i+1)\" scope=\"row\">{{i+1}}</th>\n          <td (click)=\"viewSchedule(item.QuizScheduleId,i+1)\" >{{item.QuizName}}</td>\n          <td (click)=\"viewSchedule(item.QuizScheduleId,i+1)\" >{{item.StartDateTime}}</td>\n          <td (click)=\"viewSchedule(item.QuizScheduleId,i+1)\" >{{item.EndDateTime}}</td>\n          <td>\n            <a class=\"btn btn-sm btn-info text-white\" (click)=\"editSchedule(item.QuizScheduleId,i+1)\"><i aria-hidden=\"true\"\n                class=\"fa fa-pencil\"></i></a>\n            <a class=\"btn btn-sm btn-danger text-white ml-1\" (click)=\"deleteSchedule(item.QuizScheduleId)\"><i aria-hidden=\"true\"\n                class=\"fa fa-trash\"></i></a>\n          </td>\n        </tr>\n      </ng-container>\n    </tbody>\n  </table>\n</app-main-nav2>"
 
 /***/ }),
 
@@ -5048,8 +5342,6 @@ var RetrieveScheduleComponent = /** @class */ (function () {
         var _this = this;
         this.service.getSchedule(localStorage.getItem('uid')).subscribe(function (res) {
             _this.scheduleList = res;
-            console.log('serdtifuuyytrsadfjyuilukutytersedfuyiuo');
-            console.log(_this.scheduleList);
             _this.dtTrigger.next();
         });
     };
@@ -5065,7 +5357,7 @@ var RetrieveScheduleComponent = /** @class */ (function () {
     RetrieveScheduleComponent.prototype.viewSchedule = function (scheduleid, arrayindex) {
         var dialogConfig = new _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialogConfig"]();
         dialogConfig.autoFocus = true;
-        dialogConfig.width = "70%";
+        dialogConfig.width = '70%';
         dialogConfig.disableClose = true;
         dialogConfig.data = scheduleid;
         this.service.readonlyStatus = true;
@@ -5077,7 +5369,7 @@ var RetrieveScheduleComponent = /** @class */ (function () {
         var _this = this;
         var dialogConfig = new _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialogConfig"]();
         dialogConfig.autoFocus = true;
-        dialogConfig.width = "70%";
+        dialogConfig.width = '70%';
         dialogConfig.disableClose = true;
         this.service.readonlyStatus = false;
         dialogConfig.data = scheduleid;
@@ -5127,7 +5419,7 @@ module.exports = "th,\ntd {\n\ttext-align: center;\n}\nmat-dialog-content {\n\tp
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-dialog-content>\n  <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n    <mat-icon>clear</mat-icon>\n  </button>\n  <ng-container *ngIf=\"!service.deleteUserVisibility\">\n    <h5 class=\"card-title\">{{label}}</h5>\n    <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n      <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"this.CCreatedBy\">\n      <input type=\"hidden\" name=\"QuizId\" #QuizId=\"ngModel\" [(ngModel)]=\"service.formdata.QuizId\">\n      <input type=\"hidden\" name=\"ArchiveStatus\" #ArchiveStatus=\"ngModel\" [(ngModel)]=\"service.formdata.ArchiveStatus\">\n      <div class=\"form-group col-md-6\">\n        <label>Start Date Time</label>\n        <input type=\"datetime-local\" required name=\"StartDateTime\" #StartDateTime=\"ngModel\"\n          [(ngModel)]=\"q1\" [min]=\"date\" [readonly]=\"bool\">\n        <div class=\"validation-error\" *ngIf=\"StartDateTime.invalid && StartDateTime.touched\">This field is required.\n        </div>\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label>End Date Time</label>\n        <input type=\"datetime-local\" required name=\"EndDateTime\" #EndDateTime=\"ngModel\"\n          [(ngModel)]=\"service.formdata.EndDateTime\" [min]=\"q1\" [readonly]=\"bool\">\n        <div class=\"validation-error\" *ngIf=\"EndDateTime.invalid && EndDateTime.touched\">This field is required.\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <button [hidden]=\"bool\" style=\"margin:0 5%\" type=\"submit\" [disabled]=\"form.invalid || bool\"\n          class=\"btn btn-primary\">Submit</button>\n      </div>\n    </form>\n  </ng-container>\n  <table class=\"table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <th scope=\"col\">#User ID</th>\n      <th scope=\"col\">UserName</th>\n        <input type=\"datetime-local\" [min]=\"date\" required name=\"StartDateTime\" #StartDateTime=\"ngModel\" [(ngModel)]=\"q1\">\n        <th scope=\"col\">E-Mail</th>\n      <th scope=\"col\">Taken</th>\n      <th [hidden]=\"!service.deleteUserVisibility\" scope=\"col\">Action</th>\n    </thead>\n    <tbody>\n      <ng-container *ngFor=\"let user of usersList;index as i\">\n        <tr>\n          <th class=\"text-primary\" scope=\"row\">{{i+1}}</th>\n          <th class=\"text-primary\" scope=\"row\">{{user.UserName}}</th>\n          <td class=\"text-primary\" scope=\"row\">{{user.Email}}</td>\n          <td class=\"text-primary\" scope=\"row\">{{user.QuizTaken}}</td>\n          <td [hidden]=\"!service.deleteUserVisibility\">\n            <button  class=\"btn text-danger\" (click)=\"deleteUserFromSchedule(user.Id)\"><i\n                class=\"fa fa-trash fa-lg\"></i></button>\n          </td>\n        </tr>\n      </ng-container>\n    </tbody>\n  </table>\n</mat-dialog-content>"
+module.exports = "<mat-dialog-content>\n  <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n    <mat-icon>clear</mat-icon>\n  </button>\n  <ng-container *ngIf=\"!service.deleteUserVisibility\">\n    <h5 class=\"card-title\">{{label}}</h5>\n    <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n      <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"this.CCreatedBy\">\n      <input type=\"hidden\" name=\"QuizId\" #QuizId=\"ngModel\" [(ngModel)]=\"service.formdata.QuizId\">\n      <input type=\"hidden\" name=\"ArchiveStatus\" #ArchiveStatus=\"ngModel\" [(ngModel)]=\"service.formdata.ArchiveStatus\">\n      <div class=\"form-group col-md-6\">\n        <label>Start Date Time:\n          <input type=\"datetime-local\" (focusout)=\"checkStartDate(StartDateTime)\" [min]=\"date\" required\n            [readonly]=\"bool\" name=\"StartDateTime\" #StartDateTime=\"ngModel\" [(ngModel)]=\"service.formdata.StartDateTime\">\n          <owl-date-time [pickerType]=\"'both'\" #dt1></owl-date-time>\n          <div class=\"validation-error\" *ngIf=\"StartDateTime.invalid && StartDateTime.touched || startDateValid\">This\n            field is\n            wrong and required.\n          </div>\n        </label>\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label>End Date Time:\n          <input type=\"datetime-local\" (focusout)=\"checkEndDate(EndDateTime)\" [min]=\"q1\" required [readonly]=\"bool\"\n            name=\"EndDateTime\" #EndDateTime=\"ngModel\" [(ngModel)]=\"service.formdata.EndDateTime\">\n          <div class=\"validation-error\" *ngIf=\"EndDateTime.invalid && EndDateTime.touched || endDateValid\">This field is\n            Wrong.\n          </div>\n        </label>\n      </div>\n      <div class=\"form-group\">\n        <button [hidden]=\"bool\" style=\"margin:0 5%\" type=\"submit\" [disabled]=\"form.invalid || bool\"\n          class=\"btn btn-primary\">Submit</button>\n      </div>\n    </form>\n  </ng-container>\n  <table class=\"table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <th scope=\"col\">#User ID</th>\n      <th scope=\"col\">UserName</th>\n      <th scope=\"col\">E-Mail</th>\n      <th scope=\"col\">Taken</th>\n      <th [hidden]=\"!service.deleteUserVisibility\" scope=\"col\">Action</th>\n    </thead>\n    <tbody>\n      <ng-container *ngFor=\"let user of usersList;index as i\">\n        <tr>\n          <th class=\"text-primary\">{{i+1}}</th>\n          <th class=\"text-primary\">{{user.UserName}}</th>\n          <td class=\"text-primary\">{{user.Email}}</td>\n          <td class=\"text-primary\">{{user.QuizTaken}}</td>\n          <td [hidden]=\"!service.deleteUserVisibility\">\n            <button class=\"btn text-danger\" [hidden]=\"user.QuizTaken[0]\" (click)=\"deleteUserFromSchedule(user.Id)\"><i\n                class=\"fa fa-trash fa-lg\" aria-hidden=\"true\"></i></button>\n          </td>\n        </tr>\n      </ng-container>\n    </tbody>\n  </table>\n</mat-dialog-content>"
 
 /***/ }),
 
@@ -5162,37 +5454,26 @@ var ViewScheduleComponent = /** @class */ (function () {
         this.dialog = dialog;
         this.datePipe = datePipe;
         this.CCreatedBy = '';
-        this.date = this.datePipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
-        this.q1 = this.service.formdata.StartDateTime;
+        this.startDateValid = false;
+        this.endDateValid = false;
     }
     ViewScheduleComponent.prototype.ngOnInit = function () {
+        this.date = this.datePipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
         this.bool = this.service.readonlyStatus;
-        console.log(this.bool);
         if (this.bool === true) {
-            this.label = "View Schedule";
+            this.label = 'View Schedule';
+            this.q1 = this.service.formdata.StartDateTime;
         }
         else {
-            this.label = "Edit Schedule";
+            this.label = 'Edit Schedule';
         }
         this.CCreatedBy = localStorage.getItem('uid');
         this.loadExistingUsers(+this.data);
     };
-    // onAdd() {
-    //   const dialogConfig = new MatDialogConfig();
-    //   dialogConfig.autoFocus = true;
-    //   dialogConfig.width = "70%";
-    //   dialogConfig.data = this.data;
-    //   dialogConfig.disableClose = true;
-    //   let dialogRef = this.dialog.open(AddUserComponent, dialogConfig);
-    //   dialogRef.afterClosed().subscribe(result => {
-    //     this.loadExistingUsers(+this.data);
-    //   });
-    // }
     ViewScheduleComponent.prototype.loadExistingUsers = function (scheduleQuizId) {
         var _this = this;
         this.service.getScheduleQuizUsers(scheduleQuizId).subscribe(function (res) {
             _this.usersList = res;
-            console.log(_this.usersList);
         });
     };
     ViewScheduleComponent.prototype.deleteUserFromSchedule = function (UserId) {
@@ -5208,6 +5489,31 @@ var ViewScheduleComponent = /** @class */ (function () {
             _this.toastr.success('Changes Saved');
             _this.dialogRef.close('Saved');
         });
+    };
+    ViewScheduleComponent.prototype.checkStartDate = function (date1) {
+        this.stdate = date1.value;
+        this.date = (this.datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm'));
+        console.log(this.date);
+        if (date1.value < this.date) {
+            console.log('invalid');
+            this.startDateValid = true;
+        }
+        else {
+            this.startDateValid = false;
+            console.log('valid');
+        }
+    };
+    ViewScheduleComponent.prototype.checkEndDate = function (date2) {
+        this.date = (this.datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm'));
+        console.log(this.date);
+        if (date2.value <= this.stdate || date2.value < this.date) {
+            console.log('invalid');
+            this.endDateValid = true;
+        }
+        else {
+            this.endDateValid = false;
+            console.log('valid');
+        }
     };
     ViewScheduleComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -5264,7 +5570,6 @@ var TestAdminService = /** @class */ (function () {
         return this.http.get(this.rooturl + 'UserSchedule/UserNotAssignedQuiz/' + sId);
     };
     TestAdminService.prototype.postSchedule = function (formdata) {
-        // formdata.UserId = this.quiztakerId;
         console.log(formdata);
         return this.http.post(this.rooturl + 'QuizSchedule/ScheduleQuiz', formdata);
     };
@@ -5275,7 +5580,6 @@ var TestAdminService = /** @class */ (function () {
         return this.http.get(this.rooturl + 'QuizSchedule/GetAllQuizSchedule/' + id);
     };
     TestAdminService.prototype.getScheduleQuizUsers = function (id) {
-        console.log(1);
         return this.http.get(this.rooturl + 'UserSchedule/UserAssignedQuiz/' + id);
     };
     TestAdminService.prototype.deleteSchedule = function (id) {
@@ -5288,11 +5592,9 @@ var TestAdminService = /** @class */ (function () {
         var body = {
             UserIds: UserIds
         };
-        console.log(body);
         return this.http.post(this.rooturl + 'UserSchedule/UserAdd/' + QuizScheuleId, UserIds);
     };
     TestAdminService.prototype.editSchedule = function (QuizScheduleId, formData) {
-        console.log(formData);
         return this.http.put(this.rooturl + 'QuizSchedule/EditQuizSchedule/' + QuizScheduleId, formData);
     };
     TestAdminService.prototype.getArchivedSchedules = function () {
@@ -5302,11 +5604,9 @@ var TestAdminService = /** @class */ (function () {
         var body = {
             QuizScheduleId: id
         };
-        console.log(body);
         return this.http.delete(this.rooturl + 'QuizSchedule/Unarchive/' + id);
     };
     TestAdminService.prototype.getUserDetails = function () {
-        console.log(localStorage.getItem('email'));
         return this.http.get(this.rooturl + 'GetUserDetails?email=' + localStorage.getItem('email'));
     };
     TestAdminService.prototype.getschedulecount = function () {
@@ -5343,7 +5643,7 @@ module.exports = "@import url(https://fonts.googleapis.com/css?family=Roboto);\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-main-nav2>\n  <ngx-ui-loader [loaderId]=\"'loader-01'\" *ngIf = \"show\"></ngx-ui-loader>\n\n<div class=\"jumbotron\">\n    <div class=\"pic\">\n        <img class=\"left\" src=\"{{ profileUrl }}\" />\n    </div>\n    <div class=\"detail1\">\n      <h3>{{ Firstname }} {{ Lastname }}</h3>\n      <h6>{{ email }}</h6>\n    </div>\n    <div class=\"elem\">\n      <ul>\n        <li><a href=\"#\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\" style=\"color:#00acee;\"></i></a></li>\n        <li><a href=\"#\"><i class=\"fa fa-twitter\" aria-hidden=\"true\" style=\"color:#00acee;\"></i></a></li>\n        <li><a href=\"#\"><i class=\"fa fa-github\" aria-hidden=\"true\" style=\"color:black;\"></i></a></li>\n      </ul>\n    </div>\n  </div>\n  <br/><br/>\n  <div class=\"row\">\n      <div class=\"box col-6\">\n          <div class=\"boxhalf\">\n            <h2>{{ count }}</h2>\n            <h5>Schedule Created</h5>            \n          </div>\n      </div>\n</div>\n</app-main-nav2>"
+module.exports = "<app-main-nav2>\n  <ngx-ui-loader [loaderId]=\"'loader-01'\" *ngIf = \"show\"></ngx-ui-loader>\n<div class=\"jumbotron\">\n    <div class=\"pic\">\n        <img class=\"left\" src=\"{{ profileUrl }}\" />\n    </div>\n    <div class=\"detail1\">\n      <h3>{{ Firstname }} {{ Lastname }}</h3>\n      <h6>{{ email }}</h6>\n    </div>\n    <div class=\"elem\">\n      <ul>\n        <li><a href=\"#\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\" style=\"color:#00acee;\"></i></a></li>\n        <li><a href=\"#\"><i class=\"fa fa-twitter\" aria-hidden=\"true\" style=\"color:#00acee;\"></i></a></li>\n        <li><a href=\"#\"><i class=\"fa fa-github\" aria-hidden=\"true\" style=\"color:black;\"></i></a></li>\n      </ul>\n    </div>\n  </div>\n  <br/><br/>\n  <div class=\"row\">\n      <div class=\"box col-6\">\n          <div class=\"boxhalf\">\n            <h2>{{ count }}</h2>\n            <h5>Schedule Created</h5>            \n          </div>\n      </div>\n</div>\n</app-main-nav2>"
 
 /***/ }),
 
@@ -5382,7 +5682,6 @@ var TestAdminComponent = /** @class */ (function () {
     TestAdminComponent.prototype.loadUserDetails = function () {
         var _this = this;
         this.service.getUserDetails().subscribe(function (res) {
-            // console.log(res);
             _this.Firstname = res.FirstName;
             _this.Lastname = res.LastName;
             _this.email = res.Email;
@@ -5391,9 +5690,7 @@ var TestAdminComponent = /** @class */ (function () {
     TestAdminComponent.prototype.loadcount = function () {
         var _this = this;
         this.service.getschedulecount().subscribe(function (res) {
-            // console.log(res);
             _this.count = res;
-            //console.log(this.count);
             _this.show = false;
         });
     };
@@ -5427,7 +5724,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 var environment = {
     production: false,
-    apiURl: 'http://43c13a1d.ngrok.io/api/',
+    apiURl: 'http://0980184b.ngrok.io/api/',
 };
 /*
  * For easier debugging in development mode, you can import the following file

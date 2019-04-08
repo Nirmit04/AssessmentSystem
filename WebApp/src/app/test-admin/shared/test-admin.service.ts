@@ -15,7 +15,7 @@ export class TestAdminService {
 	formdata: Schedule;
 	readonlyStatus: boolean;
 	scheduleQuizUsers: string[];
-	deleteUserVisibility: boolean = false;
+	deleteUserVisibility = false;
 
 	retriveAllQuizzes() {
 		return this.http.get(this.rooturl + 'Quiz/GetAllQuiz');
@@ -56,7 +56,7 @@ export class TestAdminService {
 
 	addUserInExistingSchedule(QuizScheuleId: number, UserIds: string[]) {
 		const body = {
-			UserIds: UserIds
+			UserIds
 		};
 		return this.http.post(this.rooturl + 'UserSchedule/UserAdd/' + QuizScheuleId, UserIds);
 	}
@@ -70,7 +70,7 @@ export class TestAdminService {
 	}
 
 	unArchiveSchedule(id: number) {
-		var body = {
+		const body = {
 			QuizScheduleId: id
 		}
 		return this.http.delete(this.rooturl + 'QuizSchedule/Unarchive/' + id);

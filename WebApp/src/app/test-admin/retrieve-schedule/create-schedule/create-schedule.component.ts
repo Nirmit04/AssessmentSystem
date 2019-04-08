@@ -15,14 +15,14 @@ import { invalid } from '@angular/compiler/src/render3/view/util';
 })
 export class CreateScheduleComponent implements OnInit {
   date: string;
-  q1 = "";
-  q2 = "";
-  q3 = "";
+  q1 = '';
+  q2 = '';
+  q3 = '';
   stdate;
   btndisable = true;
   startDateValid = false;
   endDateValid = false;
-  CCreatedBy = "";
+  CCreatedBy = '';
   scheduleUrl = 'localhost:4200//emp-dash/take-quiz/';
   QuizList: QuizModel[];
 
@@ -44,9 +44,9 @@ export class CreateScheduleComponent implements OnInit {
     if (form != null) {
       form.resetForm();
     }
-    this.q1 = "";
-    this.q2 = "";
-    this.q3 = "";
+    this.q1 = '';
+    this.q2 = '';
+    this.q3 = '';
   }
 
   sub(form: NgForm) {
@@ -72,7 +72,7 @@ export class CreateScheduleComponent implements OnInit {
     this.date = (this.datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm'));
     console.log(this.date);
     if (date2.value <= this.stdate || date2.value < this.date) {
-      console.log("invalid");
+      console.log('invalid');
       this.endDateValid = true;
     } else {
       this.endDateValid = false;

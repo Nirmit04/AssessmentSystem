@@ -18,8 +18,6 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 
 	dtOptions: DataTables.Settings = {};
 	questionList: Question[];
-	searchText = '';
-	difficultyLevel = '';
 	dtTrigger: Subject<Question> = new Subject();
 	subscription: Subscription;
 
@@ -32,8 +30,9 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 			pagingType: 'full_numbers',
 			pageLength: 10,
 		};
-		this.getQuesOfUser(localStorage.getItem('uid'));
-		this.searchText = '';
+		setTimeout(() => {
+			this.getQuesOfUser(localStorage.getItem('uid'));
+		}, 0);
 	}
 
 	getQuesOfUser(uid: string) {

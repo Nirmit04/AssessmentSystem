@@ -68,6 +68,10 @@ import { HttpErrorInterceptor } from './http-error-interceptor';
 import { DatePipe } from '@angular/common';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
+import { LoaderComponent } from './loader/loader.component';
+import { LoaderInterceptorService} from '../app/services/loader-interceptor.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoaderServiceService } from './services/loader-service.service';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 	bgsColor: '#00ACC1',
@@ -96,7 +100,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 	textPosition: 'center-center',
 	threshold: 500
 };
-let config = new AuthServiceConfig([
+const config = new AuthServiceConfig([
 	{
 		id: GoogleLoginProvider.PROVIDER_ID,
 		provider: new GoogleLoginProvider('819840688710-ljvg9sqe86d08r2hlgv6e9s74i3jmiq0.apps.googleusercontent.com')
@@ -150,7 +154,8 @@ export function provideConfig() {
 		Mainnav4Component,
 		ViewUserDetailsComponent,
 		DetailsComponent,
-		HttpInterceptorComponent
+		HttpInterceptorComponent,
+		LoaderComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -177,11 +182,13 @@ export function provideConfig() {
 		MatExpansionModule,
 		OwlDateTimeModule,
 		OwlNativeDateTimeModule,
-		AmazingTimePickerModule
+		AmazingTimePickerModule,
+		MatProgressSpinnerModule
 	],
 	providers: [
 		AuthGuard,
 		DatePipe,
+		LoaderServiceService,
 		ContentCreatorServiceService,
 		{
 			provide: AuthServiceConfig,
@@ -190,6 +197,11 @@ export function provideConfig() {
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: HttpErrorInterceptor,
+			multi: true
+		},
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: LoaderInterceptorService,
 			multi: true
 		}
 	],

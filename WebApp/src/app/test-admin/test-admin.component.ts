@@ -7,12 +7,12 @@ import { TestAdminService } from './shared/test-admin.service';
 	styleUrls: ['./test-admin.component.css']
 })
 export class TestAdminComponent implements OnInit {
-	Firstname: String;
-	Lastname: String;
-	email: String;
+	Firstname: string;
+	Lastname: string;
+	email: string;
 	count: any;
 	profileUrl: any;
-	show: boolean = true;
+	show = true;
 
 	constructor(private service: TestAdminService, private ngxService: NgxUiLoaderService) { }
 

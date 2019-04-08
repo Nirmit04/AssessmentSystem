@@ -43,7 +43,7 @@ export class AddUserComponent implements OnInit {
   addUserToSchedule(scheduleid: number, arrayindex: number) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "70%";
+    dialogConfig.width = '70%';
     dialogConfig.disableClose = true;
     dialogConfig.data = scheduleid;
     this.dialog.open(AddUser1Component, dialogConfig).afterClosed().subscribe((res: any) => {
@@ -57,7 +57,7 @@ export class AddUserComponent implements OnInit {
     console.log('delete user function');
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "70%";
+    dialogConfig.width = '70%';
     dialogConfig.disableClose = true;
     dialogConfig.data = scheduleId;
     this.service.deleteUserVisibility = true;

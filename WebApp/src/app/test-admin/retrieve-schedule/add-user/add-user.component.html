@@ -14,14 +14,14 @@
     <tbody>
       <ng-container *ngFor="let item of scheduleList;index as i;">
         <tr>
-          <th scope="row">{{i+1}}</th>
-          <td scope="row">{{item.QuizName}}</td>
-          <td scope="row">{{item.StartDateTime}}</td>
-          <td scope="row">{{item.EndDateTime}}</td>
+          <th>{{i+1}}</th>
+          <td>{{item.QuizName}}</td>
+          <td>{{item.StartDateTime}}</td>
+          <td>{{item.EndDateTime}}</td>
           <td>
-            <a class="btn btn-sm btn-info text-black" (click)="addUserToSchedule(item.QuizScheduleId,i+1)"><i
+            <a class="btn btn-sm btn-info text-black" (click)="addUserToSchedule(item.QuizScheduleId,i+1)"><i aria-hidden="true"
                 class="fa fa-user-plus"></i></a>
-            <a class="btn btn-sm btn-danger text-black" (click)="deleteUserfromSchedule(item.QuizScheduleId,i+1)"><i
+            <a class="btn btn-sm btn-danger text-black" (click)="deleteUserfromSchedule(item.QuizScheduleId,i+1)"><i aria-hidden="true"
                 class="fa fa-user-times"></i></a>
           </td>
 
