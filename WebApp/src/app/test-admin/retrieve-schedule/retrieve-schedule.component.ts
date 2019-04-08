@@ -13,17 +13,17 @@ import { Subject } from 'rxjs';
 	styleUrls: ['./retrieve-schedule.component.css']
 })
 export class RetrieveScheduleComponent implements OnInit {
-
-	onCreate() {
-		this.router.navigate(['/testAdminCreateScheDule']);
-	}
-
 	scheduleList: Schedule[];
 	searchText = '';
 	difficultyLevel = '';
 	dtOptions: DataTables.Settings = {};
 	dtTrigger: Subject<Schedule> = new Subject();
 	subscription: Subscription;
+
+	onCreate() {
+		this.router.navigate(['/testAdminCreateScheDule']);
+	}
+
 	constructor(private service: TestAdminService,
 		private toastr: ToastrService,
 		private dialog: MatDialog,
@@ -56,7 +56,7 @@ export class RetrieveScheduleComponent implements OnInit {
 	viewSchedule(scheduleid: number, arrayindex: number) {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
-		dialogConfig.width = "70%";
+		dialogConfig.width = '70%';
 		dialogConfig.disableClose = true;
 		dialogConfig.data = scheduleid;
 		this.service.readonlyStatus = true;
@@ -68,7 +68,7 @@ export class RetrieveScheduleComponent implements OnInit {
 	editSchedule(scheduleid: number, arrayindex: number) {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
-		dialogConfig.width = "70%";
+		dialogConfig.width = '70%';
 		dialogConfig.disableClose = true;
 		this.service.readonlyStatus = false;
 		dialogConfig.data = scheduleid;

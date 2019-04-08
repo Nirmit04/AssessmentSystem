@@ -1,3 +1,4 @@
+<app-loader></app-loader>
 <app-main-nav>
   <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
     class="row-border hover table table-bordered table-striped">
@@ -5,24 +6,27 @@
       <tr>
         <th>#S. No.</th>
         <th>Question</th>
+        <th>Question Type</th>
         <th>Subject</th>
         <th>Difficulty Level</th>
         <th>Action</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody> 
       <tr *ngFor="let ques of questionList; index as i;">
-        <td>{{i+1}}</td>
+        <th>{{i+1}}</th>
         <td (click)="viewUserQues(ques.QuestionId,i+1)">{{ques.QuestionStatement}}</td>
+        <td (click)="viewuserQues(ques.QuestionId,i+1)">{{ques.QuestionType}}</td>
         <td (click)="viewUserQues(ques.QuestionId,i+1)">{{ques.SubjectName}}</td>
         <td (click)="viewUserQues(ques.QuestionId,i+1)">{{ques.Difficulty}}</td>
         <td>
-          <a class="btn btn-sm btn-info text-white" (click)="editUserQues(ques.QuestionId,i+1)"><i
+          <a class="btn btn-sm btn-info text-white" (click)="editUserQues(ques.QuestionId,i+1)"><i aria-hidden="true"
               class="fa fa-pencil"></i></a>
-          <a class="btn btn-sm btn-danger text-white" (click)="deleteQues(ques.QuestionId)"><i
+          <a class="btn btn-sm btn-danger text-white" (click)="deleteQues(ques.QuestionId)"><i aria-hidden="true"
               class="fa fa-trash"></i></a>
         </td>
       </tr>
     </tbody>
   </table>
 </app-main-nav>
+

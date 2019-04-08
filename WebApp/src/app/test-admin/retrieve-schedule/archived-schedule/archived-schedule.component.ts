@@ -36,12 +36,13 @@ export class ArchivedScheduleComponent implements OnInit {
   }
 
   unarchiveSchedule(id) {
-    if (confirm('Are you sure you want to un-archive this'))
+    if (confirm('Are you sure you want to un-archive this')) {
       this.service.unArchiveSchedule(id).subscribe((res: any) => {
         this.toastr.success('Un-Archived Successfully', 'Assesment System');
         this.dtTrigger.unsubscribe();
         this.loadArchivedSchedules();
       });
+    }
   }
 
   ngOnDestroy() {

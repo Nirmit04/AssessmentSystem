@@ -1,29 +1,27 @@
 <button type="button " [mat-dialog-close] class="btn btn-danger pos">
   <mat-icon>clear</mat-icon>
 </button>
+<strong>
+  <h2 class="card-title" style="text-align: center">Add User</h2>
+</strong><br/><br/>
 <form #Userform="ngForm" (submit)="onSubmit(Userform)" autocomplete="off">
-    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
     class="row-border hover table table-bordered table-striped">
     <thead class="thead-dark">
       <tr>
-        <th>#S.NO.</th>
         <th>Tick</th>
         <th>Users</th>
+        <th>Email Id</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let x of quiztakers; let i = index">
-          <td>{{i+1}}</td>
-          <td><input [id]="'quiztakers-'+i" type="checkbox" value="{{x.Id}}" [checked]="x.selected"
+        <td><input [id]="'quiztakers-'+i" type="checkbox" value="{{x.Id}}" [checked]="x.selected"
             (change)="updateSelectedUsers(i)"></td>
-          <td>{{x.FirstName  }}{{x.LastName}}</td>
+        <td>{{x.FirstName}}&nbsp;{{x.LastName}}</td>
+        <td>{{x.Email}}</td>
       </tr>
     </tbody>
   </table>
-  <!-- <div *ngFor="let x of quiztakers; let i = index"><br>
-    <input [id]="'quiztakers-'+i" type="checkbox" value="{{x.Id}}" [checked]="x.selected"
-      (change)="updateSelectedUsers(i)">
-    <label>{{x.FirstName  }}{{x.LastName}}</label>
-  </div> -->
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>

@@ -1,7 +1,6 @@
 <app-main-nav3>
   <div>
-    <br /><br /><br />
-    <h1 style="text-align: center">List of Scheduled Quizzes</h1>
+    <strong><h2 style="text-align: center">List of Scheduled Quizzes</h2></strong>
     <br /><br />
     <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
       class="row-border hover table table-bordered table-striped">
@@ -18,11 +17,11 @@
       <tbody>
         <ng-container *ngFor="let item of nonMockScheduleList;index as i;">
           <tr>
-            <th scope="row">{{i+1}}</th>
-            <td scope="row">{{item.QuizName}}</td>
-            <td scope="row">{{item.StartDateTime}}</td>
-            <td scope="row">{{item.EndDateTime}}</td>
-            <td scope="row">{{item.QuizTime}}</td>
+            <th>{{i+1}}</th>
+            <td>{{item.QuizName}}</td>
+            <td>{{item.StartDateTime}}</td>
+            <td>{{item.EndDateTime}}</td>
+            <td>{{item.QuizTime}}</td>
             <td style="text-align:center;">
               <a class="btn btn-sm btn-info text-white" (click)="takeQuiz(item.QuizId,item.QuizScheduleId,i)"><i
                   class="fa fa-paper-plane"></i></a>

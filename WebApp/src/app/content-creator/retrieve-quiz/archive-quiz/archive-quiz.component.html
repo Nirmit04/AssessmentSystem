@@ -1,32 +1,31 @@
 <app-main-nav>
   <div>
-    <br /><br /><br />
     <h1 style="text-align: center">List of Archived Quizzes</h1>
     <br /><br />
     <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
       class="row-border hover table table-bordered table-striped">
       <thead class="thead-dark">
         <tr>
-          <th scope="col">#S. No.</th>
-          <th scope="col">Quiz Type</th>
-          <th scope="col">Difficulty</th>
-          <th scope="col">Subject</th>
-          <th scope="col">Total Questions</th>
-          <th scope="col">Total Marks</th>
-          <th scope="col">Action</th>
+          <th>#S. No.</th>
+          <th>Quiz Type</th>
+          <th>Difficulty</th>
+          <th>Subject</th>
+          <th>Total Questions</th>
+          <th>Total Marks</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <ng-container *ngFor="let item of QuizList;index as i">
           <tr>
-            <th class="text-primary" scope="row">{{i+1}}</th>
-            <td class="text-primary" scope="row">{{item.QuizType}}</td>
-            <td class="text-primary" scope="row">{{item.Difficulty}}</td>
-            <td class="text-primary" scope="row">{{item.Subject}}</td>
-            <td class="text-primary" scope="row">{{item.TotalQuestions}}</td>
-            <td class="text-primary" scope="row">{{item.TotalMarks}}</td>
+            <th>{{i+1}}</th>
+            <td>{{item.QuizType}}</td>
+            <td>{{item.Difficulty}}</td>
+            <td>{{item.Subject}}</td>
+            <td>{{item.TotalQuestions}}</td>
+            <td>{{item.TotalMarks}}</td>
             <td>
-              <a class="btn text-danger" (click)="onUnArchived(item.QuizId)"><i class="fa fa-file-archive-o"></i></a>
+              <a class="btn text-danger" (click)="onUnArchived(item.QuizId)"><i aria-hidden="true" class="fa fa-file-archive-o"></i></a>
             </td>
           </tr>
         </ng-container>

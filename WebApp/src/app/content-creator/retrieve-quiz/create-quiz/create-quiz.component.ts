@@ -67,7 +67,7 @@ export class CreateQuizComponent implements OnInit {
         QuizName: ''
       }
       if (this.questions) {
-        this.questions.map(y => y.selected = false);
+        this.questions.forEach(y => y.selected = false);
       }
     }
   }
@@ -97,9 +97,14 @@ export class CreateQuizComponent implements OnInit {
     this.service.quizForm.QuizTime = this.QuizHour + ":" + this.QuizMinute;
     if (this.MockType == 'Random') {
       this.service.generateRandom(form.value, this.TotalQuestions).subscribe((res: any) => {
-        this.toastr.success('Random Quiz Created successfully');
+        if (res == 0) {
+          this.toastr.error('No Questions Available!')
+        }
+        else {
+          this.toastr.success('Random Quiz Created successfully with ' + res + ' questions.');
+        }
         this.dialogRef.close('Inserted');
-      })
+      });
     }
     else {
       this.service.getQuesOfUserConstraints(form.value).subscribe((data: any) => {

@@ -2,6 +2,9 @@
   <button type="button " [mat-dialog-close] class="btn btn-danger pos">
     <mat-icon>clear</mat-icon>
   </button>
+  <strong>
+    <h2 class="card-title" style="text-align: center">Delete User</h2>
+  </strong><br/><br/>
   <ng-container *ngIf="!service.deleteUserVisibility">
     <h5 class="card-title">{{label}}</h5>
     <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
@@ -11,7 +14,8 @@
       <div class="form-group col-md-6">
         <label>Start Date Time:
           <input type="datetime-local" (focusout)="checkStartDate(StartDateTime)" [min]="date" required
-            [readonly]="bool" name="StartDateTime" #StartDateTime="ngModel" [(ngModel)]="service.formdata.StartDateTime">
+            [readonly]="bool" name="StartDateTime" #StartDateTime="ngModel"
+            [(ngModel)]="service.formdata.StartDateTime">
           <owl-date-time [pickerType]="'both'" #dt1></owl-date-time>
           <div class="validation-error" *ngIf="StartDateTime.invalid && StartDateTime.touched || startDateValid">This
             field is
@@ -20,7 +24,7 @@
         </label>
       </div>
       <div class="form-group col-md-6">
-        <label>End Date Time:
+        <label >End Date Time:
           <input type="datetime-local" (focusout)="checkEndDate(EndDateTime)" [min]="q1" required [readonly]="bool"
             name="EndDateTime" #EndDateTime="ngModel" [(ngModel)]="service.formdata.EndDateTime">
           <div class="validation-error" *ngIf="EndDateTime.invalid && EndDateTime.touched || endDateValid">This field is
@@ -45,10 +49,13 @@
     <tbody>
       <ng-container *ngFor="let user of usersList;index as i">
         <tr>
-          <th class="text-primary" scope="row">{{i+1}}</th>
-          <th class="text-primary" scope="row">{{user.UserName}}</th>
-          <td class="text-primary" scope="row">{{user.Email}}</td>
-          <td class="text-primary" scope="row">{{user.QuizTaken}}</td>
+          <th>{{i+1}}</th>
+          <td>{{user.FirstName}}&nbsp;{{user.LastName}}</td>
+          <td>{{user.Email}}</td>
+          <td>
+            <i *ngIf="user.QuizTaken" class="fa fa-close" aria-hidden="true" style="color:red"></i>
+            <i *ngIf="!user.QuizTaken" class="fa fa-check" aria-hidden="true" style="color:green"></i>
+          </td>
           <td [hidden]="!service.deleteUserVisibility">
             <button class="btn text-danger" [hidden]="user.QuizTaken" (click)="deleteUserFromSchedule(user.Id)"><i
                 class="fa fa-trash fa-lg" aria-hidden="true"></i></button>

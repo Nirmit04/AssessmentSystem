@@ -13,11 +13,11 @@ import { Router, RouterModule } from '@angular/router';
 import { Injectable, Inject } from '@angular/core';
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
-  errorCode:any;
-  errorMsg:string;
-  show: boolean = true;
+  errorCode: any;
+  errorMsg: string;
+  show = true;
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request)
@@ -31,12 +31,12 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           } else {
             // server-side error
             errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-            this.errorCode = error.status; 
-            localStorage.setItem('errorCode',this.errorCode);
+            this.errorCode = error.status;
+            localStorage.setItem('errorCode', this.errorCode);
           }
-        this.router.navigate(['/http-error']);
+          this.router.navigate(['/http-error']);
           return throwError(errorMessage);
         })
-      )
+      );
   }
 }
