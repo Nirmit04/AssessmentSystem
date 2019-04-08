@@ -47,4 +47,7 @@ export class CreateQuestionsComponent implements OnInit {
       this.resetForm(form);
     });
   }
+
+
+
 }

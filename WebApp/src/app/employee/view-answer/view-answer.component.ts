@@ -8,7 +8,7 @@ import { Question } from '../../content-creator/shared/question.model'
   styleUrls: ['./view-answer.component.css']
 })
 export class ViewAnswerComponent implements OnInit {
-  ques: Question[];
+  ques: Question;
   flop1 = false;
   flop2 = false;
   flop3 = false;
@@ -27,14 +27,14 @@ export class ViewAnswerComponent implements OnInit {
 
   sda() {
     this.service.getQues(this.data.id).subscribe((res: any) => {
-      this.ques = res as Question[];
-      if (this.ques[0].Answer === 1) {
+      this.ques = res as Question;
+      if (this.ques.Answer === 1) {
         this.flop1 = true;
-      } else if (this.ques[0].Answer === 2) {
+      } else if (this.ques.Answer === 2) {
         this.flop2 = true;
-      } else if (this.ques[0].Answer === 3) {
+      } else if (this.ques.Answer === 3) {
         this.flop3 = true;
-      } else if (this.ques[0].Answer === 4) {
+      } else if (this.ques.Answer === 4) {
         this.flop4 = true;
       }
       if (this.data.markedanswer === 1) {

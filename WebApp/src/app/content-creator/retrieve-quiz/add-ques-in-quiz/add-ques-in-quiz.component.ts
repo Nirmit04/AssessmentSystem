@@ -2,8 +2,9 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Subject } from '../../shared/subject.model';
 import { ContentCreatorServiceService } from '../../shared/content-creator-service.service';
 import { ToastrService } from 'ngx-toastr';
-import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MatDialog, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
 import { NgForm } from '@angular/forms';
+import { CreateQuestionsComponent } from '../../create-questions/create-questions.component';
 
 @Component({
   selector: 'app-add-ques-in-quiz',
@@ -57,12 +58,33 @@ export class AddQuesInQuizComponent implements OnInit {
     this.questions[index].selected = !this.questions[index].selected;
   }
 
+  add_new_ques() {
+    console.log(this.service.quizForm.QuizType);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "70%";
+    dialogConfig.disableClose = true;
+    this.service.quesStat = true;
+    let dialogRef = this.dialog.open(CreateQuestionsComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      this.service.quesStat = false;
+      this.loadQues();
+
+    });
+  }
+
+  loadQues() {
+    this.service.getQuizQuestions(+localStorage.getItem('quizId')).subscribe((res: any) => {
+      this.questions = res as [];
+    });
+  }
+
   onDetailsSubmit(form: NgForm) {
     var QuestionId = this.questions.filter(QuestionId => QuestionId.selected).map(idSelected => idSelected.QuestionId);
     this.service.putQuestionsSelected(QuestionId).subscribe(res => {
       this.toastr.success('Inserted successfully');
+      this.dialogref.close('Inserted');
     })
-    this.dialogref.close('Inserted');
   }
 
 }

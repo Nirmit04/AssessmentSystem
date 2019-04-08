@@ -76,8 +76,8 @@
             <div *ngIf="MockType == 'Random'" class="form-group col-md-6">
               <strong><label>Number Of Questions</label></strong>
               <input type="text" name="Questions" #Questions="ngModel" [(ngModel)]="TotalQuestions"
-              class="form-control">
-            <div class="validation-error" *ngIf="Questions.invalid && Questions.touched">This field is required.</div>
+                class="form-control">
+              <div class="validation-error" *ngIf="Questions.invalid && Questions.touched">This field is required.</div>
             </div>
           </div>
           <div class="form-group" style="margin-top: 3%">
@@ -90,8 +90,9 @@
           <h5 *ngIf="length>0" class="card-title" style="text-align: center">Choose Questions</h5><br />
           <h5 *ngIf="length==0" class="card-title" style="text-align: center">No Question Available</h5><br />
           <div>
-            <strong><a (click)="add_new_ques()">Click Here to Create New Question</a></strong>
+            <button type="button" (click)="add_new_ques()" class="btn btn-warning">New Ques.</button>
           </div>
+          <br>
           <form #Questionform="ngForm" (submit)="onDetailsSubmit(Questionform)" autocomplete="off">
             <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
               class="row-border hover table table-bordered table-striped">

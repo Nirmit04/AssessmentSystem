@@ -57,7 +57,7 @@
             <i *ngIf="!user.QuizTaken" class="fa fa-check" aria-hidden="true" style="color:green"></i>
           </td>
           <td [hidden]="!service.deleteUserVisibility">
-            <button class="btn text-danger" [hidden]="user.QuizTaken[0]" (click)="deleteUserFromSchedule(user.Id)"><i
+            <button class="btn text-danger" [hidden]="user.QuizTaken" (click)="deleteUserFromSchedule(user.Id)"><i
                 class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
           </td>
         </tr>
