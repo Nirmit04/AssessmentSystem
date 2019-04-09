@@ -24,8 +24,8 @@ namespace WebApi.Controllers
          * @Returns -List of quizzes assigned.
          * **/
         [HttpGet]
-        [Route("api/Employee/NonMock/{UserId}")]
-        public IHttpActionResult GetNonMockQuiz(string UserId)
+        [Route("api/Employee/Scheduled/{UserId}")]
+        public IHttpActionResult GetScheduledQuiz(string UserId)
         {
             var quizzesScheduled = db.UserSchedules
                 .Where(x => x.UserId == UserId && x.Taken == false)
@@ -34,8 +34,8 @@ namespace WebApi.Controllers
                     x.UserScheduleId,
                     x.QuizScheduleId,
                     x.QuizId,
-                    db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId && y.QuizType == "Non-Mock").QuizName,
-                    db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId && y.QuizType == "Non-Mock").QuizTime,
+                    db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId && y.QuizType == "Scheduled").QuizName,
+                    db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId && y.QuizType == "Scheduled").QuizTime,
                     db.QuizSchedules.FirstOrDefault(y => y.QuizScheduleId == x.QuizScheduleId).StartDateTime,
                     db.QuizSchedules.FirstOrDefault(y => y.QuizScheduleId == x.QuizScheduleId).EndDateTime
                 })
@@ -52,7 +52,7 @@ namespace WebApi.Controllers
                     quizzesScheduled.Remove(item);
                 }
             }
-            return Ok(quizzesScheduled);
+            return Ok(quizzesScheduled.OrderByDescending(y => y.UserScheduleId));
         }
 
 
@@ -62,19 +62,19 @@ namespace WebApi.Controllers
         {
             Dictionary<string, string> employeeStats = new Dictionary<string, string>();
             var MockCount = db.Reports.Where(x => x.UserId == UserId && x.QuizType == "Mock").Count();
-            var NonMockCount = db.Reports.Where(x => x.UserId == UserId && x.QuizType == "Non-Mock").Count();
+            var ScheduledCount = db.Reports.Where(x => x.UserId == UserId && x.QuizType == "Scheduled").Count();
             decimal TotalAccuracy = 0.00m;
-            string recentActivity = "----";
+            string recentActivity = "-----";
             try
             {
-                TotalAccuracy = db.Reports.Where(x => x.UserId == UserId).Select(y => y.Accuracy).Sum() / (MockCount + NonMockCount);
+                TotalAccuracy = db.Reports.Where(x => x.UserId == UserId).Select(y => y.Accuracy).Sum() / (MockCount + ScheduledCount);
                 var QuizId = db.UserSchedules.OrderByDescending(x => x.UserScheduleId).FirstOrDefault(x => x.UserId == UserId && x.Taken == true).QuizId;
                 recentActivity = db.Quizs.FirstOrDefault(x => x.QuizId == QuizId).QuizName;
             }
             catch (Exception) { }
 
             employeeStats.Add("Mock", MockCount.ToString());
-            employeeStats.Add("NonMock", NonMockCount.ToString());
+            employeeStats.Add("Scheduled", ScheduledCount.ToString());
             employeeStats.Add("Accuracy", String.Format("{0:f2}", TotalAccuracy));
             employeeStats.Add("RecentActivity", recentActivity);
             return Ok(employeeStats);

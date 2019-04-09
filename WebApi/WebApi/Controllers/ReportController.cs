@@ -13,24 +13,27 @@ namespace WebApi.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         [HttpGet]
-        [Route("api/Report/NonMock/{UserId}")]
-        public IHttpActionResult GetNonMockReport(string UserId)
+        [Route("api/Report/Scheduled/{UserId}")]
+        public IHttpActionResult GetScheduledReport(string UserId)
         {
-            var report = db.Reports.Where(x => x.UserId == UserId && x.QuizType=="Non-Mock").Select(x => new
-            {
-                x.Accuracy,
-                x.CorrectAnswers,
-                x.Efficiency,
-                x.QuizId,
-                x.ReportId,
-                x.TimeTaken,
-                x.MarksScored,
-                x.UnattemptedAnswers,
-                x.WrongAnswers,
-                x.UserId,
-                db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).QuizName,
-                db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).TotalMarks
-            }).ToList();
+            var report = db.Reports.Where(x => x.UserId == UserId && x.QuizType== "Scheduled")
+                .Select(x => new
+                {
+                    x.ReportId,
+                    x.Accuracy,
+                    x.CorrectAnswers,
+                    x.Efficiency,
+                    x.QuizId,
+                    x.TimeTaken,
+                    x.MarksScored,
+                    x.UnattemptedAnswers,
+                    x.WrongAnswers,
+                    x.UserId,
+                    db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).QuizName,
+                    db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).TotalMarks
+                })
+                .OrderByDescending(z => z.ReportId)
+                .ToList();
             return Ok(report);
         }
 
@@ -39,21 +42,24 @@ namespace WebApi.Controllers
         [Route("api/Report/Mock/{UserId}")]
         public IHttpActionResult GetMockReport(string UserId)
         {
-            var report = db.Reports.Where(x => x.UserId == UserId && x.QuizType == "Mock").Select(x => new
-            {
-                x.Accuracy,
-                x.CorrectAnswers,
-                x.Efficiency,
-                x.QuizId,
-                x.ReportId,
-                x.TimeTaken,
-                x.MarksScored,
-                x.UnattemptedAnswers,
-                x.WrongAnswers,
-                x.UserId,
-                db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).QuizName,
-                db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).TotalMarks
-            }).ToList();
+            var report = db.Reports.Where(x => x.UserId == UserId && x.QuizType == "Mock")
+                .Select(x => new
+                {
+                    x.ReportId,
+                    x.Accuracy,
+                    x.CorrectAnswers,
+                    x.Efficiency,
+                    x.QuizId,
+                    x.TimeTaken,
+                    x.MarksScored,
+                    x.UnattemptedAnswers,
+                    x.WrongAnswers,
+                    x.UserId,
+                    db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).QuizName,
+                    db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).TotalMarks
+                })
+                .OrderByDescending(z => z.ReportId)
+                .ToList();
             return Ok(report);
         }
     }

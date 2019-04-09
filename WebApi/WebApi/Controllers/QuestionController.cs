@@ -35,21 +35,24 @@ namespace WebApi.Controllers
                         Option4 = x.Option4,
                         Answer = x.Answer,
                         Marks = x.Marks,
+                        QuestionType = x.QuestionType,
                         SubjectId = x.SubjectId,
                         SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
                         Difficulty = x.Difficulty,
                         ImageName = x.ImageName
-                    }).ToList();
+                    })
+                    .OrderByDescending(y=>y.QuestionId)
+                    .ToList();
             return Ok(questions);
         }
 
 
         [HttpGet]
-        [Route("api/Question/GetQuestion/{Difficulty}/{SubjectId}")]
-        public IHttpActionResult GetAllQuestions(string Difficulty, int SubjectId)
+        [Route("api/Question/GetQuestion")]
+        public IHttpActionResult GetQuestionDifficultySubjectType(string Difficulty, int SubjectId, string QuestionType)
         {
             var questions = db.Questions
-                .Where(z => z.Difficulty == Difficulty && z.SubjectId == SubjectId)
+                .Where(z => z.Difficulty == Difficulty && z.SubjectId == SubjectId && z.QuestionType == QuestionType)
                 .Select(x => new
                 {
                     QuestionId = x.QuestionId,
@@ -60,11 +63,14 @@ namespace WebApi.Controllers
                     Option4 = x.Option4,
                     Answer = x.Answer,
                     Marks = x.Marks,
+                    QuestionType = x.QuestionType,
                     SubjectId = x.SubjectId,
                     SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
                     Difficulty = x.Difficulty,
                     ImageName = x.ImageName
-                }).ToList();
+                })
+                .OrderByDescending(y => y.QuestionId)
+                .ToList();
             return Ok(questions);
         }
 
@@ -84,11 +90,14 @@ namespace WebApi.Controllers
                     Option4 = x.Option4,
                     Answer = x.Answer,
                     Marks = x.Marks,
+                    QuestionType = x.QuestionType,
                     SubjectId = x.SubjectId,
                     SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
                     Difficulty = x.Difficulty,
                     ImageName = x.ImageName
-                }).ToList();
+                })
+                .OrderByDescending(y => y.QuestionId)
+                .ToList();
             return Ok(questions);
         }
 
@@ -195,11 +204,14 @@ namespace WebApi.Controllers
                     Option4 = x.Option4,
                     Answer = x.Answer,
                     Marks = x.Marks,
+                    QuestionType = x.QuestionType,
                     SubjectId = x.SubjectId,
                     SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
                     Difficulty = x.Difficulty.ToString(),
                     ImageName = x.ImageName
-                });
+                })
+                .OrderByDescending(y => y.QuestionId)
+                .ToList();
             return Ok(questions);
         }
 
@@ -208,7 +220,7 @@ namespace WebApi.Controllers
         [Route("api/Question/{QuestionId}")]
         public IHttpActionResult QuestionById(int? QuestionId)
         {
-            var questions = db.Questions
+            var question = db.Questions
                 .Where(z => z.QuestionId == QuestionId)
                 .Select(x => new
                 {
@@ -220,12 +232,14 @@ namespace WebApi.Controllers
                     Option4 = x.Option4,
                     Answer = x.Answer,
                     Marks = x.Marks,
+                    QuestionType = x.QuestionType,
                     SubjectId = x.SubjectId,
                     SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
                     Difficulty = x.Difficulty,
                     ImageName = x.ImageName
-                });
-            return Ok(questions);
+                })
+                .Single();
+            return Ok(question);
         }
 
     }

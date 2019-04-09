@@ -42,7 +42,7 @@ namespace WebApi.Controllers
             var userScheduleUserIds = db.UserSchedules.AsEnumerable()
                 .Where(x => x.QuizScheduleId == QuizScheduleId)
                 .Select(y => y.UserId).ToList();
-            var userIds = db.Users
+            var users = db.Users
                 .Where(x => userScheduleUserIds.Contains(x.Id))
                 .Select(z => new
                 {
@@ -53,9 +53,9 @@ namespace WebApi.Controllers
                     z.Email,
                     z.ImageURL,
                     z.GoogleId,
-                    QuizTaken = db.UserSchedules.Where(x => x.UserId == z.Id && x.QuizScheduleId == QuizScheduleId).Select(y => y.Taken)
+                    QuizTaken = db.UserSchedules.FirstOrDefault(x => x.UserId == z.Id && x.QuizScheduleId == QuizScheduleId).Taken
                 }).ToList();
-            return Ok(userIds);
+            return Ok(users);
         }
 
         [HttpDelete]
@@ -73,8 +73,7 @@ namespace WebApi.Controllers
             else
             {
                 return BadRequest("CantDeleteUser");
-            }
-            
+            }   
         }
 
         [HttpPost]
