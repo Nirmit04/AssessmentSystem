@@ -27,7 +27,12 @@ export class ContentCreatorServiceService {
 	postQuestion(formData: Question) {
 		formData.CreatedBy = localStorage.getItem('uid');
 		formData.QuestionType = this.QuestionType;
+		console.log(this.QuestionType);
 		return this.http.post(this.rootURL + 'Question/CreateQuestion', formData);
+	}
+
+	retrieveQuizNames() {
+		return this.http.get(this.rootURL + 'Quiz/GetAllQuizName');
 	}
 
 	updateQuestion(formData: Question) {

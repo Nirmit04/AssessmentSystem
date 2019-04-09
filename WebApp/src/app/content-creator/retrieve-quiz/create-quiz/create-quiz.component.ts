@@ -19,6 +19,8 @@ export class CreateQuizComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   public Subjects: any[];
   questions: any[];
+  quizzes: any[];
+  quizExists: boolean;
   val: boolean = false;
   count: number = 0;
   CCreatedBy = "";
@@ -38,6 +40,7 @@ export class CreateQuizComponent implements OnInit {
     private dialog: MatDialog,
   ) { }
   ngOnInit() {
+    this.quizExists = false;
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 4,
@@ -45,6 +48,9 @@ export class CreateQuizComponent implements OnInit {
     this.resetForm();
     this.dtTrigger.next();
     this.CCreatedBy = localStorage.getItem('uid');
+    this.service.retrieveQuizNames().subscribe((res: any) => {
+      this.quizzes = res as any[]
+    });
     this.service.retrieveSubjects().subscribe(data => {
       this.Subjects = data as any[];
     });
@@ -146,6 +152,19 @@ export class CreateQuizComponent implements OnInit {
       this.dtTrigger.next();
     });
   }
+
+  checkAvail(inputName: NgForm) {
+    for (let name of this.quizzes) {
+      if (name.QuizName.toString().toLowerCase() === inputName.value.toString().toLowerCase()) {
+        this.quizExists = true;
+        break;
+      }
+      else {
+        this.quizExists = false;
+      }
+    }
+  }
+
 
   add_new_ques() {
     console.log(this.service.quizForm.QuizType);
