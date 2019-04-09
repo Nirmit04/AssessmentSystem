@@ -2,6 +2,7 @@
   <button type="button " [mat-dialog-close] class="btn btn-danger pos">
     <mat-icon>clear</mat-icon>
   </button>
+  <mat-dialog-content>
   <div class="card-body">
     <h5 class="card-title">{{label}}</h5>
     <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
@@ -90,10 +91,12 @@
           <div class="validation-error" *ngIf="Difficulty.invalid && Difficulty.touched">This field is required.</div>
         </div>
       </div>
+      <strong><img [src]="src" alt="Image Does Not Exist"></strong>
       <div class="form-group">
         <button [hidden]="bool" style="margin:0 5%" type="submit" [disabled]="form.invalid || bool"
           class="btn btn-primary">Submit</button>
       </div>
     </form>
   </div>
+</mat-dialog-content>
 </div>

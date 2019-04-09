@@ -91,6 +91,12 @@
               </div>
             </div>
           </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+                <strong><label>Select Image</label></strong>
+              <input type="file" (change)="chooseFile($event)" Name="ImageName" class="form-control">
+            </div>
+          </div>
           <div class="form-group" style="margin-top:2%">
             <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
           </div>

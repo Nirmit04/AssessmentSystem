@@ -14,6 +14,7 @@ export class ContentCreatorServiceService {
 	QuestionType: string;
 	tagForm: TagModel;
 	formData: Question;
+	formDataNew: FormData = new FormData();;
 	quizForm: QuizModel;
 	readonlyStatus: boolean;
 	QuizHour: number;
@@ -22,13 +23,20 @@ export class ContentCreatorServiceService {
 	quesStat: boolean = false;
 	public createdBy;
 	public formDupli: NgForm;
+	selectedFile: File = null;
 	constructor(private http: HttpClient) { }
 
 	postQuestion(formData: Question) {
 		formData.CreatedBy = localStorage.getItem('uid');
 		formData.QuestionType = this.QuestionType;
 		console.log(this.QuestionType);
-		return this.http.post(this.rootURL + 'Question/CreateQuestion', formData);
+		console.log(formData);
+		this.formDataNew.append('QuestionDetails', JSON.stringify(formData));
+		if (this.selectedFile !== null) {
+			console.log('image-thingy')
+			this.formDataNew.append('Image', this.selectedFile, this.selectedFile.name);
+		}
+		return this.http.post(this.rootURL + 'Question/CreateQuestion', this.formDataNew);
 	}
 
 	retrieveQuizNames() {

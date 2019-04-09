@@ -13,6 +13,7 @@ export class CreateQuestionsComponent implements OnInit {
 
   public Subjects: Subject[];
   CCreatedBy = "";
+
   constructor(public service: ContentCreatorServiceService, public toastr: ToastrService, ) { }
   ngOnInit() {
     this.resetForm();
@@ -40,10 +41,16 @@ export class CreateQuestionsComponent implements OnInit {
     }
   }
 
+  chooseFile(event) {
+    this.service.selectedFile = event.target.files.item(0);
+  }
+
   onSubmit(form: NgForm) {
     this.service.postQuestion(form.value).subscribe((res: any) => {
       this.toastr.success('Inserted successfully');
       console.log('gell');
+      this.service.formDataNew = null;
+      this.service.selectedFile = null;
       this.resetForm(form);
     });
   }

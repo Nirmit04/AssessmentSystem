@@ -21,8 +21,8 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>Test Admin</span>
-      <span class="spacer"></span>
-      <div class="btn-group">
+      <!-- <span class="spacer"></span> -->
+      <!-- <div class="btn-group">
         <button type="button" class="btn btn-success btn-sm">Choose-Role</button>
         <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
@@ -39,8 +39,20 @@
           <a class="dropdown-item" style="color:black" (click)="aab('/ru-dash')" *ngIf="roleMatch(['Reporting-User'])">
             Reporting-User</a>
         </div>
+      </div> -->
+      <div class="input-group mb-6" style="width:40%; float: left;">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Role</label>
+        </div>
+        <select class="custom-select" #role id="inputGroupSelect01" (change)="aab(role.value)">
+          <option selected disabled>Choose...</option>
+          <option value="//emp-dash" *ngIf="roleMatch(['Employee'])">Employee</option>
+          <option value="//cc-dash" *ngIf="roleMatch(['Content-Creator'])">Content-Creator</option>
+          <option value="//ta-dash" *ngIf="roleMatch(['Test-Administrator'])">Test-Admin</option>
+          <option value="//ru-dash" *ngIf="roleMatch(['Reporting-User'])">Reporting-User</option>
+        </select>
       </div>
-      &nbsp;&nbsp;&nbsp;&nbsp;
+      <span class="spacer"></span>
       <a class="log" (click)="logout()"><i aria-hidden="true" class="fa fa-sign-out"></i>Log Out</a>
     </mat-toolbar>
     <div class="content">
