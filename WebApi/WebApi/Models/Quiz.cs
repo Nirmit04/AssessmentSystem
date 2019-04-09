@@ -16,7 +16,7 @@ namespace WebApi.Models
         public int TotalQuestions { get; set; }
         public decimal TotalMarks { get; set; } = 0.00m;
         public bool ArchiveStatus { get; set; } = false;
-        public string QuizType { get; set; } = "Non-Mock";
+        public string QuizType { get; set; } = "Scheduled";
         public int[] QuestionIds { get; set; }
         public string QuizTime { get; set; } = null;
 

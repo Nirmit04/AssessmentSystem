@@ -25,7 +25,9 @@ namespace WebApi.Controllers
                     QuizId = x.QuizId,
                     QuizName = db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).QuizName,
                     ArchiveStatus = x.ArchiveStatus,
-                }).ToList();
+                })
+                .OrderByDescending(z=>z.QuizScheduleId)
+                .ToList();
             return Ok(quizSchedule);
         }
 
@@ -61,9 +63,18 @@ namespace WebApi.Controllers
         public IHttpActionResult DeleteQuizSchedule(int QuizScheduleId)
         {
             var quizSchedule = db.QuizSchedules.Find(QuizScheduleId);
-            quizSchedule.ArchiveStatus = true;
-            db.SaveChanges();
-            return Ok();
+            var userScheduleTrue = db.UserSchedules.Where(x => x.QuizScheduleId == QuizScheduleId).All(z => z.Taken == true);
+            var userScheduleFalse = db.UserSchedules.Where(x => x.QuizScheduleId == QuizScheduleId).All(z => z.Taken == false);
+            if (userScheduleTrue == true && userScheduleFalse == true)
+            {
+                quizSchedule.ArchiveStatus = true;
+                db.SaveChanges();
+                return Ok();
+            }
+            else
+            {
+                return BadRequest("Not All Users Have Similar Taken Status");
+            }
         }
 
         [HttpGet]

@@ -23,7 +23,7 @@ namespace WebApi.Controllers
                 if (userReport.Count() != 0)
                 {
                     userAnalytics.MockCount = db.Reports.Where(x => x.UserId == UserId && x.QuizType == "Mock").Count();
-                    userAnalytics.NonMockCount = db.Reports.Where(x => x.UserId == UserId && x.QuizType == "Non-Mock").Count();
+                    userAnalytics.ScheduledCount = db.Reports.Where(x => x.UserId == UserId && x.QuizType == "Scheduled").Count();
                     userAnalytics.TotalQuizCount = userReport.Count();
                     userAnalytics.HighestScore = userReport.Select(max => max.MarksScored).DefaultIfEmpty().Max();
                     userAnalytics.LowestScore = userReport.Select(max => max.MarksScored).DefaultIfEmpty().Min();

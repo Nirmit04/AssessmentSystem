@@ -8,7 +8,7 @@ namespace WebApi.Models
     public class UserAnalytics
     {
         public int MockCount { get; set; }
-        public int NonMockCount { get; set; }
+        public int ScheduledCount { get; set; }
         public int TotalQuizCount { get; set; }
         public decimal HighestScore { get; set; }
         public decimal LowestScore { get; set; }

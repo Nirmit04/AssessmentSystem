@@ -58,7 +58,9 @@ namespace WebApi.Controllers
                     x.QuizType,
                     x.QuizTime,
                     Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name
-                }).ToList();
+                })
+                .OrderByDescending(z => z.QuizId)
+                .ToList();
             return Ok(quiz);
         }
 
@@ -106,6 +108,7 @@ namespace WebApi.Controllers
                     Option = new string[] { x.Option1, x.Option2, x.Option3, x.Option4 },
                     x.ImageName,
                     x.Marks,
+                    x.QuestionType,
                     x.Difficulty,
                     x.CreatedBy
                 }).ToList();
@@ -135,7 +138,7 @@ namespace WebApi.Controllers
                 .Select(z => z.QuestionId).ToList();
             var quiz = db.Quizs.Single(x => x.QuizId == QuizId);
             var questionsList = db.Questions
-                .Where(x => x.Difficulty == quiz.Difficulty && x.SubjectId == quiz.SubjectId && !qIds.Contains(x.QuestionId))
+                .Where(x => x.Difficulty == quiz.Difficulty && x.SubjectId == quiz.SubjectId && x.QuestionType == quiz.QuizType && !qIds.Contains(x.QuestionId))
                 .Select(z => new
                 {
                     z.QuestionId,
@@ -146,6 +149,7 @@ namespace WebApi.Controllers
                     z.Option4,
                     z.Answer,
                     z.Marks,
+                    z.QuestionType,
                     z.SubjectId,
                     SubjectName = db.Subjects.Where(y => y.SubjectId == z.SubjectId).FirstOrDefault().Name,
                     z.Difficulty,
@@ -180,8 +184,8 @@ namespace WebApi.Controllers
         [Route("api/Quiz/GetAllQuiz")]
         public IHttpActionResult GetAllQuiz()
         {
-            var quiz = db.Quizs.Where(x => x.ArchiveStatus == false).
-                Select(x => new
+            var quiz = db.Quizs.Where(x => x.ArchiveStatus == false)
+                .Select(x => new
                 {
                     x.QuizId,
                     x.QuizName,
@@ -193,7 +197,24 @@ namespace WebApi.Controllers
                     x.QuizTime,
                     Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
                     CreatedBy = db.Users.FirstOrDefault(z=>z.Id==x.CreatedBy).FirstName
-                }).ToList();
+                })
+                .OrderByDescending(z => z.QuizId)
+                .ToList();
+            return Ok(quiz);
+        }
+
+        [HttpGet]
+        [Route("api/Quiz/GetAllQuizName")]
+        public IHttpActionResult GetAllQuizName()
+        {
+            var quiz = db.Quizs
+                .Select(x => new
+                {
+                    x.QuizId,
+                    x.QuizName,
+                    x.QuizType
+                })
+                .ToList();
             return Ok(quiz);
         }
 
@@ -211,7 +232,6 @@ namespace WebApi.Controllers
                 db.QuizQuestions.Add(quizQuestion);
                 quiz = db.Quizs.FirstOrDefault(x => x.QuizId == QuizId);
                 question = db.Questions.FirstOrDefault(x => x.QuestionId == item);
-
                 quiz.TotalQuestions++;
                 quiz.TotalMarks += question.Marks;
                 db.SaveChanges();
@@ -229,16 +249,19 @@ namespace WebApi.Controllers
         [Route("api/Quiz/MockQuiz")]
         public IHttpActionResult GetAllMockQuiz()
         {
-            var Mock = db.Quizs.Where(x => x.QuizType == "Mock").Select(x => new
-            {
-                x.QuizId,
-                x.QuizName,
-                x.Difficulty,
-                Subject = db.Subjects.FirstOrDefault(y => y.SubjectId == x.SubjectId).Name,
-                x.TotalMarks,
-                x.QuizTime,
-                x.TotalQuestions
-            }).ToList();
+            var Mock = db.Quizs.Where(x => x.QuizType == "Mock")
+                .Select(x => new
+                {
+                    x.QuizId,
+                    x.QuizName,
+                    x.Difficulty,
+                    Subject = db.Subjects.FirstOrDefault(y => y.SubjectId == x.SubjectId).Name,
+                    x.TotalMarks,
+                    x.QuizTime,
+                    x.TotalQuestions
+                })
+                .OrderByDescending(z => z.QuizId)
+                .ToList();
             return Ok(Mock);
         }
 
@@ -283,7 +306,7 @@ namespace WebApi.Controllers
                     WAnswer++;
                 }
                 i++;
-                if (db.Quizs.FirstOrDefault(x => x.QuizId == evalutionAnswer.QuizId).QuizType == "Non-Mock")
+                if (db.Quizs.FirstOrDefault(x => x.QuizId == evalutionAnswer.QuizId).QuizType == "Scheduled")
                 {
                     db.DetailedReports.Add(detailedReport);
                     db.SaveChanges();
@@ -337,7 +360,7 @@ namespace WebApi.Controllers
         {
             var questions = db.Questions
                 .AsEnumerable()
-                .Where(y => y.SubjectId == quiz.SubjectId && y.Difficulty == quiz.Difficulty)
+                .Where(y => y.SubjectId == quiz.SubjectId && y.Difficulty == quiz.Difficulty && y.QuestionType == quiz.QuizType)
                 .Select(x => new { x.QuestionId, x.QuestionStatement, x.Option1, x.Option2, x.Option3, x.Option4, x.ImageName, x.Marks })
                 .OrderBy(y => Guid.NewGuid())
                 .Take(TotalQuestion)
@@ -346,16 +369,18 @@ namespace WebApi.Controllers
             {
                 quiz.TotalMarks += item.Marks;
             }
-            quiz.TotalQuestions = TotalQuestion;
-            quiz.QuizType = "Mock";
-            db.Quizs.Add(quiz);
-            db.SaveChanges();
-            foreach (var item in questions)
+            quiz.TotalQuestions = questions.Count();
+            if (questions.Count() > 0)
             {
-                db.QuizQuestions.Add(new QuizQuestion() { QuizId = quiz.QuizId, QuestionId = item.QuestionId });
+                db.Quizs.Add(quiz);
                 db.SaveChanges();
+                foreach (var item in questions)
+                {
+                    db.QuizQuestions.Add(new QuizQuestion() { QuizId = quiz.QuizId, QuestionId = item.QuestionId });
+                    db.SaveChanges();
+                }
             }
-            return Ok(questions);
+            return Ok(questions.Count());
         }
 
     }
