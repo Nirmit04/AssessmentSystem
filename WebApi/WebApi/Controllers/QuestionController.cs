@@ -93,7 +93,7 @@ namespace WebApi.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost, Microsoft.AspNetCore.Mvc.DisableRequestSizeLimit]
         [Route("api/Question/CreateQuestion")]
         public IHttpActionResult PostQuestion(Question question)
         {

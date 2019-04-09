@@ -1,4 +1,5 @@
 ﻿
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using System.Web.Script.Serialization;
 using WebApi.Models;
 
 namespace WebApi.Controllers
@@ -78,32 +80,23 @@ namespace WebApi.Controllers
             return Ok(employeeStats);
         }
 
-        [HttpPost]
+        [HttpPost, Microsoft.AspNetCore.Mvc.DisableRequestSizeLimit]
         [Route("api/Employee/Sample")]
-        public IHttpActionResult Sample([FromBody]Sample sample)
+        public IHttpActionResult Sample()
         {
-            
-
-            System.Diagnostics.Debug.WriteLine(sample.companyname);
-            System.Diagnostics.Debug.WriteLine(sample.designation);
-           // System.Diagnostics.Debug.WriteLine(file.FileName);
-
             string imageName = null;
             var httpRequest = HttpContext.Current.Request;
             var postedFile = httpRequest.Files["Image"];
-           
-
+            var data = new JavaScriptSerializer().Deserialize<Sample>(httpRequest.Form["QuestionDetails"]);
+            System.Diagnostics.Debug.WriteLine(data.QuestionStatement);
             if (postedFile != null)
-                {
-                    var ImageDirectoryUrl = HttpContext.Current.Server.MapPath("/Images/");
-                    imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).ToArray()).Replace(" ", "-");
-                    imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
-                    var filePath = ImageDirectoryUrl + imageName;
-                    sample.jd = imageName;
-                    postedFile.SaveAs(filePath);
-                    System.Diagnostics.Debug.WriteLine("in if");
-                }
-            System.Diagnostics.Debug.WriteLine(sample.jd);
+            {
+                var ImageDirectoryUrl = HttpContext.Current.Server.MapPath("/Images/");
+                imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).ToArray()).Replace(" ", "-");
+                imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
+                var filePath = ImageDirectoryUrl + imageName;
+                postedFile.SaveAs(filePath);
+            }
             return Ok();
             }
         }
