@@ -40,7 +40,7 @@ namespace WebApi.Controllers
                     db.QuizSchedules.FirstOrDefault(y => y.QuizScheduleId == x.QuizScheduleId).EndDateTime
                 })
                 .ToList();
-            foreach (var item in quizzesScheduled)
+            foreach (var item in quizzesScheduled.ToList())
             {
                 if (DateTime.Now > item.EndDateTime)
                 {

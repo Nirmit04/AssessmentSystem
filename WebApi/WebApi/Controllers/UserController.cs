@@ -95,6 +95,8 @@ namespace WebApi.Controllers
             List<Account> userlist = new List<Account>();
             foreach (var user in users)
             {
+                System.Diagnostics.Debug.WriteLine("ge ts   "+user.Id);
+
                 userlist.Add(new Account
                 {
                     Id = user.Id,
@@ -103,6 +105,7 @@ namespace WebApi.Controllers
                     LastName = user.LastName,
                     Email = user.Email,
                     ImageURL = user.ImageURL,
+                    Roles = GetRoles(user.Id),
                     GoogleId = user.GoogleId,
                 });
             }
@@ -122,7 +125,6 @@ namespace WebApi.Controllers
             var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
             var manager = new UserManager<ApplicationUser>(userStore);
             var applicationUser = manager.FindByEmail(email);
-            var roles = manager.GetRoles(applicationUser.Id);
             Account user = new Account();
             user.Id = applicationUser.Id;
             user.Email = applicationUser.Email;
@@ -130,7 +132,7 @@ namespace WebApi.Controllers
             user.LastName = applicationUser.LastName;
             user.UserName = applicationUser.UserName;
             user.GoogleId = applicationUser.GoogleId;
-            user.Roles = roles.ToArray();
+            user.Roles = GetRoles(applicationUser.Id);
             return Ok(user);
         }
 
@@ -144,6 +146,20 @@ namespace WebApi.Controllers
             userStats.Add("QuestionsCreated", db.Questions.Where(x => x.CreatedBy == UserId).Count());
             userStats.Add("TagsCreated", db.Subjects.Where(x => x.CreatedBy == UserId).Count());
             return Ok(userStats);
+        }
+
+        [HttpGet]
+        [Route("api/Stat")]
+        public string[] GetRoles(string Id)
+        {
+            if(Id==null)
+            {
+                return null;
+            }
+            var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
+            UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(userStore);
+            IList<string> roles = manager.GetRoles(Id);
+            return roles.ToArray();
         }
     }
 }

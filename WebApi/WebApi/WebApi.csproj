@@ -319,6 +319,10 @@
     <Compile Include="Migrations\201904050453284_Questiontype.Designer.cs">
       <DependentUpon>201904050453284_Questiontype.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904100543217_drop Efficiency.cs" />
+    <Compile Include="Migrations\201904100543217_drop Efficiency.Designer.cs">
+      <DependentUpon>201904100543217_drop Efficiency.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -369,6 +373,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201904050453284_Questiontype.resx">
       <DependentUpon>201904050453284_Questiontype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904100543217_drop Efficiency.resx">
+      <DependentUpon>201904100543217_drop Efficiency.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
