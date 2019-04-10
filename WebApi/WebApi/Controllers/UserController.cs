@@ -95,6 +95,8 @@ namespace WebApi.Controllers
             List<Account> userlist = new List<Account>();
             foreach (var user in users)
             {
+                System.Diagnostics.Debug.WriteLine("ge ts   "+user.Id);
+
                 userlist.Add(new Account
                 {
                     Id = user.Id,
@@ -104,7 +106,7 @@ namespace WebApi.Controllers
                     Email = user.Email,
                     ImageURL = user.ImageURL,
                     Roles = GetUserRoles(user.Id),
-                    GoogleId = user.GoogleId,                   
+                    GoogleId = user.GoogleId,
                 });
                
             }
@@ -124,15 +126,14 @@ namespace WebApi.Controllers
             var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
             var manager = new UserManager<ApplicationUser>(userStore);
             var applicationUser = manager.FindByEmail(email);
-            var roles = manager.GetRoles(applicationUser.Id);
             Account user = new Account();
             user.Id = applicationUser.Id;
             user.Email = applicationUser.Email;
             user.FirstName = applicationUser.FirstName;
             user.LastName = applicationUser.LastName;
             user.UserName = applicationUser.UserName;
+            user.Roles = GetUserRoles(applicationUser.Id);
             user.GoogleId = applicationUser.GoogleId;
-            user.Roles = roles.ToArray();
             return Ok(user);
         }
 
@@ -148,17 +149,20 @@ namespace WebApi.Controllers
             return Ok(userStats);
         }
 
-        #region Helper
+        #region Helpers
 
-        public static string[] GetUserRoles(string userId)
+        public string[] GetUserRoles(string userId)
         {
+            if(userId==null)
+            {
+                return null;
+            }
             var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
-            var manager = new UserManager<ApplicationUser>(userStore);
-            var roles = manager.GetRoles(userId).ToArray();
-            return roles;
+            UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(userStore);
+            var roles = manager.GetRoles(userId);
+            return roles.ToArray();
         }
 
         #endregion
-
     }
 }

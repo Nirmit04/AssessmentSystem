@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -26,9 +27,13 @@ namespace WebApi.Models
         public string CreatedBy { get; set; }
 
         //Foreign Key reference table
+        [JsonIgnore]
         public virtual Subject Subject { get; set; }
+        [JsonIgnore]
         public virtual ApplicationUser User { get; set; }
+        [JsonIgnore]
         public virtual ICollection<DetailedReport> DetailedReports { get; set; }
+        [JsonIgnore]
         public virtual ICollection<QuizQuestion> QuizQuestions { get; set; }
     }
 }

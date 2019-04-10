@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -16,7 +17,6 @@ namespace WebApi.Models
         public string TimeTaken { get; set; }
         public int UnattemptedAnswers { get; set; }
         public decimal Accuracy { get; set; }
-        public decimal Efficiency { get; set; }
         public decimal MarksScored { get; set; }
         public string QuizType { get; set; }
 
@@ -25,7 +25,9 @@ namespace WebApi.Models
         [ForeignKey("Quiz")]
         public int QuizId { get; set; }
 
+        [JsonIgnore]
         public virtual Quiz Quiz { get; set; }
+        [JsonIgnore]
         public virtual ApplicationUser User { get; set; }
     }
 }

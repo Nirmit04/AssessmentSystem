@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -21,9 +22,11 @@ namespace WebApi.Models
         [ForeignKey("TestAdmin")]
         public string CreatedBy { get; set; }
 
+        [JsonIgnore]
         public virtual Quiz Quiz { get; set; }
+        [JsonIgnore]
         public virtual ApplicationUser TestAdmin { get; set; }
-
+        [JsonIgnore]
         public virtual ICollection<UserSchedule> UserSchedules { get; set; }
     }
 }

@@ -315,6 +315,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904050453284_Questiontype.cs" />
+    <Compile Include="Migrations\201904050453284_Questiontype.Designer.cs">
+      <DependentUpon>201904050453284_Questiontype.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904100543217_drop Efficiency.cs" />
+    <Compile Include="Migrations\201904100543217_drop Efficiency.Designer.cs">
+      <DependentUpon>201904100543217_drop Efficiency.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -361,6 +369,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201904050453284_Questiontype.resx">
+      <DependentUpon>201904050453284_Questiontype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904100543217_drop Efficiency.resx">
+      <DependentUpon>201904100543217_drop Efficiency.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
