@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -23,8 +24,11 @@ namespace WebApi.Models
 
         public bool Taken { get; set; }
 
+        [JsonIgnore]
         public virtual Quiz Quiz { get; set; }
+        [JsonIgnore]
         public virtual QuizSchedule QuizSchedule { get; set; }
+        [JsonIgnore]
         public virtual ApplicationUser User { get; set; }
     }
 }
