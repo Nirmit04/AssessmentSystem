@@ -103,8 +103,10 @@ namespace WebApi.Controllers
                     LastName = user.LastName,
                     Email = user.Email,
                     ImageURL = user.ImageURL,
-                    GoogleId = user.GoogleId,
+                    Roles = GetUserRoles(user.Id),
+                    GoogleId = user.GoogleId,                   
                 });
+               
             }
             return userlist.AsQueryable();
         }
@@ -145,5 +147,18 @@ namespace WebApi.Controllers
             userStats.Add("TagsCreated", db.Subjects.Where(x => x.CreatedBy == UserId).Count());
             return Ok(userStats);
         }
+
+        #region Helper
+
+        public static string[] GetUserRoles(string userId)
+        {
+            var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
+            var manager = new UserManager<ApplicationUser>(userStore);
+            var roles = manager.GetRoles(userId).ToArray();
+            return roles;
+        }
+
+        #endregion
+
     }
 }
