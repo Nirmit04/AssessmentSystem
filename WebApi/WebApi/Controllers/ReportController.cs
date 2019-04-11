@@ -8,14 +8,21 @@ using WebApi.Models;
 
 namespace WebApi.Controllers
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class ReportController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        private Helper helper = new Helper();
+        /// <summary>
+        /// Returns all the non mock quiz reports of a particular user
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/Report/Scheduled/{UserId}")]
         public IHttpActionResult GetScheduledReport(string UserId)
         {
+            
             var report = db.Reports.Where(x => x.UserId == UserId && x.QuizType== "Scheduled")
                 .Select(x => new
                 {
@@ -36,7 +43,11 @@ namespace WebApi.Controllers
             return Ok(report);
         }
 
-
+        /// <summary>
+        /// Returns all the non mock quiz reports of a particular user
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/Report/Mock/{UserId}")]
         public IHttpActionResult GetMockReport(string UserId)
