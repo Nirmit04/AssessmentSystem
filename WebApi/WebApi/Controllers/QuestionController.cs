@@ -107,7 +107,7 @@ namespace WebApi.Controllers
         public IHttpActionResult PostQuestion(Question question)
         {
             Subject sub = db.Subjects.FirstOrDefault(x => x.SubjectId == question.SubjectId);
-            if(sub.SubjectId!=question.SubjectId)
+            if(sub==null)
             {
                 return BadRequest();
             }
