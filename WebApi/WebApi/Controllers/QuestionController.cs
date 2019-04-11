@@ -18,14 +18,23 @@ using WebApi.Models;
 
 namespace WebApi.Controllers
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class QuestionController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        /// <summary>
+        /// Returns all the questions of a particular Subject
+        /// </summary>
+        /// <param name="SubjectId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/Question/GetQuestion/{SubjectId:int?}")]
         public IHttpActionResult GetQuestion(int? SubjectId)
         {
+            if(db.Subjects.Find(SubjectId)==null)
+            {
+                return BadRequest("Invalid Parameters");
+            }
             var questions = db.Questions
                     .Where(z => z.SubjectId == SubjectId)
                     .Select(x => new
@@ -40,7 +49,7 @@ namespace WebApi.Controllers
                         Marks = x.Marks,
                         QuestionType = x.QuestionType,
                         SubjectId = x.SubjectId,
-                        SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
+                        SubjectName = GetSubject(x.SubjectId),
                         Difficulty = x.Difficulty,
                         ImageName = x.ImageName
                     })
@@ -49,11 +58,21 @@ namespace WebApi.Controllers
             return Ok(questions);
         }
 
-
+        /// <summary>
+        /// Returns all the questions of a particualr difficulty and a subject
+        /// </summary>
+        /// <param name="Difficulty"></param>
+        /// <param name="SubjectId"></param>
+        /// <param name="QuestionType"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/Question/GetQuestion")]
         public IHttpActionResult GetQuestionDifficultySubjectType(string Difficulty, int SubjectId, string QuestionType)
         {
+            if (db.Subjects.Find(SubjectId) == null )
+            {
+                return BadRequest("Invalid Parameters");
+            }
             var questions = db.Questions
                 .Where(z => z.Difficulty == Difficulty && z.SubjectId == SubjectId && z.QuestionType == QuestionType)
                 .Select(x => new
@@ -68,7 +87,7 @@ namespace WebApi.Controllers
                     Marks = x.Marks,
                     QuestionType = x.QuestionType,
                     SubjectId = x.SubjectId,
-                    SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
+                    SubjectName = GetSubject(x.SubjectId),
                     Difficulty = x.Difficulty,
                     ImageName = x.ImageName
                 })
@@ -77,7 +96,10 @@ namespace WebApi.Controllers
             return Ok(questions);
         }
 
-
+        /// <summary>
+        /// Returns all the questions present in the question bank
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/Question/GetAllQuestions")]
         public IHttpActionResult GetAllQuestion()
@@ -95,7 +117,7 @@ namespace WebApi.Controllers
                     Marks = x.Marks,
                     QuestionType = x.QuestionType,
                     SubjectId = x.SubjectId,
-                    SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
+                    SubjectName = GetSubject(x.SubjectId),
                     Difficulty = x.Difficulty,
                     ImageName = x.ImageName
                 })
@@ -104,7 +126,10 @@ namespace WebApi.Controllers
             return Ok(questions);
         }
 
-
+        /// <summary>
+        /// Creates/post a question in the question bank
+        /// </summary>
+        /// <returns></returns>
         [HttpPost, Microsoft.AspNetCore.Mvc.DisableRequestSizeLimit]
         [Route("api/Question/CreateQuestion")]
         public IHttpActionResult PostQuestion()
@@ -131,17 +156,22 @@ namespace WebApi.Controllers
             }
             db.Questions.Add(question);
             db.SaveChanges();
-            return Ok(question);
+            return StatusCode(HttpStatusCode.Created);
         }
-        
+
+        /// <summary>
+        /// Used to edit the existing question by specifying the questionId
+        /// </summary>
+        /// <param name="QuestionId"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("api/Question/Edit/{QuestionId}")]
         public IHttpActionResult EditQuestion(int? QuestionId)
         {
             
-            if(QuestionId==null)
+            if(db.Questions.Find(QuestionId)==null)
             {
-                return BadRequest();
+                return BadRequest("Invalid QuestionId");
             }
 
             string imageName = null;
@@ -177,6 +207,11 @@ namespace WebApi.Controllers
         }
 
 
+        /// <summary>
+        /// To delete the specified question
+        /// </summary>
+        /// <param name="QuestionId"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("api/Question/Delete/{QuestionId}")]
         public IHttpActionResult DeleteQuestion(int? QuestionId)
@@ -196,14 +231,18 @@ namespace WebApi.Controllers
             return Ok(question);
         }
 
-        
+        /// <summary>
+        /// Get all the questions created by that particular user
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/Question/GetQuestionByUser/{UserId}")]
         public IHttpActionResult UserQuestions(string UserId)
         {
-            if (UserId == null)
+            if (db.Users.Find(UserId) == null)
             {
-                return BadRequest();
+                return BadRequest("Invalid UserId");
             }
             var questions = db.Questions
                 .Where(x => x.CreatedBy == UserId)
@@ -218,7 +257,7 @@ namespace WebApi.Controllers
                     Marks = x.Marks,
                     QuestionType = x.QuestionType,
                     SubjectId = x.SubjectId,
-                    SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
+                    SubjectName = GetSubject(x.SubjectId),
                     Difficulty = x.Difficulty.ToString(),
                     ImageName = x.ImageName
                 })
@@ -227,11 +266,19 @@ namespace WebApi.Controllers
             return Ok(questions);
         }
 
-
+        /// <summary>
+        /// Returns a question of the specified Question Id
+        /// </summary>
+        /// <param name="QuestionId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/Question/{QuestionId}")]
         public IHttpActionResult QuestionById(int? QuestionId)
         {
+            if (db.Questions.Find(QuestionId) == null)
+            {
+                return BadRequest("Invalid QuestionId");
+            }
             var question = db.Questions
                 .Where(z => z.QuestionId == QuestionId)
                 .Select(x => new
@@ -246,7 +293,7 @@ namespace WebApi.Controllers
                     Marks = x.Marks,
                     QuestionType = x.QuestionType,
                     SubjectId = x.SubjectId,
-                    SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
+                    SubjectName = GetSubject(x.SubjectId),
                     Difficulty = x.Difficulty,
                     ImageName = x.ImageName
                 })
@@ -275,5 +322,12 @@ namespace WebApi.Controllers
 
         #endregion
 
+        #region GetSubject
+        public string GetSubject(int SubjectId)
+        {
+            string subject = db.Subjects.Where(y => y.SubjectId == SubjectId).FirstOrDefault().Name;
+            return subject;
+        }
+        #endregion
     }
 }

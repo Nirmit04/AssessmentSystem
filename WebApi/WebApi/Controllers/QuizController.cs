@@ -10,10 +10,16 @@ using WebApi.Models;
 
 namespace WebApi.Controllers
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class QuizController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        /// <summary>
+        /// Created a quiz and associates the list of questions to that quiz
+        /// </summary>
+        /// <param name="quiz">Quiz Model</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("api/Quiz/CreateQuiz")]
         public IHttpActionResult CreateQuiz(Quiz quiz)
@@ -41,11 +47,19 @@ namespace WebApi.Controllers
             db.SaveChanges();
             return Ok();
         }
-
+        /// <summary>
+        /// Returns the quiz created by that particular user/content creator
+        /// </summary>
+        /// <param name="CreatedBy">User Id</param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/Quiz/GetQuiz/{CreatedBy}")]
         public IHttpActionResult GetQuiz(string CreatedBy)
         {
+            if (db.Users.Find(CreatedBy) == null)
+            {
+                return BadRequest("Invalid UserId");
+            }
            var quiz = db.Quizs.Where(x => x.CreatedBy == CreatedBy && x.ArchiveStatus == false)
                 .Select(x => new
                 {
@@ -64,6 +78,11 @@ namespace WebApi.Controllers
             return Ok(quiz);
         }
 
+        /// <summary>
+        /// Used to delete a quiz based on QuizId
+        /// </summary>
+        /// <param name="QuizId"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("api/Quiz/Delete/{QuizId}")]
         public IHttpActionResult Archive(int QuizId)
@@ -74,20 +93,38 @@ namespace WebApi.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Used to Unacrhive an Archived Quiz
+        /// </summary>
+        /// <param name="QuizId"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("api/Quiz/Unarchive")]
         public IHttpActionResult UnArchive([FromBody]int QuizId)
         {
             Quiz quiz = db.Quizs.Find(QuizId);
+            if (quiz == null)
+            {
+                return BadRequest("QuizId Not Found");
+            }
             quiz.ArchiveStatus = false;
             db.SaveChanges();
             return Ok();
         }
 
+        /// <summary>
+        /// Returns all the questions present in a Quiz
+        /// </summary>
+        /// <param name="QuizId"></param>
+        /// <returns>Questions</returns>
         [HttpGet]
         [Route("api/Quiz/QuizQuestion/{QuizId}")]
         public IHttpActionResult GetQuiz(int QuizId)
         {
+            if (db.Quizs.Find(QuizId) == null)
+            {
+                return BadRequest("QuizId Not Found");
+            }
             var qIds = db.QuizQuestions
                 .Where(x => x.QuizId == QuizId)
                 .Select(x => x.QuestionId)
@@ -115,10 +152,20 @@ namespace WebApi.Controllers
             return Ok(questions);
         }
 
+        /// <summary>
+        /// Used to delete a question from the quiz
+        /// </summary>
+        /// <param name="QuestionId"></param>
+        /// <param name="QuizId"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("api/Quiz/QuizQuestion/Delete/{QuizId}/{QuestionId}")]
         public IHttpActionResult DeleteQuestion(int QuestionId, int QuizId)
         {
+            if(db.Questions.Find(QuestionId)==null || db.Quizs.Find(QuizId)==null)
+            {
+                return BadRequest("Invalid Parameters");
+            }
             var quizquestion = db.QuizQuestions.FirstOrDefault(x => x.QuestionId == QuestionId && x.QuizId == QuizId);
             db.QuizQuestions.Remove(quizquestion);
             var question = db.Questions.FirstOrDefault(x => x.QuestionId == QuestionId);
@@ -129,6 +176,11 @@ namespace WebApi.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Returns all the questions which are not present in the quiz specified
+        /// </summary>
+        /// <param name="QuizId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/Quiz/GetQuestionsNotInQuiz/{QuizId}")]
         public IHttpActionResult GetQuestionsNotInQuiz(int QuizId)
@@ -158,6 +210,11 @@ namespace WebApi.Controllers
             return Ok(questionsList);
         }
 
+        /// <summary>
+        /// Returns all the quizzes archived by that user
+        /// </summary>
+        /// <param name="CreatedBy">UserId</param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/Quiz/Archived/{CreatedBy}")]
         public IHttpActionResult ArchviedQuiz(string CreatedBy)
@@ -179,7 +236,10 @@ namespace WebApi.Controllers
             return Ok(quiz);
         }
 
-
+        /// <summary>
+        /// Returns all the quiz present
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/Quiz/GetAllQuiz")]
         public IHttpActionResult GetAllQuiz()
@@ -203,6 +263,10 @@ namespace WebApi.Controllers
             return Ok(quiz);
         }
 
+        /// <summary>
+        /// Adds a new question to an existing quiz
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/Quiz/GetAllQuizName")]
         public IHttpActionResult GetAllQuizName()
@@ -218,6 +282,12 @@ namespace WebApi.Controllers
             return Ok(quiz);
         }
 
+        /// <summary>
+        /// Adds a new question to an existing quiz
+        /// </summary>
+        /// <param name="QuizId"></param>
+        /// <param name="QuestionId"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("api/Quiz/EditQuiz/AddQuestion/{QuizId}")]
         public IHttpActionResult AddQuestions(int QuizId, [FromBody]int[] QuestionId)
@@ -239,8 +309,10 @@ namespace WebApi.Controllers
             return Ok();
         }
 
-
-        
+        /// <summary>
+        /// Returns all the mock quiz present
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/Quiz/MockQuiz")]
         public IHttpActionResult GetAllMockQuiz()
@@ -261,7 +333,11 @@ namespace WebApi.Controllers
             return Ok(Mock);
         }
 
-
+        /// <summary>
+        /// Creates a report and also a detailed report which calculates marks correct, incorrect, unattempted of a Scheduled Quiz
+        /// </summary>
+        /// <param name="evalutionAnswer"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("api/Quiz/EvaluateQuiz")]
         public IHttpActionResult EvaluateQuiz(EvalutionAnswer evalutionAnswer)
@@ -327,6 +403,11 @@ namespace WebApi.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Evaluates a Mock Quiz
+        /// </summary>
+        /// <param name="QuizId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/Quiz/EvaluateMockQuiz/{QuizId}")]
         public IHttpActionResult EvaluateMockQuiz(int QuizId)
@@ -349,6 +430,12 @@ namespace WebApi.Controllers
             return Ok(QuestionAnswers);
         }
 
+        /// <summary>
+        /// Creates a Quiz with Random questions
+        /// </summary>
+        /// <param name="quiz"></param>
+        /// <param name="TotalQuestion">Total Number of Questions to be added in the Quiz</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("api/Quiz/GetRandomQuestion")]
         public IHttpActionResult GenerateMockQuiz([FromBody]Quiz quiz, [FromUri]int TotalQuestion)

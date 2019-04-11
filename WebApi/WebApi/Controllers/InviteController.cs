@@ -10,6 +10,12 @@ namespace WebApi.Controllers
 {
     public class InviteController : ApiController
     {
+        /// <summary>
+        /// This method is to invite the users to take a Scheduled Quiz via Email
+        /// </summary>
+        /// <param name="UserEmailIds"></param>
+        /// <param name="Message"></param>
+        /// <returns></returns>
         public static string InviteUser(string[] UserEmailIds, string Message)
         {
             try

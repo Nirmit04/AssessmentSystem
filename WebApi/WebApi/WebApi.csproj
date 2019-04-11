@@ -376,6 +376,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DetailedReportController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\Helper.cs" />
     <Compile Include="Controllers\InviteController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />

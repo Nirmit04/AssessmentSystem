@@ -52,7 +52,7 @@ namespace WebApi.Controllers
         }
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
-
+       
         [HttpGet]
         [Authorize(Roles = "Content-Creator")]
         [Route("ContentCreatorRole")]
