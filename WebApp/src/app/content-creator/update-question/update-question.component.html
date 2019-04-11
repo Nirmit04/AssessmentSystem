@@ -8,6 +8,7 @@
       <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
         <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="CCreatedBy">
         <input type="hidden" name="QuestionId" #QuestionId="ngModel" [(ngModel)]="service.formData.QuestionId">
+        <input type="hidden" name="ImageName" #ImageName="ngModel" [(ngModel)]="service.formData.ImageName">
         <div class="form-group">
           <label>Question</label>
           <textarea class="form-control" [readonly]="bool" name="QuestionStatement" #QuestionStatement="ngModel"
@@ -105,7 +106,7 @@
           </div>
           <div [hidden]="bool" class="form-group col-md-6">
             <strong><label>Select/Change Image</label></strong>
-            <input type="file" (change)="chooseFile($event)" Name="ImageName" class="form-control">
+            <input type="file" (change)="chooseFile($event)" name="ImageNameDemo" class="form-control">
           </div>
         </div>
         <strong><img [src]="src" alt="Image Does Not Exist"></strong>

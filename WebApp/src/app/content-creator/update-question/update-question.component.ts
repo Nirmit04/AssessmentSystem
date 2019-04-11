@@ -72,6 +72,7 @@ export class UpdateQuestionComponent implements OnInit {
     this.service.updateQuestion(form.value).subscribe(res => {
       this.toastr.success('Updated successfully');
       this.service.selectedFile = null;
+      this.service.formDataNew=null;
       this.dialogRef.close('Submitted');
     });
   }

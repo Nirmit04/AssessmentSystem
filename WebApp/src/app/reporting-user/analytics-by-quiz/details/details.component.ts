@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ReportingUserService } from '../../shared/reporting-user.service';
 import { SingleDataSet, Label } from 'ng2-charts';
 import { ChartType, ChartOptions } from 'chart.js';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -11,8 +11,8 @@ import { ChartType, ChartOptions } from 'chart.js';
 })
 
 export class DetailsComponent implements OnInit {
-  quizData: any;
-
+  quizData: any = null;
+  quizName: string = '';
   public pieChartOptions: ChartOptions = {
     responsive: true,
   };
@@ -23,17 +23,25 @@ export class DetailsComponent implements OnInit {
   public pieChartType: ChartType = 'pie';
   chartData: any[];
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data,
-    public dialogRef: MatDialogRef<DetailsComponent>,
-    public service: ReportingUserService) { }
+  constructor(
+    public service: ReportingUserService,
+    public router: Router) { }
 
   ngOnInit() {
-    this.getDetails(this.data.QuizId);
+    if (this.service.data !== null) {
+      this.getDetails(this.service.data.QuizId);
+      this.quizName = this.service.data.QuizName;
+      this.service.data = null;
+    } else {
+      this.router.navigate(['/ru-dash/ana-by-quiz']);
+    }
   }
 
   getDetails(id: string) {
     this.service.getQuizAnalysis(id).subscribe((res: any) => {
       this.quizData = res;
+      console.log(this.quizData);
+      console.log(this.quizData.QuizName);
       this.chartData = [];
       this.chartData.push(this.quizData.HighestScore);
       this.chartData.push(this.quizData.LowestScore);

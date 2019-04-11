@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class ReportingUserService {
 	rootUrl = environment.apiURl;
 	data: any = null;
-
+	
 	constructor(private http: HttpClient) { }
 
 	getTagAnalytics() {

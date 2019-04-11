@@ -1,4 +1,11 @@
-<mat-dialog-content>
+<app-mainnav4>
+  <div *ngIf="quizData" class="row" style="color:black">
+    <div style="text-align: center;" class="col">
+      <strong>
+        <h3>{{quizName}}</h3>
+      </strong>
+    </div>
+  </div>
   <div class="row">
     <div style="display: block;
       margin-left: auto;
@@ -12,68 +19,64 @@
         </div>
       </div>
     </div>
-    <div>
-      <button type="button " [mat-dialog-close] class="btn btn-danger pos">
-        <mat-icon>clear</mat-icon>
-      </button>
-    </div>
   </div>
-  <div class="row">
-    <div class="col">
-      <h3>Analysis</h3>
-    </div>
-
-  </div>
+  <br />
   <div *ngIf="quizData">
     <div class="row">
-      <div class="col zoom">
-        <div class="card" style="width: 18rem;">
+      <div class="col sm-4">
+        <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Highest-Score</h5>
+            <h5 class="card-title apricot">Highest-Score</h5>
             <label class="card-text">{{quizData.HighestScore}}</label>
           </div>
         </div>
       </div>
-      <div class="col zoom">
-
-        <div class="card" style="width: 18rem;">
+      <div class="col sm-4">
+        <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Lowest Score</h5>
-            <label class="card-text">{{quizData.LowestScore}}</label>
+            <i style="float:right" class="fa fa-question-circle fa-lg tooltiphello banana" aria-hidden="true">
+              <span><img src="assets/formulae/ana-accu.jpg" alt="maa chuda">
+              </span>
+            </i>
+            <h5 class="card-title apricot">Accuracy</h5>
+            <label class="card-text">{{quizData.Accuracy}}</label>
           </div>
         </div>
       </div>
-
-      <div class="col">
-        <div class="card" style="width: 18rem;">
+      <div class="col sm-4">
+        <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Accuracy</h5>
-            <label class="card-text">{{quizData.Accuracy}}</label>
+            <h5 class="card-title apricot">Lowest Score</h5>
+            <label class="card-text">{{quizData.LowestScore}}</label>
           </div>
         </div>
       </div>
     </div>
     <br>
     <div class="row">
-      <div class="col">
+      <div class="col sm-4">
         <div class="card" style="width: 18rem;">
           <div class="card-body">
-            <h5 class="card-title">Number of Schedules</h5>
+            <h5 class="card-title apricot">Number of Schedules</h5>
             <label class="card-text">{{quizData.NoOfQuiz}}</label>
           </div>
         </div>
       </div>
-      <div class="col">
-
-        <div class="card" style="width: 18rem;">
+      <div class="col sm-4">
+        <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Average Score</h5>
+            <i style="float:right" class="fa fa-question-circle fa-lg tooltiphello banana" aria-hidden="true">
+              <span><img src="assets/formulae/ana-aver.jpg" alt="maa chuda">
+              </span>
+            </i>
+            <h5 class="card-title apricot">Average Score</h5>
             <label class="card-text">{{quizData.AverageMarks}}</label>
           </div>
         </div>
       </div>
+      <div class="col sm-4"></div>
     </div>
     <br>
     <br>
   </div>
-</mat-dialog-content>
+</app-mainnav4>
