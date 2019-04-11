@@ -240,11 +240,7 @@ namespace WebApi.Controllers
         }
 
 
-        /**
-         * This method is used to find the list of mock quiz 
-         * @Params- none
-         * @Returns -List of all mock quizzes.
-         * **/
+        
         [HttpGet]
         [Route("api/Quiz/MockQuiz")]
         public IHttpActionResult GetAllMockQuiz()

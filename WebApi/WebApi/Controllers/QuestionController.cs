@@ -112,7 +112,7 @@ namespace WebApi.Controllers
             var httpRequest = HttpContext.Current.Request;
             var question = new JavaScriptSerializer().Deserialize<Question>(httpRequest.Form["QuestionDetails"]);
             Subject sub = db.Subjects.FirstOrDefault(x => x.SubjectId == question.SubjectId);
-            if(sub.SubjectId!=question.SubjectId)
+            if(sub==null)
             {
                 return BadRequest();
             }

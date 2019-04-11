@@ -17,12 +17,11 @@ namespace WebApi.Controllers
     public class EmployeeController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
-        /**
-         * This method is used to find the list of quiz assigned to that particular user
-         * @Params- UserId of string type
-         * @Returns -List of quizzes assigned.
-         * **/
+        /// <summary>
+        /// Returns the list of Scheduled quiz assigned to that particular user
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/Employee/Scheduled/{UserId}")]
         public IHttpActionResult GetScheduledQuiz(string UserId)
@@ -55,7 +54,11 @@ namespace WebApi.Controllers
             return Ok(quizzesScheduled.OrderByDescending(y => y.UserScheduleId));
         }
 
-
+        /// <summary>
+        /// Returns the stats of the user such as number of mock, non mock quiz taken and the accuracy of the user
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/Employee/Stats/{UserId}")]
         public IHttpActionResult Stats(string UserId)

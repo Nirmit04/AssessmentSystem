@@ -11,7 +11,12 @@ namespace WebApi.Controllers
     public class DetailedReportController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        /// <summary>
+        /// Returns the detailed report of the particular user in a particular quiz taken
+        /// </summary>
+        /// <param name="UserId">Mandatory</param>
+        /// <param name="QuizId">Mandatory</param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/DetailedReport/{UserId}/{QuizId}")]
         public IHttpActionResult GetMockReport(string UserId, int QuizId)
