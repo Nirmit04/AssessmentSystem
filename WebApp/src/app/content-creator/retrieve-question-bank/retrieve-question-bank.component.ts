@@ -27,8 +27,9 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 
 	ngOnInit(): void {
 		this.dtOptions = {
-			pagingType: 'full_numbers',
-			pageLength: 10,
+			lengthChange: false,
+			paging: false,
+			search: false
 		};
 		setTimeout(() => {
 			this.getQuesOfUser(localStorage.getItem('uid'));
@@ -37,8 +38,8 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 
 	getQuesOfUser(uid: string) {
 		this.service.getQuesOfUser(uid).subscribe((data: any) => {
-			console.log(data);
 			this.questionList = data as Question[];
+			console.log(data);
 			this.dtTrigger.next();
 		})
 	}
@@ -62,7 +63,6 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 		this.service.formData = this.questionList[arrayindex - 1];
 		this.dialog.open(UpdateQuestionComponent, dialogConfig).afterClosed().subscribe((res: any) => {
 			this.dtTrigger.unsubscribe();
-			this.dtTrigger.next();
 			this.getQuesOfUser(localStorage.getItem('uid'));
 		});
 	}

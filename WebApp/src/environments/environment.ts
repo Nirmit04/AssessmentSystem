@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiURl: 'http://f96d4d43.ngrok.io/api/',
+  apiURl: 'http://3d46cca3.ngrok.io/api/',
+  imgURl:'http://3d46cca3.ngrok.io/Images/'
 };
 
 /*

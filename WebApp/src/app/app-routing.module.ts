@@ -28,6 +28,7 @@ import { AnalyticsByUserComponent } from './reporting-user/analytics-by-user/ana
 import { AnalyticsByQuizComponent } from './reporting-user/analytics-by-quiz/analytics-by-quiz.component';
 import { ReportingUserComponent } from './reporting-user/reporting-user.component';
 import { HttpInterceptorComponent } from './http-interceptor/http-interceptor.component';
+import { ViewUserDetailsComponent } from './reporting-user/analytics-by-user/view-user-details/view-user-details.component';
 const routes: Routes = [
 	{ path: 'home', component: HomeComponent },
 	{ path: '', component: LoginComponent, pathMatch: 'full' },
@@ -56,7 +57,8 @@ const routes: Routes = [
 	{ path: 'ru-dash/ana-by-user', component: AnalyticsByUserComponent, canActivate: [AuthGuard], data: { roles: ['Reporting-User'] } },
 	{ path: 'ru-dash/ana-by-tag', component: AnalyticsByTagComponent, canActivate: [AuthGuard], data: { roles: ['Reporting-User'] } },
 	{ path: 'ru-dash/ana-by-quiz', component: AnalyticsByQuizComponent, canActivate: [AuthGuard], data: { roles: ['Reporting-User'] } },
-	{ path: 'http-error', component: HttpInterceptorComponent }
+	{ path: 'http-error', component: HttpInterceptorComponent },
+	{ path: 'ru-dash/ana-by-user/user-detail', component: ViewUserDetailsComponent, canActivate: [AuthGuard], data: { roles: ['Reporting-User'] } }
 ];
 
 @NgModule({

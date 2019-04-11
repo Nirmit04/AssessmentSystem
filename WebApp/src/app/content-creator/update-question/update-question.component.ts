@@ -36,7 +36,7 @@ export class UpdateQuestionComponent implements OnInit {
       this.label = "Edit Questions";
     }
     if (this.service.formData.ImageName !== null) {
-      this.src = "http://f96d4d43.ngrok.io/Images/" + this.service.formData.ImageName;
+      this.src = environment.imgURl + this.service.formData.ImageName;
     }
     this.CCreatedBy = localStorage.getItem('uid');
     this.service.retrieveSubjects().subscribe(res => {
@@ -60,12 +60,18 @@ export class UpdateQuestionComponent implements OnInit {
       Marks: null,
       Difficulty: "",
       SubjectId: "",
+      ImageName: null
     }
+  }
+
+  chooseFile(event) {
+    this.service.selectedFile = event.target.files.item(0);
   }
 
   onSubmit(form: NgForm) {
     this.service.updateQuestion(form.value).subscribe(res => {
       this.toastr.success('Updated successfully');
+      this.service.selectedFile = null;
       this.dialogRef.close('Submitted');
     });
   }

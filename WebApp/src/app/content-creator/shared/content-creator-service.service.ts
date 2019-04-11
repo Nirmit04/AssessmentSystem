@@ -35,6 +35,7 @@ export class ContentCreatorServiceService {
 		if (this.selectedFile !== null) {
 			console.log('image-thingy')
 			this.formDataNew.append('Image', this.selectedFile, this.selectedFile.name);
+			this.selectedFile=null;
 		}
 		return this.http.post(this.rootURL + 'Question/CreateQuestion', this.formDataNew);
 	}
@@ -44,7 +45,14 @@ export class ContentCreatorServiceService {
 	}
 
 	updateQuestion(formData: Question) {
-		return this.http.put(this.rootURL + 'Question/Edit/' + formData.QuestionId, formData);
+		console.log(formData);
+		this.formDataNew.append('QuestionDetails', JSON.stringify(formData));
+		if (this.selectedFile !== null) {
+			console.log('image-thingy')
+			this.formDataNew.append('Image', this.selectedFile, this.selectedFile.name);
+			this.selectedFile=null;
+		}
+		return this.http.put(this.rootURL + 'Question/Edit/' + formData.QuestionId, this.formDataNew);
 	}
 
 	retrieveSubjects() {
