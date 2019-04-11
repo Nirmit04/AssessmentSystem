@@ -138,7 +138,6 @@ namespace WebApi.Controllers
         [Route("api/Question/Edit/{QuestionId}")]
         public IHttpActionResult EditQuestion(int? QuestionId)
         {
-            
             if(QuestionId==null)
             {
                 return BadRequest();
