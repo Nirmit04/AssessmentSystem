@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -124,7 +126,8 @@ namespace WebApi.Controllers
                 imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
                 var filePath = ImageDirectoryUrl + imageName;
                 question.ImageName = imageName;
-                postedFile.SaveAs(filePath);
+                Stream stream = postedFile.InputStream;
+                ReduceImageSize(0.75, stream, filePath);
             }
             db.Questions.Add(question);
             db.SaveChanges();
@@ -156,7 +159,8 @@ namespace WebApi.Controllers
                     File.Delete(ImageDirectoryUrl + question.ImageName);
                 }
                 question.ImageName = imageName;
-                postedFile.SaveAs(filePath);
+                Stream stream = postedFile.InputStream;
+                ReduceImageSize(0.75, stream, filePath);
             }
 
             db.Entry(question).State = EntityState.Modified;
@@ -249,6 +253,27 @@ namespace WebApi.Controllers
                 .Single();
             return Ok(question);
         }
+
+        #region Helper
+
+        private void ReduceImageSize(double scaleFactor, Stream sourcePath, string targetPath)
+        {
+            using (var image = Image.FromStream(sourcePath))
+            {
+                var newWidth = (int)(image.Width * scaleFactor);
+                var newHeight = (int)(image.Height * scaleFactor);
+                var thumbnailImg = new Bitmap(newWidth, newHeight);
+                var thumbGraph = Graphics.FromImage(thumbnailImg);
+                thumbGraph.CompositingQuality = CompositingQuality.HighQuality;
+                thumbGraph.SmoothingMode = SmoothingMode.HighQuality;
+                thumbGraph.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                var imageRectangle = new Rectangle(0, 0, newWidth, newHeight);
+                thumbGraph.DrawImage(image, imageRectangle);
+                thumbnailImg.Save(targetPath, image.RawFormat);
+            }
+        }
+
+        #endregion
 
     }
 }
