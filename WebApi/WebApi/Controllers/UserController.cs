@@ -105,9 +105,10 @@ namespace WebApi.Controllers
                     LastName = user.LastName,
                     Email = user.Email,
                     ImageURL = user.ImageURL,
-                    Roles = GetRoles(user.Id),
+                    Roles = GetUserRoles(user.Id),
                     GoogleId = user.GoogleId,
                 });
+               
             }
             return userlist.AsQueryable();
         }
@@ -131,8 +132,8 @@ namespace WebApi.Controllers
             user.FirstName = applicationUser.FirstName;
             user.LastName = applicationUser.LastName;
             user.UserName = applicationUser.UserName;
+            user.Roles = GetUserRoles(applicationUser.Id);
             user.GoogleId = applicationUser.GoogleId;
-            user.Roles = GetRoles(applicationUser.Id);
             return Ok(user);
         }
 
@@ -148,18 +149,20 @@ namespace WebApi.Controllers
             return Ok(userStats);
         }
 
-        [HttpGet]
-        [Route("api/Stat")]
-        public string[] GetRoles(string Id)
+        #region Helpers
+
+        public string[] GetUserRoles(string userId)
         {
-            if(Id==null)
+            if(userId==null)
             {
                 return null;
             }
             var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
             UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(userStore);
-            IList<string> roles = manager.GetRoles(Id);
+            var roles = manager.GetRoles(userId);
             return roles.ToArray();
         }
+
+        #endregion
     }
 }

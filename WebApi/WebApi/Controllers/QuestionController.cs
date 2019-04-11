@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -10,6 +12,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.Script.Serialization;
 using WebApi.Models;
 
 
@@ -104,8 +107,10 @@ namespace WebApi.Controllers
 
         [HttpPost, Microsoft.AspNetCore.Mvc.DisableRequestSizeLimit]
         [Route("api/Question/CreateQuestion")]
-        public IHttpActionResult PostQuestion(Question question)
+        public IHttpActionResult PostQuestion()
         {
+            var httpRequest = HttpContext.Current.Request;
+            var question = new JavaScriptSerializer().Deserialize<Question>(httpRequest.Form["QuestionDetails"]);
             Subject sub = db.Subjects.FirstOrDefault(x => x.SubjectId == question.SubjectId);
             if(sub==null)
             {
@@ -113,7 +118,6 @@ namespace WebApi.Controllers
             }
 
             string imageName = null;
-            var httpRequest = HttpContext.Current.Request;
             var postedFile = httpRequest.Files["Image"];
             if (postedFile != null)
             {
@@ -122,7 +126,8 @@ namespace WebApi.Controllers
                 imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
                 var filePath = ImageDirectoryUrl + imageName;
                 question.ImageName = imageName;
-                postedFile.SaveAs(filePath);
+                Stream stream = postedFile.InputStream;
+                ReduceImageSize(0.75, stream, filePath);
             }
             db.Questions.Add(question);
             db.SaveChanges();
@@ -131,7 +136,7 @@ namespace WebApi.Controllers
         
         [HttpPut]
         [Route("api/Question/Edit/{QuestionId}")]
-        public IHttpActionResult EditQuestion(int? QuestionId ,Question Question)
+        public IHttpActionResult EditQuestion(int? QuestionId)
         {
             
             if(QuestionId==null)
@@ -141,6 +146,7 @@ namespace WebApi.Controllers
 
             string imageName = null;
             var httpRequest = HttpContext.Current.Request;
+            var question = new JavaScriptSerializer().Deserialize<Question>(httpRequest.Form["QuestionDetails"]);
             var postedFile = httpRequest.Files["Image"];
             if (postedFile != null)
             {
@@ -148,15 +154,16 @@ namespace WebApi.Controllers
                 imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).ToArray()).Replace(" ", "-");
                 imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
                 var filePath = ImageDirectoryUrl + imageName;
-                if (Question.ImageName != null)
+                if (question.ImageName != null)
                 {
-                    File.Delete(ImageDirectoryUrl + Question.ImageName);
+                    File.Delete(ImageDirectoryUrl + question.ImageName);
                 }
-                Question.ImageName = imageName;
-                postedFile.SaveAs(filePath);
+                question.ImageName = imageName;
+                Stream stream = postedFile.InputStream;
+                ReduceImageSize(0.75, stream, filePath);
             }
 
-            db.Entry(Question).State = EntityState.Modified;
+            db.Entry(question).State = EntityState.Modified;
 
             try
             {
@@ -177,8 +184,13 @@ namespace WebApi.Controllers
             Question question = db.Questions.Find(QuestionId);
 
             if (question == null)
+            {
                 return NotFound();
-
+            }
+            if (question.ImageName != null)
+            {
+                File.Delete(HttpContext.Current.Server.MapPath("/Images/") + question.ImageName);
+            }
             db.Questions.Remove(question);
             db.SaveChanges();
             return Ok(question);
@@ -241,6 +253,27 @@ namespace WebApi.Controllers
                 .Single();
             return Ok(question);
         }
+
+        #region Helper
+
+        private void ReduceImageSize(double scaleFactor, Stream sourcePath, string targetPath)
+        {
+            using (var image = Image.FromStream(sourcePath))
+            {
+                var newWidth = (int)(image.Width * scaleFactor);
+                var newHeight = (int)(image.Height * scaleFactor);
+                var thumbnailImg = new Bitmap(newWidth, newHeight);
+                var thumbGraph = Graphics.FromImage(thumbnailImg);
+                thumbGraph.CompositingQuality = CompositingQuality.HighQuality;
+                thumbGraph.SmoothingMode = SmoothingMode.HighQuality;
+                thumbGraph.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                var imageRectangle = new Rectangle(0, 0, newWidth, newHeight);
+                thumbGraph.DrawImage(image, imageRectangle);
+                thumbnailImg.Save(targetPath, image.RawFormat);
+            }
+        }
+
+        #endregion
 
     }
 }
