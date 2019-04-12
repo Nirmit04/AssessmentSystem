@@ -4,7 +4,6 @@ import { Subject } from 'rxjs';
 export class LoaderServiceService {
   isLoading = new Subject<boolean>();
   show() {
-    console.log('show');
     this.isLoading.next(true);
   }
   hide() {

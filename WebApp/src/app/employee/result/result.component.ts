@@ -20,7 +20,6 @@ export class ResultComponent implements OnInit {
     @Inject(DOCUMENT) private document: any) { }
 
   ngOnInit() {
-    console.log(this.service.quesOfQuiz);
     this.correct = [];
     if (this.service.QuizScheduleId == null) {
       this.service.getAnswers().subscribe((res: any) => {

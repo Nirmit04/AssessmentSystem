@@ -7,7 +7,6 @@ import { LoaderServiceService } from '../services/loader-service.service';
 export class LoaderInterceptorService implements HttpInterceptor {
   constructor(public loaderService: LoaderServiceService) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log("hgfd");
     this.loaderService.show();
     return next.handle(req).pipe(
       finalize(() => this.loaderService.hide())

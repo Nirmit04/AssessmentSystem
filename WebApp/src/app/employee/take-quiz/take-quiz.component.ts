@@ -87,13 +87,13 @@ export class TakeQuizComponent implements OnInit {
 		this.QuestionList = this.service.quesOfQuiz;
 		for (let item of this.QuestionList) {
 			item.answer = 0;
+
 			if (item.ImageName != null) {
 				item.ImageName = environment.imgURl + item.ImageName;
 			}
 		}
 		this.noOfQues = this.QuestionList.length;
 		this.service.size = this.noOfQues;
-		//this.service.quesOfQuiz;
 		this.startTimer();
 	}
 
@@ -123,10 +123,11 @@ export class TakeQuizComponent implements OnInit {
 
 	Answer(QuestionId, choice, submit: string) {
 		this.checkPrev = true;
-		// this.submit[QuestionId - 1] = true;
-		// let l = this.getStatus(QuestionId - 1, 'submit');
-		//this.options = null;
-		this.service.quesOfQuiz[this.service.qnProgress].answer = choice;
+		this.submit[this.service.qnProgress] = true;
+		console.log(this.submit);
+		if (choice != null) {
+			this.service.quesOfQuiz[this.service.qnProgress].answer = choice;
+		}
 		this.bar = (this.service.qnProgress + 1) / this.noOfQues * 100;
 		if (submit == 'submit') {
 			this.Submit();
@@ -152,12 +153,12 @@ export class TakeQuizComponent implements OnInit {
 		this.active[this.service.qnProgress] = true;
 		this.options = this.service.quesOfQuiz[this.service.qnProgress].answer;
 	}
-	Clear() {
+	Clear(Questionid: number) {
+		this.submit[Questionid]=false;
 		this.options = null;
 	}
 	Submit() {
 		if (confirm('Do you want to submit the quiz?')) {
-			console.log(this.service.quesOfQuiz);
 			this.totaltime = (this.service.hours * 60 * 60 + this.service.minutes * 60) - (this.hours * 60 * 60 + this.minutes * 60 + this.seconds);
 			this.service.hours = parseInt((this.totaltime / 3600).toPrecision(1));
 			this.totaltime = this.totaltime % 3600;
@@ -188,9 +189,11 @@ export class TakeQuizComponent implements OnInit {
 		this.active[index] = true;
 	}
 	getStatus(index: number) {
-		// if (submit == 'submit') {
-		// 	return 'btn-success';
-		// }
+		for(let item=0; item<this.submit.length; item++)	{
+			if(this.submit[index])	{
+				return 'btn-success';
+			}
+		}
 		if (this.active[index]) {
 			return 'btn-warning';
 		}
