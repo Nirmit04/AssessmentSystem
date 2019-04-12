@@ -155,7 +155,8 @@ export class TakeQuizComponent implements OnInit {
 	}
 	Clear(Questionid: number) {
 		this.submit[Questionid]=false;
-		this.options = null;
+		this.options=null;
+		this.service.quesOfQuiz[this.service.qnProgress].answer = 0;
 	}
 	Submit() {
 		if (confirm('Do you want to submit the quiz?')) {
