@@ -20,6 +20,7 @@ export class ResultComponent implements OnInit {
     @Inject(DOCUMENT) private document: any) { }
 
   ngOnInit() {
+    console.log(this.service.quesOfQuiz);
     this.correct = [];
     if (this.service.QuizScheduleId == null) {
       this.service.getAnswers().subscribe((res: any) => {
@@ -37,6 +38,7 @@ export class ResultComponent implements OnInit {
 
     var body = this.service.quesOfQuiz.map(x => x.QuestionId);
     var body1 = this.service.quesOfQuiz.map(x => x.answer);
+    console.log(this.service.quesOfQuiz);
     var dict = [];
     var x = body.length;
     this.closeFullscreen();

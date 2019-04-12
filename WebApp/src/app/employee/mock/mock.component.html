@@ -1,4 +1,8 @@
 <app-main-nav3>
+  <strong>
+    <h1 style="text-align: center">List of Mock Quizzes</h1>
+  </strong>
+  <br /><br />
   <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
     class="row-border hover table table-bordered table-striped">
     <thead class="thead-dark">
@@ -9,7 +13,7 @@
         <th>Difficulty Level</th>
         <th>Total Questions</th>
         <th>Total Marks</th>
-        <th>Time</th>
+        <th>Quiz Time</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -24,7 +28,7 @@
         <td>{{mock.TotalMarks}}</td>
         <td>{{mock.QuizTime}}</td>
         <td>
-          <a class="btn btn-sm btn-info text-white" (click)="takeMockQuiz(mock.QuizId, i)"><i
+          <a class="btn btn-sm btn-info text-white" (click)="takeMockQuiz(mock.QuizId, i)"><i aria-hidden="true"
               class="fa fa-paper-plane"></i></a>
         </td>
       </tr>

@@ -1,6 +1,8 @@
 <app-main-nav3>
   <div class="container">
   </div>
+  <strong><h1 style="text-align: center">Scheduled Quizzes' Result</h1></strong>
+    <br /><br />
   <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
     class="row-border hover table table-bordered table-striped">
     <thead class="thead-dark">
@@ -13,8 +15,7 @@
         <th>Marks Scored</th>
         <th>Total Marks</th>
         <th>Accuracy</th>
-        <th>Time Taken</th>
-        <th>Efficiency</th>
+        <th>Time Taken (hh:mm:ss)</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -27,11 +28,10 @@
         <td>{{quiz.UnattemptedAnswers}}</td>
         <td>{{quiz.MarksScored}}</td>
         <td>{{quiz.TotalMarks}}</td>
-        <td>{{quiz.Accuracy}}</td>
+        <td>{{quiz.Accuracy}}&nbsp;%</td>
         <td>{{quiz.TimeTaken}}</td>
-        <td>{{quiz.Efficiency}}</td>
         <td>
-          <a class="btn btn-sm btn-info text-white" (click)="viewDetailedReport(quiz.QuizId,i)"><i
+          <a class="btn btn-sm btn-info text-white" (click)="viewDetailedReport(quiz.QuizId,i)"><i aria-hidden="true"
               class="fa fa-file"></i></a>
         </td>
       </tr>
