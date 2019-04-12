@@ -10,9 +10,13 @@ using WebApi.Models;
 
 namespace WebApi.Controllers
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class RoleController : ApiController
     {
-
+        /// <summary>
+        /// Returns all the roles available
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/GetAllRoles")]
         [AllowAnonymous]

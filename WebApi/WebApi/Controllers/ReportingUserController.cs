@@ -8,10 +8,16 @@ using WebApi.Models;
 
 namespace WebApi.Controllers
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class ReportingUserController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        /// <summary>
+        /// Returns the complete analysis of a particular user such as Accuracy, Highest ,Lowest Marks,Performace, Average Score
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/ReportingUser/AnalyticsByUser/{UserId}")]
         public IHttpActionResult AnalyticsByUser(string UserId)
@@ -61,7 +67,11 @@ namespace WebApi.Controllers
             }
         }
 
-
+        /// <summary>
+        /// Returns the complete analysis of a particular Quiz such as Accuracy, Highest ,Lowest Marks,Average Score
+        /// </summary>
+        /// <param name="QuizId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/ReportingUser/AnalyticsByQuiz/{QuizId}")]
         public IHttpActionResult AnalyticsByQuiz(int QuizId)
@@ -100,6 +110,10 @@ namespace WebApi.Controllers
             }    
         }
 
+        /// <summary>
+        /// Returns the complete analysis of a particular Tag such as Accuracy, Highest ,Lowest Marks ,Average Score
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/ReportingUser/AnalyticsByTag")]
         public IHttpActionResult AnalyticsByTag()
@@ -142,7 +156,10 @@ namespace WebApi.Controllers
             }
             return Ok(subjectAnalyticsList.OrderByDescending(x => x.Properties.Accuracy));
         }
-
+        /// <summary>
+        /// Returns the stats of the entire system such as QuizCount, QuestionCount, UserCount, SubjectCount
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/ReportingUser/Stats")]
         public IHttpActionResult AllStats()

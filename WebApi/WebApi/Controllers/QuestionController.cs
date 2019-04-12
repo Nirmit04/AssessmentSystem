@@ -168,12 +168,6 @@ namespace WebApi.Controllers
         [Route("api/Question/Edit/{QuestionId}")]
         public IHttpActionResult EditQuestion(int? QuestionId)
         {
-            
-            if(db.Questions.Find(QuestionId)==null)
-            {
-                return BadRequest("Invalid QuestionId");
-            }
-
             string imageName = null;
             var httpRequest = HttpContext.Current.Request;
             var question = new JavaScriptSerializer().Deserialize<Question>(httpRequest.Form["QuestionDetails"]);

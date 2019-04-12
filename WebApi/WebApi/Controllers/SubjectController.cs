@@ -13,7 +13,10 @@ namespace WebApi.Controllers
     public class SubjectController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        /// <summary>
+        /// Returns all the Tags/Subjects available
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/Subject/GetSubjects")]
         public IHttpActionResult GetSubjectAll()
@@ -29,6 +32,11 @@ namespace WebApi.Controllers
             return Ok(subject);
         }
 
+        /// <summary>
+        /// Creates A Tag/Subject
+        /// </summary>
+        /// <param name="subject">Model</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("api/Subject/CreateSubject")]
         public IHttpActionResult CreateSubject(Subject subject)
@@ -39,6 +47,12 @@ namespace WebApi.Controllers
             return CreatedAtRoute("DefaultApi", new { id = subject.SubjectId }, subject);
         }
 
+        /// <summary>
+        /// Used to Edit the existing Tag/Subjectby specifying the subejct Id
+        /// </summary>
+        /// <param name="subject">Model</param>
+        /// <param name="SubjectId">Mandatory</param>
+        /// <returns></returns>
         [HttpPut]
         [Route("api/Subject/Edit/{SubjectId}")]
         public IHttpActionResult EditSubject(Subject subject,int? SubjectId)
@@ -60,8 +74,13 @@ namespace WebApi.Controllers
             }
             return StatusCode(HttpStatusCode.OK);
         }
+
+        /// <summary>
+        /// Retuns all the Tags/Subjects created by that particular user
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
         [HttpGet]
-        
         [Route("api/Subject/GetSubjects/{UserId}")]
         public IHttpActionResult GetSubjectAll(string UserId)
         {
