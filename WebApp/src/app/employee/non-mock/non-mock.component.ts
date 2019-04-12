@@ -30,6 +30,7 @@ export class NonMockComponent implements OnInit {
 
   loadNonMockSchedules() {
     this.service.getNonMocks().subscribe((res: any) => {
+      console.log(res);
       this.nonMockScheduleList = res as any[];
       this.dtTrigger.next();
     });
