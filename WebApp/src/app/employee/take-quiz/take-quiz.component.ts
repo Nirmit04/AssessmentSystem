@@ -4,6 +4,7 @@ import { Router, RouterLinkWithHref } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { SafeHtml } from '@angular/platform-browser';
 import { getRenderedText } from '@angular/core/src/render3';
+import { environment } from '../../../environments/environment'
 @Component({
 	selector: 'app-take-quiz',
 	templateUrl: './take-quiz.component.html',
@@ -87,7 +88,7 @@ export class TakeQuizComponent implements OnInit {
 		for (let item of this.QuestionList) {
 			item.answer = 0;
 			if (item.ImageName != null) {
-				item.ImageName = 'http://3d46cca3.ngrok.io/Images/' + item.ImageName;
+				item.ImageName = environment.imgURl + item.ImageName;
 			}
 		}
 		this.noOfQues = this.QuestionList.length;

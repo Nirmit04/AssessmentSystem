@@ -14,6 +14,7 @@ export class ContentCreatorServiceService {
 	QuestionType: string;
 	tagForm: TagModel;
 	formData: Question;
+	formDataNew: FormData = new FormData();;
 	quizForm: QuizModel;
 	readonlyStatus: boolean;
 	QuizHour: number;
@@ -22,16 +23,36 @@ export class ContentCreatorServiceService {
 	quesStat: boolean = false;
 	public createdBy;
 	public formDupli: NgForm;
+	selectedFile: File = null;
 	constructor(private http: HttpClient) { }
 
 	postQuestion(formData: Question) {
 		formData.CreatedBy = localStorage.getItem('uid');
 		formData.QuestionType = this.QuestionType;
-		return this.http.post(this.rootURL + 'Question/CreateQuestion', formData);
+		console.log(this.QuestionType);
+		console.log(formData);
+		this.formDataNew.append('QuestionDetails', JSON.stringify(formData));
+		if (this.selectedFile !== null) {
+			console.log('image-thingy')
+			this.formDataNew.append('Image', this.selectedFile, this.selectedFile.name);
+			this.selectedFile=null;
+		}
+		return this.http.post(this.rootURL + 'Question/CreateQuestion', this.formDataNew);
+	}
+
+	retrieveQuizNames() {
+		return this.http.get(this.rootURL + 'Quiz/GetAllQuizName');
 	}
 
 	updateQuestion(formData: Question) {
-		return this.http.put(this.rootURL + 'Question/Edit/' + formData.QuestionId, formData);
+		console.log(formData);
+		this.formDataNew.append('QuestionDetails', JSON.stringify(formData));
+		if (this.selectedFile !== null) {
+			console.log('image-thingy')
+			this.formDataNew.append('Image', this.selectedFile, this.selectedFile.name);
+			this.selectedFile=null;
+		}
+		return this.http.put(this.rootURL + 'Question/Edit/' + formData.QuestionId, this.formDataNew);
 	}
 
 	retrieveSubjects() {

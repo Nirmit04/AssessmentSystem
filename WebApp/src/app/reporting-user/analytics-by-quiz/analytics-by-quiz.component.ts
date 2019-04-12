@@ -3,7 +3,7 @@ import { Subject, Subscription } from 'rxjs';
 import { ReportingUserService } from '../shared/reporting-user.service';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { DetailsComponent } from './details/details.component';
-
+import { Router } from '@angular/router'
 @Component({
   selector: 'app-analytics-by-quiz',
   templateUrl: './analytics-by-quiz.component.html',
@@ -16,7 +16,7 @@ export class AnalyticsByQuizComponent implements OnInit {
   quizDetails: any[];
 
   constructor(private service: ReportingUserService,
-    private dialog: MatDialog, ) { }
+    private router: Router, ) { }
 
   ngOnInit() {
     this.dtOptions = {
@@ -29,18 +29,14 @@ export class AnalyticsByQuizComponent implements OnInit {
   loadQuizDetails() {
     this.service.getAllQuizzes().subscribe((res: any) => {
       this.quizDetails = res as any[];
+      console.log(this.quizDetails);
       this.dtTrigger.next();
     });
   }
 
   onClick(index: any) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = "90%";
-    dialogConfig.disableClose = true;
-    dialogConfig.data = this.quizDetails[index];
-    this.dialog.open(DetailsComponent, dialogConfig).afterClosed().subscribe((res: any) => {
-    });
+    this.service.data = this.quizDetails[index];
+    this.router.navigate(['/ru-dash/ana-by-user/quiz-detail']);
   }
 
 }

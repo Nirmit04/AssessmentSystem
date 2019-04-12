@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Subject } from '../shared/subject.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router'
+import { environment } from 'src/environments/environment';
+import { servicesVersion } from 'typescript';
 
 @Component({
   selector: 'app-update-question',
@@ -18,6 +20,7 @@ export class UpdateQuestionComponent implements OnInit {
   public CCreatedBy = '';
   bool = false;
   label: string;
+  src: string = null;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<UpdateQuestionComponent>,
@@ -32,6 +35,9 @@ export class UpdateQuestionComponent implements OnInit {
     } else {
       this.label = "Edit Questions";
     }
+    if (this.service.formData.ImageName !== null) {
+      this.src = environment.imgURl + this.service.formData.ImageName;
+    }
     this.CCreatedBy = localStorage.getItem('uid');
     this.service.retrieveSubjects().subscribe(res => {
       this.Subjects = res as Subject[];
@@ -43,7 +49,7 @@ export class UpdateQuestionComponent implements OnInit {
       form.resetForm();
     }
     this.service.formData = {
-      QuestionType:"",
+      QuestionType: "",
       QuestionId: null,
       QuestionStatement: "",
       Option1: "",
@@ -54,12 +60,19 @@ export class UpdateQuestionComponent implements OnInit {
       Marks: null,
       Difficulty: "",
       SubjectId: "",
+      ImageName: null
     }
+  }
+
+  chooseFile(event) {
+    this.service.selectedFile = event.target.files.item(0);
   }
 
   onSubmit(form: NgForm) {
     this.service.updateQuestion(form.value).subscribe(res => {
       this.toastr.success('Updated successfully');
+      this.service.selectedFile = null;
+      this.service.formDataNew=null;
       this.dialogRef.close('Submitted');
     });
   }

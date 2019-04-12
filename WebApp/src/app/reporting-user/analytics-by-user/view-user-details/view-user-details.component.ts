@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ReportingUserService } from '../../shared/reporting-user.service';
 import { SingleDataSet, Label } from 'ng2-charts';
 import { ChartType } from 'chart.js';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-view-user-details',
   templateUrl: './view-user-details.component.html',
@@ -17,14 +18,20 @@ export class ViewUserDetailsComponent implements OnInit {
   public polarAreaLegend: boolean
   public polarAreaChartType: ChartType = 'polarArea';
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data,
-    public dialogRef: MatDialogRef<ViewUserDetailsComponent>,
-    public service: ReportingUserService) { }
+  constructor(
+    // @Inject(MAT_DIALOG_DATA) public data,
+    // public dialogRef: MatDialogRef<ViewUserDetailsComponent>,
+    public service: ReportingUserService,
+    public router: Router) { }
 
   data2: any;
 
   ngOnInit() {
-    this.fetchAnalytics(this.data.Id);
+    if (this.service.data !== null) {
+      this.fetchAnalytics(this.service.data.Id);
+    } else {
+      this.router.navigate(['/ru-dash/ana-by-user']);
+    }
   }
 
   fetchAnalytics(id: string) {
