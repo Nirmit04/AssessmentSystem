@@ -15,9 +15,12 @@ using WebApi.Models;
 
 namespace WebApi.Controllers
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class UserController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private HelperClass helper = new HelperClass();
+
         [HttpPost]
         [AllowAnonymous]
         [Route("api/User/Register")]
@@ -95,8 +98,6 @@ namespace WebApi.Controllers
             List<Account> userlist = new List<Account>();
             foreach (var user in users)
             {
-                System.Diagnostics.Debug.WriteLine("ge ts   "+user.Id);
-
                 userlist.Add(new Account
                 {
                     Id = user.Id,
@@ -105,7 +106,7 @@ namespace WebApi.Controllers
                     LastName = user.LastName,
                     Email = user.Email,
                     ImageURL = user.ImageURL,
-                    Roles = GetUserRoles(user.Id),
+                    Roles = helper.GetUserRoles(user.Id),
                     GoogleId = user.GoogleId,
                 });
                
@@ -132,7 +133,7 @@ namespace WebApi.Controllers
             user.FirstName = applicationUser.FirstName;
             user.LastName = applicationUser.LastName;
             user.UserName = applicationUser.UserName;
-            user.Roles = GetUserRoles(applicationUser.Id);
+            user.Roles = helper.GetUserRoles(applicationUser.Id);
             user.GoogleId = applicationUser.GoogleId;
             return Ok(user);
         }
@@ -149,20 +150,5 @@ namespace WebApi.Controllers
             return Ok(userStats);
         }
 
-        #region Helpers
-
-        public string[] GetUserRoles(string userId)
-        {
-            if(userId==null)
-            {
-                return null;
-            }
-            var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
-            UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(userStore);
-            var roles = manager.GetRoles(userId);
-            return roles.ToArray();
-        }
-
-        #endregion
     }
 }

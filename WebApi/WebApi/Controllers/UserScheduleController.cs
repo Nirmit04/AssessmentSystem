@@ -11,6 +11,7 @@ namespace WebApi.Controllers
     public class UserScheduleController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private HelperClass helper = new HelperClass();
 
         [HttpGet]
         [Route("api/UserSchedule/UserNotAssignedQuiz/{QuizScheduleId}")]
@@ -91,7 +92,7 @@ namespace WebApi.Controllers
                 db.SaveChanges();
             }
             var userEmails = db.Users.Where(x => UserIds.Contains(x.Id)).Select(y => y.Email).ToArray();
-            var EmailResponse = InviteController.InviteUser(userEmails, "Click on the Link Below to take Quiz. \n <a href=\"" + "http://localhost:4200/?take-quiz=" + db.QuizSchedules.Single(x => x.QuizScheduleId == QuizScheduleId).QuizId +"&schedule-id="+ QuizScheduleId + "\">Click Here</a>");
+            var EmailResponse = helper.InviteUser(userEmails, "Click on the Link Below to take Quiz. \n <a href=\"" + "http://localhost:4200/?take-quiz=" + db.QuizSchedules.Single(x => x.QuizScheduleId == QuizScheduleId).QuizId +"&schedule-id="+ QuizScheduleId + "\">Click Here</a>");
             return Ok();
         }
 
