@@ -28,6 +28,7 @@ export class ViewAnswerComponent implements OnInit {
   sda() {
     this.service.getQues(this.data.id).subscribe((res: any) => {
       this.ques = res as Question;
+      console.log(this.ques)
       if (this.ques.Answer === 1) {
         this.flop1 = true;
       } else if (this.ques.Answer === 2) {
