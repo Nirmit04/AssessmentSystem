@@ -241,6 +241,32 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
+        /// To delete the image from a question
+        /// </summary>
+        /// <param name="QuestionId"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("api/Question/ImageDelete/{QuestionId}")]
+        public IHttpActionResult DeleteQuestionImage(int QuestionId)
+        {
+            Question question = db.Questions.Find(QuestionId);
+
+            if (question == null)
+            {
+                return NotFound();
+            }
+
+            if (question.ImageName != null)
+            {
+                File.Delete(HttpContext.Current.Server.MapPath("/Images/") + question.ImageName);
+                question.ImageName = null;
+            }
+
+            db.SaveChanges();
+            return Ok(question);
+        }
+
+        /// <summary>
         /// Get all the questions created by that particular user
         /// </summary>
         /// <param name="UserId"></param>

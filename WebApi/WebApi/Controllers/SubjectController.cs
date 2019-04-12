@@ -13,6 +13,7 @@ namespace WebApi.Controllers
     public class SubjectController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
         /// <summary>
         /// Returns all the Tags/Subjects available
         /// </summary>

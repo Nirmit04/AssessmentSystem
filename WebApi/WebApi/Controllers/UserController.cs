@@ -20,17 +20,16 @@ namespace WebApi.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private HelperClass helper = new HelperClass();
+        private static UserStore<ApplicationUser> userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
+        private UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(userStore);
 
         [HttpPost]
         [AllowAnonymous]
         [Route("api/User/Register")]
         public IdentityResult Register(Account model)
         {
-            var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
-            var manager = new UserManager<ApplicationUser>(userStore);
-            Random rnd = new Random();
-            var dumuser = manager.FindByEmail(model.Email);
-            if (dumuser == null)
+            var tempUser = userManager.FindByEmail(model.Email);
+            if (tempUser == null)
             {
                 ApplicationUser user = new ApplicationUser() { UserName = model.Email.Substring(0, model.Email.LastIndexOf("@")), Email = model.Email };
 
@@ -39,11 +38,11 @@ namespace WebApi.Controllers
                 user.ImageURL = model.ImageURL;
                 user.GoogleId = model.GoogleId;
                 string id = user.Id;
-                IdentityResult result = manager.Create(user);
+                IdentityResult result = userManager.Create(user);
                 try
                 {
-                    var tempuser = manager.FindByEmail(user.Email);
-                    manager.AddToRole(tempuser.Id, "Employee");
+                    var tempuser = userManager.FindByEmail(user.Email);
+                    userManager.AddToRole(tempuser.Id, "Employee");
                 }
                 catch(Exception)
                 { }
@@ -52,8 +51,7 @@ namespace WebApi.Controllers
             else
             {
                 return IdentityResult.Failed();
-            }
-            
+            }          
         }
 
         [HttpGet]
@@ -92,9 +90,7 @@ namespace WebApi.Controllers
         [Route("api/User/GetUserAll")]
         public IQueryable<Account> GetUserAll()
         {
-            var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
-            var manager = new UserManager<ApplicationUser>(userStore);
-            var users = manager.Users;
+            var users = userManager.Users;
             List<Account> userlist = new List<Account>();
             foreach (var user in users)
             {
@@ -108,8 +104,7 @@ namespace WebApi.Controllers
                     ImageURL = user.ImageURL,
                     Roles = helper.GetUserRoles(user.Id),
                     GoogleId = user.GoogleId,
-                });
-               
+                });              
             }
             return userlist.AsQueryable();
         }
@@ -124,9 +119,7 @@ namespace WebApi.Controllers
             {
                 return null;
             }
-            var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
-            var manager = new UserManager<ApplicationUser>(userStore);
-            var applicationUser = manager.FindByEmail(email);
+            var applicationUser = userManager.FindByEmail(email);
             Account user = new Account();
             user.Id = applicationUser.Id;
             user.Email = applicationUser.Email;
