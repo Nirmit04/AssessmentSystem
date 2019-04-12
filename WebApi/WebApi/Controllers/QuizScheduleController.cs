@@ -12,7 +12,7 @@ namespace WebApi.Controllers
     public class QuizScheduleController : ApiController
     { 
         private ApplicationDbContext db = new ApplicationDbContext();
-        private Helper helper = new Helper();
+        private HelperClass helper = new HelperClass();
 
         /// <summary>
         /// Returns all the schedules created by that user
@@ -172,7 +172,6 @@ namespace WebApi.Controllers
             int testSchdeule = db.QuizSchedules.Where(x => x.CreatedBy == CreatedBy).Count();
             return Ok(testSchdeule);
         }
-
         
     }
 }

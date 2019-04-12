@@ -12,7 +12,8 @@ namespace WebApi.Controllers
     public class ReportController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        private Helper helper = new Helper();
+        private HelperClass helper = new HelperClass();
+
         /// <summary>
         /// Returns all the non mock quiz reports of a particular user
         /// </summary>

@@ -22,6 +22,8 @@ namespace WebApi.Controllers
     public class QuestionController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private HelperClass helper = new HelperClass();
+
         /// <summary>
         /// Returns all the questions of a particular Subject
         /// </summary>
@@ -49,7 +51,7 @@ namespace WebApi.Controllers
                         Marks = x.Marks,
                         QuestionType = x.QuestionType,
                         SubjectId = x.SubjectId,
-                        SubjectName = GetSubject(x.SubjectId),
+                        SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
                         Difficulty = x.Difficulty,
                         ImageName = x.ImageName
                     })
@@ -87,7 +89,7 @@ namespace WebApi.Controllers
                     Marks = x.Marks,
                     QuestionType = x.QuestionType,
                     SubjectId = x.SubjectId,
-                    SubjectName = GetSubject(x.SubjectId),
+                    SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
                     Difficulty = x.Difficulty,
                     ImageName = x.ImageName
                 })
@@ -117,7 +119,7 @@ namespace WebApi.Controllers
                     Marks = x.Marks,
                     QuestionType = x.QuestionType,
                     SubjectId = x.SubjectId,
-                    SubjectName = GetSubject(x.SubjectId),
+                    SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
                     Difficulty = x.Difficulty,
                     ImageName = x.ImageName
                 })
@@ -152,7 +154,7 @@ namespace WebApi.Controllers
                 var filePath = ImageDirectoryUrl + imageName;
                 question.ImageName = imageName;
                 Stream stream = postedFile.InputStream;
-                ReduceImageSize(0.75, stream, filePath);
+                helper.ReduceImageSize(0.75, stream, filePath);
             }
             db.Questions.Add(question);
             db.SaveChanges();
@@ -166,17 +168,18 @@ namespace WebApi.Controllers
         /// <returns></returns>
         [HttpPut]
         [Route("api/Question/Edit/{QuestionId}")]
-        public IHttpActionResult EditQuestion(int? QuestionId)
+        public IHttpActionResult EditQuestion(int QuestionId)
         {
-            
-            if(db.Questions.Find(QuestionId)==null)
+
+            var httpRequest = HttpContext.Current.Request;
+            var question = new JavaScriptSerializer().Deserialize<Question>(httpRequest.Form["QuestionDetails"]);
+
+            if (QuestionId != question.QuestionId)
             {
                 return BadRequest("Invalid QuestionId");
             }
 
             string imageName = null;
-            var httpRequest = HttpContext.Current.Request;
-            var question = new JavaScriptSerializer().Deserialize<Question>(httpRequest.Form["QuestionDetails"]);
             var postedFile = httpRequest.Files["Image"];
             if (postedFile != null)
             {
@@ -190,7 +193,7 @@ namespace WebApi.Controllers
                 }
                 question.ImageName = imageName;
                 Stream stream = postedFile.InputStream;
-                ReduceImageSize(0.75, stream, filePath);
+                helper.ReduceImageSize(0.75, stream, filePath);
             }
 
             db.Entry(question).State = EntityState.Modified;
@@ -201,7 +204,14 @@ namespace WebApi.Controllers
             }
             catch(DbUpdateConcurrencyException)
             {
-                return NotFound();
+                if (!QuestionExists(QuestionId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
             return StatusCode(HttpStatusCode.OK);
         }
@@ -257,8 +267,8 @@ namespace WebApi.Controllers
                     Marks = x.Marks,
                     QuestionType = x.QuestionType,
                     SubjectId = x.SubjectId,
-                    SubjectName = GetSubject(x.SubjectId),
-                    Difficulty = x.Difficulty.ToString(),
+                    SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
+                    Difficulty = x.Difficulty,
                     ImageName = x.ImageName
                 })
                 .OrderByDescending(y => y.QuestionId)
@@ -293,7 +303,7 @@ namespace WebApi.Controllers
                     Marks = x.Marks,
                     QuestionType = x.QuestionType,
                     SubjectId = x.SubjectId,
-                    SubjectName = GetSubject(x.SubjectId),
+                    SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
                     Difficulty = x.Difficulty,
                     ImageName = x.ImageName
                 })
@@ -301,33 +311,13 @@ namespace WebApi.Controllers
             return Ok(question);
         }
 
-        #region Helper
-
-        private void ReduceImageSize(double scaleFactor, Stream sourcePath, string targetPath)
+        #region Helpers
+               
+        private bool QuestionExists(int id)
         {
-            using (var image = Image.FromStream(sourcePath))
-            {
-                var newWidth = (int)(image.Width * scaleFactor);
-                var newHeight = (int)(image.Height * scaleFactor);
-                var thumbnailImg = new Bitmap(newWidth, newHeight);
-                var thumbGraph = Graphics.FromImage(thumbnailImg);
-                thumbGraph.CompositingQuality = CompositingQuality.HighQuality;
-                thumbGraph.SmoothingMode = SmoothingMode.HighQuality;
-                thumbGraph.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                var imageRectangle = new Rectangle(0, 0, newWidth, newHeight);
-                thumbGraph.DrawImage(image, imageRectangle);
-                thumbnailImg.Save(targetPath, image.RawFormat);
-            }
+            return db.Questions.Count(x => x.QuestionId == id) > 0;
         }
 
-        #endregion
-
-        #region GetSubject
-        public string GetSubject(int SubjectId)
-        {
-            string subject = db.Subjects.Where(y => y.SubjectId == SubjectId).FirstOrDefault().Name;
-            return subject;
-        }
         #endregion
     }
 }

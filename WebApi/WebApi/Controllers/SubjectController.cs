@@ -35,17 +35,16 @@ namespace WebApi.Controllers
         {
             db.Subjects.Add(subject);
             db.SaveChanges();
-
             return CreatedAtRoute("DefaultApi", new { id = subject.SubjectId }, subject);
         }
 
         [HttpPut]
         [Route("api/Subject/Edit/{SubjectId}")]
-        public IHttpActionResult EditSubject(Subject subject,int? SubjectId)
+        public IHttpActionResult EditSubject(int SubjectId, Subject subject)
         {
-            if (SubjectId == null)
+            if (SubjectId != subject.SubjectId)
             {
-                return BadRequest();
+                return BadRequest("Invalid QuestionId");
             }
 
             db.Entry(subject).State = EntityState.Modified;
@@ -56,12 +55,19 @@ namespace WebApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                return NotFound();
+                if (!SubjectExists(SubjectId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
             return StatusCode(HttpStatusCode.OK);
         }
+
         [HttpGet]
-        
         [Route("api/Subject/GetSubjects/{UserId}")]
         public IHttpActionResult GetSubjectAll(string UserId)
         {
@@ -75,5 +81,15 @@ namespace WebApi.Controllers
                 }).ToList();
             return Ok(subject);
         }
+
+        #region Helpers
+
+        private bool SubjectExists(int id)
+        {
+            return db.Questions.Count(x => x.QuestionId == id) > 0;
+        }
+
+        #endregion
+
     }
 }
