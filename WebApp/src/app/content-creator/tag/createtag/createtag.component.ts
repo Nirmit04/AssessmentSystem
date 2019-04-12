@@ -39,7 +39,6 @@ export class CreatetagComponent implements OnInit {
 		}
 		this.service.retrieveSubjects().subscribe((res: any) => {
 			this.existingTags = res as TagModel[];
-			console.log(this.existingTags);
 		});
 	}
 

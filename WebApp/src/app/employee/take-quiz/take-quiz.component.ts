@@ -124,8 +124,7 @@ export class TakeQuizComponent implements OnInit {
 	Answer(QuestionId, choice, submit: string) {
 		this.checkPrev = true;
 		this.submit[this.service.qnProgress] = true;
-		console.log(this.submit);
-		if (choice != null) {
+				if (choice != null) {
 			this.service.quesOfQuiz[this.service.qnProgress].answer = choice;
 		}
 		this.bar = (this.service.qnProgress + 1) / this.noOfQues * 100;

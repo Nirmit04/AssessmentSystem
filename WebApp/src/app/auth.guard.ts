@@ -35,13 +35,11 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 	}
 
 	roleMatch(allowedRoles): boolean {
-		console.log(allowedRoles);
 		var isMatch = false;
 		var userRoles: string = localStorage.getItem('role');
 		allowedRoles.forEach(element => {
 			if (userRoles.indexOf(element) > -1) {
 				isMatch = true;
-				//return false;
 			}
 		});
 		return isMatch;

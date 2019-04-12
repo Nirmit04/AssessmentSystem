@@ -84,7 +84,6 @@ export class CreateQuizComponent implements OnInit {
   }
 
   fetchReqQues(form: NgForm) {
-    console.log(form.value.QuizType);
     if (form.value.QuestionType === 'Non-Mock') {
       this.service.QuestionType = 'Scheduled';
     } else {
@@ -167,8 +166,6 @@ export class CreateQuizComponent implements OnInit {
 
 
   add_new_ques() {
-    console.log(this.service.quizForm.QuizType);
-
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = "70%";

@@ -63,17 +63,8 @@ export class MainNavComponent {
 	}
 
 	setQuestionType(type: string) {
-		// location.reload();
 		this.service.QuestionType = type;
-		console.log(this.service.QuestionType);
 		this.router.navigate(['/cc-dash/create-question'])
 	}
-
-	// mockTypeQuestion() {
-	// 	// location.reload();
-	// 	this.service.QuestionType = 'Mock';
-	// 	console.log(this.service.QuestionType);
-	// 	this.router.navigate(['/cc-dash/create-question'])
-	// }
 
 }

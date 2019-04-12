@@ -20,8 +20,8 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Test Admin</span>
-      <!-- <span class="spacer"></span> -->
+      <span>Test Administrator</span>
+      <span class="spacer"></span>
       <!-- <div class="btn-group">
         <button type="button" class="btn btn-success btn-sm">Choose-Role</button>
         <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
@@ -48,11 +48,11 @@
           <option selected disabled>Choose...</option>
           <option value="//emp-dash" *ngIf="roleMatch(['Employee'])">Employee</option>
           <option value="//cc-dash" *ngIf="roleMatch(['Content-Creator'])">Content-Creator</option>
-          <option value="//ta-dash" *ngIf="roleMatch(['Test-Administrator'])">Test-Admin</option>
+          <option value="//ta-dash" *ngIf="roleMatch(['Test-Administrator'])">Test-Administrator</option>
           <option value="//ru-dash" *ngIf="roleMatch(['Reporting-User'])">Reporting-User</option>
         </select>
       </div>
-      <span class="spacer"></span>
+      &nbsp;&nbsp;&nbsp;&nbsp;
       <a class="log" (click)="logout()"><i aria-hidden="true" class="fa fa-sign-out"></i>Log Out</a>
     </mat-toolbar>
     <div class="content">

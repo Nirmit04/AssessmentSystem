@@ -59,7 +59,6 @@ export class AddQuesInQuizComponent implements OnInit {
   }
 
   add_new_ques() {
-    console.log(this.service.quizForm.QuizType);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = "70%";

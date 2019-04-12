@@ -58,25 +58,19 @@ export class CreateScheduleComponent implements OnInit {
   checkStartDate(date1: NgForm) {
     this.stdate = date1.value;
     this.date = (this.datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm'));
-    console.log(this.date);
     if (date1.value < this.date) {
-      console.log('invalid')
       this.startDateValid = true;
     } else {
       this.startDateValid = false;
-      console.log('valid');
     }
   }
 
   checkEndDate(date2: NgForm) {
     this.date = (this.datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm'));
-    console.log(this.date);
     if (date2.value <= this.stdate || date2.value < this.date) {
-      console.log('invalid');
       this.endDateValid = true;
     } else {
       this.endDateValid = false;
-      console.log('valid');
     }
   }
 

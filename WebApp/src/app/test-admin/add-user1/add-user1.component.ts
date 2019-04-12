@@ -34,10 +34,9 @@ export class AddUser1Component implements OnInit {
 
   loadUsers() {
     this.service.retrieveAllEmployees(this.data).subscribe((res: any) => {
-      console.log(res);
       res.forEach(obj => obj.selected = false);
       this.quiztakers = res as User[];
-      
+
     });
   }
 
