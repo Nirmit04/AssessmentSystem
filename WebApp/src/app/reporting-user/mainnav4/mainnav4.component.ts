@@ -17,6 +17,7 @@ export class Mainnav4Component {
     .pipe(
       map(result => result.matches)
     );
+  cRole: string;
 
 
   constructor(
@@ -25,6 +26,7 @@ export class Mainnav4Component {
     private router: Router
   ) { }
   ngOnInit() {
+    this.cRole = localStorage.getItem('currentRole');
     this.authService.authState.subscribe((user) => {
       if (user != null) {
       } else {
@@ -47,6 +49,7 @@ export class Mainnav4Component {
   }
 
   aab(role: string) {
+    localStorage.setItem('currentRole', role);
     this.router.navigate([role]);
   }
 

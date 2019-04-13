@@ -14,10 +14,12 @@ export class MainNav2Component {
 	isHandset$: Observable<boolean> = this.breakpointObserver
 		.observe(Breakpoints.Handset)
 		.pipe(map((result) => result.matches));
-
+	cRole = "";
 	constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService,
 		private router: Router) { }
 	ngOnInit() {
+		this.cRole = localStorage.getItem('currentRole');
+		console.log(this.cRole);
 		this.authService.authState.subscribe((user) => {
 			if (user != null) {
 			} else {
@@ -39,6 +41,7 @@ export class MainNav2Component {
 	}
 
 	aab(role: string) {
+		localStorage.setItem('currentRole', role);
 		this.router.navigate([role]);
 	}
 
