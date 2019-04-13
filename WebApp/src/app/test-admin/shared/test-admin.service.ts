@@ -72,7 +72,7 @@ export class TestAdminService {
 	unArchiveSchedule(id: number) {
 		const body = {
 			QuizScheduleId: id
-		}
+		};
 		return this.http.delete(this.rooturl + 'QuizSchedule/Unarchive/' + id);
 	}
 

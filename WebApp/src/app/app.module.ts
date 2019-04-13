@@ -71,6 +71,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { LoaderInterceptorService} from '../app/services/loader-interceptor.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoaderServiceService } from './services/loader-service.service';
+import { InstructionsComponent } from './employee/take-quiz/instructions/instructions.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 	bgsColor: '#00ACC1',
@@ -155,6 +156,7 @@ export function provideConfig() {
 		DetailsComponent,
 		HttpInterceptorComponent,
 		LoaderComponent,
+		InstructionsComponent,
 	],
 	imports: [
 		BrowserModule,

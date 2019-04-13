@@ -1,12 +1,18 @@
 <mat-progress-bar style="height: 2%" color="primary" mode="determinate" value="{{ bar }}"></mat-progress-bar>
+<nav class="navbar navbar-light" *ngIf="service.quesOfQuiz">
+  <div>
+    <img src="../../../assets/img/nineleaps-logo.svg" alt="Nineleaps" style="float: left;">
+    <h2 style="text-align: center">{{service.quizName}}</h2>
+  </div>
+</nav>
 <div class="container-fluid" *ngIf="service.quesOfQuiz">
   <div class="row">
     <div class="col col-md-6">
-      <h2 style="margin: 4%">Question - {{service.qnProgress+1}}/{{noOfQues}}</h2>
+      <h3 style="margin: 3%">Question - {{service.qnProgress+1}}/{{noOfQues}}</h3>
     </div>
     <div class="col col-md-6">
       <div *ngIf="service.quesOfQuiz" class="card text-white bg-danger border-dark"
-        style="margin: 3%; width:38%; float: right;">
+        style="margin: 2%; width:38%; float: right;">
         <div class="card-body text-center">
           <strong>
             <h5 style="margin:2%">Time Left - {{this.hours}}:{{this.minutes}}:{{this.seconds}}</h5>
@@ -49,8 +55,7 @@
         <div class="card-body table-wrapper-scroll-y my-custom-scrollbar" style="overflow-y: auto; max-height: 320px">
           <div class="btn-group mb-4" role="group" *ngFor="let b of ArrayOne(noOfQues); let i=index;">
             <div class="btn-group mr-3">
-              <a style="width:50px" type="button" id="{{i}}"
-                class="btn btn-block text-center" [ngClass]="getStatus(i)"
+              <a style="width:50px" type="button" id="{{i}}" class="btn btn-block text-center" [ngClass]="getStatus(i)"
                 (click)="Navigate(i)">{{i+1}}</a>
             </div>
           </div>
@@ -58,26 +63,42 @@
       </div>
     </div>
   </div>
-  <div class="row card-deck" style="margin-top: 2%;">
+  <div class="row card-deck">
     <div class="col col-md-9">
       <div class="card border-dark">
         <div class="card-body text-center">
           <button class="btn btn-sm btn-danger text-white" (click)="Clear(service.qnProgress)"><i aria-hidden="true"
               class="fa fa-eraser"></i>&nbsp;Clear</button>
           &nbsp;&nbsp;
-          <button *ngIf="checkPrev" class="btn btn-sm btn-info text-white" (click)="Previous()"><i
-              aria-hidden="true" class="fa fa-backward"></i>&nbsp;Previous</button>
+          <button *ngIf="checkPrev" class="btn btn-sm btn-info text-white" (click)="Previous()"><i aria-hidden="true"
+              class="fa fa-backward"></i>&nbsp;Previous</button>
           &nbsp;&nbsp;
-          <button *ngIf="checkLast" class="btn btn-sm btn-warning text-white"
-            (click)="Next()">Next&nbsp;<i aria-hidden="true"
-              class="fa fa-forward"></i></button>
+          <button *ngIf="checkLast" class="btn btn-sm btn-warning text-white" (click)="Next()">Next&nbsp;<i
+              aria-hidden="true" class="fa fa-forward"></i></button>
           &nbsp;&nbsp;
           <button class="btn btn-sm btn-primary text-white" [disabled]="!options"
-            (click)="Answer(service.qnProgress+1,options)"><i aria-hidden="true"
+            (click)="Answer(service.qnProgress+1,options,'save')"><i aria-hidden="true"
               class="fa fa-check-circle"></i>&nbsp;Save & Next</button>
           &nbsp;&nbsp;
-          <button class="btn btn-sm btn-success text-white" (click)="Answer(service.qnProgress+1,options,'submit')"><i aria-hidden="true"
-              class="fa fa-forward"></i>&nbsp;Submit</button>
+          <button class="btn btn-sm btn-dark text-white" (click)="Answer(service.qnProgress+1,options, 'review')"><i
+              aria-hidden="true" class="fa fa-star"></i>&nbsp;Mark for Review</button>
+          &nbsp;&nbsp;
+          <button class="btn btn-sm btn-success text-white" (click)="Answer(service.qnProgress+1,options,'submit')"><i
+              aria-hidden="true" class="fa fa-forward"></i>&nbsp;Submit</button>
+        </div>
+      </div>
+    </div>
+    <div class="col col-md-3">
+      <div class="card border-dark">
+        <div style="padding:3px 3px 3px 7px" class="card-body">
+          <strong>Legend</strong>
+          <div>
+            <button type="button" class="btn btn-sm btn-success"></button>&nbsp;Submitted
+            <button style="margin-left: 20%" class="button" class="btn btn-sm btn-warning"></button>&nbsp;Active
+          </div>
+          <div>
+            <button type="button" class="btn btn-sm btn-info"></button>&nbsp;Marked for Review
+          </div>
         </div>
       </div>
     </div>

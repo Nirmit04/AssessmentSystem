@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { EmployeeService } from '../employee/shared/employee.service';
-import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-home',
@@ -16,7 +14,7 @@ export class HomeComponent implements OnInit {
 	constructor(private router: Router, private http: HttpClient, private service: EmployeeService) { }
 
 	rooturl = environment.apiURl;
-	role = "";
+	role = '';
 	uid = '';
 	checkqid: string = null;
 	checksid: string = null;
@@ -34,22 +32,22 @@ export class HomeComponent implements OnInit {
 				GoogleId: localStorage.getItem('id')
 			};
 
-			this.http.post(this.rooturl + 'User/Register', body).subscribe((res: any) => {
+			this.http.post(this.rooturl + 'User/Register', body).subscribe(() => {
 				this.http.get(this.rooturl + 'GetUserDetails?email=' + localStorage.getItem('email'))
 					.subscribe((res1: any) => {
 						this.uid = res1.Id;
 						this.role = res1.Roles;
 						localStorage.setItem('uid', this.uid);
 						localStorage.setItem('role', this.role);
-						if (this.checkqid == 'null' && this.checksid == 'null') {
+						if (this.checkqid === 'null' && this.checksid === 'null') {
 							this.redirecttodash(this.role[0]);
 						}
 						else if (this.checkqid == null && this.checksid == null) {
 							this.redirecttodash(this.role[0]);
 						}
-						else if (this.checkqid != 'null' && this.checksid != 'null') {
+						else if (this.checkqid !== 'null' && this.checksid !== 'null') {
 
-							this.service.checkValidUser(+this.checkqid).subscribe((res: any) => {
+							this.service.checkValidUser(+this.checkqid).subscribe(() => {
 
 								this.service.getQuesOfQuiz(+this.checkqid).subscribe((res: any) => {
 									this.service.quesOfQuiz = res as any[];

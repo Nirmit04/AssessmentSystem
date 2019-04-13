@@ -19,9 +19,7 @@ export class AddUser1Component implements OnInit {
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
-    public service: TestAdminService,
-    public toastr: ToastrService,
-    private dialogRef: MatDialogRef<AddUser1Component>) { }
+    public service: TestAdminService, public toastr: ToastrService, private dialogRef: MatDialogRef<AddUser1Component>) { }
 
   ngOnInit() {
     this.dtOptions = {
@@ -30,23 +28,23 @@ export class AddUser1Component implements OnInit {
     };
     this.loadUsers()
     this.dtTrigger.next();
-  }
+  };
 
   loadUsers() {
     this.service.retrieveAllEmployees(this.data).subscribe((res: any) => {
       console.log(res);
       res.forEach(obj => obj.selected = false);
       this.quiztakers = res as User[];
-      
+
     });
-  }
+    }
 
   updateSelectedUsers(index) {
     this.quiztakers[index].selected = !this.quiztakers[index].selected;
   }
 
   onSubmit(form: NgForm) {
-    var quiztakerId = this.quiztakers.filter(Id => Id.selected).map(idSelected => idSelected.Id);
+    const quiztakerId = this.quiztakers.filter(Id => Id.selected).map(idSelected => idSelected.Id);
     this.service.addUserInExistingSchedule(this.data, quiztakerId).subscribe(res => {
       this.toastr.success('added succesfully');
       this.dialogRef.close('Added');

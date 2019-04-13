@@ -24,10 +24,7 @@ export class RetrieveScheduleComponent implements OnInit {
 		this.router.navigate(['/testAdminCreateScheDule']);
 	}
 
-	constructor(private service: TestAdminService,
-		private toastr: ToastrService,
-		private dialog: MatDialog,
-		private router: Router) { }
+	constructor(private service: TestAdminService, private toastr: ToastrService, private dialog: MatDialog, private router: Router) { }
 
 	ngOnInit() {
 		this.dtOptions = {

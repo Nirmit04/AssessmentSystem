@@ -20,8 +20,7 @@ export class AnalyticsByTagComponent implements OnInit {
   accuracy = [];
   name = 'high';
 
-  constructor(private service: ReportingUserService,
-    private router: Router) { }
+  constructor(private service: ReportingUserService, private router: Router) { }
 
 
   public barChartOptions: ChartOptions = {

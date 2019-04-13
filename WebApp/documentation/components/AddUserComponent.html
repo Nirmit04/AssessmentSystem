@@ -1,0 +1,914 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>web-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">web-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>AddUserComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/test-admin/retrieve-schedule/add-user/add-user.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-add-user</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./add-user.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./add-user.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#dialog">dialog</a>
+                            </li>
+                            <li>
+                                <a href="#dtOptions">dtOptions</a>
+                            </li>
+                            <li>
+                                <a href="#dtTrigger">dtTrigger</a>
+                            </li>
+                            <li>
+                                <a href="#scheduleList">scheduleList</a>
+                            </li>
+                            <li>
+                                <a href="#subscription">subscription</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#toastr">toastr</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addUserToSchedule">addUserToSchedule</a>
+                            </li>
+                            <li>
+                                <a href="#deleteUserfromSchedule">deleteUserfromSchedule</a>
+                            </li>
+                            <li>
+                                <a href="#loadSchedule">loadSchedule</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(toastr: ToastrService, dialog: MatDialog, service: <a href="../injectables/TestAdminService.html">TestAdminService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/test-admin/retrieve-schedule/add-user/add-user.component.ts:20</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>toastr</td>
+                                                  
+                                                        <td>
+                                                                    <code>ToastrService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>service</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/TestAdminService.html" target="_self" >TestAdminService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addUserToSchedule"></a>
+                    <span class="name">
+                        <b>
+                            addUserToSchedule
+                        </b>
+                        <a href="#addUserToSchedule"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addUserToSchedule(scheduleid: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, arrayindex: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/app/test-admin/retrieve-schedule/add-user/add-user.component.ts:41</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>scheduleid</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>arrayindex</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteUserfromSchedule"></a>
+                    <span class="name">
+                        <b>
+                            deleteUserfromSchedule
+                        </b>
+                        <a href="#deleteUserfromSchedule"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteUserfromSchedule(scheduleId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, arrayIndex: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="54"
+                            class="link-to-prism">src/app/test-admin/retrieve-schedule/add-user/add-user.component.ts:54</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>scheduleId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>arrayIndex</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadSchedule"></a>
+                    <span class="name">
+                        <b>
+                            loadSchedule
+                        </b>
+                        <a href="#loadSchedule"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadSchedule()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/app/test-admin/retrieve-schedule/add-user/add-user.component.ts:34</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/app/test-admin/retrieve-schedule/add-user/add-user.component.ts:26</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dialog"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            dialog</b>
+                            <a href="#dialog"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>MatDialog</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/test-admin/retrieve-schedule/add-user/add-user.component.ts:23</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dtOptions"></a>
+                        <span class="name">
+                            <b>
+                            dtOptions</b>
+                            <a href="#dtOptions"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>DataTables.Settings</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/test-admin/retrieve-schedule/add-user/add-user.component.ts:18</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dtTrigger"></a>
+                        <span class="name">
+                            <b>
+                            dtTrigger</b>
+                            <a href="#dtTrigger"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Subject&lt;Schedule&gt;</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new Subject()</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/test-admin/retrieve-schedule/add-user/add-user.component.ts:19</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="scheduleList"></a>
+                        <span class="name">
+                            <b>
+                            scheduleList</b>
+                            <a href="#scheduleList"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/Schedule.html" target="_self" >Schedule[]</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/test-admin/retrieve-schedule/add-user/add-user.component.ts:17</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="subscription"></a>
+                        <span class="name">
+                            <b>
+                            subscription</b>
+                            <a href="#subscription"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Subscription</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/test-admin/retrieve-schedule/add-user/add-user.component.ts:20</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="toastr"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            toastr</b>
+                            <a href="#toastr"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>ToastrService</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/test-admin/retrieve-schedule/add-user/add-user.component.ts:22</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Inject, EventEmitter, Output } from &#x27;@angular/core&#x27;;
+import { TestAdminService } from &#x27;../../shared/test-admin.service&#x27;;
+import { MatDialog, MatDialogConfig } from &#x27;@angular/material&#x27;;
+import { ToastrService } from &#x27;ngx-toastr&#x27;;
+import { Schedule } from &#x27;../../shared/schedule.model&#x27;;
+import { Subscription } from &#x27;rxjs&#x27;;
+import { Subject } from &#x27;rxjs&#x27;;
+import { AddUser1Component } from &#x27;../../add-user1/add-user1.component&#x27;
+import { ViewScheduleComponent } from &#x27;../view-schedule/view-schedule.component&#x27;;
+@Component({
+  selector: &#x27;app-add-user&#x27;,
+  templateUrl: &#x27;./add-user.component.html&#x27;,
+  styleUrls: [&#x27;./add-user.component.css&#x27;]
+})
+
+export class AddUserComponent implements OnInit {
+  scheduleList: Schedule[];
+  dtOptions: DataTables.Settings &#x3D; {};
+  dtTrigger: Subject&lt;Schedule&gt; &#x3D; new Subject();
+  subscription: Subscription;
+  constructor(
+    public toastr: ToastrService,
+    public dialog: MatDialog,
+    private service: TestAdminService) { }
+
+  ngOnInit() {
+    this.dtOptions &#x3D; {
+      pagingType: &#x27;full_numbers&#x27;,
+      pageLength: 10,
+    };
+    this.loadSchedule();
+  }
+
+  loadSchedule() {
+    this.service.getSchedule(localStorage.getItem(&#x27;uid&#x27;)).subscribe((res: any) &#x3D;&gt; {
+      this.scheduleList &#x3D; res as Schedule[];
+      this.dtTrigger.next();
+    })
+  }
+
+  addUserToSchedule(scheduleid: number, arrayindex: number) {
+    const dialogConfig &#x3D; new MatDialogConfig();
+    dialogConfig.autoFocus &#x3D; true;
+    dialogConfig.width &#x3D; &#x27;60%&#x27;;
+    dialogConfig.disableClose &#x3D; true;
+    dialogConfig.data &#x3D; scheduleid;
+    this.dialog.open(AddUser1Component, dialogConfig).afterClosed().subscribe((res: any) &#x3D;&gt; {
+      this.loadSchedule();
+      this.dtTrigger.unsubscribe();
+      this.dtTrigger.next();
+    });
+  }
+
+  deleteUserfromSchedule(scheduleId: number, arrayIndex: number) {
+    const dialogConfig &#x3D; new MatDialogConfig();
+    dialogConfig.autoFocus &#x3D; true;
+    dialogConfig.width &#x3D; &#x27;60%&#x27;;
+    dialogConfig.disableClose &#x3D; true;
+    this.service.getScheduleQuizUsers(scheduleId).subscribe((res: any) &#x3D;&gt; {
+      if (res.length &#x3D;&#x3D; 0) {
+        this.toastr.error(&#x27;No user Available to Delete&#x27;);
+      }
+      else {
+        dialogConfig.data &#x3D; res;
+        this.service.deleteUserVisibility &#x3D; true;
+        this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe((res: any) &#x3D;&gt; {
+          this.loadSchedule();
+          this.service.deleteUserVisibility &#x3D; false;
+          this.dtTrigger.unsubscribe();
+          this.dtTrigger.next();
+        });
+      }
+    });
+  }
+}
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;app-main-nav2&gt;
+    &lt;h1 style&#x3D;&quot;text-align: center&quot;&gt;Add/Delete User in Schedule&lt;/h1&gt;
+    &lt;br /&gt;&lt;br /&gt;
+  &lt;table datatable [dtOptions]&#x3D;&quot;dtOptions&quot; [dtTrigger]&#x3D;&quot;dtTrigger&quot;
+    class&#x3D;&quot;row-border hover table table-bordered table-striped&quot;&gt;
+    &lt;thead class&#x3D;&quot;thead-dark&quot;&gt;
+      &lt;tr&gt;
+        &lt;th scope&#x3D;&quot;col&quot;&gt;#S. No.&lt;/th&gt;
+        &lt;th scope&#x3D;&quot;col&quot;&gt;Quiz Name&lt;/th&gt;
+        &lt;th scope&#x3D;&quot;col&quot;&gt;Start Date/Time&lt;/th&gt;
+        &lt;th scope&#x3D;&quot;col&quot;&gt;End Date/Time&lt;/th&gt;
+        &lt;th scope&#x3D;&quot;col&quot;&gt;Action&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+
+    &lt;tbody&gt;
+      &lt;ng-container *ngFor&#x3D;&quot;let item of scheduleList;index as i;&quot;&gt;
+        &lt;tr&gt;
+          &lt;th&gt;{{i+1}}&lt;/th&gt;
+          &lt;td&gt;{{item.QuizName}}&lt;/td&gt;
+          &lt;td&gt;{{item.StartDateTime}}&lt;/td&gt;
+          &lt;td&gt;{{item.EndDateTime}}&lt;/td&gt;
+          &lt;td&gt;
+            &lt;a class&#x3D;&quot;btn btn-sm btn-info text-black&quot; (click)&#x3D;&quot;addUserToSchedule(item.QuizScheduleId,i+1)&quot;&gt;&lt;i aria-hidden&#x3D;&quot;true&quot;
+                class&#x3D;&quot;fa fa-user-plus&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+            &lt;a class&#x3D;&quot;btn btn-sm btn-danger text-black&quot; (click)&#x3D;&quot;deleteUserfromSchedule(item.QuizScheduleId,i+1)&quot;&gt;&lt;i aria-hidden&#x3D;&quot;true&quot;
+                class&#x3D;&quot;fa fa-user-times&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+          &lt;/td&gt;
+
+        &lt;/tr&gt;
+      &lt;/ng-container&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/app-main-nav2&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./add-user.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><app-main-nav2>    <h1 style="text-align: center">Add/Delete User in Schedule</h1>    <br /><br />  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"    class="row-border hover table table-bordered table-striped">    <thead class="thead-dark">      <tr>        <th scope="col">#S. No.</th>        <th scope="col">Quiz Name</th>        <th scope="col">Start Date/Time</th>        <th scope="col">End Date/Time</th>        <th scope="col">Action</th>      </tr>    </thead>    <tbody>      <ng-container *ngFor="let item of scheduleList;index as i;">        <tr>          <th>{{i+1}}</th>          <td>{{item.QuizName}}</td>          <td>{{item.StartDateTime}}</td>          <td>{{item.EndDateTime}}</td>          <td>            <a class="btn btn-sm btn-info text-black" (click)="addUserToSchedule(item.QuizScheduleId,i+1)"><i aria-hidden="true"                class="fa fa-user-plus"></i></a>            <a class="btn btn-sm btn-danger text-black" (click)="deleteUserfromSchedule(item.QuizScheduleId,i+1)"><i aria-hidden="true"                class="fa fa-user-times"></i></a>          </td>        </tr>      </ng-container>    </tbody>  </table></app-main-nav2></div>'
+    var COMPONENTS = [{'name': 'AddQuesInQuizComponent', 'selector': 'app-add-ques-in-quiz'},{'name': 'AddUser1Component', 'selector': 'app-add-user1'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AnalyticsByQuizComponent', 'selector': 'app-analytics-by-quiz'},{'name': 'AnalyticsByTagComponent', 'selector': 'app-analytics-by-tag'},{'name': 'AnalyticsByUserComponent', 'selector': 'app-analytics-by-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchivedScheduleComponent', 'selector': 'app-archived-schedule'},{'name': 'ArchiveQuizComponent', 'selector': 'app-archive-quiz'},{'name': 'ContentCreatorComponent', 'selector': 'app-content-creator'},{'name': 'CreateQuestionsComponent', 'selector': 'app-create-questions'},{'name': 'CreateQuizComponent', 'selector': 'app-create-quiz'},{'name': 'CreateScheduleComponent', 'selector': 'app-create-schedule'},{'name': 'CreatetagComponent', 'selector': 'app-createtag'},{'name': 'DetailedReportComponent', 'selector': 'app-detailed-report'},{'name': 'DetailsComponent', 'selector': 'app-details'},{'name': 'EmployeeComponent', 'selector': 'app-employee'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HttpInterceptorComponent', 'selector': 'app-http-interceptor'},{'name': 'InstructionsComponent', 'selector': 'app-instructions'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainNav2Component', 'selector': 'app-main-nav2'},{'name': 'MainNav3Component', 'selector': 'app-main-nav3'},{'name': 'Mainnav4Component', 'selector': 'app-mainnav4'},{'name': 'MainNavComponent', 'selector': 'app-main-nav'},{'name': 'MockComponent', 'selector': 'app-mock'},{'name': 'MockReportComponent', 'selector': 'app-mock-report'},{'name': 'NonMockComponent', 'selector': 'app-non-mock'},{'name': 'NonMockReportComponent', 'selector': 'app-non-mock-report'},{'name': 'ReportingUserComponent', 'selector': 'app-reporting-user'},{'name': 'ResultComponent', 'selector': 'app-result'},{'name': 'RetrieveQuestionBankComponent', 'selector': 'app-retrieve-question-bank'},{'name': 'RetrieveQuizComponent', 'selector': 'retrieve-quiz'},{'name': 'RetrieveScheduleComponent', 'selector': 'app-retrieve-schedule'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TakeQuizComponent', 'selector': 'app-take-quiz'},{'name': 'TestAdminComponent', 'selector': 'app-test-admin'},{'name': 'UpdateQuestionComponent', 'selector': 'app-update-question'},{'name': 'UpdateQuizComponent', 'selector': 'app-update-quiz'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'ViewAnswerComponent', 'selector': 'app-view-answer'},{'name': 'ViewScheduleComponent', 'selector': 'app-view-schedule'},{'name': 'ViewUserDetailsComponent', 'selector': 'app-view-user-details'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'AddUserComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AddUserComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

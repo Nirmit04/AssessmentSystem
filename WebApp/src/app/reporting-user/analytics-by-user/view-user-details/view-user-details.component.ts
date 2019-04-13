@@ -14,8 +14,8 @@ export class ViewUserDetailsComponent implements OnInit {
   data1: any[];
 
   public polarAreaChartLabels: Label[] = ['Highest-Score', 'Lowest Score', 'Accuracy', 'Average-Score'];
-  public polarAreaChartData: any[]
-  public polarAreaLegend: boolean
+  public polarAreaChartData: any[];
+  public polarAreaLegend: boolean;
   public polarAreaChartType: ChartType = 'polarArea';
 
   constructor(

@@ -12,13 +12,13 @@ import { Router } from '@angular/router';
 
 export class DetailsComponent implements OnInit {
   quizData: any = null;
-  quizName: string = '';
+  quizName = '';
   public pieChartOptions: ChartOptions = {
     responsive: true,
   };
 
   public pieChartLabels: Label[] = ['Highest-Score', 'Lowest Score', 'Average-Score', 'Number of Schedules'];
-  public pieChartData: any[]
+  public pieChartData: any[];
   public pieChartLegend: boolean;
   public pieChartType: ChartType = 'pie';
   chartData: any[];
@@ -48,7 +48,7 @@ export class DetailsComponent implements OnInit {
       this.chartData.push(this.quizData.AverageMarks);
       this.chartData.push(this.quizData.NoOfQuiz);
       this.pieChartData = this.chartData;
-    })
+    });
   }
 
 }

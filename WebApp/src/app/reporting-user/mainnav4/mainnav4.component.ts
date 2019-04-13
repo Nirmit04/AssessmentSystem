@@ -35,8 +35,8 @@ export class Mainnav4Component {
   }
 
   roleMatch(allowedRoles): boolean {
-    var isMatch = false;
-    var userRoles: string = localStorage.getItem('role');
+    let isMatch = false;
+    const userRoles: string = localStorage.getItem('role');
     allowedRoles.forEach(element => {
       if (userRoles.indexOf(element) > -1) {
         isMatch = true;

@@ -9,6 +9,7 @@ import { postReport } from './postReport.model';
 export class EmployeeService {
 
   rootURL = environment.apiURl;
+  quizName: string;
   quesOfQuiz: any[];
   hours: number;
   seconds: number;

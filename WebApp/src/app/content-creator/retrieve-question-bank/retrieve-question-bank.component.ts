@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Question } from '../shared/question.model';
 import { ContentCreatorServiceService } from '../shared/content-creator-service.service';
 import { ToastrService } from 'ngx-toastr';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { UpdateQuestionComponent } from '../update-question/update-question.component';
 import { Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
@@ -39,7 +39,6 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 	getQuesOfUser(uid: string) {
 		this.service.getQuesOfUser(uid).subscribe((data: any) => {
 			this.questionList = data as Question[];
-			console.log(data);
 			this.dtTrigger.next();
 		})
 	}
