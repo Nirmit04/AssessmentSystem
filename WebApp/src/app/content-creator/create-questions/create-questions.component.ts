@@ -4,6 +4,7 @@ import { ContentCreatorServiceService } from '../shared/content-creator-service.
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from '../shared/subject.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-create-questions',
   templateUrl: './create-questions.component.html',
@@ -13,10 +14,12 @@ export class CreateQuestionsComponent implements OnInit {
 
   public Subjects: Subject[];
   CCreatedBy = "";
-
-  constructor(public service: ContentCreatorServiceService, public toastr: ToastrService, ) { }
+  constructor(public service: ContentCreatorServiceService, public toastr: ToastrService, private router: Router) { }
   ngOnInit() {
     this.resetForm();
+    if (this.service.QuestionType == null) {
+      this.router.navigate(['/cc-dash'])
+    }
     this.service.retrieveSubjects().subscribe(res => {
       this.Subjects = res as Subject[];
     });
@@ -48,7 +51,6 @@ export class CreateQuestionsComponent implements OnInit {
   onSubmit(form: NgForm) {
     this.service.postQuestion(form.value).subscribe((res: any) => {
       this.toastr.success('Inserted successfully');
-      console.log('gell');
       this.service.formDataNew = null;
       this.service.selectedFile = null;
       this.resetForm(form);

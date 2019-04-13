@@ -19,7 +19,7 @@ export class ViewAnswerComponent implements OnInit {
   zlop4 = false;
 
   constructor(private service: EmployeeService,
-              @Inject(MAT_DIALOG_DATA) public data) { }
+    @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit() {
     this.sda();

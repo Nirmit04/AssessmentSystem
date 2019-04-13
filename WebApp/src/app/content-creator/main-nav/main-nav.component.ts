@@ -17,6 +17,7 @@ export class MainNavComponent {
 	isHandset$: Observable<boolean> = this.breakpointObserver
 		.observe(Breakpoints.Handset)
 		.pipe(map((result) => result.matches));
+	cRole: string;
 
 	constructor(
 		private breakpointObserver: BreakpointObserver,
@@ -28,6 +29,7 @@ export class MainNavComponent {
 	showSpinnner: boolean = true;
 
 	ngOnInit() {
+		this.cRole = localStorage.getItem('currentRole');
 		if (localStorage.getItem('id') === null) {
 			this.router.navigate(['/login']);
 		}
@@ -54,6 +56,7 @@ export class MainNavComponent {
 	}
 
 	aab(role: string) {
+		localStorage.setItem('currentRole', role);
 		this.router.navigate([role]);
 	}
 
@@ -63,17 +66,8 @@ export class MainNavComponent {
 	}
 
 	setQuestionType(type: string) {
-		// location.reload();
 		this.service.QuestionType = type;
-		console.log(this.service.QuestionType);
 		this.router.navigate(['/cc-dash/create-question'])
 	}
-
-	// mockTypeQuestion() {
-	// 	// location.reload();
-	// 	this.service.QuestionType = 'Mock';
-	// 	console.log(this.service.QuestionType);
-	// 	this.router.navigate(['/cc-dash/create-question'])
-	// }
 
 }

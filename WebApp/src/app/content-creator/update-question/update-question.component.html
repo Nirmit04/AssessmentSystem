@@ -109,12 +109,21 @@
             <input type="file" (change)="chooseFile($event)" name="ImageNameDemo" class="form-control">
           </div>
         </div>
-        <strong><img [src]="src" alt="Image Does Not Exist"></strong>
-        <div class="form-group">
-          <button [hidden]="bool" style="margin:0 5%" type="submit" [disabled]="form.invalid || bool"
-            class="btn btn-primary">Submit</button>
+        <div style="float:right" class="form-group">
+          <div class="row">
+            <div class="col-md-6">
+              <button [hidden]="bool" type="submit" [disabled]="form.invalid || bool"
+                class="btn btn-primary">Submit</button>
+            </div>
+          </div>
         </div>
+        <strong><img [src]="src" alt="Image Does Not Exist"></strong>
+        <br><br>
       </form>
+      <button type="button" *ngIf="src" (click)="deleteImg()" style="cursor: pointer;" [hidden]="bool"
+        class="btn btn-outline-danger">
+        <i class="fa fa-trash" aria-hidden="true"> Delete
+          Img</i></button>
     </div>
   </mat-dialog-content>
 </div>

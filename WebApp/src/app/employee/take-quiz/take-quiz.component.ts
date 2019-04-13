@@ -129,19 +129,19 @@ export class TakeQuizComponent implements OnInit {
 			this.service.quesOfQuiz[this.service.qnProgress].answer = choice;
 		}
 		this.bar = (this.service.qnProgress + 1) / this.noOfQues * 100;
-		if (options == 'save') {
+		if (options === 'save') {
 			if (this.review[this.service.qnProgress]) {
 				this.review[this.service.qnProgress] = false;
 			}
 			this.submit[this.service.qnProgress] = true;
 		}
-		if (options == 'review') {
+		if (options === 'review') {
 			if (this.submit[this.service.qnProgress]) {
 				this.submit[this.service.qnProgress] = false;
 			}
 			this.review[this.service.qnProgress] = true;
 		}
-		if (options == 'submit') {
+		if (options === 'submit') {
 			this.Submit();
 		}
 		this.service.qnProgress++;

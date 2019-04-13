@@ -26,8 +26,7 @@ export class AnalyticsByQuizComponent implements OnInit {
   loadQuizDetails() {
     this.service.getAllQuizzes().subscribe((res: any) => {
       this.quizDetails = res as any[];
-      console.log(this.quizDetails);
-      this.dtTrigger.next();
+           this.dtTrigger.next();
     });
   }
 

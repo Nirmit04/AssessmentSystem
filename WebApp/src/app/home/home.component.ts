@@ -70,16 +70,22 @@ export class HomeComponent implements OnInit {
 
 
 	redirecttodash(role: string) {
+		
 		if (role === 'Test-Administrator') {
+			localStorage.setItem('currentRole', '//ta-dash');
 			this.router.navigate(['/ta-dash']);
+		
 		}
 		else if (role === 'Content-Creator') {
+			localStorage.setItem('currentRole', '//cc-dash');
 			this.router.navigate(['/cc-dash']);
 		}
 		else if (role === 'Employee') {
+			localStorage.setItem('currentRole', '//emp-dash');
 			this.router.navigate(['/emp-dash']);
 		}
 		else {
+			localStorage.setItem('currentRole', '//ru-dash');
 			this.router.navigate(['/ru-dash']);
 		}
 	}

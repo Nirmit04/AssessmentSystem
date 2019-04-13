@@ -19,40 +19,21 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Reporting User</span>
-      <span class="spacer"></span>
-      <!-- <div class="btn-group">
-        <button type="button" class="btn btn-success btn-sm">Choose-Role</button>
-        <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          <span class="sr-only">Toggle Dropdown</span>
-        </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" style="color:black" (click)="aab('/ta-dash')"
-            *ngIf="roleMatch(['Test-Administrator'])">
-            Test-Administrator</a>
-          <a class="dropdown-item" style="color:black" (click)="aab('/emp-dash')" *ngIf="roleMatch(['Employee'])">
-            Employee</a>
-          <a class="dropdown-item" style="color:black" (click)="aab('/cc-dash')" *ngIf="roleMatch(['Content-Creator'])">
-            Content-Creator</a>
-          <a class="dropdown-item" style="color:black" (click)="aab('/ru-dash')" *ngIf="roleMatch(['Reporting-User'])">
-            Reporting-User</a>
-        </div>
-      </div> -->
-      <div class="input-group mb-6" style="width:40%; float: left;">
+      <div class="input-group mb-6" style="width:17%; float: left;">
         <div class="input-group-prepend">
           <label class="input-group-text" for="inputGroupSelect01">Role</label>
         </div>
-        <select class="custom-select" #role id="inputGroupSelect01" (change)="aab(role.value)">
-          <option selected disabled>Choose...</option>
+        <select class="custom-select" #role id="inputGroupSelect01" [(ngModel)]="cRole" (change)="aab(role.value)">
           <option value="//emp-dash" *ngIf="roleMatch(['Employee'])">Employee</option>
           <option value="//cc-dash" *ngIf="roleMatch(['Content-Creator'])">Content-Creator</option>
           <option value="//ta-dash" *ngIf="roleMatch(['Test-Administrator'])">Test-Admin</option>
           <option value="//ru-dash" *ngIf="roleMatch(['Reporting-User'])">Reporting-User</option>
         </select>
       </div>
+      <span class="spacer"></span>
       &nbsp;&nbsp;&nbsp;&nbsp;
-      <a class="log" (click)="logout()"><i aria-hidden="true" class="fa fa-sign-out"></i>Log Out</a>
+      <button type="button" (click)="logout()" class="btn btn-dark btn-sm"><i aria-hidden="true"
+          style="cursor: pointer;" class="fa fa-sign-out fa-lg">Log Out</i></button>
     </mat-toolbar>
     <div class="content">
       <ng-content></ng-content>

@@ -40,8 +40,6 @@ export class DetailsComponent implements OnInit {
   getDetails(id: string) {
     this.service.getQuizAnalysis(id).subscribe((res: any) => {
       this.quizData = res;
-      console.log(this.quizData);
-      console.log(this.quizData.QuizName);
       this.chartData = [];
       this.chartData.push(this.quizData.HighestScore);
       this.chartData.push(this.quizData.LowestScore);

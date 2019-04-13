@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-body">
         <strong>
-          <h2 class="card-title" style="text-align: center">Add Questions</h2>
+          <h2 *ngIf="service.QuestionType" class="card-title" style="text-align: center">Add {{service.QuestionType}} Questions</h2>
         </strong>
         <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
           <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="CCreatedBy">

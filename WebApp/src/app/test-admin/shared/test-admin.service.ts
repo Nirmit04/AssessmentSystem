@@ -30,7 +30,6 @@ export class TestAdminService {
 	}
 
 	postSchedule(formdata: Schedule) {
-		console.log(formdata);
 		return this.http.post(this.rooturl + 'QuizSchedule/ScheduleQuiz', formdata);
 	}
 
