@@ -19,7 +19,6 @@ export class MainNav2Component {
 		private router: Router) { }
 	ngOnInit() {
 		this.cRole = localStorage.getItem('currentRole');
-		console.log(this.cRole);
 		this.authService.authState.subscribe((user) => {
 			if (user != null) {
 			} else {

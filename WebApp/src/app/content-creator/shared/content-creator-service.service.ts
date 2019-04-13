@@ -133,4 +133,8 @@ export class ContentCreatorServiceService {
 		return this.http.get(this.rootURL + 'Stats/' + localStorage.getItem('uid'));
 	}
 
+	deleteImageFromQues(id) {
+		return this.http.delete(this.rootURL+'Question/ImageDelete/'+id);
+	}
+
 }

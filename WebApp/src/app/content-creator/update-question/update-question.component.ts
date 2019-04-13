@@ -29,7 +29,7 @@ export class UpdateQuestionComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.bool = this.service.readonlyStatus;
+       this.bool = this.service.readonlyStatus;
     if (this.bool === true) {
       this.label = "View Question";
     } else {
@@ -72,7 +72,14 @@ export class UpdateQuestionComponent implements OnInit {
     this.service.updateQuestion(form.value).subscribe(res => {
       this.toastr.success('Updated successfully');
       this.service.selectedFile = null;
-      this.service.formDataNew=null;
+      this.service.formDataNew = null;
+      this.dialogRef.close('Submitted');
+    });
+  }
+
+  deleteImg() {
+    this.service.deleteImageFromQues(this.service.formData.QuestionId).subscribe(res => {
+      this.toastr.success('Image Successfully Removed');
       this.dialogRef.close('Submitted');
     });
   }
