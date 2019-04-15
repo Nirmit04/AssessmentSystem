@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Question } from '../shared/question.model';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
 import { TagModel } from './tags.model';
 import { QuizModel } from './quiz.model';
-import { NgForOf } from '@angular/common';
 import { NgForm } from '@angular/forms';
 @Injectable({
 	providedIn: 'root'
@@ -29,6 +28,7 @@ export class ContentCreatorServiceService {
 	postQuestion(formData: Question) {
 		formData.CreatedBy = localStorage.getItem('uid');
 		formData.QuestionType = this.QuestionType;
+		console.log(this.QuestionType);
 		this.formDataNew.append('QuestionDetails', JSON.stringify(formData));
 		if (this.selectedFile !== null) {
 			this.formDataNew.append('Image', this.selectedFile, this.selectedFile.name);

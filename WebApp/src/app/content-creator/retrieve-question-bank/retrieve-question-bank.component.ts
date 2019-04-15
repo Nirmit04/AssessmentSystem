@@ -20,6 +20,8 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 	questionList: Question[];
 	dtTrigger: Subject<Question> = new Subject();
 	subscription: Subscription;
+	cols: any[];
+	i: number;
 
 	constructor(private service: ContentCreatorServiceService,
 		private toastr: ToastrService,
@@ -34,12 +36,23 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 		setTimeout(() => {
 			this.getQuesOfUser(localStorage.getItem('uid'));
 		}, 0);
+
+		this.cols = [
+			{ field: 'SerialNumber', header: 'S NO' },
+			{ field: 'QuestionStatement', header: 'Question' },
+			{ field: 'QuestionType', header: 'Question Type' },
+			{ field: 'SubjectName', header: 'Subject' },
+			{ field: 'Difficulty', header: 'Difficulty Level' }
+		];
 	}
 
 	getQuesOfUser(uid: string) {
 		this.service.getQuesOfUser(uid).subscribe((data: any) => {
 			this.questionList = data as Question[];
-			this.dtTrigger.next();
+			for (this.i = 1; this.i <= this.questionList.length; this.i++) {
+				this.questionList[this.i - 1].SerialNumber = this.i;
+			}
+			// this.dtTrigger.next();
 		})
 	}
 
