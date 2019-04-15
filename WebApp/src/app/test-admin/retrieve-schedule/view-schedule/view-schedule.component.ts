@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { TestAdminService } from '../../shared/test-admin.service';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
-import { UpdateQuestionComponent } from 'src/app/content-creator/update-question/update-question.component';
+import { UpdateQuestionComponent } from '../../../content-creator/update-question/update-question.component';
 import { ToastrService } from 'ngx-toastr';
 import { Schedule } from '../../shared/schedule.model';
 import { NgForm } from '@angular/forms';
