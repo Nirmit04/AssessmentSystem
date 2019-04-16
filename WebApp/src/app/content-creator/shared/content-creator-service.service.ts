@@ -26,9 +26,10 @@ export class ContentCreatorServiceService {
 	constructor(private http: HttpClient) { }
 
 	postQuestion(formData: Question) {
-		formData.QuestionType = this.QuestionType;
-		formData.CreatedBy = localStorage.getItem('uid');
 		this.formDataNew = new FormData();
+		formData.CreatedBy = localStorage.getItem('uid');
+		formData.QuestionType = this.QuestionType;
+		console.log(formData.QuestionType);
 		this.formDataNew.append('QuestionDetails', JSON.stringify(formData));
 		if (this.selectedFile !== null) {
 			this.formDataNew.append('Image', this.selectedFile, this.selectedFile.name);

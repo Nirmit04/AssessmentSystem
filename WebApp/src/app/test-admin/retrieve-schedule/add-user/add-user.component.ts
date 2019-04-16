@@ -61,7 +61,8 @@ export class AddUserComponent implements OnInit {
         this.toastr.error('No user Available to Delete');
       }
       else {
-        dialogConfig.data = res;
+        // dialogConfig.data = res;
+        dialogConfig.data = scheduleId;
         this.service.deleteUserVisibility = true;
         this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe(() => {
           this.loadSchedule();

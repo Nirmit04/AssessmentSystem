@@ -3,8 +3,8 @@
     <mat-icon>clear</mat-icon>
   </button>
   <strong>
-    <h2 class="card-title" style="text-align: center">{{label}}</h2>
-  </strong><br /><br />
+    <h5 class="card-title">{{label}}</h5>
+  </strong><br/><br/>
   <ng-container *ngIf="!service.deleteUserVisibility">
     <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
       <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="this.CCreatedBy">
