@@ -23,8 +23,8 @@
             <td>{{item.EndDateTime}}</td>
             <td>{{item.QuizTime}}</td>
             <td style="text-align:center;">
-              <a class="btn btn-sm btn-info text-white" (click)="takeQuiz(item.QuizId,item.QuizScheduleId,i)"><i
-                  class="fa fa-paper-plane"></i></a>
+              <a class="btn btn-sm btn-info text-white" (click)="takeQuiz(item.QuizId,item.QuizScheduleId,item.QuizName,i)"><i
+                 aria-hidden="true" class="fa fa-paper-plane"></i></a>
             </td>
           </tr>
         </ng-container>

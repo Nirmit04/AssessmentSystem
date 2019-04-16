@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { ReportingUserService } from '../shared/reporting-user.service';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { DetailsComponent } from './details/details.component';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-analytics-by-quiz',
   templateUrl: './analytics-by-quiz.component.html',
@@ -15,8 +13,7 @@ export class AnalyticsByQuizComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   quizDetails: any[];
 
-  constructor(private service: ReportingUserService,
-    private router: Router, ) { }
+  constructor(private service: ReportingUserService, private router: Router, ) { }
 
   ngOnInit() {
     this.dtOptions = {

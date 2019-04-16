@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Question } from '../shared/question.model';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
 import { TagModel } from './tags.model';
 import { QuizModel } from './quiz.model';
-import { NgForOf } from '@angular/common';
 import { NgForm } from '@angular/forms';
 @Injectable({
 	providedIn: 'root'
@@ -14,7 +13,7 @@ export class ContentCreatorServiceService {
 	QuestionType: string;
 	tagForm: TagModel;
 	formData: Question;
-	formDataNew: FormData = new FormData();;
+	formDataNew: FormData;
 	quizForm: QuizModel;
 	readonlyStatus: boolean;
 	QuizHour: number;

@@ -13,9 +13,7 @@ export class LoginComponent implements OnInit {
 
 	user: SocialUser;
 	returnURL: string;
-	constructor(private authService: AuthService,
-		private router: Router,
-		private route: ActivatedRoute) { }
+	constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
 
 	ngOnInit() {
 		localStorage.setItem('key', this.route.snapshot.queryParamMap.get('take-quiz'));

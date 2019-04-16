@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { EmployeeService } from '../shared/employee.service';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig, MatDialog } from '@angular/material/dialog';
-import { Question } from '../../content-creator/shared/question.model'
+import { Question } from '../../content-creator/shared/question.model';
 @Component({
   selector: 'app-view-answer',
   templateUrl: './view-answer.component.html',
@@ -28,7 +28,7 @@ export class ViewAnswerComponent implements OnInit {
   sda() {
     this.service.getQues(this.data.id).subscribe((res: any) => {
       this.ques = res as Question;
-           if (this.ques.Answer === 1) {
+      if (this.ques.Answer === 1) {
         this.flop1 = true;
       } else if (this.ques.Answer === 2) {
         this.flop2 = true;

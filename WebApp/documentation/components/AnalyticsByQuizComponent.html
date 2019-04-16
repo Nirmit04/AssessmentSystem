@@ -1,0 +1,703 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>web-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">web-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>AnalyticsByQuizComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/reporting-user/analytics-by-quiz/analytics-by-quiz.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-analytics-by-quiz</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./analytics-by-quiz.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./analytics-by-quiz.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#dtOptions">dtOptions</a>
+                            </li>
+                            <li>
+                                <a href="#dtTrigger">dtTrigger</a>
+                            </li>
+                            <li>
+                                <a href="#quizDetails">quizDetails</a>
+                            </li>
+                            <li>
+                                <a href="#subscription">subscription</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#loadQuizDetails">loadQuizDetails</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onClick">onClick</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(service: <a href="../injectables/ReportingUserService.html">ReportingUserService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/reporting-user/analytics-by-quiz/analytics-by-quiz.component.ts:14</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>service</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ReportingUserService.html" target="_self" >ReportingUserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadQuizDetails"></a>
+                    <span class="name">
+                        <b>
+                            loadQuizDetails
+                        </b>
+                        <a href="#loadQuizDetails"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadQuizDetails()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/app/reporting-user/analytics-by-quiz/analytics-by-quiz.component.ts:26</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/app/reporting-user/analytics-by-quiz/analytics-by-quiz.component.ts:18</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onClick"></a>
+                    <span class="name">
+                        <b>
+                            onClick
+                        </b>
+                        <a href="#onClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onClick(index: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/app/reporting-user/analytics-by-quiz/analytics-by-quiz.component.ts:33</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>index</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dtOptions"></a>
+                        <span class="name">
+                            <b>
+                            dtOptions</b>
+                            <a href="#dtOptions"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>DataTables.Settings</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/reporting-user/analytics-by-quiz/analytics-by-quiz.component.ts:13</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dtTrigger"></a>
+                        <span class="name">
+                            <b>
+                            dtTrigger</b>
+                            <a href="#dtTrigger"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/Subject.html" target="_self" >Subject&lt;any&gt;</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new Subject()</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/reporting-user/analytics-by-quiz/analytics-by-quiz.component.ts:11</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="quizDetails"></a>
+                        <span class="name">
+                            <b>
+                            quizDetails</b>
+                            <a href="#quizDetails"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>any[]</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/reporting-user/analytics-by-quiz/analytics-by-quiz.component.ts:14</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="subscription"></a>
+                        <span class="name">
+                            <b>
+                            subscription</b>
+                            <a href="#subscription"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Subscription</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/reporting-user/analytics-by-quiz/analytics-by-quiz.component.ts:12</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { Subject, Subscription } from &#x27;rxjs&#x27;;
+import { ReportingUserService } from &#x27;../shared/reporting-user.service&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+@Component({
+  selector: &#x27;app-analytics-by-quiz&#x27;,
+  templateUrl: &#x27;./analytics-by-quiz.component.html&#x27;,
+  styleUrls: [&#x27;./analytics-by-quiz.component.css&#x27;]
+})
+export class AnalyticsByQuizComponent implements OnInit {
+  dtTrigger: Subject&lt;any&gt; &#x3D; new Subject();
+  subscription: Subscription;
+  dtOptions: DataTables.Settings &#x3D; {};
+  quizDetails: any[];
+
+  constructor(private service: ReportingUserService, private router: Router, ) { }
+
+  ngOnInit() {
+    this.dtOptions &#x3D; {
+      pagingType: &#x27;full_numbers&#x27;,
+      pageLength: 10,
+    };
+    this.loadQuizDetails();
+  }
+
+  loadQuizDetails() {
+    this.service.getAllQuizzes().subscribe((res: any) &#x3D;&gt; {
+      this.quizDetails &#x3D; res as any[];
+           this.dtTrigger.next();
+    });
+  }
+
+  onClick(index: any) {
+    this.service.data &#x3D; this.quizDetails[index];
+    this.router.navigate([&#x27;/ru-dash/ana-by-user/quiz-detail&#x27;]);
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;app-mainnav4&gt;
+  &lt;br /&gt;&lt;br /&gt;
+  &lt;table datatable [dtOptions]&#x3D;&quot;dtOptions&quot; [dtTrigger]&#x3D;&quot;dtTrigger&quot;
+    class&#x3D;&quot;row-border hover table table-bordered table-striped&quot;&gt;
+    &lt;thead class&#x3D;&quot;thead-dark&quot;&gt;
+      &lt;tr&gt;
+        &lt;th scope&#x3D;&quot;col&quot;&gt;#S. No.&lt;/th&gt;
+        &lt;th scope&#x3D;&quot;col&quot;&gt;Quiz Name&lt;/th&gt;
+        &lt;th scope&#x3D;&quot;col&quot;&gt;Difficulty&lt;/th&gt;
+        &lt;th scope&#x3D;&quot;col&quot;&gt;Subject&lt;/th&gt;
+        &lt;th scope&#x3D;&quot;col&quot;&gt;Total Marks&lt;/th&gt;
+        &lt;th scope&#x3D;&quot;col&quot;&gt;Mock/Scheduled&lt;/th&gt;
+        &lt;th scope&#x3D;&quot;col&quot;&gt;Created by&lt;/th&gt;
+        &lt;th scope&#x3D;&quot;col&quot;&gt;View Details&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;ng-container *ngFor&#x3D;&quot;let item of quizDetails; index as i;&quot;&gt;
+        &lt;tr&gt;
+          &lt;th scope&#x3D;&quot;row&quot;&gt;{{i+1}}&lt;/th&gt;
+          &lt;td scope&#x3D;&quot;row&quot;&gt;{{item.QuizName}}&lt;/td&gt;
+          &lt;td scope&#x3D;&quot;row&quot;&gt;{{item.Difficulty}}&lt;/td&gt;
+          &lt;td scope&#x3D;&quot;row&quot;&gt;{{item.Subject}}&lt;/td&gt;
+          &lt;td scope&#x3D;&quot;row&quot;&gt;{{item.TotalMarks}}&lt;/td&gt;
+          &lt;td scope&#x3D;&quot;row&quot;&gt;{{item.QuizType}}&lt;/td&gt;
+          &lt;td scope&#x3D;&quot;row&quot;&gt;{{item.CreatedBy}}&lt;/td&gt;
+          &lt;td style&#x3D;&quot;text-align:center;&quot;&gt;
+            &lt;a class&#x3D;&quot;btn btn-sm btn-info text-white&quot; (click)&#x3D;&quot;onClick(i)&quot;&gt;&lt;i class&#x3D;&quot;fa fa-paper-plane&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+          &lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/ng-container&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/app-mainnav4&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./analytics-by-quiz.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><app-mainnav4>  <br /><br />  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"    class="row-border hover table table-bordered table-striped">    <thead class="thead-dark">      <tr>        <th scope="col">#S. No.</th>        <th scope="col">Quiz Name</th>        <th scope="col">Difficulty</th>        <th scope="col">Subject</th>        <th scope="col">Total Marks</th>        <th scope="col">Mock/Scheduled</th>        <th scope="col">Created by</th>        <th scope="col">View Details</th>      </tr>    </thead>    <tbody>      <ng-container *ngFor="let item of quizDetails; index as i;">        <tr>          <th scope="row">{{i+1}}</th>          <td scope="row">{{item.QuizName}}</td>          <td scope="row">{{item.Difficulty}}</td>          <td scope="row">{{item.Subject}}</td>          <td scope="row">{{item.TotalMarks}}</td>          <td scope="row">{{item.QuizType}}</td>          <td scope="row">{{item.CreatedBy}}</td>          <td style="text-align:center;">            <a class="btn btn-sm btn-info text-white" (click)="onClick(i)"><i class="fa fa-paper-plane"></i></a>          </td>        </tr>      </ng-container>    </tbody>  </table></app-mainnav4></div>'
+    var COMPONENTS = [{'name': 'AddQuesInQuizComponent', 'selector': 'app-add-ques-in-quiz'},{'name': 'AddUser1Component', 'selector': 'app-add-user1'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AnalyticsByQuizComponent', 'selector': 'app-analytics-by-quiz'},{'name': 'AnalyticsByTagComponent', 'selector': 'app-analytics-by-tag'},{'name': 'AnalyticsByUserComponent', 'selector': 'app-analytics-by-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchivedScheduleComponent', 'selector': 'app-archived-schedule'},{'name': 'ArchiveQuizComponent', 'selector': 'app-archive-quiz'},{'name': 'ContentCreatorComponent', 'selector': 'app-content-creator'},{'name': 'CreateQuestionsComponent', 'selector': 'app-create-questions'},{'name': 'CreateQuizComponent', 'selector': 'app-create-quiz'},{'name': 'CreateScheduleComponent', 'selector': 'app-create-schedule'},{'name': 'CreatetagComponent', 'selector': 'app-createtag'},{'name': 'DetailedReportComponent', 'selector': 'app-detailed-report'},{'name': 'DetailsComponent', 'selector': 'app-details'},{'name': 'EmployeeComponent', 'selector': 'app-employee'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HttpInterceptorComponent', 'selector': 'app-http-interceptor'},{'name': 'InstructionsComponent', 'selector': 'app-instructions'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainNav2Component', 'selector': 'app-main-nav2'},{'name': 'MainNav3Component', 'selector': 'app-main-nav3'},{'name': 'Mainnav4Component', 'selector': 'app-mainnav4'},{'name': 'MainNavComponent', 'selector': 'app-main-nav'},{'name': 'MockComponent', 'selector': 'app-mock'},{'name': 'MockReportComponent', 'selector': 'app-mock-report'},{'name': 'NonMockComponent', 'selector': 'app-non-mock'},{'name': 'NonMockReportComponent', 'selector': 'app-non-mock-report'},{'name': 'ReportingUserComponent', 'selector': 'app-reporting-user'},{'name': 'ResultComponent', 'selector': 'app-result'},{'name': 'RetrieveQuestionBankComponent', 'selector': 'app-retrieve-question-bank'},{'name': 'RetrieveQuizComponent', 'selector': 'retrieve-quiz'},{'name': 'RetrieveScheduleComponent', 'selector': 'app-retrieve-schedule'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TakeQuizComponent', 'selector': 'app-take-quiz'},{'name': 'TestAdminComponent', 'selector': 'app-test-admin'},{'name': 'UpdateQuestionComponent', 'selector': 'app-update-question'},{'name': 'UpdateQuizComponent', 'selector': 'app-update-quiz'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'ViewAnswerComponent', 'selector': 'app-view-answer'},{'name': 'ViewScheduleComponent', 'selector': 'app-view-schedule'},{'name': 'ViewUserDetailsComponent', 'selector': 'app-view-user-details'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'AnalyticsByQuizComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AnalyticsByQuizComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

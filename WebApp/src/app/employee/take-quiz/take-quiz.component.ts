@@ -26,6 +26,7 @@ export class TakeQuizComponent implements OnInit {
 	options: number;
 	active: boolean[];
 	submit: boolean[];
+	review: boolean[];
 
 	constructor(private service: EmployeeService, private router: Router,
 		@Inject(DOCUMENT) private document: any) { }
@@ -65,6 +66,7 @@ export class TakeQuizComponent implements OnInit {
 		this.active = [false];
 		this.active[0] = true;
 		this.submit = [false];
+		this.review = [false];
 		this.loadQues();
 		this.openFullscreen();
 	}
@@ -121,14 +123,25 @@ export class TakeQuizComponent implements OnInit {
 		}, 1000);
 	}
 
-	Answer(QuestionId, choice, submit: string) {
+	Answer(QuestionId, choice, options: string) {
 		this.checkPrev = true;
-		this.submit[this.service.qnProgress] = true;
-				if (choice != null) {
+		if (choice != null) {
 			this.service.quesOfQuiz[this.service.qnProgress].answer = choice;
 		}
 		this.bar = (this.service.qnProgress + 1) / this.noOfQues * 100;
-		if (submit == 'submit') {
+		if (options === 'save') {
+			if (this.review[this.service.qnProgress]) {
+				this.review[this.service.qnProgress] = false;
+			}
+			this.submit[this.service.qnProgress] = true;
+		}
+		if (options === 'review') {
+			if (this.submit[this.service.qnProgress]) {
+				this.submit[this.service.qnProgress] = false;
+			}
+			this.review[this.service.qnProgress] = true;
+		}
+		if (options === 'submit') {
 			this.Submit();
 		}
 		this.service.qnProgress++;
@@ -153,8 +166,8 @@ export class TakeQuizComponent implements OnInit {
 		this.options = this.service.quesOfQuiz[this.service.qnProgress].answer;
 	}
 	Clear(Questionid: number) {
-		this.submit[Questionid]=false;
-		this.options=null;
+		this.submit[Questionid] = false;
+		this.options = null;
 		this.service.quesOfQuiz[this.service.qnProgress].answer = 0;
 	}
 	Submit() {
@@ -165,6 +178,7 @@ export class TakeQuizComponent implements OnInit {
 			this.service.minutes = parseInt((this.totaltime / 60).toPrecision(1));
 			this.totaltime = this.totaltime % 60;
 			this.service.seconds = this.totaltime;
+			console.log(this.service.minutes);
 			this.router.navigate(['/emp-dash/quiz/result']);
 		}
 
@@ -189,9 +203,12 @@ export class TakeQuizComponent implements OnInit {
 		this.active[index] = true;
 	}
 	getStatus(index: number) {
-		for(let item=0; item<this.submit.length; item++)	{
-			if(this.submit[index])	{
+		for (let item = 0; item < this.submit.length; item++) {
+			if (this.submit[index]) {
 				return 'btn-success';
+			}
+			if (this.review[index]) {
+				return 'btn-info';
 			}
 		}
 		if (this.active[index]) {
@@ -205,7 +222,7 @@ export class TakeQuizComponent implements OnInit {
 		this.active = [false];
 		this.active[this.service.qnProgress] = true;
 		this.options = this.service.quesOfQuiz[this.service.qnProgress].answer;
-		if (this.service.qnProgress + 1 == this.noOfQues) {
+		if (this.service.qnProgress + 1 === this.noOfQues) {
 			this.checkLast = false;
 		}
 	}

@@ -17,8 +17,7 @@ export class ArchivedScheduleComponent implements OnInit {
   subscription: Subscription;
   dtOptions: DataTables.Settings = {};
 
-  constructor(private service: TestAdminService,
-    private toastr: ToastrService) { }
+  constructor(private service: TestAdminService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.dtOptions = {
@@ -32,7 +31,7 @@ export class ArchivedScheduleComponent implements OnInit {
     this.service.getArchivedSchedules().subscribe((res: any) => {
       this.ScheduleList = res as Schedule[];
       this.dtTrigger.next();
-    })
+    });
   }
 
   unarchiveSchedule(id) {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
 import { postReport } from './postReport.model';
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,7 @@ import { postReport } from './postReport.model';
 export class EmployeeService {
 
   rootURL = environment.apiURl;
+  quizName: string;
   quesOfQuiz: any[];
   hours: number;
   seconds: number;

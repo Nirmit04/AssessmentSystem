@@ -20,10 +20,10 @@ export class AnalyticsByUserComponent implements OnInit {
   ngOnInit() {
 
     this.dtOptions = {
-      lengthChange:false,
-      paging:false,
-      search:false
-    }
+      lengthChange: false,
+      paging: false,
+      search: false
+    };
     this.loadAllEmployees();
   }
 

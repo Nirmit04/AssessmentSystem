@@ -4,9 +4,7 @@ import { ContentCreatorServiceService } from '../shared/content-creator-service.
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from '../shared/subject.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router'
-import { environment } from 'src/environments/environment';
-import { servicesVersion } from 'typescript';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-update-question',
@@ -25,8 +23,7 @@ export class UpdateQuestionComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<UpdateQuestionComponent>,
     public service: ContentCreatorServiceService,
-    public toastr: ToastrService,
-    private router: Router) { }
+    public toastr: ToastrService) { }
 
   ngOnInit() {
     this.bool = this.service.readonlyStatus;

@@ -3,7 +3,7 @@
   <div class="row">
     <div style="text-align: center;" class="col">
       <strong>
-        <h3>{{service.data.FirstName}}&nbsp;&nbsp;{{service.data.LastName}}:-Performance Metrics</h3>
+        <h2>{{service.data.FirstName}}&nbsp;&nbsp;{{service.data.LastName}}:-Performance Metrics</h2>
       </strong>
     </div>
   </div>
@@ -17,7 +17,7 @@
         <div>
           <div style="display: block">
             <canvas baseChart [data]="polarAreaChartData" [labels]="polarAreaChartLabels" [legend]="polarAreaLegend"
-              [chartType]="polarAreaChartType">
+              [chartType]="polarAreaChartType" [options]="polarAreaChartOptions">
             </canvas>
           </div>
         </div>
@@ -28,7 +28,7 @@
         <div class="col sm-4">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title apricot">Highest-Score</h5>
+              <h5 class="card-title apricot">Highest Score</h5>
               <label class="card-text">{{data2.HighestScore}}</label>
             </div>
           </div>
@@ -41,7 +41,7 @@
                 </span>
               </i>
               <h5 class="card-title apricot">Accuracy</h5>
-              <label class="card-text">{{data2.Accuracy}}</label>
+              <h6 class="card-text">{{data2.Accuracy}}</h6>
             </div>
           </div>
         </div>
@@ -49,7 +49,7 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title apricot">Lowest Score</h5>
-              <label class="card-text">{{data2.LowestScore}}</label>
+              <h6 class="card-text">{{data2.LowestScore}}</h6>
             </div>
           </div>
         </div>
@@ -64,7 +64,7 @@
                 </span>
               </i>
               <h5 class="card-title apricot">Performance</h5>
-              <label class="card-text">{{data2.Performance}}</label>
+              <h6 class="card-text">{{data2.Performance}}</h6>
             </div>
           </div>
         </div>
@@ -76,15 +76,15 @@
                 </span>
               </i>
               <h5 class="card-title apricot">Average Score</h5>
-              <label class="card-text">{{data2.AverageScore}}</label>
+              <h6 class="card-text">{{data2.AverageScore}}</h6>
             </div>
           </div>
         </div>
         <div class="col sm-4">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title apricot">Total-Quiz-Count</h5>
-              <label class="card-text">{{data2.TotalQuizCount}}</label>
+              <h5 class="card-title apricot">Total Quiz Count</h5>
+              <h6 class="card-text">{{data2.TotalQuizCount}}</h6>
             </div>
           </div>
         </div>
@@ -95,7 +95,7 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title apricot">Scheduled Quizzes Given</h5>
-              <label class="card-text">{{data2.ScheduledCount}}</label>
+              <h6 class="card-text">{{data2.ScheduledCount}}</h6>
             </div>
           </div>
         </div>
@@ -107,15 +107,15 @@
                 </span>
               </i>
               <h5 class="card-title apricot">Probability of Correctness</h5>
-              <label class="card-text">{{data2.ProbabilityAnsweringCorrectly}}</label>
+              <h6 class="card-text">{{data2.ProbabilityAnsweringCorrectly}}</h6>
             </div>
           </div>
         </div>
         <div class="col sm-4">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title apricot">Practice Quizzes Given</h5>
-              <label class="card-text">{{data2.MockCount}}</label>
+              <h5 class="card-title apricot">Mock Quizzes Given</h5>
+              <h6 class="card-text">{{data2.MockCount}}</h6>
             </div>
           </div>
         </div>

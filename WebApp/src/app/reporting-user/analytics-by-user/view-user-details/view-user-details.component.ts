@@ -1,8 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ReportingUserService } from '../../shared/reporting-user.service';
-import { SingleDataSet, Label } from 'ng2-charts';
-import { ChartType } from 'chart.js';
+import { Label } from 'ng2-charts';
+import { ChartType, ChartOptions } from 'chart.js';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-view-user-details',
@@ -14,13 +13,19 @@ export class ViewUserDetailsComponent implements OnInit {
   data1: any[];
 
   public polarAreaChartLabels: Label[] = ['Highest-Score', 'Lowest Score', 'Accuracy', 'Average-Score'];
-  public polarAreaChartData: any[]
-  public polarAreaLegend: boolean
+  public polarAreaChartData: any[];
+  public polarAreaLegend: boolean;
   public polarAreaChartType: ChartType = 'polarArea';
+  public polarAreaChartOptions: ChartOptions = {
+    responsive: true,
+    legend: {
+      onClick: function (e) {
+        e.stopPropagation();
+      }
+    }
+  };
 
   constructor(
-    // @Inject(MAT_DIALOG_DATA) public data,
-    // public dialogRef: MatDialogRef<ViewUserDetailsComponent>,
     public service: ReportingUserService,
     public router: Router) { }
 

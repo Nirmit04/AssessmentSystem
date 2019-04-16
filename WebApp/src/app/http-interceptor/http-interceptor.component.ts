@@ -24,7 +24,7 @@ export class HttpInterceptorComponent implements OnInit {
     503: 'Service Unavailabe',
     504: 'Gateway Timeout',
     505: 'HTTP Version Not Supported',
-  }
+  };
 
   errorCode: string;
   errorMsg: string;
@@ -36,7 +36,7 @@ export class HttpInterceptorComponent implements OnInit {
 
   login() {
     localStorage.clear();
-    this.router.navigate([""]);
+    this.router.navigate(['']);
   }
 
 }

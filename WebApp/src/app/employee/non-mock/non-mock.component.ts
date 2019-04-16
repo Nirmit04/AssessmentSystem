@@ -30,12 +30,14 @@ export class NonMockComponent implements OnInit {
 
   loadNonMockSchedules() {
     this.service.getNonMocks().subscribe((res: any) => {
+      console.log(res);
           this.nonMockScheduleList = res as any[];
       this.dtTrigger.next();
     });
   }
-  takeQuiz(QuizId: number, Id: number, index: number) {
+  takeQuiz(QuizId: number, Id: number, QuizName:string, index: number) {
     this.service.getQuesOfQuiz(QuizId).subscribe((res: any) => {
+      this.service.quizName = QuizName;
       this.service.quesOfQuiz = res as any[];
       this.time = this.nonMockScheduleList[index].QuizTime.split(":");
       this.service.hours = parseInt(this.time[0]);

@@ -2,7 +2,8 @@
   <button type="button " [mat-dialog-close] class="btn btn-danger pos">
     <mat-icon>clear</mat-icon>
   </button>
-  <button type="button" (click)="onCreate()" class="btn btn-primary">Add Question</button>
+  <button *ngIf="!check" type="button" (click)="onCreate()" class="btn btn-primary">Add Question</button>
+  <button *ngIf="check" type="button" (click)="add_new_ques()" class="btn btn-warning">New Ques.</button><br>
   <div>
     <br /><br />
     <h1 style="text-align: center">Edit Quiz Details</h1>
@@ -21,7 +22,8 @@
             <th class="text-primary" scope="row">{{item.QuestionStatement}}</th>
             <td class="text-primary" scope="row">{{item.Marks}}</td>
             <td>
-              <a class="btn text-danger" (click)="onDelete(item.QuestionId)"><i aria-hidden="true" class="fa fa-trash fa-lg"></i></a>
+              <a class="btn text-danger" (click)="onDelete(item.QuestionId)"><i aria-hidden="true"
+                  class="fa fa-trash fa-lg"></i></a>
             </td>
           </tr>
         </ng-container>

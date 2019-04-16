@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { TestAdminService } from '../../shared/test-admin.service';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
-import { UpdateQuestionComponent } from 'src/app/content-creator/update-question/update-question.component';
+import { UpdateQuestionComponent } from '../../../content-creator/update-question/update-question.component';
 import { ToastrService } from 'ngx-toastr';
 import { Schedule } from '../../shared/schedule.model';
 import { NgForm } from '@angular/forms';
@@ -25,11 +25,8 @@ export class ViewScheduleComponent implements OnInit {
   stdate;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
-    public dialogRef: MatDialogRef<UpdateQuestionComponent>,
-    public toastr: ToastrService,
-    private service: TestAdminService,
-    public dialog: MatDialog,
-    private datePipe: DatePipe) { }
+    public dialogRef: MatDialogRef<UpdateQuestionComponent>, public toastr: ToastrService, private service: TestAdminService,
+    public dialog: MatDialog, private datePipe: DatePipe) { }
 
   ngOnInit() {
     this.date = this.datePipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
@@ -61,7 +58,7 @@ export class ViewScheduleComponent implements OnInit {
     this.service.editSchedule(this.data, form.value).subscribe(res => {
       this.toastr.success('Changes Saved');
       this.dialogRef.close('Saved');
-    })
+    });
   }
 
   checkStartDate(date1: NgForm) {

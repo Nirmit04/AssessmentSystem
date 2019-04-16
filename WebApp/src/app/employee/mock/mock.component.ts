@@ -38,8 +38,9 @@ export class MockComponent implements OnInit {
     });
   }
 
-  takeMockQuiz(QuizId: number, index: number) {
+  takeMockQuiz(QuizId: number,QuizName:string, index: number) {
     this.service.getMockQuesOfQuiz(QuizId).subscribe((res: any) => {
+      this.service.quizName = QuizName;
       this.time = this.mockList[index].QuizTime.split(":");
       this.service.hours = parseInt(this.time[0]);
       this.service.minutes = parseInt(this.time[1]);

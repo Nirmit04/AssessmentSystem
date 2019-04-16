@@ -26,10 +26,7 @@ export class CreateScheduleComponent implements OnInit {
   scheduleUrl = 'localhost:4200//emp-dash/take-quiz/';
   QuizList: QuizModel[];
 
-  constructor(private service: TestAdminService,
-    private dialog: MatDialog,
-    public toastr: ToastrService,
-    private datePipe: DatePipe, ) { }
+  constructor(private service: TestAdminService, private dialog: MatDialog, public toastr: ToastrService, private datePipe: DatePipe, ) { }
 
   ngOnInit() {
     this.resetForm();

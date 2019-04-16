@@ -3,7 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from 'angularx-social-login';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-main-nav2',
@@ -14,9 +14,8 @@ export class MainNav2Component {
 	isHandset$: Observable<boolean> = this.breakpointObserver
 		.observe(Breakpoints.Handset)
 		.pipe(map((result) => result.matches));
-	cRole = "";
-	constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService,
-		private router: Router) { }
+	cRole = '';
+	constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService, private router: Router) { }
 	ngOnInit() {
 		this.cRole = localStorage.getItem('currentRole');
 		this.authService.authState.subscribe((user) => {
@@ -29,7 +28,7 @@ export class MainNav2Component {
 	}
 	roleMatch(allowedRoles): boolean {
 		var isMatch = false;
-		var userRoles: string = localStorage.getItem('role');
+		const userRoles: string = localStorage.getItem('role');
 		allowedRoles.forEach(element => {
 			if (userRoles.indexOf(element) > -1) {
 				isMatch = true;

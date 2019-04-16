@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -8,7 +8,6 @@ import { HttpClient } from '@angular/common/http';
 export class ReportingUserService {
 	rootUrl = environment.apiURl;
 	data: any = null;
-	
 	constructor(private http: HttpClient) { }
 
 	getTagAnalytics() {
@@ -32,7 +31,7 @@ export class ReportingUserService {
 	}
 
 	getQuizAnalysis(qid: string) {
-		return this.http.get(this.rootUrl + 'ReportingUser/AnalyticsByQuiz/' + qid)
+		return this.http.get(this.rootUrl + 'ReportingUser/AnalyticsByQuiz/' + qid);
 	}
 
 	getUserProgress() {

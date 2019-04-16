@@ -8,9 +8,9 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 	styleUrls: ['./reporting-user.component.css']
 })
 export class ReportingUserComponent implements OnInit {
-	Firstname: String;
-	Lastname: String;
-	email: String;
+	Firstname: string;
+	Lastname: string;
+	email: string;
 	Quizzes: any;
 	Questions: any;
 	Tags: any;
@@ -19,7 +19,7 @@ export class ReportingUserComponent implements OnInit {
 	TotalQues: any;
 	TotalUser: any;
 	TotalSub: any;
-	show: boolean = true;
+	show = true;
 	constructor(private service: ReportingUserService, private ngxService: NgxUiLoaderService) { }
 
 	ngOnInit() {
@@ -43,6 +43,6 @@ export class ReportingUserComponent implements OnInit {
 			this.TotalQues = res.QuestionCount;
 			this.TotalSub = res.SubjectCount;
 			this.TotalUser = res.UserCount;
-		})
+		});
 	}
 }
