@@ -1,19 +1,47 @@
-<div *ngIf="ques">
-  {{ques.QuestionStatement}}
+<!-- <div *ngIf="ques">
+  <h3>{{ques.QuestionStatement}}</h3>
   <button style="float: right;" type="button " [mat-dialog-close] class="btn btn-danger">
     <i class="fa fa-times" aria-hidden="true"></i>
   </button>
   <br>
-  <input name="a1" disabled="true" [checked]="flop1" type="radio">1){{ques.Option1}}
-  <label *ngIf="zlop1">---You Marked This</label>
+  <input name="a1" disabled="true" [checked]="flop1" type="radio">{{ques.Option1}}
+  <label style="color:red" *ngIf="zlop1">---Marked Answer</label>
   <br>
   <input name="a1" disabled="true" [checked]="flop2" type="radio">{{ques.Option2}}
-  <label *ngIf="zlop2">---You Marked This</label>
+  <label style="color:red" *ngIf="zlop2">---Marked Answer</label>
   <br>
-  <input name="a1" disabled="true" [checked]="flop3" type="radio">{{ques.Option3}}
-  <label *ngIf="zlop3">---You Marked This</label>
+  <input *ngIf="ques.Option3" name="a1" disabled="true" [checked]="flop3" type="radio">{{ques.Option3}}
+  <label style="color:red" *ngIf="zlop3">---Marked Answer</label>
   <br>
-  <input name="a1" disabled="true" [checked]="flop4" type="radio">{{ques.Option4}}
-  <label *ngIf="zlop4">---You Marked This</label>
+  <input *ngIf="ques.Option4" name="a1" disabled="true" [checked]="flop4" type="radio">{{ques.Option4}}
+  <label style="color:red" *ngIf="zlop4">---Marked Answer</label>
   <br>
-</div>
+</div> -->
+<div *ngIf="ques">
+    <div class="card blue-grey darken-1 mx-auto" style="width:80%;margin-top: 2%">
+      <span class="card-title">
+        <button type="button" (click)="goToHome()" class="btn btn-primary banana" data-toggle="tooltip"
+          data-placement="top" title="Go To Home"><i class="fa fa-home fa-lg" aria-hidden="true"></i></button>
+      </span>
+      <ng-container *ngFor="let qn of service.quesOfQuiz;index as i">
+        <div class="card-body white-text">
+          <strong><span>{{i+1}})&nbsp;{{qn.QuestionStatement}}</span></strong>
+          <span style="font-weight: bold;color: royalblue;float:right; margin-right: 1%" *ngIf="qn.answer==0">( This Question Was Skipped )</span>
+        </div>
+        <div>
+          <ul>
+            <ng-container *ngFor="let option of qn.Option;index as j">
+              <li *ngIf="option != null">
+                {{option}} &nbsp; &nbsp;
+                <span style="color: green" *ngIf="correct[i]-1==j"><i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                  Correct</span>
+                <span style="color: red" *ngIf="qn.answer-1==j && (correct[i]-1)!=j"><i class="fa fa-times-circle-o"
+                    aria-hidden="true"></i> Marked</span>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+        <hr>
+      </ng-container>
+    </div>
+  </div>

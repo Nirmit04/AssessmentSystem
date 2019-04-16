@@ -327,8 +327,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="76"
-                            class="link-to-prism">src/app/employee/detailed-report/detailed-report.component.ts:76</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/app/employee/detailed-report/detailed-report.component.ts:75</a></div>
                 </td>
             </tr>
 
@@ -405,8 +405,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="103"
-                            class="link-to-prism">src/app/employee/detailed-report/detailed-report.component.ts:103</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="102"
+                            class="link-to-prism">src/app/employee/detailed-report/detailed-report.component.ts:102</a></div>
                 </td>
             </tr>
 
@@ -483,8 +483,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="88"
-                            class="link-to-prism">src/app/employee/detailed-report/detailed-report.component.ts:88</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="87"
+                            class="link-to-prism">src/app/employee/detailed-report/detailed-report.component.ts:87</a></div>
                 </td>
             </tr>
 
@@ -1236,8 +1236,7 @@ export class DetailedReportComponent implements OnInit {
 
   loadDetail() {
     this.service.getDetailedReport().subscribe((res: any) &#x3D;&gt; {
-      console.log(res);
-      this.reports &#x3D; res as any[];
+           this.reports &#x3D; res as any[];
       this.quizname &#x3D; this.reports[0].QuizName;
       this.calculate();
       this.dtTrigger.next();

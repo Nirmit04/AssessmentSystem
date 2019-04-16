@@ -311,8 +311,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="51"
-                            class="link-to-prism">src/app/employee/non-mock/non-mock.component.ts:51</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/app/employee/non-mock/non-mock.component.ts:50</a></div>
                 </td>
             </tr>
 
@@ -389,8 +389,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="38"
-                            class="link-to-prism">src/app/employee/non-mock/non-mock.component.ts:38</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/app/employee/non-mock/non-mock.component.ts:37</a></div>
                 </td>
             </tr>
 
@@ -662,8 +662,7 @@ export class NonMockComponent implements OnInit {
 
   loadNonMockSchedules() {
     this.service.getNonMocks().subscribe((res: any) &#x3D;&gt; {
-      console.log(res);
-      this.nonMockScheduleList &#x3D; res as any[];
+          this.nonMockScheduleList &#x3D; res as any[];
       this.dtTrigger.next();
     });
   }

@@ -1,31 +1,32 @@
 <app-mainnav4>
+  <h1 style="text-align: center">Analytics by Quiz</h1>
   <br /><br />
   <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
     class="row-border hover table table-bordered table-striped">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">#S. No.</th>
-        <th scope="col">Quiz Name</th>
-        <th scope="col">Difficulty</th>
-        <th scope="col">Subject</th>
-        <th scope="col">Total Marks</th>
-        <th scope="col">Mock/Scheduled</th>
-        <th scope="col">Created by</th>
-        <th scope="col">View Details</th>
+        <th>#S. No.</th>
+        <th>Quiz Name</th>
+        <th>Mock/Scheduled</th>
+        <th>Difficulty</th>
+        <th>Subject</th>
+        <th>Total Marks</th>
+        <th>Created by</th>
+        <th>View Details</th>
       </tr>
     </thead>
     <tbody>
       <ng-container *ngFor="let item of quizDetails; index as i;">
         <tr>
-          <th scope="row">{{i+1}}</th>
-          <td scope="row">{{item.QuizName}}</td>
-          <td scope="row">{{item.Difficulty}}</td>
-          <td scope="row">{{item.Subject}}</td>
-          <td scope="row">{{item.TotalMarks}}</td>
-          <td scope="row">{{item.QuizType}}</td>
-          <td scope="row">{{item.CreatedBy}}</td>
+          <th>{{i+1}}</th>
+          <td>{{item.QuizName}}</td>
+          <td>{{item.QuizType}}</td>
+          <td>{{item.Difficulty}}</td>
+          <td>{{item.Subject}}</td>
+          <td>{{item.TotalMarks}}</td>
+          <td>{{item.CreatedBy}}</td>
           <td style="text-align:center;">
-            <a class="btn btn-sm btn-info text-white" (click)="onClick(i)"><i class="fa fa-paper-plane"></i></a>
+            <a class="btn btn-sm btn-info text-white" (click)="onClick(i)"><i aria-hidden="true" class="fa fa-paper-plane"></i></a>
           </td>
         </tr>
       </ng-container>

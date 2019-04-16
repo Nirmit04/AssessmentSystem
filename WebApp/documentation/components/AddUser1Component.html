@@ -304,8 +304,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/app/test-admin/add-user1/add-user1.component.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/app/test-admin/add-user1/add-user1.component.ts:33</a></div>
                 </td>
             </tr>
 
@@ -343,8 +343,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/app/test-admin/add-user1/add-user1.component.ts:26</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/app/test-admin/add-user1/add-user1.component.ts:24</a></div>
                 </td>
             </tr>
 
@@ -382,8 +382,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/app/test-admin/add-user1/add-user1.component.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">src/app/test-admin/add-user1/add-user1.component.ts:45</a></div>
                 </td>
             </tr>
 
@@ -452,8 +452,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="44"
-                            class="link-to-prism">src/app/test-admin/add-user1/add-user1.component.ts:44</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/app/test-admin/add-user1/add-user1.component.ts:41</a></div>
                 </td>
             </tr>
 
@@ -700,7 +700,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/test-admin/add-user1/add-user1.component.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/test-admin/add-user1/add-user1.component.ts:22</a></div>
                             </td>
                         </tr>
 
@@ -734,9 +734,7 @@ export class AddUser1Component implements OnInit {
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
-    public service: TestAdminService,
-    public toastr: ToastrService,
-    private dialogRef: MatDialogRef&lt;AddUser1Component&gt;) { }
+    public service: TestAdminService, public toastr: ToastrService, private dialogRef: MatDialogRef&lt;AddUser1Component&gt;) { }
 
   ngOnInit() {
     this.dtOptions &#x3D; {
@@ -745,23 +743,22 @@ export class AddUser1Component implements OnInit {
     };
     this.loadUsers()
     this.dtTrigger.next();
-  }
+  };
 
   loadUsers() {
     this.service.retrieveAllEmployees(this.data).subscribe((res: any) &#x3D;&gt; {
-      console.log(res);
       res.forEach(obj &#x3D;&gt; obj.selected &#x3D; false);
       this.quiztakers &#x3D; res as User[];
-      
+
     });
-  }
+    }
 
   updateSelectedUsers(index) {
     this.quiztakers[index].selected &#x3D; !this.quiztakers[index].selected;
   }
 
   onSubmit(form: NgForm) {
-    var quiztakerId &#x3D; this.quiztakers.filter(Id &#x3D;&gt; Id.selected).map(idSelected &#x3D;&gt; idSelected.Id);
+    const quiztakerId &#x3D; this.quiztakers.filter(Id &#x3D;&gt; Id.selected).map(idSelected &#x3D;&gt; idSelected.Id);
     this.service.addUserInExistingSchedule(this.data, quiztakerId).subscribe(res &#x3D;&gt; {
       this.toastr.success(&#x27;added succesfully&#x27;);
       this.dialogRef.close(&#x27;Added&#x27;);

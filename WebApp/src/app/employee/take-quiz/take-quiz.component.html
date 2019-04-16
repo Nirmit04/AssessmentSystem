@@ -28,14 +28,14 @@
           <h4 class="card-title" style="margin-bottom: 4%">
             {{service.qnProgress+1}})&nbsp;{{service.quesOfQuiz[service.qnProgress].QuestionStatement}}</h4>
           <div *ngIf="service.quesOfQuiz[service.qnProgress].ImageName!=null">
-            <img [src]="service.quesOfQuiz[service.qnProgress].ImageName" style="width : 400px;" alt="QuestionImage" />
+            <img [src]="service.quesOfQuiz[service.qnProgress].ImageName" style="width : 800px;" alt="QuestionImage" />
           </div>
           <ul class="list-group list-group-flush">
             <div *ngFor="let option of service.quesOfQuiz[service.qnProgress].Option;index as i">
-              <li class="list-group-item list-group-item-action">
+              <li *ngIf="option" class="list-group-item list-group-item-action">
                 <div class="form-check">
                   <label style="font-size: 18px; margin-left: -20px">
-                    <input tabindex="1" id="profile" type="radio" name="answer" [value]="i+1"
+                    <input  tabindex="1" id="profile" type="radio" name="answer" [value]="i+1"
                       [(ngModel)]="options">&nbsp;&nbsp;{{option}}
                   </label>
                 </div>

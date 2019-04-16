@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { QuizModel } from '../../content-creator/shared/quiz.model';
-import { environment } from 'src/environments/environment';
-import { User } from 'src/app/test-admin/shared/user.model';
-import { Schedule } from 'src/app/test-admin/shared/schedule.model';
+import { environment } from '../../../environments/environment';
+import { User } from '../shared/user.model';
+import { Schedule } from '../shared/schedule.model';
 @Injectable({
 	providedIn: 'root'
 })
@@ -18,7 +18,7 @@ export class TestAdminService {
 	deleteUserVisibility = false;
 
 	retriveAllQuizzes() {
-		return this.http.get(this.rooturl + 'Quiz/GetAllQuiz');
+		return this.http.get(this.rooturl + 'Quiz/GetAllScheduledQuiz');
 	}
 
 	retrieveAllEmployees(id: number) {

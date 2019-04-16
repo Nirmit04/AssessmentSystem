@@ -178,6 +178,7 @@ export class TakeQuizComponent implements OnInit {
 			this.service.minutes = parseInt((this.totaltime / 60).toPrecision(1));
 			this.totaltime = this.totaltime % 60;
 			this.service.seconds = this.totaltime;
+			console.log(this.service.minutes);
 			this.router.navigate(['/emp-dash/quiz/result']);
 		}
 

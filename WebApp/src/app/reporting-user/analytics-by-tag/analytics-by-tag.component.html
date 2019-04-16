@@ -8,18 +8,17 @@
           <h5 class="mb-0">
             <button class="btn btn-link" data-toggle="collapse" data-animation="false" data-target="#collapseOne"
               aria-expanded="false" aria-controls="collapseOne">
-              Collapsible Group Item #1
+              Graph Analysis
             </button>
           </h5>
         </div>
-
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
           <div class="card-body">
             <div class="row">
               <div class="col-md-6">
                 <div *ngIf="barChartLabels">
                   <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-                    [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+                    [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType" [colors]="baseChartColors">
                   </canvas>
                 </div>
               </div>
@@ -40,25 +39,25 @@
       class="row-border hover table table-bordered table-striped">
       <thead class="thead-dark">
         <tr>
-          <th scope="col">#S. No.</th>
-          <th scope="col">Tag Name</th>
-          <th scope="col">No. Of Quiz</th>
-          <th scope="col">High Score</th>
-          <th scope="col">Low Score</th>
-          <th scope="col">Average Score</th>
-          <th scope="col">Accuracy</th>
+          <th>#S. No.</th>
+          <th>Tag Name</th>
+          <th>No. Of Quiz</th>
+          <th>High Score</th>
+          <th>Low Score</th>
+          <th>Average Score</th>
+          <th>Accuracy</th>
         </tr>
       </thead>
       <tbody>
         <ng-container *ngFor="let item of tagAnalysisList;index as i;">
           <tr>
-            <th scope="row">{{i+1}}</th>
-            <td scope="row">{{item.SubjectName}}</td>
-            <td scope="row">{{item.Properties.NoOfQuiz}}</td>
-            <td scope="row">{{item.Properties.HighestScore}}</td>
-            <td scope="row">{{item.Properties.LowestScore}}</td>
-            <td scope="row">{{item.Properties.AverageMarks}}</td>
-            <td scope="row">{{item.Properties.Accuracy}}</td>
+            <th>{{i+1}}</th>
+            <td>{{item.SubjectName}}</td>
+            <td>{{item.Properties.NoOfQuiz}}</td>
+            <td>{{item.Properties.HighestScore}}</td>
+            <td>{{item.Properties.LowestScore}}</td>
+            <td>{{item.Properties.AverageMarks}}</td>
+            <td>{{item.Properties.Accuracy}}</td>
           </tr>
         </ng-container>
       </tbody>

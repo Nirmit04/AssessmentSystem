@@ -31,6 +31,11 @@ export class AnalyticsByTagComponent implements OnInit {
         anchor: 'end',
         align: 'end',
       }
+    },
+    legend: {
+      onClick: function (e) {
+        e.stopPropagation();
+      }
     }
   };
 
@@ -38,8 +43,17 @@ export class AnalyticsByTagComponent implements OnInit {
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
   public barChartData: ChartDataSets[];
+  public barChartColors: any[] = [
+    { 
+      backgroundColor:["#FF0000", "#FFFFFF"] 
+    }];
   public radarChartOptions: ChartOptions = {
     responsive: true,
+    legend: {
+      onClick: function (e) {
+        e.stopPropagation();
+      }
+    }
   };
   public radarChartLabels: Label[];
   public radarChartData: ChartDataSets[] = [
@@ -87,3 +101,4 @@ export class AnalyticsByTagComponent implements OnInit {
   }
 
 }
+ 
