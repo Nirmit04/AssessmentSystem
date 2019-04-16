@@ -149,7 +149,7 @@ export class TakeQuizComponent implements OnInit {
 			this.checkLast = false;
 		}
 		else if (this.service.qnProgress == this.noOfQues) {
-			this.Submit();
+			this.service.qnProgress=0;
 		}
 		this.options = this.service.quesOfQuiz[this.service.qnProgress].answer;
 		this.active = [false];
