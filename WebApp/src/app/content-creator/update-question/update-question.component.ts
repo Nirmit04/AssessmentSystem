@@ -29,7 +29,7 @@ export class UpdateQuestionComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-       this.bool = this.service.readonlyStatus;
+    this.bool = this.service.readonlyStatus;
     if (this.bool === true) {
       this.label = "View Question";
     } else {

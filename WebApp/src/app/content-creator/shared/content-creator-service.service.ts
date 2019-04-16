@@ -27,8 +27,10 @@ export class ContentCreatorServiceService {
 	constructor(private http: HttpClient) { }
 
 	postQuestion(formData: Question) {
+		this.formDataNew = new FormData();
 		formData.CreatedBy = localStorage.getItem('uid');
 		formData.QuestionType = this.QuestionType;
+		console.log(formData.QuestionType);
 		this.formDataNew.append('QuestionDetails', JSON.stringify(formData));
 		if (this.selectedFile !== null) {
 			this.formDataNew.append('Image', this.selectedFile, this.selectedFile.name);
@@ -134,7 +136,7 @@ export class ContentCreatorServiceService {
 	}
 
 	deleteImageFromQues(id) {
-		return this.http.delete(this.rootURL+'Question/ImageDelete/'+id);
+		return this.http.delete(this.rootURL + 'Question/ImageDelete/' + id);
 	}
 
 }
