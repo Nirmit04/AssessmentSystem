@@ -1,4 +1,5 @@
 export class Question {
+	SerialNumber? : Number;
 	QuestionType?: String;
 	QuestionId: String;
 	QuestionStatement: String;
