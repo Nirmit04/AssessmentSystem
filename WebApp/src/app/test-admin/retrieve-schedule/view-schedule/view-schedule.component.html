@@ -3,8 +3,9 @@
     <mat-icon>clear</mat-icon>
   </button>
   <strong>
-    <h5 class="card-title">{{label}}</h5>
-  </strong><br/><br/>
+    <h5 *ngIf="!service.deleteUserVisibility" class="card-title">{{label}}</h5>
+    <h5 *ngIf="service.deleteUserVisibility" class="card-title">Delete User</h5>
+  </strong><br /><br />
   <ng-container *ngIf="!service.deleteUserVisibility">
     <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
       <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="this.CCreatedBy">
@@ -23,7 +24,7 @@
         </label>
       </div>
       <div class="form-group col-md-6">
-        <label >End Date Time:
+        <label>End Date Time:
           <input type="datetime-local" (focusout)="checkEndDate(EndDateTime)" [min]="q1" required [readonly]="bool"
             name="EndDateTime" #EndDateTime="ngModel" [(ngModel)]="service.formdata.EndDateTime">
           <div class="validation-error" *ngIf="EndDateTime.invalid && EndDateTime.touched || endDateValid">This field is
@@ -52,8 +53,8 @@
           <td>{{user.FirstName}}&nbsp;{{user.LastName}}</td>
           <td>{{user.Email}}</td>
           <td>
-            <i *ngIf="user.QuizTaken" class="fa fa-close" aria-hidden="true" style="color:red"></i>
-            <i *ngIf="!user.QuizTaken" class="fa fa-check" aria-hidden="true" style="color:green"></i>
+            <i *ngIf="!user.QuizTaken" class="fa fa-close" aria-hidden="true" style="color:red"></i>
+            <i *ngIf="user.QuizTaken" class="fa fa-check" aria-hidden="true" style="color:green"></i>
           </td>
           <td [hidden]="!service.deleteUserVisibility">
             <button class="btn text-danger" [hidden]="user.QuizTaken" (click)="deleteUserFromSchedule(user.Id)"><i
