@@ -28,7 +28,10 @@ export class MockComponent implements OnInit {
       pagingType: 'full_numbers',
       pageLength: 10,
     };
-    this.getMockList();
+
+    setTimeout(() => {
+      this.getMockList();
+		}, 0);
   }
 
   getMockList() {

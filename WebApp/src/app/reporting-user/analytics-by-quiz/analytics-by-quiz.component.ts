@@ -20,7 +20,9 @@ export class AnalyticsByQuizComponent implements OnInit {
       pagingType: 'full_numbers',
       pageLength: 10,
     };
-    this.loadQuizDetails();
+    setTimeout(() => {
+      this.loadQuizDetails();
+		}, 0);
   }
 
   loadQuizDetails() {

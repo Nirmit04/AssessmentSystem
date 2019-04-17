@@ -33,7 +33,9 @@ export class ViewUserDetailsComponent implements OnInit {
 
   ngOnInit() {
     if (this.service.data !== null) {
-      this.fetchAnalytics(this.service.data.Id);
+      setTimeout(() => {
+        this.fetchAnalytics(this.service.data.Id);
+      }, 0);
     } else {
       this.router.navigate(['/ru-dash/ana-by-user']);
     }

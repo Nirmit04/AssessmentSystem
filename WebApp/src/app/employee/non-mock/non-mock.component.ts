@@ -21,7 +21,9 @@ export class NonMockComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.loadNonMockSchedules();
+    setTimeout(() => {
+      this.loadNonMockSchedules();
+		}, 0);
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,

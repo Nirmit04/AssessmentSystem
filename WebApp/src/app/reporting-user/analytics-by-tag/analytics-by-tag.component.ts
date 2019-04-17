@@ -65,7 +65,9 @@ export class AnalyticsByTagComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
 
   ngOnInit() {
-    this.loadAnalyticOfTag();
+    setTimeout(() => {
+      this.loadAnalyticOfTag();
+		}, 0);
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,

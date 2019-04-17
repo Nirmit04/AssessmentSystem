@@ -26,7 +26,10 @@ export class MockReportComponent implements OnInit {
       pagingType: 'full_numbers',
       pageLength: 10,
     };
-    this.getMockReport();
+    setTimeout(() => {
+			this.getMockReport();
+		}, 0);
+    
   }
 
   getMockReport() {

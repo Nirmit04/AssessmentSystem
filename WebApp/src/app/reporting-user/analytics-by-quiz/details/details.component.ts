@@ -34,9 +34,11 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit() {
     if (this.service.data !== null) {
-      this.getDetails(this.service.data.QuizId);
-      this.quizName = this.service.data.QuizName;
-      this.service.data = null;
+      setTimeout(() => {
+        this.getDetails(this.service.data.QuizId);
+        this.quizName = this.service.data.QuizName;
+        this.service.data = null;
+      }, 0);
     } else {
       this.router.navigate(['/ru-dash/ana-by-quiz']);
     }

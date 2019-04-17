@@ -52,7 +52,7 @@
         <div class="card-title text-white">
           <h4>Questions</h4>
         </div>
-        <div class="card-body table-wrapper-scroll-y my-custom-scrollbar" style="overflow-y: auto; max-height: 320px">
+        <div class="card-body table-wrapper-scroll-y my-custom-scrollbar" style="overflow-y: auto; height: 320px">
           <div class="btn-group mb-4" role="group" *ngFor="let b of ArrayOne(noOfQues); let i=index;">
             <div class="btn-group mr-3">
               <a style="width:50px" type="button" id="{{i}}" class="btn btn-block text-center" [ngClass]="getStatus(i)"
@@ -89,7 +89,7 @@
       </div>
     </div>
     <div class="col col-md-3">
-      <div class="card border-dark">
+      <div class="card border-dark bg-secondary">
         <div style="padding:3px 3px 3px 7px" class="card-body">
           <strong>Legend</strong>
           <div>
