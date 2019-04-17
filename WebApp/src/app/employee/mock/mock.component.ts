@@ -32,11 +32,9 @@ export class MockComponent implements OnInit {
       pageLength: 10,
     };
 
-<<<<<<< HEAD
     setTimeout(() => {
       this.getMockList();
 		}, 0);
-=======
     this.cols = [
       { field: 'SerialNumber', header: 'S NO' },
       { field: 'QuizName', header: 'Quiz Name' },
@@ -47,7 +45,6 @@ export class MockComponent implements OnInit {
       { field: 'QuizTime', header: 'Duration' }
     ];
     this.getMockList();
->>>>>>> 9c973a528f744ed3e6d5a9e1e4e7dc16c54e262c
   }
 
   getMockList() {
