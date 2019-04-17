@@ -2,6 +2,7 @@
   <div *ngIf="quizData" class="row" style="color:black">
     <div style="text-align: center;" class="col">
       <strong>
+        <h2 style="text-align: center">Analytics of</h2>
         <h3>{{quizName}}</h3>
       </strong>
     </div>
@@ -14,7 +15,7 @@
       <div>
         <div style="display: block">
           <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [legend]="pieChartLegend"
-            [chartType]="pieChartType">
+            [chartType]="pieChartType" [options]="pieChartOptions">
           </canvas>
         </div>
       </div>
@@ -27,7 +28,7 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title apricot">Highest-Score</h5>
-            <label class="card-text">{{quizData.HighestScore}}</label>
+            <h6 class="card-text">{{quizData.HighestScore}}</h6>
           </div>
         </div>
       </div>
@@ -39,7 +40,7 @@
               </span>
             </i>
             <h5 class="card-title apricot">Accuracy</h5>
-            <label class="card-text">{{quizData.Accuracy}}</label>
+            <h6 class="card-text">{{quizData.Accuracy}}</h6>
           </div>
         </div>
       </div>
@@ -47,7 +48,7 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title apricot">Lowest Score</h5>
-            <label class="card-text">{{quizData.LowestScore}}</label>
+            <h6 class="card-text">{{quizData.LowestScore}}</h6>
           </div>
         </div>
       </div>
@@ -58,7 +59,7 @@
         <div class="card" style="width: 18rem;">
           <div class="card-body">
             <h5 class="card-title apricot">Number of Schedules</h5>
-            <label class="card-text">{{quizData.NoOfQuiz}}</label>
+            <h6 class="card-text">{{quizData.NoOfQuiz}}</h6>
           </div>
         </div>
       </div>
@@ -70,7 +71,7 @@
               </span>
             </i>
             <h5 class="card-title apricot">Average Score</h5>
-            <label class="card-text">{{quizData.AverageMarks}}</label>
+            <h6 class="card-text">{{quizData.AverageMarks}}</h6>
           </div>
         </div>
       </div>

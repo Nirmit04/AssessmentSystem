@@ -702,7 +702,7 @@ import { ToastrService } from &#x27;ngx-toastr&#x27;;
 import { Schedule } from &#x27;../../shared/schedule.model&#x27;;
 import { Subscription } from &#x27;rxjs&#x27;;
 import { Subject } from &#x27;rxjs&#x27;;
-import { AddUser1Component } from &#x27;../../add-user1/add-user1.component&#x27;
+import { AddUser1Component } from &#x27;../../add-user1/add-user1.component&#x27;;
 import { ViewScheduleComponent } from &#x27;../view-schedule/view-schedule.component&#x27;;
 @Component({
   selector: &#x27;app-add-user&#x27;,
@@ -732,7 +732,7 @@ export class AddUserComponent implements OnInit {
     this.service.getSchedule(localStorage.getItem(&#x27;uid&#x27;)).subscribe((res: any) &#x3D;&gt; {
       this.scheduleList &#x3D; res as Schedule[];
       this.dtTrigger.next();
-    })
+    });
   }
 
   addUserToSchedule(scheduleid: number, arrayindex: number) {
@@ -754,13 +754,13 @@ export class AddUserComponent implements OnInit {
     dialogConfig.width &#x3D; &#x27;60%&#x27;;
     dialogConfig.disableClose &#x3D; true;
     this.service.getScheduleQuizUsers(scheduleId).subscribe((res: any) &#x3D;&gt; {
-      if (res.length &#x3D;&#x3D; 0) {
+      if (res.length &#x3D;&#x3D;&#x3D; 0) {
         this.toastr.error(&#x27;No user Available to Delete&#x27;);
       }
       else {
         dialogConfig.data &#x3D; res;
         this.service.deleteUserVisibility &#x3D; true;
-        this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe((res: any) &#x3D;&gt; {
+        this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe(() &#x3D;&gt; {
           this.loadSchedule();
           this.service.deleteUserVisibility &#x3D; false;
           this.dtTrigger.unsubscribe();

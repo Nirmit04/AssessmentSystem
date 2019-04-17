@@ -185,7 +185,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/home/home.component.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/home/home.component.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -278,8 +278,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/app/home/home.component.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/app/home/home.component.ts:22</a></div>
                 </td>
             </tr>
 
@@ -317,8 +317,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="74"
-                            class="link-to-prism">src/app/home/home.component.ts:74</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="72"
+                            class="link-to-prism">src/app/home/home.component.ts:72</a></div>
                 </td>
             </tr>
 
@@ -396,7 +396,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/home/home.component.ts:21</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/home/home.component.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -428,7 +428,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/home/home.component.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/home/home.component.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -455,12 +455,12 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>&quot;&quot;</code>
+                            <i>Default value : </i><code>&#x27;&#x27;</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/home/home.component.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/home/home.component.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -486,7 +486,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/home/home.component.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/home/home.component.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -518,7 +518,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/home/home.component.ts:20</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/home/home.component.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -533,11 +533,9 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
-import { HttpClient, HttpHeaders } from &#x27;@angular/common/http&#x27;;
-import { environment } from &#x27;src/environments/environment&#x27;;
+import { HttpClient } from &#x27;@angular/common/http&#x27;;
+import { environment } from &#x27;../../environments/environment&#x27;;
 import { EmployeeService } from &#x27;../employee/shared/employee.service&#x27;;
-import { Observable, throwError } from &#x27;rxjs&#x27;;
-import { retry, catchError } from &#x27;rxjs/operators&#x27;;
 
 @Component({
 	selector: &#x27;app-home&#x27;,
@@ -549,7 +547,7 @@ export class HomeComponent implements OnInit {
 	constructor(private router: Router, private http: HttpClient, private service: EmployeeService) { }
 
 	rooturl &#x3D; environment.apiURl;
-	role &#x3D; &quot;&quot;;
+	role &#x3D; &#x27;&#x27;;
 	uid &#x3D; &#x27;&#x27;;
 	checkqid: string &#x3D; null;
 	checksid: string &#x3D; null;
@@ -567,22 +565,22 @@ export class HomeComponent implements OnInit {
 				GoogleId: localStorage.getItem(&#x27;id&#x27;)
 			};
 
-			this.http.post(this.rooturl + &#x27;User/Register&#x27;, body).subscribe((res: any) &#x3D;&gt; {
+			this.http.post(this.rooturl + &#x27;User/Register&#x27;, body).subscribe(() &#x3D;&gt; {
 				this.http.get(this.rooturl + &#x27;GetUserDetails?email&#x3D;&#x27; + localStorage.getItem(&#x27;email&#x27;))
 					.subscribe((res1: any) &#x3D;&gt; {
 						this.uid &#x3D; res1.Id;
 						this.role &#x3D; res1.Roles;
 						localStorage.setItem(&#x27;uid&#x27;, this.uid);
 						localStorage.setItem(&#x27;role&#x27;, this.role);
-						if (this.checkqid &#x3D;&#x3D; &#x27;null&#x27; &amp;&amp; this.checksid &#x3D;&#x3D; &#x27;null&#x27;) {
+						if (this.checkqid &#x3D;&#x3D;&#x3D; &#x27;null&#x27; &amp;&amp; this.checksid &#x3D;&#x3D;&#x3D; &#x27;null&#x27;) {
 							this.redirecttodash(this.role[0]);
 						}
 						else if (this.checkqid &#x3D;&#x3D; null &amp;&amp; this.checksid &#x3D;&#x3D; null) {
 							this.redirecttodash(this.role[0]);
 						}
-						else if (this.checkqid !&#x3D; &#x27;null&#x27; &amp;&amp; this.checksid !&#x3D; &#x27;null&#x27;) {
+						else if (this.checkqid !&#x3D;&#x3D; &#x27;null&#x27; &amp;&amp; this.checksid !&#x3D;&#x3D; &#x27;null&#x27;) {
 
-							this.service.checkValidUser(+this.checkqid).subscribe((res: any) &#x3D;&gt; {
+							this.service.checkValidUser(+this.checkqid).subscribe(() &#x3D;&gt; {
 
 								this.service.getQuesOfQuiz(+this.checkqid).subscribe((res: any) &#x3D;&gt; {
 									this.service.quesOfQuiz &#x3D; res as any[];
@@ -605,16 +603,22 @@ export class HomeComponent implements OnInit {
 
 
 	redirecttodash(role: string) {
+		
 		if (role &#x3D;&#x3D;&#x3D; &#x27;Test-Administrator&#x27;) {
+			localStorage.setItem(&#x27;currentRole&#x27;, &#x27;//ta-dash&#x27;);
 			this.router.navigate([&#x27;/ta-dash&#x27;]);
+		
 		}
 		else if (role &#x3D;&#x3D;&#x3D; &#x27;Content-Creator&#x27;) {
+			localStorage.setItem(&#x27;currentRole&#x27;, &#x27;//cc-dash&#x27;);
 			this.router.navigate([&#x27;/cc-dash&#x27;]);
 		}
 		else if (role &#x3D;&#x3D;&#x3D; &#x27;Employee&#x27;) {
+			localStorage.setItem(&#x27;currentRole&#x27;, &#x27;//emp-dash&#x27;);
 			this.router.navigate([&#x27;/emp-dash&#x27;]);
 		}
 		else {
+			localStorage.setItem(&#x27;currentRole&#x27;, &#x27;//ru-dash&#x27;);
 			this.router.navigate([&#x27;/ru-dash&#x27;]);
 		}
 	}

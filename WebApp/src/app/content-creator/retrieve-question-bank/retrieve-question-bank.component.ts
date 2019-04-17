@@ -69,10 +69,11 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 
 	deleteQues(qid) {
 		if (confirm('Are you sure you want to delete this record?')) {
-			this.service.deleteQues(qid).subscribe((res: any) => {
+			this.subscription = this.service.deleteQues(qid).subscribe((res: any) => {
 				this.toastr.success('Deleted Successfully', 'Assesment System');
 				this.dtTrigger.unsubscribe();
 				this.getQuesOfUser(localStorage.getItem('uid'));
+				this.subscription.unsubscribe();
 			});
 		}
 	}
@@ -96,7 +97,7 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 		dialogConfig.disableClose = true;
 		this.service.readonlyStatus = true;
 		this.service.formData = this.questionList[arrayindex - 1];
-		this.subscription = this.dialog.open(UpdateQuestionComponent, dialogConfig).afterClosed().subscribe((res: any) => {
+		this.dialog.open(UpdateQuestionComponent, dialogConfig).afterClosed().subscribe((res: any) => {
 		});
 	}
 

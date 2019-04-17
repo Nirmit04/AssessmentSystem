@@ -358,8 +358,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/app/test-admin/retrieve-schedule/view-schedule/view-schedule.component.ts:77</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/app/test-admin/retrieve-schedule/view-schedule/view-schedule.component.ts:74</a></div>
                 </td>
             </tr>
 
@@ -428,8 +428,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="67"
-                            class="link-to-prism">src/app/test-admin/retrieve-schedule/view-schedule/view-schedule.component.ts:67</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/app/test-admin/retrieve-schedule/view-schedule/view-schedule.component.ts:64</a></div>
                 </td>
             </tr>
 
@@ -498,8 +498,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="53"
-                            class="link-to-prism">src/app/test-admin/retrieve-schedule/view-schedule/view-schedule.component.ts:53</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/app/test-admin/retrieve-schedule/view-schedule/view-schedule.component.ts:50</a></div>
                 </td>
             </tr>
 
@@ -568,8 +568,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/app/test-admin/retrieve-schedule/view-schedule/view-schedule.component.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/app/test-admin/retrieve-schedule/view-schedule/view-schedule.component.ts:44</a></div>
                 </td>
             </tr>
 
@@ -638,8 +638,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">src/app/test-admin/retrieve-schedule/view-schedule/view-schedule.component.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/app/test-admin/retrieve-schedule/view-schedule/view-schedule.component.ts:31</a></div>
                 </td>
             </tr>
 
@@ -677,8 +677,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="60"
-                            class="link-to-prism">src/app/test-admin/retrieve-schedule/view-schedule/view-schedule.component.ts:60</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/app/test-admin/retrieve-schedule/view-schedule/view-schedule.component.ts:57</a></div>
                 </td>
             </tr>
 
@@ -870,7 +870,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/test-admin/retrieve-schedule/view-schedule/view-schedule.component.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/test-admin/retrieve-schedule/view-schedule/view-schedule.component.ts:29</a></div>
                             </td>
                         </tr>
 
@@ -1075,7 +1075,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/test-admin/retrieve-schedule/view-schedule/view-schedule.component.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/test-admin/retrieve-schedule/view-schedule/view-schedule.component.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -1118,7 +1118,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Inject } from &#x27;@angular/core&#x27;;
 import { TestAdminService } from &#x27;../../shared/test-admin.service&#x27;;
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from &#x27;@angular/material&#x27;;
-import { UpdateQuestionComponent } from &#x27;src/app/content-creator/update-question/update-question.component&#x27;;
+import { UpdateQuestionComponent } from &#x27;../../../content-creator/update-question/update-question.component&#x27;;
 import { ToastrService } from &#x27;ngx-toastr&#x27;;
 import { Schedule } from &#x27;../../shared/schedule.model&#x27;;
 import { NgForm } from &#x27;@angular/forms&#x27;;
@@ -1142,11 +1142,8 @@ export class ViewScheduleComponent implements OnInit {
   stdate;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
-    public dialogRef: MatDialogRef&lt;UpdateQuestionComponent&gt;,
-    public toastr: ToastrService,
-    private service: TestAdminService,
-    public dialog: MatDialog,
-    private datePipe: DatePipe) { }
+    public dialogRef: MatDialogRef&lt;UpdateQuestionComponent&gt;, public toastr: ToastrService, private service: TestAdminService,
+    public dialog: MatDialog, private datePipe: DatePipe) { }
 
   ngOnInit() {
     this.date &#x3D; this.datePipe.transform(new Date(), &#x27;yyyy-MM-ddThh:mm&#x27;);
@@ -1178,7 +1175,7 @@ export class ViewScheduleComponent implements OnInit {
     this.service.editSchedule(this.data, form.value).subscribe(res &#x3D;&gt; {
       this.toastr.success(&#x27;Changes Saved&#x27;);
       this.dialogRef.close(&#x27;Saved&#x27;);
-    })
+    });
   }
 
   checkStartDate(date1: NgForm) {

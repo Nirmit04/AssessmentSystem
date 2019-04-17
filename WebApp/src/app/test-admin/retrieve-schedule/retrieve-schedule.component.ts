@@ -31,7 +31,10 @@ export class RetrieveScheduleComponent implements OnInit {
 			pagingType: 'full_numbers',
 			pageLength: 10,
 		};
-		this.loadSchedule();
+		setTimeout(() => {
+			this.loadSchedule();
+		}, 0);
+
 	}
 
 	loadSchedule() {
@@ -43,11 +46,17 @@ export class RetrieveScheduleComponent implements OnInit {
 
 	deleteSchedule(scheduleId) {
 		this.service.deleteSchedule(scheduleId).subscribe((res: any) => {
-			this.toastr.success('Deleted Successfully', 'Assesment System');
-			this.loadSchedule();
-			this.dtTrigger.unsubscribe();
-			this.dtTrigger.next();
+			if (res === 'Dissimilar Taken Status') {
+				this.toastr.error('Cannot Delete this Schedule. Users Exist!');
+			}
+			else {
+				this.toastr.success('Deleted Successfully', 'Assesment System');
+				this.loadSchedule();
+				this.dtTrigger.unsubscribe();
+				this.dtTrigger.next();
+			}
 		});
+
 	}
 
 	viewSchedule(scheduleid: number, arrayindex: number) {
@@ -71,14 +80,14 @@ export class RetrieveScheduleComponent implements OnInit {
 		dialogConfig.data = scheduleid;
 		this.service.formdata = this.scheduleList[arrayindex - 1];
 		this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe((res: any) => {
-			this.loadSchedule();
-			this.dtTrigger.unsubscribe();
-			this.dtTrigger.next();
-		});
+		this.loadSchedule();
+		this.dtTrigger.unsubscribe();
+		this.dtTrigger.next();
+	});
 	}
 
-	ngOnDestroy() {
-		this.dtTrigger.unsubscribe();
-	}
+ngOnDestroy() {
+	this.dtTrigger.unsubscribe();
+}
 
 }

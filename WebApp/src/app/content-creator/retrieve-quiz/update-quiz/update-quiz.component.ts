@@ -4,6 +4,7 @@ import { ContentCreatorServiceService } from '../../shared/content-creator-servi
 import { ToastrService } from 'ngx-toastr';
 import { Question } from '../../shared/question.model';
 import { AddQuesInQuizComponent } from '../add-ques-in-quiz/add-ques-in-quiz.component';
+import { CreateQuestionsComponent } from '../../create-questions/create-questions.component';
 
 @Component({
   selector: 'app-update-quiz',
@@ -12,6 +13,7 @@ import { AddQuesInQuizComponent } from '../add-ques-in-quiz/add-ques-in-quiz.com
 })
 export class UpdateQuizComponent implements OnInit {
   UpdateQuizQuestionList: Question[];
+  check: boolean;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<UpdateQuizComponent>,
@@ -21,6 +23,7 @@ export class UpdateQuizComponent implements OnInit {
 
   ngOnInit() {
     this.UpdateQuizQuestionList = this.data;
+    this.check = false;
   }
 
   loadingData() {
@@ -45,9 +48,32 @@ export class UpdateQuizComponent implements OnInit {
     dialogConfig.disableClose = true;
     this.service.getQuizQuestions(Number(localStorage.getItem('quizId'))).subscribe((res: any) => {
       dialogConfig.data = res;
-      this.dialog.open(AddQuesInQuizComponent, dialogConfig).afterClosed().subscribe(res => {
-        this.loadingData();
-      });
+      if (dialogConfig.data.length === 0) {
+        this.toastr.error('No Questions Available');
+        this.check = true;
+      }
+      else {
+        this.dialog.open(AddQuesInQuizComponent, dialogConfig).afterClosed().subscribe(res => {
+          this.loadingData();
+        });
+      }
+    });
+  }
+
+  add_new_ques() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "70%";
+    dialogConfig.disableClose = true;
+    this.service.quesStat = true;
+    // const body: any{
+    //   SubjectId = 1,
+    //   Difficult = 'Beginner',
+    // };
+    // dialogConfig.data = body;
+    let dialogRef = this.dialog.open(CreateQuestionsComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      this.check = false;
     });
   }
 

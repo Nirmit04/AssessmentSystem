@@ -13,14 +13,19 @@ import { Router } from '@angular/router';
 export class DetailsComponent implements OnInit {
   quizData: any = null;
   quizName = '';
-  public pieChartOptions: ChartOptions = {
-    responsive: true,
-  };
 
   public pieChartLabels: Label[] = ['Highest-Score', 'Lowest Score', 'Average-Score', 'Number of Schedules'];
   public pieChartData: any[];
   public pieChartLegend: boolean;
   public pieChartType: ChartType = 'pie';
+  public pieChartOptions: ChartOptions = {
+    responsive: true,
+    legend: {
+      onClick: function (e) {
+        e.stopPropagation();
+      }
+    }
+  };
   chartData: any[];
 
   constructor(

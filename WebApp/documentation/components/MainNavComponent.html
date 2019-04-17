@@ -124,6 +124,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#cRole">cRole</a>
+                            </li>
+                            <li>
                                 <a href="#isHandset$">isHandset$</a>
                             </li>
                             <li>
@@ -182,7 +185,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/content-creator/main-nav/main-nav.component.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/content-creator/main-nav/main-nav.component.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -287,8 +290,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="56"
-                            class="link-to-prism">src/app/content-creator/main-nav/main-nav.component.ts:56</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/app/content-creator/main-nav/main-nav.component.ts:58</a></div>
                 </td>
             </tr>
 
@@ -357,8 +360,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="60"
-                            class="link-to-prism">src/app/content-creator/main-nav/main-nav.component.ts:60</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">src/app/content-creator/main-nav/main-nav.component.ts:63</a></div>
                 </td>
             </tr>
 
@@ -396,8 +399,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/app/content-creator/main-nav/main-nav.component.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/app/content-creator/main-nav/main-nav.component.ts:31</a></div>
                 </td>
             </tr>
 
@@ -435,8 +438,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="44"
-                            class="link-to-prism">src/app/content-creator/main-nav/main-nav.component.ts:44</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/app/content-creator/main-nav/main-nav.component.ts:46</a></div>
                 </td>
             </tr>
 
@@ -501,8 +504,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">src/app/content-creator/main-nav/main-nav.component.ts:65</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/app/content-creator/main-nav/main-nav.component.ts:68</a></div>
                 </td>
             </tr>
 
@@ -555,6 +558,33 @@
         <h3 id="inputs">
             Properties
         </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="cRole"></a>
+                        <span class="name">
+                            <b>
+                            cRole</b>
+                            <a href="#cRole"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/content-creator/main-nav/main-nav.component.ts:20</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -614,7 +644,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/content-creator/main-nav/main-nav.component.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/content-creator/main-nav/main-nav.component.ts:29</a></div>
                             </td>
                         </tr>
 
@@ -641,7 +671,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/content-creator/main-nav/main-nav.component.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/content-creator/main-nav/main-nav.component.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -673,6 +703,7 @@ export class MainNavComponent {
 	isHandset$: Observable&lt;boolean&gt; &#x3D; this.breakpointObserver
 		.observe(Breakpoints.Handset)
 		.pipe(map((result) &#x3D;&gt; result.matches));
+	cRole: string;
 
 	constructor(
 		private breakpointObserver: BreakpointObserver,
@@ -684,6 +715,7 @@ export class MainNavComponent {
 	showSpinnner: boolean &#x3D; true;
 
 	ngOnInit() {
+		this.cRole &#x3D; localStorage.getItem(&#x27;currentRole&#x27;);
 		if (localStorage.getItem(&#x27;id&#x27;) &#x3D;&#x3D;&#x3D; null) {
 			this.router.navigate([&#x27;/login&#x27;]);
 		}
@@ -710,6 +742,7 @@ export class MainNavComponent {
 	}
 
 	aab(role: string) {
+		localStorage.setItem(&#x27;currentRole&#x27;, role);
 		this.router.navigate([role]);
 	}
 
@@ -719,18 +752,9 @@ export class MainNavComponent {
 	}
 
 	setQuestionType(type: string) {
-		// location.reload();
 		this.service.QuestionType &#x3D; type;
-		console.log(this.service.QuestionType);
 		this.router.navigate([&#x27;/cc-dash/create-question&#x27;])
 	}
-
-	// mockTypeQuestion() {
-	// 	// location.reload();
-	// 	this.service.QuestionType &#x3D; &#x27;Mock&#x27;;
-	// 	console.log(this.service.QuestionType);
-	// 	this.router.navigate([&#x27;/cc-dash/create-question&#x27;])
-	// }
 
 }
 </code></pre>
@@ -764,40 +788,21 @@ export class MainNavComponent {
         *ngIf&#x3D;&quot;isHandset$ | async&quot;&gt;
         &lt;mat-icon aria-label&#x3D;&quot;Side nav toggle icon&quot;&gt;menu&lt;/mat-icon&gt;
       &lt;/button&gt;
-      &lt;span&gt;Content Creator&lt;/span&gt;
-      &lt;span class&#x3D;&quot;spacer&quot;&gt;&lt;/span&gt;
-      &lt;!-- &lt;div class&#x3D;&quot;btn-group&quot;&gt;
-        &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-success btn-sm&quot;&gt;Choose-Role&lt;/button&gt;
-        &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-info dropdown-toggle dropdown-toggle-split&quot; data-toggle&#x3D;&quot;dropdown&quot;
-          aria-haspopup&#x3D;&quot;true&quot; aria-expanded&#x3D;&quot;false&quot;&gt;
-          &lt;span class&#x3D;&quot;sr-only&quot;&gt;Toggle Dropdown&lt;/span&gt;
-        &lt;/button&gt;
-        &lt;div class&#x3D;&quot;dropdown-menu&quot;&gt;
-          &lt;a class&#x3D;&quot;dropdown-item&quot; style&#x3D;&quot;color:black&quot; (click)&#x3D;&quot;aab(&#x27;/ta-dash&#x27;)&quot;
-            *ngIf&#x3D;&quot;roleMatch([&#x27;Test-Administrator&#x27;])&quot;&gt;
-            Test-Administrator&lt;/a&gt;
-          &lt;a class&#x3D;&quot;dropdown-item&quot; style&#x3D;&quot;color:black&quot; (click)&#x3D;&quot;aab(&#x27;/emp-dash&#x27;)&quot; *ngIf&#x3D;&quot;roleMatch([&#x27;Employee&#x27;])&quot;&gt;
-            Employee&lt;/a&gt;
-          &lt;a class&#x3D;&quot;dropdown-item&quot; style&#x3D;&quot;color:black&quot; (click)&#x3D;&quot;aab(&#x27;/cc-dash&#x27;)&quot; *ngIf&#x3D;&quot;roleMatch([&#x27;Content-Creator&#x27;])&quot;&gt;
-            Content-Creator&lt;/a&gt;
-          &lt;a class&#x3D;&quot;dropdown-item&quot; style&#x3D;&quot;color:black&quot; (click)&#x3D;&quot;aab(&#x27;/ru-dash&#x27;)&quot; *ngIf&#x3D;&quot;roleMatch([&#x27;Reporting-User&#x27;])&quot;&gt;
-            Reporting-User&lt;/a&gt;
-        &lt;/div&gt;
-      &lt;/div&gt; --&gt;
-      &lt;div class&#x3D;&quot;input-group mb-6&quot; style&#x3D;&quot;width:40%; float: left;&quot;&gt;
+      &lt;div class&#x3D;&quot;input-group mb-6&quot; style&#x3D;&quot;width:17%; float: left;&quot;&gt;
         &lt;div class&#x3D;&quot;input-group-prepend&quot;&gt;
           &lt;label class&#x3D;&quot;input-group-text&quot; for&#x3D;&quot;inputGroupSelect01&quot;&gt;Role&lt;/label&gt;
         &lt;/div&gt;
-        &lt;select class&#x3D;&quot;custom-select&quot; #role id&#x3D;&quot;inputGroupSelect01&quot; (change)&#x3D;&quot;aab(role.value)&quot;&gt;
-          &lt;option selected disabled&gt;Choose...&lt;/option&gt;
+        &lt;select class&#x3D;&quot;custom-select&quot; #role id&#x3D;&quot;inputGroupSelect01&quot; [(ngModel)]&#x3D;&quot;cRole&quot; (change)&#x3D;&quot;aab(role.value)&quot;&gt;
           &lt;option value&#x3D;&quot;//emp-dash&quot; *ngIf&#x3D;&quot;roleMatch([&#x27;Employee&#x27;])&quot;&gt;Employee&lt;/option&gt;
           &lt;option value&#x3D;&quot;//cc-dash&quot; *ngIf&#x3D;&quot;roleMatch([&#x27;Content-Creator&#x27;])&quot;&gt;Content-Creator&lt;/option&gt;
-          &lt;option value&#x3D;&quot;//ta-dash&quot; *ngIf&#x3D;&quot;roleMatch([&#x27;Test-Administrator&#x27;])&quot;&gt;Test-Admin&lt;/option&gt;
+          &lt;option value&#x3D;&quot;//ta-dash&quot; *ngIf&#x3D;&quot;roleMatch([&#x27;Test-Administrator&#x27;])&quot;&gt;Test-Administrator&lt;/option&gt;
           &lt;option value&#x3D;&quot;//ru-dash&quot; *ngIf&#x3D;&quot;roleMatch([&#x27;Reporting-User&#x27;])&quot;&gt;Reporting-User&lt;/option&gt;
         &lt;/select&gt;
       &lt;/div&gt;
+      &lt;span class&#x3D;&quot;spacer&quot;&gt;&lt;/span&gt;
       &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-      &lt;a class&#x3D;&quot;log&quot; (click)&#x3D;&quot;logout()&quot;&gt;&lt;i aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;fa fa-sign-out&quot;&gt;&lt;/i&gt;Log Out&lt;/a&gt;
+      &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;logout()&quot; class&#x3D;&quot;btn btn-dark btn-sm&quot;&gt;&lt;i aria-hidden&#x3D;&quot;true&quot;
+          style&#x3D;&quot;cursor: pointer;&quot; class&#x3D;&quot;fa fa-sign-out fa-lg&quot;&gt;Log Out&lt;/i&gt;&lt;/button&gt;
     &lt;/mat-toolbar&gt;
     &lt;div class&#x3D;&quot;content&quot;&gt;
       &lt;ng-content&gt;&lt;/ng-content&gt;
@@ -903,7 +908,7 @@ export class MainNavComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-sidenav-container class="sidenav-container">  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"    [attr.role]="(isHandset$ | async) ? \'dialog\' : \'navigation\'" [mode]="(isHandset$ | async) ? \'over\' : \'side\'"    [opened]="!(isHandset$ | async)">    <mat-toolbar><a mat-list-item routerLink="/cc-dash"><i class="fa fa-tachometer" aria-hidden="true"></i>        Dashboard</a></mat-toolbar>    <mat-nav-list>      <a mat-list-item (click)="setQuestionType(\'Scheduled\')"><i class="fa fa-code" aria-hidden="true"></i> Create        Scheduled        Question</a>      <a mat-list-item (click)="setQuestionType(\'Mock\')"><i class="fa fa-code" aria-hidden="true"></i> Create Mock        Question</a>      <a mat-list-item routerLink="/cc-dash/quiz"><i class="fa fa-retweet" aria-hidden="true"></i> Create/Retrieve        Quiz</a>      <a mat-list-item routerLink="/cc-dash/tag"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Create / Edit        Tag</a>      <a mat-list-item routerLink="/cc-dash/rqbank"><i class="fa fa-check" aria-hidden="true"></i> Questions Created</a>      <a mat-list-item routerLink="/cc-dash/archive-quiz"><i class="fa fa-archive" aria-hidden="true"></i> Archive        Quizes</a>    </mat-nav-list>  </mat-sidenav>  <mat-sidenav-content>    <mat-toolbar>      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"        *ngIf="isHandset$ | async">        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>      </button>      <span>Content Creator</span>      <span class="spacer"></span>      <!-- <div class="btn-group">        <button type="button" class="btn btn-success btn-sm">Choose-Role</button>        <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"          aria-haspopup="true" aria-expanded="false">          <span class="sr-only">Toggle Dropdown</span>        </button>        <div class="dropdown-menu">          <a class="dropdown-item" style="color:black" (click)="aab(\'/ta-dash\')"            *ngIf="roleMatch([\'Test-Administrator\'])">            Test-Administrator</a>          <a class="dropdown-item" style="color:black" (click)="aab(\'/emp-dash\')" *ngIf="roleMatch([\'Employee\'])">            Employee</a>          <a class="dropdown-item" style="color:black" (click)="aab(\'/cc-dash\')" *ngIf="roleMatch([\'Content-Creator\'])">            Content-Creator</a>          <a class="dropdown-item" style="color:black" (click)="aab(\'/ru-dash\')" *ngIf="roleMatch([\'Reporting-User\'])">            Reporting-User</a>        </div>      </div> -->      <div class="input-group mb-6" style="width:40%; float: left;">        <div class="input-group-prepend">          <label class="input-group-text" for="inputGroupSelect01">Role</label>        </div>        <select class="custom-select" #role id="inputGroupSelect01" (change)="aab(role.value)">          <option selected disabled>Choose...</option>          <option value="//emp-dash" *ngIf="roleMatch([\'Employee\'])">Employee</option>          <option value="//cc-dash" *ngIf="roleMatch([\'Content-Creator\'])">Content-Creator</option>          <option value="//ta-dash" *ngIf="roleMatch([\'Test-Administrator\'])">Test-Admin</option>          <option value="//ru-dash" *ngIf="roleMatch([\'Reporting-User\'])">Reporting-User</option>        </select>      </div>      &nbsp;&nbsp;&nbsp;&nbsp;      <a class="log" (click)="logout()"><i aria-hidden="true" class="fa fa-sign-out"></i>Log Out</a>    </mat-toolbar>    <div class="content">      <ng-content></ng-content>    </div>  </mat-sidenav-content></mat-sidenav-container></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-sidenav-container class="sidenav-container">  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"    [attr.role]="(isHandset$ | async) ? \'dialog\' : \'navigation\'" [mode]="(isHandset$ | async) ? \'over\' : \'side\'"    [opened]="!(isHandset$ | async)">    <mat-toolbar><a mat-list-item routerLink="/cc-dash"><i class="fa fa-tachometer" aria-hidden="true"></i>        Dashboard</a></mat-toolbar>    <mat-nav-list>      <a mat-list-item (click)="setQuestionType(\'Scheduled\')"><i class="fa fa-code" aria-hidden="true"></i> Create        Scheduled        Question</a>      <a mat-list-item (click)="setQuestionType(\'Mock\')"><i class="fa fa-code" aria-hidden="true"></i> Create Mock        Question</a>      <a mat-list-item routerLink="/cc-dash/quiz"><i class="fa fa-retweet" aria-hidden="true"></i> Create/Retrieve        Quiz</a>      <a mat-list-item routerLink="/cc-dash/tag"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Create / Edit        Tag</a>      <a mat-list-item routerLink="/cc-dash/rqbank"><i class="fa fa-check" aria-hidden="true"></i> Questions Created</a>      <a mat-list-item routerLink="/cc-dash/archive-quiz"><i class="fa fa-archive" aria-hidden="true"></i> Archive        Quizes</a>    </mat-nav-list>  </mat-sidenav>  <mat-sidenav-content>    <mat-toolbar>      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"        *ngIf="isHandset$ | async">        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>      </button>      <div class="input-group mb-6" style="width:17%; float: left;">        <div class="input-group-prepend">          <label class="input-group-text" for="inputGroupSelect01">Role</label>        </div>        <select class="custom-select" #role id="inputGroupSelect01" [(ngModel)]="cRole" (change)="aab(role.value)">          <option value="//emp-dash" *ngIf="roleMatch([\'Employee\'])">Employee</option>          <option value="//cc-dash" *ngIf="roleMatch([\'Content-Creator\'])">Content-Creator</option>          <option value="//ta-dash" *ngIf="roleMatch([\'Test-Administrator\'])">Test-Administrator</option>          <option value="//ru-dash" *ngIf="roleMatch([\'Reporting-User\'])">Reporting-User</option>        </select>      </div>      <span class="spacer"></span>      &nbsp;&nbsp;&nbsp;&nbsp;      <button type="button" (click)="logout()" class="btn btn-dark btn-sm"><i aria-hidden="true"          style="cursor: pointer;" class="fa fa-sign-out fa-lg">Log Out</i></button>    </mat-toolbar>    <div class="content">      <ng-content></ng-content>    </div>  </mat-sidenav-content></mat-sidenav-container></div>'
     var COMPONENTS = [{'name': 'AddQuesInQuizComponent', 'selector': 'app-add-ques-in-quiz'},{'name': 'AddUser1Component', 'selector': 'app-add-user1'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AnalyticsByQuizComponent', 'selector': 'app-analytics-by-quiz'},{'name': 'AnalyticsByTagComponent', 'selector': 'app-analytics-by-tag'},{'name': 'AnalyticsByUserComponent', 'selector': 'app-analytics-by-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchivedScheduleComponent', 'selector': 'app-archived-schedule'},{'name': 'ArchiveQuizComponent', 'selector': 'app-archive-quiz'},{'name': 'ContentCreatorComponent', 'selector': 'app-content-creator'},{'name': 'CreateQuestionsComponent', 'selector': 'app-create-questions'},{'name': 'CreateQuizComponent', 'selector': 'app-create-quiz'},{'name': 'CreateScheduleComponent', 'selector': 'app-create-schedule'},{'name': 'CreatetagComponent', 'selector': 'app-createtag'},{'name': 'DetailedReportComponent', 'selector': 'app-detailed-report'},{'name': 'DetailsComponent', 'selector': 'app-details'},{'name': 'EmployeeComponent', 'selector': 'app-employee'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HttpInterceptorComponent', 'selector': 'app-http-interceptor'},{'name': 'InstructionsComponent', 'selector': 'app-instructions'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainNav2Component', 'selector': 'app-main-nav2'},{'name': 'MainNav3Component', 'selector': 'app-main-nav3'},{'name': 'Mainnav4Component', 'selector': 'app-mainnav4'},{'name': 'MainNavComponent', 'selector': 'app-main-nav'},{'name': 'MockComponent', 'selector': 'app-mock'},{'name': 'MockReportComponent', 'selector': 'app-mock-report'},{'name': 'NonMockComponent', 'selector': 'app-non-mock'},{'name': 'NonMockReportComponent', 'selector': 'app-non-mock-report'},{'name': 'ReportingUserComponent', 'selector': 'app-reporting-user'},{'name': 'ResultComponent', 'selector': 'app-result'},{'name': 'RetrieveQuestionBankComponent', 'selector': 'app-retrieve-question-bank'},{'name': 'RetrieveQuizComponent', 'selector': 'retrieve-quiz'},{'name': 'RetrieveScheduleComponent', 'selector': 'app-retrieve-schedule'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TakeQuizComponent', 'selector': 'app-take-quiz'},{'name': 'TestAdminComponent', 'selector': 'app-test-admin'},{'name': 'UpdateQuestionComponent', 'selector': 'app-update-question'},{'name': 'UpdateQuizComponent', 'selector': 'app-update-quiz'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'ViewAnswerComponent', 'selector': 'app-view-answer'},{'name': 'ViewScheduleComponent', 'selector': 'app-view-schedule'},{'name': 'ViewUserDetailsComponent', 'selector': 'app-view-user-details'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'MainNavComponent'};

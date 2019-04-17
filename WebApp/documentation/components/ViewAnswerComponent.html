@@ -618,7 +618,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Inject } from &#x27;@angular/core&#x27;;
 import { EmployeeService } from &#x27;../shared/employee.service&#x27;;
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig, MatDialog } from &#x27;@angular/material/dialog&#x27;;
-import { Question } from &#x27;../../content-creator/shared/question.model&#x27;
+import { Question } from &#x27;../../content-creator/shared/question.model&#x27;;
 @Component({
   selector: &#x27;app-view-answer&#x27;,
   templateUrl: &#x27;./view-answer.component.html&#x27;,
@@ -645,7 +645,6 @@ export class ViewAnswerComponent implements OnInit {
   sda() {
     this.service.getQues(this.data.id).subscribe((res: any) &#x3D;&gt; {
       this.ques &#x3D; res as Question;
-      console.log(this.ques)
       if (this.ques.Answer &#x3D;&#x3D;&#x3D; 1) {
         this.flop1 &#x3D; true;
       } else if (this.ques.Answer &#x3D;&#x3D;&#x3D; 2) {

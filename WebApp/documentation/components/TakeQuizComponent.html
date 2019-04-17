@@ -1546,19 +1546,19 @@ export class TakeQuizComponent implements OnInit {
 			this.service.quesOfQuiz[this.service.qnProgress].answer &#x3D; choice;
 		}
 		this.bar &#x3D; (this.service.qnProgress + 1) / this.noOfQues * 100;
-		if (options &#x3D;&#x3D; &#x27;save&#x27;) {
+		if (options &#x3D;&#x3D;&#x3D; &#x27;save&#x27;) {
 			if (this.review[this.service.qnProgress]) {
 				this.review[this.service.qnProgress] &#x3D; false;
 			}
 			this.submit[this.service.qnProgress] &#x3D; true;
 		}
-		if (options &#x3D;&#x3D; &#x27;review&#x27;) {
+		if (options &#x3D;&#x3D;&#x3D; &#x27;review&#x27;) {
 			if (this.submit[this.service.qnProgress]) {
 				this.submit[this.service.qnProgress] &#x3D; false;
 			}
 			this.review[this.service.qnProgress] &#x3D; true;
 		}
-		if(options&#x3D;&#x3D;&#x27;submit&#x27;)	{
+		if (options &#x3D;&#x3D;&#x3D; &#x27;submit&#x27;) {
 			this.Submit();
 		}
 		this.service.qnProgress++;
@@ -1638,7 +1638,7 @@ export class TakeQuizComponent implements OnInit {
 		this.active &#x3D; [false];
 		this.active[this.service.qnProgress] &#x3D; true;
 		this.options &#x3D; this.service.quesOfQuiz[this.service.qnProgress].answer;
-		if (this.service.qnProgress + 1 &#x3D;&#x3D; this.noOfQues) {
+		if (this.service.qnProgress + 1 &#x3D;&#x3D;&#x3D; this.noOfQues) {
 			this.checkLast &#x3D; false;
 		}
 	}

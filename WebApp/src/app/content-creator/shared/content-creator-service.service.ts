@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Question } from '../shared/question.model';
-import { environment } from "../../../environments/environment";
+import { environment } from '../../../environments/environment';
 import { TagModel } from './tags.model';
 import { QuizModel } from './quiz.model';
-import { NgForOf } from '@angular/common';
 import { NgForm } from '@angular/forms';
 @Injectable({
 	providedIn: 'root'
@@ -14,7 +13,7 @@ export class ContentCreatorServiceService {
 	QuestionType: string;
 	tagForm: TagModel;
 	formData: Question;
-	formDataNew: FormData = new FormData();;
+	formDataNew: FormData;
 	quizForm: QuizModel;
 	readonlyStatus: boolean;
 	QuizHour: number;
@@ -27,8 +26,10 @@ export class ContentCreatorServiceService {
 	constructor(private http: HttpClient) { }
 
 	postQuestion(formData: Question) {
+		this.formDataNew = new FormData();
 		formData.CreatedBy = localStorage.getItem('uid');
 		formData.QuestionType = this.QuestionType;
+		console.log(formData.QuestionType);
 		this.formDataNew.append('QuestionDetails', JSON.stringify(formData));
 		if (this.selectedFile !== null) {
 			this.formDataNew.append('Image', this.selectedFile, this.selectedFile.name);
@@ -134,7 +135,7 @@ export class ContentCreatorServiceService {
 	}
 
 	deleteImageFromQues(id) {
-		return this.http.delete(this.rootURL+'Question/ImageDelete/'+id);
+		return this.http.delete(this.rootURL + 'Question/ImageDelete/' + id);
 	}
 
 }

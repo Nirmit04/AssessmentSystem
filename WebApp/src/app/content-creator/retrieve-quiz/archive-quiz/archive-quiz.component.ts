@@ -42,6 +42,9 @@ export class ArchiveQuizComponent implements OnInit {
 		];
 
 		this.loadQuiz();
+		setTimeout(() => {
+			this.loadQuiz();
+		}, 0);
 	}
 
 	loadQuiz() {

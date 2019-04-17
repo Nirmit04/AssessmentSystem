@@ -69,5 +69,4 @@ export class MainNavComponent {
 		this.service.QuestionType = type;
 		this.router.navigate(['/cc-dash/create-question'])
 	}
-
 }

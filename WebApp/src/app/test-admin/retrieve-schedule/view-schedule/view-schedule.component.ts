@@ -38,7 +38,8 @@ export class ViewScheduleComponent implements OnInit {
       this.label = 'Edit Schedule';
     }
     this.CCreatedBy = localStorage.getItem('uid');
-    this.usersList = this.data as any[];
+   // this.usersList = this.data as any[];
+   this.loadExistingUsers(+this.data);
   }
 
   loadExistingUsers(scheduleQuizId: number) {

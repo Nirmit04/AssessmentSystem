@@ -361,8 +361,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="169"
-                            class="link-to-prism">src/app/content-creator/retrieve-quiz/create-quiz/create-quiz.component.ts:169</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="168"
+                            class="link-to-prism">src/app/content-creator/retrieve-quiz/create-quiz/create-quiz.component.ts:168</a></div>
                 </td>
             </tr>
 
@@ -400,8 +400,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="156"
-                            class="link-to-prism">src/app/content-creator/retrieve-quiz/create-quiz/create-quiz.component.ts:156</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="155"
+                            class="link-to-prism">src/app/content-creator/retrieve-quiz/create-quiz/create-quiz.component.ts:155</a></div>
                 </td>
             </tr>
 
@@ -470,8 +470,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="126"
-                            class="link-to-prism">src/app/content-creator/retrieve-quiz/create-quiz/create-quiz.component.ts:126</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="125"
+                            class="link-to-prism">src/app/content-creator/retrieve-quiz/create-quiz/create-quiz.component.ts:125</a></div>
                 </td>
             </tr>
 
@@ -649,8 +649,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="186"
-                            class="link-to-prism">src/app/content-creator/retrieve-quiz/create-quiz/create-quiz.component.ts:186</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="183"
+                            class="link-to-prism">src/app/content-creator/retrieve-quiz/create-quiz/create-quiz.component.ts:183</a></div>
                 </td>
             </tr>
 
@@ -727,8 +727,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="136"
-                            class="link-to-prism">src/app/content-creator/retrieve-quiz/create-quiz/create-quiz.component.ts:136</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="135"
+                            class="link-to-prism">src/app/content-creator/retrieve-quiz/create-quiz/create-quiz.component.ts:135</a></div>
                 </td>
             </tr>
 
@@ -797,8 +797,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="145"
-                            class="link-to-prism">src/app/content-creator/retrieve-quiz/create-quiz/create-quiz.component.ts:145</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="144"
+                            class="link-to-prism">src/app/content-creator/retrieve-quiz/create-quiz/create-quiz.component.ts:144</a></div>
                 </td>
             </tr>
 
@@ -937,8 +937,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="132"
-                            class="link-to-prism">src/app/content-creator/retrieve-quiz/create-quiz/create-quiz.component.ts:132</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="131"
+                            class="link-to-prism">src/app/content-creator/retrieve-quiz/create-quiz/create-quiz.component.ts:131</a></div>
                 </td>
             </tr>
 
@@ -1629,7 +1629,6 @@ export class CreateQuizComponent implements OnInit {
   }
 
   fetchReqQues(form: NgForm) {
-    console.log(form.value.QuizType);
     if (form.value.QuestionType &#x3D;&#x3D;&#x3D; &#x27;Non-Mock&#x27;) {
       this.service.QuestionType &#x3D; &#x27;Scheduled&#x27;;
     } else {
@@ -1712,8 +1711,6 @@ export class CreateQuizComponent implements OnInit {
 
 
   add_new_ques() {
-    console.log(this.service.quizForm.QuizType);
-
     const dialogConfig &#x3D; new MatDialogConfig();
     dialogConfig.autoFocus &#x3D; true;
     dialogConfig.width &#x3D; &quot;70%&quot;;

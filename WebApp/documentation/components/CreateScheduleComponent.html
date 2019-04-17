@@ -321,8 +321,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="71"
-                            class="link-to-prism">src/app/test-admin/retrieve-schedule/create-schedule/create-schedule.component.ts:71</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="65"
+                            class="link-to-prism">src/app/test-admin/retrieve-schedule/create-schedule/create-schedule.component.ts:65</a></div>
                 </td>
             </tr>
 
@@ -391,8 +391,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/app/test-admin/retrieve-schedule/create-schedule/create-schedule.component.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/app/test-admin/retrieve-schedule/create-schedule/create-schedule.component.ts:55</a></div>
                 </td>
             </tr>
 
@@ -461,8 +461,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">src/app/test-admin/retrieve-schedule/create-schedule/create-schedule.component.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/app/test-admin/retrieve-schedule/create-schedule/create-schedule.component.ts:31</a></div>
                 </td>
             </tr>
 
@@ -500,8 +500,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/app/test-admin/retrieve-schedule/create-schedule/create-schedule.component.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/app/test-admin/retrieve-schedule/create-schedule/create-schedule.component.ts:40</a></div>
                 </td>
             </tr>
 
@@ -570,8 +570,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="52"
-                            class="link-to-prism">src/app/test-admin/retrieve-schedule/create-schedule/create-schedule.component.ts:52</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/app/test-admin/retrieve-schedule/create-schedule/create-schedule.component.ts:49</a></div>
                 </td>
             </tr>
 
@@ -958,7 +958,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/test-admin/retrieve-schedule/create-schedule/create-schedule.component.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/test-admin/retrieve-schedule/create-schedule/create-schedule.component.ts:29</a></div>
                             </td>
                         </tr>
 
@@ -999,10 +999,7 @@ export class CreateScheduleComponent implements OnInit {
   scheduleUrl &#x3D; &#x27;localhost:4200//emp-dash/take-quiz/&#x27;;
   QuizList: QuizModel[];
 
-  constructor(private service: TestAdminService,
-    private dialog: MatDialog,
-    public toastr: ToastrService,
-    private datePipe: DatePipe, ) { }
+  constructor(private service: TestAdminService, private dialog: MatDialog, public toastr: ToastrService, private datePipe: DatePipe, ) { }
 
   ngOnInit() {
     this.resetForm();
@@ -1031,25 +1028,19 @@ export class CreateScheduleComponent implements OnInit {
   checkStartDate(date1: NgForm) {
     this.stdate &#x3D; date1.value;
     this.date &#x3D; (this.datePipe.transform(Date.now(), &#x27;yyyy-MM-ddThh:mm&#x27;));
-    console.log(this.date);
     if (date1.value &lt; this.date) {
-      console.log(&#x27;invalid&#x27;)
       this.startDateValid &#x3D; true;
     } else {
       this.startDateValid &#x3D; false;
-      console.log(&#x27;valid&#x27;);
     }
   }
 
   checkEndDate(date2: NgForm) {
     this.date &#x3D; (this.datePipe.transform(Date.now(), &#x27;yyyy-MM-ddThh:mm&#x27;));
-    console.log(this.date);
     if (date2.value &lt;&#x3D; this.stdate || date2.value &lt; this.date) {
-      console.log(&#x27;invalid&#x27;);
       this.endDateValid &#x3D; true;
     } else {
       this.endDateValid &#x3D; false;
-      console.log(&#x27;valid&#x27;);
     }
   }
 

@@ -157,7 +157,7 @@ export function provideConfig() {
 		DetailsComponent,
 		HttpInterceptorComponent,
 		LoaderComponent,
-		InstructionsComponent,
+		InstructionsComponent
 	],
 	imports: [
 		BrowserModule,

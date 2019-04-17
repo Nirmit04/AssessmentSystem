@@ -26,7 +26,7 @@ export class UpdateQuestionComponent implements OnInit {
     public toastr: ToastrService) { }
 
   ngOnInit() {
-       this.bool = this.service.readonlyStatus;
+    this.bool = this.service.readonlyStatus;
     if (this.bool === true) {
       this.label = "View Question";
     } else {

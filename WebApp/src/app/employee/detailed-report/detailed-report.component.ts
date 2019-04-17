@@ -66,6 +66,7 @@ export class DetailedReportComponent implements OnInit {
   loadDetail() {
     this.service.getDetailedReport().subscribe((res: any) => {
            this.reports = res as any[];
+           console.log(res);
       this.quizname = this.reports[0].QuizName;
       this.calculate();
       this.dtTrigger.next();
