@@ -43,16 +43,21 @@ namespace WebApi.Controllers
                 .ToList();
             foreach (var item in quizzesScheduled.ToList())
             {
+                if (DateTime.Now < item.StartDateTime)
+                {
+                    quizzesScheduled.Remove(item);
+                }
                 if (DateTime.Now > item.EndDateTime)
                 {
                     var userSchedule = db.UserSchedules.FirstOrDefault(x => x.UserScheduleId == item.UserScheduleId);
                     var quizSchedule = db.QuizSchedules.FirstOrDefault(x => x.QuizScheduleId == item.QuizScheduleId);
                     userSchedule.Taken = true;
                     quizSchedule.ArchiveStatus = true;
-                    db.SaveChanges();
                     quizzesScheduled.Remove(item);
+                    db.SaveChanges();
                 }
             }
+
             return Ok(quizzesScheduled.OrderByDescending(y => y.UserScheduleId));
         }
 

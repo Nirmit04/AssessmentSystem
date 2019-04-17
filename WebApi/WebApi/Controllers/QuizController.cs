@@ -317,20 +317,50 @@ namespace WebApi.Controllers
         [Route("api/Quiz/MockQuiz")]
         public IHttpActionResult GetAllMockQuiz()
         {
-            var Mock = db.Quizs.Where(x => x.QuizType == "Mock")
+            var Mock = db.Quizs.Where(x => x.QuizType == "Mock" && x.ArchiveStatus == false)
                 .Select(x => new
                 {
                     x.QuizId,
                     x.QuizName,
                     x.Difficulty,
-                    Subject = db.Subjects.FirstOrDefault(y => y.SubjectId == x.SubjectId).Name,
                     x.TotalMarks,
+                    x.ArchiveStatus,
                     x.QuizTime,
-                    x.TotalQuestions
+                    x.QuizType,
+                    x.TotalQuestions,
+                    Subject = db.Subjects.FirstOrDefault(y => y.SubjectId == x.SubjectId).Name,
+                    CreatedBy = db.Users.FirstOrDefault(z => z.Id == x.CreatedBy).FirstName
                 })
                 .OrderByDescending(z => z.QuizId)
                 .ToList();
             return Ok(Mock);
+        }
+
+        /// <summary>
+        /// Returns all scheduled quiz present
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("api/Quiz/GetAllScheduledQuiz")]
+        public IHttpActionResult GetAllScheduledQuiz()
+        {
+            var quiz = db.Quizs.Where(x => x.QuizType == "Scheduled" && x.ArchiveStatus == false)
+                .Select(x => new
+                {
+                    x.QuizId,
+                    x.QuizName,
+                    x.Difficulty,
+                    x.TotalQuestions,
+                    x.TotalMarks,
+                    x.ArchiveStatus,
+                    x.QuizType,
+                    x.QuizTime,
+                    Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
+                    CreatedBy = db.Users.FirstOrDefault(z => z.Id == x.CreatedBy).FirstName
+                })
+                .OrderByDescending(z => z.QuizId)
+                .ToList();
+            return Ok(quiz);
         }
 
         /// <summary>

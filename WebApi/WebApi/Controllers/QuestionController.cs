@@ -154,7 +154,7 @@ namespace WebApi.Controllers
                 var filePath = ImageDirectoryUrl + imageName;
                 question.ImageName = imageName;
                 Stream stream = postedFile.InputStream;
-                helper.ReduceImageSize(0.75, stream, filePath);
+                helper.ReduceImageSize(0.90, stream, filePath);
             }
             db.Questions.Add(question);
             db.SaveChanges();
@@ -192,7 +192,7 @@ namespace WebApi.Controllers
                 }
                 question.ImageName = imageName;
                 Stream stream = postedFile.InputStream;
-                helper.ReduceImageSize(0.75, stream, filePath);
+                helper.ReduceImageSize(0.90, stream, filePath);
             }
 
             db.Entry(question).State = EntityState.Modified;
@@ -337,7 +337,7 @@ namespace WebApi.Controllers
         }
 
         #region Helpers
-               
+
         private bool QuestionExists(int id)
         {
             return db.Questions.Count(x => x.QuestionId == id) > 0;
