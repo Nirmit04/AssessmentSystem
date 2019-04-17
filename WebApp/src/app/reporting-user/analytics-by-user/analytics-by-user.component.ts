@@ -24,7 +24,9 @@ export class AnalyticsByUserComponent implements OnInit {
       paging: false,
       search: false
     };
-    this.loadAllEmployees();
+    setTimeout(() => {
+      this.loadAllEmployees();
+		}, 0);
   }
 
   loadAllEmployees() {
@@ -37,13 +39,6 @@ export class AnalyticsByUserComponent implements OnInit {
   viewUserDetails(index: string) {
     this.service.data = this.allUsers[index];
     this.router.navigate(['/ru-dash/ana-by-user/user-detail']);
-    // const dialogConfig = new MatDialogConfig();
-    // dialogConfig.autoFocus = true;
-    // dialogConfig.width = "90%";
-    // dialogConfig.disableClose = true;
-    // dialogConfig.data = this.allUsers[index];
-    // this.dialog.open(ViewUserDetailsComponent, dialogConfig).afterClosed().subscribe((res: any) => {
-    // });
   }
 
 }

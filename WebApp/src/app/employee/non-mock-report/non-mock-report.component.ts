@@ -29,7 +29,9 @@ export class NonMockReportComponent implements OnInit {
    //   responsive: true,
       // scrollX: true
     };
-    this.getNonMockReport();
+    setTimeout(() => {
+      this.getNonMockReport();
+		}, 0);
   }
 
   getNonMockReport() {

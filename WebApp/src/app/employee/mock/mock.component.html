@@ -1,37 +1,34 @@
+<app-loader></app-loader>
 <app-main-nav3>
-  <strong>
-    <h1 style="text-align: center">List of Mock Quizzes</h1>
-  </strong>
   <br /><br />
-  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
-    class="row-border hover table table-bordered table-striped">
-    <thead class="thead-dark">
+  <p-table [columns]="cols" [value]="mockList" [paginator]="true" [rows]="10" #dt>
+      
+    <ng-template pTemplate="caption">
+      <h3>List of Mock Quizzes</h3>
+      <div style="text-align: right">        
+          <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+          <input type="text" pInputText size="30" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'startsWith')" style="width:auto">
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
       <tr>
-        <th>#S No.</th>
-        <th>Quiz Name</th>
-        <th>Subject</th>
-        <th>Difficulty Level</th>
-        <th>Total Questions</th>
-        <th>Total Marks</th>
-        <th>Quiz Time</th>
-        <th>Action</th>
+        <th *ngFor="let col of cols" [pSortableColumn]="col.field" style="background-color:black; color:white;">
+          {{col.header}}
+        </th>
+        <th style="background-color: black; color: white;">Action</th>
       </tr>
-    </thead>
-
-    <tbody>
-      <tr *ngFor="let mock of mockList; index as i;">
-        <th>{{i+1}}</th>
-        <td>{{mock.QuizName}}</td>
-        <td>{{mock.Subject}}</td>
-        <td>{{mock.Difficulty}}</td>
-        <td>{{mock.TotalQuestions}}</td>
-        <td>{{mock.TotalMarks}}</td>
-        <td>{{mock.QuizTime}}</td>
+    </ng-template>
+    <ng-template pTemplate="body" let-i="rowIndex" let-rowData let-columns="columns">
+      
+      <tr [pSelectableRow]="rowData"> 
+        <td *ngFor="let col of columns;">
+          {{rowData[col.field]}}
+        </td>
         <td>
-          <a class="btn btn-sm btn-info text-white" (click)="takeMockQuiz(mock.QuizId,mock.QuizName, i)"><i aria-hidden="true"
-              class="fa fa-paper-plane"></i></a>
+          <a class="btn btn-sm btn-info text-white" (click)="takeMockQuiz(rowData.QuizId,rowData.QuizName,rowData.SerialNumber)"><i aria-hidden="true"
+            class="fa fa-paper-plane"></i></a>
         </td>
       </tr>
-    </tbody>
-  </table>
+    </ng-template>
+  </p-table>
 </app-main-nav3>

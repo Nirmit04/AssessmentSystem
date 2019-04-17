@@ -45,7 +45,7 @@ const routes: Routes = [
 	{ path: 'ta-dash/retrieve-schedule', component: RetrieveScheduleComponent, canActivate: [AuthGuard], data: { roles: ['Test-Administrator'] } },
 	{ path: 'ta-dash', component: TestAdminComponent, canActivate: [AuthGuard], data: { roles: ['Test-Administrator'] } },
 	{ path: 'ta-dash/archive-schedule', component: ArchivedScheduleComponent, canActivate: [AuthGuard], data: { roles: ['Test-Administrator'] } },
-	{ path: 'emp-dash/non-mocks', component: NonMockComponent, canActivate: [AuthGuard], data: { roles: ['Employee'] } },
+	{ path: 'emp-dash/non-mock', component: NonMockComponent, canActivate: [AuthGuard], data: { roles: ['Employee'] } },
 	{ path: 'emp-dash', component: EmployeeComponent, canActivate: [AuthGuard], data: { roles: ['Employee'] } },
 	{ path: 'emp-dash/quiz/take-quiz', component: TakeQuizComponent, canActivate: [AuthGuard], data: { roles: ['Employee'] } },
 	{ path: 'emp-dash/quiz/result', component: ResultComponent, canActivate: [AuthGuard], data: { roles: ['Employee'] } },

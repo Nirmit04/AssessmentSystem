@@ -60,7 +60,9 @@ export class DetailedReportComponent implements OnInit {
       pagingType: 'full_numbers',
       pageLength: 10,
     };
-    this.loadDetail();
+    setTimeout(() => {
+			this.loadDetail();
+		}, 0);
   }
 
   loadDetail() {
