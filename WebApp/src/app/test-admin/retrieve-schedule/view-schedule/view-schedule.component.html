@@ -1,10 +1,9 @@
-<mat-dialog-content>
   <button type="button " [mat-dialog-close] class="btn btn-danger pos">
     <mat-icon>clear</mat-icon>
   </button>
   <strong>
-    <h5 *ngIf="!service.deleteUserVisibility" class="card-title">{{label}}</h5>
-    <h5 *ngIf="service.deleteUserVisibility" class="card-title">Delete User</h5>
+    <h3 *ngIf="!service.deleteUserVisibility" class="card-title">{{label}}</h3>
+    <h3 *ngIf="service.deleteUserVisibility" class="card-title">Delete User</h3>
   </strong><br /><br />
   <ng-container *ngIf="!service.deleteUserVisibility">
     <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
@@ -38,30 +37,33 @@
       </div>
     </form>
   </ng-container>
-  <table class="table table-bordered table-striped">
-    <thead class="thead-dark">
-      <th scope="col">#User ID</th>
-      <th scope="col">UserName</th>
-      <th scope="col">E-Mail</th>
-      <th scope="col">Taken</th>
-      <th [hidden]="!service.deleteUserVisibility" scope="col">Action</th>
-    </thead>
-    <tbody>
-      <ng-container *ngFor="let user of usersList;index as i">
-        <tr>
-          <th>{{i+1}}</th>
-          <td>{{user.FirstName}}&nbsp;{{user.LastName}}</td>
-          <td>{{user.Email}}</td>
-          <td>
-            <i *ngIf="!user.QuizTaken" class="fa fa-close" aria-hidden="true" style="color:red"></i>
-            <i *ngIf="user.QuizTaken" class="fa fa-check" aria-hidden="true" style="color:green"></i>
-          </td>
-          <td [hidden]="!service.deleteUserVisibility">
-            <button class="btn text-danger" [hidden]="user.QuizTaken" (click)="deleteUserFromSchedule(user.Id)"><i
-                class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
-          </td>
-        </tr>
-      </ng-container>
-    </tbody>
-  </table>
-</mat-dialog-content>
+  <mat-dialog-content>
+    <ng-container *ngIf="usersList != null">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <th scope="col">#User ID</th>
+          <th scope="col">UserName</th>
+          <th scope="col">E-Mail</th>
+          <th scope="col">Taken</th>
+          <th [hidden]="!service.deleteUserVisibility" scope="col">Action</th>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let user of usersList;index as i">
+            <tr>
+              <th>{{i+1}}</th>
+              <td>{{user.FirstName}}&nbsp;{{user.LastName}}</td>
+              <td>{{user.Email}}</td>
+              <td>
+                <i *ngIf="!user.QuizTaken" class="fa fa-close" aria-hidden="true" style="color:red"></i>
+                <i *ngIf="user.QuizTaken" class="fa fa-check" aria-hidden="true" style="color:green"></i>
+              </td>
+              <td [hidden]="!service.deleteUserVisibility">
+                <button class="btn text-danger" [hidden]="user.QuizTaken" (click)="deleteUserFromSchedule(user.Id)"><i
+                    class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </ng-container>
+  </mat-dialog-content>

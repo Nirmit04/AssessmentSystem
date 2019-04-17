@@ -1,68 +1,30 @@
 <app-loader></app-loader>
 <app-main-nav>
-  <!-- <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
-    class="row-border hover table table-bordered table-striped">
-    <thead class="thead-dark">
-      <tr>
-        <th>#S. No.</th>
-        <th>Question</th>
-        <th>Question Type</th>
-        <th>Subject</th>
-        <th>Difficulty Level</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody> 
-      <tr *ngFor="let ques of questionList; index as i;">
-        <th>{{i+1}}</th>
-        <td (click)="viewUserQues(ques.QuestionId,i+1)">{{ques.QuestionStatement}}</td>
-        <td (click)="viewUserQues(ques.QuestionId,i+1)">{{ques.QuestionType}}</td>
-        <td (click)="viewUserQues(ques.QuestionId,i+1)">{{ques.SubjectName}}</td>
-        <td (click)="viewUserQues(ques.QuestionId,i+1)">{{ques.Difficulty}}</td>
-        <td>
-          <a class="btn btn-sm btn-info text-white" (click)="editUserQues(ques.QuestionId,i+1)"><i aria-hidden="true"
-              class="fa fa-pencil"></i></a>
-          <a class="btn btn-sm btn-danger text-white" (click)="deleteQues(ques.QuestionId)"><i aria-hidden="true"
-              class="fa fa-trash"></i></a>
-        </td>
-      </tr>
-    </tbody>
-  </table> -->
-
-  <p-table [columns]="cols" [value]="questionList" [paginator]="true" [rows]="10" #dt>
-      
+  <p-table [columns]="cols" [value]="questionList" [paginator]="true" [rows]="6" #dt [responsive]="true">
       <ng-template pTemplate="caption">
-        Questions List
+        <h3>Question List</h3>
         <div style="text-align: right">        
             <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
             <input type="text" pInputText size="30" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'startsWith')" style="width:auto">
         </div>
       </ng-template>
-      <ng-template pTemplate="header">
+      <ng-template class="sample" pTemplate="header">
         <tr>
-          <!-- <th>#S. No.</th>
-          <th>Question</th>
-          <th>Question Type</th>
-          <th>Subject</th>
-          <th>Difficulty Level</th> -->
-          <th *ngFor="let col of cols" [pSortableColumn]="col.field">
+          <th style="background-color:#000000; color:#ffffff;">S NO</th>
+          <th *ngFor="let col of colss" style="background-color:#000000; color:#ffffff; width: 50%">
             {{col.header}}
           </th>
-          <th>Action</th>
+          <th *ngFor="let col of cols" [pSortableColumn]="col.field" style="background-color:#000000; color:#ffffff ">
+            {{col.header}}
+          </th>
+          <th style="background-color:#000000; color:#ffffff ">Action</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-i="rowIndex" let-rowData let-columns="columns">
         
-        <!-- <tr *ngFor="let ques of questionList;" >
-          
-          <th>{{ques.SerialNumber}}</th>
-          <td (click)="viewUserQues(ques.QuestionId,ques.SerialNumber)">{{ques.QuestionStatement}}</td>
-          <td (click)="viewuserQues(ques.QuestionId,ques.SerialNumber)">{{ques.QuestionType}}</td>
-          <td (click)="viewUserQues(ques.QuestionId,ques.SerialNumber)">{{ques.SubjectName}}</td>
-          <td (click)="viewUserQues(ques.QuestionId,ques.SerialNumber)">{{ques.Difficulty}}</td> -->
-  
-  
-        <tr [pSelectableRow]="rowData"> 
+        <tr [pSelectableRow]="rowData">
+          <td (click)="viewUserQues(rowData.QuestionId,rowData.SerialNumber)">{{rowData.SerialNumber}}</td>
+          <td (click)="viewUserQues(rowData.QuestionId,rowData.SerialNumber)">{{rowData.QuestionStatement}}</td>
           <td *ngFor="let col of columns;" (click)="viewUserQues(rowData.QuestionId,rowData.SerialNumber)">
             {{rowData[col.field]}}
           </td>

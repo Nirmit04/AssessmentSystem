@@ -1,4 +1,5 @@
 export class QuizModel {
+    SerialNumber?: Number;
     QuizId: number;
     Difficulty: string;
     TotalQuestions?: number;

@@ -173,12 +173,15 @@ export class TakeQuizComponent implements OnInit {
 	Submit() {
 		if (confirm('Do you want to submit the quiz?')) {
 			this.totaltime = (this.service.hours * 60 * 60 + this.service.minutes * 60) - (this.hours * 60 * 60 + this.minutes * 60 + this.seconds);
+			console.log(this.totaltime);
 			this.service.hours = parseInt((this.totaltime / 3600).toPrecision(1));
+			console.log(this.service.hours);
 			this.totaltime = this.totaltime % 3600;
 			this.service.minutes = parseInt((this.totaltime / 60).toPrecision(1));
+			console.log(this.service.minutes);
 			this.totaltime = this.totaltime % 60;
 			this.service.seconds = this.totaltime;
-			console.log(this.service.minutes);
+			console.log(this.service.seconds);
 			this.router.navigate(['/emp-dash/quiz/result']);
 		}
 

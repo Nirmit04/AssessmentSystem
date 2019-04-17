@@ -31,7 +31,10 @@ export class RetrieveScheduleComponent implements OnInit {
 			pagingType: 'full_numbers',
 			pageLength: 10,
 		};
-		this.loadSchedule();
+		setTimeout(() => {
+			this.loadSchedule();
+		}, 0);
+
 	}
 
 	loadSchedule() {
@@ -77,14 +80,14 @@ export class RetrieveScheduleComponent implements OnInit {
 		dialogConfig.data = scheduleid;
 		this.service.formdata = this.scheduleList[arrayindex - 1];
 		this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe((res: any) => {
-			this.loadSchedule();
-			this.dtTrigger.unsubscribe();
-			this.dtTrigger.next();
-		});
+		this.loadSchedule();
+		this.dtTrigger.unsubscribe();
+		this.dtTrigger.next();
+	});
 	}
 
-	ngOnDestroy() {
-		this.dtTrigger.unsubscribe();
-	}
+ngOnDestroy() {
+	this.dtTrigger.unsubscribe();
+}
 
 }

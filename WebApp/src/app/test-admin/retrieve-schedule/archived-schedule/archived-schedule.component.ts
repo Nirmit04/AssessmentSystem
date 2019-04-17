@@ -24,7 +24,9 @@ export class ArchivedScheduleComponent implements OnInit {
       pagingType: 'full_numbers',
       pageLength: 10,
     };
-    this.loadArchivedSchedules();
+    setTimeout(() => {
+      this.loadArchivedSchedules();
+		}, 0);
   }
 
   loadArchivedSchedules() {
