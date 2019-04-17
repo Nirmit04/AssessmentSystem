@@ -3,9 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  apiURl: 'http://495339d5.ngrok.io/api/',
-  imgURl: 'http://495339d5.ngrok.io/Images/'
+	production: false,
+	apiURl: 'http://f5fc26c6.ngrok.io/api/',
+	imgURl: 'http://f5fc26c6.ngrok.io/Images/'
 };
 
 /*

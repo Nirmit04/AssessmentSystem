@@ -5,10 +5,11 @@ td {
 mat-dialog-content {
 	position: relative;
 }
+
 .pos {
 	position: absolute;
-	right:13%;
-	top:20%;
+	right: 0.5%;
+	top: 1%;
 	z-index: 9999;
 	width: 35px;
 	height: 35px;
@@ -17,6 +18,6 @@ mat-icon {
 	width: 30px;
 	height: 30px;
 	position: absolute;
-	left: 10%;
+	left: 6%;
 	top: 10%;
 }
