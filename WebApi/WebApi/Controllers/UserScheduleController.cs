@@ -8,15 +8,25 @@ using WebApi.Models;
 
 namespace WebApi.Controllers
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class UserScheduleController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private HelperClass helper = new HelperClass();
 
+        /// <summary>
+        /// Returns the users which are not present/scheduled in a particular Schedule
+        /// </summary>
+        /// <param name="QuizScheduleId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/UserSchedule/UserNotAssignedQuiz/{QuizScheduleId}")]
         public IHttpActionResult UserNotAssignedQuiz(int QuizScheduleId)
         {
+            if(!helper.ValidateQuizSchedule(QuizScheduleId))
+            {
+                return BadRequest("Invalid Id");
+            }
             int QuizId = db.QuizSchedules.FirstOrDefault(z => z.QuizScheduleId == QuizScheduleId).QuizId;
             var userIds = db.UserSchedules.AsEnumerable()
                 .Where(x => x.QuizId == QuizId)
@@ -36,10 +46,19 @@ namespace WebApi.Controllers
             return Ok(users);
         }
 
+        /// <summary>
+        /// Returns all the users which are assigned in that Schedule
+        /// </summary>
+        /// <param name="QuizScheduleId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/UserSchedule/UserAssignedQuiz/{QuizScheduleId}")]
         public IHttpActionResult UserAssignedQuiz(int QuizScheduleId)
         {
+            if (!helper.ValidateQuizSchedule(QuizScheduleId))
+            {
+                return BadRequest("Invalid Id");
+            }
             var userScheduleUserIds = db.UserSchedules.AsEnumerable()
                 .Where(x => x.QuizScheduleId == QuizScheduleId)
                 .Select(y => y.UserId).ToList();
@@ -56,13 +75,27 @@ namespace WebApi.Controllers
                     z.GoogleId,
                     QuizTaken = db.UserSchedules.FirstOrDefault(x => x.UserId == z.Id && x.QuizScheduleId == QuizScheduleId).Taken
                 }).ToList();
-            return Ok(users);
+            if (users.Count() > 0)
+                return Ok(users);
+            else
+                return Ok("null");
+
         }
 
+        /// <summary>
+        /// Used to remove a user from a schedule only if the user has not taken the Scheduled Quiz
+        /// </summary>
+        /// <param name="QuizScheduleId"></param>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("api/UserSchedule/UserDelete/{QuizScheduleId}/{UserId}")]
         public IHttpActionResult UserDelete(int QuizScheduleId, string UserId)
         {
+            if ((!helper.ValidateQuizSchedule(QuizScheduleId)) || (!helper.ValidateUserId(UserId)))
+            {
+                return BadRequest("Invalid Id");
+            }
             int QuizId = db.QuizSchedules.FirstOrDefault(x => x.QuizScheduleId == QuizScheduleId).QuizId;
             UserSchedule user = db.UserSchedules.SingleOrDefault(x => x.QuizScheduleId == QuizScheduleId && x.UserId == UserId && x.QuizId == QuizId);
             if (user.Taken == false)
@@ -77,10 +110,20 @@ namespace WebApi.Controllers
             }   
         }
 
+        /// <summary>
+        /// Adds new user in a Schedule 
+        /// </summary>
+        /// <param name="QuizScheduleId"></param>
+        /// <param name="UserIds"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("api/UserSchedule/UserAdd/{QuizScheduleId}")]
         public IHttpActionResult UserAdd(int QuizScheduleId, [FromBody] string[] UserIds)
         {
+            if (!helper.ValidateQuizSchedule(QuizScheduleId))
+            {
+                return BadRequest("Invalid Id");
+            }
             UserSchedule userSchedule = new UserSchedule();
             userSchedule.QuizScheduleId = QuizScheduleId;
             userSchedule.QuizId = db.QuizSchedules.FirstOrDefault(x => x.QuizScheduleId == QuizScheduleId).QuizId;
@@ -96,17 +139,32 @@ namespace WebApi.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Changes the quiz status of that user to attempted
+        /// </summary>
+        /// <param name="QuizScheduleId"></param>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("api/UserSchedule/QuizAttemptStatus/{QuizScheduleId}/{UserId}")]
         public IHttpActionResult QuizAttemptStatus(int QuizScheduleId, string UserId)
         {
+            if ((!helper.ValidateQuizSchedule(QuizScheduleId)) || (!helper.ValidateUserId(UserId)))
+            {
+                return BadRequest("Invalid Id");
+            }
             var user = db.UserSchedules.SingleOrDefault(x => x.QuizScheduleId == QuizScheduleId && x.UserId == UserId);
             user.Taken = true;
             db.SaveChanges();
             return Ok();
         }
 
-
+        /// <summary>
+        /// Returns UserStatus of a particular QuizSchedule
+        /// </summary>
+        /// <param name="QuizScheduleId"></param>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/UserSchedule/Status/{ScheduleId}/{UserId}")]
         public IHttpActionResult UserStatus(int QuizScheduleId, string UserId)
@@ -122,6 +180,12 @@ namespace WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Validates whether the user is permitted to attempt a quiz
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <param name="QuizId"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("api/UserSchedule/ValidQuizTaker/{UserId}")]
         public IHttpActionResult ValidQuizTaker(string UserId, [FromBody]int QuizId)

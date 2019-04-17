@@ -10,9 +10,11 @@ using WebApi.Models;
 
 namespace WebApi.Controllers
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class SubjectController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        HelperClass helper = new HelperClass();
 
         /// <summary>
         /// Returns all the Tags/Subjects available
@@ -91,6 +93,10 @@ namespace WebApi.Controllers
         [Route("api/Subject/GetSubjects/{UserId}")]
         public IHttpActionResult GetSubjectAll(string UserId)
         {
+            if(!helper.ValidateUserId(UserId))
+            {
+                return BadRequest("Invalid Id");
+            }
             var subject = db.Subjects.Where(x=>x.CreatedBy==UserId).
                 Select(x => new
                 {
