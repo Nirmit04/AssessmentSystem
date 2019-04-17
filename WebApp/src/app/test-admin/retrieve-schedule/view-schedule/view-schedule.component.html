@@ -1,43 +1,42 @@
+<button type="button " [mat-dialog-close] class="btn btn-danger pos">
+  <mat-icon>clear</mat-icon>
+</button>
+<strong style="text-align: center">
+  <h3 class="card-title">{{label}}</h3>
+</strong><br /><br />
+<ng-container *ngIf="!service.deleteUserVisibility">
+  <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+    <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="this.CCreatedBy">
+    <input type="hidden" name="QuizId" #QuizId="ngModel" [(ngModel)]="service.formdata.QuizId">
+    <input type="hidden" name="ArchiveStatus" #ArchiveStatus="ngModel" [(ngModel)]="service.formdata.ArchiveStatus">
+    <div class="form-group col-md-6">
+      <label>Start Date Time:
+        <input type="datetime-local" (focusout)="checkStartDate(StartDateTime)" [min]="date" required [readonly]="bool"
+          name="StartDateTime" #StartDateTime="ngModel" [(ngModel)]="service.formdata.StartDateTime">
+        <owl-date-time [pickerType]="'both'" #dt1></owl-date-time>
+        <div class="validation-error" *ngIf="StartDateTime.invalid && StartDateTime.touched || startDateValid">This
+          field is
+          wrong and required.
+        </div>
+      </label>
+    </div>
+    <div class="form-group col-md-6">
+      <label>End Date Time:
+        <input type="datetime-local" (focusout)="checkEndDate(EndDateTime)" [min]="q1" required [readonly]="bool"
+          name="EndDateTime" #EndDateTime="ngModel" [(ngModel)]="service.formdata.EndDateTime">
+        <div class="validation-error" *ngIf="EndDateTime.invalid && EndDateTime.touched || endDateValid">This field is
+          Wrong.
+        </div>
+      </label>
+    </div>
+    <div class="form-group">
+      <button [hidden]="bool" style="margin:0 5%" type="submit" [disabled]="form.invalid || bool"
+        class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</ng-container>
 <mat-dialog-content>
-  <button type="button " [mat-dialog-close] class="btn btn-danger pos">
-    <mat-icon>clear</mat-icon>
-  </button>
-  <strong>
-    <h5 class="card-title">{{label}}</h5>
-  </strong><br/><br/>
-  <ng-container *ngIf="!service.deleteUserVisibility">
-    <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
-      <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="this.CCreatedBy">
-      <input type="hidden" name="QuizId" #QuizId="ngModel" [(ngModel)]="service.formdata.QuizId">
-      <input type="hidden" name="ArchiveStatus" #ArchiveStatus="ngModel" [(ngModel)]="service.formdata.ArchiveStatus">
-      <div class="form-group col-md-6">
-        <label>Start Date Time:
-          <input type="datetime-local" (focusout)="checkStartDate(StartDateTime)" [min]="date" required
-            [readonly]="bool" name="StartDateTime" #StartDateTime="ngModel"
-            [(ngModel)]="service.formdata.StartDateTime">
-          <owl-date-time [pickerType]="'both'" #dt1></owl-date-time>
-          <div class="validation-error" *ngIf="StartDateTime.invalid && StartDateTime.touched || startDateValid">This
-            field is
-            wrong and required.
-          </div>
-        </label>
-      </div>
-      <div class="form-group col-md-6">
-        <label>End Date Time:
-          <input type="datetime-local" (focusout)="checkEndDate(EndDateTime)" [min]="q1" required [readonly]="bool"
-            name="EndDateTime" #EndDateTime="ngModel" [(ngModel)]="service.formdata.EndDateTime">
-          <div class="validation-error" *ngIf="EndDateTime.invalid && EndDateTime.touched || endDateValid">This field is
-            Wrong.
-          </div>
-        </label>
-      </div>
-      <div class="form-group">
-        <button [hidden]="bool" style="margin:0 5%" type="submit" [disabled]="form.invalid || bool"
-          class="btn btn-primary">Submit</button>
-      </div>
-    </form>
-  </ng-container>
-  <ng-container *ngIf="usersList!=null">
+  <ng-container *ngIf="usersList != 'null'">
     <table class="table table-bordered table-striped">
       <thead class="thead-dark">
         <th scope="col">#User ID</th>
@@ -53,8 +52,8 @@
             <td>{{user.FirstName}}&nbsp;{{user.LastName}}</td>
             <td>{{user.Email}}</td>
             <td>
-              <i *ngIf="user.QuizTaken" class="fa fa-close" aria-hidden="true" style="color:red"></i>
-              <i *ngIf="!user.QuizTaken" class="fa fa-check" aria-hidden="true" style="color:green"></i>
+              <i *ngIf="!user.QuizTaken" class="fa fa-close" aria-hidden="true" style="color:red"></i>
+              <i *ngIf="user.QuizTaken" class="fa fa-check" aria-hidden="true" style="color:green"></i>
             </td>
             <td [hidden]="!service.deleteUserVisibility">
               <button class="btn text-danger" [hidden]="user.QuizTaken" (click)="deleteUserFromSchedule(user.Id)"><i

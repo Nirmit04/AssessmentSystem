@@ -30,7 +30,9 @@ export class TagComponent implements OnInit {
 			pagingType: 'full_numbers',
 			pageLength: 10,
 		};
-		this.loadTags();
+		setTimeout(() => {
+			this.loadTags();
+		}, 0);
 	}
 
 	loadTags() {

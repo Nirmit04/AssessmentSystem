@@ -28,7 +28,9 @@ export class ArchiveQuizComponent implements OnInit {
 			pagingType: 'full_numbers',
 			pageLength: 10,
 		};
-		this.loadQuiz();
+		setTimeout(() => {
+			this.loadQuiz();
+		}, 0);
 	}
 
 	loadQuiz() {

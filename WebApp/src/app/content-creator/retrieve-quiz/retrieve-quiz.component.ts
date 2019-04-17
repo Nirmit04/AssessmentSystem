@@ -37,7 +37,9 @@ export class RetrieveQuizComponent implements OnInit {
 			pageLength: 10,
 			responsive: true,
 		};
-		this.loadQuiz();
+		setTimeout(() => {
+			this.loadQuiz();
+		}, 0);
 	}
 
 	loadQuiz() {

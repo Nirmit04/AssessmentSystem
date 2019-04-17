@@ -28,7 +28,9 @@ export class AddUserComponent implements OnInit {
       pagingType: 'full_numbers',
       pageLength: 10,
     };
-    this.loadSchedule();
+    setTimeout(() => {
+      this.loadSchedule();
+		}, 0);
   }
 
   loadSchedule() {
@@ -61,7 +63,6 @@ export class AddUserComponent implements OnInit {
         this.toastr.error('No user Available to Delete');
       }
       else {
-        // dialogConfig.data = res;
         dialogConfig.data = scheduleId;
         this.service.deleteUserVisibility = true;
         this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe(() => {
