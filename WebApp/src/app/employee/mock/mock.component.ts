@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { EmployeeService } from '../shared/employee.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-mock',
   templateUrl: './mock.component.html',
@@ -18,6 +19,8 @@ export class MockComponent implements OnInit {
   time: any[];
 
   mockList: any[];
+  cols: any[];
+  i: number;
 
   constructor(private service: EmployeeService,
     private toastr: ToastrService,
@@ -29,20 +32,37 @@ export class MockComponent implements OnInit {
       pageLength: 10,
     };
 
+<<<<<<< HEAD
     setTimeout(() => {
       this.getMockList();
 		}, 0);
+=======
+    this.cols = [
+      { field: 'SerialNumber', header: 'S NO' },
+      { field: 'QuizName', header: 'Quiz Name' },
+      { field: 'Subject', header: 'Subject' },
+      { field: 'Difficulty', header: 'Difficulty Level' },
+      { field: 'TotalQuestions', header: 'Total Questions' },
+      { field: 'TotalMarks', header: 'Total Marks' },
+      { field: 'QuizTime', header: 'Duration' }
+    ];
+    this.getMockList();
+>>>>>>> 9c973a528f744ed3e6d5a9e1e4e7dc16c54e262c
   }
 
   getMockList() {
     this.service.getListOfMockQuizzes().subscribe((res: any) => {
       this.mockList = res as any[];
-      this.dtTrigger.next();
+      // this.dtTrigger.next();
+      for (this.i = 1; this.i <= this.mockList.length; this.i++) {
+        this.mockList[this.i - 1].SerialNumber = this.i;
+      }
     });
   }
 
-  takeMockQuiz(QuizId: number,QuizName:string, index: number) {
+  takeMockQuiz(QuizId: number, QuizName: string, index: number) {
     this.service.getMockQuesOfQuiz(QuizId).subscribe((res: any) => {
+      console.log(res);
       this.service.quizName = QuizName;
       this.time = this.mockList[index].QuizTime.split(":");
       this.service.hours = parseInt(this.time[0]);

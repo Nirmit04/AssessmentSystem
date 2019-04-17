@@ -17,6 +17,9 @@ export class NonMockComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   time: any[];
 
+  cols: any[];
+	i: number;
+
   constructor(private service: EmployeeService,
     private router: Router) { }
 
@@ -26,22 +29,34 @@ export class NonMockComponent implements OnInit {
 		}, 0);
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 10,
+      pageLength: 10, 
     };
+    this.cols = [
+			{ field: 'SerialNumber', header: 'S NO' },
+			{ field: 'QuizName', header: 'Quiz' },
+			{ field: 'StartDateTime', header: 'Start' },
+			{ field: 'EndDateTime', header: 'End' },
+			{ field: 'QuizTime', header: 'Time Taken' }
+		];
   }
 
   loadNonMockSchedules() {
     this.service.getNonMocks().subscribe((res: any) => {
       console.log(res);
           this.nonMockScheduleList = res as any[];
-      this.dtTrigger.next();
+      // this.dtTrigger.next();
+      for (this.i = 1; this.i <= this.nonMockScheduleList.length; this.i++) {
+				this.nonMockScheduleList[this.i - 1].SerialNumber = this.i;
+			}
     });
   }
   takeQuiz(QuizId: number, Id: number, QuizName:string, index: number) {
     this.service.getQuesOfQuiz(QuizId).subscribe((res: any) => {
       this.service.quizName = QuizName;
       this.service.quesOfQuiz = res as any[];
-      this.time = this.nonMockScheduleList[index].QuizTime.split(":");
+      console.log(index);
+      console.log(this.nonMockScheduleList[index-1].QuizTime);
+      this.time = this.nonMockScheduleList[index-1].QuizTime.split(":");
       this.service.hours = parseInt(this.time[0]);
       this.service.minutes = parseInt(this.time[1]);
       this.service.QuizScheduleId = Id;

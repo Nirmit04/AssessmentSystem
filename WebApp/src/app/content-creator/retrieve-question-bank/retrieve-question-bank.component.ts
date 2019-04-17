@@ -6,13 +6,21 @@ import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { UpdateQuestionComponent } from '../update-question/update-question.component';
 import { Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
+import { ViewEncapsulation } from "@angular/core";
 
 declare var $: any;
 
 @Component({
 	selector: 'app-retrieve-question-bank',
+	styles: [`
+		.sample {
+			background-color: #000000 !important;
+			color: #ffffff !important;
+		}
+	`],
 	templateUrl: './retrieve-question-bank.component.html',
-	styleUrls: ['./retrieve-question-bank.component.css']
+	styleUrls: ['./retrieve-question-bank.component.css'],
+	encapsulation : ViewEncapsulation.None
 })
 export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 
@@ -22,6 +30,7 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 	subscription: Subscription;
 
 	cols: any[];
+	colss: any[];
 	i: number;
 
 	constructor(private service: ContentCreatorServiceService,
@@ -38,9 +47,10 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 			this.getQuesOfUser(localStorage.getItem('uid'));
 		}, 0);
 
+		this.colss = [
+			{ field: 'QuestionStatement', header: 'Question' }
+		]
 		this.cols = [
-			{ field: 'SerialNumber', header: 'S NO' },
-			{ field: 'QuestionStatement', header: 'Question' },
 			{ field: 'QuestionType', header: 'Question Type' },
 			{ field: 'SubjectName', header: 'Subject' },
 			{ field: 'Difficulty', header: 'Difficulty Level' }
