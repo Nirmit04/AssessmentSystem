@@ -21,6 +21,11 @@ namespace WebApi.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         private HelperClass helper = new HelperClass();
 
+        /// <summary>
+        /// Registers a new User(Employee)
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [Route("api/User/Register")]
@@ -55,39 +60,44 @@ namespace WebApi.Controllers
             }
             
         }
+        #region RoleAuthorization
+        //[HttpGet]
+        //[Authorize(Roles = "Content-Creator")]
+        //[Route("api/ForContent-CreatorRole")]
+        //public string ForContentCreator()
+        //{
+        //    return "For Content-Creator Role";
+        //}
 
-        [HttpGet]
-        [Authorize(Roles = "Content-Creator")]
-        [Route("api/ForContent-CreatorRole")]
-        public string ForContentCreator()
-        {
-            return "For Content-Creator Role";
-        }
+        //[HttpGet]
+        //[Authorize(Roles = "Employee")]
+        //[Route("EmployeeRole")]
+        //public string Employee()
+        //{
+        //    return "For Employee Role";
+        //}
 
-        [HttpGet]
-        [Authorize(Roles = "Employee")]
-        [Route("EmployeeRole")]
-        public string Employee()
-        {
-            return "For Employee Role";
-        }
+        //[HttpGet]
+        //[Authorize(Roles = "Reporting-User")]
+        //[Route("ReportingUser")]
+        //public string Intern()
+        //{
+        //    return "For Reporting-User Role";
+        //}
 
-        [HttpGet]
-        [Authorize(Roles = "Reporting-User")]
-        [Route("ReportingUser")]
-        public string Intern()
-        {
-            return "For Reporting-User Role";
-        }
+        //[HttpGet]
+        //[Authorize(Roles = "Test-Administrator")]
+        //[Route("TestAdministratorRole")]
+        //public string TestAdministrator()
+        //{
+        //    return "For Test-Administrator Role";
+        //}
+        #endregion
 
-        [HttpGet]
-        [Authorize(Roles = "Test-Administrator")]
-        [Route("TestAdministratorRole")]
-        public string TestAdministrator()
-        {
-            return "For Test-Administrator Role";
-        }
-
+        /// <summary>
+        /// Returns all the user Registered
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/User/GetUserAll")]
         public IQueryable<Account> GetUserAll()
@@ -114,7 +124,11 @@ namespace WebApi.Controllers
             return userlist.AsQueryable();
         }
 
-
+        /// <summary>
+        /// Returns the details of a particular user
+        /// </summary>
+        /// <param name="email">Mandatory</param>
+        /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         [Route("api/GetUserDetails")]
@@ -138,11 +152,19 @@ namespace WebApi.Controllers
             return Ok(user);
         }
 
-
+        /// <summary>
+        /// Returns Quiz,Questions, Tags created by that user
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/Stats/{UserId}")]
         public IHttpActionResult UserStats(string UserId)
         {
+            if(!helper.ValidateUserId(UserId))
+            {
+                return BadRequest("Invalid Id");
+            }
             Dictionary<string, int> userStats = new Dictionary<string, int>();
             userStats.Add("QuizzesCreated", db.Quizs.Where(x => x.CreatedBy == UserId).Count());
             userStats.Add("QuestionsCreated", db.Questions.Where(x => x.CreatedBy == UserId).Count());
