@@ -26,6 +26,9 @@ export class RetrieveQuizComponent implements OnInit {
 	dtTrigger: Subject<QuizModel> = new Subject();
 	subscription: Subscription;
 
+	cols: any[];
+	i: number;
+
 	constructor(private service: ContentCreatorServiceService,
 		private router: Router,
 		private dialog: MatDialog,
@@ -37,13 +40,27 @@ export class RetrieveQuizComponent implements OnInit {
 			pageLength: 10,
 			responsive: true,
 		};
+		this.cols = [
+			{ field: 'SerialNumber', header: 'S NO' },
+			{ field: 'QuizName', header: 'Quiz Name' },
+			{ field: 'Subject', header: 'Subject' },
+			{ field: 'Difficulty', header: 'Difficulty' },
+			{ field: 'QuizType', header: 'Quiz Type' },
+			{ field: 'TotalQuestions', header: 'Total Questions' },
+			{ field: 'TotalMarks', header: 'Total Marks' },
+			{ field: 'QuizTime', header: 'Duration (HH:MM)' }
+
+		];
 		this.loadQuiz();
 	}
 
 	loadQuiz() {
 		this.service.getQuizzes().subscribe((res: any) => {
 			this.QuizList = res as QuizModel[];
-			this.dtTrigger.next();
+			// this.dtTrigger.next();
+			for (this.i = 1; this.i <= this.QuizList.length; this.i++) {
+				this.QuizList[this.i - 1].SerialNumber = this.i;
+			}
 		});
 	}
 
