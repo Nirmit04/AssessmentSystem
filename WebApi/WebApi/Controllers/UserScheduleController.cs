@@ -75,7 +75,11 @@ namespace WebApi.Controllers
                     z.GoogleId,
                     QuizTaken = db.UserSchedules.FirstOrDefault(x => x.UserId == z.Id && x.QuizScheduleId == QuizScheduleId).Taken
                 }).ToList();
-            return Ok(users);
+            if (users.Count() > 0)
+                return Ok(users);
+            else
+                return Ok("null");
+
         }
 
         /// <summary>

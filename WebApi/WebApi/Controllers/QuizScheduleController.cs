@@ -107,7 +107,7 @@ namespace WebApi.Controllers
             }
             else
             {
-                return BadRequest("Not All Users Have Similar Taken Status");
+                return Ok("Dissimilar Taken Status");
             }
         }
         /// <summary>
