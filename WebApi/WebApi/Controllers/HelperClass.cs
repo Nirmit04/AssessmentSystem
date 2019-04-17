@@ -20,6 +20,8 @@ namespace WebApi.Controllers
     public class HelperClass
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private static UserStore<ApplicationUser> userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
+        private UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(userStore);
 
         /// <summary>
         /// This method is to invite the users to take a Scheduled Quiz via Email
@@ -109,9 +111,7 @@ namespace WebApi.Controllers
             {
                 return null;
             }
-            var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
-            UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(userStore);
-            var roles = manager.GetRoles(userId);
+            var roles = userManager.GetRoles(userId);
             return roles.ToArray();
         }
 
