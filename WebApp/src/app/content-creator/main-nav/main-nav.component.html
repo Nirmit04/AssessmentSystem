@@ -4,25 +4,26 @@
     [opened]="!(isHandset$ | async)">
     <mat-toolbar><a mat-list-item routerLink="/cc-dash"><i class="fa fa-tachometer" aria-hidden="true"></i>
         Dashboard</a></mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item (click)="setQuestionType('Scheduled')"><i class="fa fa-code" aria-hidden="true"></i> Create
+    <mat-nav-list class="nav">
+      <ul class="nav">
+      <li><a mat-list-item (click)="setQuestionType('Scheduled')"><i class="fa fa-code" aria-hidden="true"></i> Create
         Scheduled
-        Question</a>
-      <a mat-list-item (click)="setQuestionType('Mock')"><i class="fa fa-code" aria-hidden="true"></i> Create Mock
-        Question</a>
-      <a mat-list-item routerLink="/cc-dash/quiz"><i class="fa fa-retweet" aria-hidden="true"></i> Create/Retrieve
-        Quiz</a>
-      <a mat-list-item routerLink="/cc-dash/tag"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Create / Edit
-        Tag</a>
-      <a mat-list-item routerLink="/cc-dash/rqbank"><i class="fa fa-check" aria-hidden="true"></i> Questions Created</a>
-      <a mat-list-item routerLink="/cc-dash/archive-quiz"><i class="fa fa-archive" aria-hidden="true"></i> Archive
-        Quizes</a>
+        Question</a></li>
+      <li><a mat-list-item (click)="setQuestionType('Mock')"><i class="fa fa-code" aria-hidden="true"></i> Create Mock
+        Question</a></li>
+      <li><a mat-list-item routerLink="/cc-dash/quiz"><i class="fa fa-retweet" aria-hidden="true"></i> Create/Retrieve
+        Quiz</a></li>
+      <li><a mat-list-item routerLink="/cc-dash/tag"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Create / Edit
+        Tag</a></li>
+      <li><a mat-list-item routerLink="/cc-dash/rqbank"><i class="fa fa-check" aria-hidden="true"></i> Questions Created</a></li>
+      <li><a mat-list-item routerLink="/cc-dash/archive-quiz"><i class="fa fa-archive" aria-hidden="true"></i> Archive
+        Quizes</a></li>
+      </ul>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar>
-      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <div class="input-group mb-6" style="width:37%; float: left;">

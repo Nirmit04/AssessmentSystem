@@ -11,7 +11,7 @@ import { ContentCreatorServiceService } from '../shared/content-creator-service.
 @Component({
 	selector: 'app-main-nav',
 	templateUrl: './main-nav.component.html',
-	styleUrls: ['./main-nav.component.css']
+	styleUrls: [ './main-nav.component.css' ]
 })
 export class MainNavComponent {
 	isHandset$: Observable<boolean> = this.breakpointObserver
@@ -23,30 +23,32 @@ export class MainNavComponent {
 		private breakpointObserver: BreakpointObserver,
 		private authService: AuthService,
 		private router: Router,
-		private service: ContentCreatorServiceService,
-	) { }
+		private service: ContentCreatorServiceService
+	) {}
 	Val: string[];
 	showSpinnner: boolean = true;
 
 	ngOnInit() {
+		$(document).on('click', 'ul.nav li', function() {
+			$(this).addClass('active').siblings().removeClass('active');
+		});
 		this.cRole = localStorage.getItem('currentRole');
 		if (localStorage.getItem('id') === null) {
-			this.router.navigate(['/login']);
+			this.router.navigate([ '/login' ]);
 		}
 		this.authService.authState.subscribe((user) => {
 			if (user != null) {
 			} else {
 				localStorage.clear();
-				this.router.navigate(['/login']);
+				this.router.navigate([ '/login' ]);
 			}
 		});
-
 	}
 
 	roleMatch(allowedRoles): boolean {
 		var isMatch = false;
 		var userRoles: string = localStorage.getItem('role');
-		allowedRoles.forEach(element => {
+		allowedRoles.forEach((element) => {
 			if (userRoles.indexOf(element) > -1) {
 				isMatch = true;
 				return false;
@@ -57,7 +59,7 @@ export class MainNavComponent {
 
 	aab(role: string) {
 		localStorage.setItem('currentRole', role);
-		this.router.navigate([role]);
+		this.router.navigate([ role ]);
 	}
 
 	logout() {
@@ -67,6 +69,6 @@ export class MainNavComponent {
 
 	setQuestionType(type: string) {
 		this.service.QuestionType = type;
-		this.router.navigate(['/cc-dash/create-question'])
+		this.router.navigate([ '/cc-dash/create-question' ]);
 	}
 }
