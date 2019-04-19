@@ -6,8 +6,8 @@ mat-dialog-content {
 }
 .pos {
 	position: absolute;
-	right: 12.5%;
-	top: 2%;
+	right: 0.5%;
+	top: 1%;
 	z-index: 9999;
 	width: 35px;
 	height: 35px;
