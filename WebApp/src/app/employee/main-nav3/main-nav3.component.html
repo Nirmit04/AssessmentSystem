@@ -27,7 +27,7 @@
         <select class="custom-select" #role id="inputGroupSelect01" [(ngModel)]="cRole" (change)="aab(role.value)">
           <option value="//emp-dash" *ngIf="roleMatch(['Employee'])">Employee</option>
           <option value="//cc-dash" *ngIf="roleMatch(['Content-Creator'])">Content-Creator</option>
-          <option value="//ta-dash" *ngIf="roleMatch(['Test-Administrator'])">Test-Admin</option>
+          <option value="//ta-dash" *ngIf="roleMatch(['Test-Administrator'])">Test-Administrator</option>
           <option value="//ru-dash" *ngIf="roleMatch(['Reporting-User'])">Reporting-User</option>
         </select>
       </div>
