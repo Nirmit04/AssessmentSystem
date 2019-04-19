@@ -7,7 +7,7 @@
     <mat-nav-list>
       <a mat-list-item routerLink="/ru-dash/ana-by-user"><i class="fa fa-code" aria-hidden="true"></i> Analytics By
         User</a>
-      <a mat-list-item routerLink="/ru-dash/ana-by-tag"><i class="fa fa-retweet" aria-hidden="true"></i> AnaLytics By
+      <a mat-list-item routerLink="/ru-dash/ana-by-tag"><i class="fa fa-retweet" aria-hidden="true"></i> Analytics By
         Tag</a>
       <a mat-list-item routerLink="/ru-dash/ana-by-quiz"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         Analytics By Quiz</a>
@@ -26,7 +26,7 @@
         <select class="custom-select" #role id="inputGroupSelect01" [(ngModel)]="cRole" (change)="aab(role.value)">
           <option value="//emp-dash" *ngIf="roleMatch(['Employee'])">Employee</option>
           <option value="//cc-dash" *ngIf="roleMatch(['Content-Creator'])">Content-Creator</option>
-          <option value="//ta-dash" *ngIf="roleMatch(['Test-Administrator'])">Test-Admin</option>
+          <option value="//ta-dash" *ngIf="roleMatch(['Test-Administrator'])">Test-Administrator</option>
           <option value="//ru-dash" *ngIf="roleMatch(['Reporting-User'])">Reporting-User</option>
         </select>
       </div>
