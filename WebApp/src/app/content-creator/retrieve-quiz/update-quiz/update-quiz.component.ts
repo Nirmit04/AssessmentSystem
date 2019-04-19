@@ -14,6 +14,9 @@ import { CreateQuestionsComponent } from '../../create-questions/create-question
 export class UpdateQuizComponent implements OnInit {
   UpdateQuizQuestionList: Question[];
   check: boolean;
+  difficulty = '';
+  subjectid: number = null;
+
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<UpdateQuizComponent>,
@@ -22,7 +25,10 @@ export class UpdateQuizComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit() {
+    console.log(this.data);
     this.UpdateQuizQuestionList = this.data;
+    this.difficulty = this.UpdateQuizQuestionList[0].Difficulty.toString();
+    this.subjectid = +(this.UpdateQuizQuestionList[0].SubjectId.toString());
     this.check = false;
   }
 
@@ -66,11 +72,9 @@ export class UpdateQuizComponent implements OnInit {
     dialogConfig.width = "70%";
     dialogConfig.disableClose = true;
     this.service.quesStat = true;
-    // const body: any{
-    //   SubjectId = 1,
-    //   Difficult = 'Beginner',
-    // };
-    // dialogConfig.data = body;
+    localStorage.setItem('Difficulty', this.difficulty);
+    localStorage.setItem('SubjectId', this.subjectid.toString());
+    dialogConfig.data = this.subjectid;
     let dialogRef = this.dialog.open(CreateQuestionsComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       this.check = false;
