@@ -19,6 +19,8 @@ export class TagComponent implements OnInit {
 	dtOptions: DataTables.Settings = {};
 	dtTrigger: Subject<TagModel> = new Subject();
 	subscription: Subscription;
+	cols: any[];
+	i: number;
 
 	constructor(private service: ContentCreatorServiceService,
 		private router: Router,
@@ -30,6 +32,11 @@ export class TagComponent implements OnInit {
 			pagingType: 'full_numbers',
 			pageLength: 10,
 		};
+		this.cols = [
+			{ field: 'SerialNumber', header: 'S NO' },
+			{ field: 'Name', header: 'Subject' },
+			{ field: 'Department', header: 'Department' }
+		];
 		setTimeout(() => {
 			this.loadTags();
 		}, 0);
@@ -38,8 +45,12 @@ export class TagComponent implements OnInit {
 	loadTags() {
 		this.service.getTags().subscribe((res: any) => {
 			this.tagList = res as TagModel[];
-			this.dtTrigger.unsubscribe();
-			this.dtTrigger.next();
+			// this.dtTrigger.unsubscribe();
+			// this.dtTrigger.next();
+			console.log(res);
+			for (this.i = 1; this.i <= this.tagList.length; this.i++) {
+				this.tagList[this.i - 1].SerialNumber = this.i;
+			}
 		});
 	}
 

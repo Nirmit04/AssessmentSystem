@@ -17,6 +17,8 @@ export class NonMockReportComponent implements OnInit {
   subscription: Subscription;
   bool: false;
   nonMockReportList: any[];
+  cols: any[];
+	i: number;
 
   constructor(private service: EmployeeService,
     private toastr: ToastrService,
@@ -29,6 +31,17 @@ export class NonMockReportComponent implements OnInit {
    //   responsive: true,
       // scrollX: true
     };
+    this.cols = [
+      { field: 'SerialNumber', header: 'S NO' },
+			{ field: 'QuizName', header: 'Quiz Name' },
+      { field: 'CorrectAnswers', header: 'Correct Answers' },
+      { field: 'WrongAnswers', header: 'Wrong Answers' },
+      { field: 'UnattemptedAnswers', header: 'Not Attempted' },
+      { field: 'MarksScored', header: 'Marks Scored' },
+      { field: 'TotalMarks', header: 'Total Marks' },
+      { field: 'Accuracy', header: 'Accuracy' },
+      { field: 'TimeTaken', header: 'Time Taken (hh:mm:ss)' }
+		];
     setTimeout(() => {
       this.getNonMockReport();
 		}, 0);
@@ -37,12 +50,15 @@ export class NonMockReportComponent implements OnInit {
   getNonMockReport() {
     this.service.getReportOfNonMockQuiz(localStorage.getItem('uid')).subscribe((res: any) => {
       this.nonMockReportList = res as any[];
-      this.dtTrigger.next();
+      // this.dtTrigger.next();
+      for (this.i = 1; this.i <= this.nonMockReportList.length; this.i++) {
+				this.nonMockReportList[this.i - 1].SerialNumber = this.i;
+			}
     });
   }
 
   viewDetailedReport(qid: number, index: number) {
-    this.service.data = this.nonMockReportList[index];
+    this.service.data = this.nonMockReportList[index-1];
     this.service.QuizId = qid;
     this.router.navigate(['/emp-dash/quiz/detailed-report']);
     this.dtTrigger.next();

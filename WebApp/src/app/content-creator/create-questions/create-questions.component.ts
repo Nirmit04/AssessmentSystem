@@ -14,11 +14,21 @@ export class CreateQuestionsComponent implements OnInit {
 
   public Subjects: Subject[];
   CCreatedBy = "";
+  boolea = false;
   constructor(public service: ContentCreatorServiceService, public toastr: ToastrService, private router: Router) { }
   ngOnInit() {
     this.resetForm();
-    if (this.service.QuestionType == null) {
-      this.router.navigate(['/cc-dash'])
+    if (localStorage.getItem('Difficulty') != null) {
+      this.boolea = true;
+      this.service.formData.SubjectId = localStorage.getItem('SubjectId');
+      console.log(this.service.quesStat);
+      this.service.formData.Difficulty = localStorage.getItem('Difficulty');
+      console.log(this.service.formData.Difficulty);
+    }
+    else {
+      if (this.service.QuestionType == null) {
+        this.router.navigate(['/cc-dash'])
+      }
     }
     this.service.retrieveSubjects().subscribe(res => {
       this.Subjects = res as Subject[];

@@ -16,6 +16,8 @@ export class MockReportComponent implements OnInit {
   subscription: Subscription;
   bool: false;
   mockReportList: any[];
+  cols: any[];
+	i: number;
 
   constructor(private service: EmployeeService,
     private toastr: ToastrService,
@@ -26,6 +28,17 @@ export class MockReportComponent implements OnInit {
       pagingType: 'full_numbers',
       pageLength: 10,
     };
+    this.cols = [
+      { field: 'SerialNumber', header: 'S NO' },
+			{ field: 'QuizName', header: 'Quiz Name' },
+      { field: 'CorrectAnswers', header: 'Correct Answers' },
+      { field: 'WrongAnswers', header: 'Wrong Answers' },
+      { field: 'UnattemptedAnswers', header: 'Not Attempted' },
+      { field: 'MarksScored', header: 'Marks Scored' },
+      { field: 'TotalMarks', header: 'Total Marks' },
+      { field: 'Accuracy', header: 'Accuracy' },
+      { field: 'TimeTaken', header: 'Time Taken (hh:mm:ss)' }
+		];
     setTimeout(() => {
 			this.getMockReport();
 		}, 0);
@@ -35,12 +48,15 @@ export class MockReportComponent implements OnInit {
   getMockReport() {
     this.service.getReportOfMockQuiz(localStorage.getItem('uid')).subscribe((res: any) => {
       this.mockReportList = res as any[];
-      this.dtTrigger.next();
+      // this.dtTrigger.next();
+      for (this.i = 1; this.i <= this.mockReportList.length; this.i++) {
+				this.mockReportList[this.i - 1].SerialNumber = this.i;
+			}
     });
   }
 
   viewDetailedReport(qid: number, index: number) {
-    this.service.data = this.mockReportList[index];
+    this.service.data = this.mockReportList[index-1];
     this.service.QuizId = qid;
     this.router.navigate(['/emp-dash/quiz/detailed-report']);
   }
