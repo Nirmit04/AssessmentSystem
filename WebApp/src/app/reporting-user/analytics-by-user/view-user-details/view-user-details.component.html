@@ -10,152 +10,186 @@
   </div>
   <br />
   <ng-container *ngIf="service.data!=null">
-    <div class="row">
-      <div style="display: block;
+    <div id="accordion">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" data-animation="false" data-target="#collapseOne"
+              aria-expanded="false" aria-controls="collapseOne">
+              Overall Analysis
+            </button>
+          </h5>
+        </div>
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body">
+            <div class="row">
+              <div style="display: block;
     margin-left: auto;
     margin-right: auto;
     width: 50%;" *ngIf="polarAreaChartData">
-        <div>
-          <div style="display: block">
-            <canvas baseChart [data]="polarAreaChartData" [labels]="polarAreaChartLabels" [legend]="polarAreaLegend"
-              [chartType]="polarAreaChartType" [options]="polarAreaChartOptions">
-            </canvas>
+                <div>
+                  <div style="display: block">
+                    <canvas baseChart [data]="polarAreaChartData" [labels]="polarAreaChartLabels"
+                      [legend]="polarAreaLegend" [chartType]="polarAreaChartType" [options]="polarAreaChartOptions">
+                    </canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div *ngIf="data2">
+              <div class="row">
+                <div class="col sm-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title apricot">Highest Score</h5>
+                      <label class="card-text">{{data2.HighestScore}}</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col sm-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <i style="float:right" class="fa fa-question-circle fa-lg tooltiphello banana" aria-hidden="true">
+                        <span><img src="assets/formulae/accuracy.jpg" alt="No picture Available!">
+                        </span>
+                      </i>
+                      <h5 class="card-title apricot">Accuracy</h5>
+                      <h6 class="card-text">{{data2.Accuracy}}</h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="col sm-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title apricot">Lowest Score</h5>
+                      <h6 class="card-text">{{data2.LowestScore}}</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col sm-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <i style="float:right" class="fa fa-question-circle fa-lg tooltiphello banana" aria-hidden="true">
+                        <span><img src="assets/formulae/performance.jpg" alt="maa chuda">
+                        </span>
+                      </i>
+                      <h5 class="card-title apricot">Performance</h5>
+                      <h6 class="card-text">{{data2.Performance}}</h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="col sm-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <i style="float:right" class="fa fa-question-circle fa-lg tooltiphello banana" aria-hidden="true">
+                        <span><img src="assets/formulae/average score.jpg" alt="maa chuda">
+                        </span>
+                      </i>
+                      <h5 class="card-title apricot">Average Score</h5>
+                      <h6 class="card-text">{{data2.AverageScore}}</h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="col sm-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title apricot">Total Quiz Count</h5>
+                      <h6 class="card-text">{{data2.TotalQuizCount}}</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col sm-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title apricot">Scheduled Quizzes Given</h5>
+                      <h6 class="card-text">{{data2.ScheduledCount}}</h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="col sm-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <i style="float:right" class="fa fa-question-circle fa-lg tooltiphello banana" aria-hidden="true">
+                        <span><img src="assets/formulae/prob.jpg" alt="maa chuda">
+                        </span>
+                      </i>
+                      <h5 class="card-title apricot">Probability of Correctness</h5>
+                      <h6 class="card-text">{{data2.ProbabilityAnsweringCorrectly}}</h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="col sm-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title apricot">Mock Quizzes Given</h5>
+                      <h6 class="card-text">{{data2.MockCount}}</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div *ngIf="data2">
-      <div class="row">
-        <div class="col sm-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title apricot">Highest Score</h5>
-              <label class="card-text">{{data2.HighestScore}}</label>
-            </div>
-          </div>
-        </div>
-        <div class="col sm-4">
-          <div class="card">
-            <div class="card-body">
-              <i style="float:right" class="fa fa-question-circle fa-lg tooltiphello banana" aria-hidden="true">
-                <span><img src="assets/formulae/accuracy.jpg" alt="maa chuda">
-                </span>
-              </i>
-              <h5 class="card-title apricot">Accuracy</h5>
-              <h6 class="card-text">{{data2.Accuracy}}</h6>
-            </div>
-          </div>
-        </div>
-        <div class="col sm-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title apricot">Lowest Score</h5>
-              <h6 class="card-text">{{data2.LowestScore}}</h6>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col sm-4">
-          <div class="card">
-            <div class="card-body">
-              <i style="float:right" class="fa fa-question-circle fa-lg tooltiphello banana" aria-hidden="true">
-                <span><img src="assets/formulae/performance.jpg" alt="maa chuda">
-                </span>
-              </i>
-              <h5 class="card-title apricot">Performance</h5>
-              <h6 class="card-text">{{data2.Performance}}</h6>
-            </div>
-          </div>
-        </div>
-        <div class="col sm-4">
-          <div class="card">
-            <div class="card-body">
-              <i style="float:right" class="fa fa-question-circle fa-lg tooltiphello banana" aria-hidden="true">
-                <span><img src="assets/formulae/average score.jpg" alt="maa chuda">
-                </span>
-              </i>
-              <h5 class="card-title apricot">Average Score</h5>
-              <h6 class="card-text">{{data2.AverageScore}}</h6>
-            </div>
-          </div>
-        </div>
-        <div class="col sm-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title apricot">Total Quiz Count</h5>
-              <h6 class="card-text">{{data2.TotalQuizCount}}</h6>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col sm-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title apricot">Scheduled Quizzes Given</h5>
-              <h6 class="card-text">{{data2.ScheduledCount}}</h6>
-            </div>
-          </div>
-        </div>
-        <div class="col sm-4">
-          <div class="card">
-            <div class="card-body">
-              <i style="float:right" class="fa fa-question-circle fa-lg tooltiphello banana" aria-hidden="true">
-                <span><img src="assets/formulae/prob.jpg" alt="maa chuda">
-                </span>
-              </i>
-              <h5 class="card-title apricot">Probability of Correctness</h5>
-              <h6 class="card-text">{{data2.ProbabilityAnsweringCorrectly}}</h6>
-            </div>
-          </div>
-        </div>
-        <div class="col sm-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title apricot">Mock Quizzes Given</h5>
-              <h6 class="card-text">{{data2.MockCount}}</h6>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
     </div>
   </ng-container>
+  <br /><br />
 
 
   <ng-container *ngIf="bool">
-    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
-      class="row-border hover table table-bordered table-striped">
-      <thead class="thead-dark">
-        <tr>
-          <th>#S No.</th>
-          <th>Quiz Name</th>
-          <th>Correct Answers</th>
-          <th>Wrong Answers</th>
-          <th>Unattempted Questions</th>
-          <th>Marks Scored</th>
-          <th>Total Marks</th>
-          <th>Accuracy</th>
-          <th>Time Taken (hh:mm:ss)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let quiz of scheduledReports; index as i;">
-          <th>{{i+1}}</th>
-          <td>{{quiz.QuizName}}</td>
-          <td>{{quiz.CorrectAnswers}}</td>
-          <td>{{quiz.WrongAnswers}}</td>
-          <td>{{quiz.UnattemptedAnswers}}</td>
-          <td>{{quiz.MarksScored}}</td>
-          <td>{{quiz.TotalMarks}}</td>
-          <td>{{quiz.Accuracy}}&nbsp;%</td>
-          <td>{{quiz.TimeTaken}}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div id="accordion">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" data-animation="false" data-target="#collapseTwo"
+              aria-expanded="false" aria-controls="collapseTwo">
+              Analysis per Quiz
+            </button>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+              class="row-border hover table table-bordered table-striped">
+              <thead class="thead-dark">
+                <tr>
+                  <th>#S No.</th>
+                  <th>Quiz Name</th>
+                  <th>Correct Answers</th>
+                  <th>Wrong Answers</th>
+                  <th>Unattempted Questions</th>
+                  <th>Marks Scored</th>
+                  <th>Total Marks</th>
+                  <th>Accuracy</th>
+                  <th>Time Taken (hh:mm:ss)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let quiz of scheduledReports; index as i;">
+                  <th>{{i+1}}</th>
+                  <td>{{quiz.QuizName}}</td>
+                  <td>{{quiz.CorrectAnswers}}</td>
+                  <td>{{quiz.WrongAnswers}}</td>
+                  <td>{{quiz.UnattemptedAnswers}}</td>
+                  <td>{{quiz.MarksScored}}</td>
+                  <td>{{quiz.TotalMarks}}</td>
+                  <td>{{quiz.Accuracy}}&nbsp;%</td>
+                  <td>{{quiz.TimeTaken}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </ng-container>
 
 </app-mainnav4>
