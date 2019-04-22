@@ -80,7 +80,7 @@
             </div>
             <div class="form-group col-md-6">
               <strong><label>Select Difficulty-Level</label></strong>
-              <select name="Difficulty" required #Difficulty="ngModel" [(ngModel)]="service.formData.Difficulty"
+              <select name="Difficulty"  required #Difficulty="ngModel" [(ngModel)]="service.formData.Difficulty"
                 class="form-control">
                 <option selected disabled value="">Choose an option...</option>
                 <option value="Beginner">Beginner</option>
@@ -179,7 +179,7 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label>Select Subject</label>
-              <select [disabled]="bool" name="SubjectId" required #SubjectId="ngModel" [(ngModel)]="service.formData.SubjectId"
+              <select [disabled]="bool" [disabled]="boolea" name="SubjectId" required #SubjectId="ngModel" [(ngModel)]="service.formData.SubjectId"
                 class="form-control">
                 <option selected disabled value="">Choose an option..</option>
                 <option *ngFor="let Subject of Subjects" value="{{Subject.SubjectId}}">{{Subject.Name}}</option>
@@ -188,7 +188,7 @@
             </div>
             <div class="form-group col-md-6">
               <label>Select Difficulty-Level</label>
-              <select [disabled]="bool" name="Difficulty" required #Difficulty="ngModel" [(ngModel)]="service.formData.Difficulty"
+              <select [disabled]="bool" [disabled]="boolea" name="Difficulty" required #Difficulty="ngModel" [(ngModel)]="service.formData.Difficulty"
                 class="form-control">
                 <option selected disabled value="">Choose an option...</option>
                 <option value="Beginner">Beginner</option>

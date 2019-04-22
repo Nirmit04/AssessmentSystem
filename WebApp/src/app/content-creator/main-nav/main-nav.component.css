@@ -1,3 +1,15 @@
+.nav li {
+	border-bottom: 3px solid rgba(0, 0, 0, 0);
+	width: 100%;
+}
+.nav li:hover {
+	border-bottom: 3px solid #eee;
+}
+.nav li.active {
+	border-bottom: 3px solid #eee;
+	width: 100%;
+	background-color: rgb(2, 93, 140);
+}
 .mat-sidenav-content {
 	overflow-x: hidden;
 }
@@ -49,7 +61,7 @@
 .log {
 	font-size: 12px;
 	cursor: pointer;
-	color:black !important;
+	color: black !important;
 }
 .mat-toolbar.mat-primary {
 	position: sticky;
