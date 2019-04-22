@@ -29,6 +29,7 @@ export class AddQuesInQuizComponent implements OnInit {
 
   ngOnInit() {
     this.questions = this.data;
+    console.log(this.questions);
     this.resetForm();
   }
 

@@ -124,4 +124,38 @@
       <br>
     </div>
   </ng-container>
+
+
+  <ng-container *ngIf="bool">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+      class="row-border hover table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>#S No.</th>
+          <th>Quiz Name</th>
+          <th>Correct Answers</th>
+          <th>Wrong Answers</th>
+          <th>Unattempted Questions</th>
+          <th>Marks Scored</th>
+          <th>Total Marks</th>
+          <th>Accuracy</th>
+          <th>Time Taken (hh:mm:ss)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let quiz of scheduledReports; index as i;">
+          <th>{{i+1}}</th>
+          <td>{{quiz.QuizName}}</td>
+          <td>{{quiz.CorrectAnswers}}</td>
+          <td>{{quiz.WrongAnswers}}</td>
+          <td>{{quiz.UnattemptedAnswers}}</td>
+          <td>{{quiz.MarksScored}}</td>
+          <td>{{quiz.TotalMarks}}</td>
+          <td>{{quiz.Accuracy}}&nbsp;%</td>
+          <td>{{quiz.TimeTaken}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+
 </app-mainnav4>
