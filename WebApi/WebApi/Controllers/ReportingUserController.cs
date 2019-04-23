@@ -33,16 +33,20 @@ namespace WebApi.Controllers
                     userAnalytics.TotalQuizCount = userReport.Count();
                     userAnalytics.HighestScore = userReport.Select(max => max.MarksScored).DefaultIfEmpty().Max();
                     userAnalytics.LowestScore = userReport.Select(max => max.MarksScored).DefaultIfEmpty().Min();
-                    decimal TotalPerformance = 0, TotalAccuracy = 0;
-                    int TotalCorrectAnswers = 0, TotalQuestions = 0;
+                    decimal TotalPerformance = 0, TotalAccuracy = 0, TotalQuestions = 0;
+                    int TotalCorrectAnswers = 0;
                     foreach (var item in userReport)
                     {
-                        int TotalQuizQuestions = (item.CorrectAnswers + item.WrongAnswers + item.UnattemptedAnswers);
+                        decimal TotalQuizQuestions = (item.CorrectAnswers + item.WrongAnswers + item.UnattemptedAnswers);
                         TotalPerformance += ((item.CorrectAnswers - (item.WrongAnswers + item.UnattemptedAnswers)) / TotalQuizQuestions);
+                        System.Diagnostics.Debug.WriteLine("Total"+TotalQuizQuestions);
+                        System.Diagnostics.Debug.WriteLine("Wrong"+(item.WrongAnswers + item.UnattemptedAnswers));
+                        System.Diagnostics.Debug.WriteLine("Correct"+item.CorrectAnswers);
                         TotalAccuracy += item.Accuracy;
                         TotalQuestions += TotalQuizQuestions;
                         TotalCorrectAnswers += item.CorrectAnswers;
                     }
+                    System.Diagnostics.Debug.WriteLine("Total per" + TotalPerformance);
                     try
                     {
                         userAnalytics.Performance = Math.Round(TotalPerformance / userAnalytics.TotalQuizCount, 2);

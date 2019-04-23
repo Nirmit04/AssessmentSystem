@@ -95,7 +95,7 @@ namespace WebApi.Controllers
             var quizSchedule = db.QuizSchedules.Find(QuizScheduleId);
             if(!helper.ValidateQuizSchedule(QuizScheduleId))
             {
-                return BadRequest("Invalid Id");
+                return Ok("Invalid Id");
             }
             var userScheduleTrue = db.UserSchedules.Where(x => x.QuizScheduleId == QuizScheduleId).All(z => z.Taken == true);
             var userScheduleFalse = db.UserSchedules.Where(x => x.QuizScheduleId == QuizScheduleId).All(z => z.Taken == false);
