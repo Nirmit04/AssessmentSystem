@@ -419,6 +419,7 @@ namespace WebApi.Controllers
             report.WrongAnswers = WAnswer;
             report.UnattemptedAnswers = UAttempted;
             report.TimeTaken = evalutionAnswer.TimeTaken;
+            //Here CorrectAnswers.Count() is TotalQuestions
             report.Accuracy = (CAnswer * 100) / CorrectAnswers.Count();
             report.MarksScored = TMarks;
             report.QuizType = db.Quizs.FirstOrDefault(x => x.QuizId == evalutionAnswer.QuizId).QuizType;

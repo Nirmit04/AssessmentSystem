@@ -33,7 +33,7 @@ namespace WebApi.Controllers
                     userAnalytics.TotalQuizCount = userReport.Count();
                     userAnalytics.HighestScore = userReport.Select(max => max.MarksScored).DefaultIfEmpty().Max();
                     userAnalytics.LowestScore = userReport.Select(max => max.MarksScored).DefaultIfEmpty().Min();
-                    decimal TotalPerformance = 0, TotalAccuracy = 0, TotalQuestions = 0;
+                    decimal TotalPerformance = 0, TotalAccuracy = 0, TotalQuestions = 0, TotalMarksScored = 0;
                     int TotalCorrectAnswers = 0;
                     foreach (var item in userReport)
                     {
@@ -41,14 +41,14 @@ namespace WebApi.Controllers
                         TotalPerformance += ((item.CorrectAnswers - (item.WrongAnswers + item.UnattemptedAnswers)) / TotalQuizQuestions);
                         TotalAccuracy += item.Accuracy;
                         TotalQuestions += TotalQuizQuestions;
+                        TotalMarksScored += item.MarksScored;
                         TotalCorrectAnswers += item.CorrectAnswers;
                     }
-                    System.Diagnostics.Debug.WriteLine("Total per" + TotalPerformance);
                     try
                     {
                         userAnalytics.Performance = Math.Round(TotalPerformance / userAnalytics.TotalQuizCount, 2);
                         userAnalytics.Accuracy = Math.Round(TotalAccuracy / userAnalytics.TotalQuizCount, 2);
-                        userAnalytics.AverageScore = Math.Round((userAnalytics.HighestScore + userAnalytics.LowestScore) / userAnalytics.TotalQuizCount, 2);
+                        userAnalytics.AverageScore = Math.Round(TotalMarksScored / userAnalytics.TotalQuizCount, 2);
                         userAnalytics.ProbabilityAnsweringCorrectly = Math.Round((decimal)(TotalCorrectAnswers * 100) / TotalQuestions, 2);
                     }
                     catch (Exception)
