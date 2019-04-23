@@ -4,7 +4,7 @@ import { concat, Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ViewAnswerComponent } from '../view-answer/view-answer.component';
-
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-detailed-report',
@@ -17,9 +17,9 @@ export class DetailedReportComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
-  public doughnutChartLabels1 = ['Attempted:' + ((parseInt(this.service.data.CorrectAnswers)) + (parseInt(this.service.data.WrongAnswers))).toString(), 'UnAttempted: ' + this.service.data.UnattemptedAnswers];
-  public doughnutChartData1 = [(parseInt(this.service.data.CorrectAnswers) + parseInt(this.service.data.WrongAnswers)).toString(), this.service.data.UnattemptedAnswers];
-  public doughnutChartType1 = 'doughnut';
+  public doughnutChartLabels1;
+  public doughnutChartData1;
+  public doughnutChartType1;
   quizname = '';
 
   public doughnutChartOptions1 = {
@@ -53,22 +53,34 @@ export class DetailedReportComponent implements OnInit {
   reports: any[];
 
   constructor(private service: EmployeeService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private route: Router) { }
 
   ngOnInit() {
+    console.log(this.service.data.CorrectAnswers);
+    if (this.service.QuizId === null) {
+      console.log('he');
+      this.route.navigate(['/emp-dash/quiz/non-mock-report']);
+    }
+
+
+    this.doughnutChartLabels1 = ['Attempted:' + ((parseInt(this.service.data.CorrectAnswers)) + (parseInt(this.service.data.WrongAnswers))).toString(), 'UnAttempted: ' + this.service.data.UnattemptedAnswers];
+    this.doughnutChartData1 = [(parseInt(this.service.data.CorrectAnswers) + parseInt(this.service.data.WrongAnswers)).toString(), this.service.data.UnattemptedAnswers];
+    this.doughnutChartType1 = 'doughnut';
+
+
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
     };
     setTimeout(() => {
-			this.loadDetail();
-		}, 0);
+      this.loadDetail();
+    }, 0);
   }
 
   loadDetail() {
     this.service.getDetailedReport().subscribe((res: any) => {
-           this.reports = res as any[];
-           console.log(res);
+      this.reports = res as any[];
       this.quizname = this.reports[0].QuizName;
       this.calculate();
       this.dtTrigger.next();

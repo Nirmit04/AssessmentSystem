@@ -91,7 +91,7 @@ export class TakeQuizComponent implements OnInit {
 			item.answer = 0;
 
 			if (item.ImageName != null) {
-				item.ImageName = environment.imgURl + item.ImageName;
+				item.ImageName = "http://5bb3b45e.ngrok.io/Images/" + item.ImageName;
 			}
 		}
 		this.noOfQues = this.QuestionList.length;
@@ -149,7 +149,7 @@ export class TakeQuizComponent implements OnInit {
 			this.checkLast = false;
 		}
 		else if (this.service.qnProgress == this.noOfQues) {
-			this.service.qnProgress=0;
+			this.service.qnProgress = 0;
 		}
 		this.options = this.service.quesOfQuiz[this.service.qnProgress].answer;
 		this.active = [false];

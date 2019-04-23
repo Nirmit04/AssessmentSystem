@@ -3,6 +3,10 @@
   <br />
   <h1 class="text-center">{{errorCode}} - "{{errorMsg}}"</h1>
   <br />
+  <div *ngIf="errorStackTrace!=null">
+  <h1 class="text-center">{{errorStackTrace}}</h1>
+  <br />
+  </div>
   <br />
   <h2 class="text-center"> Please cllick on the button to login again!</h2>
   <br />

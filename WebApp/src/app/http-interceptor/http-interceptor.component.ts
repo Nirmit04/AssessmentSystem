@@ -28,10 +28,15 @@ export class HttpInterceptorComponent implements OnInit {
 
   errorCode: string;
   errorMsg: string;
+  errorStackTrace: string;
 
   ngOnInit() {
+    this.errorStackTrace = null;
     this.errorCode = localStorage.getItem('errorCode');
     this.errorMsg = this.HTTP_CODES[+this.errorCode];
+    if (localStorage.getItem('errorMsg')) {
+      this.errorStackTrace = localStorage.getItem('errorMsg');
+    }
   }
 
   login() {

@@ -38,7 +38,7 @@ export class NonMockReportComponent implements OnInit {
       { field: 'WrongAnswers', header: 'Wrong Answers' },
       { field: 'UnattemptedAnswers', header: 'Not Attempted' },
       { field: 'MarksScored', header: 'Marks Scored' },
-      { field: 'TotalMarks', header: 'Total Marks' },
+      { field: 'TotalMarks', header: 'Maximum Marks' },
       { field: 'Accuracy', header: 'Accuracy' },
       { field: 'TimeTaken', header: 'Time Taken (hh:mm:ss)' }
 		];

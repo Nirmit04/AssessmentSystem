@@ -33,7 +33,7 @@
                 <div>
                     <ul>
                         <ng-container *ngFor="let option of qn.Option;index as j">
-                            <li *ngIf="option != null">
+                            <li *ngIf="option !==''">
                                 {{option}} &nbsp; &nbsp;
                                 <span style="color: green" *ngIf="j+1 == qn.CorrectAnswer"><i
                                         class="fa fa-check-circle-o" aria-hidden="true"></i>
