@@ -178,7 +178,7 @@
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label>Select Subject</label>
+              <strong><label>Select Subject</label></strong>
               <select [disabled]="bool" [disabled]="boolea" name="SubjectId" required #SubjectId="ngModel" [(ngModel)]="service.formData.SubjectId"
                 class="form-control">
                 <option selected disabled value="">Choose an option..</option>
@@ -187,7 +187,7 @@
               <div class="validation-error" *ngIf="SubjectId.invalid && SubjectId.touched">This field is required.</div>
             </div>
             <div class="form-group col-md-6">
-              <label>Select Difficulty-Level</label>
+              <strong><label>Select Difficulty-Level</label></strong>
               <select [disabled]="bool" [disabled]="boolea" name="Difficulty" required #Difficulty="ngModel" [(ngModel)]="service.formData.Difficulty"
                 class="form-control">
                 <option selected disabled value="">Choose an option...</option>

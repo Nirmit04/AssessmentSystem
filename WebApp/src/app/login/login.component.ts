@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
 	ngOnInit() {
 		localStorage.setItem('key', this.route.snapshot.queryParamMap.get('take-quiz'));
 		localStorage.setItem('key1', this.route.snapshot.queryParamMap.get('schedule-id'));
+		localStorage.setItem('time', this.route.snapshot.queryParamMap.get('time'));
 		this.authService.authState.subscribe((user) => {
 			this.user = user;
 			if (user != null) {

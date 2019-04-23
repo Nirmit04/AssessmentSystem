@@ -21,9 +21,8 @@ export class CreateQuestionsComponent implements OnInit {
     if (localStorage.getItem('Difficulty') != null) {
       this.boolea = true;
       this.service.formData.SubjectId = localStorage.getItem('SubjectId');
-      console.log(this.service.quesStat);
       this.service.formData.Difficulty = localStorage.getItem('Difficulty');
-      console.log(this.service.formData.Difficulty);
+      this.service.QuestionType = localStorage.getItem('Question_Type');
     }
     else {
       if (this.service.QuestionType == null) {
@@ -59,6 +58,7 @@ export class CreateQuestionsComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    console.log(form.value);
     this.service.postQuestion(form.value).subscribe((res: any) => {
       this.toastr.success('Inserted successfully');
       this.service.selectedFile = null;

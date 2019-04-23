@@ -34,6 +34,9 @@ export class CreateQuizComponent implements OnInit {
   MockType: string;
   TotalQuestions: number;
   RandomQuizTime: number;
+  difficulty = '';
+  subjectid: number = null;
+  question_type = '';
   constructor(private service: ContentCreatorServiceService,
     private dialogRef: MatDialogRef<CreateQuizComponent>,
     public toastr: ToastrService,
@@ -84,7 +87,7 @@ export class CreateQuizComponent implements OnInit {
   }
 
   fetchReqQues(form: NgForm) {
-    if (form.value.QuestionType === 'Non-Mock') {
+    if (form.value.QuizType === 'Scheduled') {
       this.service.QuestionType = 'Scheduled';
     } else {
       this.service.QuestionType = 'Mock'
@@ -119,6 +122,9 @@ export class CreateQuizComponent implements OnInit {
         this.dtTrigger.next();
         this.checkVal();
       });
+      this.difficulty = form.value.Difficulty;
+      this.subjectid = +(form.value.SubjectId.toString());
+      this.question_type = this.service.QuestionType;
     }
   }
 
@@ -135,7 +141,6 @@ export class CreateQuizComponent implements OnInit {
   onDetailsSubmit(form: NgForm) {
     var QuestionId = this.questions.filter(QuestionId => QuestionId.selected).map(idSelected => idSelected.QuestionId);
     this.service.postQuestionsSelected(QuestionId).subscribe(res => {
-
       this.toastr.success('Inserted successfully');
       this.dialogRef.close('Inserted');
     })
@@ -171,6 +176,9 @@ export class CreateQuizComponent implements OnInit {
     dialogConfig.width = "70%";
     dialogConfig.disableClose = true;
     this.service.quesStat = true;
+    localStorage.setItem('Difficulty', this.difficulty);
+    localStorage.setItem('SubjectId', this.subjectid.toString());
+    localStorage.setItem('Question_Type', this.question_type);
     let dialogRef = this.dialog.open(CreateQuestionsComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       this.service.quesStat = false;
