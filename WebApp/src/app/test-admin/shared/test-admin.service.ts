@@ -30,6 +30,7 @@ export class TestAdminService {
 	}
 
 	postSchedule(formdata: Schedule) {
+		formdata.CreatedBy = localStorage.getItem('uid');
 		return this.http.post(this.rooturl + 'QuizSchedule/ScheduleQuiz', formdata);
 	}
 
