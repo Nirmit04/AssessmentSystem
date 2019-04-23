@@ -135,7 +135,9 @@ namespace WebApi.Controllers
                 db.SaveChanges();
             }
             var userEmails = db.Users.Where(x => UserIds.Contains(x.Id)).Select(y => y.Email).ToArray();
-            var EmailResponse = helper.InviteUser(userEmails, "Click on the Link Below to take Quiz. \n <a href=\"" + "http://localhost:4200/?take-quiz=" + db.QuizSchedules.Single(x => x.QuizScheduleId == QuizScheduleId).QuizId +"&schedule-id="+ QuizScheduleId + "\">Click Here</a>");
+            var quizId = db.QuizSchedules.Single(x => x.QuizScheduleId == QuizScheduleId).QuizId;
+            var time = db.Quizs.Single(y => y.QuizId == quizId).QuizTime;
+            var EmailResponse = helper.InviteUser(userEmails, "Click on the Link Below to take Quiz. \n <a href=\"" + "http://localhost:4200/?take-quiz=" + quizId +"&schedule-id="+ QuizScheduleId + "&time="+ time +"\">Click Here</a>");
             return Ok();
         }
 
@@ -194,9 +196,13 @@ namespace WebApi.Controllers
             if (userSchedule != null)
             {
                 var quizSchedule = db.QuizSchedules.FirstOrDefault(x => x.QuizId == QuizId && x.QuizScheduleId == userSchedule.QuizScheduleId);
-                if (quizSchedule.EndDateTime >= DateTime.Now)
+                if (DateTime.Now >= quizSchedule.StartDateTime && DateTime.Now <= quizSchedule.EndDateTime)
                 {
                     return Ok();
+                }
+                else if (DateTime.Now < quizSchedule.StartDateTime)
+                {
+                    return BadRequest("Quiz has not Started");
                 }
                 else
                 {
