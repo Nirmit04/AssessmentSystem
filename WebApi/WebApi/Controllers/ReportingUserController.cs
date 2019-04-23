@@ -39,9 +39,6 @@ namespace WebApi.Controllers
                     {
                         decimal TotalQuizQuestions = (item.CorrectAnswers + item.WrongAnswers + item.UnattemptedAnswers);
                         TotalPerformance += ((item.CorrectAnswers - (item.WrongAnswers + item.UnattemptedAnswers)) / TotalQuizQuestions);
-                        System.Diagnostics.Debug.WriteLine("Total"+TotalQuizQuestions);
-                        System.Diagnostics.Debug.WriteLine("Wrong"+(item.WrongAnswers + item.UnattemptedAnswers));
-                        System.Diagnostics.Debug.WriteLine("Correct"+item.CorrectAnswers);
                         TotalAccuracy += item.Accuracy;
                         TotalQuestions += TotalQuizQuestions;
                         TotalCorrectAnswers += item.CorrectAnswers;
