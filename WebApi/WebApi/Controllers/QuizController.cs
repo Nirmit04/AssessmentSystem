@@ -146,6 +146,7 @@ namespace WebApi.Controllers
                     x.ImageName,
                     x.Marks,
                     x.QuestionType,
+                    x.SubjectId,
                     x.Difficulty,
                     x.CreatedBy
                 }).ToList();
