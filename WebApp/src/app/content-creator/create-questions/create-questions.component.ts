@@ -18,11 +18,10 @@ export class CreateQuestionsComponent implements OnInit {
   constructor(public service: ContentCreatorServiceService, public toastr: ToastrService, private router: Router) { }
   ngOnInit() {
     this.resetForm();
-    if (localStorage.getItem('Difficulty') != null) {
+    if (this.service.Difficulty != null) {
       this.boolea = true;
-      this.service.formData.SubjectId = localStorage.getItem('SubjectId');
-      this.service.formData.Difficulty = localStorage.getItem('Difficulty');
-      this.service.QuestionType = localStorage.getItem('Question_Type');
+      this.service.formData.SubjectId = this.service.SubjectId.toString();
+      this.service.formData.Difficulty = this.service.Difficulty;
     }
     else {
       if (this.service.QuestionType == null) {
@@ -32,7 +31,6 @@ export class CreateQuestionsComponent implements OnInit {
     this.service.retrieveSubjects().subscribe(res => {
       this.Subjects = res as Subject[];
     });
-
   }
 
   resetForm(form?: NgForm) {
@@ -58,11 +56,14 @@ export class CreateQuestionsComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log(form.value);
     this.service.postQuestion(form.value).subscribe((res: any) => {
       this.toastr.success('Inserted successfully');
       this.service.selectedFile = null;
       this.resetForm(form);
+      if (this.service.Difficulty != null) {
+        this.service.formData.SubjectId = this.service.SubjectId.toString();
+        this.service.formData.Difficulty = this.service.Difficulty;
+      }
     });
   }
 

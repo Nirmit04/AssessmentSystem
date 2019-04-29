@@ -11,10 +11,12 @@ import { NgForm } from '@angular/forms';
 export class ContentCreatorServiceService {
 
 	QuestionType: string;
+	Difficulty: string;
+	SubjectId: number;
 	tagForm: TagModel;
 	formData: Question;
 	formDataNew: FormData;
-	quizForm: QuizModel;
+	quizForm: QuizModel = null;
 	readonlyStatus: boolean;
 	QuizHour: number;
 	QuizMinute: number;
@@ -29,7 +31,6 @@ export class ContentCreatorServiceService {
 		this.formDataNew = new FormData();
 		formData.CreatedBy = localStorage.getItem('uid');
 		formData.QuestionType = this.QuestionType;
-		console.log(formData.QuestionType);
 		this.formDataNew.append('QuestionDetails', JSON.stringify(formData));
 		if (this.selectedFile !== null) {
 			this.formDataNew.append('Image', this.selectedFile, this.selectedFile.name);

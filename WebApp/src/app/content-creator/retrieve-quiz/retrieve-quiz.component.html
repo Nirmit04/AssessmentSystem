@@ -8,7 +8,7 @@
       <ng-template pTemplate="caption">
         <h3>Quiz List</h3>
         <div style="text-align: right">        
-            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <i class="fa fa-search" aria-hidden="true" style="margin:4px 4px 0 0"></i>
             <input type="text" pInputText size="30" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'startsWith')" style="width:auto">
         </div>
       </ng-template>
@@ -27,7 +27,7 @@
             {{rowData[col.field]}}
           </td>
           <td>
-            <a class="btn btn-sm btn-info text-white" (click)="onEdit(rowData.QuizId)"><i aria-hidden="true"
+            <a class="btn btn-sm btn-info text-white" (click)="onEdit(rowData.QuizId,i)"><i aria-hidden="true"
                 class="fa fa-edit fa-lg"></i></a>
             <a class="btn btn-sm btn-danger text-white" (click)="onArchive(rowData.QuizId)"><i aria-hidden="true"
                 class="fa fa-trash fa-lg"></i></a>
