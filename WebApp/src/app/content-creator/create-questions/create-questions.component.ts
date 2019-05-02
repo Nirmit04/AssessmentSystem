@@ -18,26 +18,21 @@ export class CreateQuestionsComponent implements OnInit {
   boolea = false;
   constructor(public service: ContentCreatorServiceService, public toastr: ToastrService, private router: Router) { }
   ngOnInit() {
-  //   $(document).ready(function() {
-  //     $('#example-getting-started').multiselect();
-  // });
-     this.resetForm();
-    // if (localStorage.getItem('Difficulty') != null) {
-    //   this.boolea = true;
-    //   this.service.formData.SubjectId = localStorage.getItem('SubjectId');
-    //   console.log(this.service.quesStat);
-    //   this.service.formData.Difficulty = localStorage.getItem('Difficulty');
-    //   console.log(this.service.formData.Difficulty);
-    // }
-
-    if (this.service.QuestionType == null) {
-      this.router.navigate(['/cc-dash'])
+    this.resetForm();
+    if (this.service.Difficulty != null) {
+      this.boolea = true;
+      this.service.formData.SubjectId = this.service.SubjectId.toString();
+      this.service.formData.Difficulty = this.service.Difficulty;
+    }
+    else {
+      if (this.service.QuestionType == null) {
+        this.router.navigate(['/cc-dash'])
+      }
     }
 
     this.service.retrieveSubjects().subscribe(res => {
       this.Subjects = res as Subject[];
     });
-
   }
 
   resetForm(form?: NgForm) {
@@ -68,6 +63,10 @@ export class CreateQuestionsComponent implements OnInit {
       this.toastr.success('Inserted successfully');
       this.service.selectedFile = null;
       this.resetForm(form);
+      if (this.service.Difficulty != null) {
+        this.service.formData.SubjectId = this.service.SubjectId.toString();
+        this.service.formData.Difficulty = this.service.Difficulty;
+      }
     });
   }
 

@@ -34,6 +34,9 @@ export class CreateQuizComponent implements OnInit {
   MockType: string;
   TotalQuestions: number;
   RandomQuizTime: number;
+  difficulty = '';
+  subjectid: number = null;
+  question_type = '';
   constructor(private service: ContentCreatorServiceService,
     private dialogRef: MatDialogRef<CreateQuizComponent>,
     public toastr: ToastrService,
@@ -72,6 +75,8 @@ export class CreateQuizComponent implements OnInit {
         SubjectId: null,
         QuizName: ''
       }
+      this.service.QuizMinute = null;
+      this.service.QuizHour = null;
       if (this.questions) {
         this.questions.forEach(y => y.selected = false);
       }
@@ -89,6 +94,8 @@ export class CreateQuizComponent implements OnInit {
     } else {
       this.service.QuestionType = 'Mock'
     }
+    this.service.Difficulty = this.service.quizForm.Difficulty;
+    this.service.SubjectId = this.service.quizForm.SubjectId;
     this.service.formDupli = form;
     this.service.quizForm = form.value;
     this.QuizHour = this.service.QuizHour.toString();
@@ -102,7 +109,7 @@ export class CreateQuizComponent implements OnInit {
     this.service.quizForm.QuizTime = this.QuizHour + ":" + this.QuizMinute;
     if (this.MockType == 'Random') {
       this.service.generateRandom(form.value, this.TotalQuestions).subscribe((res: any) => {
-        if (res == 0) {
+        if (res === 0) {
           this.toastr.error('No Questions Available!')
         }
         else {
@@ -135,8 +142,8 @@ export class CreateQuizComponent implements OnInit {
   onDetailsSubmit(form: NgForm) {
     var QuestionId = this.questions.filter(QuestionId => QuestionId.selected).map(idSelected => idSelected.QuestionId);
     this.service.postQuestionsSelected(QuestionId).subscribe(res => {
-
       this.toastr.success('Inserted successfully');
+      this.service.quizForm = null;
       this.dialogRef.close('Inserted');
     })
   }

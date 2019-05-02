@@ -51,7 +51,6 @@ export class RetrieveQuizComponent implements OnInit {
 			{ field: 'QuizTime', header: 'Duration (HH:MM)' }
 
 		];
-		this.loadQuiz();
 		setTimeout(() => {
 			this.loadQuiz();
 		}, 0);
@@ -74,6 +73,10 @@ export class RetrieveQuizComponent implements OnInit {
 		dialogConfig.disableClose = true;
 		let dialogRef = this.dialog.open(CreateQuizComponent, dialogConfig);
 		dialogRef.afterClosed().subscribe(result => {
+			this.service.Difficulty = null;
+			this.service.QuestionType = null;
+			this.service.SubjectId = null;
+			this.service.quesStat = false;
 			this.loadQuiz();
 			this.dtTrigger.unsubscribe();
 			this.dtTrigger.next();
@@ -91,8 +94,11 @@ export class RetrieveQuizComponent implements OnInit {
 		}
 	}
 
-	onEdit(id: number) {
+	onEdit(id: number, index: number) {
 		localStorage.setItem('quizId', id.toString());
+		this.service.Difficulty = this.QuizList[index].Difficulty;
+		this.service.SubjectId = this.QuizList[index].SubjectId;
+		this.service.QuestionType = this.QuizList[index].QuizType;
 		this.service.getQuestionsByQuiz(id).subscribe((res: any) => {
 			this.QuestionList = res as any[];
 			const dialogConfig = new MatDialogConfig();
@@ -102,6 +108,10 @@ export class RetrieveQuizComponent implements OnInit {
 			dialogConfig.data = this.QuestionList;
 			this.dialog.open(UpdateQuizComponent, dialogConfig).afterClosed().subscribe(res => {
 				this.loadQuiz();
+				this.service.Difficulty = null;
+				this.service.QuestionType = null;
+				this.service.SubjectId = null;
+				this.service.quesStat = false;
 				this.dtTrigger.unsubscribe();
 				this.dtTrigger.next();
 				localStorage.removeItem('quizId');

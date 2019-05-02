@@ -10,19 +10,26 @@ button {
 }
 mat-dialog-content {
 	position: relative;
+	
+}
+.mat-dialog-content{
+	max-height: none;
+	overflow: visible !important;
+	margin:0 auto !important;
+	padding-right: 0px !important;
 }
 .pos {
 	position: absolute;
-	right: 0%;
-	top: 2%;
+	right: -2%;
+	top: -7%;
 	z-index: 9999;
-	width: 35px;
+	width: 38px;
 	height: 35px;
 }
 mat-icon {
 	width: 30px;
 	height: 30px;
 	position: absolute;
-	left: 10%;
-	top: 10%;
+	left: 8%;
+	top: 15%;
 }

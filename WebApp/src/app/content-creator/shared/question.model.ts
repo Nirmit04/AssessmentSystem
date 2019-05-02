@@ -1,17 +1,17 @@
 export class Question {
-	SerialNumber? : Number;
-	QuestionType?: String;
-	QuestionId: String;
-	QuestionStatement: String;
-	Option1: String;
-	Option2: String;
-	Option3: String;
-	Option4: String;
+	SerialNumber? : number;
+	QuestionType?: string;
+	QuestionId: string;
+	QuestionStatement: string;
+	Option1: string;
+	Option2: string;
+	Option3: string;
+	Option4: string;
 	Answer: number;
 	Marks: number;
-	Difficulty: String;
-	SubjectId: String;
+	Difficulty?: string;
+	SubjectId?: string;
 	SubjectName?: string;
-	ImageName?: String;
+	ImageName?: string;
 	CreatedBy?: string;
 }

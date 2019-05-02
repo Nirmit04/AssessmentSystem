@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
 	checksid: string = null;
 	time: any[];
 
-
 	ngOnInit() {
 		this.checkqid = localStorage.getItem('key');
 		this.checksid = localStorage.getItem('key1');
