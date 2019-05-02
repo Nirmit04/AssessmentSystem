@@ -28,7 +28,7 @@
     "core-js": "^2.5.4",
     "datatables.net": "^1.10.19",
     "datatables.net-dt": "^1.10.19",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.1",
     "luxon": "^1.12.0",
     "ng-pick-datetime": "^7.0.0",
     "ng2-charts": "^2.0.3",
@@ -43,7 +43,7 @@
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.13.6",
+    "@angular-devkit/build-angular": "^0.13.8",
     "@angular/cli": "^7.3.6",
     "@angular/compiler-cli": "^7.2.9",
     "@angular/language-service": "^7.2.9",
