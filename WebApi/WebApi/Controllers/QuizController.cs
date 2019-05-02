@@ -540,6 +540,36 @@ namespace WebApi.Controllers
             }
             return Ok(questions.Count());
         }
+        /// <summary>
+        /// Returns individual questions
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <param name="QuizId"></param>
+        /// <param name="Index"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("api/Quiz/GetQuizQuestion")]
+        public IHttpActionResult GetQuizQuestion(string UserId,int QuizId,int Index)
+        {
+            if(helper.ValidateUserId(UserId)==false || (db.QuizBuffers.Find(Index) == null))
+            {
+                return BadRequest("Invalid User or Index");
+            }
+            int questionId = db.QuizBuffers.SingleOrDefault(x => x.UserId == UserId && x.QuizId == QuizId && x.Index == Index).QuestionId;
+            var question = db.Questions.Where(x => x.QuestionId == questionId).Select(x => new
+            {
+                x.QuestionId,
+                x.QuestionStatement,
+                Option = new string[] { x.Option1, x.Option2, x.Option3, x.Option4 },
+                x.ImageName,
+                x.Marks,
+                x.QuestionType,
+                x.SubjectId,
+                x.Difficulty,
+                x.CreatedBy
+            }).Single();
+            return Ok(question);
+        }
 
     }
 }
