@@ -1,0 +1,52 @@
+<app-loader></app-loader>
+<app-main-nav3>
+    <div>
+        <div class="card blue-grey darken-1 mx-auto" style="width:100%;margin-top: 1%">
+            <span class="card-title">
+                <h2 style="text-align: center">Detailed Report</h2>
+                <h4 style="text-align: center; margin-bottom: 1%">{{quizname}}</h4>
+            </span>
+            <div class="row">
+                <div class="col col-md-4">
+                    <canvas baseChart [data]="doughnutChartData1" [labels]="doughnutChartLabels1"
+                        [chartType]="doughnutChartType1" [options]="doughnutChartOptions1"
+                        [colors]="doughnutChartColors1">
+                    </canvas>
+                </div>
+                <div class="col col-md-2" style="margin-left: 5%; margin-right: 7%">
+                    <ngx-gauge [type]="gaugeType" [value]="gaugeValue" [label]="gaugeLabel" [append]="gaugeAppendText">
+                    </ngx-gauge>
+                </div>
+                <div class="col col-md-4">
+                    <canvas baseChart [data]="doughnutChartData2" [labels]="doughnutChartLabels2"
+                        [chartType]="doughnutChartType2" [options]="doughnutChartOptions2"
+                        [colors]="doughnutChartColors2">
+                    </canvas>
+                </div>
+            </div>
+            <ng-container *ngFor="let qn of reports;index as i">
+                <div class="card-body white-text">
+                    <strong><span>{{i+1}})&nbsp;{{qn.QuestionStatement}}</span></strong>
+                    <span style="font-weight: bold;color: royalblue;float:right; margin-right: 1%"
+                        *ngIf="qn.AttemptedAnswer==0">( This Question Was Skipped )</span>
+                </div>
+                <div>
+                    <ul>
+                        <ng-container *ngFor="let option of qn.Option;index as j">
+                            <li *ngIf="option !==''">
+                                {{option}} &nbsp; &nbsp;
+                                <span style="color: green" *ngIf="j+1 == qn.CorrectAnswer"><i
+                                        class="fa fa-check-circle-o" aria-hidden="true"></i>
+                                    Correct</span>
+                                <span style="color: red"
+                                    *ngIf="qn.AttemptedAnswer-1 == j && qn.CorrectAnswer!=qn.AttemptedAnswer"><i
+                                        class="fa fa-times-circle-o" aria-hidden="true"></i> Marked</span>
+                            </li>
+                        </ng-container>
+                    </ul>
+                </div>
+                <hr>
+            </ng-container>
+        </div>
+    </div>
+</app-main-nav3>

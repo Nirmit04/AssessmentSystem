@@ -5,7 +5,10 @@
     "types": [
       "jasmine",
       "node"
-    ]
+    ],
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowJs": true
   },
   "files": [
     "test.ts",

@@ -1,0 +1,30 @@
+<app-loader></app-loader>
+<app-mainnav4>
+  <h1 style="text-align: center">Analytics by User</h1>
+  <br /><br />
+  <table datatable [dtTrigger]="dtTrigger" class="row-border hover table table-bordered table-striped"
+    [dtOptions]="dtOptions">
+    <thead class="thead-dark">
+      <tr>
+        <th>#S. No.</th>
+        <th>User Name</th>
+        <th>Full Name</th>
+        <th>E-Mail</th>
+        <th>View Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let item of allUsers;index as i;">
+        <tr>
+          <th>{{i+1}}</th>
+          <td>{{item.UserName}}</td>
+          <td>{{item.FirstName}}&nbsp;{{item.LastName}}</td>
+          <td>{{item.Email}}</td>
+          <td style="text-align:center;">
+            <a class="btn btn-sm btn-info text-white" (click)="viewUserDetails(i)"><i aria-hidden="true" class="fa fa-paper-plane"></i></a>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</app-mainnav4>

@@ -1,0 +1,208 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>web-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">web-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content module">
+                   <div class="content-data">
+
+
+
+<ol class="breadcrumb">
+    <li>Modules</li>
+    <li>AppRoutingModule</li>
+</ol>
+
+
+<ul class="nav nav-tabs" role="tablist">
+    <li  class="active" >
+        <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+    </li>
+    <li >
+        <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/app-routing.module.ts</code>
+        </p>
+
+
+
+
+        <div class="container-fluid module">
+            <div class="row">
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
+import { Routes, RouterModule } from &#x27;@angular/router&#x27;;
+import { RetrieveQuestionBankComponent } from &#x27;./content-creator/retrieve-question-bank/retrieve-question-bank.component&#x27;;
+import { HomeComponent } from &#x27;./home/home.component&#x27;;
+import { LoginComponent } from &#x27;./login/login.component&#x27;;
+import { AppComponent } from &#x27;./app.component&#x27;;
+import { TagComponent } from &#x27;./content-creator/tag/retrievetag/tag.component&#x27;;
+import { RetrieveQuizComponent } from &#x27;./content-creator/retrieve-quiz/retrieve-quiz.component&#x27;;
+import { CreateQuestionsComponent } from &#x27;./content-creator/create-questions/create-questions.component&#x27;;
+import { UserDetailsComponent } from &#x27;./content-creator/user-details/user-details.component&#x27;;
+import { AuthGuard } from &#x27;./auth.guard&#x27;;
+import { ArchiveQuizComponent } from &#x27;./content-creator/retrieve-quiz/archive-quiz/archive-quiz.component&#x27;;
+import { CreateScheduleComponent } from &#x27;./test-admin/retrieve-schedule/create-schedule/create-schedule.component&#x27;;
+import { RetrieveScheduleComponent } from &#x27;./test-admin/retrieve-schedule/retrieve-schedule.component&#x27;;
+import { ArchivedScheduleComponent } from &#x27;./test-admin/retrieve-schedule/archived-schedule/archived-schedule.component&#x27;;
+import { TestAdminComponent } from &#x27;./test-admin/test-admin.component&#x27;;
+import { NonMockComponent } from &#x27;./employee/non-mock/non-mock.component&#x27;;
+import { EmployeeComponent } from &#x27;./employee/employee.component&#x27;;
+import { TakeQuizComponent } from &#x27;./employee/take-quiz/take-quiz.component&#x27;;
+import { ResultComponent } from &#x27;./employee/result/result.component&#x27;;
+import { NonMockReportComponent } from &#x27;./employee/non-mock-report/non-mock-report.component&#x27;;
+import { DetailedReportComponent } from &#x27;./employee/detailed-report/detailed-report.component&#x27;;
+import { MockComponent } from &#x27;./employee/mock/mock.component&#x27;;
+import { MockReportComponent } from &#x27;./employee/mock-report/mock-report.component&#x27;;
+import { AddUserComponent } from &#x27;./test-admin/retrieve-schedule/add-user/add-user.component&#x27;;
+import { AnalyticsByTagComponent } from &#x27;./reporting-user/analytics-by-tag/analytics-by-tag.component&#x27;;
+import { AnalyticsByUserComponent } from &#x27;./reporting-user/analytics-by-user/analytics-by-user.component&#x27;;
+import { AnalyticsByQuizComponent } from &#x27;./reporting-user/analytics-by-quiz/analytics-by-quiz.component&#x27;;
+import { ReportingUserComponent } from &#x27;./reporting-user/reporting-user.component&#x27;;
+import { HttpInterceptorComponent } from &#x27;./http-interceptor/http-interceptor.component&#x27;;
+import { ViewUserDetailsComponent } from &#x27;./reporting-user/analytics-by-user/view-user-details/view-user-details.component&#x27;;
+import { DetailsComponent } from &#x27;./reporting-user/analytics-by-quiz/details/details.component&#x27;;
+const routes: Routes &#x3D; [
+	{ path: &#x27;home&#x27;, component: HomeComponent },
+	{ path: &#x27;&#x27;, component: LoginComponent, pathMatch: &#x27;full&#x27; },
+	{ path: &#x27;app-root&#x27;, component: AppComponent },
+	{ path: &#x27;cc-dash&#x27;, component: UserDetailsComponent, canActivate: [AuthGuard], data: { roles: [&#x27;Content-Creator&#x27;] } },
+	{ path: &#x27;login&#x27;, component: LoginComponent },
+	{ path: &#x27;cc-dash/tag&#x27;, component: TagComponent, canActivate: [AuthGuard], data: { roles: [&#x27;Content-Creator&#x27;] } },
+	{ path: &#x27;cc-dash/quiz&#x27;, component: RetrieveQuizComponent, canActivate: [AuthGuard], data: { roles: [&#x27;Content-Creator&#x27;] } },
+	{ path: &#x27;cc-dash/rqbank&#x27;, component: RetrieveQuestionBankComponent, canActivate: [AuthGuard], data: { roles: [&#x27;Content-Creator&#x27;] } },
+	{ path: &#x27;cc-dash/create-question&#x27;, component: CreateQuestionsComponent, canActivate: [AuthGuard], data: { roles: [&#x27;Content-Creator&#x27;] } },
+	{ path: &#x27;cc-dash/archive-quiz&#x27;, component: ArchiveQuizComponent, canActivate: [AuthGuard], data: { roles: [&#x27;Content-Creator&#x27;] } },
+	{ path: &#x27;ta-dash/testAdminCreateScheDule&#x27;, component: CreateScheduleComponent, canActivate: [AuthGuard], data: { roles: [&#x27;Test-Administrator&#x27;] } },
+	{ path: &#x27;ta-dash/retrieve-schedule&#x27;, component: RetrieveScheduleComponent, canActivate: [AuthGuard], data: { roles: [&#x27;Test-Administrator&#x27;] } },
+	{ path: &#x27;ta-dash&#x27;, component: TestAdminComponent, canActivate: [AuthGuard], data: { roles: [&#x27;Test-Administrator&#x27;] } },
+	{ path: &#x27;ta-dash/archive-schedule&#x27;, component: ArchivedScheduleComponent, canActivate: [AuthGuard], data: { roles: [&#x27;Test-Administrator&#x27;] } },
+	{ path: &#x27;emp-dash/non-mocks&#x27;, component: NonMockComponent, canActivate: [AuthGuard], data: { roles: [&#x27;Employee&#x27;] } },
+	{ path: &#x27;emp-dash&#x27;, component: EmployeeComponent, canActivate: [AuthGuard], data: { roles: [&#x27;Employee&#x27;] } },
+	{ path: &#x27;emp-dash/quiz/take-quiz&#x27;, component: TakeQuizComponent, canActivate: [AuthGuard], data: { roles: [&#x27;Employee&#x27;] } },
+	{ path: &#x27;emp-dash/quiz/result&#x27;, component: ResultComponent, canActivate: [AuthGuard], data: { roles: [&#x27;Employee&#x27;] } },
+	{ path: &#x27;emp-dash/quiz/non-mock-report&#x27;, component: NonMockReportComponent, canActivate: [AuthGuard], data: { roles: [&#x27;Employee&#x27;] } },
+	{ path: &#x27;emp-dash/quiz/detailed-report&#x27;, component: DetailedReportComponent, canActivate: [AuthGuard], data: { roles: [&#x27;Employee&#x27;] } },
+	{ path: &#x27;emp-dash/mock&#x27;, component: MockComponent, canActivate: [AuthGuard], data: { roles: [&#x27;Employee&#x27;] } },
+	{ path: &#x27;emp-dash/mock-report&#x27;, component: MockReportComponent, canActivate: [AuthGuard], data: { roles: [&#x27;Employee&#x27;] } },
+	{ path: &#x27;ta-dash/add-user&#x27;, component: AddUserComponent, canActivate: [AuthGuard], data: { roles: [&#x27;Test-Administrator&#x27;] } },
+	{ path: &#x27;ru-dash&#x27;, component: ReportingUserComponent, canActivate: [AuthGuard], data: { roles: [&#x27;Reporting-User&#x27;] } },
+	{ path: &#x27;ru-dash/ana-by-user&#x27;, component: AnalyticsByUserComponent, canActivate: [AuthGuard], data: { roles: [&#x27;Reporting-User&#x27;] } },
+	{ path: &#x27;ru-dash/ana-by-tag&#x27;, component: AnalyticsByTagComponent, canActivate: [AuthGuard], data: { roles: [&#x27;Reporting-User&#x27;] } },
+	{ path: &#x27;ru-dash/ana-by-quiz&#x27;, component: AnalyticsByQuizComponent, canActivate: [AuthGuard], data: { roles: [&#x27;Reporting-User&#x27;] } },
+	{ path: &#x27;http-error&#x27;, component: HttpInterceptorComponent },
+	{ path: &#x27;ru-dash/ana-by-user/user-detail&#x27;, component: ViewUserDetailsComponent, canActivate: [AuthGuard], data: { roles: [&#x27;Reporting-User&#x27;] } },
+	{ path: &#x27;ru-dash/ana-by-user/quiz-detail&#x27;, component: DetailsComponent, canActivate: [AuthGuard], data: { roles: [&#x27;Reporting-User&#x27;] } }
+];
+
+@NgModule({
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule]
+})
+export class AppRoutingModule { }
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
+            var COMPODOC_CURRENT_PAGE_URL = 'AppRoutingModule.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

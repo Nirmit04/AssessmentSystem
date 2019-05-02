@@ -323,6 +323,12 @@ paket-files/
 # FAKE - F# Make
 .fake/
 
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
 # JetBrains Rider
 .idea/
 *.sln.iml

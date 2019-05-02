@@ -1,0 +1,35 @@
+<button type="button " [mat-dialog-close] class="btn btn-danger pos">
+  <mat-icon>clear</mat-icon>
+</button>
+<div class="card">
+  <div class="card-body">
+    <strong><h2 class="card-title" style="text-align: center">{{Option}} Tag</h2></strong>
+    <br><form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+      <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="userId">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input type="hidden" name="SubjectId" #SubjectId="ngModel" [(ngModel)]="service.tagForm.SubjectId"
+            class="form-control">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <strong><label>Subject</label></strong>
+          <input required type="text" name="Name" #Name="ngModel" [(ngModel)]="service.tagForm.Name"
+            (input)="check_avail(Name)" class="form-control">
+          <div class="validation-error" *ngIf="tagExists">Tag Already Exists</div>
+          <div class="validation-error" *ngIf="Name.invalid && Name.touched">This field is required.</div>
+        </div>
+        <div class="form-group col-md-6">
+          <strong><label>Department</label></strong>
+          <input required type="text" name="Department" #Department="ngModel" [(ngModel)]="service.tagForm.Department"
+            class="form-control">
+          <div class="validation-error" *ngIf="Department.invalid && Department.touched">This field is required.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" [disabled]="form.invalid || tagExists" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

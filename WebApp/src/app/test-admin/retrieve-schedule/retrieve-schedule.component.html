@@ -1,0 +1,32 @@
+<app-loader></app-loader>
+<app-main-nav2>
+  <br /><br />
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+    class="row-border hover table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#S. No.</th>
+        <th scope="col">Quiz Name</th>
+        <th scope="col">Start Date/Time</th>
+        <th scope="col">End Date/Time</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let item of scheduleList;index as i;">
+        <tr style="color:azure">
+          <th (click)="viewSchedule(item.QuizScheduleId,i+1)" scope="row">{{i+1}}</th>
+          <td (click)="viewSchedule(item.QuizScheduleId,i+1)" >{{item.QuizName}}</td>
+          <td (click)="viewSchedule(item.QuizScheduleId,i+1)" >{{item.StartDateTime}}</td>
+          <td (click)="viewSchedule(item.QuizScheduleId,i+1)" >{{item.EndDateTime}}</td>
+          <td>
+            <a class="btn btn-sm btn-info text-white" (click)="editSchedule(item.QuizScheduleId,i+1)"><i aria-hidden="true"
+                class="fa fa-pencil"></i></a>
+            <a class="btn btn-sm btn-danger text-white ml-1" (click)="deleteSchedule(item.QuizScheduleId)"><i aria-hidden="true"
+                class="fa fa-trash"></i></a>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</app-main-nav2>
