@@ -14,6 +14,7 @@ namespace WebApi.Controllers
     public class QuizController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private HelperClass helper = new HelperClass();
 
         /// <summary>
         /// Created a quiz and associates the list of questions to that quiz
@@ -117,41 +118,83 @@ namespace WebApi.Controllers
         /// Returns all the questions present in a Quiz
         /// </summary>
         /// <param name="QuizId"></param>
+        /// <param name="UserId"></param>
         /// <returns>Questions</returns>
+        //[HttpGet]
+        //[Route("api/Quiz/QuizQuestion/{QuizId}")]
+        //public IHttpActionResult GetQuiz(int QuizId)
+        //{
+        //    if (db.Quizs.Find(QuizId) == null)
+        //    {
+        //        return BadRequest("QuizId Not Found");
+        //    }
+        //    var qIds = db.QuizQuestions
+        //        .Where(x => x.QuizId == QuizId)
+        //        .Select(x => x.QuestionId)
+        //        .ToList();
+
+        //    List<int> questionIds = new List<int>();
+        //    foreach (int qId in qIds)
+        //    {
+        //        questionIds.Add(qId);
+        //    }
+        //    var questions = db.Questions
+        //        .AsEnumerable()
+        //        .Where(y => questionIds.Contains(y.QuestionId))
+        //        .Select(x => new
+        //        {
+        //            x.QuestionId,
+        //            x.QuestionStatement,
+        //            Option = new string[] { x.Option1, x.Option2, x.Option3, x.Option4 },
+        //            x.ImageName,
+        //            x.Marks,
+        //            x.QuestionType,
+        //            x.SubjectId,
+        //            x.Difficulty,
+        //            x.CreatedBy
+        //        }).ToList();
+        //    return Ok(questions);
+        //}
+
         [HttpGet]
-        [Route("api/Quiz/QuizQuestion/{QuizId}")]
-        public IHttpActionResult GetQuiz(int QuizId)
+        [Route("api/Quiz/QuizQuestion")]
+        public IHttpActionResult GetQuiz([FromUri]int QuizId, [FromUri]string UserId)
         {
-            if (db.Quizs.Find(QuizId) == null)
+            if ((helper.ValidateUserId(UserId) == false) || (db.Quizs.Find(QuizId) == null))
             {
-                return BadRequest("QuizId Not Found");
+                return BadRequest("QuizId or UserId Not Found");
             }
-            var qIds = db.QuizQuestions
-                .Where(x => x.QuizId == QuizId)
-                .Select(x => x.QuestionId)
-                .ToList();
-             
-            List<int> questionIds = new List<int>();
-            foreach (int qId in qIds)
-            {
-                questionIds.Add(qId);
-            }
-            var questions = db.Questions
-                .AsEnumerable()
-                .Where(y => questionIds.Contains(y.QuestionId))
-                .Select(x => new
-                {
-                    x.QuestionId,
-                    x.QuestionStatement,
-                    Option = new string[] { x.Option1, x.Option2, x.Option3, x.Option4 },
-                    x.ImageName,
-                    x.Marks,
-                    x.QuestionType,
-                    x.SubjectId,
-                    x.Difficulty,
-                    x.CreatedBy
+            var tempQuizBuffer = db.QuizBuffers.Where(x => x.QuizId == QuizId && x.UserId == UserId)
+                .Select(y => new {
+                    y.Index,
+                    y.MarkedAnswer,
+                    y.State
                 }).ToList();
-            return Ok(questions);
+            if (tempQuizBuffer.Count() == db.Quizs.Find(QuizId).TotalQuestions)
+            {
+                return Ok(tempQuizBuffer);
+            }
+            else
+            {
+                var qIds = db.QuizQuestions
+                    .Where(x => x.QuizId == QuizId)
+                    .Select(x => x.QuestionId)
+                    .ToList();
+
+                int index = 1;
+                QuizBuffer quizBuffer = new QuizBuffer();
+                quizBuffer.QuizId = QuizId;
+                quizBuffer.UserId = UserId;
+                foreach (int qId in qIds)
+                {
+                    quizBuffer.Index = index;
+                    quizBuffer.QuestionId = qId;
+                    index++;
+                    db.QuizBuffers.Add(quizBuffer);
+                    db.SaveChanges();
+                }
+                return Ok("Quiz Started");
+            }
         }
 
         /// <summary>
