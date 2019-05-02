@@ -72,6 +72,8 @@ export class UpdateQuizComponent implements OnInit {
     dialogConfig.width = "70%";
     dialogConfig.disableClose = true;
     this.service.quesStat = true;
+    console.log(this.difficulty);
+    console.log(this.subjectid);
     localStorage.setItem('Difficulty', this.difficulty);
     localStorage.setItem('SubjectId', this.subjectid.toString());
     dialogConfig.data = this.subjectid;

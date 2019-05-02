@@ -84,7 +84,7 @@ export class CreateQuizComponent implements OnInit {
   }
 
   fetchReqQues(form: NgForm) {
-    if (form.value.QuestionType === 'Non-Mock') {
+    if (form.value.QuizType === 'Scheduled') {
       this.service.QuestionType = 'Scheduled';
     } else {
       this.service.QuestionType = 'Mock'
@@ -171,6 +171,31 @@ export class CreateQuizComponent implements OnInit {
     dialogConfig.width = "70%";
     dialogConfig.disableClose = true;
     this.service.quesStat = true;
+    console.log(this.service.quizForm.Difficulty);
+    console.log(this.service.quizForm.SubjectId);
+    // this.service.formData=null;
+    // this.service.formData.Difficulty="";
+    // this.service.formData.SubjectId="";
+
+
+    this.service.formData = {
+      QuestionId: null,
+      QuestionStatement: "",
+      Option1: "",
+      Option2: "",
+      Option3: "",
+      Option4: "",
+      Answer: null,
+      Marks: null,
+      Difficulty: this.service.quizForm.Difficulty.toString(),
+      SubjectId: this.service.quizForm.SubjectId.toString(),
+    }
+
+
+
+    this.service.formData.Difficulty = this.service.quizForm.Difficulty.toString();
+    this.service.formData.SubjectId = this.service.quizForm.SubjectId.toString();
+    console.log(this.service.formData);
     let dialogRef = this.dialog.open(CreateQuestionsComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       this.service.quesStat = false;

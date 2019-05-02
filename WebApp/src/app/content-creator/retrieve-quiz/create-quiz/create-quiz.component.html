@@ -37,7 +37,8 @@
               <br />
               <input type="text" required name="QuizName" (input)="checkAvail(QuizName)" #QuizName="ngModel"
                 [(ngModel)]="service.quizForm.QuizName" class="form-control">
-              <div class="validation-error" *ngIf="QuizName.invalid && QuizName.touched">This field is required.<br></div>
+              <div class="validation-error" *ngIf="QuizName.invalid && QuizName.touched">This field is required.<br>
+              </div>
               <div class="validation-error" *ngIf="quizExists">Name Already Exists</div>
             </div>
             <div class="form-group col-md-6">
@@ -89,35 +90,37 @@
         </form>
       </ng-container>
       <div *ngIf="val">
-        <div class="card-body">
-          <h5 *ngIf="length>0" class="card-title" style="text-align: center">Choose Questions</h5><br />
-          <h5 *ngIf="length==0" class="card-title" style="text-align: center">No Question Available</h5><br />
-          <div>
-            <button type="button" (click)="add_new_ques()" class="btn btn-warning">New Ques.</button>
+     
+          <div class="card-body">
+            <h5 *ngIf="length>0" class="card-title" style="text-align: center">Choose Questions</h5><br />
+            <h5 *ngIf="length==0" class="card-title" style="text-align: center">No Question Available</h5><br />
+            <div>
+              <button type="button" (click)="add_new_ques()" class="btn btn-warning">New Ques.</button>
+            </div>
+            <br>
+            <form #Questionform="ngForm" (submit)="onDetailsSubmit(Questionform)" autocomplete="off">
+              <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                class="row-border hover table table-bordered table-striped">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>#S.NO.</th>
+                    <th>Tick</th>
+                    <th>Question</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let x of questions; let i = index">
+                    <td>{{i+1}}</td>
+                    <td><input [id]="'questions-'+i" type="checkbox" value="{{x.Question_ID}}" [checked]="x.selected"
+                        (change)="updateSelectedQuestions(i)"></td>
+                    <td>{{x.QuestionStatement}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
           </div>
-          <br>
-          <form #Questionform="ngForm" (submit)="onDetailsSubmit(Questionform)" autocomplete="off">
-            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
-              class="row-border hover table table-bordered table-striped">
-              <thead class="thead-dark">
-                <tr>
-                  <th>#S.NO.</th>
-                  <th>Tick</th>
-                  <th>Question</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let x of questions; let i = index">
-                  <td>{{i+1}}</td>
-                  <td><input [id]="'questions-'+i" type="checkbox" value="{{x.Question_ID}}" [checked]="x.selected"
-                      (change)="updateSelectedQuestions(i)"></td>
-                  <td>{{x.QuestionStatement}}</td>
-                </tr>
-              </tbody>
-            </table>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-        </div>
+        
       </div>
     </div>
   </div>

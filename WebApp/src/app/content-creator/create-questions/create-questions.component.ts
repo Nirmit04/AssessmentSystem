@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Subject } from '../shared/subject.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import * as $ from 'jquery';
 @Component({
   selector: 'app-create-questions',
   templateUrl: './create-questions.component.html',
@@ -17,19 +18,22 @@ export class CreateQuestionsComponent implements OnInit {
   boolea = false;
   constructor(public service: ContentCreatorServiceService, public toastr: ToastrService, private router: Router) { }
   ngOnInit() {
-    this.resetForm();
-    if (localStorage.getItem('Difficulty') != null) {
-      this.boolea = true;
-      this.service.formData.SubjectId = localStorage.getItem('SubjectId');
-      console.log(this.service.quesStat);
-      this.service.formData.Difficulty = localStorage.getItem('Difficulty');
-      console.log(this.service.formData.Difficulty);
+  //   $(document).ready(function() {
+  //     $('#example-getting-started').multiselect();
+  // });
+     this.resetForm();
+    // if (localStorage.getItem('Difficulty') != null) {
+    //   this.boolea = true;
+    //   this.service.formData.SubjectId = localStorage.getItem('SubjectId');
+    //   console.log(this.service.quesStat);
+    //   this.service.formData.Difficulty = localStorage.getItem('Difficulty');
+    //   console.log(this.service.formData.Difficulty);
+    // }
+
+    if (this.service.QuestionType == null) {
+      this.router.navigate(['/cc-dash'])
     }
-    else {
-      if (this.service.QuestionType == null) {
-        this.router.navigate(['/cc-dash'])
-      }
-    }
+
     this.service.retrieveSubjects().subscribe(res => {
       this.Subjects = res as Subject[];
     });
@@ -59,6 +63,7 @@ export class CreateQuestionsComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    console.log(form.value);
     this.service.postQuestion(form.value).subscribe((res: any) => {
       this.toastr.success('Inserted successfully');
       this.service.selectedFile = null;

@@ -18,6 +18,8 @@ export class HomeComponent implements OnInit {
 	uid = '';
 	checkqid: string = null;
 	checksid: string = null;
+	time: any[];
+
 
 	ngOnInit() {
 		this.checkqid = localStorage.getItem('key');
@@ -50,6 +52,9 @@ export class HomeComponent implements OnInit {
 							this.service.checkValidUser(+this.checkqid).subscribe(() => {
 
 								this.service.getQuesOfQuiz(+this.checkqid).subscribe((res: any) => {
+									this.time = localStorage.getItem('time').split(":");
+									this.service.hours = parseInt(this.time[0]);
+									this.service.minutes = parseInt(this.time[1]);
 									this.service.quesOfQuiz = res as any[];
 									this.service.QuizScheduleId = +this.checksid;
 									this.service.QuizId = +this.checkqid;
@@ -70,11 +75,11 @@ export class HomeComponent implements OnInit {
 
 
 	redirecttodash(role: string) {
-		
+
 		if (role === 'Test-Administrator') {
 			localStorage.setItem('currentRole', '//ta-dash');
 			this.router.navigate(['/ta-dash']);
-		
+
 		}
 		else if (role === 'Content-Creator') {
 			localStorage.setItem('currentRole', '//cc-dash');

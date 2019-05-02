@@ -36,7 +36,7 @@ export class NonMockComponent implements OnInit {
 			{ field: 'QuizName', header: 'Quiz' },
 			{ field: 'StartDateTime', header: 'Start' },
 			{ field: 'EndDateTime', header: 'End' },
-			{ field: 'QuizTime', header: 'Time Taken' }
+			{ field: 'QuizTime', header: 'Duration(hh:mm)' }
 		];
   }
 
