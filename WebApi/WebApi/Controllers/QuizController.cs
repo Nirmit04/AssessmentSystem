@@ -71,6 +71,7 @@ namespace WebApi.Controllers
                     x.ArchiveStatus,
                     x.QuizType,
                     x.QuizTime,
+                    x.SubjectId,
                     Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name
                 })
                 .OrderByDescending(z => z.QuizId)
