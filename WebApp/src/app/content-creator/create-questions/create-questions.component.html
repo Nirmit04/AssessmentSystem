@@ -73,7 +73,7 @@
             <div class="form-group col-md-6">
               <strong><label>Select Subject</label></strong>
               <select name="SubjectId" required #SubjectId="ngModel" [(ngModel)]="service.formData.SubjectId"
-                class="form-control">
+                multiple id="example-getting-started" class="form-control">
                 <option selected disabled value="">Choose an option..</option>
                 <option *ngFor="let Subject of Subjects" value="{{Subject.SubjectId}}">{{Subject.Name}}</option>
               </select>
