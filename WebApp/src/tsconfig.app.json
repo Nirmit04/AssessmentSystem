@@ -3,6 +3,10 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "types": [],
+<<<<<<< HEAD
+=======
+    "emitDecoratorMetadata": true,
+>>>>>>> cc36520b0297d1918419cfc2cce9acb9b3f3a165
     "experimentalDecorators": true,
     "allowJs": true
   },

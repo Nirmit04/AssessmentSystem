@@ -1,5 +1,6 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+<<<<<<< HEAD
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="!(isHandset$ | async)">
@@ -10,10 +11,25 @@
       <!-- <a mat-list-item routerLink="/tag">Create / Edit Tag</a>
       <a mat-list-item routerLink="/rqbank">Questions Created</a>
       <a mat-list-item routerLink="#">Archive Quizes</a> -->
+=======
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)">
+    <mat-toolbar><a mat-list-item routerLink="/ta-dash"><i class="fa fa-tachometer" aria-hidden="true"></i>
+        Dashboard</a></mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/ta-dash/retrieve-schedule"><i class="fa fa-code" aria-hidden="true"></i>
+        Retrieve/Edit Schedule</a>
+      <a mat-list-item routerLink="/ta-dash/testAdminCreateScheDule"><i class="fa fa-retweet" aria-hidden="true"></i>
+        Create Schedule</a>
+      <a mat-list-item routerLink="/ta-dash/archive-schedule"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        Archieved Schedule</a>
+      <a mat-list-item routerLink="/ta-dash/add-user"><i class="fa fa-check" aria-hidden="true"></i> Add/Delete User</a>
+>>>>>>> cc36520b0297d1918419cfc2cce9acb9b3f3a165
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar>
+<<<<<<< HEAD
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -31,3 +47,29 @@
   </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+=======
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <div class="input-group mb-6" style="width:37%; float: left;">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Role</label>
+        </div>
+        <select class="custom-select" #role id="inputGroupSelect01" [(ngModel)]="cRole" (change)="aab(role.value)">
+          <option value="//emp-dash" *ngIf="roleMatch(['Employee'])">Employee</option>
+          <option value="//cc-dash" *ngIf="roleMatch(['Content-Creator'])">Content-Creator</option>
+          <option value="//ta-dash" *ngIf="roleMatch(['Test-Administrator'])">Test-Administrator</option>
+          <option value="//ru-dash" *ngIf="roleMatch(['Reporting-User'])">Reporting-User</option>
+        </select>
+      </div>
+      <span class="spacer"></span>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" (click)="logout()" class="btn btn-dark btn-sm"><i aria-hidden="true"
+          style="cursor: pointer;" class="fa fa-sign-out fa-lg">Log Out</i></button>
+    </mat-toolbar>
+    <div class="content">
+      <ng-content></ng-content>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+>>>>>>> cc36520b0297d1918419cfc2cce9acb9b3f3a165

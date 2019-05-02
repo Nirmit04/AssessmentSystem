@@ -3,8 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+<<<<<<< HEAD
   production: false,
   apiURl: 'http://5d4d4784.ngrok.io/api/',
+=======
+	production: false,
+	apiURl: ' http://localhost:8000/api/',
+	imgURl: ' http://localhost:8000/Images/'
+>>>>>>> cc36520b0297d1918419cfc2cce9acb9b3f3a165
 };
 
 /*

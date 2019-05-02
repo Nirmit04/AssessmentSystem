@@ -1,4 +1,5 @@
 <app-main-nav2>
+<<<<<<< HEAD
     <div class="card" style="width: 80%;">
         <div class="card-body">
           <h5 class="card-title">Create Schedule</h5>
@@ -41,3 +42,47 @@
         </div>
       </div>
 </app-main-nav2>
+=======
+  <strong>
+    <h2 class="card-title" style="text-align: center">Create Schedule</h2>
+  </strong><br/><br/>
+  <form #form="ngForm" (submit)="sub(form)" autocomplete="off">
+    <div class="form-row">
+      <input type="hidden" #CreatedBy="ngModel" name="CreatedBy" [(ngModel)]="CCreatedBy">
+      <div class="form-group col-md-6">
+        <strong><label>Start Date Time :<br /></label></strong>&nbsp;
+        <input type="datetime-local" (focusout)="checkStartDate(StartDateTime)" [min]="date" required
+          name="StartDateTime" #StartDateTime="ngModel" [(ngModel)]="q1" class="form-control">
+        <div class="validation-error" *ngIf="(StartDateTime.invalid && StartDateTime.touched) || startDateValid ">This
+          field is wrong and required.
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <strong><label>End Date Time :</label></strong>&nbsp;
+        <input type="datetime-local" (focusout)="checkEndDate(EndDateTime)" required name="EndDateTime" [min]="q1"
+          #EndDateTime="ngModel" [(ngModel)]="q2" class="form-control">
+        <div class="validation-error" *ngIf="(EndDateTime.invalid && EndDateTime.touched) || endDateValid">This field
+          is wrong and required.
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+          <strong><label>Select Quiz</label></strong>
+        <select name="QuizId" required #QuizId="ngModel" [(ngModel)]="q3" class="form-control">
+          <option value="">Choose</option>
+          <option *ngFor="let Quiz of QuizList" value="{{Quiz.QuizId}}">
+            {{Quiz.QuizName}}</option>
+        </select>
+        <div class="validation-error" *ngIf="QuizId.invalid && QuizId.touched">This field is required.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="submit" [disabled]="form.invalid || startDateValid || endDateValid"
+        class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</app-main-nav2>
+>>>>>>> cc36520b0297d1918419cfc2cce9acb9b3f3a165

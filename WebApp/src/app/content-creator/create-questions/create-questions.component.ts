@@ -4,19 +4,43 @@ import { ContentCreatorServiceService } from '../shared/content-creator-service.
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from '../shared/subject.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+<<<<<<< HEAD
+=======
+import { Router } from '@angular/router';
+import * as $ from 'jquery';
+>>>>>>> cc36520b0297d1918419cfc2cce9acb9b3f3a165
 @Component({
   selector: 'app-create-questions',
   templateUrl: './create-questions.component.html',
   styleUrls: ['./create-questions.component.css']
 })
 export class CreateQuestionsComponent implements OnInit {
+
   public Subjects: Subject[];
   CCreatedBy = "";
+<<<<<<< HEAD
   constructor(public service: ContentCreatorServiceService, public toastr: ToastrService,
   ) { }
   ngOnInit() {
     this.resetForm();
     this.CCreatedBy = localStorage.getItem('uid');
+=======
+  boolea = false;
+  constructor(public service: ContentCreatorServiceService, public toastr: ToastrService, private router: Router) { }
+  ngOnInit() {
+    this.resetForm();
+    if (this.service.Difficulty != null) {
+      this.boolea = true;
+      this.service.formData.SubjectId = this.service.SubjectId.toString();
+      this.service.formData.Difficulty = this.service.Difficulty;
+    }
+    else {
+      if (this.service.QuestionType == null) {
+        this.router.navigate(['/cc-dash'])
+      }
+    }
+
+>>>>>>> cc36520b0297d1918419cfc2cce9acb9b3f3a165
     this.service.retrieveSubjects().subscribe(res => {
       this.Subjects = res as Subject[];
     });
@@ -39,10 +63,24 @@ export class CreateQuestionsComponent implements OnInit {
       SubjectId: "",
     }
   }
-  onSubmit(form: NgForm) {
-    this.service.postQuestion(form.value).subscribe(res => {
-      this.toastr.success('Inserted successfully');
-      this.resetForm(form);
-    });;
+
+  chooseFile(event) {
+    this.service.selectedFile = event.target.files.item(0);
   }
+
+  onSubmit(form: NgForm) {
+    console.log(form.value);
+    this.service.postQuestion(form.value).subscribe((res: any) => {
+      this.toastr.success('Inserted successfully');
+      this.service.selectedFile = null;
+      this.resetForm(form);
+      if (this.service.Difficulty != null) {
+        this.service.formData.SubjectId = this.service.SubjectId.toString();
+        this.service.formData.Difficulty = this.service.Difficulty;
+      }
+    });
+  }
+
+
+
 }

@@ -1,1 +1,22 @@
+<<<<<<< HEAD
 
+=======
+mat-dialog-content {
+	position: relative;
+}
+.pos {
+	position: absolute;
+	right: 0.5%;
+	top: 1%;
+	z-index: 9999;
+	width: 35px;
+	height: 35px;
+}
+mat-icon {
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	left: 5%;
+	top: 10%;
+}
+>>>>>>> cc36520b0297d1918419cfc2cce9acb9b3f3a165

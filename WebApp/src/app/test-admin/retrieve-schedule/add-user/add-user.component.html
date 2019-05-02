@@ -1,3 +1,4 @@
+<<<<<<< HEAD
     <form #Userform="ngForm" (submit)="onSubmit(Userform)" autocomplete="off">
         <div *ngFor="let x of quiztakers; let i = index"><br>
           <input [id]="'quiztakers-'+i" type="checkbox" value="{{x.Id}}" [checked]="x.selected"
@@ -7,3 +8,39 @@
         <button type="submit" class="btn btn-primary">Submit</button>
         <button type="button" [mat-dialog-close] class="btn btn-danger">Close</button>
       </form>
+=======
+<app-loader></app-loader>
+<app-main-nav2>
+    <h1 style="text-align: center">Add/Delete User in Schedule</h1>
+    <br /><br />
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+    class="row-border hover table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#S. No.</th>
+        <th scope="col">Quiz Name</th>
+        <th scope="col">Start Date/Time</th>
+        <th scope="col">End Date/Time</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <ng-container *ngFor="let item of scheduleList;index as i;">
+        <tr>
+          <th>{{i+1}}</th>
+          <td>{{item.QuizName}}</td>
+          <td>{{item.StartDateTime}}</td>
+          <td>{{item.EndDateTime}}</td>
+          <td>
+            <a class="btn btn-sm btn-info text-black" (click)="addUserToSchedule(item.QuizScheduleId,i+1)"><i aria-hidden="true"
+                class="fa fa-user-plus"></i></a>
+            <a class="btn btn-sm btn-danger text-black" (click)="deleteUserfromSchedule(item.QuizScheduleId,i+1)"><i aria-hidden="true"
+                class="fa fa-user-times"></i></a>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</app-main-nav2>
+>>>>>>> cc36520b0297d1918419cfc2cce9acb9b3f3a165

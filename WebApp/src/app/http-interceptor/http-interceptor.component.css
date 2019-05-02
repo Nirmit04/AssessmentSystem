@@ -1,0 +1,17 @@
+h1 {
+    font-size: 50px;
+    color: aliceblue;
+}
+
+h2{
+    font-size: 30px;
+    color: black;
+}
+.btn-info{
+    width:100px;
+}
+.ppc{
+    background-image: url('../../assets/img/404.jpg');
+    background-repeat: no-repeat;
+    background-size: 50% 100%;
+}

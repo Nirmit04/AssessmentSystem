@@ -1,34 +1,62 @@
 <mat-dialog-content>
+<<<<<<< HEAD
   <div class="card" style="width: 80%; overflow: auto">
     <div class="card-body">
       <h5 class="card-title" style="text-align: center">Create A Quiz</h5><br><br>
+=======
+  <button type="button " [mat-dialog-close] class="btn btn-danger pos">
+    <mat-icon>clear</mat-icon>
+  </button>
+  <div class="card" style="width: 80%; overflow: auto">
+    <div class="card-body">
+      <strong>
+        <h2 class="card-title" style="text-align: center">Create A Quiz</h2><br />
+      </strong>
+>>>>>>> cc36520b0297d1918419cfc2cce9acb9b3f3a165
       <ng-container *ngIf="!val">
         <form #form="ngForm" (submit)="fetchReqQues(form)" autocomplete="off">
           <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="CCreatedBy">
           <div class="form-row">
             <div class="form-group col-md-6">
+<<<<<<< HEAD
               <label>Select Difficulty-Level</label>
               <select name="Difficulty" required #Difficulty="ngModel" [(ngModel)]="service.quizForm.Difficulty"
                 class="form-control">
                 <option value="Beginner">Easy</option>
                 <option value="Intermediate">Medium</option>
                 <option value="Advanced">Hard</option>
+=======
+              <strong><label>Select Difficulty-Level</label></strong>
+              <select name="Difficulty" required #Difficulty="ngModel" [(ngModel)]="service.quizForm.Difficulty"
+                class="form-control">
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+>>>>>>> cc36520b0297d1918419cfc2cce9acb9b3f3a165
               </select>
               <div class="validation-error" *ngIf="Difficulty.invalid && Difficulty.touched">This field is required.
               </div>
             </div>
             <div class="form-group col-md-6">
+<<<<<<< HEAD
               <label>Select Subject</label>
+=======
+              <strong><label>Select Subject</label></strong>
+>>>>>>> cc36520b0297d1918419cfc2cce9acb9b3f3a165
               <select name="SubjectId" required #SubjectId="ngModel" [(ngModel)]="service.quizForm.SubjectId"
                 class="form-control">
                 <option *ngFor="let Subject of Subjects;" value="{{Subject.SubjectId}}">{{Subject.Name}}</option>
               </select>
+<<<<<<< HEAD
 
+=======
+>>>>>>> cc36520b0297d1918419cfc2cce9acb9b3f3a165
               <div class="validation-error" *ngIf="SubjectId.invalid && SubjectId.touched">This field is required.</div>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
+<<<<<<< HEAD
               <label>Quiz Name</label>
               <input type="text" required name="QuizName" #QuizName="ngModel" [(ngModel)]="service.quizForm.QuizName">
               <div class="validation-error" *ngIf="QuizName.invalid && QuizName.touched">This field is required.</div>
@@ -37,10 +65,66 @@
           <div class="form-group">
             <button type="submit" [disabled]="form.invalid" class="btn btn-primary ">Click</button>
             <button type="button" [mat-dialog-close] class="btn btn-danger">Close</button>
+=======
+              <strong><label>Quiz Name</label></strong>
+              <br />
+              <input type="text" required name="QuizName" (input)="checkAvail(QuizName)" #QuizName="ngModel"
+                [(ngModel)]="service.quizForm.QuizName" class="form-control">
+              <div class="validation-error" *ngIf="QuizName.invalid && QuizName.touched">This field is required.<br>
+              </div>
+              <div class="validation-error" *ngIf="quizExists">Name Already Exists</div>
+            </div>
+            <div class="form-group col-md-6">
+              <strong><label>Select Quiz Type</label></strong>
+              <select name="QuizType" required #QuizType="ngModel" [(ngModel)]="service.quizForm.QuizType"
+                class="form-control">
+                <option value="" disabled>Choose an option...</option>
+                <option value="Mock">Mock</option>
+                <option value="Scheduled">Scheduled</option>
+              </select>
+              <div class="validation-error" *ngIf="QuizType.invalid && QuizType.touched">This field is required.
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <strong><label>Quiz Time (hh:mm)</label><br /></strong>
+              <input required type="number" name="QuizHour" placeholder="hh" min="0" max="24" #QuizHour="ngModel"
+                [(ngModel)]="service.QuizHour">&nbsp;
+              <strong>:</strong>&nbsp;
+              <input required type="number" name="QuizMinute" placeholder="mm" min="0" max="60" #QuizMinute="ngModel"
+                [(ngModel)]="service.QuizMinute">
+              <div class="validation-error"
+                *ngIf="QuizHour.invalid && QuizHour.touched && QuizMinutes.invalid && QuizMinutes.touched">This field is
+                required.</div>
+            </div>
+            <div *ngIf="service.quizForm.QuizType == 'Mock'" class="form-group col-md-6">
+              <strong><label>Select Mock Quiz</label></strong>
+              <select name="MockTypess" required #MockTypess="ngModel" [(ngModel)]="MockType" class="form-control">
+                <option value="" disabled>Choose an option...</option>
+                <option value="Random">Random</option>
+                <option value="Personalized">Personalized</option>
+              </select>
+              <div class="validation-error" *ngIf="MockTypess.invalid && MockTypess.touched">This field is required.
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div *ngIf="MockType == 'Random'" class="form-group col-md-6">
+              <strong><label>Number Of Questions</label></strong>
+              <input type="text" name="Questions" #Questions="ngModel" [(ngModel)]="TotalQuestions"
+                class="form-control">
+              <div class="validation-error" *ngIf="Questions.invalid && Questions.touched">This field is required.</div>
+            </div>
+          </div>
+          <div class="form-group" style="margin-top: 3%">
+            <button type="submit" [disabled]="form.invalid || quizExists" class="btn btn-primary">Create</button>
+>>>>>>> cc36520b0297d1918419cfc2cce9acb9b3f3a165
           </div>
         </form>
       </ng-container>
       <div *ngIf="val">
+<<<<<<< HEAD
         <div class="card-body">
 
           <h5 *ngIf="length>0" class="card-title" style="text-align: center">Choose Questions</h5><br><br>
@@ -59,6 +143,39 @@
             <!-- </div> -->
           </form>
         </div>
+=======
+
+        <div class="card-body">
+          <h5 *ngIf="length>0" class="card-title" style="text-align: center">Choose Questions</h5><br />
+          <h5 *ngIf="length==0" class="card-title" style="text-align: center">No Question Available</h5><br />
+          <div>
+            <button type="button" (click)="add_new_ques()" class="btn btn-warning">New Ques.</button>
+          </div>
+          <br>
+          <form *ngIf="length!=0" #Questionform="ngForm" (submit)="onDetailsSubmit(Questionform)" autocomplete="off">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+              class="row-border hover table table-bordered table-striped">
+              <thead class="thead-dark">
+                <tr>
+                  <th>#S.NO.</th>
+                  <th>Tick</th>
+                  <th>Question</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let x of questions; let i = index">
+                  <td>{{i+1}}</td>
+                  <td><input [id]="'questions-'+i" type="checkbox" value="{{x.Question_ID}}" [checked]="x.selected"
+                      (change)="updateSelectedQuestions(i)"></td>
+                  <td>{{x.QuestionStatement}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+
+>>>>>>> cc36520b0297d1918419cfc2cce9acb9b3f3a165
       </div>
     </div>
   </div>

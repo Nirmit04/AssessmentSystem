@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="card-body">
   <h5 class="card-title" style="text-align: center">Choose Questions</h5><br>
   <form #Questionform="ngForm" (submit)="onDetailsSubmit(Questionform)" autocomplete="off">
@@ -10,3 +11,22 @@
     <button type="button" class="btn btn-primary btn-danger" [mat-dialog-close]> Close</button>
   </form>
 </div>
+=======
+<button type="button " [mat-dialog-close] class="btn btn-danger pos">
+  <mat-icon>clear</mat-icon>
+</button>
+<mat-dialog-content>
+  <div class="card-body">
+    <strong><h5 class="card-title" style="text-align: center">Choose Questions</h5><br></strong>
+    <button type="button" (click)="add_new_ques()" class="btn btn-warning">New Ques.</button><br>
+    <form #Questionform="ngForm" (submit)="onDetailsSubmit(Questionform)" autocomplete="off">
+      <div *ngFor="let x of questions; let i = index"><br>
+        <input [id]="'questions-'+i" type="checkbox" value="{{x.Question_ID}}" [checked]="x.selected"
+          (change)="updateSelectedQuestions(i)">
+        <label>{{x.QuestionStatement}}</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</mat-dialog-content>
+>>>>>>> cc36520b0297d1918419cfc2cce9acb9b3f3a165
