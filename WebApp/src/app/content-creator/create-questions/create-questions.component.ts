@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Subject } from '../shared/subject.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import * as $ from 'jquery';
 @Component({
   selector: 'app-create-questions',
   templateUrl: './create-questions.component.html',
@@ -28,6 +29,7 @@ export class CreateQuestionsComponent implements OnInit {
         this.router.navigate(['/cc-dash'])
       }
     }
+
     this.service.retrieveSubjects().subscribe(res => {
       this.Subjects = res as Subject[];
     });
@@ -56,6 +58,7 @@ export class CreateQuestionsComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    console.log(form.value);
     this.service.postQuestion(form.value).subscribe((res: any) => {
       this.toastr.success('Inserted successfully');
       this.service.selectedFile = null;

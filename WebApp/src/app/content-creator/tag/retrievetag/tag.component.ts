@@ -45,8 +45,6 @@ export class TagComponent implements OnInit {
 	loadTags() {
 		this.service.getTags().subscribe((res: any) => {
 			this.tagList = res as TagModel[];
-			// this.dtTrigger.unsubscribe();
-			// this.dtTrigger.next();
 			console.log(res);
 			for (this.i = 1; this.i <= this.tagList.length; this.i++) {
 				this.tagList[this.i - 1].SerialNumber = this.i;
@@ -70,6 +68,8 @@ export class TagComponent implements OnInit {
 		dialogConfig.width = "70%";
 		dialogConfig.disableClose = true;
 		dialogConfig.data = this.tagList[id - 1];
+		console.log(id);
+		console.log(dialogConfig.data);
 		let dialogRef = this.dialog.open(CreatetagComponent, dialogConfig).afterClosed().subscribe(res => {
 			this.loadTags();
 		});
