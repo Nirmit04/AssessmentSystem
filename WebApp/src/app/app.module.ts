@@ -73,7 +73,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoaderServiceService } from './services/loader-service.service';
 import { InstructionsComponent } from './employee/take-quiz/instructions/instructions.component';
 import { TableModule } from 'primeng/table'
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 	bgsColor: '#00ACC1',
@@ -188,8 +188,7 @@ export function provideConfig() {
 		OwlNativeDateTimeModule,
 		MatProgressSpinnerModule,
 		TableModule,
-		NgMultiSelectDropDownModule.forRoot()
-	],
+		],
 	providers: [
 		AuthGuard,
 		DatePipe,
