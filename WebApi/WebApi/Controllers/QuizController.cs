@@ -540,6 +540,7 @@ namespace WebApi.Controllers
             }
             return Ok(questions.Count());
         }
+
         /// <summary>
         /// Returns individual questions
         /// </summary>
@@ -549,26 +550,46 @@ namespace WebApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("api/Quiz/GetQuizQuestion")]
-        public IHttpActionResult GetQuizQuestion(string UserId,int QuizId,int Index)
+        public IHttpActionResult GetQuizQuestion(string UserId, int QuizId, int Index)
         {
-            if(helper.ValidateUserId(UserId)==false || (db.QuizBuffers.Find(Index) == null))
+            var quizBuffer = db.QuizBuffers.FirstOrDefault(x => x.Index == Index && x.QuizId == QuizId && x.UserId == UserId);
+            if (helper.ValidateUserId(UserId)==false || quizBuffer == null)
             {
                 return BadRequest("Invalid User or Index");
             }
-            int questionId = db.QuizBuffers.SingleOrDefault(x => x.UserId == UserId && x.QuizId == QuizId && x.Index == Index).QuestionId;
-            var question = db.Questions.Where(x => x.QuestionId == questionId).Select(x => new
-            {
-                x.QuestionId,
-                x.QuestionStatement,
-                Option = new string[] { x.Option1, x.Option2, x.Option3, x.Option4 },
-                x.ImageName,
-                x.Marks,
-                x.QuestionType,
-                x.SubjectId,
-                x.Difficulty,
-                x.CreatedBy
-            }).Single();
+            var question = db.Questions.Where(y => y.QuestionId == quizBuffer.QuestionId)
+                .AsEnumerable()
+                .Select(x => new
+                {
+                    x.QuestionId,
+                    x.QuestionStatement,
+                    Option = new string[] { x.Option1, x.Option2, x.Option3, x.Option4 },
+                    x.ImageName,
+                    x.Marks,
+                    x.QuestionType,
+                    x.SubjectId,
+                    x.Difficulty,
+                    x.CreatedBy,
+                    quizBuffer.MarkedAnswer,
+                    quizBuffer.ResponseTime
+                }).Single();
             return Ok(question);
+        }
+
+        [HttpPut]
+        [Route("api/Quiz/SubmitQuestion")]
+        public IHttpActionResult GetQuizQuestion(QuizBuffer quizBuffer)
+        {
+            var buffer = db.QuizBuffers.FirstOrDefault(x => x.Index == quizBuffer.Index && x.QuizId == quizBuffer.QuizId && x.UserId == quizBuffer.UserId);
+            if (helper.ValidateUserId(quizBuffer.UserId) == false || buffer == null)
+            {
+                return BadRequest("Invalid User or Index");
+            }
+            buffer.MarkedAnswer=quizBuffer.MarkedAnswer;
+            buffer.ResponseTime = quizBuffer.ResponseTime;
+            buffer.State = quizBuffer.State;
+            db.SaveChanges();
+            return Ok();
         }
 
     }

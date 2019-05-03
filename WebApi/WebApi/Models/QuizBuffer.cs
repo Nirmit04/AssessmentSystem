@@ -28,6 +28,8 @@ namespace WebApi.Models
 
         public int MarkedAnswer { get; set; }
 
+        public int ResponseTime { get; set; }
+
         [JsonIgnore]
         public virtual Question Question { get; set; }
         [JsonIgnore]
