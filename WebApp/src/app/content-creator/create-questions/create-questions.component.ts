@@ -13,9 +13,10 @@ import * as $ from 'jquery';
 })
 export class CreateQuestionsComponent implements OnInit {
 
-  public Subjects: Subject[];
+  public Subjects123: Subject[];
   CCreatedBy = "";
   boolea = false;
+  dropdownSettings = {};
   constructor(public service: ContentCreatorServiceService, public toastr: ToastrService, private router: Router) { }
   ngOnInit() {
     this.resetForm();
@@ -29,9 +30,16 @@ export class CreateQuestionsComponent implements OnInit {
         this.router.navigate(['/cc-dash'])
       }
     }
-
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'SubjectId',
+      textField: 'Name',
+      enableCheckAll: false,
+      itemsShowLimit: 5,
+      allowSearchFilter: true,
+    };
     this.service.retrieveSubjects().subscribe(res => {
-      this.Subjects = res as Subject[];
+      this.Subjects123 = res as Subject[];
     });
   }
 

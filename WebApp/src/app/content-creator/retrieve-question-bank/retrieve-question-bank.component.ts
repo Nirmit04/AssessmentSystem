@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Question } from '../shared/question.model';
 import { ContentCreatorServiceService } from '../shared/content-creator-service.service';
 import { ToastrService } from 'ngx-toastr';
-import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UpdateQuestionComponent } from '../update-question/update-question.component';
 import { Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
@@ -20,7 +20,7 @@ declare var $: any;
 	`],
 	templateUrl: './retrieve-question-bank.component.html',
 	styleUrls: ['./retrieve-question-bank.component.css'],
-	encapsulation : ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None
 })
 export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 
@@ -52,13 +52,13 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 		]
 		this.cols = [
 			{ field: 'QuestionType', header: 'Question Type' },
-			{ field: 'SubjectName', header: 'Subject' },
 			{ field: 'Difficulty', header: 'Difficulty Level' }
 		];
 	}
 
 	getQuesOfUser(uid: string) {
 		this.service.getQuesOfUser(uid).subscribe((data: any) => {
+			console.log(data);
 			this.questionList = data as Question[];
 			// this.dtTrigger.next();
 			for (this.i = 1; this.i <= this.questionList.length; this.i++) {
