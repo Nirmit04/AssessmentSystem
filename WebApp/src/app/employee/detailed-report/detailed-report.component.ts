@@ -34,9 +34,9 @@ export class DetailedReportComponent implements OnInit {
   private doughnutChartColors1: any[] = [{ backgroundColor: ["#3E00B2", "#FFF53A"] }];
 
 
-  public doughnutChartLabels2 = ['Correct: ' + this.service.data.CorrectAnswers, 'InCorrect: ' + this.service.data.WrongAnswers];
-  public doughnutChartData2 = [this.service.data.CorrectAnswers, this.service.data.WrongAnswers];
-  public doughnutChartType2 = 'doughnut';
+  public doughnutChartLabels2;
+  public doughnutChartData2;
+  public doughnutChartType2;
 
   public doughnutChartOptions2 = {
     legend: {
@@ -47,7 +47,7 @@ export class DetailedReportComponent implements OnInit {
   }
 
   gaugeType = 'semi';
-  gaugeValue = ((this.service.data.MarksScored / this.service.data.TotalMarks) * 100).toPrecision(2).toString();
+  gaugeValue;
   gaugeLabel = 'Performance';
   gaugeAppendText = '%';
   reports: any[];
@@ -57,10 +57,11 @@ export class DetailedReportComponent implements OnInit {
     private route: Router) { }
 
   ngOnInit() {
-    console.log(this.service.data.CorrectAnswers);
-    if (this.service.QuizId === null) {
+   // console.log(this.service.data.CorrectAnswers);
+   console.log(this.service.data);
+    if (this.service.data== null) {
       console.log('he');
-      this.route.navigate(['/emp-dash/quiz/non-mock-report']);
+      this.route.navigate(['/emp-dash']);
     }
 
 
@@ -68,6 +69,11 @@ export class DetailedReportComponent implements OnInit {
     this.doughnutChartData1 = [(parseInt(this.service.data.CorrectAnswers) + parseInt(this.service.data.WrongAnswers)).toString(), this.service.data.UnattemptedAnswers];
     this.doughnutChartType1 = 'doughnut';
 
+    this.doughnutChartLabels2 = ['Correct: ' + this.service.data.CorrectAnswers, 'InCorrect: ' + this.service.data.WrongAnswers];
+    this.doughnutChartData2 = [this.service.data.CorrectAnswers, this.service.data.WrongAnswers];
+    this.doughnutChartType2 = 'doughnut';
+
+    this.gaugeValue = ((this.service.data.MarksScored / this.service.data.TotalMarks) * 100).toPrecision(2).toString();
 
     this.dtOptions = {
       pagingType: 'full_numbers',
