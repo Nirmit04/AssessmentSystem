@@ -58,14 +58,23 @@ export class MockComponent implements OnInit {
   }
 
   takeMockQuiz(QuizId: number, QuizName: string, index: number) {
+    this.service.QuizId = QuizId;
     this.service.getMockQuesOfQuiz(QuizId).subscribe((res: any) => {
-      console.log(res);
+      if (res !== 'Quiz Started') {
+        this.service.statusMapping = res.tempQuizBuffer;
+        this.time = res.TimeLeft.split(":");
+        this.service.seconds = parseInt(this.time[2]);
+      }
+      else {
+        this.time = this.mockList[index - 1].QuizTime.split(":");
+        this.service.seconds = 0;
+        this.service.statusMapping = null;
+      }
       this.service.quizName = QuizName;
-      this.time = this.mockList[index].QuizTime.split(":");
+      this.service.noQuesOfQuiz = this.mockList[index - 1].TotalQuestions;
       this.service.hours = parseInt(this.time[0]);
       this.service.minutes = parseInt(this.time[1]);
-      this.service.quesOfQuiz = res as any[];
-      this.service.QuizId = QuizId;
+      this.service.QuizScheduleId = null;
       this.router.navigate(['/emp-dash/quiz/take-quiz']);
     });
   }

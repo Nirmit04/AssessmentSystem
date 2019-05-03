@@ -31,7 +31,8 @@
 							"node_modules/primeng/resources/primeng.min.css"
 						],
 						"scripts": [
-							"node_modules/datatables.net/js/jquery.dataTables.js"
+							"../node_modules/jquery/dist/jquery.min.js"
+						
 						],
 						"es5BrowserSupport": true
 					},

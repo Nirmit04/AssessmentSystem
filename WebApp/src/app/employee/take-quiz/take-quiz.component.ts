@@ -1,10 +1,8 @@
-import { Component, Inject, OnInit, HostListener } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { EmployeeService } from '../shared/employee.service';
-import { Router, RouterLinkWithHref } from '@angular/router';
-import { DOCUMENT } from '@angular/common';
-import { SafeHtml } from '@angular/platform-browser';
-import { getRenderedText } from '@angular/core/src/render3';
-import { environment } from '../../../environments/environment'
+import { Router } from '@angular/router';
+import { DOCUMENT, Time } from '@angular/common';
+import * as $ from 'jquery';
 @Component({
 	selector: 'app-take-quiz',
 	templateUrl: './take-quiz.component.html',
@@ -12,8 +10,6 @@ import { environment } from '../../../environments/environment'
 })
 
 export class TakeQuizComponent implements OnInit {
-
-	QuestionList: any[];
 	noOfQues: number;
 	bar: number;
 	elem: any;
@@ -27,7 +23,14 @@ export class TakeQuizComponent implements OnInit {
 	active: boolean[];
 	submit: boolean[];
 	review: boolean[];
-
+	responseTime: string;
+	startTime: string;
+	time: string[];
+	time1: string[];
+	questions: any;
+	answer: number = 0;
+	today = new Date();
+	TotalResponseTIme: string;
 	constructor(private service: EmployeeService, private router: Router,
 		@Inject(DOCUMENT) private document: any) { }
 
@@ -35,7 +38,7 @@ export class TakeQuizComponent implements OnInit {
 		this.service.qnProgress = 0;
 		this.hours = this.service.hours;
 		this.minutes = this.service.minutes;
-		this.seconds = 0;
+		this.seconds = this.service.seconds;
 		history.pushState(null, null, location.href);
 		this.elem = document.documentElement;
 		this.openFullscreen();
@@ -63,11 +66,25 @@ export class TakeQuizComponent implements OnInit {
 				}
 			};
 		};
+		this.noOfQues = this.service.noQuesOfQuiz;
 		this.active = [false];
 		this.active[0] = true;
 		this.submit = [false];
 		this.review = [false];
-		this.loadQues();
+		if (this.service.statusMapping !== null) {
+			for (let item of this.service.statusMapping) {
+				if (item.State === 'save') {
+					this.submit[item.Index - 1] = true;
+				}
+				else if (item.State === 'review') {
+					this.review[item.Index - 1] = true;
+				}
+				else if (item.State === 'submit') {
+					this.submit[item.Index - 1] = true;
+				}
+			}
+		}
+		this.loadQues(1);
 		this.openFullscreen();
 	}
 
@@ -85,16 +102,18 @@ export class TakeQuizComponent implements OnInit {
 		}
 	}
 
-	loadQues() {
-		this.QuestionList = this.service.quesOfQuiz;
-		for (let item of this.QuestionList) {
-			item.answer = 0;
-
-			if (item.ImageName != null) {
-				item.ImageName = "http://5bb3b45e.ngrok.io/Images/" + item.ImageName;
+	loadQues(index: number) {
+		//this.active[index - 1] = true;
+		this.startTime = this.today.getHours() + ":" + this.today.getMinutes() + ":" + this.today.getSeconds();
+		this.service.getQuestions(this.service.QuizId, index).subscribe((res: any) => {
+			this.questions = res;
+			this.options = this.questions.MarkedAnswer;
+			this.responseTime = this.questions.ResponseTime;
+			if (this.questions.ImageName != null) {
+				this.questions.ImageName = "https://80c4bf11.ngrok.io/Images/" + this.questions.ImageName;
 			}
-		}
-		this.noOfQues = this.QuestionList.length;
+		});
+		this.noOfQues = this.service.noQuesOfQuiz;
 		this.service.size = this.noOfQues;
 		this.startTimer();
 	}
@@ -123,10 +142,32 @@ export class TakeQuizComponent implements OnInit {
 		}, 1000);
 	}
 
-	Answer(QuestionId, choice, options: string) {
+	Answer(index: number, choice: number, options: string) {
 		this.checkPrev = true;
-		if (choice != null) {
-			this.service.quesOfQuiz[this.service.qnProgress].answer = choice;
+		this.checkLast = true;
+		this.today = new Date();
+		this.time = this.startTime.split(":");
+		this.time1 = this.questions.ResponseTime.split(":");
+		this.responseTime = (parseInt(this.time1[0]) + (this.today.getHours() - parseInt(this.time[0]))).toString() + ':' +
+			(parseInt(this.time1[1]) + (this.today.getMinutes() - parseInt(this.time[1]))).toString() + ':';
+		if (+(this.today.getSeconds) < parseInt(this.time[2])) {
+			this.responseTime = this.responseTime + (parseInt(this.time1[2] + (60 - parseInt(this.time[2] + this.today.getSeconds())))).toString();
+		}
+		else {
+			this.responseTime = this.responseTime + (parseInt(this.time1[2]) + (this.today.getSeconds() - parseInt(this.time[2]))).toString();
+		}
+		if (choice !== null) {
+			this.answer = choice;
+			const body = {
+				QuizId: this.service.QuizId,
+				UserId: localStorage.getItem('uid'),
+				Index: this.service.qnProgress + 1,
+				MarkedAnswer: choice,
+				ResponseTime: this.responseTime,
+				State: options,
+			}
+			this.service.postQuesOfQuiz(body).subscribe((res: any) => {
+			});
 		}
 		this.bar = (this.service.qnProgress + 1) / this.noOfQues * 100;
 		if (options === 'save') {
@@ -147,11 +188,17 @@ export class TakeQuizComponent implements OnInit {
 		this.service.qnProgress++;
 		if (this.service.qnProgress + 1 === this.noOfQues) {
 			this.checkLast = false;
+			this.loadQues(index + 1);
 		}
 		else if (this.service.qnProgress == this.noOfQues) {
 			this.service.qnProgress = 0;
+			this.loadQues(1);
+			this.checkPrev = false;
+			this.checkLast = true;
 		}
-		this.options = this.service.quesOfQuiz[this.service.qnProgress].answer;
+		else {
+			this.loadQues(index + 1);
+		}
 		this.active = [false];
 		this.active[this.service.qnProgress] = true;
 	}
@@ -163,28 +210,37 @@ export class TakeQuizComponent implements OnInit {
 		}
 		this.active = [false];
 		this.active[this.service.qnProgress] = true;
-		this.options = this.service.quesOfQuiz[this.service.qnProgress].answer;
+		this.loadQues(this.service.qnProgress + 1);
 	}
 	Clear(Questionid: number) {
 		this.submit[Questionid] = false;
 		this.options = null;
-		this.service.quesOfQuiz[this.service.qnProgress].answer = 0;
+		this.questions.MarkedAnswer = 0;
 	}
 	Submit() {
 		if (confirm('Do you want to submit the quiz?')) {
 			this.totaltime = (this.service.hours * 60 * 60 + this.service.minutes * 60) - (this.hours * 60 * 60 + this.minutes * 60 + this.seconds);
-			console.log(this.totaltime);
 			this.service.hours = parseInt((this.totaltime / 3600).toPrecision(1));
-			console.log(this.service.hours);
 			this.totaltime = this.totaltime % 3600;
 			this.service.minutes = parseInt((this.totaltime / 60).toPrecision(1));
-			console.log(this.service.minutes);
 			this.totaltime = this.totaltime % 60;
 			this.service.seconds = this.totaltime;
-			console.log(this.service.seconds);
-			this.router.navigate(['/emp-dash/quiz/result']);
+			this.TotalResponseTIme = this.service.hours.toString() + ':' + this.service.minutes.toString() + ':' + this.service.seconds.toString();
+			const body = {
+				QuizId: this.service.QuizId,
+				UserId: localStorage.getItem('uid'),
+				QuizScheduleId: this.service.QuizScheduleId,
+				TotalResponseTime: this.TotalResponseTIme,
+			}
+			this.service.postanswers(body).subscribe((res: any) => {
+				if (this.service.QuizScheduleId !== null) {
+					this.router.navigate(['/emp-dash/non-mocks']);
+				}
+				else	{
+					this.router.navigate(['/emp-dash/quiz/result']);
+				}
+			});
 		}
-
 	}
 	ArrayOne(n: number): any[] {
 		return Array(n);
@@ -202,7 +258,7 @@ export class TakeQuizComponent implements OnInit {
 		if (this.service.qnProgress + 1 === this.noOfQues) {
 			this.checkLast = false;
 		}
-		this.options = this.service.quesOfQuiz[this.service.qnProgress].answer;
+		this.loadQues(index + 1);
 		this.active[index] = true;
 	}
 	getStatus(index: number) {
@@ -220,11 +276,10 @@ export class TakeQuizComponent implements OnInit {
 	}
 	Next() {
 		this.checkPrev = true;
-		this.service.quesOfQuiz[this.service.qnProgress].answer = 0;
 		this.service.qnProgress++;
 		this.active = [false];
 		this.active[this.service.qnProgress] = true;
-		this.options = this.service.quesOfQuiz[this.service.qnProgress].answer;
+		this.loadQues(this.service.qnProgress + 1);
 		if (this.service.qnProgress + 1 === this.noOfQues) {
 			this.checkLast = false;
 		}

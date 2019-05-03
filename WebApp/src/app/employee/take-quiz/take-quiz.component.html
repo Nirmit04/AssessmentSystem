@@ -1,17 +1,18 @@
 <mat-progress-bar style="height: 2%" color="primary" mode="determinate" value="{{ bar }}"></mat-progress-bar>
-<nav class="navbar navbar-light" *ngIf="service.quesOfQuiz">
+<app-loader></app-loader>
+<nav class="navbar navbar-light" *ngIf="questions">
   <div>
     <img src="../../../assets/img/nineleaps-logo.svg" alt="Nineleaps" style="float: left;">
     <h2 style="text-align: center">{{service.quizName}}</h2>
   </div>
 </nav>
-<div class="container-fluid" *ngIf="service.quesOfQuiz">
+<div class="container-fluid" *ngIf="questions">
   <div class="row">
     <div class="col col-md-6">
       <h3 style="margin: 3%">Question - {{service.qnProgress+1}}/{{noOfQues}}</h3>
     </div>
     <div class="col col-md-6">
-      <div *ngIf="service.quesOfQuiz" class="card text-white bg-danger border-dark"
+      <div *ngIf="questions" class="card text-white bg-danger border-dark"
         style="margin: 2%; width:38%; float: right;">
         <div class="card-body text-center">
           <strong>
@@ -26,12 +27,12 @@
       <div class="card border-dark">
         <div class="card-body">
           <h4 class="card-title" style="margin-bottom: 4%">
-            {{service.qnProgress+1}})&nbsp;{{service.quesOfQuiz[service.qnProgress].QuestionStatement}}</h4>
-          <div *ngIf="service.quesOfQuiz[service.qnProgress].ImageName!=null">
-            <img [src]="service.quesOfQuiz[service.qnProgress].ImageName" style="width : 800px;" alt="QuestionImage" />
+            {{service.qnProgress+1}})&nbsp;{{questions.QuestionStatement}}</h4>
+          <div *ngIf="questions.ImageName!=null">
+            <img [src]="questions.ImageName" style="width : 800px;" alt="QuestionImage" />
           </div>
           <ul class="list-group list-group-flush">
-            <div *ngFor="let option of service.quesOfQuiz[service.qnProgress].Option;index as i">
+            <div *ngFor="let option of questions.Option;index as i">
               <li *ngIf="option" class="list-group-item list-group-item-action">
                 <div class="form-check">
                   <label style="font-size: 18px; margin-left: -20px">
