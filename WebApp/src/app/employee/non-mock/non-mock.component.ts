@@ -40,7 +40,6 @@ export class NonMockComponent implements OnInit {
       pageLength: 10,
     };
     this.cols = [
-<<<<<<< HEAD
       { field: 'SerialNumber', header: 'S NO' },
       { field: 'QuizName', header: 'Quiz' },
       { field: 'StartDateTime', header: 'Start Time' },
@@ -49,14 +48,6 @@ export class NonMockComponent implements OnInit {
     ];
     // this.QuizTime = "00:00:00";
     // this.QuizTimeSeconds = parseInt((this.QuizTime.split(":"))[2]);
-=======
-			{ field: 'SerialNumber', header: 'S NO' },
-			{ field: 'QuizName', header: 'Quiz' },
-			{ field: 'StartDateTime', header: 'Start' },
-			{ field: 'EndDateTime', header: 'End' },
-			{ field: 'QuizTime', header: 'Duration(hh:mm)' }
-		];
->>>>>>> 4e889848e73fdac6402f576156abe644faa24dad
   }
 
   loadNonMockSchedules() {
