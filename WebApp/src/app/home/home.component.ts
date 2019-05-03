@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
 									this.time = localStorage.getItem('time').split(":");
 									this.service.hours = parseInt(this.time[0]);
 									this.service.minutes = parseInt(this.time[1]);
-									this.service.quesOfQuiz = res as any[];
+									this.service.noQuesOfQuiz = res.TotalQuestions;
 									this.service.QuizScheduleId = +this.checksid;
 									this.service.QuizId = +this.checkqid;
 									this.router.navigate(['/emp-dash/quiz/take-quiz']);

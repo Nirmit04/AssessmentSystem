@@ -10,6 +10,7 @@ export class EmployeeService {
 
   rootURL = environment.apiURl;
   quizName: string;
+  noQuesOfQuiz: number;
   quesOfQuiz: any[];
   hours: number;
   seconds: number;
@@ -22,6 +23,7 @@ export class EmployeeService {
   QuizId: number;
   data: any;
   correctAnswerCount = 0;
+  statusMapping: any[];
 
   constructor(private http: HttpClient) { }
 
@@ -34,22 +36,27 @@ export class EmployeeService {
   }
 
   getQuesOfQuiz(QuizId: number) {
-    return this.http.get(this.rootURL + 'Quiz/QuizQuestion/' + QuizId);
+    return this.http.get(this.rootURL + 'Quiz/QuizQuestion?QuizId=' + QuizId + '&UserId=' + localStorage.getItem('uid'));
+  }
+
+  postQuesOfQuiz(body: any) {
+    return this.http.put(this.rootURL + 'Quiz/SubmitQuestion', body);
   }
 
   getMockQuesOfQuiz(QuizId: number) {
-    return this.http.get(this.rootURL + 'Quiz/QuizQuestion/' + QuizId);
+    return this.http.get(this.rootURL + 'Quiz/QuizQuestion?QuizId=' + QuizId + '&UserId=' + localStorage.getItem('uid'));
   }
 
   checkValidUser(id: number) {
     return this.http.post(this.rootURL + 'UserSchedule/ValidQuizTaker/' + localStorage.getItem('uid'), id);
   }
 
-  postanswers() {
-    this.body.QuizScheduleId = this.QuizScheduleId;
-    this.body.QuizId = this.QuizId;
-    this.body.UserId = localStorage.getItem('uid');
-    return this.http.post(this.rootURL + 'Quiz/EvaluateQuiz', this.body);
+  getQuestions(qid: number, index: number) {
+    return this.http.get(this.rootURL + 'Quiz/GetQuizQuestion?QuizId=' + qid + '&UserId=' + localStorage.getItem('uid') + '&Index=' + index);
+  }
+
+  postanswers(body: any) {
+    return this.http.post(this.rootURL + 'Quiz/SubmitQuiz', body);
   }
 
   getUserDetails() {
