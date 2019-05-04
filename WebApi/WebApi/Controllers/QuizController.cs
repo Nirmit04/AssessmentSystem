@@ -36,10 +36,11 @@ namespace WebApi.Controllers
             quiz.ArchiveStatus = false;
             db.Quizs.Add(quiz);
 
-            QuizQuestion quizQuestion = new QuizQuestion();
+            QuizQuestion quizQuestion;
 
             foreach (var item in quiz.QuestionIds)
             {
+                quizQuestion = new QuizQuestion();
                 quizQuestion.QuizId = quiz.QuizId;
                 quizQuestion.QuestionId = item;
                 db.QuizQuestions.Add(quizQuestion);
@@ -48,6 +49,7 @@ namespace WebApi.Controllers
             db.SaveChanges();
             return Ok();
         }
+
         /// <summary>
         /// Returns the quiz created by that particular user/content creator
         /// </summary>
@@ -155,45 +157,81 @@ namespace WebApi.Controllers
         //        }).ToList();
         //    return Ok(questions);
         //}
-
+        
         [HttpGet]
         [Route("api/Quiz/QuizQuestion")]
-        public IHttpActionResult GetQuiz([FromUri]int QuizId, [FromUri]string UserId)
+        public IHttpActionResult GetQuizQuestion([FromUri]int QuizId, [FromUri]string UserId = null)
         {
-            if ((helper.ValidateUserId(UserId) == false) || (db.Quizs.Find(QuizId) == null))
+            if (db.Quizs.Find(QuizId) == null)
             {
-                return BadRequest("QuizId or UserId Not Found");
+                return BadRequest("QuizId Not Found");
             }
-            var tempQuizBuffer = db.QuizBuffers.Where(x => x.QuizId == QuizId && x.UserId == UserId)
-                .Select(y => new {
-                    y.Index,
-                    y.MarkedAnswer,
-                    y.State
-                }).ToList();
-            if (tempQuizBuffer.Count() == db.Quizs.Find(QuizId).TotalQuestions)
+            var qIds = db.QuizQuestions
+                .Where(x => x.QuizId == QuizId)
+                .Select(x => x.QuestionId)
+                .ToList();
+            if (UserId != null)
             {
-                return Ok(tempQuizBuffer);
+                if (helper.ValidateUserId(UserId) == false)
+                {
+                    return BadRequest("UserId Not Found");
+                }
+                var tempQuizBuffer = db.QuizBuffers.Where(x => x.QuizId == QuizId && x.UserId == UserId).ToList();
+                if (tempQuizBuffer.Count() == db.Quizs.Find(QuizId).TotalQuestions)
+                {
+                    DateTime time = DateTime.Parse("00:00:00");
+                    List<GetQuestionBuffer> getQuestionBuffer = new List<GetQuestionBuffer>();
+                    foreach (var item in tempQuizBuffer)
+                    {
+                        getQuestionBuffer.Add(new GetQuestionBuffer()
+                        {
+                            Index = item.Index,
+                            State = item.State,
+                            ResponseTime = item.ResponseTime
+                        });
+                        time = time + TimeSpan.Parse(item.ResponseTime);
+                    }
+                    var TimeLeft = DateTime.Parse(db.Quizs.Find(QuizId).QuizTime) - time;
+                    ResumeQuizBuffer resumeQuizBuffer = new ResumeQuizBuffer();
+                    resumeQuizBuffer.GetQuestionBuffers = getQuestionBuffer;
+                    resumeQuizBuffer.TimeLeft = TimeLeft.ToString();
+                    return Ok(resumeQuizBuffer);
+                }
+                else
+                {
+                    int index = 1;
+                    QuizBuffer quizBuffer = new QuizBuffer();
+                    quizBuffer.QuizId = QuizId;
+                    quizBuffer.UserId = UserId;
+                    foreach (int qId in qIds)
+                    {
+                        quizBuffer.Index = index;
+                        quizBuffer.QuestionId = qId;
+                        index++;
+                        db.QuizBuffers.Add(quizBuffer);
+                        db.SaveChanges();
+                    }
+                    return Ok("Quiz Started");
+                }
             }
             else
             {
-                var qIds = db.QuizQuestions
-                    .Where(x => x.QuizId == QuizId)
-                    .Select(x => x.QuestionId)
-                    .ToList();
-
-                int index = 1;
-                QuizBuffer quizBuffer = new QuizBuffer();
-                quizBuffer.QuizId = QuizId;
-                quizBuffer.UserId = UserId;
-                foreach (int qId in qIds)
-                {
-                    quizBuffer.Index = index;
-                    quizBuffer.QuestionId = qId;
-                    index++;
-                    db.QuizBuffers.Add(quizBuffer);
-                    db.SaveChanges();
-                }
-                return Ok("Quiz Started");
+                var questions = db.Questions
+                     .AsEnumerable()
+                     .Where(y => qIds.Contains(y.QuestionId))
+                    .Select(x => new
+                    {
+                        x.QuestionId,
+                        x.QuestionStatement,
+                        Option = new string[] { x.Option1, x.Option2, x.Option3, x.Option4 },
+                        x.ImageName,
+                        x.Marks,
+                        x.QuestionType,
+                        x.SubjectId,
+                        x.Difficulty,
+                        x.CreatedBy
+                    }).ToList();
+                return Ok(questions);
             }
         }
 
@@ -409,18 +447,20 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Creates a report and also a detailed report which calculates marks correct, incorrect, unattempted of a Scheduled Quiz
+        /// Submit the Quiz and Call Evaluation Method which creates a Report and also a Detailed Report
+        /// which calculates marks correct, incorrect, unattempted and TotalResponse of a Scheduled Quiz
         /// </summary>
-        /// <param name="evalutionAnswer"></param>
+        /// <param name="submitQuiz"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("api/Quiz/EvaluateQuiz")]
-        public IHttpActionResult EvaluateQuiz(EvalutionAnswer evalutionAnswer)
+        [Route("api/Quiz/SubmitQuiz")]
+        public IHttpActionResult SubmitQuiz(SubmitQuiz submitQuiz)
         {
+            var quizBuffer = db.QuizBuffers.Where(x => x.UserId == submitQuiz.UserId && x.QuizId == submitQuiz.QuizId).ToList();
             List<int> qIDs = new List<int>();
-            foreach (var item in evalutionAnswer.QuesAnswers)
+            foreach (var item in quizBuffer)
             {
-                qIDs.Add(item.QuestionID);
+                qIDs.Add(item.QuestionId);
             }
             var CorrectAnswers = db.Questions
                 .AsEnumerable()
@@ -432,13 +472,8 @@ namespace WebApi.Controllers
             decimal TMarks = 0;
             DetailedReport detailedReport = new DetailedReport();
             Report report = new Report();
-            foreach (var item in evalutionAnswer.QuesAnswers)
+            foreach (var item in quizBuffer)
             {
-                detailedReport.AttemptedAnswer = item.MarkedAnswer;
-                detailedReport.CorrectAnswer = CorrectAnswers[i].Answer;
-                detailedReport.QuizId = evalutionAnswer.QuizId;
-                detailedReport.QuestionId = item.QuestionID;
-                detailedReport.UserId = evalutionAnswer.UserId;
                 if (item.MarkedAnswer == CorrectAnswers[i].Answer)
                 {
                     TMarks += CorrectAnswers[i].Marks;
@@ -452,58 +487,146 @@ namespace WebApi.Controllers
                 {
                     WAnswer++;
                 }
-                i++;
-                if (db.Quizs.FirstOrDefault(x => x.QuizId == evalutionAnswer.QuizId).QuizType == "Scheduled")
+                if (db.Quizs.FirstOrDefault(x => x.QuizId == submitQuiz.QuizId).QuizType == "Scheduled")
                 {
+                    detailedReport.AttemptedAnswer = item.MarkedAnswer;
+                    detailedReport.CorrectAnswer = CorrectAnswers[i].Answer;
+                    detailedReport.QuizId = submitQuiz.QuizId;
+                    detailedReport.QuestionId = item.QuestionId;
+                    detailedReport.UserId = submitQuiz.UserId;
+                    detailedReport.ResponseTime = item.ResponseTime;
                     db.DetailedReports.Add(detailedReport);
                     db.SaveChanges();
                 }
+                i++;
             }
             report.CorrectAnswers = CAnswer;
             report.WrongAnswers = WAnswer;
             report.UnattemptedAnswers = UAttempted;
-            report.TimeTaken = evalutionAnswer.TimeTaken;
+            report.TimeTaken = submitQuiz.TotalResponseTime;
             //Here CorrectAnswers.Count() is TotalQuestions
             report.Accuracy = (CAnswer * 100) / CorrectAnswers.Count();
             report.MarksScored = TMarks;
-            report.QuizType = db.Quizs.FirstOrDefault(x => x.QuizId == evalutionAnswer.QuizId).QuizType;
-            report.UserId = evalutionAnswer.UserId;
-            report.QuizId = evalutionAnswer.QuizId;
-            var userSchedule = db.UserSchedules.FirstOrDefault(x => x.QuizScheduleId == evalutionAnswer.QuizScheduleId && x.UserId == evalutionAnswer.UserId && x.QuizId == evalutionAnswer.QuizId);
+            report.QuizType = db.Quizs.FirstOrDefault(x => x.QuizId == submitQuiz.QuizId).QuizType;
+            report.UserId = submitQuiz.UserId;
+            report.QuizId = submitQuiz.QuizId;
+            var userSchedule = db.UserSchedules.FirstOrDefault(x => x.QuizScheduleId == submitQuiz.QuizScheduleId && x.UserId == submitQuiz.UserId && x.QuizId == submitQuiz.QuizId);
             if (userSchedule != null)
             {
                 userSchedule.Taken = true;
             }
             db.Reports.Add(report);
+            if (db.Quizs.FirstOrDefault(x => x.QuizId == submitQuiz.QuizId).QuizType == "Scheduled")
+            {
+                db.QuizBuffers.RemoveRange(quizBuffer);
+            }
             db.SaveChanges();
             return Ok();
         }
+
+        ///// <summary>
+        ///// Creates a report and also a detailed report which calculates marks correct, incorrect, unattempted of a Scheduled Quiz
+        ///// </summary>
+        ///// <param name="evalutionAnswer"></param>
+        ///// <returns></returns>
+        //[HttpPost]
+        //[Route("api/Quiz/EvaluateQuiz")]
+        //public IHttpActionResult EvaluateQuiz(EvalutionAnswer evalutionAnswer)
+        //{
+        //    List<int> qIDs = new List<int>();
+        //    foreach (var item in evalutionAnswer.QuesAnswers)
+        //    {
+        //        qIDs.Add(item.QuestionID);
+        //    }
+        //    var CorrectAnswers = db.Questions
+        //        .AsEnumerable()
+        //        .Where(x => qIDs.Contains(x.QuestionId))
+        //        .OrderBy(x => { return Array.IndexOf(qIDs.ToArray(), x.QuestionId); })
+        //        .Select(z => new { z.Answer, z.Marks })
+        //        .ToList();
+        //    int i = 0, CAnswer = 0, WAnswer = 0, UAttempted = 0;
+        //    decimal TMarks = 0;
+        //    DetailedReport detailedReport = new DetailedReport();
+        //    Report report = new Report();
+        //    foreach (var item in evalutionAnswer.QuesAnswers)
+        //    {
+        //        detailedReport.AttemptedAnswer = item.MarkedAnswer;
+        //        detailedReport.CorrectAnswer = CorrectAnswers[i].Answer;
+        //        detailedReport.QuizId = evalutionAnswer.QuizId;
+        //        detailedReport.QuestionId = item.QuestionID;
+        //        detailedReport.UserId = evalutionAnswer.UserId;
+        //        if (item.MarkedAnswer == CorrectAnswers[i].Answer)
+        //        {
+        //            TMarks += CorrectAnswers[i].Marks;
+        //            CAnswer++;
+        //        }
+        //        else if (item.MarkedAnswer == 0)
+        //        {
+        //            UAttempted++;
+        //        }
+        //        else
+        //        {
+        //            WAnswer++;
+        //        }
+        //        i++;
+        //        if (db.Quizs.FirstOrDefault(x => x.QuizId == evalutionAnswer.QuizId).QuizType == "Scheduled")
+        //        {
+        //            db.DetailedReports.Add(detailedReport);
+        //            db.SaveChanges();
+        //        }
+        //    }
+        //    report.CorrectAnswers = CAnswer;
+        //    report.WrongAnswers = WAnswer;
+        //    report.UnattemptedAnswers = UAttempted;
+        //    report.TimeTaken = evalutionAnswer.TimeTaken;
+        //    //Here CorrectAnswers.Count() is TotalQuestions
+        //    report.Accuracy = (CAnswer * 100) / CorrectAnswers.Count();
+        //    report.MarksScored = TMarks;
+        //    report.QuizType = db.Quizs.FirstOrDefault(x => x.QuizId == evalutionAnswer.QuizId).QuizType;
+        //    report.UserId = evalutionAnswer.UserId;
+        //    report.QuizId = evalutionAnswer.QuizId;
+        //    var userSchedule = db.UserSchedules.FirstOrDefault(x => x.QuizScheduleId == evalutionAnswer.QuizScheduleId && x.UserId == evalutionAnswer.UserId && x.QuizId == evalutionAnswer.QuizId);
+        //    if (userSchedule != null)
+        //    {
+        //        userSchedule.Taken = true;
+        //    }
+        //    db.Reports.Add(report);
+        //    db.SaveChanges();
+        //    return Ok();
+        //}
 
         /// <summary>
         /// Evaluates a Mock Quiz
         /// </summary>
         /// <param name="QuizId"></param>
+        /// <param name="UserId"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/Quiz/EvaluateMockQuiz/{QuizId}")]
-        public IHttpActionResult EvaluateMockQuiz(int QuizId)
+        [Route("api/Quiz/SubmitMockQuiz")]
+        public IHttpActionResult SubmitMockQuiz([FromUri]int QuizId,[FromUri]string UserId)
         {
-            var qIDs = db.QuizQuestions.Where(x => x.QuizId == QuizId).Select(y => y.QuestionId).ToList();
-            var QuestionAnswers = db.Questions
-                .AsEnumerable()
-                .Where(x => qIDs.Contains(x.QuestionId))
-                .Select(z => new
+            var quizBuffer = db.QuizBuffers.Where(x => x.UserId == UserId && x.QuizId == QuizId).ToList();
+            List<MockQuizSubmitDetails> QuesAns = new List<MockQuizSubmitDetails>();
+            foreach (var item in quizBuffer)
+            {
+                var question = db.Questions.Find(item.QuestionId);
+                QuesAns.Add(new MockQuizSubmitDetails()
                 {
-                    z.QuestionId,
-                    z.QuestionStatement,
-                    z.Option1,
-                    z.Option2,
-                    z.Option3,
-                    z.Option4,
-                    z.ImageName,
-                    z.Answer
-                }).ToList();
-            return Ok(QuestionAnswers);
+                    QuestionId = item.QuestionId,
+                    QuestionStatement = question.QuestionStatement,
+                    Option1 = question.Option1,
+                    Option2 = question.Option2,
+                    Option3 = question.Option3,
+                    Option4 = question.Option4,
+                    ImageName = question.ImageName,
+                    CorrectAnswer = db.Questions.Find(item.QuestionId).Answer,
+                    MarkedAnswer = item.MarkedAnswer,
+                    ResponseTime = item.ResponseTime
+                });
+            }
+            db.QuizBuffers.RemoveRange(quizBuffer);
+            db.SaveChanges();
+            return Ok(QuesAns);
         }
 
         /// <summary>
@@ -578,7 +701,7 @@ namespace WebApi.Controllers
 
         [HttpPut]
         [Route("api/Quiz/SubmitQuestion")]
-        public IHttpActionResult GetQuizQuestion(QuizBuffer quizBuffer)
+        public IHttpActionResult SubmitQuizQuestion(QuizBuffer quizBuffer)
         {
             var buffer = db.QuizBuffers.FirstOrDefault(x => x.Index == quizBuffer.Index && x.QuizId == quizBuffer.QuizId && x.UserId == quizBuffer.UserId);
             if (helper.ValidateUserId(quizBuffer.UserId) == false || buffer == null)

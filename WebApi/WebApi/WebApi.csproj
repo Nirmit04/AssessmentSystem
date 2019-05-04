@@ -392,7 +392,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\DetailedReport.cs" />
-    <Compile Include="Models\EvaluationAnswer.cs" />
+    <Compile Include="Models\HelperModel.cs" />
     <Compile Include="Models\GoogleApiTokenInfo.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Question.cs" />

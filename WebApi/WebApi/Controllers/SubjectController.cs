@@ -28,9 +28,7 @@ namespace WebApi.Controllers
                 Select(x => new
                 {
                    x.SubjectId,
-                   x.Name,
-                   x.Department,
-                   x.CreatedBy
+                   x.Name
                 }).ToList();
             return Ok(subject);
         }

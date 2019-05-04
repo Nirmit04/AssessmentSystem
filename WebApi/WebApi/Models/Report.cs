@@ -19,6 +19,7 @@ namespace WebApi.Models
         public decimal Accuracy { get; set; }
         public decimal MarksScored { get; set; }
         public string QuizType { get; set; }
+        public string Result { get; set; }
 
         [ForeignKey("User")]
         public string UserId { get; set; }
