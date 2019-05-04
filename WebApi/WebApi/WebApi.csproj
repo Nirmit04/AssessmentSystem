@@ -396,6 +396,7 @@
     <Compile Include="Models\GoogleApiTokenInfo.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Question.cs" />
+    <Compile Include="Models\QuestionTag.cs" />
     <Compile Include="Models\Quiz.cs" />
     <Compile Include="Models\QuizBuffer.cs" />
     <Compile Include="Models\QuizQuestion.cs" />

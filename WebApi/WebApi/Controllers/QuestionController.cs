@@ -33,7 +33,7 @@ namespace WebApi.Controllers
         [Route("api/Question/GetQuestion/{SubjectId:int?}")]
         public IHttpActionResult GetQuestion(int? SubjectId)
         {
-            if(db.Subjects.Find(SubjectId)==null)
+            if (db.Subjects.Find(SubjectId) == null)
             {
                 return BadRequest("Invalid Parameters");
             }
@@ -55,7 +55,7 @@ namespace WebApi.Controllers
                         Difficulty = x.Difficulty,
                         ImageName = x.ImageName
                     })
-                    .OrderByDescending(y=>y.QuestionId)
+                    .OrderByDescending(y => y.QuestionId)
                     .ToList();
             return Ok(questions);
         }
@@ -71,7 +71,7 @@ namespace WebApi.Controllers
         [Route("api/Question/GetQuestion")]
         public IHttpActionResult GetQuestionDifficultySubjectType(string Difficulty, int SubjectId, string QuestionType)
         {
-            if (db.Subjects.Find(SubjectId) == null )
+            if (db.Subjects.Find(SubjectId) == null)
             {
                 return BadRequest("Invalid Parameters");
             }
@@ -201,7 +201,7 @@ namespace WebApi.Controllers
             {
                 db.SaveChanges();
             }
-            catch(DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException)
             {
                 if (!QuestionExists(QuestionId))
                 {
@@ -300,7 +300,7 @@ namespace WebApi.Controllers
                 .ToList();
             return Ok(questions);
         }
-
+        
         /// <summary>
         /// Returns a question of the specified Question Id
         /// </summary>

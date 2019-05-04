@@ -14,7 +14,7 @@ namespace WebApi.Controllers
     public class SubjectController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        HelperClass helper = new HelperClass();
+        private HelperClass helper = new HelperClass();
 
         /// <summary>
         /// Returns all the Tags/Subjects available
@@ -91,12 +91,12 @@ namespace WebApi.Controllers
         [Route("api/Subject/GetSubjects/{UserId}")]
         public IHttpActionResult GetSubjectAll(string UserId)
         {
-            if(!helper.ValidateUserId(UserId))
+            if (!helper.ValidateUserId(UserId))
             {
                 return BadRequest("Invalid Id");
             }
-            var subject = db.Subjects.Where(x=>x.CreatedBy==UserId).
-                Select(x => new
+            var subject = db.Subjects.Where(x => x.CreatedBy==UserId)
+                .Select(x => new
                 {
                     x.SubjectId,
                     x.Name,

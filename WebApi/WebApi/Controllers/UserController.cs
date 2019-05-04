@@ -49,14 +49,13 @@ namespace WebApi.Controllers
                     var tempuser = userManager.FindByEmail(user.Email);
                     userManager.AddToRole(tempuser.Id, "Employee");
                 }
-                catch(Exception)
-                { }
+                catch (Exception) { }
                 return result;
             }
             else
             {
                 return IdentityResult.Failed();
-            }          
+            }
         }
         #region RoleAuthorization
         //[HttpGet]
@@ -114,7 +113,7 @@ namespace WebApi.Controllers
                     ImageURL = user.ImageURL,
                     Roles = helper.GetUserRoles(user.Id),
                     GoogleId = user.GoogleId,
-                });              
+                });
             }
             return userlist.AsQueryable();
         }
@@ -154,7 +153,7 @@ namespace WebApi.Controllers
         [Route("api/Stats/{UserId}")]
         public IHttpActionResult UserStats(string UserId)
         {
-            if(!helper.ValidateUserId(UserId))
+            if (!helper.ValidateUserId(UserId))
             {
                 return BadRequest("Invalid Id");
             }

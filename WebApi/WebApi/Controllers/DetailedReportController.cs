@@ -33,7 +33,7 @@ namespace WebApi.Controllers
                     y.QuestionId,
                     y.AttemptedAnswer,
                     y.CorrectAnswer,
-                    db.Questions.FirstOrDefault(z=>z.QuestionId == y.QuestionId).QuestionStatement,
+                    db.Questions.FirstOrDefault(z => z.QuestionId == y.QuestionId).QuestionStatement,
                     Option = new List<string>()
                     {
                         db.Questions.FirstOrDefault(z=>z.QuestionId == y.QuestionId).Option1,
