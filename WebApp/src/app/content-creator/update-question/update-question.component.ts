@@ -19,7 +19,7 @@ export class UpdateQuestionComponent implements OnInit {
   bool = false;
   label: string;
   src: string = null;
-  dropdownSettings;
+  dropdownSettings=null;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<UpdateQuestionComponent>,
