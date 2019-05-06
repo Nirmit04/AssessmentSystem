@@ -237,6 +237,7 @@ export class TakeQuizComponent implements OnInit {
 					this.router.navigate(['/emp-dash/non-mocks']);
 				}
 				else	{
+					console.log(res);
 					this.router.navigate(['/emp-dash/quiz/result']);
 				}
 			});

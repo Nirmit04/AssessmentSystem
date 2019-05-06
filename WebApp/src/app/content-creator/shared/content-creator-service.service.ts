@@ -45,6 +45,7 @@ export class ContentCreatorServiceService {
 
 	updateQuestion(formData: Question) {
 		console.log(formData);
+		this.formDataNew = new FormData();
 		this.formDataNew.append('QuestionDetails', JSON.stringify(formData));
 		if (this.selectedFile !== null) {
 			this.formDataNew.append('Image', this.selectedFile, this.selectedFile.name);

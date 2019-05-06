@@ -16,7 +16,6 @@ import { CreateQuestionsComponent } from '../../create-questions/create-question
 
 export class CreateQuizComponent implements OnInit {
 
-  dtOptions: DataTables.Settings = {};
   public Subjects: any[];
   questions: any[];
   quizzes: any[];
@@ -27,8 +26,6 @@ export class CreateQuizComponent implements OnInit {
   length = 0;
   flag = 1;
   form1: NgForm;
-  dtTrigger: Subject<any> = new Subject();
-  subscription: Subscription;
   QuizHour: string;
   QuizMinute: string;
   MockType: string;
@@ -37,25 +34,30 @@ export class CreateQuizComponent implements OnInit {
   difficulty = '';
   subjectid: number = null;
   question_type = '';
+  dropdownSettings = {};
   constructor(private service: ContentCreatorServiceService,
     private dialogRef: MatDialogRef<CreateQuizComponent>,
     public toastr: ToastrService,
     private dialog: MatDialog,
   ) { }
   ngOnInit() {
-    this.quizExists = false;
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 4,
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'SubjectId',
+      textField: 'Name',
+      enableCheckAll: false,
+      itemsShowLimit: 5,
+      allowSearchFilter: true,
     };
+    this.quizExists = false;
     this.resetForm();
-    this.dtTrigger.next();
     this.CCreatedBy = localStorage.getItem('uid');
     this.service.retrieveQuizNames().subscribe((res: any) => {
       this.quizzes = res as any[]
     });
     this.service.retrieveSubjects().subscribe(data => {
       this.Subjects = data as any[];
+      console.log(this.Subjects);
     });
   }
 
@@ -85,7 +87,6 @@ export class CreateQuizComponent implements OnInit {
 
   fetch(form: NgForm) {
     this.fetchReqQues(form);
-    this.dtTrigger.next();
   }
 
   fetchReqQues(form: NgForm) {
@@ -119,11 +120,11 @@ export class CreateQuizComponent implements OnInit {
       });
     }
     else {
+      console.log('i am here');
       this.service.getQuesOfUserConstraints(form.value).subscribe((data: any) => {
         data.forEach(obj => obj.selected = false);
         this.questions = data;
         this.length = this.questions.length;
-        this.dtTrigger.next();
         this.checkVal();
       });
     }
@@ -131,8 +132,6 @@ export class CreateQuizComponent implements OnInit {
 
   checkVal() {
     this.val = true;
-    this.dtTrigger.unsubscribe();
-    this.dtTrigger.next();
   }
 
   updateSelectedQuestions(index) {
@@ -154,8 +153,6 @@ export class CreateQuizComponent implements OnInit {
       this.questions = data;
       this.length = this.questions.length;
       this.checkVal();
-      this.dtTrigger.unsubscribe();
-      this.dtTrigger.next();
     });
   }
 
@@ -207,13 +204,7 @@ export class CreateQuizComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.service.quesStat = false;
       this.reload(this.service.quizForm);
-      this.dtTrigger.unsubscribe();
-      this.dtTrigger.next();
     });
-  }
-
-  ngOnDestroy() {
-    this.dtTrigger.unsubscribe();
   }
 
 }
