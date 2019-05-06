@@ -17,8 +17,8 @@
         <tr style="color:azure">
           <th (click)="viewSchedule(item.QuizScheduleId,i+1)" scope="row">{{i+1}}</th>
           <td (click)="viewSchedule(item.QuizScheduleId,i+1)" >{{item.QuizName}}</td>
-          <td (click)="viewSchedule(item.QuizScheduleId,i+1)" >{{item.StartDateTime}}</td>
-          <td (click)="viewSchedule(item.QuizScheduleId,i+1)" >{{item.EndDateTime}}</td>
+          <td (click)="viewSchedule(item.QuizScheduleId,i+1)" >{{item.StartDateTime | date:'medium' :' UTC' }} </td>
+          <td (click)="viewSchedule(item.QuizScheduleId,i+1)" >{{item.EndDateTime | date:'medium' :' UTC'}}</td>
           <td>
             <a class="btn btn-sm btn-info text-white" (click)="editSchedule(item.QuizScheduleId,i+1)"><i aria-hidden="true"
                 class="fa fa-pencil"></i></a>

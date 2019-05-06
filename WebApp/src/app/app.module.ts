@@ -68,11 +68,11 @@ import { HttpErrorInterceptor } from './http-error-interceptor';
 import { DatePipe } from '@angular/common';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { LoaderComponent } from './loader/loader.component';
-import { LoaderInterceptorService} from '../app/services/loader-interceptor.service';
+import { LoaderInterceptorService } from '../app/services/loader-interceptor.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoaderServiceService } from './services/loader-service.service';
 import { InstructionsComponent } from './employee/take-quiz/instructions/instructions.component';
-import { TableModule } from 'primeng/table'
+import { TableModule } from 'primeng/table';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -158,8 +158,7 @@ export function provideConfig() {
 		DetailsComponent,
 		HttpInterceptorComponent,
 		LoaderComponent,
-		InstructionsComponent,
-		
+		InstructionsComponent
 	],
 	imports: [
 		BrowserModule,
@@ -210,7 +209,7 @@ export function provideConfig() {
 			multi: true
 		}
 	],
-	bootstrap: [AppComponent],
+	bootstrap: [ AppComponent ],
 	entryComponents: [
 		CreatetagComponent,
 		UpdateQuestionComponent,
@@ -226,4 +225,4 @@ export function provideConfig() {
 		DetailsComponent
 	]
 })
-export class AppModule { }
+export class AppModule {}
