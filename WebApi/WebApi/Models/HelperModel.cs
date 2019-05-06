@@ -45,4 +45,11 @@ namespace WebApi.Models
         public int SubjectId { get; set; }
         public string Name { get; set; }
     }
+
+    public class QuestionSpecs
+    {
+        public string Difficulty { get; set; }
+        public string QuestionType { get; set; }
+        public SubjectTag[] Tags { get; set; }
+    }
 }
