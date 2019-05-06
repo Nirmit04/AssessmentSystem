@@ -2,7 +2,7 @@
   <button type="button " [mat-dialog-close] class="btn btn-danger pos">
     <mat-icon>clear</mat-icon>
   </button>
-  <div class="card" style="width: 80%; overflow: auto">
+  <div class="card " style="width: 80%; overflow: auto">
     <div class="card-body">
       <strong>
         <h2 class="card-title" style="text-align: center">Create A Quiz</h2><br />
@@ -56,8 +56,8 @@
               </div>
             </div>
           </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
+          <div class="form-row move1">
+            <div class="form-group col-md-3">
               <strong><label>Quiz Time (hh:mm)</label><br /></strong>
               <input required type="number" name="QuizHour" placeholder="hh" min="0" max="24" #QuizHour="ngModel"
                 [(ngModel)]="service.QuizHour">&nbsp;
@@ -68,6 +68,22 @@
                 *ngIf="QuizHour.invalid && QuizHour.touched && QuizMinutes.invalid && QuizMinutes.touched">This field is
                 required.</div>
             </div>
+            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+            <div class="can-toggle demo-rebrand-1 col-md-3 move">
+              <input id="d"  type="checkbox" class="chb messageCheckbox" (change)="toggleEditable($event)"/>
+              <label for="d">
+                <div id="pro" class="can-toggle__switch" data-checked="ACTIVE" data-unchecked="INACTIVE"></div>
+              </label>
+            </div>
+            <div class="form-group col-md-6">
+              <strong><label>CutOff Marks</label></strong>
+              <br />
+              <input type="text" required name="cutoff"  class="form-control">
+            
+           </div>
+              
+             <br /><br />
             <div *ngIf="service.quizForm.QuizType == 'Mock'" class="form-group col-md-6">
               <strong><label>Select Mock Quiz</label></strong>
               <select name="MockTypess" required #MockTypess="ngModel" [(ngModel)]="MockType" class="form-control">
@@ -78,15 +94,20 @@
               <div class="validation-error" *ngIf="MockTypess.invalid && MockTypess.touched">This field is required.
               </div>
             </div>
-          </div>
-          <div class="form-row">
+         
             <div *ngIf="MockType == 'Random'" class="form-group col-md-6">
               <strong><label>Number Of Questions</label></strong>
               <input type="text" name="Questions" #Questions="ngModel" [(ngModel)]="TotalQuestions"
                 class="form-control">
               <div class="validation-error" *ngIf="Questions.invalid && Questions.touched">This field is required.</div>
-            </div>
+            </div> 
           </div>
+
+         
+
+
+
+
           <div class="form-group" style="margin-top: 3%">
             <button type="submit" [disabled]="form.invalid || quizExists" class="btn btn-primary">Create</button>
           </div>
