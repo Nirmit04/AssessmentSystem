@@ -272,7 +272,8 @@ namespace WebApi.Controllers
             var qIdsInQuiz = db.QuizQuestions.AsEnumerable()
                 .Where(x => x.QuizId == QuizId)
                 .Select(z => z.QuestionId).ToList();
-            var qIdsBySubject = helper.GetQuestionIdsBySubject(quiz.SubjectId);
+            //var qIdsBySubject = helper.GetQuestionIdsBySubject(quiz.SubjectId);
+            List<int> qIdsBySubject = new List<int>(); 
             var questions = db.Questions.Where(x => qIdsBySubject.Contains(x.QuestionId) && x.Difficulty == quiz.Difficulty && x.QuestionType == quiz.QuizType && !qIdsInQuiz.Contains(x.QuestionId))
                 .Select(z => new
                 {
@@ -638,7 +639,8 @@ namespace WebApi.Controllers
         [Route("api/Quiz/GetRandomQuestion")]
         public IHttpActionResult GenerateMockQuiz([FromBody]Quiz quiz, [FromUri]int TotalQuestion)
         {
-            var qIdsBySubject = helper.GetQuestionIdsBySubject(quiz.SubjectId);
+            //var qIdsBySubject = helper.GetQuestionIdsBySubject(quiz.SubjectId);
+            List<int> qIdsBySubject = new List<int>(); 
             var questions = db.Questions.AsEnumerable()
                 .Where(y => qIdsBySubject.Contains(y.QuestionId) && y.Difficulty == quiz.Difficulty && y.QuestionType == quiz.QuizType)
                 .Select(x => new { x.QuestionId, x.QuestionStatement, x.Option1, x.Option2, x.Option3, x.Option4, x.ImageName, x.Marks })

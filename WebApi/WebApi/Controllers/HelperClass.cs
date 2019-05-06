@@ -105,10 +105,15 @@ namespace WebApi.Controllers
             }
         }
 
-        public List<int> GetQuestionIdsBySubject(int SubjectId)
+        public List<int> GetQuestionIdsBySubject(SubjectTag[] subjectTags)
         {
+            List<int> subIds = new List<int>();
+            foreach (var item in subjectTags)
+            {
+                subIds.Add(item.SubjectId);
+            }
             var qIds = db.QuestionTags
-                .Where(x => x.SubjectId == SubjectId)
+                .Where(x => subIds.Contains(x.SubjectId))
                 .Select(x => x.QuestionId)
                 .ToList();
             return qIds;

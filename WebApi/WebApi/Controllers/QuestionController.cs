@@ -27,17 +27,20 @@ namespace WebApi.Controllers
         /// <summary>
         /// Returns all the questions of a particular Subject
         /// </summary>
-        /// <param name="SubjectId"></param>
+        /// <param name="subjectTags"></param>
         /// <returns></returns>
-        [HttpGet]
-        [Route("api/Question/GetQuestion/{SubjectId}")]
-        public IHttpActionResult GetQuestion(int SubjectId)
+        [HttpPost]
+        [Route("api/Question/GetQuestion")]
+        public IHttpActionResult GetQuestion(SubjectTag[] subjectTags)
         {
-            if (db.Subjects.Find(SubjectId) == null)
+            foreach (var item in subjectTags)
             {
-                return BadRequest("Invalid Parameters");
+                if (db.Subjects.Find(item.SubjectId) == null)
+                {
+                    return BadRequest("Invalid Parameters");
+                }
             }
-            var qIds = helper.GetQuestionIdsBySubject(SubjectId);
+            var qIds = helper.GetQuestionIdsBySubject(subjectTags);
             var questions = db.Questions
                     .Where(z => qIds.Contains(z.QuestionId))
                     .Select(x => new
@@ -51,10 +54,9 @@ namespace WebApi.Controllers
                         x.Answer,
                         x.Marks,
                         x.QuestionType,
-                        SubjectId,
-                        SubjectName = db.Subjects.Where(y => y.SubjectId == SubjectId).FirstOrDefault().Name,
                         x.Difficulty,
-                        x.ImageName
+                        x.ImageName,
+                        Tags = helper.GetSubjectTags(x.QuestionId)
                     })
                     .OrderByDescending(y => y.QuestionId)
                     .ToList();
@@ -76,28 +78,29 @@ namespace WebApi.Controllers
             {
                 return BadRequest("Invalid Parameters");
             }
-            var qIds = helper.GetQuestionIdsBySubject(SubjectId);
-            var questions = db.Questions
-                .Where(z => qIds.Contains(SubjectId) && z.Difficulty == Difficulty && z.QuestionType == QuestionType)
-                .Select(x => new
-                {
-                    x.QuestionId,
-                    x.QuestionStatement,
-                    x.Option1,
-                    x.Option2,
-                    x.Option3,
-                    x.Option4,
-                    x.Answer,
-                    x.Marks,
-                    x.QuestionType,
-                    SubjectId,
-                    SubjectName = db.Subjects.Where(y => y.SubjectId == SubjectId).FirstOrDefault().Name,
-                    x.Difficulty,
-                    x.ImageName
-                })
-                .OrderByDescending(y => y.QuestionId)
-                .ToList();
-            return Ok(questions);
+            //var qIds = helper.GetQuestionIdsBySubject(SubjectId);
+            //var questions = db.Questions
+            //    .Where(z => qIds.Contains(SubjectId) && z.Difficulty == Difficulty && z.QuestionType == QuestionType)
+            //    .Select(x => new
+            //    {
+            //        x.QuestionId,
+            //        x.QuestionStatement,
+            //        x.Option1,
+            //        x.Option2,
+            //        x.Option3,
+            //        x.Option4,
+            //        x.Answer,
+            //        x.Marks,
+            //        x.QuestionType,
+            //        SubjectId,
+            //        SubjectName = db.Subjects.Where(y => y.SubjectId == SubjectId).FirstOrDefault().Name,
+            //        x.Difficulty,
+            //        x.ImageName
+            //    })
+            //    .OrderByDescending(y => y.QuestionId)
+            //    .ToList();
+            //return Ok(questions);
+            return Ok();
         }
 
         /// <summary>
