@@ -21,9 +21,8 @@ namespace WebApi.Models
         public ApplicationUser User { get; set; }
 
         [JsonIgnore]
-        public virtual ICollection<Question> Questions { get; set; }
+        public virtual ICollection<QuestionTag> QuestionTags { get; set; }
         [JsonIgnore]
         public virtual ICollection<Quiz> Quizs { get; set; }
-
     }
 }

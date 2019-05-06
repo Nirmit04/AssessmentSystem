@@ -31,7 +31,7 @@ namespace WebApi.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("api/User/Register")]
-        public IdentityResult Register(Account model)
+        public IdentityResult RegisterAsync(Account model)
         {
             var tempUser = userManager.FindByEmail(model.Email);
             if (tempUser == null)

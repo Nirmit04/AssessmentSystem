@@ -160,7 +160,7 @@ namespace WebApi.Controllers
         
         [HttpGet]
         [Route("api/Quiz/QuizQuestion")]
-        public IHttpActionResult GetQuizQuestion([FromUri]int QuizId, [FromUri]string UserId = null)
+        public IHttpActionResult GetQuizQuestionTakeQuiz([FromUri]int QuizId, [FromUri]string UserId = null)
         {
             if (db.Quizs.Find(QuizId) == null)
             {
@@ -227,7 +227,7 @@ namespace WebApi.Controllers
                         x.ImageName,
                         x.Marks,
                         x.QuestionType,
-                        x.SubjectId,
+                        //x.SubjectId,
                         x.Difficulty,
                         x.CreatedBy
                     }).ToList();
@@ -268,12 +268,12 @@ namespace WebApi.Controllers
         [Route("api/Quiz/GetQuestionsNotInQuiz/{QuizId}")]
         public IHttpActionResult GetQuestionsNotInQuiz(int QuizId)
         {
-            var qIds = db.QuizQuestions.AsEnumerable()
+            var quiz = db.Quizs.Single(x => x.QuizId == QuizId);
+            var qIdsInQuiz = db.QuizQuestions.AsEnumerable()
                 .Where(x => x.QuizId == QuizId)
                 .Select(z => z.QuestionId).ToList();
-            var quiz = db.Quizs.Single(x => x.QuizId == QuizId);
-            var questionsList = db.Questions
-                .Where(x => x.Difficulty == quiz.Difficulty && x.SubjectId == quiz.SubjectId && x.QuestionType == quiz.QuizType && !qIds.Contains(x.QuestionId))
+            var qIdsBySubject = helper.GetQuestionIdsBySubject(quiz.SubjectId);
+            var questions = db.Questions.Where(x => qIdsBySubject.Contains(x.QuestionId) && x.Difficulty == quiz.Difficulty && x.QuestionType == quiz.QuizType && !qIdsInQuiz.Contains(x.QuestionId))
                 .Select(z => new
                 {
                     z.QuestionId,
@@ -285,12 +285,12 @@ namespace WebApi.Controllers
                     z.Answer,
                     z.Marks,
                     z.QuestionType,
-                    z.SubjectId,
-                    SubjectName = db.Subjects.Where(y => y.SubjectId == z.SubjectId).FirstOrDefault().Name,
+                    //z.SubjectId,
+                    //SubjectName = db.Subjects.Where(y => y.SubjectId == z.SubjectId).FirstOrDefault().Name,
                     z.Difficulty,
                     z.ImageName
                 }).ToList();
-            return Ok(questionsList);
+            return Ok(questions);
         }
 
         /// <summary>
@@ -302,9 +302,8 @@ namespace WebApi.Controllers
         [Route("api/Quiz/Archived/{CreatedBy}")]
         public IHttpActionResult ArchviedQuiz(string CreatedBy)
         {
-
-            var quiz = db.Quizs.Where(x => x.CreatedBy == CreatedBy).Where(x => x.ArchiveStatus == true).
-                Select(x => new
+            var quiz = db.Quizs.Where(x => x.CreatedBy == CreatedBy).Where(x => x.ArchiveStatus == true)
+                .Select(x => new
                 {
                     x.QuizId,
                     x.QuizName,
@@ -639,9 +638,9 @@ namespace WebApi.Controllers
         [Route("api/Quiz/GetRandomQuestion")]
         public IHttpActionResult GenerateMockQuiz([FromBody]Quiz quiz, [FromUri]int TotalQuestion)
         {
-            var questions = db.Questions
-                .AsEnumerable()
-                .Where(y => y.SubjectId == quiz.SubjectId && y.Difficulty == quiz.Difficulty && y.QuestionType == quiz.QuizType)
+            var qIdsBySubject = helper.GetQuestionIdsBySubject(quiz.SubjectId);
+            var questions = db.Questions.AsEnumerable()
+                .Where(y => qIdsBySubject.Contains(y.QuestionId) && y.Difficulty == quiz.Difficulty && y.QuestionType == quiz.QuizType)
                 .Select(x => new { x.QuestionId, x.QuestionStatement, x.Option1, x.Option2, x.Option3, x.Option4, x.ImageName, x.Marks })
                 .OrderBy(y => Guid.NewGuid())
                 .Take(TotalQuestion)
@@ -690,7 +689,7 @@ namespace WebApi.Controllers
                     x.ImageName,
                     x.Marks,
                     x.QuestionType,
-                    x.SubjectId,
+                    //x.SubjectId,
                     x.Difficulty,
                     x.CreatedBy,
                     quizBuffer.MarkedAnswer,

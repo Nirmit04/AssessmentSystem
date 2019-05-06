@@ -21,19 +21,19 @@ namespace WebApi.Models
         public string Difficulty { get; set; }
         public string QuestionType { get; set; } = "Scheduled";
 
-        [ForeignKey("Subject")]
-        public int SubjectId { get; set; }
+        [NotMapped]
+        public SubjectTag[] Tags { get; set; }
         [ForeignKey("User")]
         public string CreatedBy { get; set; }
 
         //Foreign Key reference table
-        [JsonIgnore]
-        public virtual Subject Subject { get; set; }
         [JsonIgnore]
         public virtual ApplicationUser User { get; set; }
         [JsonIgnore]
         public virtual ICollection<DetailedReport> DetailedReports { get; set; }
         [JsonIgnore]
         public virtual ICollection<QuizQuestion> QuizQuestions { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<QuestionTag> QuestionTags { get; set; }
     }
 }

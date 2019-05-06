@@ -105,6 +105,15 @@ namespace WebApi.Controllers
             }
         }
 
+        public List<int> GetQuestionIdsBySubject(int SubjectId)
+        {
+            var qIds = db.QuestionTags
+                .Where(x => x.SubjectId == SubjectId)
+                .Select(x => x.QuestionId)
+                .ToList();
+            return qIds;
+        }
+
         public string[] GetUserRoles(string userId)
         {
             if (userId == null)
@@ -129,6 +138,22 @@ namespace WebApi.Controllers
                 return false;
             else
                 return true;
+        }
+
+        public SubjectTag[] GetSubjectTags(int QuestionId)
+        {
+            var subIds = db.QuestionTags
+                .Where(x => x.QuestionId == QuestionId)
+                .Select(z => z.SubjectId)
+                .ToList();
+            var subjectTags = db.Subjects
+                .Where(x => subIds.Contains(x.SubjectId))
+                .Select(y => new SubjectTag()
+                {
+                    SubjectId = y.SubjectId,
+                    Name = y.Name
+                }).ToArray();
+            return subjectTags;
         }
 
     }

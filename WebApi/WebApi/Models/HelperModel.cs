@@ -39,4 +39,10 @@ namespace WebApi.Models
         public ICollection<GetQuestionBuffer> GetQuestionBuffers { get; set; }
         public string TimeLeft { get; set; }
     }
+
+    public class SubjectTag
+    {
+        public int SubjectId { get; set; }
+        public string Name { get; set; }
+    }
 }
