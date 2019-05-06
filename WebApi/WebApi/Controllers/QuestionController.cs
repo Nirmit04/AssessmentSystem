@@ -67,40 +67,41 @@ namespace WebApi.Controllers
         /// Returns all the questions of a particualr difficulty and a subject
         /// </summary>
         /// <param name="Difficulty"></param>
-        /// <param name="SubjectId"></param>
+        /// <param name="subjectTags"></param>
         /// <param name="QuestionType"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpPost]
         [Route("api/Question/GetQuestion")]
-        public IHttpActionResult GetQuestionDifficultySubjectType(string Difficulty, int SubjectId, string QuestionType)
+        public IHttpActionResult GetQuestionDifficultySubjectType(string Difficulty, SubjectTag[] subjectTags, string QuestionType)
         {
-            if (db.Subjects.Find(SubjectId) == null)
+            foreach (var item in subjectTags)
             {
-                return BadRequest("Invalid Parameters");
+                if (db.Subjects.Find(item.SubjectId) == null)
+                {
+                    return BadRequest("Invalid Parameters");
+                }
             }
-            //var qIds = helper.GetQuestionIdsBySubject(SubjectId);
-            //var questions = db.Questions
-            //    .Where(z => qIds.Contains(SubjectId) && z.Difficulty == Difficulty && z.QuestionType == QuestionType)
-            //    .Select(x => new
-            //    {
-            //        x.QuestionId,
-            //        x.QuestionStatement,
-            //        x.Option1,
-            //        x.Option2,
-            //        x.Option3,
-            //        x.Option4,
-            //        x.Answer,
-            //        x.Marks,
-            //        x.QuestionType,
-            //        SubjectId,
-            //        SubjectName = db.Subjects.Where(y => y.SubjectId == SubjectId).FirstOrDefault().Name,
-            //        x.Difficulty,
-            //        x.ImageName
-            //    })
-            //    .OrderByDescending(y => y.QuestionId)
-            //    .ToList();
-            //return Ok(questions);
-            return Ok();
+            var qIds = helper.GetQuestionIdsBySubject(subjectTags);
+            var questions = db.Questions
+                .Where(z => qIds.Contains(z.QuestionId) && z.Difficulty == Difficulty && z.QuestionType == QuestionType)
+                .Select(x => new
+                {
+                    x.QuestionId,
+                    x.QuestionStatement,
+                    x.Option1,
+                    x.Option2,
+                    x.Option3,
+                    x.Option4,
+                    x.Answer,
+                    x.Marks,
+                    x.QuestionType,
+                    x.Difficulty,
+                    x.ImageName,
+                    Tags = helper.GetSubjectTags(x.QuestionId)
+                })
+                .OrderByDescending(y => y.QuestionId)
+                .ToList();
+            return Ok(questions);
         }
 
         /// <summary>
