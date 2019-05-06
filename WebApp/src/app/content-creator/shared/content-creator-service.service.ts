@@ -44,6 +44,7 @@ export class ContentCreatorServiceService {
 	}
 
 	updateQuestion(formData: Question) {
+		console.log(formData);
 		this.formDataNew.append('QuestionDetails', JSON.stringify(formData));
 		if (this.selectedFile !== null) {
 			this.formDataNew.append('Image', this.selectedFile, this.selectedFile.name);
@@ -120,7 +121,7 @@ export class ContentCreatorServiceService {
 	}
 
 	getQuestionsByQuiz(id: number) {
-		return this.http.get(this.rootURL + 'Quiz/QuizQuestion/' + id);
+		return this.http.get(this.rootURL + 'Quiz/QuizQuestion?QuizId=' + id);
 	}
 
 	getQuizQuestions(qid: number) {

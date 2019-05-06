@@ -14,4 +14,5 @@ export class Question {
 	SubjectName?: string;
 	ImageName?: string;
 	CreatedBy?: string;
+	Tags?: any[]
 }

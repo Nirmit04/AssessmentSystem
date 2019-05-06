@@ -73,12 +73,15 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label>Select Subject</label>
-            <select name="SubjectId" [disabled]="bool" required #SubjectId="ngModel"
+            <!-- <select name="SubjectId" [disabled]="bool" required #SubjectId="ngModel"
               [(ngModel)]="service.formData.SubjectId" class="form-control">
               <option value="">Choose</option>
               <option *ngFor="let Subject of Subjects" value="{{Subject.SubjectId}}">{{Subject.Name}}</option>
-            </select>
-            <div class="validation-error" *ngIf="SubjectId.invalid && SubjectId.touched">This field is required.</div>
+            </select> -->
+            <ng-multiselect-dropdown name="Tags" #Tags="ngModel" [placeholder]="Choose" required
+                [data]="Subjects" [disabled]="bool" [settings]="dropdownSettings" [(ngModel)]="service.formData.Tags">
+              </ng-multiselect-dropdown>
+            <div class="validation-error" *ngIf="Tags.invalid && Tags.touched">This field is required.</div>
           </div>
           <div class="form-group col-md-6">
             <label>Select Difficulty-Level</label>

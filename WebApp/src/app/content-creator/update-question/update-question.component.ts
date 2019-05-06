@@ -19,6 +19,7 @@ export class UpdateQuestionComponent implements OnInit {
   bool = false;
   label: string;
   src: string = null;
+  dropdownSettings;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<UpdateQuestionComponent>,
@@ -35,6 +36,14 @@ export class UpdateQuestionComponent implements OnInit {
     if (this.service.formData.ImageName !== null) {
       this.src = environment.imgURl + this.service.formData.ImageName;
     }
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'SubjectId',
+      textField: 'Name',
+      enableCheckAll: false,
+      itemsShowLimit: 5,
+      allowSearchFilter: true,
+    };
     this.CCreatedBy = localStorage.getItem('uid');
     this.service.retrieveSubjects().subscribe(res => {
       this.Subjects = res as Subject[];
