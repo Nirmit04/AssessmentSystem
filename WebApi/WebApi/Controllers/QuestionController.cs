@@ -162,9 +162,11 @@ namespace WebApi.Controllers
             QuestionTag questionTag;
             foreach (var item in question.Tags)
             {
-                questionTag = new QuestionTag();
-                questionTag.QuestionId = question.QuestionId;
-                questionTag.SubjectId = item.SubjectId;
+                questionTag = new QuestionTag()
+                {
+                    QuestionId = question.QuestionId,
+                    SubjectId = item.SubjectId
+                };
                 db.QuestionTags.Add(questionTag);
                 db.SaveChanges();
             }
@@ -215,9 +217,11 @@ namespace WebApi.Controllers
                 QuestionTag questionTag;
                 foreach (var item in question.Tags)
                 {
-                    questionTag = new QuestionTag();
-                    questionTag.QuestionId = question.QuestionId;
-                    questionTag.SubjectId = item.SubjectId;
+                    questionTag = new QuestionTag()
+                    {
+                        QuestionId = question.QuestionId,
+                        SubjectId = item.SubjectId
+                    };
                     db.QuestionTags.Add(questionTag);
                 }
                 db.SaveChanges();

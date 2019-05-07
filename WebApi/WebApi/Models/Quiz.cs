@@ -16,7 +16,9 @@ namespace WebApi.Models
         public string Difficulty { get; set; }
         public int TotalQuestions { get; set; }
         public decimal TotalMarks { get; set; } = 0.00m;
-        public bool ArchiveStatus { get; set; } = false;
+        public bool ArchiveStatus { get; set; } = false; //Soft Delete
+        public bool QuizState { get; set; } = false; // Active = true & Inactive = false
+        public decimal MinCutOff { get; set; } = 40.00m; //In Percent
         public string QuizType { get; set; } = "Scheduled";
         public int[] QuestionIds { get; set; }
         public string QuizTime { get; set; } = null;

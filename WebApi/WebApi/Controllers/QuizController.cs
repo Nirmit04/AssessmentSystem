@@ -37,13 +37,25 @@ namespace WebApi.Controllers
             db.Quizs.Add(quiz);
 
             QuizQuestion quizQuestion;
-
             foreach (var item in quiz.QuestionIds)
             {
-                quizQuestion = new QuizQuestion();
-                quizQuestion.QuizId = quiz.QuizId;
-                quizQuestion.QuestionId = item;
+                quizQuestion = new QuizQuestion()
+                {
+                    QuizId = quiz.QuizId,
+                    QuestionId = item
+                };
                 db.QuizQuestions.Add(quizQuestion);
+                db.SaveChanges();
+            }
+            QuizTag quizTag;
+            foreach (var item in quiz.Tags)
+            {
+                quizTag = new QuizTag()
+                {
+                    QuizId = quiz.QuizId,
+                    SubjectId = item.SubjectId
+                };
+                db.QuizTags.Add(quizTag);
                 db.SaveChanges();
             }
             db.SaveChanges();
