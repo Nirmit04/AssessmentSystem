@@ -42,12 +42,13 @@ export class AddQuesInQuizComponent implements OnInit {
         Difficulty: '',
         TotalQuestions: null,
         TotalMarks: null,
-        Subject: '',
+        Tags: null,
         QuizType: '',
         CreatedBy: '',
         QuestionIds: null,
         SubjectId: null,
-        QuizName: ''
+        QuizName: '',
+        MinCutOff:null
       }
       if (this.questions) {
         this.questions.map(y => y.selected = false);

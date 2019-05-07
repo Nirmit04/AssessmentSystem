@@ -31,6 +31,7 @@ export class TakeQuizComponent implements OnInit {
 	answer: number = 0;
 	today = new Date();
 	TotalResponseTIme: string;
+	body;
 	constructor(private service: EmployeeService, private router: Router,
 		@Inject(DOCUMENT) private document: any) { }
 
@@ -226,18 +227,27 @@ export class TakeQuizComponent implements OnInit {
 			this.totaltime = this.totaltime % 60;
 			this.service.seconds = this.totaltime;
 			this.TotalResponseTIme = this.service.hours.toString() + ':' + this.service.minutes.toString() + ':' + this.service.seconds.toString();
-			const body = {
-				QuizId: this.service.QuizId,
-				UserId: localStorage.getItem('uid'),
-				QuizScheduleId: this.service.QuizScheduleId,
-				TotalResponseTime: this.TotalResponseTIme,
+			if (this.service.QuizScheduleId !== null) {
+				this.body = {
+					QuizId: this.service.QuizId,
+					UserId: localStorage.getItem('uid'),
+					QuizScheduleId: this.service.QuizScheduleId,
+					TotalResponseTime: this.TotalResponseTIme,
+				}
+			} else {
+				this.body = {
+					QuizId: this.service.QuizId,
+					UserId: localStorage.getItem('uid'),
+					TotalResponseTime: this.TotalResponseTIme,
+				}
 			}
-			this.service.postanswers(body).subscribe((res: any) => {
+			console.log(this.body);
+			this.service.postanswers(this.body).subscribe((res: any) => {
 				if (this.service.QuizScheduleId !== null) {
 					this.router.navigate(['/emp-dash/non-mocks']);
 				}
-				else	{
-					console.log(res);
+				else {
+					//	console.log(res);
 					this.router.navigate(['/emp-dash/quiz/result']);
 				}
 			});
