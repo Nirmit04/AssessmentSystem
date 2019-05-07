@@ -112,8 +112,10 @@ namespace WebApi.Controllers
             {
                 subIds.Add(item.SubjectId);
             }
+            HelperClass helper = new HelperClass();
             var qIds = db.QuestionTags
-                .Where(x => subIds.Contains(x.SubjectId))
+                .AsEnumerable()
+                .Where(x => subIds.Contains(x.SubjectId) && helper.GetSubjectTags(x.QuestionId).Count() >= subIds.Count())
                 .Select(x => x.QuestionId)
                 .ToList();
             return qIds;

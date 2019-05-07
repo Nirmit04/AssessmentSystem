@@ -17,12 +17,12 @@ namespace WebApi.Models
 
         [ForeignKey("User")]
         public string CreatedBy { get; set; }
+
         [JsonIgnore]
         public ApplicationUser User { get; set; }
-
         [JsonIgnore]
         public virtual ICollection<QuestionTag> QuestionTags { get; set; }
         [JsonIgnore]
-        public virtual ICollection<Quiz> Quizs { get; set; }
+        public virtual ICollection<QuizTag> QuizTags { get; set; }
     }
 }

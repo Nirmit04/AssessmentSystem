@@ -27,91 +27,23 @@ namespace WebApi.Controllers
         /// <summary>
         /// Returns all the questions of a particular Subject
         /// </summary>
-        /// <param name="subjectTags"></param>
+        /// <param name="QuestionSpecs"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("api/Question/GetQuestion")]
-        public IHttpActionResult GetQuestion(SubjectTag[] subjectTags)
+        [Route("api/Question/GetQuestionBySubjects")]
+        public IHttpActionResult GetQuestion(QuestionSpecs QuestionSpecs)
         {
-            foreach (var item in subjectTags)
+            foreach (var item in QuestionSpecs.Tags)
             {
                 if (db.Subjects.Find(item.SubjectId) == null)
                 {
                     return BadRequest("Invalid Parameters");
                 }
             }
-            var qIds = helper.GetQuestionIdsBySubject(subjectTags);
+            var qIds = helper.GetQuestionIdsBySubject(QuestionSpecs.Tags);
             var questions = db.Questions
-                    .Where(z => qIds.Contains(z.QuestionId))
-                    .Select(x => new
-                    {
-                        x.QuestionId,
-                        x.QuestionStatement,
-                        x.Option1,
-                        x.Option2,
-                        x.Option3,
-                        x.Option4,
-                        x.Answer,
-                        x.Marks,
-                        x.QuestionType,
-                        x.Difficulty,
-                        x.ImageName,
-                        Tags = helper.GetSubjectTags(x.QuestionId)
-                    })
-                    .OrderByDescending(y => y.QuestionId)
-                    .ToList();
-            return Ok(questions);
-        }
-
-        /// <summary>
-        /// Returns all the questions of a particualr difficulty and a subject
-        /// </summary>
-        /// <param name="Difficulty"></param>
-        /// <param name="SubjectId"></param>
-        /// <param name="QuestionType"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("api/Question/GetQuestion")]
-        public IHttpActionResult GetQuestionDifficultySubjectType(string Difficulty, int SubjectId, string QuestionType)
-        {
-            if (db.Subjects.Find(SubjectId) == null)
-            {
-                return BadRequest("Invalid Parameters");
-            }
-            //var qIds = helper.GetQuestionIdsBySubject(SubjectId);
-            //var questions = db.Questions
-            //    .Where(z => qIds.Contains(SubjectId) && z.Difficulty == Difficulty && z.QuestionType == QuestionType)
-            //    .Select(x => new
-            //    {
-            //        x.QuestionId,
-            //        x.QuestionStatement,
-            //        x.Option1,
-            //        x.Option2,
-            //        x.Option3,
-            //        x.Option4,
-            //        x.Answer,
-            //        x.Marks,
-            //        x.QuestionType,
-            //        SubjectId,
-            //        SubjectName = db.Subjects.Where(y => y.SubjectId == SubjectId).FirstOrDefault().Name,
-            //        x.Difficulty,
-            //        x.ImageName
-            //    })
-            //    .OrderByDescending(y => y.QuestionId)
-            //    .ToList();
-            //return Ok(questions);
-            return Ok();
-        }
-
-        /// <summary>
-        /// Returns all the questions present in the question bank
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("api/Question/GetAllQuestions")]
-        public IHttpActionResult GetAllQuestion()
-        {
-            var questions = db.Questions
+                .AsEnumerable()
+                .Where(z => qIds.Contains(z.QuestionId))
                 .Select(x => new
                 {
                     x.QuestionId,
@@ -123,10 +55,79 @@ namespace WebApi.Controllers
                     x.Answer,
                     x.Marks,
                     x.QuestionType,
-                    //x.SubjectId,
-                    //SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
                     x.Difficulty,
-                    x.ImageName
+                    x.ImageName,
+                    Tags = helper.GetSubjectTags(x.QuestionId)
+                })
+                .OrderByDescending(y => y.QuestionId)
+                .ToList();
+            return Ok(questions);
+        }
+
+        /// <summary>
+        /// Returns all the questions of a particualr difficulty and a subject
+        /// </summary>
+        /// <param name="QuestionSpecs"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("api/Question/GetQuestion")]
+        public IHttpActionResult GetQuestionDifficultySubjectType([FromBody]QuestionSpecs QuestionSpecs)
+        {
+            foreach (var item in QuestionSpecs.Tags)
+            {
+                if (db.Subjects.Find(item.SubjectId) == null)
+                {
+                    return BadRequest("Invalid Parameters");
+                }
+            }
+            var qIds = helper.GetQuestionIdsBySubject(QuestionSpecs.Tags);
+            var questions = db.Questions
+                .AsEnumerable()
+                .Where(z => qIds.Contains(z.QuestionId) && z.Difficulty == QuestionSpecs.Difficulty && z.QuestionType == QuestionSpecs.QuestionType)
+                .Select(x => new
+                {
+                    x.QuestionId,
+                    x.QuestionStatement,
+                    x.Option1,
+                    x.Option2,
+                    x.Option3,
+                    x.Option4,
+                    x.Answer,
+                    x.Marks,
+                    x.QuestionType,
+                    x.Difficulty,
+                    x.ImageName,
+                    Tags = helper.GetSubjectTags(x.QuestionId)
+                })
+                .OrderByDescending(y => y.QuestionId)
+                .ToList();
+            return Ok(questions);
+        }
+
+        /// <summary>
+        /// Returns all the questions present in the question bank
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("api/Question/GetAllQuestions")]
+        public IHttpActionResult GetAllQuestion()
+        {
+            var questions = db.Questions
+                .AsEnumerable()
+                .Select(x => new
+                {
+                    x.QuestionId,
+                    x.QuestionStatement,
+                    x.Option1,
+                    x.Option2,
+                    x.Option3,
+                    x.Option4,
+                    x.Answer,
+                    x.Marks,
+                    x.QuestionType,
+                    x.Difficulty,
+                    x.ImageName,
+                    Tags = helper.GetSubjectTags(x.QuestionId)
                 })
                 .OrderByDescending(y => y.QuestionId)
                 .ToList();
@@ -143,16 +144,7 @@ namespace WebApi.Controllers
         {
             var httpRequest = HttpContext.Current.Request;
             var question = new JavaScriptSerializer().Deserialize<Question>(httpRequest.Form["QuestionDetails"]);
-            //Subject sub = db.Subjects.FirstOrDefault(x => x.SubjectId == question.SubjectId);
-            //if(sub==null)
-            //{
-            //    return BadRequest();
-            //}
-            System.Diagnostics.Debug.WriteLine(httpRequest.Form["QuestionDetails"]);
-            foreach (var item in question.Tags)
-            {
-                System.Diagnostics.Debug.WriteLine(item.SubjectId);
-            }
+            
             string imageName = null;
             var postedFile = httpRequest.Files["Image"];
             if (postedFile != null)
@@ -170,9 +162,11 @@ namespace WebApi.Controllers
             QuestionTag questionTag;
             foreach (var item in question.Tags)
             {
-                questionTag = new QuestionTag();
-                questionTag.QuestionId = question.QuestionId;
-                questionTag.SubjectId = item.SubjectId;
+                questionTag = new QuestionTag()
+                {
+                    QuestionId = question.QuestionId,
+                    SubjectId = item.SubjectId
+                };
                 db.QuestionTags.Add(questionTag);
                 db.SaveChanges();
             }
@@ -223,9 +217,11 @@ namespace WebApi.Controllers
                 QuestionTag questionTag;
                 foreach (var item in question.Tags)
                 {
-                    questionTag = new QuestionTag();
-                    questionTag.QuestionId = question.QuestionId;
-                    questionTag.SubjectId = item.SubjectId;
+                    questionTag = new QuestionTag()
+                    {
+                        QuestionId = question.QuestionId,
+                        SubjectId = item.SubjectId
+                    };
                     db.QuestionTags.Add(questionTag);
                 }
                 db.SaveChanges();
@@ -338,13 +334,14 @@ namespace WebApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("api/Question/{QuestionId}")]
-        public IHttpActionResult QuestionById(int? QuestionId)
+        public IHttpActionResult QuestionById(int QuestionId)
         {
             if (db.Questions.Find(QuestionId) == null)
             {
                 return BadRequest("Invalid QuestionId");
             }
             var question = db.Questions
+                .AsEnumerable()
                 .Where(z => z.QuestionId == QuestionId)
                 .Select(x => new
                 {
@@ -357,10 +354,9 @@ namespace WebApi.Controllers
                     x.Answer,
                     x.Marks,
                     x.QuestionType,
-                    //x.SubjectId,
-                    //SubjectName = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
                     x.Difficulty,
-                    x.ImageName
+                    x.ImageName,
+                    Tags = helper.GetSubjectTags(QuestionId)
                 })
                 .Single();
             return Ok(question);

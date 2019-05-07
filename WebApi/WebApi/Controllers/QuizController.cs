@@ -37,13 +37,25 @@ namespace WebApi.Controllers
             db.Quizs.Add(quiz);
 
             QuizQuestion quizQuestion;
-
             foreach (var item in quiz.QuestionIds)
             {
-                quizQuestion = new QuizQuestion();
-                quizQuestion.QuizId = quiz.QuizId;
-                quizQuestion.QuestionId = item;
+                quizQuestion = new QuizQuestion()
+                {
+                    QuizId = quiz.QuizId,
+                    QuestionId = item
+                };
                 db.QuizQuestions.Add(quizQuestion);
+                db.SaveChanges();
+            }
+            QuizTag quizTag;
+            foreach (var item in quiz.Tags)
+            {
+                quizTag = new QuizTag()
+                {
+                    QuizId = quiz.QuizId,
+                    SubjectId = item.SubjectId
+                };
+                db.QuizTags.Add(quizTag);
                 db.SaveChanges();
             }
             db.SaveChanges();
@@ -74,8 +86,8 @@ namespace WebApi.Controllers
                     x.ArchiveStatus,
                     x.QuizType,
                     x.QuizTime,
-                    x.SubjectId,
-                    Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name
+                    //x.SubjectId,
+                    //Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name
                 })
                 .OrderByDescending(z => z.QuizId)
                 .ToList();
@@ -227,8 +239,8 @@ namespace WebApi.Controllers
                         x.ImageName,
                         x.Marks,
                         x.QuestionType,
-                        //x.SubjectId,
                         x.Difficulty,
+                        Tags = helper.GetSubjectTags(x.QuestionId),
                         x.CreatedBy
                     }).ToList();
                 return Ok(questions);
@@ -273,7 +285,7 @@ namespace WebApi.Controllers
                 .Where(x => x.QuizId == QuizId)
                 .Select(z => z.QuestionId).ToList();
             //var qIdsBySubject = helper.GetQuestionIdsBySubject(quiz.SubjectId);
-            List<int> qIdsBySubject = new List<int>(); 
+            List<int> qIdsBySubject = new List<int>(); //temp
             var questions = db.Questions.Where(x => qIdsBySubject.Contains(x.QuestionId) && x.Difficulty == quiz.Difficulty && x.QuestionType == quiz.QuizType && !qIdsInQuiz.Contains(x.QuestionId))
                 .Select(z => new
                 {
@@ -314,7 +326,7 @@ namespace WebApi.Controllers
                     x.ArchiveStatus,
                     x.QuizType,
                     x.QuizTime,
-                    Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name
+                    //Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name
                 }).ToList();
             return Ok(quiz);
         }
@@ -338,7 +350,7 @@ namespace WebApi.Controllers
                     x.ArchiveStatus,
                     x.QuizType,
                     x.QuizTime,
-                    Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
+                    //Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
                     CreatedBy = db.Users.FirstOrDefault(z=>z.Id==x.CreatedBy).FirstName
                 })
                 .OrderByDescending(z => z.QuizId)
@@ -411,7 +423,7 @@ namespace WebApi.Controllers
                     x.QuizTime,
                     x.QuizType,
                     x.TotalQuestions,
-                    Subject = db.Subjects.FirstOrDefault(y => y.SubjectId == x.SubjectId).Name,
+                    //Subject = db.Subjects.FirstOrDefault(y => y.SubjectId == x.SubjectId).Name,
                     CreatedBy = db.Users.FirstOrDefault(z => z.Id == x.CreatedBy).FirstName
                 })
                 .OrderByDescending(z => z.QuizId)
@@ -438,7 +450,7 @@ namespace WebApi.Controllers
                     x.ArchiveStatus,
                     x.QuizType,
                     x.QuizTime,
-                    Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
+                    //Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
                     CreatedBy = db.Users.FirstOrDefault(z => z.Id == x.CreatedBy).FirstName
                 })
                 .OrderByDescending(z => z.QuizId)
@@ -640,7 +652,7 @@ namespace WebApi.Controllers
         public IHttpActionResult GenerateMockQuiz([FromBody]Quiz quiz, [FromUri]int TotalQuestion)
         {
             //var qIdsBySubject = helper.GetQuestionIdsBySubject(quiz.SubjectId);
-            List<int> qIdsBySubject = new List<int>(); 
+            List<int> qIdsBySubject = new List<int>();// temp
             var questions = db.Questions.AsEnumerable()
                 .Where(y => qIdsBySubject.Contains(y.QuestionId) && y.Difficulty == quiz.Difficulty && y.QuestionType == quiz.QuizType)
                 .Select(x => new { x.QuestionId, x.QuestionStatement, x.Option1, x.Option2, x.Option3, x.Option4, x.ImageName, x.Marks })
@@ -691,8 +703,8 @@ namespace WebApi.Controllers
                     x.ImageName,
                     x.Marks,
                     x.QuestionType,
-                    //x.SubjectId,
                     x.Difficulty,
+                    Tags = helper.GetSubjectTags(x.QuestionId),
                     x.CreatedBy,
                     quizBuffer.MarkedAnswer,
                     quizBuffer.ResponseTime

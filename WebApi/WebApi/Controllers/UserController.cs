@@ -31,7 +31,7 @@ namespace WebApi.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("api/User/Register")]
-        public IdentityResult RegisterAsync(Account model)
+        public async Task<IdentityResult> Register(Account model)
         {
             var tempUser = userManager.FindByEmail(model.Email);
             if (tempUser == null)
@@ -43,7 +43,7 @@ namespace WebApi.Controllers
                 user.ImageURL = model.ImageURL;
                 user.GoogleId = model.GoogleId;
                 string id = user.Id;
-                IdentityResult result = userManager.Create(user);
+                IdentityResult result = await userManager.CreateAsync(user);
                 try
                 {
                     var tempuser = userManager.FindByEmail(user.Email);
@@ -57,6 +57,7 @@ namespace WebApi.Controllers
                 return IdentityResult.Failed();
             }
         }
+
         #region RoleAuthorization
         //[HttpGet]
         //[Authorize(Roles = "Content-Creator")]
@@ -126,13 +127,13 @@ namespace WebApi.Controllers
         [HttpGet]
         [AllowAnonymous]
         [Route("api/GetUserDetails")]
-        public IHttpActionResult UserDetails(string email)
+        public async Task<IHttpActionResult> UserDetails(string email)
         {
             if (email == null)
             {
                 return null;
             }
-            var applicationUser = userManager.FindByEmail(email);
+            var applicationUser = await userManager.FindByEmailAsync(email);
             Account user = new Account();
             user.Id = applicationUser.Id;
             user.Email = applicationUser.Email;

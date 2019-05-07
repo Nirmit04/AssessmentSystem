@@ -405,6 +405,7 @@
     <Compile Include="Models\QuizBuffer.cs" />
     <Compile Include="Models\QuizQuestion.cs" />
     <Compile Include="Models\QuizSchedule.cs" />
+    <Compile Include="Models\QuizTag.cs" />
     <Compile Include="Models\Report.cs" />
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\SubjectAnalytics.cs" />
