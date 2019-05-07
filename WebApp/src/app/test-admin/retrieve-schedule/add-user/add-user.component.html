@@ -19,8 +19,8 @@
         <tr>
           <th>{{i+1}}</th>
           <td>{{item.QuizName}}</td>
-          <td>{{item.StartDateTime}}</td>
-          <td>{{item.EndDateTime}}</td>
+          <td>{{item.StartDateTime | date:'medium'}}</td>
+          <td>{{item.EndDateTime | date:'medium'}}</td>
           <td>
             <a class="btn btn-sm btn-info text-black" (click)="addUserToSchedule(item.QuizScheduleId,i+1)"><i aria-hidden="true"
                 class="fa fa-user-plus"></i></a>
