@@ -109,6 +109,7 @@ export class ContentCreatorServiceService {
 		return this.http.post(this.rootURL + 'Question/GetQuestion', body);
 	}
 	generateRandom(form: any, question: number) {
+		console.log(form);
 		return this.http.post(this.rootURL + 'Quiz/GetRandomQuestion?TotalQuestion=' + question, form);
 	}
 	postQuestionsSelected(questions: number[]) {

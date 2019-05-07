@@ -44,6 +44,7 @@ export class RetrieveScheduleComponent implements OnInit {
 	loadSchedule() {
 		this.service.getSchedule(localStorage.getItem('uid')).subscribe((res: any) => {
 			this.scheduleList = res as Schedule[];
+			console.log(this.scheduleList);
 			this.dtTrigger.next();
 		});
 	}
