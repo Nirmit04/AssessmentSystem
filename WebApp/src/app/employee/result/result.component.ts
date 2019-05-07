@@ -22,6 +22,7 @@ export class ResultComponent implements OnInit {
     this.correct = [];
     if (this.service.QuizScheduleId === null) {
       this.service.getAnswers().subscribe((res: any) => {
+        console.log(res);
         this.QuesWithAns = res as any[];
         this.service.correctAnswerCount = 0;
         this.service.quesOfQuiz.forEach((e, i) => {

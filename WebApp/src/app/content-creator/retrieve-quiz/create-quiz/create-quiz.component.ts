@@ -14,7 +14,6 @@ import * as moment from 'moment';
   styleUrls: ['./create-quiz.component.css']
 })
 export class CreateQuizComponent implements OnInit {
-  contentEditable: any;
   public Subjects: any[];
   questions: any[];
   quizzes: any[];
@@ -69,12 +68,13 @@ export class CreateQuizComponent implements OnInit {
         Difficulty: '',
         TotalQuestions: null,
         TotalMarks: null,
-        Subject: '',
+        Tags: null,
         QuizType: '',
         CreatedBy: '',
         QuestionIds: null,
         SubjectId: null,
-        QuizName: ''
+        QuizName: '',
+        MinCutOff: null
       };
       this.service.QuizMinute = null;
       this.service.QuizHour = null;
@@ -194,12 +194,10 @@ export class CreateQuizComponent implements OnInit {
   }
   toggleEditable(event) {
     if (event.target.checked) {
-      this.contentEditable = true;
-      console.log(this.contentEditable);
+      this.service.QuizState = true;
     }
     if (!event.target.checked) {
-      this.contentEditable = true;
-      console.log('false');
+      this.service.QuizState = false;
     }
   }
 }

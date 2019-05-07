@@ -88,7 +88,7 @@ export class EmployeeService {
   }
 
   getAnswers() {
-    return this.http.get(this.rootURL + 'Quiz/EvaluateMockQuiz/' + this.QuizId);
+    return this.http.get(this.rootURL + 'Quiz/SubmitMockQuiz/' + this.QuizId);
   }
 
 }

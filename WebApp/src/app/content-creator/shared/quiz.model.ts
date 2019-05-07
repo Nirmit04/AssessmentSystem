@@ -4,11 +4,13 @@ export class QuizModel {
     Difficulty: string;
     TotalQuestions?: number;
     TotalMarks?: number;
-    Subject: string;
+    Tags:any[];
     QuizType: string;
     CreatedBy?: string;
     QuestionIds: number[];
     SubjectId: number;
     QuizName: string;
-    QuizTime?: string
+    QuizTime?: string;
+    QuizState?:boolean;
+    MinCutOff:number;
 }

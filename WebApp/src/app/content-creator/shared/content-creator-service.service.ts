@@ -9,7 +9,7 @@ import { NgForm } from '@angular/forms';
 	providedIn: 'root'
 })
 export class ContentCreatorServiceService {
-
+	QuizState: boolean;
 	QuestionType: string;
 	Difficulty: string;
 	SubjectId: number;
@@ -102,8 +102,8 @@ export class ContentCreatorServiceService {
 		console.log(form);
 		const body = {
 			Tags: form.Tags,
-			Difficulty:form.Difficulty,
-			QuestionType:form.QuizType,
+			Difficulty: form.Difficulty,
+			QuestionType: form.QuizType,
 		}
 		console.log(body);
 		return this.http.post(this.rootURL + 'Question/GetQuestion', body);
@@ -113,6 +113,7 @@ export class ContentCreatorServiceService {
 	}
 	postQuestionsSelected(questions: number[]) {
 		this.quizForm.QuestionIds = questions;
+		this.quizForm.QuizState=this.QuizState;
 		console.log(this.quizForm);
 		return this.http.post(this.rootURL + 'Quiz/CreateQuiz', this.quizForm);
 	}

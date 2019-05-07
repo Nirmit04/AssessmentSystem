@@ -60,8 +60,9 @@ export class MockComponent implements OnInit {
   takeMockQuiz(QuizId: number, QuizName: string, index: number) {
     this.service.QuizId = QuizId;
     this.service.getMockQuesOfQuiz(QuizId).subscribe((res: any) => {
+      console.log(res);
       if (res !== 'Quiz Started') {
-        this.service.statusMapping = res.tempQuizBuffer;
+        this.service.statusMapping = res.GetQuestionBuffers;
         this.time = res.TimeLeft.split(":");
         this.service.seconds = parseInt(this.time[2]);
       }

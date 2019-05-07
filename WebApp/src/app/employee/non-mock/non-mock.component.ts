@@ -60,7 +60,7 @@ export class NonMockComponent implements OnInit {
 		this.service.QuizId = QuizId;
 		this.service.getQuesOfQuiz(QuizId).subscribe((res: any) => {
 			if (res !== 'Quiz Started') {
-				this.service.statusMapping = res.tempQuizBuffer;
+				this.service.statusMapping = res.GetQuestionBuffers;
 				this.time = res.TimeLeft.split(':');
 				this.service.seconds = parseInt(this.time[2]);
 			} else {
