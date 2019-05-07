@@ -74,8 +74,8 @@ namespace WebApi.Controllers
                     x.ArchiveStatus,
                     x.QuizType,
                     x.QuizTime,
-                    x.SubjectId,
-                    Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name
+                    //x.SubjectId,
+                    //Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name
                 })
                 .OrderByDescending(z => z.QuizId)
                 .ToList();
@@ -227,8 +227,8 @@ namespace WebApi.Controllers
                         x.ImageName,
                         x.Marks,
                         x.QuestionType,
-                        //x.SubjectId,
                         x.Difficulty,
+                        Tags = helper.GetSubjectTags(x.QuestionId),
                         x.CreatedBy
                     }).ToList();
                 return Ok(questions);
@@ -314,7 +314,7 @@ namespace WebApi.Controllers
                     x.ArchiveStatus,
                     x.QuizType,
                     x.QuizTime,
-                    Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name
+                    //Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name
                 }).ToList();
             return Ok(quiz);
         }
@@ -338,7 +338,7 @@ namespace WebApi.Controllers
                     x.ArchiveStatus,
                     x.QuizType,
                     x.QuizTime,
-                    Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
+                    //Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
                     CreatedBy = db.Users.FirstOrDefault(z=>z.Id==x.CreatedBy).FirstName
                 })
                 .OrderByDescending(z => z.QuizId)
@@ -411,7 +411,7 @@ namespace WebApi.Controllers
                     x.QuizTime,
                     x.QuizType,
                     x.TotalQuestions,
-                    Subject = db.Subjects.FirstOrDefault(y => y.SubjectId == x.SubjectId).Name,
+                    //Subject = db.Subjects.FirstOrDefault(y => y.SubjectId == x.SubjectId).Name,
                     CreatedBy = db.Users.FirstOrDefault(z => z.Id == x.CreatedBy).FirstName
                 })
                 .OrderByDescending(z => z.QuizId)
@@ -438,7 +438,7 @@ namespace WebApi.Controllers
                     x.ArchiveStatus,
                     x.QuizType,
                     x.QuizTime,
-                    Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
+                    //Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
                     CreatedBy = db.Users.FirstOrDefault(z => z.Id == x.CreatedBy).FirstName
                 })
                 .OrderByDescending(z => z.QuizId)
@@ -691,8 +691,8 @@ namespace WebApi.Controllers
                     x.ImageName,
                     x.Marks,
                     x.QuestionType,
-                    //x.SubjectId,
                     x.Difficulty,
+                    Tags = helper.GetSubjectTags(x.QuestionId),
                     x.CreatedBy,
                     quizBuffer.MarkedAnswer,
                     quizBuffer.ResponseTime
