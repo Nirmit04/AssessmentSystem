@@ -18,6 +18,10 @@ export class AddUserComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<Schedule> = new Subject();
   subscription: Subscription;
+  col: any[];
+  cols: any[];
+  i: number;
+  
   constructor(
     public toastr: ToastrService,
     public dialog: MatDialog,
@@ -28,6 +32,15 @@ export class AddUserComponent implements OnInit {
       pagingType: 'full_numbers',
       pageLength: 10,
     };
+    this.cols = [
+			{ field: 'SerialNumber', header: 'S NO' },
+      { field: 'QuizName', header: 'Quiz Name' }
+    ];
+    this.col = [
+      { field: 'StartDateTime', header: 'Start Time'},
+      { field: 'EndDateTime', header: 'End Time'},
+
+    ];
     setTimeout(() => {
       this.loadSchedule();
 		}, 0);
@@ -36,7 +49,10 @@ export class AddUserComponent implements OnInit {
   loadSchedule() {
     this.service.getSchedule(localStorage.getItem('uid')).subscribe((res: any) => {
       this.scheduleList = res as Schedule[];
-      this.dtTrigger.next();
+      // this.dtTrigger.next();
+      for (this.i = 1; this.i <= this.scheduleList.length; this.i++) {
+				this.scheduleList[this.i - 1].SerialNumber = this.i;
+			}
     });
   }
 
@@ -48,8 +64,8 @@ export class AddUserComponent implements OnInit {
     dialogConfig.data = scheduleid;
     this.dialog.open(AddUser1Component, dialogConfig).afterClosed().subscribe((res: any) => {
       this.loadSchedule();
-      this.dtTrigger.unsubscribe();
-      this.dtTrigger.next();
+      // this.dtTrigger.unsubscribe();
+      // this.dtTrigger.next();
     });
   }
 
@@ -68,8 +84,8 @@ export class AddUserComponent implements OnInit {
         this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe(() => {
           this.loadSchedule();
           this.service.deleteUserVisibility = false;
-          this.dtTrigger.unsubscribe();
-          this.dtTrigger.next();
+          // this.dtTrigger.unsubscribe();
+          // this.dtTrigger.next();
         });
       }
     });

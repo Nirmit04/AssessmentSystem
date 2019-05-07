@@ -36,7 +36,6 @@ export class ArchiveQuizComponent implements OnInit {
 			{ field: 'QuizName', header: 'Quiz Name'},
 			{ field: 'QuizType', header: 'Quiz Type' },
 			{ field: 'Difficulty', header: 'Difficulty' },
-			{ field: 'Subject', header: 'Subject' },
 			{ field: 'TotalQuestions', header: 'Total Questions' },
 			{ field: 'TotalMarks', header: 'Total Marks' }
 		];
