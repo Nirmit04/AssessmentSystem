@@ -20,6 +20,9 @@ export class RetrieveScheduleComponent implements OnInit {
 	dtTrigger: Subject<Schedule> = new Subject();
 	subscription: Subscription;
 
+	cols: any[];
+  	i: number;
+
 	onCreate() {
 		this.router.navigate(['/testAdminCreateScheDule']);
 	}
@@ -31,6 +34,12 @@ export class RetrieveScheduleComponent implements OnInit {
 			pagingType: 'full_numbers',
 			pageLength: 10,
 		};
+		this.cols = [
+			{ field: 'SerialNumber', header: 'S NO' },
+      		{ field: 'QuizName', header: 'Quiz Name' },
+      		{ field: 'StartDateTime', header: 'Start Time'},
+			{ field: 'EndDateTime', header: 'End Time'},
+		];
 		setTimeout(() => {
 			this.loadSchedule();
 		}, 0);
@@ -40,7 +49,10 @@ export class RetrieveScheduleComponent implements OnInit {
 	loadSchedule() {
 		this.service.getSchedule(localStorage.getItem('uid')).subscribe((res: any) => {
 			this.scheduleList = res as Schedule[];
-			this.dtTrigger.next();
+			// this.dtTrigger.next();
+			for (this.i = 1; this.i <= this.scheduleList.length; this.i++) {
+				this.scheduleList[this.i - 1].SerialNumber = this.i;
+			}
 		});
 	}
 
@@ -52,8 +64,8 @@ export class RetrieveScheduleComponent implements OnInit {
 			else {
 				this.toastr.success('Deleted Successfully', 'Assesment System');
 				this.loadSchedule();
-				this.dtTrigger.unsubscribe();
-				this.dtTrigger.next();
+				// this.dtTrigger.unsubscribe();
+				// this.dtTrigger.next();
 			}
 		});
 

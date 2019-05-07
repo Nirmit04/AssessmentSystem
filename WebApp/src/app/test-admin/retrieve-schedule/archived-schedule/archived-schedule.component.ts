@@ -17,6 +17,9 @@ export class ArchivedScheduleComponent implements OnInit {
   subscription: Subscription;
   dtOptions: DataTables.Settings = {};
 
+  cols: any[];
+  i: number;
+
   constructor(private service: TestAdminService, private toastr: ToastrService) { }
 
   ngOnInit() {
@@ -24,6 +27,13 @@ export class ArchivedScheduleComponent implements OnInit {
       pagingType: 'full_numbers',
       pageLength: 10,
     };
+    this.cols = [
+			{ field: 'SerialNumber', header: 'Schedule NO' },
+      { field: 'QuizName', header: 'Quiz Name' },
+      { field: 'StartDateTime', header: 'Start Time'},
+      { field: 'EndDateTime', header: 'End Time'},
+      
+		];
     setTimeout(() => {
       this.loadArchivedSchedules();
 		}, 0);
@@ -32,7 +42,10 @@ export class ArchivedScheduleComponent implements OnInit {
   loadArchivedSchedules() {
     this.service.getArchivedSchedules().subscribe((res: any) => {
       this.ScheduleList = res as Schedule[];
-      this.dtTrigger.next();
+      // this.dtTrigger.next();
+      for (this.i = 1; this.i <= this.ScheduleList.length; this.i++) {
+				this.ScheduleList[this.i - 1].SerialNumber = this.i;
+			}
     });
   }
 
@@ -40,7 +53,7 @@ export class ArchivedScheduleComponent implements OnInit {
     if (confirm('Are you sure you want to un-archive this')) {
       this.service.unArchiveSchedule(id).subscribe((res: any) => {
         this.toastr.success('Un-Archived Successfully', 'Assesment System');
-        this.dtTrigger.unsubscribe();
+        // this.dtTrigger.unsubscribe();
         this.loadArchivedSchedules();
       });
     }
