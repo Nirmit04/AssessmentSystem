@@ -16,7 +16,7 @@ export class ArchivedScheduleComponent implements OnInit {
   dtTrigger: Subject<Schedule> = new Subject();
   subscription: Subscription;
   dtOptions: DataTables.Settings = {};
-
+  col: any[];
   cols: any[];
   i: number;
 
@@ -29,11 +29,14 @@ export class ArchivedScheduleComponent implements OnInit {
     };
     this.cols = [
 			{ field: 'SerialNumber', header: 'Schedule NO' },
-      { field: 'QuizName', header: 'Quiz Name' },
+      { field: 'QuizName', header: 'Quiz Name' }
+      
+    ];
+    this.col=[
       { field: 'StartDateTime', header: 'Start Time'},
       { field: 'EndDateTime', header: 'End Time'},
-      
-		];
+    ];
+    
     setTimeout(() => {
       this.loadArchivedSchedules();
 		}, 0);

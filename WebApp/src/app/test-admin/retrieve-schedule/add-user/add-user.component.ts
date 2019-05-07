@@ -18,7 +18,7 @@ export class AddUserComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<Schedule> = new Subject();
   subscription: Subscription;
-
+  col: any[];
   cols: any[];
   i: number;
   
@@ -34,11 +34,13 @@ export class AddUserComponent implements OnInit {
     };
     this.cols = [
 			{ field: 'SerialNumber', header: 'S NO' },
-      { field: 'QuizName', header: 'Quiz Name' },
+      { field: 'QuizName', header: 'Quiz Name' }
+    ];
+    this.col = [
       { field: 'StartDateTime', header: 'Start Time'},
       { field: 'EndDateTime', header: 'End Time'},
 
-		];
+    ];
     setTimeout(() => {
       this.loadSchedule();
 		}, 0);
