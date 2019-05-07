@@ -58,7 +58,9 @@ export class RetrieveQuizComponent implements OnInit {
 
 	loadQuiz() {
 		this.service.getQuizzes().subscribe((res: any) => {
+			console.log(res);
 			this.QuizList = res as QuizModel[];
+			console.log(this.QuizList)
 			// this.dtTrigger.next();
 			for (this.i = 1; this.i <= this.QuizList.length; this.i++) {
 				this.QuizList[this.i - 1].SerialNumber = this.i;
