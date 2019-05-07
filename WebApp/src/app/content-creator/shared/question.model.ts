@@ -15,4 +15,5 @@ export class Question {
 	ImageName?: string;
 	CreatedBy?: string;
 	Tags?: any[]
+	Tags1?:string;
 }

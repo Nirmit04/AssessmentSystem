@@ -24,10 +24,6 @@
             </div>
             <div class="form-group col-md-6">
               <strong><label>Select Subject</label></strong>
-              <!-- <select name="SubjectId" required #SubjectId="ngModel" [(ngModel)]="service.quizForm.SubjectId"
-                class="form-control">
-                <option *ngFor="let Subject of Subjects;" value="{{Subject.SubjectId}}">{{Subject.Name}}</option>
-              </select> -->
               <ng-multiselect-dropdown name="Tags" #Tags="ngModel" [placeholder]="Choose" required [data]="Subjects"
                 [disabled]="disabled" [settings]="dropdownSettings" [(ngModel)]="selectedItems">
               </ng-multiselect-dropdown>
@@ -62,28 +58,28 @@
               <input required type="number" name="QuizHour" placeholder="hh" min="0" max="24" #QuizHour="ngModel"
                 [(ngModel)]="service.QuizHour" style="width:70px; display: inline;" class="form-control">&nbsp;
               <strong style="display:inline;">:</strong>
-              <input required type="number" name="QuizMinute" style="width:70px; display: inline;" class="form-control" placeholder="mm" min="0" max="60" #QuizMinute="ngModel"
-                [(ngModel)]="service.QuizMinute">
+              <input required type="number" name="QuizMinute" style="width:70px; display: inline;" class="form-control"
+                placeholder="mm" min="0" max="60" #QuizMinute="ngModel" [(ngModel)]="service.QuizMinute">
               <div class="validation-error"
                 *ngIf="QuizHour.invalid && QuizHour.touched && QuizMinutes.invalid && QuizMinutes.touched">This field is
-                required.</div>                
+                required.</div>
             </div>
             <!-- &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; -->
             <div class="can-toggle demo-rebrand-1 col-md-4 " style="width: 50% !important;padding-bottom:0px;">
-                <strong><label style="font-size:15px;">Quiz State</label></strong>
-                <input id="d"  type="checkbox" class="chb messageCheckbox" (change)="toggleEditable($event)"/>
-                <label for="d">
-                  <div id="pro" class="can-toggle__switch" data-checked="ACTIVE" data-unchecked="INACTIVE"></div>
-                </label>
-              </div>
+              <strong><label style="font-size:15px;">Quiz State</label></strong>
+              <input id="d" type="checkbox" class="chb messageCheckbox" (change)="toggleEditable($event)" />
+              <label for="d">
+                <div id="pro" class="can-toggle__switch" data-checked="ACTIVE" data-unchecked="INACTIVE"></div>
+              </label>
+            </div>
             <div class="form-group col-md-4">
               <strong><label>CutOff Percentage</label></strong>
               <br />
               <input type="text" required name="MinCutOff" #MinCutOff="ngModel" [(ngModel)]="tts" class="form-control">
-            
-           </div>
-              
-             <br /><br />
+
+            </div>
+
+            <br /><br />
             <div *ngIf="service.quizForm.QuizType == 'Mock'" class="form-group col-md-6">
               <strong><label>Select Mock Quiz</label></strong>
               <select name="MockTypess" required #MockTypess="ngModel" [(ngModel)]="MockType" class="form-control">
@@ -94,16 +90,16 @@
               <div class="validation-error" *ngIf="MockTypess.invalid && MockTypess.touched">This field is required.
               </div>
             </div>
-         
+
             <div *ngIf="MockType == 'Random'" class="form-group col-md-6">
               <strong><label>Number Of Questions</label></strong>
               <input type="text" name="Questions" #Questions="ngModel" [(ngModel)]="TotalQuestions"
                 class="form-control">
               <div class="validation-error" *ngIf="Questions.invalid && Questions.touched">This field is required.</div>
-            </div> 
+            </div>
           </div>
 
-         
+
 
 
 

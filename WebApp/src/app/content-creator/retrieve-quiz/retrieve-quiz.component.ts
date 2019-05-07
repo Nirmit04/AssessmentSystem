@@ -44,6 +44,7 @@ export class RetrieveQuizComponent implements OnInit {
 			{ field: 'SerialNumber', header: 'S NO' },
 			{ field: 'QuizName', header: 'Quiz Name' },
 			{ field: 'Difficulty', header: 'Difficulty' },
+			{ field: 'Tags1', header: 'Tags' },
 			{ field: 'QuizType', header: 'Quiz Type' },
 			{ field: 'TotalQuestions', header: 'Total Questions' },
 			{ field: 'TotalMarks', header: 'Total Marks' },
@@ -63,6 +64,9 @@ export class RetrieveQuizComponent implements OnInit {
 			// this.dtTrigger.next();
 			for (this.i = 1; this.i <= this.QuizList.length; this.i++) {
 				this.QuizList[this.i - 1].SerialNumber = this.i;
+				for (let tag of this.QuizList[this.i - 1].Tags) {
+					this.QuizList[this.i - 1].Tags1 += tag.Name + ' ';
+				}
 			}
 		});
 	}

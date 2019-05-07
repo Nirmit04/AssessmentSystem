@@ -13,4 +13,5 @@ export class QuizModel {
     QuizTime?: string;
     QuizState?:boolean;
     MinCutOff:number;
+    Tags1?:string;
 }

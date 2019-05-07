@@ -34,11 +34,11 @@ export class MockComponent implements OnInit {
 
     setTimeout(() => {
       this.getMockList();
-		}, 0);
+    }, 0);
     this.cols = [
       { field: 'SerialNumber', header: 'S NO' },
       { field: 'QuizName', header: 'Quiz Name' },
-      { field: 'Subject', header: 'Subject' },
+      { field: 'Tags1', header: 'Tags' },
       { field: 'Difficulty', header: 'Difficulty Level' },
       { field: 'TotalQuestions', header: 'Total Questions' },
       { field: 'TotalMarks', header: 'Total Marks' },
@@ -50,13 +50,14 @@ export class MockComponent implements OnInit {
   getMockList() {
     this.service.getListOfMockQuizzes().subscribe((res: any) => {
       this.mockList = res as any[];
-      // this.dtTrigger.next();
       for (this.i = 1; this.i <= this.mockList.length; this.i++) {
         this.mockList[this.i - 1].SerialNumber = this.i;
+        for (let tag of this.mockList[this.i - 1].Tags) {
+          this.mockList[this.i - 1].Tags1 += tag.Name + ' ';
+        }
       }
     });
   }
-
   takeMockQuiz(QuizId: number, QuizName: string, index: number) {
     this.service.QuizId = QuizId;
     this.service.getMockQuesOfQuiz(QuizId).subscribe((res: any) => {
