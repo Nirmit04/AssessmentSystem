@@ -56,27 +56,27 @@
               </div>
             </div>
           </div>
-          <div class="form-row move1">
-            <div class="form-group col-md-3">
+          <div class="form-row col-md-12" style="padding-left:0px;">
+            <div class="form-group col-md-4">
               <strong><label>Quiz Time (hh:mm)</label><br /></strong>
               <input required type="number" name="QuizHour" placeholder="hh" min="0" max="24" #QuizHour="ngModel"
-                [(ngModel)]="service.QuizHour" class="form-control">&nbsp;
-              <strong>:</strong>&nbsp;
-              <input required type="number" name="QuizMinute" class="form-control" placeholder="mm" min="0" max="60" #QuizMinute="ngModel"
+                [(ngModel)]="service.QuizHour" style="width:70px; display: inline;" class="form-control">&nbsp;
+              <strong style="display:inline;">:</strong>
+              <input required type="number" name="QuizMinute" style="width:70px; display: inline;" class="form-control" placeholder="mm" min="0" max="60" #QuizMinute="ngModel"
                 [(ngModel)]="service.QuizMinute">
               <div class="validation-error"
                 *ngIf="QuizHour.invalid && QuizHour.touched && QuizMinutes.invalid && QuizMinutes.touched">This field is
-                required.</div>
+                required.</div>                
             </div>
-            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-            <div class="can-toggle demo-rebrand-1 col-md-3 move">
-              <input id="d"  type="checkbox" class="chb messageCheckbox" (change)="toggleEditable($event)"/>
-              <label for="d">
-                <div id="pro" class="can-toggle__switch" data-checked="ACTIVE" data-unchecked="INACTIVE"></div>
-              </label>
-            </div>
-            <div class="form-group col-md-6">
+            <!-- &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; -->
+            <div class="can-toggle demo-rebrand-1 col-md-4 " style="width: 50% !important;padding-bottom:0px;">
+                <strong><label style="font-size:15px;">Quiz State</label></strong>
+                <input id="d"  type="checkbox" class="chb messageCheckbox" (change)="toggleEditable($event)"/>
+                <label for="d">
+                  <div id="pro" class="can-toggle__switch" data-checked="ACTIVE" data-unchecked="INACTIVE"></div>
+                </label>
+              </div>
+            <div class="form-group col-md-4">
               <strong><label>CutOff Marks</label></strong>
               <br />
               <input type="text" required name="cutoff"  class="form-control">
