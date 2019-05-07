@@ -115,7 +115,7 @@ namespace WebApi.Controllers
             HelperClass helper = new HelperClass();
             var qIds = db.QuestionTags
                 .AsEnumerable()
-                .Where(x => subIds.Contains(x.SubjectId) && helper.GetSubjectTags(x.QuestionId).Count() >= subIds.Count())
+                .Where(x => subIds.Contains(x.SubjectId) && helper.GetQuestionSubjectTags(x.QuestionId).Count() >= subIds.Count())
                 .Select(x => x.QuestionId)
                 .ToList();
             return qIds;
@@ -147,10 +147,26 @@ namespace WebApi.Controllers
                 return true;
         }
 
-        public SubjectTag[] GetSubjectTags(int QuestionId)
+        public SubjectTag[] GetQuestionSubjectTags(int QuestionId)
         {
             var subIds = db.QuestionTags
                 .Where(x => x.QuestionId == QuestionId)
+                .Select(z => z.SubjectId)
+                .ToList();
+            var subjectTags = db.Subjects
+                .Where(x => subIds.Contains(x.SubjectId))
+                .Select(y => new SubjectTag()
+                {
+                    SubjectId = y.SubjectId,
+                    Name = y.Name
+                }).ToArray();
+            return subjectTags;
+        }
+
+        public SubjectTag[] GetQuizSubjectTags(int QuizId)
+        {
+            var subIds = db.QuizTags
+                .Where(x => x.QuizId == QuizId)
                 .Select(z => z.SubjectId)
                 .ToList();
             var subjectTags = db.Subjects

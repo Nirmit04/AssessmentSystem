@@ -57,7 +57,7 @@ namespace WebApi.Controllers
                     x.QuestionType,
                     x.Difficulty,
                     x.ImageName,
-                    Tags = helper.GetSubjectTags(x.QuestionId)
+                    Tags = helper.GetQuestionSubjectTags(x.QuestionId)
                 })
                 .OrderByDescending(y => y.QuestionId)
                 .ToList();
@@ -97,7 +97,7 @@ namespace WebApi.Controllers
                     x.QuestionType,
                     x.Difficulty,
                     x.ImageName,
-                    Tags = helper.GetSubjectTags(x.QuestionId)
+                    Tags = helper.GetQuestionSubjectTags(x.QuestionId)
                 })
                 .OrderByDescending(y => y.QuestionId)
                 .ToList();
@@ -127,7 +127,7 @@ namespace WebApi.Controllers
                     x.QuestionType,
                     x.Difficulty,
                     x.ImageName,
-                    Tags = helper.GetSubjectTags(x.QuestionId)
+                    Tags = helper.GetQuestionSubjectTags(x.QuestionId)
                 })
                 .OrderByDescending(y => y.QuestionId)
                 .ToList();
@@ -320,7 +320,7 @@ namespace WebApi.Controllers
                     x.QuestionType,
                     x.Difficulty,
                     x.ImageName,
-                    Tags = helper.GetSubjectTags(x.QuestionId)
+                    Tags = helper.GetQuestionSubjectTags(x.QuestionId)
                 })
                 .OrderByDescending(y => y.QuestionId)
                 .ToList();
@@ -356,7 +356,7 @@ namespace WebApi.Controllers
                     x.QuestionType,
                     x.Difficulty,
                     x.ImageName,
-                    Tags = helper.GetSubjectTags(QuestionId)
+                    Tags = helper.GetQuestionSubjectTags(QuestionId)
                 })
                 .Single();
             return Ok(question);

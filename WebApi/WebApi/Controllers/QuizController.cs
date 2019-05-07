@@ -75,19 +75,18 @@ namespace WebApi.Controllers
             {
                 return BadRequest("Invalid UserId");
             }
-           var quiz = db.Quizs.Where(x => x.CreatedBy == CreatedBy && x.ArchiveStatus == false)
-                .Select(x => new
-                {
-                    x.QuizId,
-                    x.QuizName,
-                    x.Difficulty,
-                    x.TotalQuestions,
-                    x.TotalMarks,
-                    x.ArchiveStatus,
-                    x.QuizType,
-                    x.QuizTime,
-                    //x.SubjectId,
-                    //Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name
+            var quiz = db.Quizs.AsEnumerable().Where(x => x.CreatedBy == CreatedBy && x.ArchiveStatus == false)
+                 .Select(x => new
+                 {
+                     x.QuizId,
+                     x.QuizName,
+                     x.Difficulty,
+                     x.TotalQuestions,
+                     x.TotalMarks,
+                     x.ArchiveStatus,
+                     x.QuizType,
+                     x.QuizTime,
+                     Tags=helper.GetQuizSubjectTags(x.QuizId)
                 })
                 .OrderByDescending(z => z.QuizId)
                 .ToList();
@@ -128,47 +127,6 @@ namespace WebApi.Controllers
             return Ok();
         }
 
-        /// <summary>
-        /// Returns all the questions present in a Quiz
-        /// </summary>
-        /// <param name="QuizId"></param>
-        /// <param name="UserId"></param>
-        /// <returns>Questions</returns>
-        //[HttpGet]
-        //[Route("api/Quiz/QuizQuestion/{QuizId}")]
-        //public IHttpActionResult GetQuiz(int QuizId)
-        //{
-        //    if (db.Quizs.Find(QuizId) == null)
-        //    {
-        //        return BadRequest("QuizId Not Found");
-        //    }
-        //    var qIds = db.QuizQuestions
-        //        .Where(x => x.QuizId == QuizId)
-        //        .Select(x => x.QuestionId)
-        //        .ToList();
-
-        //    List<int> questionIds = new List<int>();
-        //    foreach (int qId in qIds)
-        //    {
-        //        questionIds.Add(qId);
-        //    }
-        //    var questions = db.Questions
-        //        .AsEnumerable()
-        //        .Where(y => questionIds.Contains(y.QuestionId))
-        //        .Select(x => new
-        //        {
-        //            x.QuestionId,
-        //            x.QuestionStatement,
-        //            Option = new string[] { x.Option1, x.Option2, x.Option3, x.Option4 },
-        //            x.ImageName,
-        //            x.Marks,
-        //            x.QuestionType,
-        //            x.SubjectId,
-        //            x.Difficulty,
-        //            x.CreatedBy
-        //        }).ToList();
-        //    return Ok(questions);
-        //}
         
         [HttpGet]
         [Route("api/Quiz/QuizQuestion")]
@@ -240,7 +198,7 @@ namespace WebApi.Controllers
                         x.Marks,
                         x.QuestionType,
                         x.Difficulty,
-                        Tags = helper.GetSubjectTags(x.QuestionId),
+                        Tags = helper.GetQuestionSubjectTags(x.QuestionId),
                         x.CreatedBy
                     }).ToList();
                 return Ok(questions);
@@ -280,29 +238,41 @@ namespace WebApi.Controllers
         [Route("api/Quiz/GetQuestionsNotInQuiz/{QuizId}")]
         public IHttpActionResult GetQuestionsNotInQuiz(int QuizId)
         {
+            if(db.Quizs.Find(QuizId)==null)
+            {
+                return BadRequest("Invalid Quizid");
+            }
             var quiz = db.Quizs.Single(x => x.QuizId == QuizId);
             var qIdsInQuiz = db.QuizQuestions.AsEnumerable()
                 .Where(x => x.QuizId == QuizId)
                 .Select(z => z.QuestionId).ToList();
-            //var qIdsBySubject = helper.GetQuestionIdsBySubject(quiz.SubjectId);
-            List<int> qIdsBySubject = new List<int>(); //temp
-            var questions = db.Questions.Where(x => qIdsBySubject.Contains(x.QuestionId) && x.Difficulty == quiz.Difficulty && x.QuestionType == quiz.QuizType && !qIdsInQuiz.Contains(x.QuestionId))
-                .Select(z => new
-                {
-                    z.QuestionId,
-                    z.QuestionStatement,
-                    z.Option1,
-                    z.Option2,
-                    z.Option3,
-                    z.Option4,
-                    z.Answer,
-                    z.Marks,
-                    z.QuestionType,
-                    //z.SubjectId,
-                    //SubjectName = db.Subjects.Where(y => y.SubjectId == z.SubjectId).FirstOrDefault().Name,
-                    z.Difficulty,
-                    z.ImageName
-                }).ToList();
+            var Tags = db.QuizTags.Where(x => x.QuizId == quiz.QuizId).Select(z => z.SubjectId);
+
+            List<SubjectTag> subjectTag = new List<SubjectTag>();
+            SubjectTag subject = new SubjectTag();
+            foreach (var item in Tags)
+            {
+                subject.SubjectId = item;
+                subject.Name = "";
+                subjectTag.Add(subject);
+            }
+            var questionIds = helper.GetQuestionIdsBySubject(subjectTag.ToArray());
+            var questions = db.Questions.AsEnumerable().Where(x =>questionIds.Contains(x.QuestionId) && x.Difficulty == quiz.Difficulty && x.QuestionType == quiz.QuizType && !qIdsInQuiz.Contains(x.QuestionId))
+               .Select(z => new
+               {
+                   z.QuestionId,
+                   z.QuestionStatement,
+                   z.Option1,
+                   z.Option2,
+                   z.Option3,
+                   z.Option4,
+                   z.Answer,
+                   z.Marks,
+                   z.QuestionType,
+                   Tags = helper.GetQuestionSubjectTags(z.QuestionId),
+                   z.Difficulty,
+                   z.ImageName
+               }).ToList();
             return Ok(questions);
         }
 
@@ -315,7 +285,11 @@ namespace WebApi.Controllers
         [Route("api/Quiz/Archived/{CreatedBy}")]
         public IHttpActionResult ArchviedQuiz(string CreatedBy)
         {
-            var quiz = db.Quizs.Where(x => x.CreatedBy == CreatedBy).Where(x => x.ArchiveStatus == true)
+            if (!helper.ValidateUserId(CreatedBy))
+            {
+                return BadRequest("Invalid User");
+            }
+            var quiz = db.Quizs.AsEnumerable().Where(x => x.CreatedBy == CreatedBy).Where(x => x.ArchiveStatus == true)
                 .Select(x => new
                 {
                     x.QuizId,
@@ -326,7 +300,7 @@ namespace WebApi.Controllers
                     x.ArchiveStatus,
                     x.QuizType,
                     x.QuizTime,
-                    //Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name
+                    Tags = helper.GetQuizSubjectTags(x.QuizId)
                 }).ToList();
             return Ok(quiz);
         }
@@ -350,7 +324,7 @@ namespace WebApi.Controllers
                     x.ArchiveStatus,
                     x.QuizType,
                     x.QuizTime,
-                    //Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
+                    Tags = helper.GetQuizSubjectTags(x.QuizId),
                     CreatedBy = db.Users.FirstOrDefault(z=>z.Id==x.CreatedBy).FirstName
                 })
                 .OrderByDescending(z => z.QuizId)
@@ -412,7 +386,7 @@ namespace WebApi.Controllers
         [Route("api/Quiz/MockQuiz")]
         public IHttpActionResult GetAllMockQuiz()
         {
-            var Mock = db.Quizs.Where(x => x.QuizType == "Mock" && x.ArchiveStatus == false)
+            var Mock = db.Quizs.AsEnumerable().Where(x => x.QuizType == "Mock" && x.ArchiveStatus == false)
                 .Select(x => new
                 {
                     x.QuizId,
@@ -423,8 +397,8 @@ namespace WebApi.Controllers
                     x.QuizTime,
                     x.QuizType,
                     x.TotalQuestions,
-                    //Subject = db.Subjects.FirstOrDefault(y => y.SubjectId == x.SubjectId).Name,
-                    CreatedBy = db.Users.FirstOrDefault(z => z.Id == x.CreatedBy).FirstName
+                    Tags = helper.GetQuizSubjectTags(x.QuizId),
+                    //CreatedBy = db.Users.FirstOrDefault(z => z.Id == x.CreatedBy).FirstName
                 })
                 .OrderByDescending(z => z.QuizId)
                 .ToList();
@@ -439,7 +413,7 @@ namespace WebApi.Controllers
         [Route("api/Quiz/GetAllScheduledQuiz")]
         public IHttpActionResult GetAllScheduledQuiz()
         {
-            var quiz = db.Quizs.Where(x => x.QuizType == "Scheduled" && x.ArchiveStatus == false)
+            var quiz = db.Quizs.AsEnumerable().Where(x => x.QuizType == "Scheduled" && x.ArchiveStatus == false)
                 .Select(x => new
                 {
                     x.QuizId,
@@ -450,8 +424,8 @@ namespace WebApi.Controllers
                     x.ArchiveStatus,
                     x.QuizType,
                     x.QuizTime,
-                    //Subject = db.Subjects.Where(y => y.SubjectId == x.SubjectId).FirstOrDefault().Name,
-                    CreatedBy = db.Users.FirstOrDefault(z => z.Id == x.CreatedBy).FirstName
+                    Tags = helper.GetQuizSubjectTags(x.QuizId),
+                    //CreatedBy = db.Users.FirstOrDefault(z => z.Id == x.CreatedBy).FirstName
                 })
                 .OrderByDescending(z => z.QuizId)
                 .ToList();
@@ -652,10 +626,18 @@ namespace WebApi.Controllers
         public IHttpActionResult GenerateMockQuiz([FromBody]Quiz quiz, [FromUri]int TotalQuestion)
         {
             //var qIdsBySubject = helper.GetQuestionIdsBySubject(quiz.SubjectId);
-            List<int> qIdsBySubject = new List<int>();// temp
+            //List<int> qIdsBySubject = new List<int>();// temp
+            List<int> subjectId = new List<int>();
+            foreach (var item in quiz.Tags)
+            {
+                subjectId.Add(item.SubjectId);
+            }
+            
+
             var questions = db.Questions.AsEnumerable()
-                .Where(y => qIdsBySubject.Contains(y.QuestionId) && y.Difficulty == quiz.Difficulty && y.QuestionType == quiz.QuizType)
-                .Select(x => new { x.QuestionId, x.QuestionStatement, x.Option1, x.Option2, x.Option3, x.Option4, x.ImageName, x.Marks })
+                .Where(y =>y.Difficulty == quiz.Difficulty && y.QuestionType == quiz.QuizType)
+                .Select(x => new { x.QuestionId, x.QuestionStatement, x.Option1, x.Option2, x.Option3, x.Option4, x.ImageName, x.Marks, Tags =helper.GetQuestionSubjectTags(x.QuestionId) }).AsEnumerable()
+                .Where(z => subjectId.Contains(z.Tags.Select(t => t.SubjectId).FirstOrDefault())).Select(x=>new { x.QuestionId, x.QuestionStatement, x.Option1, x.Option2, x.Option3, x.Option4, x.ImageName, x.Marks, Tags = helper.GetQuestionSubjectTags(x.QuestionId) })
                 .OrderBy(y => Guid.NewGuid())
                 .Take(TotalQuestion)
                 .ToList();
@@ -704,7 +686,7 @@ namespace WebApi.Controllers
                     x.Marks,
                     x.QuestionType,
                     x.Difficulty,
-                    Tags = helper.GetSubjectTags(x.QuestionId),
+                    Tags = helper.GetQuestionSubjectTags(x.QuestionId),
                     x.CreatedBy,
                     quizBuffer.MarkedAnswer,
                     quizBuffer.ResponseTime

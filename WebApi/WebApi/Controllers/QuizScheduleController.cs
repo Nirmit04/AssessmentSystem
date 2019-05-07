@@ -55,6 +55,8 @@ namespace WebApi.Controllers
             {
                 return BadRequest();
             }
+            quizSchedule.StartDateTime = quizSchedule.StartDateTime.ToUniversalTime();
+            quizSchedule.EndDateTime = quizSchedule.EndDateTime.ToUniversalTime();
             db.QuizSchedules.Add(quizSchedule);
             db.SaveChanges();
             return StatusCode(HttpStatusCode.Created);
