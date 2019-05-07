@@ -99,13 +99,21 @@ export class ContentCreatorServiceService {
 	}
 
 	getQuesOfUserConstraints(form: any) {
-		return this.http.get(this.rootURL + 'Question/GetQuestion/?Difficulty=' + form.Difficulty + '&SubjectId=' + form.SubjectId + '&QuestionType=' + form.QuizType);
+		console.log(form);
+		const body = {
+			Tags: form.Tags,
+			Difficulty:form.Difficulty,
+			QuestionType:form.QuizType,
+		}
+		console.log(body);
+		return this.http.post(this.rootURL + 'Question/GetQuestion', body);
 	}
 	generateRandom(form: any, question: number) {
 		return this.http.post(this.rootURL + 'Quiz/GetRandomQuestion?TotalQuestion=' + question, form);
 	}
 	postQuestionsSelected(questions: number[]) {
 		this.quizForm.QuestionIds = questions;
+		console.log(this.quizForm);
 		return this.http.post(this.rootURL + 'Quiz/CreateQuiz', this.quizForm);
 	}
 

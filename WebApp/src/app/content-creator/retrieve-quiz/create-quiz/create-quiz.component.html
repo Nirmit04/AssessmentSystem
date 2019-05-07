@@ -60,9 +60,9 @@
             <div class="form-group col-md-3">
               <strong><label>Quiz Time (hh:mm)</label><br /></strong>
               <input required type="number" name="QuizHour" placeholder="hh" min="0" max="24" #QuizHour="ngModel"
-                [(ngModel)]="service.QuizHour">&nbsp;
+                [(ngModel)]="service.QuizHour" class="form-control">&nbsp;
               <strong>:</strong>&nbsp;
-              <input required type="number" name="QuizMinute" placeholder="mm" min="0" max="60" #QuizMinute="ngModel"
+              <input required type="number" name="QuizMinute" class="form-control" placeholder="mm" min="0" max="60" #QuizMinute="ngModel"
                 [(ngModel)]="service.QuizMinute">
               <div class="validation-error"
                 *ngIf="QuizHour.invalid && QuizHour.touched && QuizMinutes.invalid && QuizMinutes.touched">This field is
