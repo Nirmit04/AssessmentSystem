@@ -43,7 +43,6 @@ export class RetrieveQuizComponent implements OnInit {
 		this.cols = [
 			{ field: 'SerialNumber', header: 'S NO' },
 			{ field: 'QuizName', header: 'Quiz Name' },
-			{ field: 'Subject', header: 'Subject' },
 			{ field: 'Difficulty', header: 'Difficulty' },
 			{ field: 'QuizType', header: 'Quiz Type' },
 			{ field: 'TotalQuestions', header: 'Total Questions' },

@@ -10,7 +10,7 @@ import { Subject } from 'rxjs';
 @Component({
 	selector: 'app-retrieve-schedule',
 	templateUrl: './retrieve-schedule.component.html',
-	styleUrls: ['./retrieve-schedule.component.css']
+	styleUrls: [ './retrieve-schedule.component.css' ]
 })
 export class RetrieveScheduleComponent implements OnInit {
 	scheduleList: Schedule[];
@@ -21,20 +21,24 @@ export class RetrieveScheduleComponent implements OnInit {
 	subscription: Subscription;
 
 	onCreate() {
-		this.router.navigate(['/testAdminCreateScheDule']);
+		this.router.navigate([ '/testAdminCreateScheDule' ]);
 	}
 
-	constructor(private service: TestAdminService, private toastr: ToastrService, private dialog: MatDialog, private router: Router) { }
+	constructor(
+		private service: TestAdminService,
+		private toastr: ToastrService,
+		private dialog: MatDialog,
+		private router: Router
+	) {}
 
 	ngOnInit() {
 		this.dtOptions = {
 			pagingType: 'full_numbers',
-			pageLength: 10,
+			pageLength: 10
 		};
 		setTimeout(() => {
 			this.loadSchedule();
 		}, 0);
-
 	}
 
 	loadSchedule() {
@@ -48,15 +52,13 @@ export class RetrieveScheduleComponent implements OnInit {
 		this.service.deleteSchedule(scheduleId).subscribe((res: any) => {
 			if (res === 'Dissimilar Taken Status') {
 				this.toastr.error('Cannot Delete this Schedule. Users Exist!');
-			}
-			else {
+			} else {
 				this.toastr.success('Deleted Successfully', 'Assesment System');
 				this.loadSchedule();
 				this.dtTrigger.unsubscribe();
 				this.dtTrigger.next();
 			}
 		});
-
 	}
 
 	viewSchedule(scheduleid: number, arrayindex: number) {
@@ -67,8 +69,7 @@ export class RetrieveScheduleComponent implements OnInit {
 		dialogConfig.data = scheduleid;
 		this.service.readonlyStatus = true;
 		this.service.formdata = this.scheduleList[arrayindex - 1];
-		this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe((res: any) => {
-		});
+		this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe((res: any) => {});
 	}
 
 	editSchedule(scheduleid: number, arrayindex: number) {
@@ -80,14 +81,13 @@ export class RetrieveScheduleComponent implements OnInit {
 		dialogConfig.data = scheduleid;
 		this.service.formdata = this.scheduleList[arrayindex - 1];
 		this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe((res: any) => {
-		this.loadSchedule();
-		this.dtTrigger.unsubscribe();
-		this.dtTrigger.next();
-	});
+			this.loadSchedule();
+			this.dtTrigger.unsubscribe();
+			this.dtTrigger.next();
+		});
 	}
 
-ngOnDestroy() {
-	this.dtTrigger.unsubscribe();
-}
-
+	ngOnDestroy() {
+		this.dtTrigger.unsubscribe();
+	}
 }

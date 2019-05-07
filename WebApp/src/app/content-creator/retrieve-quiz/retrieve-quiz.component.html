@@ -17,6 +17,7 @@
           <th *ngFor="let col of cols" [pSortableColumn]="col.field" style="background-color:black; color:white;">
             {{col.header}}
           </th>
+          <th style="background-color:black; color:white;">Tags</th>
           <th style="background-color:black; color:white;">Action</th>
         </tr>
       </ng-template>
@@ -26,6 +27,7 @@
           <td *ngFor="let col of columns;">
             {{rowData[col.field]}}
           </td>
+          <!-- <td>{{rowData.Tags}} </td> -->
           <td>
             <a class="btn btn-sm btn-info text-white" (click)="onEdit(rowData.QuizId,i)"><i aria-hidden="true"
                 class="fa fa-edit fa-lg"></i></a>
