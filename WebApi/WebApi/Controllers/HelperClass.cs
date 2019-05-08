@@ -178,6 +178,10 @@ namespace WebApi.Controllers
                 }).ToArray();
             return subjectTags;
         }
+        public string GetCreatedName(string UserId)
+        {
+            return db.Users.FirstOrDefault(z => z.Id == UserId).FirstName;
+        }
 
     }
 }

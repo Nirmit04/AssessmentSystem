@@ -86,6 +86,8 @@ namespace WebApi.Controllers
                      x.ArchiveStatus,
                      x.QuizType,
                      x.QuizTime,
+                     x.QuizState,
+                     x.MinCutOff,
                      Tags=helper.GetQuizSubjectTags(x.QuizId)
                 })
                 .OrderByDescending(z => z.QuizId)
@@ -300,6 +302,8 @@ namespace WebApi.Controllers
                     x.ArchiveStatus,
                     x.QuizType,
                     x.QuizTime,
+                    x.QuizState,
+                    x.MinCutOff,
                     Tags = helper.GetQuizSubjectTags(x.QuizId)
                 }).ToList();
             return Ok(quiz);
@@ -324,8 +328,10 @@ namespace WebApi.Controllers
                     x.ArchiveStatus,
                     x.QuizType,
                     x.QuizTime,
+                    x.QuizState,
+                    x.MinCutOff,
                     Tags = helper.GetQuizSubjectTags(x.QuizId),
-                    CreatedBy = db.Users.FirstOrDefault(z=>z.Id==x.CreatedBy).FirstName
+                    CreatedBy = helper.GetCreatedName(x.CreatedBy)
                 })
                 .OrderByDescending(z => z.QuizId)
                 .ToList();
@@ -397,8 +403,10 @@ namespace WebApi.Controllers
                     x.QuizTime,
                     x.QuizType,
                     x.TotalQuestions,
+                    x.QuizState,
+                    x.MinCutOff,
                     Tags = helper.GetQuizSubjectTags(x.QuizId),
-                    //CreatedBy = db.Users.FirstOrDefault(z => z.Id == x.CreatedBy).FirstName
+                    CreatedBy = helper.GetCreatedName(x.CreatedBy)
                 })
                 .OrderByDescending(z => z.QuizId)
                 .ToList();
@@ -424,8 +432,10 @@ namespace WebApi.Controllers
                     x.ArchiveStatus,
                     x.QuizType,
                     x.QuizTime,
+                    x.QuizState,
+                    x.MinCutOff,
                     Tags = helper.GetQuizSubjectTags(x.QuizId),
-                    //CreatedBy = db.Users.FirstOrDefault(z => z.Id == x.CreatedBy).FirstName
+                    CreatedBy = helper.GetCreatedName(x.CreatedBy)
                 })
                 .OrderByDescending(z => z.QuizId)
                 .ToList();
@@ -510,76 +520,7 @@ namespace WebApi.Controllers
             return Ok();
         }
 
-        ///// <summary>
-        ///// Creates a report and also a detailed report which calculates marks correct, incorrect, unattempted of a Scheduled Quiz
-        ///// </summary>
-        ///// <param name="evalutionAnswer"></param>
-        ///// <returns></returns>
-        //[HttpPost]
-        //[Route("api/Quiz/EvaluateQuiz")]
-        //public IHttpActionResult EvaluateQuiz(EvalutionAnswer evalutionAnswer)
-        //{
-        //    List<int> qIDs = new List<int>();
-        //    foreach (var item in evalutionAnswer.QuesAnswers)
-        //    {
-        //        qIDs.Add(item.QuestionID);
-        //    }
-        //    var CorrectAnswers = db.Questions
-        //        .AsEnumerable()
-        //        .Where(x => qIDs.Contains(x.QuestionId))
-        //        .OrderBy(x => { return Array.IndexOf(qIDs.ToArray(), x.QuestionId); })
-        //        .Select(z => new { z.Answer, z.Marks })
-        //        .ToList();
-        //    int i = 0, CAnswer = 0, WAnswer = 0, UAttempted = 0;
-        //    decimal TMarks = 0;
-        //    DetailedReport detailedReport = new DetailedReport();
-        //    Report report = new Report();
-        //    foreach (var item in evalutionAnswer.QuesAnswers)
-        //    {
-        //        detailedReport.AttemptedAnswer = item.MarkedAnswer;
-        //        detailedReport.CorrectAnswer = CorrectAnswers[i].Answer;
-        //        detailedReport.QuizId = evalutionAnswer.QuizId;
-        //        detailedReport.QuestionId = item.QuestionID;
-        //        detailedReport.UserId = evalutionAnswer.UserId;
-        //        if (item.MarkedAnswer == CorrectAnswers[i].Answer)
-        //        {
-        //            TMarks += CorrectAnswers[i].Marks;
-        //            CAnswer++;
-        //        }
-        //        else if (item.MarkedAnswer == 0)
-        //        {
-        //            UAttempted++;
-        //        }
-        //        else
-        //        {
-        //            WAnswer++;
-        //        }
-        //        i++;
-        //        if (db.Quizs.FirstOrDefault(x => x.QuizId == evalutionAnswer.QuizId).QuizType == "Scheduled")
-        //        {
-        //            db.DetailedReports.Add(detailedReport);
-        //            db.SaveChanges();
-        //        }
-        //    }
-        //    report.CorrectAnswers = CAnswer;
-        //    report.WrongAnswers = WAnswer;
-        //    report.UnattemptedAnswers = UAttempted;
-        //    report.TimeTaken = evalutionAnswer.TimeTaken;
-        //    //Here CorrectAnswers.Count() is TotalQuestions
-        //    report.Accuracy = (CAnswer * 100) / CorrectAnswers.Count();
-        //    report.MarksScored = TMarks;
-        //    report.QuizType = db.Quizs.FirstOrDefault(x => x.QuizId == evalutionAnswer.QuizId).QuizType;
-        //    report.UserId = evalutionAnswer.UserId;
-        //    report.QuizId = evalutionAnswer.QuizId;
-        //    var userSchedule = db.UserSchedules.FirstOrDefault(x => x.QuizScheduleId == evalutionAnswer.QuizScheduleId && x.UserId == evalutionAnswer.UserId && x.QuizId == evalutionAnswer.QuizId);
-        //    if (userSchedule != null)
-        //    {
-        //        userSchedule.Taken = true;
-        //    }
-        //    db.Reports.Add(report);
-        //    db.SaveChanges();
-        //    return Ok();
-        //}
+       
 
         /// <summary>
         /// Evaluates a Mock Quiz
@@ -625,8 +566,6 @@ namespace WebApi.Controllers
         [Route("api/Quiz/GetRandomQuestion")]
         public IHttpActionResult GenerateMockQuiz([FromBody]Quiz quiz, [FromUri]int TotalQuestion)
         {
-            //var qIdsBySubject = helper.GetQuestionIdsBySubject(quiz.SubjectId);
-            //List<int> qIdsBySubject = new List<int>();// temp
             List<int> subjectId = new List<int>();
             foreach (var item in quiz.Tags)
             {
@@ -650,6 +589,17 @@ namespace WebApi.Controllers
             {
                 db.Quizs.Add(quiz);
                 db.SaveChanges();
+                QuizTag quizTag;
+                foreach (var item in quiz.Tags)
+                {
+                    quizTag = new QuizTag()
+                    {
+                        QuizId = quiz.QuizId,
+                        SubjectId = item.SubjectId
+                    };
+                    db.QuizTags.Add(quizTag);
+                    db.SaveChanges();
+                }
                 foreach (var item in questions)
                 {
                     db.QuizQuestions.Add(new QuizQuestion() { QuizId = quiz.QuizId, QuestionId = item.QuestionId });
