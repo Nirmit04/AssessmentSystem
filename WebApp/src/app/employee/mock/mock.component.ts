@@ -17,7 +17,7 @@ export class MockComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
   time: any[];
-
+  tg: string = '';
   mockList: any[];
   cols: any[];
   i: number;
@@ -52,10 +52,14 @@ export class MockComponent implements OnInit {
       this.mockList = res as any[];
       for (this.i = 1; this.i <= this.mockList.length; this.i++) {
         this.mockList[this.i - 1].SerialNumber = this.i;
+        this.tg = '';
         for (let tag of this.mockList[this.i - 1].Tags) {
-          this.mockList[this.i - 1].Tags1 += tag.Name + ' ';
+          this.tg = this.tg + tag.Name + ',';
         }
+        this.mockList[this.i - 1].Tags1 = this.tg;
+        this.mockList[this.i - 1].Tags1 = this.mockList[this.i - 1].Tags1.substring(0, this.mockList[this.i - 1].Tags1.length - 1);
       }
+      console.log(this.mockList);
     });
   }
   takeMockQuiz(QuizId: number, QuizName: string, index: number) {

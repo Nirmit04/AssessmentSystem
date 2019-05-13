@@ -16,7 +16,7 @@ import { Subject } from 'rxjs';
 })
 
 export class RetrieveQuizComponent implements OnInit {
-
+	tg: string = '';
 	QuizList: QuizModel[];
 	searchText = '';
 	difficultyLevel = '';
@@ -64,9 +64,12 @@ export class RetrieveQuizComponent implements OnInit {
 			// this.dtTrigger.next();
 			for (this.i = 1; this.i <= this.QuizList.length; this.i++) {
 				this.QuizList[this.i - 1].SerialNumber = this.i;
+				this.tg = '';
 				for (let tag of this.QuizList[this.i - 1].Tags) {
-					this.QuizList[this.i - 1].Tags1 += tag.Name + ' ';
+					this.tg = this.tg + tag.Name + ',';
 				}
+				this.QuizList[this.i - 1].Tags1 = this.tg;
+				this.QuizList[this.i - 1].Tags1 = this.QuizList[this.i - 1].Tags1.substring(0, this.QuizList[this.i - 1].Tags1.length - 1);
 			}
 		});
 	}

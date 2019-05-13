@@ -64,7 +64,6 @@
                 *ngIf="QuizHour.invalid && QuizHour.touched && QuizMinutes.invalid && QuizMinutes.touched">This field is
                 required.</div>
             </div>
-            <!-- &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; -->
             <div class="can-toggle demo-rebrand-1 col-md-4 " style="width: 50% !important;padding-bottom:0px;">
               <strong><label style="font-size:15px;">Quiz State</label></strong>
               <input id="d" type="checkbox" class="chb messageCheckbox" (change)="toggleEditable($event)" />
@@ -98,12 +97,6 @@
               <div class="validation-error" *ngIf="Questions.invalid && Questions.touched">This field is required.</div>
             </div>
           </div>
-
-
-
-
-
-
           <div class="form-group" style="margin-top: 3%">
             <button type="submit" [disabled]="form.invalid || quizExists" class="btn btn-primary">Create</button>
           </div>

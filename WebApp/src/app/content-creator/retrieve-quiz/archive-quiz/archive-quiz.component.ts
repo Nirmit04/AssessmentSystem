@@ -10,7 +10,7 @@ import { Subject } from 'rxjs';
 	styleUrls: ['./archive-quiz.component.css']
 })
 export class ArchiveQuizComponent implements OnInit {
-
+	tg = '';
 	QuizList: QuizModel[];
 	searchText = '';
 	difficultyLevel = '';
@@ -33,7 +33,7 @@ export class ArchiveQuizComponent implements OnInit {
 		};
 		this.cols = [
 			{ field: 'SerialNumber', header: 'S NO' },
-			{ field: 'QuizName', header: 'Quiz Name'},
+			{ field: 'QuizName', header: 'Quiz Name' },
 			{ field: 'QuizType', header: 'Quiz Type' },
 			{ field: 'Difficulty', header: 'Difficulty' },
 			{ field: 'TotalQuestions', header: 'Total Questions' },
@@ -53,10 +53,14 @@ export class ArchiveQuizComponent implements OnInit {
 			// this.dtTrigger.next();
 			for (this.i = 1; this.i <= this.QuizList.length; this.i++) {
 				this.QuizList[this.i - 1].SerialNumber = this.i;
+				this.tg = ''
 				for (let tag of this.QuizList[this.i - 1].Tags) {
-					this.QuizList[this.i - 1].Tags1 += tag.Name + ' ';
+					this.tg = this.tg + tag.Name + ',';
+					this.QuizList[this.i - 1].Tags1 = this.tg;
 				}
+			//	this.QuizList[this.i - 1].Tags1 = this.QuizList[this.i - 1].Tags1.substring(0, this.QuizList[this.i - 1].Tags1.length - 1);
 			}
+			console.log(this.QuizList)
 		});
 	}
 

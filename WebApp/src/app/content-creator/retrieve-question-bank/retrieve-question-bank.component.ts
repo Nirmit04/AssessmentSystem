@@ -23,7 +23,7 @@ declare var $: any;
 	encapsulation: ViewEncapsulation.None
 })
 export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
-
+	tg: string = '';
 	dtOptions: DataTables.Settings = {};
 	questionList: Question[];
 	dtTrigger: Subject<Question> = new Subject();
@@ -53,7 +53,7 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 		this.cols = [
 			{ field: 'QuestionType', header: 'Question Type' },
 			{ field: 'Difficulty', header: 'Difficulty Level' },
-			{field:'Tags1', header:'Tags'}
+			{ field: 'Tags1', header: 'Tags' }
 		];
 	}
 
@@ -63,10 +63,13 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 			this.questionList = data as Question[];
 			// this.dtTrigger.next();
 			for (this.i = 1; this.i <= this.questionList.length; this.i++) {
+				this.tg = '';
 				this.questionList[this.i - 1].SerialNumber = this.i;
 				for (let tag of this.questionList[this.i - 1].Tags) {
-					this.questionList[this.i - 1].Tags1 += tag.Name + ' ';
+					this.tg = this.tg + tag.Name + ',';
+					this.questionList[this.i - 1].Tags1 = this.tg;
 				}
+				this.questionList[this.i - 1].Tags1 = this.questionList[this.i - 1].Tags1.substring(0, this.questionList[this.i - 1].Tags1.length - 1);
 			}
 		})
 	}
