@@ -44,11 +44,11 @@ namespace WebApi.Controllers
                 .ToList();
             foreach (var item in quizzesScheduled.ToList())
             {
-                if (DateTime.Now < item.StartDateTime)
+                if (DateTime.UtcNow < item.StartDateTime)
                 {
                     quizzesScheduled.Remove(item);
                 }
-                if (DateTime.Now > item.EndDateTime)
+                if (DateTime.UtcNow > item.EndDateTime)
                 {
                     var userSchedule = db.UserSchedules.FirstOrDefault(x => x.UserScheduleId == item.UserScheduleId);
                     var quizSchedule = db.QuizSchedules.FirstOrDefault(x => x.QuizScheduleId == item.QuizScheduleId);

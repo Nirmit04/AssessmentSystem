@@ -151,7 +151,7 @@ namespace WebApi.Controllers
             {
                 var ImageDirectoryUrl = HttpContext.Current.Server.MapPath("/Images/");
                 imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).ToArray()).Replace(" ", "-");
-                imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
+                imageName = imageName + DateTime.UtcNow.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
                 var filePath = ImageDirectoryUrl + imageName;
                 question.ImageName = imageName;
                 Stream stream = postedFile.InputStream;
@@ -197,7 +197,7 @@ namespace WebApi.Controllers
             {
                 var ImageDirectoryUrl = HttpContext.Current.Server.MapPath("/Images/");
                 imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).ToArray()).Replace(" ", "-");
-                imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
+                imageName = imageName + DateTime.UtcNow.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
                 var filePath = ImageDirectoryUrl + imageName;
                 if (question.ImageName != null)
                 {

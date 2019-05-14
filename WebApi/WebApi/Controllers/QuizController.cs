@@ -318,6 +318,7 @@ namespace WebApi.Controllers
         public IHttpActionResult GetAllQuiz()
         {
             var quiz = db.Quizs.Where(x => x.ArchiveStatus == false)
+                .AsEnumerable()
                 .Select(x => new
                 {
                     x.QuizId,

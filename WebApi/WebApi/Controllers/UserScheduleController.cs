@@ -196,11 +196,11 @@ namespace WebApi.Controllers
             if (userSchedule != null)
             {
                 var quizSchedule = db.QuizSchedules.FirstOrDefault(x => x.QuizId == QuizId && x.QuizScheduleId == userSchedule.QuizScheduleId);
-                if (DateTime.Now >= quizSchedule.StartDateTime && DateTime.Now <= quizSchedule.EndDateTime)
+                if (DateTime.UtcNow >= quizSchedule.StartDateTime && DateTime.UtcNow <= quizSchedule.EndDateTime)
                 {
                     return Ok();
                 }
-                else if (DateTime.Now < quizSchedule.StartDateTime)
+                else if (DateTime.UtcNow < quizSchedule.StartDateTime)
                 {
                     return BadRequest("Quiz has not Started");
                 }
