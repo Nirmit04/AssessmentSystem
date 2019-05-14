@@ -128,8 +128,7 @@ namespace WebApi.Controllers
                     SubjectAnalytics subjectAnalysis = new SubjectAnalytics();
                     subjectAnalysis.SubjectId = subjectId;
                     subjectAnalysis.SubjectName = db.Subjects.FirstOrDefault(x => x.SubjectId == subjectId).Name;
-                    //var QuizIds = db.Quizs.Where(x => x.SubjectId == subjectId).Select(x => x.QuizId).ToList();
-                    List<int> QuizIds = new List<int>(); //temp
+                    var QuizIds = db.QuizTags.Where(x => x.SubjectId == subjectId).Select(x => x.QuizId).ToList();
                     var quizReports = db.Reports.Where(x => QuizIds.Contains(x.QuizId)).ToList();
                     if (quizReports.Count() != 0)
                     {
