@@ -33,6 +33,9 @@ export class CreateQuizComponent implements OnInit {
   subjectid: number = null;
   question_type = '';
   dropdownSettings;
+  cols: any[];
+  i: number;
+  
   constructor(
     private service: ContentCreatorServiceService,
     private dialogRef: MatDialogRef<CreateQuizComponent>,
@@ -48,6 +51,7 @@ export class CreateQuizComponent implements OnInit {
       itemsShowLimit: 5,
       allowSearchFilter: true,
     };
+
     this.quizExists = false;
     this.resetForm();
     this.CCreatedBy = localStorage.getItem('uid');
@@ -89,6 +93,7 @@ export class CreateQuizComponent implements OnInit {
   }
 
   fetchReqQues(form: NgForm) {
+    
     console.log('1');
     if (form.value.QuizType === 'Scheduled') {
       this.service.QuestionType = 'Scheduled';
@@ -119,11 +124,19 @@ export class CreateQuizComponent implements OnInit {
       });
     } else {
       console.log('2');
+
+    this.cols = [
+			{ field: 'SerialNumber', header: 'S NO' },
+			{ field: 'QuestionStatement', header: 'Questions' }
+		];
       this.service.getQuesOfUserConstraints(form.value).subscribe((data: any) => {
         console.log(data);
         data.forEach((obj) => (obj.selected = false));
         this.questions = data;
         this.length = this.questions.length;
+        for (this.i = 1; this.i <= this.questions.length; this.i++) {
+          this.questions[this.i - 1].SerialNumber = this.i;
+        }
         this.checkVal();
       });
     }
