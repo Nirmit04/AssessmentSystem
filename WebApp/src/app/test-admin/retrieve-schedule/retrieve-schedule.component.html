@@ -53,7 +53,7 @@
           {{rowData[col.field]}}
         </td>
         <td *ngFor="let c of col;">
-          {{rowData[c.field] | date: 'medium'}}
+          {{rowData[c.field]|date:'yyyy-MM-dd HH:mm:ss Z'}}
         </td>
         <td>
           <a class="btn btn-sm btn-info text-white" (click)="editSchedule(rowData.QuizScheduleId,rowData.SerialNumber)"><i aria-hidden="true"

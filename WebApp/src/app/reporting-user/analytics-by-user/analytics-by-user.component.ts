@@ -32,6 +32,7 @@ export class AnalyticsByUserComponent implements OnInit {
   loadAllEmployees() {
     this.service.getAllUsers().subscribe((res: any) => {
       this.allUsers = res as any[];
+      console.log(this.allUsers);
       this.dtTrigger.next();
     });
   }

@@ -55,7 +55,8 @@ export class RetrieveScheduleComponent implements OnInit {
 	loadSchedule() {
 		this.service.getSchedule(localStorage.getItem('uid')).subscribe((res: any) => {
 			this.scheduleList = res as Schedule[];
-			// this.dtTrigger.next();
+			// this.dtTrigger.next();;
+			console.log(this.scheduleList)
 			for (this.i = 1; this.i <= this.scheduleList.length; this.i++) {
 				this.scheduleList[this.i - 1].SerialNumber = this.i;
 			}
