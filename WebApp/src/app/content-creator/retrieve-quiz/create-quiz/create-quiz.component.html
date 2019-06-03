@@ -2,7 +2,7 @@
   <button type="button " [mat-dialog-close] class="btn btn-danger pos">
     <mat-icon>clear</mat-icon>
   </button>
-  <div class="card " style="width: 80%; overflow: auto">
+  <div class="card " style="width: 80%;">
     <div class="card-body">
       <strong>
         <h2 class="card-title" style="text-align: center">Create A Quiz</h2><br />
@@ -109,6 +109,7 @@
           <div>
             <button type="button" (click)="add_new_ques()" class="btn btn-warning">New Ques.</button>
           </div>
+<<<<<<< HEAD
           <form *ngIf="length!=0" #Questionform="ngForm" (submit)="onDetailsSubmit(Questionform)" autocomplete="off">
             <!-- <table datatable class="display nowrap" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
               class="row-border hover table table-bordered table-striped">
@@ -153,7 +154,36 @@
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>
+=======
+          <br>
+          <mat-dialog-content>
+            <form *ngIf="length!=0" #Questionform="ngForm" (submit)="onDetailsSubmit(Questionform)" autocomplete="off">
 
+              <table datatable style="overflow: scroll" class="row-border hover table table-bordered table-striped">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>#S.NO.</th>
+                    <th>Tick</th>
+                    <th>Question</th>
+                  </tr>
+                </thead>
+                <tbody>
+>>>>>>> 5729db94493f7c2c57c668f12358136fa5fffd45
+
+                  <tr *ngFor="let x of questions; let i = index">
+                    <td>{{i+1}}</td>
+                    <td><input [id]="'questions-'+i" type="checkbox" value="{{x.Question_ID}}" [checked]="x.selected"
+                        (change)="updateSelectedQuestions(i)"></td>
+                    <td>{{x.QuestionStatement}}</td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </mat-dialog-content>
+        </div>
       </div>
     </div>
   </div>
