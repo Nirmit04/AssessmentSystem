@@ -110,24 +110,7 @@
             <button type="button" (click)="add_new_ques()" class="btn btn-warning">New Ques.</button>
           </div>
           <form *ngIf="length!=0" #Questionform="ngForm" (submit)="onDetailsSubmit(Questionform)" autocomplete="off">
-            <!-- <table datatable class="display nowrap" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
-              class="row-border hover table table-bordered table-striped">
-              <thead class="thead-dark">
-                <tr>
-                  <th>#S.NO.</th>
-                  <th>Tick</th>
-                  <th>Question</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let x of questions; let i = index">
-                  <td>{{i+1}}</td>
-                  <td><input [id]="'questions-'+i" type="checkbox" value="{{x.Question_ID}}" [checked]="x.selected"
-                      (change)="updateSelectedQuestions(i)"></td>
-                  <td>{{x.QuestionStatement}}</td>
-                </tr>
-              </tbody>
-            </table> -->
+          
             <p-table [columns]="cols" [value]="questions" [scrollable]="true" scrollHeight="200px" #dt>
               <ng-template pTemplate="header">
                 <tr>
