@@ -5,7 +5,7 @@
   <div class="card " style="width: 80%;">
     <div class="card-body">
       <strong>
-        <h2 class="card-title" style="text-align: center">Create A Quiz</h2><br />
+        <h2 class="card-title" style="text-align: center">Create A Quiz</h2>
       </strong>
       <ng-container *ngIf="!val">
         <form #form="ngForm" (submit)="fetchReqQues(form)" autocomplete="off">
@@ -77,8 +77,6 @@
               <input type="text" required name="MinCutOff" #MinCutOff="ngModel" [(ngModel)]="tts" class="form-control">
 
             </div>
-
-            <br /><br />
             <div *ngIf="service.quizForm.QuizType == 'Mock'" class="form-group col-md-6">
               <strong><label>Select Mock Quiz</label></strong>
               <select name="MockTypess" required #MockTypess="ngModel" [(ngModel)]="MockType" class="form-control">
@@ -104,44 +102,37 @@
       </ng-container>
       <div *ngIf="val">
         <div class="card-body">
-          <h5 *ngIf="length>0" class="card-title" style="text-align: center">Choose Questions</h5><br />
+          <h5 *ngIf="length>0" class="card-title" style="text-align: center">Choose Questions</h5>
           <h5 *ngIf="length==0" class="card-title" style="text-align: center">No Question Available</h5><br />
           <div>
             <button type="button" (click)="add_new_ques()" class="btn btn-warning">New Ques.</button>
           </div>
+          <br>
           <form *ngIf="length!=0" #Questionform="ngForm" (submit)="onDetailsSubmit(Questionform)" autocomplete="off">
-            <!-- <table datatable class="display nowrap" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
-              class="row-border hover table table-bordered table-striped">
-              <thead class="thead-dark">
-                <tr>
-                  <th>#S.NO.</th>
-                  <th>Tick</th>
-                  <th>Question</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let x of questions; let i = index">
-                  <td>{{i+1}}</td>
-                  <td><input [id]="'questions-'+i" type="checkbox" value="{{x.Question_ID}}" [checked]="x.selected"
-                      (change)="updateSelectedQuestions(i)"></td>
-                  <td>{{x.QuestionStatement}}</td>
-                </tr>
-              </tbody>
-            </table> -->
+
             <p-table [columns]="cols" [value]="questions" [scrollable]="true" scrollHeight="200px" #dt>
+
+              <ng-template pTemplate="caption">
+                <div style="text-align: right;">
+                  <i class="fa fa-search" aria-hidden="true" style="margin:4px 4px 0 0"></i>
+                  <input type="text" pInputText size="30" placeholder="Global Filter"
+                    (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                </div>
+              </ng-template>
               <ng-template pTemplate="header">
                 <tr>
                   <th style="background-color:black; color:white">Tick</th>
-                  <th *ngFor="let col of cols" [pSortableColumn]="col.field" style="background-color:black; color:white;">
+                  <th *ngFor="let col of cols" [pSortableColumn]="col.field"
+                    style="background-color:black; color:white;">
                     {{col.header}}
                   </th>
                 </tr>
               </ng-template>
               <ng-template pTemplate="body" let-i="rowIndex" let-rowData let-columns="columns">
-        
+
                 <tr [pSelectableRow]="rowData">
                   <td>
-                    <input [id]="'questions-'+rowData.SerialNumber" type="checkbox" value="{{questions.Question_ID}}" 
+                    <input [id]="'questions-'+rowData.SerialNumber" type="checkbox" value="{{questions.Question_ID}}"
                       [checked]="questions.selected" (change)="updateSelectedQuestions(rowData.SerialNumber-1)">
                   </td>
                   <td *ngFor="let col of columns;">
@@ -149,25 +140,12 @@
                   </td>
                 </tr>
               </ng-template>
-            </p-table>
+            </p-table><br>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>
 
-                  <tr *ngFor="let x of questions; let i = index">
-                    <td>{{i+1}}</td>
-                    <td><input [id]="'questions-'+i" type="checkbox" value="{{x.Question_ID}}" [checked]="x.selected"
-                        (change)="updateSelectedQuestions(i)"></td>
-                    <td>{{x.QuestionStatement}}</td>
-                  </tr>
 
-                </tbody>
-              </table>
-
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-          </mat-dialog-content>
-        </div>
       </div>
     </div>
   </div>
