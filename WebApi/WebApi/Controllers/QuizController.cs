@@ -34,6 +34,7 @@ namespace WebApi.Controllers
                 quiz.TotalMarks += ques.Marks;
             }
             quiz.ArchiveStatus = false;
+            quiz.QuizState = false;
             db.Quizs.Add(quiz);
 
             QuizQuestion quizQuestion;
