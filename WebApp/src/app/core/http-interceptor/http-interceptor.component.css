@@ -11,7 +11,7 @@ h2{
     width:100px;
 }
 .ppc{
-    background-image: url('../../assets/img/404.jpg');
+    background-image: url('src/assets/img/404.jpg');
     background-repeat: no-repeat;
     background-size: 50% 100%;
 }
