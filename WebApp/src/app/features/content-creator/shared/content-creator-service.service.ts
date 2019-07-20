@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Question } from '../shared/question.model';
-import { environment } from '../../../environments/environment';
+import { Question } from './question.model';
+import { environment } from '../../../../environments/environment';
 import { TagModel } from './tags.model';
 import { QuizModel } from './quiz.model';
 import { NgForm } from '@angular/forms';

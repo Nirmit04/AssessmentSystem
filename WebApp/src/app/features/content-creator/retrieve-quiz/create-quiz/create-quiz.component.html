@@ -109,7 +109,6 @@
           </div>
           <br>
           <form *ngIf="length!=0" #Questionform="ngForm" (submit)="onDetailsSubmit(Questionform)" autocomplete="off">
-
             <p-table [columns]="cols" [value]="questions" [scrollable]="true" scrollHeight="200px" #dt>
 
               <ng-template pTemplate="caption">

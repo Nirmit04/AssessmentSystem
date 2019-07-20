@@ -22,7 +22,7 @@ mat-toolbar {
 }
 .container {
 	position: relative;
-	background-image: url(../../assets/2.jpg);
+	background-image: url('src/assets/2.jpg');
 	background-repeat: no-repeat;
 	height: 100%;
 	width: 100%;
@@ -31,7 +31,7 @@ mat-toolbar {
 }
 .container1 .aboutcontainer {
 	position: relative;
-	background-image: url(../../assets/2.jpg);
+	background-image: url('src/assets/2.jpg');
 	background-repeat: no-repeat;
 	height: 100%;
 	width: 100%;

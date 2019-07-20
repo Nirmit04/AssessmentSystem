@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
-import { EmployeeService } from '../employee/shared/employee.service';
+import { environment } from '../../../environments/environment';
+import { EmployeeService } from '../../features/employee/shared/employee.service';
 
 @Component({
 	selector: 'app-home',
