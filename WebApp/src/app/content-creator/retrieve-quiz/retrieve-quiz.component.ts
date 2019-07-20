@@ -78,6 +78,7 @@ export class RetrieveQuizComponent implements OnInit {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = "70%";
+		// dialogConfig.height = "90%";
 		dialogConfig.disableClose = true;
 		let dialogRef = this.dialog.open(CreateQuizComponent, dialogConfig);
 		dialogRef.afterClosed().subscribe(result => {
