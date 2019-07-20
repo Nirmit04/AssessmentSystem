@@ -576,6 +576,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _employee_take_quiz_instructions_instructions_component__WEBPACK_IMPORTED_MODULE_73__ = __webpack_require__(/*! ./employee/take-quiz/instructions/instructions.component */ "./src/app/employee/take-quiz/instructions/instructions.component.ts");
 /* harmony import */ var primeng_table__WEBPACK_IMPORTED_MODULE_74__ = __webpack_require__(/*! primeng/table */ "./node_modules/primeng/table.js");
 /* harmony import */ var primeng_table__WEBPACK_IMPORTED_MODULE_74___default = /*#__PURE__*/__webpack_require__.n(primeng_table__WEBPACK_IMPORTED_MODULE_74__);
+/* harmony import */ var ng_multiselect_dropdown__WEBPACK_IMPORTED_MODULE_75__ = __webpack_require__(/*! ng-multiselect-dropdown */ "./node_modules/ng-multiselect-dropdown/fesm5/ng-multiselect-dropdown.js");
+
 
 
 
@@ -766,6 +768,7 @@ var AppModule = /** @class */ (function () {
                 ng_pick_datetime__WEBPACK_IMPORTED_MODULE_68__["OwlNativeDateTimeModule"],
                 _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_71__["MatProgressSpinnerModule"],
                 primeng_table__WEBPACK_IMPORTED_MODULE_74__["TableModule"],
+                ng_multiselect_dropdown__WEBPACK_IMPORTED_MODULE_75__["NgMultiSelectDropDownModule"].forRoot()
             ],
             providers: [
                 _auth_guard__WEBPACK_IMPORTED_MODULE_32__["AuthGuard"],
@@ -950,7 +953,7 @@ module.exports = ".pos {\n\tposition: absolute;\n\tright: 0.5%;\n\ttop: 1%;\n\tz
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-container *ngIf=\"!service.quesStat\">\n  <app-main-nav>\n    <div class=\"card\">\n      <div class=\"card-body\">\n        <strong>\n          <h2 *ngIf=\"service.QuestionType\" class=\"card-title\" style=\"text-align: center\">Add {{service.QuestionType}}\n            Questions</h2>\n        </strong>\n        <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n          <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"CCreatedBy\">\n          <div class=\"form-group\">\n            <strong><label>Question</label></strong>\n            <textarea class=\"form-control\" name=\"QuestionStatement\" #QuestionStatement=\"ngModel\"\n              [(ngModel)]=\"service.formData.QuestionStatement\" rows=\"3\" required></textarea>\n            <div class=\"validation-error\" *ngIf=\"QuestionStatement.invalid && QuestionStatement.touched\">This field is\n              required.\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <strong><label>Option 1</label></strong>\n              <input required type=\"text\" name=\"Option1\" #Option1=\"ngModel\" [(ngModel)]=\"service.formData.Option1\"\n                class=\"form-control\">\n              <div class=\"validation-error\" *ngIf=\"Option1.invalid && Option1.touched\">This field is required.</div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <strong><label>Option 2</label></strong>\n              <input required type=\"text\" name=\"Option2\" #Option2=\"ngModel\" [(ngModel)]=\"service.formData.Option2\"\n                class=\"form-control\">\n              <div class=\"validation-error\" *ngIf=\"Option2.invalid && Option2.touched\">This field is required.</div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <strong><label>Option 3</label></strong>\n              <input type=\"text\" name=\"Option3\" #Option3=\"ngModel\" [(ngModel)]=\"service.formData.Option3\"\n                class=\"form-control\">\n            </div>\n            <div class=\"form-group col-md-6\">\n              <strong><label>Option 4</label></strong>\n              <input type=\"text\" name=\"Option4\" #Option4=\"ngModel\" [(ngModel)]=\"service.formData.Option4\"\n                class=\"form-control\">\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <strong><label>Correct Option</label></strong>\n              <select name=\"Answer\" [disabled]=\"bool\" required #Answer=\"ngModel\" [(ngModel)]=\"service.formData.Answer\"\n                class=\"form-control\">\n                <option selected disabled value=\"\">Choose</option>\n                <option value=\"1\">1</option>\n                <option value=\"2\">2</option>\n                <option *ngIf=\"service.formData.Option3\" value=\"3\">3</option>\n                <option *ngIf=\"service.formData.Option4\" value=\"4\">4</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Answer.invalid && Answer.touched\">This field is required.\n              </div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <strong><label>Marks</label></strong>\n              <select name=\"Marks\" [disabled]=\"bool\" required #Marks=\"ngModel\" [(ngModel)]=\"service.formData.Marks\"\n                class=\"form-control\">\n                <option selected disabled value=\"\">Choose</option>\n                <option value=\"1\">1</option>\n                <option value=\"2\">2</option>\n                <option value=\"3\">3</option>\n                <option value=\"5\">5</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Marks.invalid && Marks.touched\">This field is required.</div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <strong><label>Select Subject</label></strong>\n              <select name=\"SubjectId\" required #SubjectId=\"ngModel\" [(ngModel)]=\"service.formData.SubjectId\"\n                class=\"form-control\">\n                <option selected disabled value=\"\">Choose an option..</option>\n                <option *ngFor=\"let Subject of Subjects\" value=\"{{Subject.SubjectId}}\">{{Subject.Name}}</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"SubjectId.invalid && SubjectId.touched\">This field is required.</div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <strong><label>Select Difficulty-Level</label></strong>\n              <select name=\"Difficulty\" required #Difficulty=\"ngModel\" [(ngModel)]=\"service.formData.Difficulty\"\n                class=\"form-control\">\n                <option selected disabled value=\"\">Choose an option...</option>\n                <option value=\"Beginner\">Beginner</option>\n                <option value=\"Intermediate\">Intermediate</option>\n                <option value=\"Advanced\">Advanced</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Difficulty.invalid && Difficulty.touched\">This field is required.\n              </div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <strong><label>Select Image</label></strong>\n              <input type=\"file\" (change)=\"chooseFile($event)\" Name=\"ImageName\" class=\"form-control\">\n            </div>\n          </div>\n          <div class=\"form-group\" style=\"margin-top:2%\">\n            <button type=\"submit\" [disabled]=\"form.invalid\" class=\"btn btn-primary\">Submit</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  </app-main-nav>\n</ng-container>\n<ng-container *ngIf=\"service.quesStat\">\n  <mat-dialog-content>\n    <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n      <mat-icon>clear</mat-icon>\n    </button>\n    <div class=\"card\">\n      <div class=\"card-body\">\n        <h3 style=\"text-align: center\" class=\"card-title\">Add Questions</h3>\n        <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n          <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"CCreatedBy\">\n          <div class=\"form-group\">\n            <strong><label>Question</label></strong>\n            <textarea class=\"form-control\" name=\"QuestionStatement\" #QuestionStatement=\"ngModel\"\n              [(ngModel)]=\"service.formData.QuestionStatement\" rows=\"3\" required></textarea>\n            <div class=\"validation-error\" *ngIf=\"QuestionStatement.invalid && QuestionStatement.touched\">This field is\n              required.\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <strong><label>Option 1</label></strong>\n              <input required type=\"text\" name=\"Option1\" #Option1=\"ngModel\" [(ngModel)]=\"service.formData.Option1\"\n                class=\"form-control\">\n              <div class=\"validation-error\" *ngIf=\"Option1.invalid && Option1.touched\">This field is required.</div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <strong><label>Option 2</label></strong>\n              <input required type=\"text\" name=\"Option2\" #Option2=\"ngModel\" [(ngModel)]=\"service.formData.Option2\"\n                class=\"form-control\">\n              <div class=\"validation-error\" *ngIf=\"Option2.invalid && Option2.touched\">This field is required.</div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <strong><label>Option 3</label></strong>\n              <input type=\"text\" name=\"Option3\" #Option3=\"ngModel\" [(ngModel)]=\"service.formData.Option3\"\n                class=\"form-control\">\n            </div>\n            <div class=\"form-group col-md-6\">\n              <strong><label>Option 4</label></strong>\n              <input type=\"text\" name=\"Option4\" #Option4=\"ngModel\" [(ngModel)]=\"service.formData.Option4\"\n                class=\"form-control\">\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <strong><label>Correct Option</label></strong>\n              <select name=\"Answer\" [disabled]=\"bool\" required #Answer=\"ngModel\" [(ngModel)]=\"service.formData.Answer\"\n                class=\"form-control\">\n                <option selected disabled value=\"\">Choose</option>\n                <option value=\"1\">1</option>\n                <option value=\"2\">2</option>\n                <option *ngIf=\"service.formData.Option3\" value=\"3\">3</option>\n                <option *ngIf=\"service.formData.Option4\" value=\"4\">4</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Answer.invalid && Answer.touched\">This field is required.\n              </div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <strong><label>Marks</label></strong>\n              <select name=\"Marks\" [disabled]=\"bool\" required #Marks=\"ngModel\" [(ngModel)]=\"service.formData.Marks\"\n                class=\"form-control\">\n                <option selected disabled value=\"\">Choose</option>\n                <option value=\"1\">1</option>\n                <option value=\"2\">2</option>\n                <option value=\"3\">3</option>\n                <option value=\"5\">5</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Marks.invalid && Marks.touched\">This field is required.</div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <strong><label>Select Subject</label></strong>\n              <select [disabled]=\"bool\" name=\"SubjectId\" required #SubjectId=\"ngModel\"\n                [(ngModel)]=\"service.formData.SubjectId\" class=\"form-control\">\n                <option selected disabled value=\"\">Choose an option..</option>\n                <option *ngFor=\"let Subject of Subjects\" value=\"{{Subject.SubjectId}}\">{{Subject.Name}}</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"SubjectId.invalid && SubjectId.touched\">This field is required.</div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <strong><label>Select Difficulty-Level</label></strong>\n              <select [disabled]=\"bool\" name=\"Difficulty\" required #Difficulty=\"ngModel\"\n                [(ngModel)]=\"service.formData.Difficulty\" class=\"form-control\">\n                <option selected disabled value=\"\">Choose an option...</option>\n                <option value=\"Beginner\">Beginner</option>\n                <option value=\"Intermediate\">Intermediate</option>\n                <option value=\"Advanced\">Advanced</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Difficulty.invalid && Difficulty.touched\">This field is required.\n              </div>\n            </div>\n          </div>\n          <div class=\"form-group\" style=\"margin-top: 3%\">\n            <button type=\"submit\" [disabled]=\"form.invalid\" class=\"btn btn-primary\">Submit</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  </mat-dialog-content>\n</ng-container>"
+module.exports = "<ng-container *ngIf=\"!service.quesStat\">\n  <app-main-nav>\n    <div class=\"card\">\n      <div class=\"card-body\">\n        <strong>\n          <h2 *ngIf=\"service.QuestionType\" class=\"card-title\" style=\"text-align: center\">Add {{service.QuestionType}}\n            Questions</h2>\n        </strong>\n        <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n          <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"CCreatedBy\">\n          <div class=\"form-group\">\n            <strong><label>Question</label></strong>\n            <textarea class=\"form-control\" name=\"QuestionStatement\" #QuestionStatement=\"ngModel\"\n              [(ngModel)]=\"service.formData.QuestionStatement\" rows=\"3\" required></textarea>\n            <div class=\"validation-error\" *ngIf=\"QuestionStatement.invalid && QuestionStatement.touched\">This field is\n              required.\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <strong><label>Option 1</label></strong>\n              <input required type=\"text\" name=\"Option1\" #Option1=\"ngModel\" [(ngModel)]=\"service.formData.Option1\"\n                class=\"form-control\">\n              <div class=\"validation-error\" *ngIf=\"Option1.invalid && Option1.touched\">This field is required.</div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <strong><label>Option 2</label></strong>\n              <input required type=\"text\" name=\"Option2\" #Option2=\"ngModel\" [(ngModel)]=\"service.formData.Option2\"\n                class=\"form-control\">\n              <div class=\"validation-error\" *ngIf=\"Option2.invalid && Option2.touched\">This field is required.</div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <strong><label>Option 3</label></strong>\n              <input type=\"text\" name=\"Option3\" #Option3=\"ngModel\" [(ngModel)]=\"service.formData.Option3\"\n                class=\"form-control\">\n            </div>\n            <div class=\"form-group col-md-6\">\n              <strong><label>Option 4</label></strong>\n              <input type=\"text\" name=\"Option4\" #Option4=\"ngModel\" [(ngModel)]=\"service.formData.Option4\"\n                class=\"form-control\">\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <strong><label>Correct Option</label></strong>\n              <select name=\"Answer\" [disabled]=\"bool\" required #Answer=\"ngModel\" [(ngModel)]=\"service.formData.Answer\"\n                class=\"form-control\">\n                <option selected disabled value=\"\">Choose</option>\n                <option value=\"1\">1</option>\n                <option value=\"2\">2</option>\n                <option *ngIf=\"service.formData.Option3\" value=\"3\">3</option>\n                <option *ngIf=\"service.formData.Option4\" value=\"4\">4</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Answer.invalid && Answer.touched\">This field is required.\n              </div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <strong><label>Marks</label></strong>\n              <select name=\"Marks\" [disabled]=\"bool\" required #Marks=\"ngModel\" [(ngModel)]=\"service.formData.Marks\"\n                class=\"form-control\">\n                <option selected disabled value=\"\">Choose</option>\n                <option value=\"1\">1</option>\n                <option value=\"2\">2</option>\n                <option value=\"3\">3</option>\n                <option value=\"5\">5</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Marks.invalid && Marks.touched\">This field is required.</div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <strong><label>Select Tag</label></strong>\n              <ng-multiselect-dropdown name=\"Tags\" #Tags=\"ngModel\" [placeholder]=\"Choose\" required [data]=\"Subjects123\"\n                [disabled]=\"disabled\" [settings]=\"dropdownSettings\" [(ngModel)]=\"selectedItems\">\n              </ng-multiselect-dropdown>\n              <div class=\"validation-error\" *ngIf=\"Tags.invalid && Tags.touched\">This field is required.</div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <strong><label>Select Difficulty-Level</label></strong>\n              <select name=\"Difficulty\" required #Difficulty=\"ngModel\" [(ngModel)]=\"service.formData.Difficulty\"\n                class=\"form-control\">\n                <option selected disabled value=\"\">Choose an option...</option>\n                <option value=\"Beginner\">Beginner</option>\n                <option value=\"Intermediate\">Intermediate</option>\n                <option value=\"Advanced\">Advanced</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Difficulty.invalid && Difficulty.touched\">This field is required.\n              </div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <strong><label>Select Image</label></strong>\n              <input type=\"file\" (change)=\"chooseFile($event)\" Name=\"ImageName\" class=\"form-control\">\n            </div>\n          </div>\n          <div class=\"form-group\" style=\"margin-top:2%\">\n            <button type=\"submit\" [disabled]=\"form.invalid\" class=\"btn btn-primary\">Submit</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  </app-main-nav>\n</ng-container>\n<ng-container *ngIf=\"service.quesStat\">\n  <mat-dialog-content>\n    <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n      <mat-icon>clear</mat-icon>\n    </button>\n    <div class=\"card\">\n      <div class=\"card-body\">\n        <h3 style=\"text-align: center\" class=\"card-title\">Add Questions</h3>\n        <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n          <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"CCreatedBy\">\n          <div class=\"form-group\">\n            <strong><label>Question</label></strong>\n            <textarea class=\"form-control\" name=\"QuestionStatement\" #QuestionStatement=\"ngModel\"\n              [(ngModel)]=\"service.formData.QuestionStatement\" rows=\"3\" required></textarea>\n            <div class=\"validation-error\" *ngIf=\"QuestionStatement.invalid && QuestionStatement.touched\">This field is\n              required.\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <strong><label>Option 1</label></strong>\n              <input required type=\"text\" name=\"Option1\" #Option1=\"ngModel\" [(ngModel)]=\"service.formData.Option1\"\n                class=\"form-control\">\n              <div class=\"validation-error\" *ngIf=\"Option1.invalid && Option1.touched\">This field is required.</div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <strong><label>Option 2</label></strong>\n              <input required type=\"text\" name=\"Option2\" #Option2=\"ngModel\" [(ngModel)]=\"service.formData.Option2\"\n                class=\"form-control\">\n              <div class=\"validation-error\" *ngIf=\"Option2.invalid && Option2.touched\">This field is required.</div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <strong><label>Option 3</label></strong>\n              <input type=\"text\" name=\"Option3\" #Option3=\"ngModel\" [(ngModel)]=\"service.formData.Option3\"\n                class=\"form-control\">\n            </div>\n            <div class=\"form-group col-md-6\">\n              <strong><label>Option 4</label></strong>\n              <input type=\"text\" name=\"Option4\" #Option4=\"ngModel\" [(ngModel)]=\"service.formData.Option4\"\n                class=\"form-control\">\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <strong><label>Correct Option</label></strong>\n              <select name=\"Answer\" [disabled]=\"bool\" required #Answer=\"ngModel\" [(ngModel)]=\"service.formData.Answer\"\n                class=\"form-control\">\n                <option selected disabled value=\"\">Choose</option>\n                <option value=\"1\">1</option>\n                <option value=\"2\">2</option>\n                <option *ngIf=\"service.formData.Option3\" value=\"3\">3</option>\n                <option *ngIf=\"service.formData.Option4\" value=\"4\">4</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Answer.invalid && Answer.touched\">This field is required.\n              </div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <strong><label>Marks</label></strong>\n              <select name=\"Marks\" [disabled]=\"bool\" required #Marks=\"ngModel\" [(ngModel)]=\"service.formData.Marks\"\n                class=\"form-control\">\n                <option selected disabled value=\"\">Choose</option>\n                <option value=\"1\">1</option>\n                <option value=\"2\">2</option>\n                <option value=\"3\">3</option>\n                <option value=\"5\">5</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Marks.invalid && Marks.touched\">This field is required.</div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <strong><label>Select Subject</label></strong>\n              <ng-multiselect-dropdown name=\"Tags\" #Tags=\"ngModel\" [placeholder]=\"Choose\" required [data]=\"Subjects123\"\n                [settings]=\"dropdownSettings\" [(ngModel)]=\"selectedItems\">\n              </ng-multiselect-dropdown>\n              <div class=\"validation-error\" *ngIf=\"SubjectId.invalid && SubjectId.touched\">This field is required.</div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <strong><label>Select Difficulty-Level</label></strong>\n              <select [disabled]=\"bool\" name=\"Difficulty\" required #Difficulty=\"ngModel\"\n                [(ngModel)]=\"service.formData.Difficulty\" class=\"form-control\">\n                <option selected disabled value=\"\">Choose an option...</option>\n                <option value=\"Beginner\">Beginner</option>\n                <option value=\"Intermediate\">Intermediate</option>\n                <option value=\"Advanced\">Advanced</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Difficulty.invalid && Difficulty.touched\">This field is required.\n              </div>\n            </div>\n          </div>\n          <div class=\"form-group\" style=\"margin-top: 3%\">\n            <button type=\"submit\" [disabled]=\"form.invalid\" class=\"btn btn-primary\">Submit</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  </mat-dialog-content>\n</ng-container>"
 
 /***/ }),
 
@@ -981,6 +984,7 @@ var CreateQuestionsComponent = /** @class */ (function () {
         this.router = router;
         this.CCreatedBy = "";
         this.boolea = false;
+        this.dropdownSettings = {};
     }
     CreateQuestionsComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -995,8 +999,16 @@ var CreateQuestionsComponent = /** @class */ (function () {
                 this.router.navigate(['/cc-dash']);
             }
         }
+        this.dropdownSettings = {
+            singleSelection: false,
+            idField: 'SubjectId',
+            textField: 'Name',
+            enableCheckAll: false,
+            itemsShowLimit: 5,
+            allowSearchFilter: true,
+        };
         this.service.retrieveSubjects().subscribe(function (res) {
-            _this.Subjects = res;
+            _this.Subjects123 = res;
         });
     };
     CreateQuestionsComponent.prototype.resetForm = function (form) {
@@ -1021,6 +1033,7 @@ var CreateQuestionsComponent = /** @class */ (function () {
     };
     CreateQuestionsComponent.prototype.onSubmit = function (form) {
         var _this = this;
+        console.log(form.value);
         this.service.postQuestion(form.value).subscribe(function (res) {
             _this.toastr.success('Inserted successfully');
             _this.service.selectedFile = null;
@@ -1214,6 +1227,7 @@ var RetrieveQuestionBankComponent = /** @class */ (function () {
         this.service = service;
         this.toastr = toastr;
         this.dialog = dialog;
+        this.tg = '';
         this.dtOptions = {};
         this.dtTrigger = new rxjs__WEBPACK_IMPORTED_MODULE_6__["Subject"]();
     }
@@ -1232,17 +1246,25 @@ var RetrieveQuestionBankComponent = /** @class */ (function () {
         ];
         this.cols = [
             { field: 'QuestionType', header: 'Question Type' },
-            { field: 'SubjectName', header: 'Subject' },
-            { field: 'Difficulty', header: 'Difficulty Level' }
+            { field: 'Difficulty', header: 'Difficulty Level' },
+            { field: 'Tags1', header: 'Tags' }
         ];
     };
     RetrieveQuestionBankComponent.prototype.getQuesOfUser = function (uid) {
         var _this = this;
         this.service.getQuesOfUser(uid).subscribe(function (data) {
+            console.log(data);
             _this.questionList = data;
             // this.dtTrigger.next();
             for (_this.i = 1; _this.i <= _this.questionList.length; _this.i++) {
+                _this.tg = '';
                 _this.questionList[_this.i - 1].SerialNumber = _this.i;
+                for (var _i = 0, _a = _this.questionList[_this.i - 1].Tags; _i < _a.length; _i++) {
+                    var tag = _a[_i];
+                    _this.tg = _this.tg + tag.Name + ',';
+                    _this.questionList[_this.i - 1].Tags1 = _this.tg;
+                }
+                _this.questionList[_this.i - 1].Tags1 = _this.questionList[_this.i - 1].Tags1.substring(0, _this.questionList[_this.i - 1].Tags1.length - 1);
             }
         });
     };
@@ -1372,12 +1394,13 @@ var AddQuesInQuizComponent = /** @class */ (function () {
                 Difficulty: '',
                 TotalQuestions: null,
                 TotalMarks: null,
-                Subject: '',
+                Tags: null,
                 QuizType: '',
                 CreatedBy: '',
                 QuestionIds: null,
                 SubjectId: null,
-                QuizName: ''
+                QuizName: '',
+                MinCutOff: null
             };
             if (this.questions) {
                 this.questions.map(function (y) { return y.selected = false; });
@@ -1479,6 +1502,7 @@ var ArchiveQuizComponent = /** @class */ (function () {
     function ArchiveQuizComponent(service, toastr) {
         this.service = service;
         this.toastr = toastr;
+        this.tg = '';
         this.searchText = '';
         this.difficultyLevel = '';
         this.index = 0;
@@ -1496,9 +1520,9 @@ var ArchiveQuizComponent = /** @class */ (function () {
             { field: 'QuizName', header: 'Quiz Name' },
             { field: 'QuizType', header: 'Quiz Type' },
             { field: 'Difficulty', header: 'Difficulty' },
-            { field: 'Subject', header: 'Subject' },
             { field: 'TotalQuestions', header: 'Total Questions' },
-            { field: 'TotalMarks', header: 'Total Marks' }
+            { field: 'TotalMarks', header: 'Total Marks' },
+            { field: 'Tags1', header: 'Tags' },
         ];
         this.loadQuiz();
         setTimeout(function () {
@@ -1512,7 +1536,15 @@ var ArchiveQuizComponent = /** @class */ (function () {
             // this.dtTrigger.next();
             for (_this.i = 1; _this.i <= _this.QuizList.length; _this.i++) {
                 _this.QuizList[_this.i - 1].SerialNumber = _this.i;
+                _this.tg = '';
+                for (var _i = 0, _a = _this.QuizList[_this.i - 1].Tags; _i < _a.length; _i++) {
+                    var tag = _a[_i];
+                    _this.tg = _this.tg + tag.Name + ',';
+                    _this.QuizList[_this.i - 1].Tags1 = _this.tg;
+                }
+                //	this.QuizList[this.i - 1].Tags1 = this.QuizList[this.i - 1].Tags1.substring(0, this.QuizList[this.i - 1].Tags1.length - 1);
             }
+            console.log(_this.QuizList);
         });
     };
     ArchiveQuizComponent.prototype.onUnArchived = function (id) {
@@ -1553,7 +1585,7 @@ var ArchiveQuizComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".card {\n\tmargin: 9px auto;\n}\n.container {\n\tmax-width: inherit;\n\tmax-height: inherit;\n}\nbutton {\n\tmargin-left: 10px;\n}\nmat-dialog-content {\n\tposition: relative;\n\t\n}\n.mat-dialog-content{\n\tmax-height: none;\n\toverflow: visible !important;\n\tmargin:0 auto !important;\n\tpadding-right: 0px !important;\n}\n.pos {\n\tposition: absolute;\n\tright: -2%;\n\ttop: -7%;\n\tz-index: 9999;\n\twidth: 38px;\n\theight: 35px;\n}\nmat-icon {\n\twidth: 30px;\n\theight: 30px;\n\tposition: absolute;\n\tleft: 8%;\n\ttop: 15%;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29udGVudC1jcmVhdG9yL3JldHJpZXZlLXF1aXovY3JlYXRlLXF1aXovY3JlYXRlLXF1aXouY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtDQUNDLGdCQUFnQjtBQUNqQjtBQUNBO0NBQ0Msa0JBQWtCO0NBQ2xCLG1CQUFtQjtBQUNwQjtBQUNBO0NBQ0MsaUJBQWlCO0FBQ2xCO0FBQ0E7Q0FDQyxrQkFBa0I7O0FBRW5CO0FBQ0E7Q0FDQyxnQkFBZ0I7Q0FDaEIsNEJBQTRCO0NBQzVCLHdCQUF3QjtDQUN4Qiw2QkFBNkI7QUFDOUI7QUFDQTtDQUNDLGtCQUFrQjtDQUNsQixVQUFVO0NBQ1YsUUFBUTtDQUNSLGFBQWE7Q0FDYixXQUFXO0NBQ1gsWUFBWTtBQUNiO0FBQ0E7Q0FDQyxXQUFXO0NBQ1gsWUFBWTtDQUNaLGtCQUFrQjtDQUNsQixRQUFRO0NBQ1IsUUFBUTtBQUNUIiwiZmlsZSI6InNyYy9hcHAvY29udGVudC1jcmVhdG9yL3JldHJpZXZlLXF1aXovY3JlYXRlLXF1aXovY3JlYXRlLXF1aXouY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jYXJkIHtcblx0bWFyZ2luOiA5cHggYXV0bztcbn1cbi5jb250YWluZXIge1xuXHRtYXgtd2lkdGg6IGluaGVyaXQ7XG5cdG1heC1oZWlnaHQ6IGluaGVyaXQ7XG59XG5idXR0b24ge1xuXHRtYXJnaW4tbGVmdDogMTBweDtcbn1cbm1hdC1kaWFsb2ctY29udGVudCB7XG5cdHBvc2l0aW9uOiByZWxhdGl2ZTtcblx0XG59XG4ubWF0LWRpYWxvZy1jb250ZW50e1xuXHRtYXgtaGVpZ2h0OiBub25lO1xuXHRvdmVyZmxvdzogdmlzaWJsZSAhaW1wb3J0YW50O1xuXHRtYXJnaW46MCBhdXRvICFpbXBvcnRhbnQ7XG5cdHBhZGRpbmctcmlnaHQ6IDBweCAhaW1wb3J0YW50O1xufVxuLnBvcyB7XG5cdHBvc2l0aW9uOiBhYnNvbHV0ZTtcblx0cmlnaHQ6IC0yJTtcblx0dG9wOiAtNyU7XG5cdHotaW5kZXg6IDk5OTk7XG5cdHdpZHRoOiAzOHB4O1xuXHRoZWlnaHQ6IDM1cHg7XG59XG5tYXQtaWNvbiB7XG5cdHdpZHRoOiAzMHB4O1xuXHRoZWlnaHQ6IDMwcHg7XG5cdHBvc2l0aW9uOiBhYnNvbHV0ZTtcblx0bGVmdDogOCU7XG5cdHRvcDogMTUlO1xufVxuIl19 */"
+module.exports = ".card {\n\tmargin: 9px auto;\n}\n.container {\n\tmax-width: inherit;\n\tmax-height: inherit;\n}\nbutton {\n\tmargin-left: 10px;\n}\nmat-dialog-content {\n\tposition: relative;\n}\n.mat-dialog-content {\n\tmax-height: none;\n\toverflow: visible !important;\n\tmargin: 0 auto !important;\n\tpadding-right: 0px !important;\n}\n.pos {\n\tposition: absolute;\n\tright: -2%;\n\ttop: -7%;\n\tz-index: 9999;\n\twidth: 38px;\n\theight: 35px;\n}\nmat-icon {\n\twidth: 30px;\n\theight: 30px;\n\tposition: absolute;\n\tleft: 8%;\n\ttop: 15%;\n}\n.can-toggle {\n\tposition: relative;\n}\n.can-toggle *,\n.can-toggle *:before,\n.can-toggle *:after {\n\tbox-sizing: border-box;\n}\n.can-toggle input[type=\"checkbox\"] {\n\topacity: 0;\n\tposition: absolute;\n\ttop: 0;\n\tleft: 0;\n}\n.can-toggle input[type=\"checkbox\"][disabled] ~ label {\n\tpointer-events: none;\n}\n.can-toggle input[type=\"checkbox\"][disabled] ~ label .can-toggle__switch {\n\topacity: 0.4;\n}\n.can-toggle input[type=\"checkbox\"]:checked ~ label .can-toggle__switch:before {\n\tcontent: attr(data-unchecked);\n\tleft: 0;\n}\n.can-toggle input[type=\"checkbox\"]:checked ~ label .can-toggle__switch:after {\n\tcontent: attr(data-checked);\n}\n.can-toggle label {\n\t-webkit-user-select: none;\n\t-moz-user-select: none;\n\t-ms-user-select: none;\n\tuser-select: none;\n\tposition: relative;\n\tdisplay: flex;\n\talign-items: center;\n}\n.can-toggle label .can-toggle__label-text {\n\tflex: 1;\n\tpadding-left: 25px;\n}\n.can-toggle label .can-toggle__switch {\n\tposition: relative;\n}\n.can-toggle label .can-toggle__switch:before {\n\tcontent: attr(data-checked);\n\tposition: absolute;\n\ttop: 0;\n\ttext-transform: uppercase;\n\ttext-align: center;\n}\n.can-toggle label .can-toggle__switch:after {\n\tcontent: attr(data-unchecked);\n\tposition: absolute;\n\tz-index: 5;\n\ttext-transform: uppercase;\n\ttext-align: center;\n\tbackground: white;\n\t-webkit-transform: translate3d(0, 0, 0);\n\ttransform: translate3d(0, 0, 0);\n}\n.can-toggle input[type=\"checkbox\"][disabled] ~ label {\n\tcolor: rgba(119, 119, 119, 0.5);\n}\n.can-toggle input[type=\"checkbox\"]:focus ~ label .can-toggle__switch,\n.can-toggle input[type=\"checkbox\"]:hover ~ label .can-toggle__switch {\n\tbackground-color: #777;\n}\n.can-toggle input[type=\"checkbox\"]:focus ~ label .can-toggle__switch:after,\n.can-toggle input[type=\"checkbox\"]:hover ~ label .can-toggle__switch:after {\n\tcolor: #5e5e5e;\n}\n.can-toggle input[type=\"checkbox\"]:hover ~ label {\n\tcolor: #6a6a6a;\n}\n.can-toggle input[type=\"checkbox\"]:checked ~ label:hover {\n\tcolor: #55bc49;\n}\n.can-toggle input[type=\"checkbox\"]:checked ~ label .can-toggle__switch {\n\tbackground-color: #70c767;\n}\n.can-toggle input[type=\"checkbox\"]:checked ~ label .can-toggle__switch:after {\n\tcolor: #4fb743;\n}\n.can-toggle input[type=\"checkbox\"]:checked:focus ~ label .can-toggle__switch,\n.can-toggle input[type=\"checkbox\"]:checked:hover ~ label .can-toggle__switch {\n\tbackground-color: #5fc054;\n}\n.can-toggle input[type=\"checkbox\"]:checked:focus ~ label .can-toggle__switch:after,\n.can-toggle input[type=\"checkbox\"]:checked:hover ~ label .can-toggle__switch:after {\n\tcolor: #47a43d;\n}\n.can-toggle label .can-toggle__label-text {\n\tflex: 1;\n}\n.can-toggle label .can-toggle__switch {\n\ttransition: background-color 0.3s cubic-bezier(0, 1, 0.5, 1);\n\tbackground: #848484;\n}\n.can-toggle label .can-toggle__switch:before {\n\tcolor: rgba(255, 255, 255, 0.5);\n}\n.can-toggle label .can-toggle__switch:after {\n\ttransition: -webkit-transform 0.3s cubic-bezier(0, 1, 0.5, 1);\n\ttransition: transform 0.3s cubic-bezier(0, 1, 0.5, 1);\n\ttransition: transform 0.3s cubic-bezier(0, 1, 0.5, 1), -webkit-transform 0.3s cubic-bezier(0, 1, 0.5, 1);\n\tcolor: #777;\n}\n.can-toggle input[type=\"checkbox\"]:focus ~ label .can-toggle__switch:after,\n.can-toggle input[type=\"checkbox\"]:hover ~ label .can-toggle__switch:after {\n\tbox-shadow: 0 3px 3px rgba(0, 0, 0, 0.4);\n}\n.can-toggle input[type=\"checkbox\"]:checked ~ label .can-toggle__switch:after {\n\t-webkit-transform: translate3d(65px, 0, 0);\n\ttransform: translate3d(65px, 0, 0);\n}\n.can-toggle input[type=\"checkbox\"]:checked:focus ~ label .can-toggle__switch:after,\n.can-toggle input[type=\"checkbox\"]:checked:hover ~ label .can-toggle__switch:after {\n\tbox-shadow: 0 3px 3px rgba(0, 0, 0, 0.4);\n}\n.can-toggle label {\n\tfont-size: 12px;\n}\n.can-toggle label .can-toggle__switch {\n\theight: 36px;\n\tflex: 0 0 134px;\n\tborder-radius: 4px;\n}\n.can-toggle label .can-toggle__switch:before {\n\tleft: 60px;\n\tfont-size: 12px;\n\tline-height: 36px;\n\twidth: 70px;\n\tpadding: 0 12px;\n}\n.can-toggle label .can-toggle__switch:after {\n\ttop: 2px;\n\tleft: 2px;\n\tborder-radius: 2px;\n\twidth: 65px;\n\tline-height: 32px;\n\tfont-size: 12px;\n}\n.can-toggle label .can-toggle__switch:hover:after {\n\tbox-shadow: 0 3px 3px rgba(0, 0, 0, 0.4);\n}\n.can-toggle.demo-rebrand-1 input[type=\"checkbox\"][disabled] ~ label {\n\tcolor: rgba(255, 0, 0, 0.5);\n}\n.can-toggle.demo-rebrand-1 input[type=\"checkbox\"]:focus ~ label .can-toggle__switch,\n.can-toggle.demo-rebrand-1 input[type=\"checkbox\"]:hover ~ label .can-toggle__switch {\n\tbackground-color: #fa0000;\n}\n.can-toggle.demo-rebrand-1 input[type=\"checkbox\"]:focus ~ label .can-toggle__switch:after,\n.can-toggle.demo-rebrand-1 input[type=\"checkbox\"]:hover ~ label .can-toggle__switch:after {\n\tcolor: #fa0000;\n}\n.can-toggle.demo-rebrand-1 input[type=\"checkbox\"]:hover ~ label {\n\tcolor: #fa0000;\n}\n.can-toggle.demo-rebrand-1 input[type=\"checkbox\"]:checked ~ label:hover {\n\tcolor: #39916a;\n}\n.can-toggle.demo-rebrand-1 input[type=\"checkbox\"]:checked ~ label .can-toggle__switch {\n\tbackground-color: #44ae7f;\n}\n.can-toggle.demo-rebrand-1 input[type=\"checkbox\"]:checked ~ label .can-toggle__switch:after {\n\tcolor: #368a65;\n}\n.can-toggle.demo-rebrand-1 input[type=\"checkbox\"]:checked:focus ~ label .can-toggle__switch,\n.can-toggle.demo-rebrand-1 input[type=\"checkbox\"]:checked:hover ~ label .can-toggle__switch {\n\tbackground-color: #3d9c72;\n}\n.can-toggle.demo-rebrand-1 input[type=\"checkbox\"]:checked:focus ~ label .can-toggle__switch:after,\n.can-toggle.demo-rebrand-1 input[type=\"checkbox\"]:checked:hover ~ label .can-toggle__switch:after {\n\tcolor: #2f7757;\n}\n.can-toggle.demo-rebrand-1 label .can-toggle__label-text {\n\tflex: 1;\n}\n.can-toggle.demo-rebrand-1 label .can-toggle__switch {\n\ttransition: background-color 0.3s ease-in-out;\n\tbackground: #fa0000;\n}\n.can-toggle.demo-rebrand-1 label .can-toggle__switch:before {\n\tcolor: rgba(255, 255, 255, 0.6);\n}\n.can-toggle.demo-rebrand-1 label .can-toggle__switch:after {\n\ttransition: -webkit-transform 0.3s ease-in-out;\n\ttransition: transform 0.3s ease-in-out;\n\ttransition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;\n\tcolor: #fa0000;\n}\n.move {\n\tposition: absolute;\n\ttop: 13%;\n\tright: 54%;\n}\n.move1 {\n\tposition: relative;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29udGVudC1jcmVhdG9yL3JldHJpZXZlLXF1aXovY3JlYXRlLXF1aXovY3JlYXRlLXF1aXouY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtDQUNDLGdCQUFnQjtBQUNqQjtBQUNBO0NBQ0Msa0JBQWtCO0NBQ2xCLG1CQUFtQjtBQUNwQjtBQUNBO0NBQ0MsaUJBQWlCO0FBQ2xCO0FBQ0E7Q0FDQyxrQkFBa0I7QUFDbkI7QUFDQTtDQUNDLGdCQUFnQjtDQUNoQiw0QkFBNEI7Q0FDNUIseUJBQXlCO0NBQ3pCLDZCQUE2QjtBQUM5QjtBQUNBO0NBQ0Msa0JBQWtCO0NBQ2xCLFVBQVU7Q0FDVixRQUFRO0NBQ1IsYUFBYTtDQUNiLFdBQVc7Q0FDWCxZQUFZO0FBQ2I7QUFDQTtDQUNDLFdBQVc7Q0FDWCxZQUFZO0NBQ1osa0JBQWtCO0NBQ2xCLFFBQVE7Q0FDUixRQUFRO0FBQ1Q7QUFFQTtDQUNDLGtCQUFrQjtBQUNuQjtBQUNBOzs7Q0FHQyxzQkFBc0I7QUFDdkI7QUFDQTtDQUNDLFVBQVU7Q0FDVixrQkFBa0I7Q0FDbEIsTUFBTTtDQUNOLE9BQU87QUFDUjtBQUNBO0NBQ0Msb0JBQW9CO0FBQ3JCO0FBQ0E7Q0FDQyxZQUFZO0FBQ2I7QUFDQTtDQUNDLDZCQUE2QjtDQUM3QixPQUFPO0FBQ1I7QUFDQTtDQUNDLDJCQUEyQjtBQUM1QjtBQUNBO0NBQ0MseUJBQXlCO0NBQ3pCLHNCQUFzQjtDQUN0QixxQkFBcUI7Q0FDckIsaUJBQWlCO0NBQ2pCLGtCQUFrQjtDQUNsQixhQUFhO0NBQ2IsbUJBQW1CO0FBQ3BCO0FBQ0E7Q0FDQyxPQUFPO0NBQ1Asa0JBQWtCO0FBQ25CO0FBQ0E7Q0FDQyxrQkFBa0I7QUFDbkI7QUFDQTtDQUNDLDJCQUEyQjtDQUMzQixrQkFBa0I7Q0FDbEIsTUFBTTtDQUNOLHlCQUF5QjtDQUN6QixrQkFBa0I7QUFDbkI7QUFDQTtDQUNDLDZCQUE2QjtDQUM3QixrQkFBa0I7Q0FDbEIsVUFBVTtDQUNWLHlCQUF5QjtDQUN6QixrQkFBa0I7Q0FDbEIsaUJBQWlCO0NBQ2pCLHVDQUF1QztDQUN2QywrQkFBK0I7QUFDaEM7QUFDQTtDQUNDLCtCQUErQjtBQUNoQztBQUNBOztDQUVDLHNCQUFzQjtBQUN2QjtBQUNBOztDQUVDLGNBQWM7QUFDZjtBQUNBO0NBQ0MsY0FBYztBQUNmO0FBQ0E7Q0FDQyxjQUFjO0FBQ2Y7QUFDQTtDQUNDLHlCQUF5QjtBQUMxQjtBQUNBO0NBQ0MsY0FBYztBQUNmO0FBQ0E7O0NBRUMseUJBQXlCO0FBQzFCO0FBQ0E7O0NBRUMsY0FBYztBQUNmO0FBQ0E7Q0FDQyxPQUFPO0FBQ1I7QUFDQTtDQUNDLDREQUE0RDtDQUM1RCxtQkFBbUI7QUFDcEI7QUFDQTtDQUNDLCtCQUErQjtBQUNoQztBQUNBO0NBQ0MsNkRBQTZEO0NBQzdELHFEQUFxRDtDQUNyRCx3R0FBd0c7Q0FDeEcsV0FBVztBQUNaO0FBQ0E7O0NBRUMsd0NBQXdDO0FBQ3pDO0FBQ0E7Q0FDQywwQ0FBMEM7Q0FDMUMsa0NBQWtDO0FBQ25DO0FBQ0E7O0NBRUMsd0NBQXdDO0FBQ3pDO0FBQ0E7Q0FDQyxlQUFlO0FBQ2hCO0FBQ0E7Q0FDQyxZQUFZO0NBQ1osZUFBZTtDQUNmLGtCQUFrQjtBQUNuQjtBQUNBO0NBQ0MsVUFBVTtDQUNWLGVBQWU7Q0FDZixpQkFBaUI7Q0FDakIsV0FBVztDQUNYLGVBQWU7QUFDaEI7QUFDQTtDQUNDLFFBQVE7Q0FDUixTQUFTO0NBQ1Qsa0JBQWtCO0NBQ2xCLFdBQVc7Q0FDWCxpQkFBaUI7Q0FDakIsZUFBZTtBQUNoQjtBQUNBO0NBQ0Msd0NBQXdDO0FBQ3pDO0FBQ0E7Q0FDQywyQkFBMkI7QUFDNUI7QUFDQTs7Q0FFQyx5QkFBeUI7QUFDMUI7QUFDQTs7Q0FFQyxjQUFjO0FBQ2Y7QUFDQTtDQUNDLGNBQWM7QUFDZjtBQUNBO0NBQ0MsY0FBYztBQUNmO0FBQ0E7Q0FDQyx5QkFBeUI7QUFDMUI7QUFDQTtDQUNDLGNBQWM7QUFDZjtBQUNBOztDQUVDLHlCQUF5QjtBQUMxQjtBQUNBOztDQUVDLGNBQWM7QUFDZjtBQUNBO0NBQ0MsT0FBTztBQUNSO0FBQ0E7Q0FDQyw2Q0FBNkM7Q0FDN0MsbUJBQW1CO0FBQ3BCO0FBQ0E7Q0FDQywrQkFBK0I7QUFDaEM7QUFDQTtDQUNDLDhDQUE4QztDQUM5QyxzQ0FBc0M7Q0FDdEMsMEVBQTBFO0NBQzFFLGNBQWM7QUFDZjtBQUVBO0NBQ0Msa0JBQWtCO0NBQ2xCLFFBQVE7Q0FDUixVQUFVO0FBQ1g7QUFDQTtDQUNDLGtCQUFrQjtBQUNuQiIsImZpbGUiOiJzcmMvYXBwL2NvbnRlbnQtY3JlYXRvci9yZXRyaWV2ZS1xdWl6L2NyZWF0ZS1xdWl6L2NyZWF0ZS1xdWl6LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2FyZCB7XG5cdG1hcmdpbjogOXB4IGF1dG87XG59XG4uY29udGFpbmVyIHtcblx0bWF4LXdpZHRoOiBpbmhlcml0O1xuXHRtYXgtaGVpZ2h0OiBpbmhlcml0O1xufVxuYnV0dG9uIHtcblx0bWFyZ2luLWxlZnQ6IDEwcHg7XG59XG5tYXQtZGlhbG9nLWNvbnRlbnQge1xuXHRwb3NpdGlvbjogcmVsYXRpdmU7XG59XG4ubWF0LWRpYWxvZy1jb250ZW50IHtcblx0bWF4LWhlaWdodDogbm9uZTtcblx0b3ZlcmZsb3c6IHZpc2libGUgIWltcG9ydGFudDtcblx0bWFyZ2luOiAwIGF1dG8gIWltcG9ydGFudDtcblx0cGFkZGluZy1yaWdodDogMHB4ICFpbXBvcnRhbnQ7XG59XG4ucG9zIHtcblx0cG9zaXRpb246IGFic29sdXRlO1xuXHRyaWdodDogLTIlO1xuXHR0b3A6IC03JTtcblx0ei1pbmRleDogOTk5OTtcblx0d2lkdGg6IDM4cHg7XG5cdGhlaWdodDogMzVweDtcbn1cbm1hdC1pY29uIHtcblx0d2lkdGg6IDMwcHg7XG5cdGhlaWdodDogMzBweDtcblx0cG9zaXRpb246IGFic29sdXRlO1xuXHRsZWZ0OiA4JTtcblx0dG9wOiAxNSU7XG59XG5cbi5jYW4tdG9nZ2xlIHtcblx0cG9zaXRpb246IHJlbGF0aXZlO1xufVxuLmNhbi10b2dnbGUgKixcbi5jYW4tdG9nZ2xlICo6YmVmb3JlLFxuLmNhbi10b2dnbGUgKjphZnRlciB7XG5cdGJveC1zaXppbmc6IGJvcmRlci1ib3g7XG59XG4uY2FuLXRvZ2dsZSBpbnB1dFt0eXBlPVwiY2hlY2tib3hcIl0ge1xuXHRvcGFjaXR5OiAwO1xuXHRwb3NpdGlvbjogYWJzb2x1dGU7XG5cdHRvcDogMDtcblx0bGVmdDogMDtcbn1cbi5jYW4tdG9nZ2xlIGlucHV0W3R5cGU9XCJjaGVja2JveFwiXVtkaXNhYmxlZF0gfiBsYWJlbCB7XG5cdHBvaW50ZXItZXZlbnRzOiBub25lO1xufVxuLmNhbi10b2dnbGUgaW5wdXRbdHlwZT1cImNoZWNrYm94XCJdW2Rpc2FibGVkXSB+IGxhYmVsIC5jYW4tdG9nZ2xlX19zd2l0Y2gge1xuXHRvcGFjaXR5OiAwLjQ7XG59XG4uY2FuLXRvZ2dsZSBpbnB1dFt0eXBlPVwiY2hlY2tib3hcIl06Y2hlY2tlZCB+IGxhYmVsIC5jYW4tdG9nZ2xlX19zd2l0Y2g6YmVmb3JlIHtcblx0Y29udGVudDogYXR0cihkYXRhLXVuY2hlY2tlZCk7XG5cdGxlZnQ6IDA7XG59XG4uY2FuLXRvZ2dsZSBpbnB1dFt0eXBlPVwiY2hlY2tib3hcIl06Y2hlY2tlZCB+IGxhYmVsIC5jYW4tdG9nZ2xlX19zd2l0Y2g6YWZ0ZXIge1xuXHRjb250ZW50OiBhdHRyKGRhdGEtY2hlY2tlZCk7XG59XG4uY2FuLXRvZ2dsZSBsYWJlbCB7XG5cdC13ZWJraXQtdXNlci1zZWxlY3Q6IG5vbmU7XG5cdC1tb3otdXNlci1zZWxlY3Q6IG5vbmU7XG5cdC1tcy11c2VyLXNlbGVjdDogbm9uZTtcblx0dXNlci1zZWxlY3Q6IG5vbmU7XG5cdHBvc2l0aW9uOiByZWxhdGl2ZTtcblx0ZGlzcGxheTogZmxleDtcblx0YWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cbi5jYW4tdG9nZ2xlIGxhYmVsIC5jYW4tdG9nZ2xlX19sYWJlbC10ZXh0IHtcblx0ZmxleDogMTtcblx0cGFkZGluZy1sZWZ0OiAyNXB4O1xufVxuLmNhbi10b2dnbGUgbGFiZWwgLmNhbi10b2dnbGVfX3N3aXRjaCB7XG5cdHBvc2l0aW9uOiByZWxhdGl2ZTtcbn1cbi5jYW4tdG9nZ2xlIGxhYmVsIC5jYW4tdG9nZ2xlX19zd2l0Y2g6YmVmb3JlIHtcblx0Y29udGVudDogYXR0cihkYXRhLWNoZWNrZWQpO1xuXHRwb3NpdGlvbjogYWJzb2x1dGU7XG5cdHRvcDogMDtcblx0dGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcblx0dGV4dC1hbGlnbjogY2VudGVyO1xufVxuLmNhbi10b2dnbGUgbGFiZWwgLmNhbi10b2dnbGVfX3N3aXRjaDphZnRlciB7XG5cdGNvbnRlbnQ6IGF0dHIoZGF0YS11bmNoZWNrZWQpO1xuXHRwb3NpdGlvbjogYWJzb2x1dGU7XG5cdHotaW5kZXg6IDU7XG5cdHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7XG5cdHRleHQtYWxpZ246IGNlbnRlcjtcblx0YmFja2dyb3VuZDogd2hpdGU7XG5cdC13ZWJraXQtdHJhbnNmb3JtOiB0cmFuc2xhdGUzZCgwLCAwLCAwKTtcblx0dHJhbnNmb3JtOiB0cmFuc2xhdGUzZCgwLCAwLCAwKTtcbn1cbi5jYW4tdG9nZ2xlIGlucHV0W3R5cGU9XCJjaGVja2JveFwiXVtkaXNhYmxlZF0gfiBsYWJlbCB7XG5cdGNvbG9yOiByZ2JhKDExOSwgMTE5LCAxMTksIDAuNSk7XG59XG4uY2FuLXRvZ2dsZSBpbnB1dFt0eXBlPVwiY2hlY2tib3hcIl06Zm9jdXMgfiBsYWJlbCAuY2FuLXRvZ2dsZV9fc3dpdGNoLFxuLmNhbi10b2dnbGUgaW5wdXRbdHlwZT1cImNoZWNrYm94XCJdOmhvdmVyIH4gbGFiZWwgLmNhbi10b2dnbGVfX3N3aXRjaCB7XG5cdGJhY2tncm91bmQtY29sb3I6ICM3Nzc7XG59XG4uY2FuLXRvZ2dsZSBpbnB1dFt0eXBlPVwiY2hlY2tib3hcIl06Zm9jdXMgfiBsYWJlbCAuY2FuLXRvZ2dsZV9fc3dpdGNoOmFmdGVyLFxuLmNhbi10b2dnbGUgaW5wdXRbdHlwZT1cImNoZWNrYm94XCJdOmhvdmVyIH4gbGFiZWwgLmNhbi10b2dnbGVfX3N3aXRjaDphZnRlciB7XG5cdGNvbG9yOiAjNWU1ZTVlO1xufVxuLmNhbi10b2dnbGUgaW5wdXRbdHlwZT1cImNoZWNrYm94XCJdOmhvdmVyIH4gbGFiZWwge1xuXHRjb2xvcjogIzZhNmE2YTtcbn1cbi5jYW4tdG9nZ2xlIGlucHV0W3R5cGU9XCJjaGVja2JveFwiXTpjaGVja2VkIH4gbGFiZWw6aG92ZXIge1xuXHRjb2xvcjogIzU1YmM0OTtcbn1cbi5jYW4tdG9nZ2xlIGlucHV0W3R5cGU9XCJjaGVja2JveFwiXTpjaGVja2VkIH4gbGFiZWwgLmNhbi10b2dnbGVfX3N3aXRjaCB7XG5cdGJhY2tncm91bmQtY29sb3I6ICM3MGM3Njc7XG59XG4uY2FuLXRvZ2dsZSBpbnB1dFt0eXBlPVwiY2hlY2tib3hcIl06Y2hlY2tlZCB+IGxhYmVsIC5jYW4tdG9nZ2xlX19zd2l0Y2g6YWZ0ZXIge1xuXHRjb2xvcjogIzRmYjc0Mztcbn1cbi5jYW4tdG9nZ2xlIGlucHV0W3R5cGU9XCJjaGVja2JveFwiXTpjaGVja2VkOmZvY3VzIH4gbGFiZWwgLmNhbi10b2dnbGVfX3N3aXRjaCxcbi5jYW4tdG9nZ2xlIGlucHV0W3R5cGU9XCJjaGVja2JveFwiXTpjaGVja2VkOmhvdmVyIH4gbGFiZWwgLmNhbi10b2dnbGVfX3N3aXRjaCB7XG5cdGJhY2tncm91bmQtY29sb3I6ICM1ZmMwNTQ7XG59XG4uY2FuLXRvZ2dsZSBpbnB1dFt0eXBlPVwiY2hlY2tib3hcIl06Y2hlY2tlZDpmb2N1cyB+IGxhYmVsIC5jYW4tdG9nZ2xlX19zd2l0Y2g6YWZ0ZXIsXG4uY2FuLXRvZ2dsZSBpbnB1dFt0eXBlPVwiY2hlY2tib3hcIl06Y2hlY2tlZDpob3ZlciB+IGxhYmVsIC5jYW4tdG9nZ2xlX19zd2l0Y2g6YWZ0ZXIge1xuXHRjb2xvcjogIzQ3YTQzZDtcbn1cbi5jYW4tdG9nZ2xlIGxhYmVsIC5jYW4tdG9nZ2xlX19sYWJlbC10ZXh0IHtcblx0ZmxleDogMTtcbn1cbi5jYW4tdG9nZ2xlIGxhYmVsIC5jYW4tdG9nZ2xlX19zd2l0Y2gge1xuXHR0cmFuc2l0aW9uOiBiYWNrZ3JvdW5kLWNvbG9yIDAuM3MgY3ViaWMtYmV6aWVyKDAsIDEsIDAuNSwgMSk7XG5cdGJhY2tncm91bmQ6ICM4NDg0ODQ7XG59XG4uY2FuLXRvZ2dsZSBsYWJlbCAuY2FuLXRvZ2dsZV9fc3dpdGNoOmJlZm9yZSB7XG5cdGNvbG9yOiByZ2JhKDI1NSwgMjU1LCAyNTUsIDAuNSk7XG59XG4uY2FuLXRvZ2dsZSBsYWJlbCAuY2FuLXRvZ2dsZV9fc3dpdGNoOmFmdGVyIHtcblx0dHJhbnNpdGlvbjogLXdlYmtpdC10cmFuc2Zvcm0gMC4zcyBjdWJpYy1iZXppZXIoMCwgMSwgMC41LCAxKTtcblx0dHJhbnNpdGlvbjogdHJhbnNmb3JtIDAuM3MgY3ViaWMtYmV6aWVyKDAsIDEsIDAuNSwgMSk7XG5cdHRyYW5zaXRpb246IHRyYW5zZm9ybSAwLjNzIGN1YmljLWJlemllcigwLCAxLCAwLjUsIDEpLCAtd2Via2l0LXRyYW5zZm9ybSAwLjNzIGN1YmljLWJlemllcigwLCAxLCAwLjUsIDEpO1xuXHRjb2xvcjogIzc3Nztcbn1cbi5jYW4tdG9nZ2xlIGlucHV0W3R5cGU9XCJjaGVja2JveFwiXTpmb2N1cyB+IGxhYmVsIC5jYW4tdG9nZ2xlX19zd2l0Y2g6YWZ0ZXIsXG4uY2FuLXRvZ2dsZSBpbnB1dFt0eXBlPVwiY2hlY2tib3hcIl06aG92ZXIgfiBsYWJlbCAuY2FuLXRvZ2dsZV9fc3dpdGNoOmFmdGVyIHtcblx0Ym94LXNoYWRvdzogMCAzcHggM3B4IHJnYmEoMCwgMCwgMCwgMC40KTtcbn1cbi5jYW4tdG9nZ2xlIGlucHV0W3R5cGU9XCJjaGVja2JveFwiXTpjaGVja2VkIH4gbGFiZWwgLmNhbi10b2dnbGVfX3N3aXRjaDphZnRlciB7XG5cdC13ZWJraXQtdHJhbnNmb3JtOiB0cmFuc2xhdGUzZCg2NXB4LCAwLCAwKTtcblx0dHJhbnNmb3JtOiB0cmFuc2xhdGUzZCg2NXB4LCAwLCAwKTtcbn1cbi5jYW4tdG9nZ2xlIGlucHV0W3R5cGU9XCJjaGVja2JveFwiXTpjaGVja2VkOmZvY3VzIH4gbGFiZWwgLmNhbi10b2dnbGVfX3N3aXRjaDphZnRlcixcbi5jYW4tdG9nZ2xlIGlucHV0W3R5cGU9XCJjaGVja2JveFwiXTpjaGVja2VkOmhvdmVyIH4gbGFiZWwgLmNhbi10b2dnbGVfX3N3aXRjaDphZnRlciB7XG5cdGJveC1zaGFkb3c6IDAgM3B4IDNweCByZ2JhKDAsIDAsIDAsIDAuNCk7XG59XG4uY2FuLXRvZ2dsZSBsYWJlbCB7XG5cdGZvbnQtc2l6ZTogMTJweDtcbn1cbi5jYW4tdG9nZ2xlIGxhYmVsIC5jYW4tdG9nZ2xlX19zd2l0Y2gge1xuXHRoZWlnaHQ6IDM2cHg7XG5cdGZsZXg6IDAgMCAxMzRweDtcblx0Ym9yZGVyLXJhZGl1czogNHB4O1xufVxuLmNhbi10b2dnbGUgbGFiZWwgLmNhbi10b2dnbGVfX3N3aXRjaDpiZWZvcmUge1xuXHRsZWZ0OiA2MHB4O1xuXHRmb250LXNpemU6IDEycHg7XG5cdGxpbmUtaGVpZ2h0OiAzNnB4O1xuXHR3aWR0aDogNzBweDtcblx0cGFkZGluZzogMCAxMnB4O1xufVxuLmNhbi10b2dnbGUgbGFiZWwgLmNhbi10b2dnbGVfX3N3aXRjaDphZnRlciB7XG5cdHRvcDogMnB4O1xuXHRsZWZ0OiAycHg7XG5cdGJvcmRlci1yYWRpdXM6IDJweDtcblx0d2lkdGg6IDY1cHg7XG5cdGxpbmUtaGVpZ2h0OiAzMnB4O1xuXHRmb250LXNpemU6IDEycHg7XG59XG4uY2FuLXRvZ2dsZSBsYWJlbCAuY2FuLXRvZ2dsZV9fc3dpdGNoOmhvdmVyOmFmdGVyIHtcblx0Ym94LXNoYWRvdzogMCAzcHggM3B4IHJnYmEoMCwgMCwgMCwgMC40KTtcbn1cbi5jYW4tdG9nZ2xlLmRlbW8tcmVicmFuZC0xIGlucHV0W3R5cGU9XCJjaGVja2JveFwiXVtkaXNhYmxlZF0gfiBsYWJlbCB7XG5cdGNvbG9yOiByZ2JhKDI1NSwgMCwgMCwgMC41KTtcbn1cbi5jYW4tdG9nZ2xlLmRlbW8tcmVicmFuZC0xIGlucHV0W3R5cGU9XCJjaGVja2JveFwiXTpmb2N1cyB+IGxhYmVsIC5jYW4tdG9nZ2xlX19zd2l0Y2gsXG4uY2FuLXRvZ2dsZS5kZW1vLXJlYnJhbmQtMSBpbnB1dFt0eXBlPVwiY2hlY2tib3hcIl06aG92ZXIgfiBsYWJlbCAuY2FuLXRvZ2dsZV9fc3dpdGNoIHtcblx0YmFja2dyb3VuZC1jb2xvcjogI2ZhMDAwMDtcbn1cbi5jYW4tdG9nZ2xlLmRlbW8tcmVicmFuZC0xIGlucHV0W3R5cGU9XCJjaGVja2JveFwiXTpmb2N1cyB+IGxhYmVsIC5jYW4tdG9nZ2xlX19zd2l0Y2g6YWZ0ZXIsXG4uY2FuLXRvZ2dsZS5kZW1vLXJlYnJhbmQtMSBpbnB1dFt0eXBlPVwiY2hlY2tib3hcIl06aG92ZXIgfiBsYWJlbCAuY2FuLXRvZ2dsZV9fc3dpdGNoOmFmdGVyIHtcblx0Y29sb3I6ICNmYTAwMDA7XG59XG4uY2FuLXRvZ2dsZS5kZW1vLXJlYnJhbmQtMSBpbnB1dFt0eXBlPVwiY2hlY2tib3hcIl06aG92ZXIgfiBsYWJlbCB7XG5cdGNvbG9yOiAjZmEwMDAwO1xufVxuLmNhbi10b2dnbGUuZGVtby1yZWJyYW5kLTEgaW5wdXRbdHlwZT1cImNoZWNrYm94XCJdOmNoZWNrZWQgfiBsYWJlbDpob3ZlciB7XG5cdGNvbG9yOiAjMzk5MTZhO1xufVxuLmNhbi10b2dnbGUuZGVtby1yZWJyYW5kLTEgaW5wdXRbdHlwZT1cImNoZWNrYm94XCJdOmNoZWNrZWQgfiBsYWJlbCAuY2FuLXRvZ2dsZV9fc3dpdGNoIHtcblx0YmFja2dyb3VuZC1jb2xvcjogIzQ0YWU3Zjtcbn1cbi5jYW4tdG9nZ2xlLmRlbW8tcmVicmFuZC0xIGlucHV0W3R5cGU9XCJjaGVja2JveFwiXTpjaGVja2VkIH4gbGFiZWwgLmNhbi10b2dnbGVfX3N3aXRjaDphZnRlciB7XG5cdGNvbG9yOiAjMzY4YTY1O1xufVxuLmNhbi10b2dnbGUuZGVtby1yZWJyYW5kLTEgaW5wdXRbdHlwZT1cImNoZWNrYm94XCJdOmNoZWNrZWQ6Zm9jdXMgfiBsYWJlbCAuY2FuLXRvZ2dsZV9fc3dpdGNoLFxuLmNhbi10b2dnbGUuZGVtby1yZWJyYW5kLTEgaW5wdXRbdHlwZT1cImNoZWNrYm94XCJdOmNoZWNrZWQ6aG92ZXIgfiBsYWJlbCAuY2FuLXRvZ2dsZV9fc3dpdGNoIHtcblx0YmFja2dyb3VuZC1jb2xvcjogIzNkOWM3Mjtcbn1cbi5jYW4tdG9nZ2xlLmRlbW8tcmVicmFuZC0xIGlucHV0W3R5cGU9XCJjaGVja2JveFwiXTpjaGVja2VkOmZvY3VzIH4gbGFiZWwgLmNhbi10b2dnbGVfX3N3aXRjaDphZnRlcixcbi5jYW4tdG9nZ2xlLmRlbW8tcmVicmFuZC0xIGlucHV0W3R5cGU9XCJjaGVja2JveFwiXTpjaGVja2VkOmhvdmVyIH4gbGFiZWwgLmNhbi10b2dnbGVfX3N3aXRjaDphZnRlciB7XG5cdGNvbG9yOiAjMmY3NzU3O1xufVxuLmNhbi10b2dnbGUuZGVtby1yZWJyYW5kLTEgbGFiZWwgLmNhbi10b2dnbGVfX2xhYmVsLXRleHQge1xuXHRmbGV4OiAxO1xufVxuLmNhbi10b2dnbGUuZGVtby1yZWJyYW5kLTEgbGFiZWwgLmNhbi10b2dnbGVfX3N3aXRjaCB7XG5cdHRyYW5zaXRpb246IGJhY2tncm91bmQtY29sb3IgMC4zcyBlYXNlLWluLW91dDtcblx0YmFja2dyb3VuZDogI2ZhMDAwMDtcbn1cbi5jYW4tdG9nZ2xlLmRlbW8tcmVicmFuZC0xIGxhYmVsIC5jYW4tdG9nZ2xlX19zd2l0Y2g6YmVmb3JlIHtcblx0Y29sb3I6IHJnYmEoMjU1LCAyNTUsIDI1NSwgMC42KTtcbn1cbi5jYW4tdG9nZ2xlLmRlbW8tcmVicmFuZC0xIGxhYmVsIC5jYW4tdG9nZ2xlX19zd2l0Y2g6YWZ0ZXIge1xuXHR0cmFuc2l0aW9uOiAtd2Via2l0LXRyYW5zZm9ybSAwLjNzIGVhc2UtaW4tb3V0O1xuXHR0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMC4zcyBlYXNlLWluLW91dDtcblx0dHJhbnNpdGlvbjogdHJhbnNmb3JtIDAuM3MgZWFzZS1pbi1vdXQsIC13ZWJraXQtdHJhbnNmb3JtIDAuM3MgZWFzZS1pbi1vdXQ7XG5cdGNvbG9yOiAjZmEwMDAwO1xufVxuXG4ubW92ZSB7XG5cdHBvc2l0aW9uOiBhYnNvbHV0ZTtcblx0dG9wOiAxMyU7XG5cdHJpZ2h0OiA1NCU7XG59XG4ubW92ZTEge1xuXHRwb3NpdGlvbjogcmVsYXRpdmU7XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -1564,7 +1596,7 @@ module.exports = ".card {\n\tmargin: 9px auto;\n}\n.container {\n\tmax-width: in
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-dialog-content>\n  <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n    <mat-icon>clear</mat-icon>\n  </button>\n  <div class=\"card\" style=\"width: 80%; overflow: auto\">\n    <div class=\"card-body\">\n      <strong>\n        <h2 class=\"card-title\" style=\"text-align: center\">Create A Quiz</h2><br />\n      </strong>\n      <ng-container *ngIf=\"!val\">\n        <form #form=\"ngForm\" (submit)=\"fetchReqQues(form)\" autocomplete=\"off\">\n          <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"CCreatedBy\">\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <strong><label>Select Difficulty-Level</label></strong>\n              <select name=\"Difficulty\" required #Difficulty=\"ngModel\" [(ngModel)]=\"service.quizForm.Difficulty\"\n                class=\"form-control\">\n                <option value=\"Beginner\">Beginner</option>\n                <option value=\"Intermediate\">Intermediate</option>\n                <option value=\"Advanced\">Advanced</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Difficulty.invalid && Difficulty.touched\">This field is required.\n              </div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <strong><label>Select Subject</label></strong>\n              <select name=\"SubjectId\" required #SubjectId=\"ngModel\" [(ngModel)]=\"service.quizForm.SubjectId\"\n                class=\"form-control\">\n                <option *ngFor=\"let Subject of Subjects;\" value=\"{{Subject.SubjectId}}\">{{Subject.Name}}</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"SubjectId.invalid && SubjectId.touched\">This field is required.</div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <strong><label>Quiz Name</label></strong>\n              <br />\n              <input type=\"text\" required name=\"QuizName\" (input)=\"checkAvail(QuizName)\" #QuizName=\"ngModel\"\n                [(ngModel)]=\"service.quizForm.QuizName\" class=\"form-control\">\n              <div class=\"validation-error\" *ngIf=\"QuizName.invalid && QuizName.touched\">This field is required.<br>\n              </div>\n              <div class=\"validation-error\" *ngIf=\"quizExists\">Name Already Exists</div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <strong><label>Select Quiz Type</label></strong>\n              <select name=\"QuizType\" required #QuizType=\"ngModel\" [(ngModel)]=\"service.quizForm.QuizType\"\n                class=\"form-control\">\n                <option value=\"\" disabled>Choose an option...</option>\n                <option value=\"Mock\">Mock</option>\n                <option value=\"Scheduled\">Scheduled</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"QuizType.invalid && QuizType.touched\">This field is required.\n              </div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <strong><label>Quiz Time (hh:mm)</label><br /></strong>\n              <input required type=\"number\" name=\"QuizHour\" placeholder=\"hh\" min=\"0\" max=\"24\" #QuizHour=\"ngModel\"\n                [(ngModel)]=\"service.QuizHour\">&nbsp;\n              <strong>:</strong>&nbsp;\n              <input required type=\"number\" name=\"QuizMinute\" placeholder=\"mm\" min=\"0\" max=\"60\" #QuizMinute=\"ngModel\"\n                [(ngModel)]=\"service.QuizMinute\">\n              <div class=\"validation-error\"\n                *ngIf=\"QuizHour.invalid && QuizHour.touched && QuizMinutes.invalid && QuizMinutes.touched\">This field is\n                required.</div>\n            </div>\n            <div *ngIf=\"service.quizForm.QuizType == 'Mock'\" class=\"form-group col-md-6\">\n              <strong><label>Select Mock Quiz</label></strong>\n              <select name=\"MockTypess\" required #MockTypess=\"ngModel\" [(ngModel)]=\"MockType\" class=\"form-control\">\n                <option value=\"\" disabled>Choose an option...</option>\n                <option value=\"Random\">Random</option>\n                <option value=\"Personalized\">Personalized</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"MockTypess.invalid && MockTypess.touched\">This field is required.\n              </div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div *ngIf=\"MockType == 'Random'\" class=\"form-group col-md-6\">\n              <strong><label>Number Of Questions</label></strong>\n              <input type=\"text\" name=\"Questions\" #Questions=\"ngModel\" [(ngModel)]=\"TotalQuestions\"\n                class=\"form-control\">\n              <div class=\"validation-error\" *ngIf=\"Questions.invalid && Questions.touched\">This field is required.</div>\n            </div>\n          </div>\n          <div class=\"form-group\" style=\"margin-top: 3%\">\n            <button type=\"submit\" [disabled]=\"form.invalid || quizExists\" class=\"btn btn-primary\">Create</button>\n          </div>\n        </form>\n      </ng-container>\n      <div *ngIf=\"val\">\n\n        <div class=\"card-body\">\n          <h5 *ngIf=\"length>0\" class=\"card-title\" style=\"text-align: center\">Choose Questions</h5><br />\n          <h5 *ngIf=\"length==0\" class=\"card-title\" style=\"text-align: center\">No Question Available</h5><br />\n          <div>\n            <button type=\"button\" (click)=\"add_new_ques()\" class=\"btn btn-warning\">New Ques.</button>\n          </div>\n          <br>\n          <form *ngIf=\"length!=0\" #Questionform=\"ngForm\" (submit)=\"onDetailsSubmit(Questionform)\" autocomplete=\"off\">\n            <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n              class=\"row-border hover table table-bordered table-striped\">\n              <thead class=\"thead-dark\">\n                <tr>\n                  <th>#S.NO.</th>\n                  <th>Tick</th>\n                  <th>Question</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr *ngFor=\"let x of questions; let i = index\">\n                  <td>{{i+1}}</td>\n                  <td><input [id]=\"'questions-'+i\" type=\"checkbox\" value=\"{{x.Question_ID}}\" [checked]=\"x.selected\"\n                      (change)=\"updateSelectedQuestions(i)\"></td>\n                  <td>{{x.QuestionStatement}}</td>\n                </tr>\n              </tbody>\n            </table>\n            <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n          </form>\n        </div>\n\n      </div>\n    </div>\n  </div>\n</mat-dialog-content>"
+module.exports = "<mat-dialog-content>\n  <button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n    <mat-icon>clear</mat-icon>\n  </button>\n  <div class=\"card \" style=\"width: 80%;\">\n    <div class=\"card-body\">\n      <strong>\n        <h2 class=\"card-title\" style=\"text-align: center\">Create A Quiz</h2>\n      </strong>\n      <ng-container *ngIf=\"!val\">\n        <form #form=\"ngForm\" (submit)=\"fetchReqQues(form)\" autocomplete=\"off\">\n          <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"CCreatedBy\">\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <strong><label>Select Difficulty-Level</label></strong>\n              <select name=\"Difficulty\" required #Difficulty=\"ngModel\" [(ngModel)]=\"service.quizForm.Difficulty\"\n                class=\"form-control\">\n                <option value=\"Beginner\">Beginner</option>\n                <option value=\"Intermediate\">Intermediate</option>\n                <option value=\"Advanced\">Advanced</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"Difficulty.invalid && Difficulty.touched\">This field is required.\n              </div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <strong><label>Select Subject</label></strong>\n              <ng-multiselect-dropdown name=\"Tags\" #Tags=\"ngModel\" [placeholder]=\"Choose\" required [data]=\"Subjects\"\n                [disabled]=\"disabled\" [settings]=\"dropdownSettings\" [(ngModel)]=\"selectedItems\">\n              </ng-multiselect-dropdown>\n              <div class=\"validation-error\" *ngIf=\"Tags.invalid && Tags.touched\">This field is required.</div>\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group col-md-6\">\n              <strong><label>Quiz Name</label></strong>\n              <br />\n              <input type=\"text\" required name=\"QuizName\" (input)=\"checkAvail(QuizName)\" #QuizName=\"ngModel\"\n                [(ngModel)]=\"service.quizForm.QuizName\" class=\"form-control\">\n              <div class=\"validation-error\" *ngIf=\"QuizName.invalid && QuizName.touched\">This field is required.<br>\n              </div>\n              <div class=\"validation-error\" *ngIf=\"quizExists\">Name Already Exists</div>\n            </div>\n            <div class=\"form-group col-md-6\">\n              <strong><label>Select Quiz Type</label></strong>\n              <select name=\"QuizType\" required #QuizType=\"ngModel\" [(ngModel)]=\"service.quizForm.QuizType\"\n                class=\"form-control\">\n                <option value=\"\" disabled>Choose an option...</option>\n                <option value=\"Mock\">Mock</option>\n                <option value=\"Scheduled\">Scheduled</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"QuizType.invalid && QuizType.touched\">This field is required.\n              </div>\n            </div>\n          </div>\n          <div class=\"form-row col-md-12\" style=\"padding-left:0px;\">\n            <div class=\"form-group col-md-4\">\n              <strong><label>Quiz Time (hh:mm)</label><br /></strong>\n              <input required type=\"number\" name=\"QuizHour\" placeholder=\"hh\" min=\"0\" max=\"24\" #QuizHour=\"ngModel\"\n                [(ngModel)]=\"service.QuizHour\" style=\"width:70px; display: inline;\" class=\"form-control\">&nbsp;\n              <strong style=\"display:inline;\">:</strong>\n              <input required type=\"number\" name=\"QuizMinute\" style=\"width:70px; display: inline;\" class=\"form-control\"\n                placeholder=\"mm\" min=\"0\" max=\"60\" #QuizMinute=\"ngModel\" [(ngModel)]=\"service.QuizMinute\">\n              <div class=\"validation-error\"\n                *ngIf=\"QuizHour.invalid && QuizHour.touched && QuizMinutes.invalid && QuizMinutes.touched\">This field is\n                required.</div>\n            </div>\n            <div class=\"can-toggle demo-rebrand-1 col-md-4 \" style=\"width: 50% !important;padding-bottom:0px;\">\n              <strong><label style=\"font-size:15px;\">Quiz State</label></strong>\n              <input id=\"d\" type=\"checkbox\" class=\"chb messageCheckbox\" (change)=\"toggleEditable($event)\" />\n              <label for=\"d\">\n                <div id=\"pro\" class=\"can-toggle__switch\" data-checked=\"ACTIVE\" data-unchecked=\"INACTIVE\"></div>\n              </label>\n            </div>\n            <div class=\"form-group col-md-4\">\n              <strong><label>CutOff Percentage</label></strong>\n              <br />\n              <input type=\"text\" required name=\"MinCutOff\" #MinCutOff=\"ngModel\" [(ngModel)]=\"tts\" class=\"form-control\">\n\n            </div>\n            <div *ngIf=\"service.quizForm.QuizType == 'Mock'\" class=\"form-group col-md-6\">\n              <strong><label>Select Mock Quiz</label></strong>\n              <select name=\"MockTypess\" required #MockTypess=\"ngModel\" [(ngModel)]=\"MockType\" class=\"form-control\">\n                <option value=\"\" disabled>Choose an option...</option>\n                <option value=\"Random\">Random</option>\n                <option value=\"Personalized\">Personalized</option>\n              </select>\n              <div class=\"validation-error\" *ngIf=\"MockTypess.invalid && MockTypess.touched\">This field is required.\n              </div>\n            </div>\n\n            <div *ngIf=\"MockType == 'Random'\" class=\"form-group col-md-6\">\n              <strong><label>Number Of Questions</label></strong>\n              <input type=\"text\" name=\"Questions\" #Questions=\"ngModel\" [(ngModel)]=\"TotalQuestions\"\n                class=\"form-control\">\n              <div class=\"validation-error\" *ngIf=\"Questions.invalid && Questions.touched\">This field is required.</div>\n            </div>\n          </div>\n          <div class=\"form-group\" style=\"margin-top: 3%\">\n            <button type=\"submit\" [disabled]=\"form.invalid || quizExists\" class=\"btn btn-primary\">Create</button>\n          </div>\n        </form>\n      </ng-container>\n      <div *ngIf=\"val\">\n        <div class=\"card-body\">\n          <h5 *ngIf=\"length>0\" class=\"card-title\" style=\"text-align: center\">Choose Questions</h5>\n          <h5 *ngIf=\"length==0\" class=\"card-title\" style=\"text-align: center\">No Question Available</h5><br />\n          <div>\n            <button type=\"button\" (click)=\"add_new_ques()\" class=\"btn btn-warning\">New Ques.</button>\n          </div>\n          <br>\n          <form *ngIf=\"length!=0\" #Questionform=\"ngForm\" (submit)=\"onDetailsSubmit(Questionform)\" autocomplete=\"off\">\n\n            <p-table [columns]=\"cols\" [value]=\"questions\" [scrollable]=\"true\" scrollHeight=\"200px\" #dt>\n\n              <ng-template pTemplate=\"caption\">\n                <div style=\"text-align: right;\">\n                  <i class=\"fa fa-search\" aria-hidden=\"true\" style=\"margin:4px 4px 0 0\"></i>\n                  <input type=\"text\" pInputText size=\"30\" placeholder=\"Global Filter\"\n                    (input)=\"dt.filterGlobal($event.target.value, 'contains')\" style=\"width:auto\">\n                </div>\n              </ng-template>\n              <ng-template pTemplate=\"header\">\n                <tr>\n                  <th style=\"background-color:black; color:white\">Tick</th>\n                  <th *ngFor=\"let col of cols\" [pSortableColumn]=\"col.field\"\n                    style=\"background-color:black; color:white;\">\n                    {{col.header}}\n                  </th>\n                </tr>\n              </ng-template>\n              <ng-template pTemplate=\"body\" let-i=\"rowIndex\" let-rowData let-columns=\"columns\">\n\n                <tr [pSelectableRow]=\"rowData\">\n                  <td>\n                    <input [id]=\"'questions-'+rowData.SerialNumber\" type=\"checkbox\" value=\"{{questions.Question_ID}}\"\n                      [checked]=\"questions.selected\" (change)=\"updateSelectedQuestions(rowData.SerialNumber-1)\">\n                  </td>\n                  <td *ngFor=\"let col of columns;\">\n                    {{rowData[col.field]}}\n                  </td>\n                </tr>\n              </ng-template>\n            </p-table><br>\n            <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n          </form>\n        </div>\n\n\n      </div>\n    </div>\n  </div>\n</mat-dialog-content>"
 
 /***/ }),
 
@@ -1582,10 +1614,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _shared_content_creator_service_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../shared/content-creator-service.service */ "./src/app/content-creator/shared/content-creator-service.service.ts");
 /* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
-/* harmony import */ var _create_questions_create_questions_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../create-questions/create-questions.component */ "./src/app/content-creator/create-questions/create-questions.component.ts");
-
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
+/* harmony import */ var _create_questions_create_questions_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../create-questions/create-questions.component */ "./src/app/content-creator/create-questions/create-questions.component.ts");
 
 
 
@@ -1598,26 +1628,27 @@ var CreateQuizComponent = /** @class */ (function () {
         this.dialogRef = dialogRef;
         this.toastr = toastr;
         this.dialog = dialog;
-        this.dtOptions = {};
         this.val = false;
         this.count = 0;
-        this.CCreatedBy = "";
+        this.CCreatedBy = '';
         this.length = 0;
         this.flag = 1;
-        this.dtTrigger = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
         this.difficulty = '';
         this.subjectid = null;
         this.question_type = '';
     }
     CreateQuizComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.quizExists = false;
-        this.dtOptions = {
-            pagingType: 'full_numbers',
-            pageLength: 4,
+        this.dropdownSettings = {
+            singleSelection: false,
+            idField: 'SubjectId',
+            textField: 'Name',
+            enableCheckAll: false,
+            itemsShowLimit: 5,
+            allowSearchFilter: true,
         };
+        this.quizExists = false;
         this.resetForm();
-        this.dtTrigger.next();
         this.CCreatedBy = localStorage.getItem('uid');
         this.service.retrieveQuizNames().subscribe(function (res) {
             _this.quizzes = res;
@@ -1636,26 +1667,27 @@ var CreateQuizComponent = /** @class */ (function () {
                 Difficulty: '',
                 TotalQuestions: null,
                 TotalMarks: null,
-                Subject: '',
+                Tags: null,
                 QuizType: '',
                 CreatedBy: '',
                 QuestionIds: null,
                 SubjectId: null,
-                QuizName: ''
+                QuizName: '',
+                MinCutOff: null
             };
             this.service.QuizMinute = null;
             this.service.QuizHour = null;
             if (this.questions) {
-                this.questions.forEach(function (y) { return y.selected = false; });
+                this.questions.forEach(function (y) { return (y.selected = false); });
             }
         }
     };
     CreateQuizComponent.prototype.fetch = function (form) {
         this.fetchReqQues(form);
-        this.dtTrigger.next();
     };
     CreateQuizComponent.prototype.fetchReqQues = function (form) {
         var _this = this;
+        console.log('1');
         if (form.value.QuizType === 'Scheduled') {
             this.service.QuestionType = 'Scheduled';
         }
@@ -1674,7 +1706,7 @@ var CreateQuizComponent = /** @class */ (function () {
         if (this.service.QuizMinute < 10) {
             this.QuizMinute = '0' + this.service.QuizMinute.toString();
         }
-        this.service.quizForm.QuizTime = this.QuizHour + ":" + this.QuizMinute;
+        this.service.quizForm.QuizTime = this.QuizHour + ':' + this.QuizMinute;
         if (this.MockType == 'Random') {
             this.service.generateRandom(form.value, this.TotalQuestions).subscribe(function (res) {
                 if (res === 0) {
@@ -1687,26 +1719,34 @@ var CreateQuizComponent = /** @class */ (function () {
             });
         }
         else {
+            console.log('2');
+            this.cols = [
+                { field: 'SerialNumber', header: 'S NO' },
+                { field: 'QuestionStatement', header: 'Questions' }
+            ];
             this.service.getQuesOfUserConstraints(form.value).subscribe(function (data) {
-                data.forEach(function (obj) { return obj.selected = false; });
+                console.log(data);
+                data.forEach(function (obj) { return (obj.selected = false); });
                 _this.questions = data;
                 _this.length = _this.questions.length;
-                _this.dtTrigger.next();
+                for (_this.i = 1; _this.i <= _this.questions.length; _this.i++) {
+                    _this.questions[_this.i - 1].SerialNumber = _this.i;
+                }
                 _this.checkVal();
             });
         }
     };
     CreateQuizComponent.prototype.checkVal = function () {
         this.val = true;
-        this.dtTrigger.unsubscribe();
-        this.dtTrigger.next();
     };
     CreateQuizComponent.prototype.updateSelectedQuestions = function (index) {
         this.questions[index].selected = !this.questions[index].selected;
     };
     CreateQuizComponent.prototype.onDetailsSubmit = function (form) {
         var _this = this;
-        var QuestionId = this.questions.filter(function (QuestionId) { return QuestionId.selected; }).map(function (idSelected) { return idSelected.QuestionId; });
+        var QuestionId = this.questions
+            .filter(function (QuestionId) { return QuestionId.selected; })
+            .map(function (idSelected) { return idSelected.QuestionId; });
         this.service.postQuestionsSelected(QuestionId).subscribe(function (res) {
             _this.toastr.success('Inserted successfully');
             _this.service.quizForm = null;
@@ -1716,12 +1756,10 @@ var CreateQuizComponent = /** @class */ (function () {
     CreateQuizComponent.prototype.reload = function (data1) {
         var _this = this;
         this.service.getQuesOfUserConstraints(data1).subscribe(function (data) {
-            data.forEach(function (obj) { return obj.selected = false; });
+            data.forEach(function (obj) { return (obj.selected = false); });
             _this.questions = data;
             _this.length = _this.questions.length;
             _this.checkVal();
-            _this.dtTrigger.unsubscribe();
-            _this.dtTrigger.next();
         });
     };
     CreateQuizComponent.prototype.checkAvail = function (inputName) {
@@ -1738,21 +1776,39 @@ var CreateQuizComponent = /** @class */ (function () {
     };
     CreateQuizComponent.prototype.add_new_ques = function () {
         var _this = this;
-        var dialogConfig = new _angular_material_dialog__WEBPACK_IMPORTED_MODULE_5__["MatDialogConfig"]();
+        var dialogConfig = new _angular_material_dialog__WEBPACK_IMPORTED_MODULE_4__["MatDialogConfig"]();
         dialogConfig.autoFocus = true;
-        dialogConfig.width = "70%";
+        dialogConfig.width = '70%';
         dialogConfig.disableClose = true;
         this.service.quesStat = true;
-        var dialogRef = this.dialog.open(_create_questions_create_questions_component__WEBPACK_IMPORTED_MODULE_6__["CreateQuestionsComponent"], dialogConfig);
+        // this.service.formData = {
+        //   QuestionId: null,
+        //   QuestionStatement: '',
+        //   Option1: '',
+        //   Option2: '',
+        //   Option3: '',
+        //   Option4: '',
+        //   Answer: null,
+        //   Marks: null,
+        //   Difficulty: this.service.quizForm.Difficulty.toString(),
+        //   SubjectId: this.service.quizForm.SubjectId.toString()
+        // };
+        // this.service.formData.Difficulty = this.service.quizForm.Difficulty.toString();
+        // this.service.formData.SubjectId = this.service.quizForm.SubjectId.toString();
+        // console.log(this.service.formData);
+        var dialogRef = this.dialog.open(_create_questions_create_questions_component__WEBPACK_IMPORTED_MODULE_5__["CreateQuestionsComponent"], dialogConfig);
         dialogRef.afterClosed().subscribe(function (result) {
             _this.service.quesStat = false;
             _this.reload(_this.service.quizForm);
-            _this.dtTrigger.unsubscribe();
-            _this.dtTrigger.next();
         });
     };
-    CreateQuizComponent.prototype.ngOnDestroy = function () {
-        this.dtTrigger.unsubscribe();
+    CreateQuizComponent.prototype.toggleEditable = function (event) {
+        if (event.target.checked) {
+            this.service.QuizState = true;
+        }
+        if (!event.target.checked) {
+            this.service.QuizState = false;
+        }
     };
     CreateQuizComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1761,9 +1817,9 @@ var CreateQuizComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./create-quiz.component.css */ "./src/app/content-creator/retrieve-quiz/create-quiz/create-quiz.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_content_creator_service_service__WEBPACK_IMPORTED_MODULE_2__["ContentCreatorServiceService"],
-            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_5__["MatDialogRef"],
+            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_4__["MatDialogRef"],
             ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"],
-            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_5__["MatDialog"]])
+            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_4__["MatDialog"]])
     ], CreateQuizComponent);
     return CreateQuizComponent;
 }());
@@ -1790,7 +1846,7 @@ module.exports = "th,\ntd {\n\ttext-align: center;\n\tcolor: black;\n}\n\n/*# so
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-loader></app-loader>\n<app-main-nav>\n  <div>\n    <button type=\"button\" (click)=\"onCreate()\" class=\"btn btn-primary\">Create Quiz</button>\n    <br /><br />\n      <p-table [columns]=\"cols\" [value]=\"QuizList\" [paginator]=\"true\" [rows]=\"10\" #dt>\n      \n      <ng-template pTemplate=\"caption\">\n        <h3>Quiz List</h3>\n        <div style=\"text-align: right\">        \n            <i class=\"fa fa-search\" aria-hidden=\"true\" style=\"margin:4px 4px 0 0\"></i>\n            <input type=\"text\" pInputText size=\"30\" placeholder=\"Global Filter\" (input)=\"dt.filterGlobal($event.target.value, 'startsWith')\" style=\"width:auto\">\n        </div>\n      </ng-template>\n      <ng-template pTemplate=\"header\">\n        <tr>\n          <th *ngFor=\"let col of cols\" [pSortableColumn]=\"col.field\" style=\"background-color:black; color:white;\">\n            {{col.header}}\n          </th>\n          <th style=\"background-color:black; color:white;\">Action</th>\n        </tr>\n      </ng-template>\n      <ng-template pTemplate=\"body\" let-i=\"rowIndex\" let-rowData let-columns=\"columns\">\n        \n        <tr [pSelectableRow]=\"rowData\"> \n          <td *ngFor=\"let col of columns;\">\n            {{rowData[col.field]}}\n          </td>\n          <td>\n            <a class=\"btn btn-sm btn-info text-white\" (click)=\"onEdit(rowData.QuizId,i)\"><i aria-hidden=\"true\"\n                class=\"fa fa-edit fa-lg\"></i></a>\n            <a class=\"btn btn-sm btn-danger text-white\" (click)=\"onArchive(rowData.QuizId)\"><i aria-hidden=\"true\"\n                class=\"fa fa-trash fa-lg\"></i></a>\n          </td>\n        </tr>\n      </ng-template>\n    </p-table>\n  </div>\n</app-main-nav>\n"
+module.exports = "<app-loader></app-loader>\n<app-main-nav>\n  <div>\n    <button type=\"button\" (click)=\"onCreate()\" class=\"btn btn-primary\">Create Quiz</button>\n    <br /><br />\n    <p-table [columns]=\"cols\" [value]=\"QuizList\" [paginator]=\"true\" [rows]=\"6\" #dt>\n\n      <ng-template pTemplate=\"caption\">\n        <h3>Quiz List</h3>\n        <div style=\"text-align: right\">\n          <i class=\"fa fa-search\" aria-hidden=\"true\" style=\"margin:4px 4px 0 0\"></i>\n          <input type=\"text\" pInputText size=\"30\" placeholder=\"Global Filter\"\n            (input)=\"dt.filterGlobal($event.target.value, 'startsWith')\" style=\"width:auto\">\n        </div>\n      </ng-template>\n      <ng-template pTemplate=\"header\">\n        <tr>\n          <th *ngFor=\"let col of cols\" [pSortableColumn]=\"col.field\" style=\"background-color:black; color:white;\">\n            {{col.header}}\n          </th>\n          <th style=\"background-color:black; color:white;\">Action</th>\n        </tr>\n      </ng-template>\n      <ng-template pTemplate=\"body\" let-i=\"rowIndex\" let-rowData let-columns=\"columns\">\n\n        <tr [pSelectableRow]=\"rowData\">\n          <td *ngFor=\"let col of columns;\">\n            {{rowData[col.field]}}\n          </td>\n          <td>\n          <a class=\"btn btn-sm btn-info text-white\" (click)=\"onEdit(rowData.QuizId,i)\"><i aria-hidden=\"true\"\n              class=\"fa fa-edit fa-lg\"></i></a>\n          <a class=\"btn btn-sm btn-danger text-white\" (click)=\"onArchive(rowData.QuizId)\"><i aria-hidden=\"true\"\n              class=\"fa fa-trash fa-lg\"></i></a>\n          </td>\n        </tr>\n      </ng-template>\n    </p-table>\n  </div>\n</app-main-nav>"
 
 /***/ }),
 
@@ -1828,6 +1884,7 @@ var RetrieveQuizComponent = /** @class */ (function () {
         this.router = router;
         this.dialog = dialog;
         this.toastr = toastr;
+        this.tg = '';
         this.searchText = '';
         this.difficultyLevel = '';
         this.index = 0;
@@ -1844,8 +1901,8 @@ var RetrieveQuizComponent = /** @class */ (function () {
         this.cols = [
             { field: 'SerialNumber', header: 'S NO' },
             { field: 'QuizName', header: 'Quiz Name' },
-            { field: 'Subject', header: 'Subject' },
             { field: 'Difficulty', header: 'Difficulty' },
+            { field: 'Tags1', header: 'Tags' },
             { field: 'QuizType', header: 'Quiz Type' },
             { field: 'TotalQuestions', header: 'Total Questions' },
             { field: 'TotalMarks', header: 'Total Marks' },
@@ -1858,10 +1915,19 @@ var RetrieveQuizComponent = /** @class */ (function () {
     RetrieveQuizComponent.prototype.loadQuiz = function () {
         var _this = this;
         this.service.getQuizzes().subscribe(function (res) {
+            console.log(res);
             _this.QuizList = res;
+            console.log(_this.QuizList);
             // this.dtTrigger.next();
             for (_this.i = 1; _this.i <= _this.QuizList.length; _this.i++) {
                 _this.QuizList[_this.i - 1].SerialNumber = _this.i;
+                _this.tg = '';
+                for (var _i = 0, _a = _this.QuizList[_this.i - 1].Tags; _i < _a.length; _i++) {
+                    var tag = _a[_i];
+                    _this.tg = _this.tg + tag.Name + ',';
+                }
+                _this.QuizList[_this.i - 1].Tags1 = _this.tg;
+                _this.QuizList[_this.i - 1].Tags1 = _this.QuizList[_this.i - 1].Tags1.substring(0, _this.QuizList[_this.i - 1].Tags1.length - 1);
             }
         });
     };
@@ -1870,6 +1936,7 @@ var RetrieveQuizComponent = /** @class */ (function () {
         var dialogConfig = new _angular_material_dialog__WEBPACK_IMPORTED_MODULE_4__["MatDialogConfig"]();
         dialogConfig.autoFocus = true;
         dialogConfig.width = "70%";
+        // dialogConfig.height = "90%";
         dialogConfig.disableClose = true;
         var dialogRef = this.dialog.open(_create_quiz_create_quiz_component__WEBPACK_IMPORTED_MODULE_6__["CreateQuizComponent"], dialogConfig);
         dialogRef.afterClosed().subscribe(function (result) {
@@ -2107,6 +2174,8 @@ var ContentCreatorServiceService = /** @class */ (function () {
         return this.http.get(this.rootURL + 'Quiz/GetAllQuizName');
     };
     ContentCreatorServiceService.prototype.updateQuestion = function (formData) {
+        console.log(formData);
+        this.formDataNew = new FormData();
         this.formDataNew.append('QuestionDetails', JSON.stringify(formData));
         if (this.selectedFile !== null) {
             this.formDataNew.append('Image', this.selectedFile, this.selectedFile.name);
@@ -2150,13 +2219,23 @@ var ContentCreatorServiceService = /** @class */ (function () {
         return this.http.delete(this.rootURL + '/Quiz/Delete/' + id);
     };
     ContentCreatorServiceService.prototype.getQuesOfUserConstraints = function (form) {
-        return this.http.get(this.rootURL + 'Question/GetQuestion/?Difficulty=' + form.Difficulty + '&SubjectId=' + form.SubjectId + '&QuestionType=' + form.QuizType);
+        console.log(form);
+        var body = {
+            Tags: form.Tags,
+            Difficulty: form.Difficulty,
+            QuestionType: form.QuizType,
+        };
+        console.log(body);
+        return this.http.post(this.rootURL + 'Question/GetQuestion', body);
     };
     ContentCreatorServiceService.prototype.generateRandom = function (form, question) {
+        console.log(form);
         return this.http.post(this.rootURL + 'Quiz/GetRandomQuestion?TotalQuestion=' + question, form);
     };
     ContentCreatorServiceService.prototype.postQuestionsSelected = function (questions) {
         this.quizForm.QuestionIds = questions;
+        this.quizForm.QuizState = this.QuizState;
+        console.log(this.quizForm);
         return this.http.post(this.rootURL + 'Quiz/CreateQuiz', this.quizForm);
     };
     ContentCreatorServiceService.prototype.putQuestionsSelected = function (questions) {
@@ -2168,7 +2247,7 @@ var ContentCreatorServiceService = /** @class */ (function () {
         return this.http.delete(this.rootURL + 'Quiz/QuizQuestion/Delete/' + Number(localStorage.getItem('quizId')) + '/' + id);
     };
     ContentCreatorServiceService.prototype.getQuestionsByQuiz = function (id) {
-        return this.http.get(this.rootURL + 'Quiz/QuizQuestion/' + id);
+        return this.http.get(this.rootURL + 'Quiz/QuizQuestion?QuizId=' + id);
     };
     ContentCreatorServiceService.prototype.getQuizQuestions = function (qid) {
         return this.http.get(this.rootURL + 'Quiz/GetQuestionsNotInQuiz/' + qid);
@@ -2328,7 +2407,7 @@ module.exports = "table {\n\twidth: 100%;\n\tmargin-top: 10px;\n\tcolor: black;\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-loader></app-loader>\n<app-main-nav>\n  <div>\n    <button type=\"button\" (click)=\"onCreate()\" class=\"btn btn-primary\">Create Tag</button>\n  </div>\n  <br>\n  <!-- <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th>#S. No.</th>\n        <th>Subject</th>\n        <th>Department</th>\n        <th>Action</th>\n      </tr>\n    </thead>\n    <tbody>\n      <ng-container *ngFor=\"let tag of tagList;index as i;\">\n        <tr>\n          <th>{{i+1}}</th>\n          <td>{{tag.Name}}</td>\n          <td>{{tag.Department}}</td>\n          <td>\n            <a class=\"btn btn-sm btn-info text-white\" (click)=\"onEdit(i+1)\"><i aria-hidden=\"true\" class=\"fa fa-pencil\"></i></a>\n          </td>\n        </tr>\n      </ng-container>\n    </tbody>\n  </table> -->\n  <p-table [columns]=\"cols\" [value]=\"tagList\" [paginator]=\"true\" [rows]=\"6\" #dt [responsive]=\"true\">\n    <ng-template pTemplate=\"caption\">\n      <div style=\"text-align: right\">        \n          <i class=\"fa fa-search\" style=\"margin:4px 4px 0 0\"></i>\n          <input type=\"text\" pInputText size=\"30\" placeholder=\"Global Filter\" (input)=\"dt.filterGlobal($event.target.value, 'startsWith')\" style=\"width:auto\">\n      </div>\n    </ng-template>\n    <ng-template pTemplate=\"header\">\n      <tr>\n        <th *ngFor=\"let col of cols\" [pSortableColumn]=\"col.field\" style=\"background-color:#000000; color:#ffffff \">\n          {{col.header}}\n        </th>\n        <th style=\"background-color:#000000; color:#ffffff \">Action</th>\n      </tr>\n    </ng-template>\n    <ng-template pTemplate=\"body\" let-i=\"rowIndex\" let-rowData let-columns=\"columns\">\n      \n      <tr [pSelectableRow]=\"rowData\">\n        <td *ngFor=\"let col of columns;\">\n          {{rowData[col.field]}}\n        </td>\n        <td>\n          <a class=\"btn btn-sm btn-info text-white\" (click)=\"onEdit(rowData.SerialNumber+1)\"><i aria-hidden=\"true\" class=\"fa fa-pencil\"></i></a>\n        </td>\n      </tr>\n    </ng-template>\n  </p-table>\n</app-main-nav>"
+module.exports = "<app-loader></app-loader>\n<app-main-nav>\n  <div>\n    <button type=\"button\" (click)=\"onCreate()\" class=\"btn btn-primary\">Create Tag</button>\n  </div>\n  <br>\n  <!-- <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th>#S. No.</th>\n        <th>Subject</th>\n        <th>Department</th>\n        <th>Action</th>\n      </tr>\n    </thead>\n    <tbody>\n      <ng-container *ngFor=\"let tag of tagList;index as i;\">\n        <tr>\n          <th>{{i+1}}</th>\n          <td>{{tag.Name}}</td>\n          <td>{{tag.Department}}</td>\n          <td>\n            <a class=\"btn btn-sm btn-info text-white\" (click)=\"onEdit(i+1)\"><i aria-hidden=\"true\" class=\"fa fa-pencil\"></i></a>\n          </td>\n        </tr>\n      </ng-container>\n    </tbody>\n  </table> -->\n  <p-table [columns]=\"cols\" [value]=\"tagList\" [paginator]=\"true\" [rows]=\"6\" #dt [responsive]=\"true\">\n    <ng-template pTemplate=\"caption\">\n      <div style=\"text-align: right\">        \n          <i class=\"fa fa-search\" aria-hidden=\"true\" style=\"margin:4px 4px 0 0\"></i>\n          <input type=\"text\" pInputText size=\"30\" placeholder=\"Global Filter\" (input)=\"dt.filterGlobal($event.target.value, 'startsWith')\" style=\"width:auto\">\n      </div>\n    </ng-template>\n    <ng-template pTemplate=\"header\">\n      <tr>\n        <th *ngFor=\"let col of cols\" [pSortableColumn]=\"col.field\" style=\"background-color:#000000; color:#ffffff \">\n          {{col.header}}\n        </th>\n        <th style=\"background-color:#000000; color:#ffffff \">Action</th>\n      </tr>\n    </ng-template>\n    <ng-template pTemplate=\"body\" let-i=\"rowIndex\" let-rowData let-columns=\"columns\">\n      \n      <tr [pSelectableRow]=\"rowData\">\n        <td *ngFor=\"let col of columns;\">\n          {{rowData[col.field]}}\n        </td>\n        <td>\n          <a class=\"btn btn-sm btn-info text-white\" (click)=\"onEdit(rowData.SerialNumber)\"><i aria-hidden=\"true\" class=\"fa fa-pencil\"></i></a>\n        </td>\n      </tr>\n    </ng-template>\n  </p-table>\n</app-main-nav>"
 
 /***/ }),
 
@@ -2386,8 +2465,6 @@ var TagComponent = /** @class */ (function () {
         var _this = this;
         this.service.getTags().subscribe(function (res) {
             _this.tagList = res;
-            // this.dtTrigger.unsubscribe();
-            // this.dtTrigger.next();
             console.log(res);
             for (_this.i = 1; _this.i <= _this.tagList.length; _this.i++) {
                 _this.tagList[_this.i - 1].SerialNumber = _this.i;
@@ -2411,6 +2488,8 @@ var TagComponent = /** @class */ (function () {
         dialogConfig.width = "70%";
         dialogConfig.disableClose = true;
         dialogConfig.data = this.tagList[id - 1];
+        console.log(id);
+        console.log(dialogConfig.data);
         var dialogRef = this.dialog.open(_createtag_createtag_component__WEBPACK_IMPORTED_MODULE_6__["CreatetagComponent"], dialogConfig).afterClosed().subscribe(function (res) {
             _this.loadTags();
         });
@@ -2454,7 +2533,7 @@ module.exports = "mat-dialog-content {\n\tposition: relative;\n}\n.pos {\n\tposi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n  <mat-icon>clear</mat-icon>\n</button>\n<div class=\"card\">\n  <mat-dialog-content>\n    <div class=\"card-body\">\n      <h5 class=\"card-title\">{{label}}</h5>\n      <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n        <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"CCreatedBy\">\n        <input type=\"hidden\" name=\"QuestionId\" #QuestionId=\"ngModel\" [(ngModel)]=\"service.formData.QuestionId\">\n        <input type=\"hidden\" name=\"ImageName\" #ImageName=\"ngModel\" [(ngModel)]=\"service.formData.ImageName\">\n        <div class=\"form-group\">\n          <label>Question</label>\n          <textarea class=\"form-control\" [readonly]=\"bool\" name=\"QuestionStatement\" #QuestionStatement=\"ngModel\"\n            [(ngModel)]=\"service.formData.QuestionStatement\" rows=\"3\"></textarea>\n          <div class=\"validation-error\" *ngIf=\"QuestionStatement.invalid && QuestionStatement.touched\">This field is\n            required.\n          </div>\n        </div>\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label>Option 1</label>\n            <input required type=\"text\" [readonly]=\"bool\" name=\"Option1\" #Option1=\"ngModel\"\n              [(ngModel)]=\"service.formData.Option1\" class=\"form-control\">\n            <div class=\"validation-error\" *ngIf=\"Option1.invalid && Option1.touched\">This field is required.</div>\n          </div>\n          <div class=\"form-group col-md-6\">\n            <label>Option 2</label>\n            <input required type=\"text\" [readonly]=\"bool\" name=\"Option2\" #Option2=\"ngModel\"\n              [(ngModel)]=\"service.formData.Option2\" class=\"form-control\">\n            <div class=\"validation-error\" *ngIf=\"Option2.invalid && Option2.touched\">This field is required.</div>\n          </div>\n        </div>\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label>Option 3</label>\n            <input type=\"text\" [readonly]=\"bool\" name=\"Option3\" #Option3=\"ngModel\"\n              [(ngModel)]=\"service.formData.Option3\" class=\"form-control\">\n          </div>\n          <div class=\"form-group col-md-6\">\n            <label>Option 4</label>\n            <input type=\"text\" [readonly]=\"bool\" name=\"Option4\" #Option4=\"ngModel\"\n              [(ngModel)]=\"service.formData.Option4\" class=\"form-control\">\n          </div>\n        </div>\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label>Correct Option</label>\n            <select name=\"Answer\" [disabled]=\"bool\" required #Answer=\"ngModel\" [(ngModel)]=\"service.formData.Answer\"\n              class=\"form-control\">\n              <option value=\"\">Choose</option>\n              <option value=\"1\">1</option>\n              <option value=\"2\">2</option>\n              <option value=\"3\">3</option>\n              <option value=\"4\">4</option>\n            </select>\n            <div class=\"validation-error\" *ngIf=\"Answer.invalid && Answer.touched\">This field is required.\n            </div>\n          </div>\n          <div class=\"form-group col-md-6\">\n            <label>Marks</label>\n            <select name=\"Marks\" [disabled]=\"bool\" required #Marks=\"ngModel\" [(ngModel)]=\"service.formData.Marks\"\n              class=\"form-control\">\n              <option value=\"\">Choose</option>\n              <option value=\"1\">1</option>\n              <option value=\"2\">2</option>\n              <option value=\"3\">3</option>\n              <option value=\"5\">5</option>\n            </select>\n            <div class=\"validation-error\" *ngIf=\"Marks.invalid && Marks.touched\">This field is required.</div>\n          </div>\n        </div>\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label>Select Subject</label>\n            <select name=\"SubjectId\" [disabled]=\"bool\" required #SubjectId=\"ngModel\"\n              [(ngModel)]=\"service.formData.SubjectId\" class=\"form-control\">\n              <option value=\"\">Choose</option>\n              <option *ngFor=\"let Subject of Subjects\" value=\"{{Subject.SubjectId}}\">{{Subject.Name}}</option>\n            </select>\n            <div class=\"validation-error\" *ngIf=\"SubjectId.invalid && SubjectId.touched\">This field is required.</div>\n          </div>\n          <div class=\"form-group col-md-6\">\n            <label>Select Difficulty-Level</label>\n            <select name=\"Difficulty\" [disabled]=\"bool\" required #Difficulty=\"ngModel\"\n              [(ngModel)]=\"service.formData.Difficulty\" class=\"form-control\">\n              <option value=\"\">Choose</option>\n              <option value=\"Beginner\">Beginner</option>\n              <option value=\"Intermediate\">Intermediate</option>\n              <option value=\"Advanced\">Advanced</option>\n            </select>\n            <div class=\"validation-error\" *ngIf=\"Difficulty.invalid && Difficulty.touched\">This field is required.</div>\n          </div>\n        </div>\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label>Select Type</label>\n            <select name=\"QuestionType\" [disabled]=\"bool\" required #QuestionType=\"ngModel\"\n              [(ngModel)]=\"service.formData.QuestionType\" class=\"form-control\">\n              <option value=\"\">Choose</option>\n              <option value=\"Mock\">Mock</option>\n              <option value=\"Scheduled\">Scheduled</option>\n            </select>\n            <div class=\"validation-error\" *ngIf=\"QuestionType.invalid && QuestionType.touched\">This field is required.\n            </div>\n          </div>\n          <div [hidden]=\"bool\" class=\"form-group col-md-6\">\n            <strong><label>Select/Change Image</label></strong>\n            <input type=\"file\" (change)=\"chooseFile($event)\" name=\"ImageNameDemo\" class=\"form-control\">\n          </div>\n        </div>\n        <div style=\"float:right\" class=\"form-group\">\n          <div class=\"row\">\n            <div class=\"col-md-6\">\n              <button [hidden]=\"bool\" type=\"submit\" [disabled]=\"form.invalid || bool\"\n                class=\"btn btn-primary\">Submit</button>\n            </div>\n          </div>\n        </div>\n        <strong><img [src]=\"src\" alt=\"Image Does Not Exist\"></strong>\n        <br><br>\n      </form>\n      <button type=\"button\" *ngIf=\"src\" (click)=\"deleteImg()\" style=\"cursor: pointer;\" [hidden]=\"bool\"\n        class=\"btn btn-outline-danger\">\n        <i class=\"fa fa-trash\" aria-hidden=\"true\"> Delete\n          Img</i></button>\n    </div>\n  </mat-dialog-content>\n</div>"
+module.exports = "<button type=\"button \" [mat-dialog-close] class=\"btn btn-danger pos\">\n  <mat-icon>clear</mat-icon>\n</button>\n<div class=\"card\">\n  <mat-dialog-content>\n    <div class=\"card-body\">\n      <h5 class=\"card-title\">{{label}}</h5>\n      <form #form=\"ngForm\" (submit)=\"onSubmit(form)\" autocomplete=\"off\">\n        <input type=\"hidden\" name=\"CreatedBy\" #CreatedBy=\"ngModel\" [(ngModel)]=\"CCreatedBy\">\n        <input type=\"hidden\" name=\"QuestionId\" #QuestionId=\"ngModel\" [(ngModel)]=\"service.formData.QuestionId\">\n        <input type=\"hidden\" name=\"ImageName\" #ImageName=\"ngModel\" [(ngModel)]=\"service.formData.ImageName\">\n        <div class=\"form-group\">\n          <label>Question</label>\n          <textarea class=\"form-control\" [readonly]=\"bool\" name=\"QuestionStatement\" #QuestionStatement=\"ngModel\"\n            [(ngModel)]=\"service.formData.QuestionStatement\" rows=\"3\"></textarea>\n          <div class=\"validation-error\" *ngIf=\"QuestionStatement.invalid && QuestionStatement.touched\">This field is\n            required.\n          </div>\n        </div>\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label>Option 1</label>\n            <input required type=\"text\" [readonly]=\"bool\" name=\"Option1\" #Option1=\"ngModel\"\n              [(ngModel)]=\"service.formData.Option1\" class=\"form-control\">\n            <div class=\"validation-error\" *ngIf=\"Option1.invalid && Option1.touched\">This field is required.</div>\n          </div>\n          <div class=\"form-group col-md-6\">\n            <label>Option 2</label>\n            <input required type=\"text\" [readonly]=\"bool\" name=\"Option2\" #Option2=\"ngModel\"\n              [(ngModel)]=\"service.formData.Option2\" class=\"form-control\">\n            <div class=\"validation-error\" *ngIf=\"Option2.invalid && Option2.touched\">This field is required.</div>\n          </div>\n        </div>\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label>Option 3</label>\n            <input type=\"text\" [readonly]=\"bool\" name=\"Option3\" #Option3=\"ngModel\"\n              [(ngModel)]=\"service.formData.Option3\" class=\"form-control\">\n          </div>\n          <div class=\"form-group col-md-6\">\n            <label>Option 4</label>\n            <input type=\"text\" [readonly]=\"bool\" name=\"Option4\" #Option4=\"ngModel\"\n              [(ngModel)]=\"service.formData.Option4\" class=\"form-control\">\n          </div>\n        </div>\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label>Correct Option</label>\n            <select name=\"Answer\" [disabled]=\"bool\" required #Answer=\"ngModel\" [(ngModel)]=\"service.formData.Answer\"\n              class=\"form-control\">\n              <option value=\"\">Choose</option>\n              <option value=\"1\">1</option>\n              <option value=\"2\">2</option>\n              <option value=\"3\">3</option>\n              <option value=\"4\">4</option>\n            </select>\n            <div class=\"validation-error\" *ngIf=\"Answer.invalid && Answer.touched\">This field is required.\n            </div>\n          </div>\n          <div class=\"form-group col-md-6\">\n            <label>Marks</label>\n            <select name=\"Marks\" [disabled]=\"bool\" required #Marks=\"ngModel\" [(ngModel)]=\"service.formData.Marks\"\n              class=\"form-control\">\n              <option value=\"\">Choose</option>\n              <option value=\"1\">1</option>\n              <option value=\"2\">2</option>\n              <option value=\"3\">3</option>\n              <option value=\"5\">5</option>\n            </select>\n            <div class=\"validation-error\" *ngIf=\"Marks.invalid && Marks.touched\">This field is required.</div>\n          </div>\n        </div>\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label>Select Subject</label>\n            <!-- <select name=\"SubjectId\" [disabled]=\"bool\" required #SubjectId=\"ngModel\"\n              [(ngModel)]=\"service.formData.SubjectId\" class=\"form-control\">\n              <option value=\"\">Choose</option>\n              <option *ngFor=\"let Subject of Subjects\" value=\"{{Subject.SubjectId}}\">{{Subject.Name}}</option>\n            </select> -->\n            <ng-multiselect-dropdown name=\"Tags\" #Tags=\"ngModel\" [placeholder]=\"Choose\" required\n                [data]=\"Subjects\" [disabled]=\"bool\" [settings]=\"dropdownSettings\" [(ngModel)]=\"service.formData.Tags\">\n              </ng-multiselect-dropdown>\n            <div class=\"validation-error\" *ngIf=\"Tags.invalid && Tags.touched\">This field is required.</div>\n          </div>\n          <div class=\"form-group col-md-6\">\n            <label>Select Difficulty-Level</label>\n            <select name=\"Difficulty\" [disabled]=\"bool\" required #Difficulty=\"ngModel\"\n              [(ngModel)]=\"service.formData.Difficulty\" class=\"form-control\">\n              <option value=\"\">Choose</option>\n              <option value=\"Beginner\">Beginner</option>\n              <option value=\"Intermediate\">Intermediate</option>\n              <option value=\"Advanced\">Advanced</option>\n            </select>\n            <div class=\"validation-error\" *ngIf=\"Difficulty.invalid && Difficulty.touched\">This field is required.</div>\n          </div>\n        </div>\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label>Select Type</label>\n            <select name=\"QuestionType\" [disabled]=\"bool\" required #QuestionType=\"ngModel\"\n              [(ngModel)]=\"service.formData.QuestionType\" class=\"form-control\">\n              <option value=\"\">Choose</option>\n              <option value=\"Mock\">Mock</option>\n              <option value=\"Scheduled\">Scheduled</option>\n            </select>\n            <div class=\"validation-error\" *ngIf=\"QuestionType.invalid && QuestionType.touched\">This field is required.\n            </div>\n          </div>\n          <div [hidden]=\"bool\" class=\"form-group col-md-6\">\n            <strong><label>Select/Change Image</label></strong>\n            <input type=\"file\" (change)=\"chooseFile($event)\" name=\"ImageNameDemo\" class=\"form-control\">\n          </div>\n        </div>\n        <div style=\"float:right\" class=\"form-group\">\n          <div class=\"row\">\n            <div class=\"col-md-6\">\n              <button [hidden]=\"bool\" type=\"submit\" [disabled]=\"form.invalid || bool\"\n                class=\"btn btn-primary\">Submit</button>\n            </div>\n          </div>\n        </div>\n        <strong><img [src]=\"src\" alt=\"Image Does Not Exist\"></strong>\n        <br><br>\n      </form>\n      <button type=\"button\" *ngIf=\"src\" (click)=\"deleteImg()\" style=\"cursor: pointer;\" [hidden]=\"bool\"\n        class=\"btn btn-outline-danger\">\n        <i class=\"fa fa-trash\" aria-hidden=\"true\"> Delete\n          Img</i></button>\n    </div>\n  </mat-dialog-content>\n</div>"
 
 /***/ }),
 
@@ -2489,6 +2568,7 @@ var UpdateQuestionComponent = /** @class */ (function () {
         this.CCreatedBy = '';
         this.bool = false;
         this.src = null;
+        this.dropdownSettings = null;
     }
     UpdateQuestionComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -2502,6 +2582,14 @@ var UpdateQuestionComponent = /** @class */ (function () {
         if (this.service.formData.ImageName !== null) {
             this.src = _environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].imgURl + this.service.formData.ImageName;
         }
+        this.dropdownSettings = {
+            singleSelection: false,
+            idField: 'SubjectId',
+            textField: 'Name',
+            enableCheckAll: false,
+            itemsShowLimit: 5,
+            allowSearchFilter: true,
+        };
         this.CCreatedBy = localStorage.getItem('uid');
         this.service.retrieveSubjects().subscribe(function (res) {
             _this.Subjects = res;
@@ -2712,9 +2800,6 @@ var DetailedReportComponent = /** @class */ (function () {
         };
         this.doughnutChartColors2 = [{ backgroundColor: ["#FF713A", "#00B292"] }];
         this.doughnutChartColors1 = [{ backgroundColor: ["#3E00B2", "#FFF53A"] }];
-        this.doughnutChartLabels2 = ['Correct: ' + this.service.data.CorrectAnswers, 'InCorrect: ' + this.service.data.WrongAnswers];
-        this.doughnutChartData2 = [this.service.data.CorrectAnswers, this.service.data.WrongAnswers];
-        this.doughnutChartType2 = 'doughnut';
         this.doughnutChartOptions2 = {
             legend: {
                 onClick: function (e) {
@@ -2723,20 +2808,24 @@ var DetailedReportComponent = /** @class */ (function () {
             }
         };
         this.gaugeType = 'semi';
-        this.gaugeValue = ((this.service.data.MarksScored / this.service.data.TotalMarks) * 100).toPrecision(2).toString();
         this.gaugeLabel = 'Performance';
         this.gaugeAppendText = '%';
     }
     DetailedReportComponent.prototype.ngOnInit = function () {
         var _this = this;
-        console.log(this.service.data.CorrectAnswers);
-        if (this.service.QuizId === null) {
+        // console.log(this.service.data.CorrectAnswers);
+        console.log(this.service.data);
+        if (this.service.data == null) {
             console.log('he');
-            this.route.navigate(['/emp-dash/quiz/non-mock-report']);
+            this.route.navigate(['/emp-dash']);
         }
         this.doughnutChartLabels1 = ['Attempted:' + ((parseInt(this.service.data.CorrectAnswers)) + (parseInt(this.service.data.WrongAnswers))).toString(), 'UnAttempted: ' + this.service.data.UnattemptedAnswers];
         this.doughnutChartData1 = [(parseInt(this.service.data.CorrectAnswers) + parseInt(this.service.data.WrongAnswers)).toString(), this.service.data.UnattemptedAnswers];
         this.doughnutChartType1 = 'doughnut';
+        this.doughnutChartLabels2 = ['Correct: ' + this.service.data.CorrectAnswers, 'InCorrect: ' + this.service.data.WrongAnswers];
+        this.doughnutChartData2 = [this.service.data.CorrectAnswers, this.service.data.WrongAnswers];
+        this.doughnutChartType2 = 'doughnut';
+        this.gaugeValue = ((this.service.data.MarksScored / this.service.data.TotalMarks) * 100).toPrecision(2).toString();
         this.dtOptions = {
             pagingType: 'full_numbers',
             pageLength: 10,
@@ -3144,6 +3233,7 @@ var MockComponent = /** @class */ (function () {
         this.router = router;
         this.dtOptions = {};
         this.dtTrigger = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+        this.tg = '';
     }
     MockComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -3157,7 +3247,7 @@ var MockComponent = /** @class */ (function () {
         this.cols = [
             { field: 'SerialNumber', header: 'S NO' },
             { field: 'QuizName', header: 'Quiz Name' },
-            { field: 'Subject', header: 'Subject' },
+            { field: 'Tags1', header: 'Tags' },
             { field: 'Difficulty', header: 'Difficulty Level' },
             { field: 'TotalQuestions', header: 'Total Questions' },
             { field: 'TotalMarks', header: 'Total Marks' },
@@ -3169,22 +3259,39 @@ var MockComponent = /** @class */ (function () {
         var _this = this;
         this.service.getListOfMockQuizzes().subscribe(function (res) {
             _this.mockList = res;
-            // this.dtTrigger.next();
             for (_this.i = 1; _this.i <= _this.mockList.length; _this.i++) {
                 _this.mockList[_this.i - 1].SerialNumber = _this.i;
+                _this.tg = '';
+                for (var _i = 0, _a = _this.mockList[_this.i - 1].Tags; _i < _a.length; _i++) {
+                    var tag = _a[_i];
+                    _this.tg = _this.tg + tag.Name + ',';
+                }
+                _this.mockList[_this.i - 1].Tags1 = _this.tg;
+                _this.mockList[_this.i - 1].Tags1 = _this.mockList[_this.i - 1].Tags1.substring(0, _this.mockList[_this.i - 1].Tags1.length - 1);
             }
+            console.log(_this.mockList);
         });
     };
     MockComponent.prototype.takeMockQuiz = function (QuizId, QuizName, index) {
         var _this = this;
+        this.service.QuizId = QuizId;
         this.service.getMockQuesOfQuiz(QuizId).subscribe(function (res) {
             console.log(res);
+            if (res !== 'Quiz Started') {
+                _this.service.statusMapping = res.GetQuestionBuffers;
+                _this.time = res.TimeLeft.split(":");
+                _this.service.seconds = parseInt(_this.time[2]);
+            }
+            else {
+                _this.time = _this.mockList[index - 1].QuizTime.split(":");
+                _this.service.seconds = 0;
+                _this.service.statusMapping = null;
+            }
             _this.service.quizName = QuizName;
-            _this.time = _this.mockList[index].QuizTime.split(":");
+            _this.service.noQuesOfQuiz = _this.mockList[index - 1].TotalQuestions;
             _this.service.hours = parseInt(_this.time[0]);
             _this.service.minutes = parseInt(_this.time[1]);
-            _this.service.noQuesOfQuiz = res.TotalQuestions;
-            _this.service.QuizId = QuizId;
+            _this.service.QuizScheduleId = null;
             _this.router.navigate(['/emp-dash/quiz/take-quiz']);
         });
     };
@@ -3329,7 +3436,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-loader></app-loader>\n<app-main-nav3>\n  <div>\n    <p-table [columns]=\"cols\" [value]=\"nonMockScheduleList\" [paginator]=\"true\" [rows]=\"10\" #dt>\n      \n      <ng-template pTemplate=\"caption\">\n        <h3>Schedule Quizzes</h3>\n        <div style=\"text-align: right\">        \n            <i class=\"fa fa-search\"  aria-hidden=\"true\" style=\"margin:4px 4px 0 0\"></i>\n            <input type=\"text\" pInputText size=\"30\" placeholder=\"Global Filter\" (input)=\"dt.filterGlobal($event.target.value, 'startsWith')\" style=\"width:auto\">\n        </div>\n      </ng-template>\n      <ng-template pTemplate=\"header\">\n        <tr>\n          <th *ngFor=\"let col of cols\" [pSortableColumn]=\"col.field\" style=\"background-color:black; color:white;\">\n            {{col.header}}\n          </th>\n          <th style=\"background-color:black; color:white;\">Action</th>\n        </tr>\n      </ng-template>\n      <ng-template pTemplate=\"body\" let-i=\"rowIndex\" let-rowData let-columns=\"columns\">\n        \n        <tr [pSelectableRow]=\"rowData\"> \n          <td *ngFor=\"let col of columns;\" >\n            {{rowData[col.field]}}\n          </td>\n          <td>\n            <a class=\"btn btn-sm btn-info text-white\" (click)=\"takeQuiz(rowData.QuizId,rowData.QuizScheduleId,rowData.QuizName,rowData.SerialNumber)\"><i\n              aria-hidden=\"true\" class=\"fa fa-paper-plane\"></i></a>\n          </td>\n        </tr>\n      </ng-template>\n    </p-table>\n  </div>\n</app-main-nav3>"
+module.exports = "<app-loader></app-loader>\n<app-main-nav3>\n  <div>\n    <p-table [columns]=\"cols\" [value]=\"nonMockScheduleList\" [paginator]=\"true\" [rows]=\"10\" #dt>\n      \n      <ng-template pTemplate=\"caption\">\n        <h3>Schedule Quizzes</h3>\n        <div style=\"text-align: right\">        \n            <i class=\"fa fa-search\"  aria-hidden=\"true\" style=\"margin:4px 4px 0 0\"></i>\n            <input type=\"text\" pInputText size=\"30\" placeholder=\"Global Filter\" (input)=\"dt.filterGlobal($event.target.value, 'startsWith')\" style=\"width:auto\">\n        </div>\n      </ng-template>\n      <ng-template pTemplate=\"header\">\n        <tr>\n          <th *ngFor=\"let col of cols\" [pSortableColumn]=\"col.field\" style=\"background-color:black; color:white;\">\n            {{col.header}}\n          </th>\n          <th style=\"background-color:black; color:white;\">Start Time</th>\n          <th style=\"background-color:black; color:white;\">End Time</th>\n          <th style=\"background-color:black; color:white;\">Action</th>\n        </tr>\n      </ng-template>\n      <ng-template pTemplate=\"body\" let-i=\"rowIndex\" let-rowData let-columns=\"columns\">\n        \n        <tr [pSelectableRow]=\"rowData\"> \n          <td *ngFor=\"let col of columns;\" >\n            {{rowData[col.field] }}\n          </td>\n          <td *ngFor = \"let c of col;\">\n            {{rowData[c.field] | date:'medium'}}\n          </td>\n          <td>\n            <a class=\"btn btn-sm btn-info text-white\" (click)=\"takeQuiz(rowData.QuizId,rowData.QuizScheduleId,rowData.QuizName,rowData.SerialNumber)\"><i\n              aria-hidden=\"true\" class=\"fa fa-paper-plane\"></i></a>\n          </td>\n        </tr>\n      </ng-template>\n    </p-table>\n  </div>\n</app-main-nav3>"
 
 /***/ }),
 
@@ -3359,6 +3466,7 @@ var NonMockComponent = /** @class */ (function () {
         this.router = router;
         this.dtTrigger = new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
         this.dtOptions = {};
+        this.tg = '';
     }
     NonMockComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -3367,24 +3475,32 @@ var NonMockComponent = /** @class */ (function () {
         }, 0);
         this.dtOptions = {
             pagingType: 'full_numbers',
-            pageLength: 10,
+            pageLength: 10
         };
         this.cols = [
             { field: 'SerialNumber', header: 'S NO' },
             { field: 'QuizName', header: 'Quiz' },
-            { field: 'StartDateTime', header: 'Start' },
-            { field: 'EndDateTime', header: 'End' },
-            { field: 'QuizTime', header: 'Time Taken' }
+            { field: 'QuizTime', header: 'Quiz Time' },
+            { field: 'Tags1', header: 'Tags' }
         ];
+        this.col = [{ field: 'StartDateTime', header: 'Start Time' }, { field: 'EndDateTime', header: 'End Time' }];
+        // this.QuizTime = "00:00:00";
+        // this.QuizTimeSeconds = parseInt((this.QuizTime.split(":"))[2]);
     };
     NonMockComponent.prototype.loadNonMockSchedules = function () {
         var _this = this;
         this.service.getNonMocks().subscribe(function (res) {
-            console.log(res);
             _this.nonMockScheduleList = res;
             // this.dtTrigger.next();
             for (_this.i = 1; _this.i <= _this.nonMockScheduleList.length; _this.i++) {
                 _this.nonMockScheduleList[_this.i - 1].SerialNumber = _this.i;
+                _this.tg = '';
+                for (var _i = 0, _a = _this.nonMockScheduleList[_this.i - 1].Tags; _i < _a.length; _i++) {
+                    var tag = _a[_i];
+                    _this.tg = _this.tg + tag.Name + ',';
+                }
+                _this.nonMockScheduleList[_this.i - 1].Tags1 = _this.tg;
+                _this.nonMockScheduleList[_this.i - 1].Tags1 = _this.nonMockScheduleList[_this.i - 1].Tags1.substring(0, _this.nonMockScheduleList[_this.i - 1].Tags1.length - 1);
             }
         });
     };
@@ -3392,14 +3508,21 @@ var NonMockComponent = /** @class */ (function () {
         var _this = this;
         this.service.QuizId = QuizId;
         this.service.getQuesOfQuiz(QuizId).subscribe(function (res) {
-            console.log(res);
+            if (res !== 'Quiz Started') {
+                _this.service.statusMapping = res.GetQuestionBuffers;
+                _this.time = res.TimeLeft.split(':');
+                _this.service.seconds = parseInt(_this.time[2]);
+            }
+            else {
+                _this.time = _this.nonMockScheduleList[index - 1].QuizTime.split(':');
+                _this.service.seconds = 0;
+                _this.service.statusMapping = null;
+            }
             _this.service.quizName = QuizName;
             _this.service.noQuesOfQuiz = _this.nonMockScheduleList[index - 1].TotalQuestions;
-            _this.time = _this.nonMockScheduleList[index - 1].QuizTime.split(":");
             _this.service.hours = parseInt(_this.time[0]);
             _this.service.minutes = parseInt(_this.time[1]);
             _this.service.QuizScheduleId = Id;
-            _this.service.QuizId = QuizId;
             _this.router.navigate(['/emp-dash/quiz/take-quiz']);
         });
     };
@@ -3412,8 +3535,7 @@ var NonMockComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./non-mock.component.html */ "./src/app/employee/non-mock/non-mock.component.html"),
             styles: [__webpack_require__(/*! ./non-mock.component.css */ "./src/app/employee/non-mock/non-mock.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_employee_service__WEBPACK_IMPORTED_MODULE_2__["EmployeeService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_employee_service__WEBPACK_IMPORTED_MODULE_2__["EmployeeService"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
     ], NonMockComponent);
     return NonMockComponent;
 }());
@@ -3474,12 +3596,13 @@ var ResultComponent = /** @class */ (function () {
     ResultComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.correct = [];
-        if (this.service.QuizScheduleId == null) {
+        if (this.service.QuizScheduleId === null) {
             this.service.getAnswers().subscribe(function (res) {
+                console.log(res);
                 _this.QuesWithAns = res;
                 _this.service.correctAnswerCount = 0;
                 _this.service.quesOfQuiz.forEach(function (e, i) {
-                    if (e.answer == _this.QuesWithAns[i].Answer) {
+                    if (e.answer === _this.QuesWithAns[i].Answer) {
                         _this.service.correctAnswerCount++;
                     }
                     _this.correct[i] = _this.QuesWithAns[i].Answer;
@@ -3503,18 +3626,18 @@ var ResultComponent = /** @class */ (function () {
             QuesAnswers: dict,
             TimeTaken: this.timeTaken
         };
-        this.service.postanswers().subscribe(function (res) {
-            if (_this.service.QuizScheduleId != null) {
-                _this.service.QuizScheduleId = null;
-                _this.service.quesOfQuiz = null;
-                _this.service.correctAnswerCount = null;
-                _this.service.QuizId = null;
-                _this.service.body = null;
-                _this.service.qnProgress = null;
-                _this.dispCard = false;
-                _this.router.navigate([('/emp-dash')]);
-            }
-        });
+        // this.service.postanswers().subscribe(res => {
+        //   if (this.service.QuizScheduleId != null) {
+        //     this.service.QuizScheduleId = null;
+        //     this.service.quesOfQuiz = null;
+        //     this.service.correctAnswerCount = null;
+        //     this.service.QuizId = null;
+        //     this.service.body = null;
+        //     this.service.qnProgress = null;
+        //     this.dispCard = false;
+        //     this.router.navigate([('/emp-dash')]);
+        //   }
+        // });
     };
     ResultComponent.prototype.closeFullscreen = function () {
         if (this.document.exitFullscreen) {
@@ -3593,7 +3716,7 @@ var EmployeeService = /** @class */ (function () {
         return this.http.put(this.rootURL + 'Quiz/SubmitQuestion', body);
     };
     EmployeeService.prototype.getMockQuesOfQuiz = function (QuizId) {
-        return this.http.get(this.rootURL + 'Quiz/QuizQuestion/' + QuizId);
+        return this.http.get(this.rootURL + 'Quiz/QuizQuestion?QuizId=' + QuizId + '&UserId=' + localStorage.getItem('uid'));
     };
     EmployeeService.prototype.checkValidUser = function (id) {
         return this.http.post(this.rootURL + 'UserSchedule/ValidQuizTaker/' + localStorage.getItem('uid'), id);
@@ -3601,11 +3724,8 @@ var EmployeeService = /** @class */ (function () {
     EmployeeService.prototype.getQuestions = function (qid, index) {
         return this.http.get(this.rootURL + 'Quiz/GetQuizQuestion?QuizId=' + qid + '&UserId=' + localStorage.getItem('uid') + '&Index=' + index);
     };
-    EmployeeService.prototype.postanswers = function () {
-        this.body.QuizScheduleId = this.QuizScheduleId;
-        this.body.QuizId = this.QuizId;
-        this.body.UserId = localStorage.getItem('uid');
-        return this.http.post(this.rootURL + 'Quiz/EvaluateQuiz', this.body);
+    EmployeeService.prototype.postanswers = function (body) {
+        return this.http.post(this.rootURL + 'Quiz/SubmitQuiz', body);
     };
     EmployeeService.prototype.getUserDetails = function () {
         return this.http.get(this.rootURL + 'GetUserDetails?email=' + localStorage.getItem('email'));
@@ -3629,7 +3749,7 @@ var EmployeeService = /** @class */ (function () {
         return this.http.get(this.rootURL + 'Question/' + id);
     };
     EmployeeService.prototype.getAnswers = function () {
-        return this.http.get(this.rootURL + 'Quiz/EvaluateMockQuiz/' + this.QuizId);
+        return this.http.get(this.rootURL + 'Quiz/SubmitMockQuiz/' + this.QuizId);
     };
     EmployeeService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -3718,7 +3838,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-progress-bar style=\"height: 2%\" color=\"primary\" mode=\"determinate\" value=\"{{ bar }}\"></mat-progress-bar>\n<app-loader></app-loader>\n<nav class=\"navbar navbar-light\" *ngIf=\"service.quesOfQuiz\">\n  <div>\n    <img src=\"../../../assets/img/nineleaps-logo.svg\" alt=\"Nineleaps\" style=\"float: left;\">\n    <h2 style=\"text-align: center\">{{service.quizName}}</h2>\n  </div>\n</nav>\n<div class=\"container-fluid\" *ngIf=\"questions\">\n  <div class=\"row\">\n    <div class=\"col col-md-6\">\n      <h3 style=\"margin: 3%\">Question - {{service.qnProgress+1}}/{{noOfQues}}</h3>\n    </div>\n    <div class=\"col col-md-6\">\n      <div *ngIf=\"service.quesOfQuiz\" class=\"card text-white bg-danger border-dark\"\n        style=\"margin: 2%; width:38%; float: right;\">\n        <div class=\"card-body text-center\">\n          <strong>\n            <h5 style=\"margin:2%\">Time Left - {{this.hours}}:{{this.minutes}}:{{this.seconds}}</h5>\n          </strong>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"row card-deck\">\n    <div class=\"col col-md-9\">\n      <div class=\"card border-dark\">\n        <div class=\"card-body\">\n          <h4 class=\"card-title\" style=\"margin-bottom: 4%\">\n            {{service.qnProgress+1}})&nbsp;{{questions.QuestionStatement}}</h4>\n          <div *ngIf=\"questions.ImageName!=null\">\n            <img [src]=\"questions.ImageName\" style=\"width : 800px;\" alt=\"QuestionImage\" />\n          </div>\n          <ul class=\"list-group list-group-flush\">\n            <div *ngFor=\"let option of questions.Option;index as i\">\n              <li *ngIf=\"option\" class=\"list-group-item list-group-item-action\">\n                <div class=\"form-check\">\n                  <label style=\"font-size: 18px; margin-left: -20px\">\n                    <input  tabindex=\"1\" id=\"profile\" type=\"radio\" name=\"answer\" [value]=\"i+1\"\n                      [(ngModel)]=\"options\">&nbsp;&nbsp;{{option}}\n                  </label>\n                </div>\n              </li>\n            </div>\n            <li class=\"list-group-item\"></li>\n          </ul>\n        </div>\n      </div>\n    </div>\n    <div class=\"col col-md-3\">\n      <div class=\"card border-dark text-center bg-secondary\">\n        <br />\n        <div class=\"card-title text-white\">\n          <h4>Questions</h4>\n        </div>\n        <div class=\"card-body table-wrapper-scroll-y my-custom-scrollbar\" style=\"overflow-y: auto; height: 320px\">\n          <div class=\"btn-group mb-4\" role=\"group\" *ngFor=\"let b of ArrayOne(noOfQues); let i=index;\">\n            <div class=\"btn-group mr-3\">\n              <a style=\"width:50px\" type=\"button\" id=\"{{i}}\" class=\"btn btn-block text-center\" [ngClass]=\"getStatus(i)\"\n                (click)=\"Navigate(i)\">{{i+1}}</a>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"row card-deck\">\n    <div class=\"col col-md-9\">\n      <div class=\"card border-dark\">\n        <div class=\"card-body text-center\">\n          <button class=\"btn btn-sm btn-danger text-white\" (click)=\"Clear(service.qnProgress)\"><i aria-hidden=\"true\"\n              class=\"fa fa-eraser\"></i>&nbsp;Clear</button>\n          &nbsp;&nbsp;\n          <button *ngIf=\"checkPrev\" class=\"btn btn-sm btn-info text-white\" (click)=\"Previous()\"><i aria-hidden=\"true\"\n              class=\"fa fa-backward\"></i>&nbsp;Previous</button>\n          &nbsp;&nbsp;\n          <button *ngIf=\"checkLast\" class=\"btn btn-sm btn-warning text-white\" (click)=\"Next()\">Next&nbsp;<i\n              aria-hidden=\"true\" class=\"fa fa-forward\"></i></button>\n          &nbsp;&nbsp;\n          <button class=\"btn btn-sm btn-primary text-white\" [disabled]=\"!options\"\n            (click)=\"Answer(service.qnProgress+1,options,'save')\"><i aria-hidden=\"true\"\n              class=\"fa fa-check-circle\"></i>&nbsp;Save & Next</button>\n          &nbsp;&nbsp;\n          <button class=\"btn btn-sm btn-dark text-white\" (click)=\"Answer(service.qnProgress+1,options, 'review')\"><i\n              aria-hidden=\"true\" class=\"fa fa-star\"></i>&nbsp;Mark for Review</button>\n          &nbsp;&nbsp;\n          <button class=\"btn btn-sm btn-success text-white\" (click)=\"Answer(service.qnProgress+1,options,'submit')\"><i\n              aria-hidden=\"true\" class=\"fa fa-forward\"></i>&nbsp;Submit</button>\n        </div>\n      </div>\n    </div>\n    <div class=\"col col-md-3\">\n      <div class=\"card border-dark bg-secondary\">\n        <div style=\"padding:3px 3px 3px 7px\" class=\"card-body\">\n          <strong>Legend</strong>\n          <div>\n            <button type=\"button\" class=\"btn btn-sm btn-success\"></button>&nbsp;Submitted\n            <button style=\"margin-left: 20%\" class=\"button\" class=\"btn btn-sm btn-warning\"></button>&nbsp;Active\n          </div>\n          <div>\n            <button type=\"button\" class=\"btn btn-sm btn-info\"></button>&nbsp;Marked for Review\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<mat-progress-bar style=\"height: 2%\" color=\"primary\" mode=\"determinate\" value=\"{{ bar }}\"></mat-progress-bar>\n<app-loader></app-loader>\n<nav class=\"navbar navbar-light\" *ngIf=\"questions\">\n  <div>\n    <img src=\"../../../assets/img/nineleaps-logo.svg\" alt=\"Nineleaps\" style=\"float: left;\">\n    <h2 style=\"text-align: center\">{{service.quizName}}</h2>\n  </div>\n</nav>\n<div class=\"container-fluid\" *ngIf=\"questions\">\n  <div class=\"row\">\n    <div class=\"col col-md-6\">\n      <h3 style=\"margin: 3%\">Question - {{service.qnProgress+1}}/{{noOfQues}}</h3>\n    </div>\n    <div class=\"col col-md-6\">\n      <div *ngIf=\"questions\" class=\"card text-white bg-danger border-dark\"\n        style=\"margin: 2%; width:38%; float: right;\">\n        <div class=\"card-body text-center\">\n          <strong>\n            <h5 style=\"margin:2%\">Time Left - {{this.hours}}:{{this.minutes}}:{{this.seconds}}</h5>\n          </strong>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"row card-deck\">\n    <div class=\"col col-md-9\">\n      <div class=\"card border-dark\">\n        <div class=\"card-body\">\n          <h4 class=\"card-title\" style=\"margin-bottom: 4%\">\n            {{service.qnProgress+1}})&nbsp;{{questions.QuestionStatement}}</h4>\n          <div *ngIf=\"questions.ImageName!=null\">\n            <img [src]=\"questions.ImageName\" style=\"width : 800px;\" alt=\"QuestionImage\" />\n          </div>\n          <ul class=\"list-group list-group-flush\">\n            <div *ngFor=\"let option of questions.Option;index as i\">\n              <li *ngIf=\"option\" class=\"list-group-item list-group-item-action\">\n                <div class=\"form-check\">\n                  <label style=\"font-size: 18px; margin-left: -20px\">\n                    <input  tabindex=\"1\" id=\"profile\" type=\"radio\" name=\"answer\" [value]=\"i+1\"\n                      [(ngModel)]=\"options\">&nbsp;&nbsp;{{option}}\n                  </label>\n                </div>\n              </li>\n            </div>\n            <li class=\"list-group-item\"></li>\n          </ul>\n        </div>\n      </div>\n    </div>\n    <div class=\"col col-md-3\">\n      <div class=\"card border-dark text-center bg-secondary\">\n        <br />\n        <div class=\"card-title text-white\">\n          <h4>Questions</h4>\n        </div>\n        <div class=\"card-body table-wrapper-scroll-y my-custom-scrollbar\" style=\"overflow-y: auto; height: 320px\">\n          <div class=\"btn-group mb-4\" role=\"group\" *ngFor=\"let b of ArrayOne(noOfQues); let i=index;\">\n            <div class=\"btn-group mr-3\">\n              <a style=\"width:50px\" type=\"button\" id=\"{{i}}\" class=\"btn btn-block text-center\" [ngClass]=\"getStatus(i)\"\n                (click)=\"Navigate(i)\">{{i+1}}</a>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"row card-deck\">\n    <div class=\"col col-md-9\">\n      <div class=\"card border-dark\">\n        <div class=\"card-body text-center\">\n          <button class=\"btn btn-sm btn-danger text-white\" (click)=\"Clear(service.qnProgress)\"><i aria-hidden=\"true\"\n              class=\"fa fa-eraser\"></i>&nbsp;Clear</button>\n          &nbsp;&nbsp;\n          <button *ngIf=\"checkPrev\" class=\"btn btn-sm btn-info text-white\" (click)=\"Previous()\"><i aria-hidden=\"true\"\n              class=\"fa fa-backward\"></i>&nbsp;Previous</button>\n          &nbsp;&nbsp;\n          <button *ngIf=\"checkLast\" class=\"btn btn-sm btn-warning text-white\" (click)=\"Next()\">Next&nbsp;<i\n              aria-hidden=\"true\" class=\"fa fa-forward\"></i></button>\n          &nbsp;&nbsp;\n          <button class=\"btn btn-sm btn-primary text-white\" [disabled]=\"!options\"\n            (click)=\"Answer(service.qnProgress+1,options,'save')\"><i aria-hidden=\"true\"\n              class=\"fa fa-check-circle\"></i>&nbsp;Save & Next</button>\n          &nbsp;&nbsp;\n          <button class=\"btn btn-sm btn-dark text-white\" (click)=\"Answer(service.qnProgress+1,options, 'review')\"><i\n              aria-hidden=\"true\" class=\"fa fa-star\"></i>&nbsp;Mark for Review</button>\n          &nbsp;&nbsp;\n          <button class=\"btn btn-sm btn-success text-white\" (click)=\"Answer(service.qnProgress+1,options,'submit')\"><i\n              aria-hidden=\"true\" class=\"fa fa-forward\"></i>&nbsp;Submit</button>\n        </div>\n      </div>\n    </div>\n    <div class=\"col col-md-3\">\n      <div class=\"card border-dark bg-secondary\">\n        <div style=\"padding:3px 3px 3px 7px\" class=\"card-body\">\n          <strong>Legend</strong>\n          <div>\n            <button type=\"button\" class=\"btn btn-sm btn-success\"></button>&nbsp;Submitted\n            <button style=\"margin-left: 20%\" class=\"button\" class=\"btn btn-sm btn-warning\"></button>&nbsp;Active\n          </div>\n          <div>\n            <button type=\"button\" class=\"btn btn-sm btn-info\"></button>&nbsp;Marked for Review\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -3756,7 +3876,7 @@ var TakeQuizComponent = /** @class */ (function () {
         this.service.qnProgress = 0;
         this.hours = this.service.hours;
         this.minutes = this.service.minutes;
-        this.seconds = 0;
+        this.seconds = this.service.seconds;
         history.pushState(null, null, location.href);
         this.elem = document.documentElement;
         this.openFullscreen();
@@ -3790,6 +3910,20 @@ var TakeQuizComponent = /** @class */ (function () {
         this.active[0] = true;
         this.submit = [false];
         this.review = [false];
+        if (this.service.statusMapping !== null) {
+            for (var _i = 0, _a = this.service.statusMapping; _i < _a.length; _i++) {
+                var item = _a[_i];
+                if (item.State === 'save') {
+                    this.submit[item.Index - 1] = true;
+                }
+                else if (item.State === 'review') {
+                    this.review[item.Index - 1] = true;
+                }
+                else if (item.State === 'submit') {
+                    this.submit[item.Index - 1] = true;
+                }
+            }
+        }
         this.loadQues(1);
         this.openFullscreen();
     };
@@ -3811,6 +3945,7 @@ var TakeQuizComponent = /** @class */ (function () {
     };
     TakeQuizComponent.prototype.loadQues = function (index) {
         var _this = this;
+        //this.active[index - 1] = true;
         this.startTime = this.today.getHours() + ":" + this.today.getMinutes() + ":" + this.today.getSeconds();
         this.service.getQuestions(this.service.QuizId, index).subscribe(function (res) {
             _this.questions = res;
@@ -3849,12 +3984,18 @@ var TakeQuizComponent = /** @class */ (function () {
     };
     TakeQuizComponent.prototype.Answer = function (index, choice, options) {
         this.checkPrev = true;
+        this.checkLast = true;
         this.today = new Date();
         this.time = this.startTime.split(":");
         this.time1 = this.questions.ResponseTime.split(":");
-        this.responseTime = (parseInt(this.time1[0]) + (parseInt(this.time[0]) - this.today.getHours())).toString() + ':' +
-            (parseInt(this.time1[1]) + (parseInt(this.time[1]) - this.today.getMinutes())).toString() + ':' +
-            (parseInt(this.time1[2]) + (parseInt(this.time[2]) - this.today.getSeconds())).toString();
+        this.responseTime = (parseInt(this.time1[0]) + (this.today.getHours() - parseInt(this.time[0]))).toString() + ':' +
+            (parseInt(this.time1[1]) + (this.today.getMinutes() - parseInt(this.time[1]))).toString() + ':';
+        if (+(this.today.getSeconds) < parseInt(this.time[2])) {
+            this.responseTime = this.responseTime + (parseInt(this.time1[2] + (60 - parseInt(this.time[2] + this.today.getSeconds())))).toString();
+        }
+        else {
+            this.responseTime = this.responseTime + (parseInt(this.time1[2]) + (this.today.getSeconds() - parseInt(this.time[2]))).toString();
+        }
         if (choice !== null) {
             this.answer = choice;
             var body = {
@@ -3865,7 +4006,6 @@ var TakeQuizComponent = /** @class */ (function () {
                 ResponseTime: this.responseTime,
                 State: options,
             };
-            console.log(body);
             this.service.postQuesOfQuiz(body).subscribe(function (res) {
             });
         }
@@ -3888,14 +4028,16 @@ var TakeQuizComponent = /** @class */ (function () {
         this.service.qnProgress++;
         if (this.service.qnProgress + 1 === this.noOfQues) {
             this.checkLast = false;
-            this.loadQues(index);
+            this.loadQues(index + 1);
         }
         else if (this.service.qnProgress == this.noOfQues) {
             this.service.qnProgress = 0;
             this.loadQues(1);
+            this.checkPrev = false;
+            this.checkLast = true;
         }
         else {
-            this.loadQues(index);
+            this.loadQues(index + 1);
         }
         this.active = [false];
         this.active[this.service.qnProgress] = true;
@@ -3916,6 +4058,7 @@ var TakeQuizComponent = /** @class */ (function () {
         this.questions.MarkedAnswer = 0;
     };
     TakeQuizComponent.prototype.Submit = function () {
+        var _this = this;
         if (confirm('Do you want to submit the quiz?')) {
             this.totaltime = (this.service.hours * 60 * 60 + this.service.minutes * 60) - (this.hours * 60 * 60 + this.minutes * 60 + this.seconds);
             this.service.hours = parseInt((this.totaltime / 3600).toPrecision(1));
@@ -3923,7 +4066,32 @@ var TakeQuizComponent = /** @class */ (function () {
             this.service.minutes = parseInt((this.totaltime / 60).toPrecision(1));
             this.totaltime = this.totaltime % 60;
             this.service.seconds = this.totaltime;
-            this.router.navigate(['/emp-dash/quiz/result']);
+            this.TotalResponseTIme = this.service.hours.toString() + ':' + this.service.minutes.toString() + ':' + this.service.seconds.toString();
+            if (this.service.QuizScheduleId !== null) {
+                this.body = {
+                    QuizId: this.service.QuizId,
+                    UserId: localStorage.getItem('uid'),
+                    QuizScheduleId: this.service.QuizScheduleId,
+                    TotalResponseTime: this.TotalResponseTIme,
+                };
+            }
+            else {
+                this.body = {
+                    QuizId: this.service.QuizId,
+                    UserId: localStorage.getItem('uid'),
+                    TotalResponseTime: this.TotalResponseTIme,
+                };
+            }
+            console.log(this.body);
+            this.service.postanswers(this.body).subscribe(function (res) {
+                if (_this.service.QuizScheduleId !== null) {
+                    _this.router.navigate(['/emp-dash/non-mocks']);
+                }
+                else {
+                    //	console.log(res);
+                    _this.router.navigate(['/emp-dash/quiz/result']);
+                }
+            });
         }
     };
     TakeQuizComponent.prototype.ArrayOne = function (n) {
@@ -4803,6 +4971,7 @@ var AnalyticsByTagComponent = /** @class */ (function () {
         var _this = this;
         this.service.getTagAnalytics().subscribe(function (res) {
             _this.tagAnalysisList = res;
+            console.log(_this.tagAnalysisList);
             for (var i = 0; i < 7; i++) {
                 _this.highdata.push(_this.tagAnalysisList[i].Properties.HighestScore);
                 _this.lowdata.push(_this.tagAnalysisList[i].Properties.LowestScore);
@@ -4900,6 +5069,7 @@ var AnalyticsByUserComponent = /** @class */ (function () {
         var _this = this;
         this.service.getAllUsers().subscribe(function (res) {
             _this.allUsers = res;
+            console.log(_this.allUsers);
             _this.dtTrigger.next();
         });
     };
@@ -5575,7 +5745,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-loader></app-loader>\n<app-main-nav2>\n    <h1 style=\"text-align: center\">Add/Delete User in Schedule</h1>\n    <br /><br />\n  <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th scope=\"col\">#S. No.</th>\n        <th scope=\"col\">Quiz Name</th>\n        <th scope=\"col\">Start Date/Time</th>\n        <th scope=\"col\">End Date/Time</th>\n        <th scope=\"col\">Action</th>\n      </tr>\n    </thead>\n\n    <tbody>\n      <ng-container *ngFor=\"let item of scheduleList;index as i;\">\n        <tr>\n          <th>{{i+1}}</th>\n          <td>{{item.QuizName}}</td>\n          <td>{{item.StartDateTime}}</td>\n          <td>{{item.EndDateTime}}</td>\n          <td>\n            <a class=\"btn btn-sm btn-info text-black\" (click)=\"addUserToSchedule(item.QuizScheduleId,i+1)\"><i aria-hidden=\"true\"\n                class=\"fa fa-user-plus\"></i></a>\n            <a class=\"btn btn-sm btn-danger text-black\" (click)=\"deleteUserfromSchedule(item.QuizScheduleId,i+1)\"><i aria-hidden=\"true\"\n                class=\"fa fa-user-times\"></i></a>\n          </td>\n        </tr>\n      </ng-container>\n    </tbody>\n  </table>\n</app-main-nav2>"
+module.exports = "<app-loader></app-loader>\n<app-main-nav2>\n    <!-- <h1 style=\"text-align: center\">Add/Delete User in Schedule</h1>\n    <br /><br /> -->\n  <!-- <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th scope=\"col\">#S. No.</th>\n        <th scope=\"col\">Quiz Name</th>\n        <th scope=\"col\">Start Date/Time</th>\n        <th scope=\"col\">End Date/Time</th>\n        <th scope=\"col\">Action</th>\n      </tr>\n    </thead>\n\n    <tbody>\n      <ng-container *ngFor=\"let item of scheduleList;index as i;\">\n        <tr>\n          <th>{{i+1}}</th>\n          <td>{{item.QuizName}}</td>\n          <td>{{item.StartDateTime | date:'medium'}}</td>\n          <td>{{item.EndDateTime | date:'medium'}}</td>\n          <td>\n            <a class=\"btn btn-sm btn-info text-black\" (click)=\"addUserToSchedule(item.QuizScheduleId,i+1)\"><i aria-hidden=\"true\"\n                class=\"fa fa-user-plus\"></i></a>\n            <a class=\"btn btn-sm btn-danger text-black\" (click)=\"deleteUserfromSchedule(item.QuizScheduleId,i+1)\"><i aria-hidden=\"true\"\n                class=\"fa fa-user-times\"></i></a>\n          </td>\n        </tr>\n      </ng-container>\n    </tbody>\n  </table> -->\n  <p-table [columns]=\"cols\" [value]=\"scheduleList\" [paginator]=\"true\" [rows]=\"6\" #dt [responsive]=\"true\">\n    <ng-template pTemplate=\"caption\">\n      <h3>Add/Delete User in Schedule</h3>\n      <div style=\"text-align: right\">        \n          <i class=\"fa fa-search\" style=\"margin:4px 4px 0 0\"></i>\n          <input type=\"text\" pInputText size=\"30\" placeholder=\"Global Filter\" (input)=\"dt.filterGlobal($event.target.value, 'startsWith')\" style=\"width:auto\">\n      </div>\n    </ng-template>\n    <ng-template pTemplate=\"header\">\n      <tr>\n        <th *ngFor=\"let col of cols\" [pSortableColumn]=\"col.field\" style=\"background-color:#000000; color:#ffffff \">\n          {{col.header}}\n        </th>\n        <th style=\"background-color:#000000; color:#ffffff \">Start Time</th>\n        <th style=\"background-color:#000000; color:#ffffff \">End Time</th>\n        <th style=\"background-color:#000000; color:#ffffff \">Action</th>\n    </ng-template>\n    <ng-template pTemplate=\"body\" let-i=\"rowIndex\" let-rowData let-columns=\"columns\">\n      \n      <tr [pSelectableRow]=\"rowData\">\n        <td *ngFor=\"let col of columns;\">\n          {{rowData[col.field]}}\n        </td>\n        <td *ngFor=\"let c of col;\">\n          {{rowData[c.field] | date: 'medium'}}\n        </td>\n        <td>\n          <a class=\"btn btn-sm btn-info text-black\" (click)=\"addUserToSchedule(rowData.QuizScheduleId,rowData.SerialNumber)\"><i aria-hidden=\"true\"\n              class=\"fa fa-user-plus\"></i></a>\n          <a class=\"btn btn-sm btn-danger text-black\" (click)=\"deleteUserfromSchedule(rowData.QuizScheduleId,rowData.SerialNumber)\"><i aria-hidden=\"true\"\n              class=\"fa fa-user-times\"></i></a>\n        </td>\n      </tr>\n    </ng-template>\n  </p-table>\n</app-main-nav2>"
 
 /***/ }),
 
@@ -5619,6 +5789,14 @@ var AddUserComponent = /** @class */ (function () {
             pagingType: 'full_numbers',
             pageLength: 10,
         };
+        this.cols = [
+            { field: 'SerialNumber', header: 'S NO' },
+            { field: 'QuizName', header: 'Quiz Name' }
+        ];
+        this.col = [
+            { field: 'StartDateTime', header: 'Start Time' },
+            { field: 'EndDateTime', header: 'End Time' },
+        ];
         setTimeout(function () {
             _this.loadSchedule();
         }, 0);
@@ -5627,7 +5805,10 @@ var AddUserComponent = /** @class */ (function () {
         var _this = this;
         this.service.getSchedule(localStorage.getItem('uid')).subscribe(function (res) {
             _this.scheduleList = res;
-            _this.dtTrigger.next();
+            // this.dtTrigger.next();
+            for (_this.i = 1; _this.i <= _this.scheduleList.length; _this.i++) {
+                _this.scheduleList[_this.i - 1].SerialNumber = _this.i;
+            }
         });
     };
     AddUserComponent.prototype.addUserToSchedule = function (scheduleid, arrayindex) {
@@ -5639,8 +5820,8 @@ var AddUserComponent = /** @class */ (function () {
         dialogConfig.data = scheduleid;
         this.dialog.open(_add_user1_add_user1_component__WEBPACK_IMPORTED_MODULE_6__["AddUser1Component"], dialogConfig).afterClosed().subscribe(function (res) {
             _this.loadSchedule();
-            _this.dtTrigger.unsubscribe();
-            _this.dtTrigger.next();
+            // this.dtTrigger.unsubscribe();
+            // this.dtTrigger.next();
         });
     };
     AddUserComponent.prototype.deleteUserfromSchedule = function (scheduleId, arrayIndex) {
@@ -5659,8 +5840,8 @@ var AddUserComponent = /** @class */ (function () {
                 _this.dialog.open(_view_schedule_view_schedule_component__WEBPACK_IMPORTED_MODULE_7__["ViewScheduleComponent"], dialogConfig).afterClosed().subscribe(function () {
                     _this.loadSchedule();
                     _this.service.deleteUserVisibility = false;
-                    _this.dtTrigger.unsubscribe();
-                    _this.dtTrigger.next();
+                    // this.dtTrigger.unsubscribe();
+                    // this.dtTrigger.next();
                 });
             }
         });
@@ -5700,7 +5881,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-loader></app-loader>\n<app-main-nav2>\n  <div>\n    <h1 style=\"text-align: center\">List of Archived Schedules</h1>\n    <br /><br />\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n      class=\"row-border hover table table-bordered table-striped\">\n      <thead class=\"thead-dark\">\n        <tr>\n          <th scope=\"col\">#Schedule ID</th>\n          <th scope=\"col\">Quiz Name</th>\n          <th scope=\"col\">Start Date/Time</th>\n          <th scope=\"col\">End Date/Time</th>\n          <th scope=\"col\">UnArchive</th>\n        </tr>\n      </thead>\n      <tbody>\n        <ng-container *ngFor=\"let item of ScheduleList;index as i;\">\n          <tr>\n            <th>{{i+1}}</th>\n            <td>{{item.QuizName}}</td>\n            <td>{{item.StartDateTime}}</td>\n            <td>{{item.EndDateTime}}</td>\n            <td style=\"text-align:center;\">\n              <a class=\"btn btn-sm btn-info text-white\" (click)=\"unarchiveSchedule(item.QuizScheduleId)\"><i aria-hidden=\"true\"\n                  class=\"fa fa-pencil\"></i></a>\n            </td>\n          </tr>\n        </ng-container>\n      </tbody>\n    </table>\n  </div>\n</app-main-nav2>"
+module.exports = "<app-loader></app-loader>\n<app-main-nav2>\n  <div>\n    <!-- <h1 style=\"text-align: center\">List of Archived Schedules</h1>\n    <br /><br />\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n      class=\"row-border hover table table-bordered table-striped\">\n      <thead class=\"thead-dark\">\n        <tr>\n          <th scope=\"col\">#Schedule ID</th>\n          <th scope=\"col\">Quiz Name</th>\n          <th scope=\"col\">Start Date/Time</th>\n          <th scope=\"col\">End Date/Time</th>\n          <th scope=\"col\">UnArchive</th>\n        </tr>\n      </thead>\n      <tbody>\n        <ng-container *ngFor=\"let item of ScheduleList;index as i;\">\n          <tr>\n            <th>{{i+1}}</th>\n            <td>{{item.QuizName}}</td>\n            <td>{{item.StartDateTime | date:'medium'}}</td>\n            <td>{{item.EndDateTime | date:'medium'}}</td>\n            <td style=\"text-align:center;\">\n              <a class=\"btn btn-sm btn-info text-white\" (click)=\"unarchiveSchedule(item.QuizScheduleId)\"><i aria-hidden=\"true\"\n                  class=\"fa fa-pencil\"></i></a>\n            </td>\n          </tr>\n        </ng-container>\n      </tbody>\n    </table> -->\n    <p-table [columns]=\"cols\" [value]=\"ScheduleList\" [paginator]=\"true\" [rows]=\"6\" #dt [responsive]=\"true\">\n      <ng-template pTemplate=\"caption\">\n        <h3>List of Archived Schedules</h3>\n        <div style=\"text-align: right\">\n          <i class=\"fa fa-search\" style=\"margin:4px 4px 0 0\"></i>\n          <input type=\"text\" pInputText size=\"30\" placeholder=\"Global Filter\"\n            (input)=\"dt.filterGlobal($event.target.value, 'startsWith')\" style=\"width:auto\">\n        </div>\n      </ng-template>\n      <ng-template pTemplate=\"header\">\n        <tr>\n          <th *ngFor=\"let col of cols\" [pSortableColumn]=\"col.field\" style=\"background-color:#000000; color:#ffffff \">\n            {{col.header}}\n          </th>\n          <th style=\"background-color:#000000; color:#ffffff \">Start Time</th>\n          <th style=\"background-color:#000000; color:#ffffff \">End Time</th>\n          <th scope=\"col\" style=\"background-color:#000000; color:#ffffff \">UnArchive</th>\n      </ng-template>\n      <ng-template pTemplate=\"body\" let-i=\"rowIndex\" let-rowData let-columns=\"columns\">\n\n        <tr [pSelectableRow]=\"rowData\">\n          <td *ngFor=\"let col of columns;\">\n            {{rowData[col.field]}}\n          </td>\n          <td *ngFor=\"let c of col;\">\n            {{rowData[c.field] | date: 'medium' :amLocal}}\n          </td>\n          <td style=\"text-align:center;\">\n            <a class=\"btn btn-sm btn-info text-white\" (click)=\"unarchiveSchedule(rowData.QuizScheduleId)\"><i\n                aria-hidden=\"true\" class=\"fa fa-pencil\"></i></a>\n          </td>\n        </tr>\n      </ng-template>\n    </p-table>\n  </div>\n</app-main-nav2>"
 
 /***/ }),
 
@@ -5737,6 +5918,14 @@ var ArchivedScheduleComponent = /** @class */ (function () {
             pagingType: 'full_numbers',
             pageLength: 10,
         };
+        this.cols = [
+            { field: 'SerialNumber', header: 'Schedule NO' },
+            { field: 'QuizName', header: 'Quiz Name' }
+        ];
+        this.col = [
+            { field: 'StartDateTime', header: 'Start Time' },
+            { field: 'EndDateTime', header: 'End Time' },
+        ];
         setTimeout(function () {
             _this.loadArchivedSchedules();
         }, 0);
@@ -5745,7 +5934,10 @@ var ArchivedScheduleComponent = /** @class */ (function () {
         var _this = this;
         this.service.getArchivedSchedules().subscribe(function (res) {
             _this.ScheduleList = res;
-            _this.dtTrigger.next();
+            // this.dtTrigger.next();
+            for (_this.i = 1; _this.i <= _this.ScheduleList.length; _this.i++) {
+                _this.ScheduleList[_this.i - 1].SerialNumber = _this.i;
+            }
         });
     };
     ArchivedScheduleComponent.prototype.unarchiveSchedule = function (id) {
@@ -5753,7 +5945,7 @@ var ArchivedScheduleComponent = /** @class */ (function () {
         if (confirm('Are you sure you want to un-archive this')) {
             this.service.unArchiveSchedule(id).subscribe(function (res) {
                 _this.toastr.success('Un-Archived Successfully', 'Assesment System');
-                _this.dtTrigger.unsubscribe();
+                // this.dtTrigger.unsubscribe();
                 _this.loadArchivedSchedules();
             });
         }
@@ -5838,7 +6030,7 @@ var CreateScheduleComponent = /** @class */ (function () {
     CreateScheduleComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.resetForm();
-        this.date = this.datePipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
+        this.date = this.datePipe.transform(new Date().getUTCHours(), 'yyyy-MM-ddThh:mm');
         this.CCreatedBy = localStorage.getItem('uid');
         this.service.retriveAllQuizzes().subscribe(function (res) {
             _this.QuizList = res;
@@ -5861,7 +6053,7 @@ var CreateScheduleComponent = /** @class */ (function () {
     };
     CreateScheduleComponent.prototype.checkStartDate = function (date1) {
         this.stdate = date1.value;
-        this.date = (this.datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm'));
+        this.date = this.datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm');
         if (date1.value < this.date) {
             this.startDateValid = true;
         }
@@ -5870,7 +6062,7 @@ var CreateScheduleComponent = /** @class */ (function () {
         }
     };
     CreateScheduleComponent.prototype.checkEndDate = function (date2) {
-        this.date = (this.datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm'));
+        this.date = this.datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm');
         if (date2.value <= this.stdate || date2.value < this.date) {
             this.endDateValid = true;
         }
@@ -5884,7 +6076,10 @@ var CreateScheduleComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./create-schedule.component.html */ "./src/app/test-admin/retrieve-schedule/create-schedule/create-schedule.component.html"),
             styles: [__webpack_require__(/*! ./create-schedule.component.css */ "./src/app/test-admin/retrieve-schedule/create-schedule/create-schedule.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_test_admin_service__WEBPACK_IMPORTED_MODULE_2__["TestAdminService"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_3__["MatDialog"], ngx_toastr__WEBPACK_IMPORTED_MODULE_4__["ToastrService"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["DatePipe"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_test_admin_service__WEBPACK_IMPORTED_MODULE_2__["TestAdminService"],
+            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_3__["MatDialog"],
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_4__["ToastrService"],
+            _angular_common__WEBPACK_IMPORTED_MODULE_5__["DatePipe"]])
     ], CreateScheduleComponent);
     return CreateScheduleComponent;
 }());
@@ -5911,7 +6106,7 @@ module.exports = "th,td{\n    color: black;\n    text-align: center;\n}\n/*# sou
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-loader></app-loader>\n<app-main-nav2>\n  <br /><br />\n  <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th scope=\"col\">#S. No.</th>\n        <th scope=\"col\">Quiz Name</th>\n        <th scope=\"col\">Start Date/Time</th>\n        <th scope=\"col\">End Date/Time</th>\n        <th scope=\"col\">Action</th>\n      </tr>\n    </thead>\n    <tbody>\n      <ng-container *ngFor=\"let item of scheduleList;index as i;\">\n        <tr style=\"color:azure\">\n          <th (click)=\"viewSchedule(item.QuizScheduleId,i+1)\" scope=\"row\">{{i+1}}</th>\n          <td (click)=\"viewSchedule(item.QuizScheduleId,i+1)\" >{{item.QuizName}}</td>\n          <td (click)=\"viewSchedule(item.QuizScheduleId,i+1)\" >{{item.StartDateTime}}</td>\n          <td (click)=\"viewSchedule(item.QuizScheduleId,i+1)\" >{{item.EndDateTime}}</td>\n          <td>\n            <a class=\"btn btn-sm btn-info text-white\" (click)=\"editSchedule(item.QuizScheduleId,i+1)\"><i aria-hidden=\"true\"\n                class=\"fa fa-pencil\"></i></a>\n            <a class=\"btn btn-sm btn-danger text-white ml-1\" (click)=\"deleteSchedule(item.QuizScheduleId)\"><i aria-hidden=\"true\"\n                class=\"fa fa-trash\"></i></a>\n          </td>\n        </tr>\n      </ng-container>\n    </tbody>\n  </table>\n</app-main-nav2>"
+module.exports = "<app-loader></app-loader>\n<app-main-nav2>\n  <br /><br />\n  <!-- <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"\n    class=\"row-border hover table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th scope=\"col\">#S. No.</th>\n        <th scope=\"col\">Quiz Name</th>\n        <th scope=\"col\">Start Date/Time</th>\n        <th scope=\"col\">End Date/Time</th>\n        <th scope=\"col\">Action</th>\n      </tr>\n    </thead>\n    <tbody>\n      <ng-container *ngFor=\"let item of scheduleList;index as i;\">\n        <tr style=\"color:azure\">\n          <th (click)=\"viewSchedule(item.QuizScheduleId,i+1)\" scope=\"row\">{{i+1}}</th>\n          <td (click)=\"viewSchedule(item.QuizScheduleId,i+1)\" >{{item.QuizName}}</td>\n          <td (click)=\"viewSchedule(item.QuizScheduleId,i+1)\" >{{item.StartDateTime | date:'medium'}} </td>\n          <td (click)=\"viewSchedule(item.QuizScheduleId,i+1)\" >{{item.EndDateTime | date:'medium' }}</td>\n          <td>\n            <a class=\"btn btn-sm btn-info text-white\" (click)=\"editSchedule(item.QuizScheduleId,i+1)\"><i aria-hidden=\"true\"\n                class=\"fa fa-pencil\"></i></a>\n            <a class=\"btn btn-sm btn-danger text-white ml-1\" (click)=\"deleteSchedule(item.QuizScheduleId)\"><i aria-hidden=\"true\"\n                class=\"fa fa-trash\"></i></a>\n          </td>\n        </tr>\n      </ng-container>\n    </tbody>\n  </table> -->\n  <p-table [columns]=\"cols\" [value]=\"scheduleList\" [paginator]=\"true\" [rows]=\"6\" #dt [responsive]=\"true\">\n    <ng-template pTemplate=\"caption\">\n      <h3>Add/Delete User in Schedule</h3>\n      <div style=\"text-align: right\">        \n          <i class=\"fa fa-search\" style=\"margin:4px 4px 0 0\"></i>\n          <input type=\"text\" pInputText size=\"30\" placeholder=\"Global Filter\" (input)=\"dt.filterGlobal($event.target.value, 'startsWith')\" style=\"width:auto\">\n      </div>\n    </ng-template>\n    <ng-template pTemplate=\"header\">\n      <tr>\n        <th *ngFor=\"let col of cols\" [pSortableColumn]=\"col.field\" style=\"background-color:#000000; color:#ffffff \">\n          {{col.header}}\n        </th>\n        <th style=\"background-color:#000000; color:#ffffff \">Start Time</th>\n        <th style=\"background-color:#000000; color:#ffffff \">End Time</th>\n        <th style=\"background-color:#000000; color:#ffffff \">Action</th>\n    </ng-template>\n    <ng-template pTemplate=\"body\" let-i=\"rowIndex\" let-rowData let-columns=\"columns\">\n      \n      <tr [pSelectableRow]=\"rowData\">\n        <td *ngFor=\"let col of columns;\" (click)=\"viewSchedule(rowData.QuizScheduleId,rowData.SerialNumber)\">\n          {{rowData[col.field]}}\n        </td>\n        <td *ngFor=\"let c of col;\">\n          {{rowData[c.field]|date:'yyyy-MM-dd HH:mm:ss Z'}}\n        </td>\n        <td>\n          <a class=\"btn btn-sm btn-info text-white\" (click)=\"editSchedule(rowData.QuizScheduleId,rowData.SerialNumber)\"><i aria-hidden=\"true\"\n              class=\"fa fa-pencil\"></i></a>\n          <a class=\"btn btn-sm btn-danger text-white ml-1\" (click)=\"deleteSchedule(rowData.QuizScheduleId,rowData.SerialNumber)\"><i aria-hidden=\"true\"\n              class=\"fa fa-trash\"></i></a>\n        </td>\n      </tr>\n    </ng-template>\n  </p-table>\n</app-main-nav2>"
 
 /***/ }),
 
@@ -5959,8 +6154,16 @@ var RetrieveScheduleComponent = /** @class */ (function () {
         var _this = this;
         this.dtOptions = {
             pagingType: 'full_numbers',
-            pageLength: 10,
+            pageLength: 10
         };
+        this.cols = [
+            { field: 'SerialNumber', header: 'S NO' },
+            { field: 'QuizName', header: 'Quiz Name' },
+        ];
+        this.col = [
+            { field: 'StartDateTime', header: 'Start Time' },
+            { field: 'EndDateTime', header: 'End Time' },
+        ];
         setTimeout(function () {
             _this.loadSchedule();
         }, 0);
@@ -5969,7 +6172,11 @@ var RetrieveScheduleComponent = /** @class */ (function () {
         var _this = this;
         this.service.getSchedule(localStorage.getItem('uid')).subscribe(function (res) {
             _this.scheduleList = res;
-            _this.dtTrigger.next();
+            // this.dtTrigger.next();;
+            console.log(_this.scheduleList);
+            for (_this.i = 1; _this.i <= _this.scheduleList.length; _this.i++) {
+                _this.scheduleList[_this.i - 1].SerialNumber = _this.i;
+            }
         });
     };
     RetrieveScheduleComponent.prototype.deleteSchedule = function (scheduleId) {
@@ -5981,8 +6188,8 @@ var RetrieveScheduleComponent = /** @class */ (function () {
             else {
                 _this.toastr.success('Deleted Successfully', 'Assesment System');
                 _this.loadSchedule();
-                _this.dtTrigger.unsubscribe();
-                _this.dtTrigger.next();
+                // this.dtTrigger.unsubscribe();
+                // this.dtTrigger.next();
             }
         });
     };
@@ -5994,8 +6201,7 @@ var RetrieveScheduleComponent = /** @class */ (function () {
         dialogConfig.data = scheduleid;
         this.service.readonlyStatus = true;
         this.service.formdata = this.scheduleList[arrayindex - 1];
-        this.dialog.open(_view_schedule_view_schedule_component__WEBPACK_IMPORTED_MODULE_6__["ViewScheduleComponent"], dialogConfig).afterClosed().subscribe(function (res) {
-        });
+        this.dialog.open(_view_schedule_view_schedule_component__WEBPACK_IMPORTED_MODULE_6__["ViewScheduleComponent"], dialogConfig).afterClosed().subscribe(function (res) { });
     };
     RetrieveScheduleComponent.prototype.editSchedule = function (scheduleid, arrayindex) {
         var _this = this;
@@ -6021,7 +6227,10 @@ var RetrieveScheduleComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./retrieve-schedule.component.html */ "./src/app/test-admin/retrieve-schedule/retrieve-schedule.component.html"),
             styles: [__webpack_require__(/*! ./retrieve-schedule.component.css */ "./src/app/test-admin/retrieve-schedule/retrieve-schedule.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_test_admin_service__WEBPACK_IMPORTED_MODULE_5__["TestAdminService"], ngx_toastr__WEBPACK_IMPORTED_MODULE_4__["ToastrService"], _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialog"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_test_admin_service__WEBPACK_IMPORTED_MODULE_5__["TestAdminService"],
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_4__["ToastrService"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialog"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], RetrieveScheduleComponent);
     return RetrieveScheduleComponent;
 }());
@@ -6345,8 +6554,8 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 var environment = {
     production: false,
-    apiURl: ' http://80c4bf11.ngrok.io/api/',
-    imgURl: ' http://80c4bf11.ngrok.io/Images/'
+    apiURl: ' http://f18f4274.ngrok.io/api/',
+    imgURl: ' http://f18f4274.ngrok.io/Images/'
 };
 /*
  * For easier debugging in development mode, you can import the following file
@@ -6393,7 +6602,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/nineleaps/Downloads/AssessmentSystem/WebApp/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/nineleaps/Internal/AssessmentSystem/WebApp/src/main.ts */"./src/main.ts");
 
 
 /***/ })
