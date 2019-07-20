@@ -6,17 +6,14 @@ import { ToastrService } from 'ngx-toastr';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { forEach } from '@angular/router/src/utils/collection';
 
-
 @Component({
 	selector: 'app-createtag',
 	templateUrl: './createtag.component.html',
-	styleUrls: ['./createtag.component.css']
+	styleUrls: [ './createtag.component.scss' ]
 })
-
 export class CreatetagComponent implements OnInit {
-
 	public model: TagModel;
-	userId = "";
+	userId = '';
 	existingTags: TagModel[];
 	Option: string = '';
 	tagExists = false;
@@ -25,15 +22,15 @@ export class CreatetagComponent implements OnInit {
 		@Inject(MAT_DIALOG_DATA) public data,
 		public dialogRef: MatDialogRef<CreatetagComponent>,
 		private service: ContentCreatorServiceService,
-		private toastr: ToastrService) { }
+		private toastr: ToastrService
+	) {}
 
 	ngOnInit() {
 		this.userId = localStorage.getItem('uid');
 		if (this.data === null) {
 			this.Option = 'Create';
 			this.resetForm();
-		}
-		else {
+		} else {
 			this.Option = 'Update';
 			this.service.tagForm = this.data;
 		}
@@ -54,7 +51,7 @@ export class CreatetagComponent implements OnInit {
 	}
 
 	onSubmit(form: NgForm) {
-		this.service.postTags(form.value).subscribe(res => {
+		this.service.postTags(form.value).subscribe((res) => {
 			this.toastr.success('Inserted successfully');
 			this.resetForm(form);
 			this.dialogRef.close('Inserted');
@@ -66,8 +63,7 @@ export class CreatetagComponent implements OnInit {
 			if (tag.Name.toString().toLowerCase() === name1.value.toString().toLowerCase()) {
 				this.tagExists = true;
 				break;
-			}
-			else {
+			} else {
 				this.tagExists = false;
 			}
 		}

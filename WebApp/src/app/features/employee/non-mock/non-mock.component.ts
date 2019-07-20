@@ -8,7 +8,7 @@ import { Time } from '@angular/common';
 @Component({
 	selector: 'app-non-mock',
 	templateUrl: './non-mock.component.html',
-	styleUrls: ['./non-mock.component.css']
+	styleUrls: [ './non-mock.component.scss' ]
 })
 export class NonMockComponent implements OnInit {
 	nonMockScheduleList: any[];
@@ -27,7 +27,7 @@ export class NonMockComponent implements OnInit {
 	col: any[];
 	i: number;
 	tg: string = '';
-	constructor(private service: EmployeeService, private router: Router) { }
+	constructor(private service: EmployeeService, private router: Router) {}
 
 	ngOnInit() {
 		setTimeout(() => {
@@ -43,7 +43,7 @@ export class NonMockComponent implements OnInit {
 			{ field: 'QuizTime', header: 'Quiz Time' },
 			{ field: 'Tags1', header: 'Tags' }
 		];
-		this.col = [{ field: 'StartDateTime', header: 'Start Time' }, { field: 'EndDateTime', header: 'End Time' }];
+		this.col = [ { field: 'StartDateTime', header: 'Start Time' }, { field: 'EndDateTime', header: 'End Time' } ];
 		// this.QuizTime = "00:00:00";
 		// this.QuizTimeSeconds = parseInt((this.QuizTime.split(":"))[2]);
 	}
@@ -59,7 +59,10 @@ export class NonMockComponent implements OnInit {
 					this.tg = this.tg + tag.Name + ',';
 				}
 				this.nonMockScheduleList[this.i - 1].Tags1 = this.tg;
-				this.nonMockScheduleList[this.i - 1].Tags1 = this.nonMockScheduleList[this.i - 1].Tags1.substring(0, this.nonMockScheduleList[this.i - 1].Tags1.length - 1);
+				this.nonMockScheduleList[this.i - 1].Tags1 = this.nonMockScheduleList[this.i - 1].Tags1.substring(
+					0,
+					this.nonMockScheduleList[this.i - 1].Tags1.length - 1
+				);
 			}
 		});
 	}
@@ -80,7 +83,7 @@ export class NonMockComponent implements OnInit {
 			this.service.hours = parseInt(this.time[0]);
 			this.service.minutes = parseInt(this.time[1]);
 			this.service.QuizScheduleId = Id;
-			this.router.navigate(['/emp-dash/quiz/take-quiz']);
+			this.router.navigate([ '/emp-dash/quiz/take-quiz' ]);
 		});
 	}
 

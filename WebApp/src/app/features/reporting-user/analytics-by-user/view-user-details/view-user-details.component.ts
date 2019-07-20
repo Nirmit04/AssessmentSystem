@@ -8,7 +8,7 @@ import { Subscription, Subject } from 'rxjs';
 @Component({
   selector: 'app-view-user-details',
   templateUrl: './view-user-details.component.html',
-  styleUrls: ['./view-user-details.component.css']
+  styleUrls: ['./view-user-details.component.scss']
 })
 export class ViewUserDetailsComponent implements OnInit {
 

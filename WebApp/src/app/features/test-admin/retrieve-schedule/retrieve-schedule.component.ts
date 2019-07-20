@@ -10,7 +10,7 @@ import { Subject } from 'rxjs';
 @Component({
 	selector: 'app-retrieve-schedule',
 	templateUrl: './retrieve-schedule.component.html',
-	styleUrls: [ './retrieve-schedule.component.css' ]
+	styleUrls: [ './retrieve-schedule.component.scss' ]
 })
 export class RetrieveScheduleComponent implements OnInit {
 	scheduleList: Schedule[];

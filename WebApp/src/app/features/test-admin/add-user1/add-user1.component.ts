@@ -8,7 +8,7 @@ import { Subject, Subscription } from 'rxjs';
 @Component({
   selector: 'app-add-user1',
   templateUrl: './add-user1.component.html',
-  styleUrls: ['./add-user1.component.css']
+  styleUrls: ['./add-user1.component.scss']
 })
 
 export class AddUser1Component implements OnInit {

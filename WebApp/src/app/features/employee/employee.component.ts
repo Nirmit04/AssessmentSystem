@@ -5,10 +5,9 @@ import { EmployeeService } from './shared/employee.service';
 @Component({
 	selector: 'app-employee',
 	templateUrl: './employee.component.html',
-	styleUrls: ['./employee.component.css']
+	styleUrls: [ './employee.component.scss' ]
 })
 export class EmployeeComponent implements OnInit {
-
 	Firstname: string;
 	Lastname: string;
 	email: string;
@@ -19,7 +18,7 @@ export class EmployeeComponent implements OnInit {
 	recentQuiz: any;
 	show: boolean = true;
 
-	constructor(private ngxService: NgxUiLoaderService, private service: EmployeeService) { }
+	constructor(private ngxService: NgxUiLoaderService, private service: EmployeeService) {}
 
 	ngOnInit() {
 		this.ngxService.startBackground('do-background-things');
@@ -37,14 +36,13 @@ export class EmployeeComponent implements OnInit {
 			this.email = res.Email;
 		});
 	}
-	loadUserProgress(){
-		this.service.getUserProgress().subscribe((res:any) =>{
+	loadUserProgress() {
+		this.service.getUserProgress().subscribe((res: any) => {
 			this.mocks = res.Mock;
 			this.nmocks = res.Scheduled;
 			this.accuracy = res.Accuracy;
-			this.recentQuiz = res.RecentActivity
+			this.recentQuiz = res.RecentActivity;
 			this.show = false;
-		})
+		});
 	}
-
 }

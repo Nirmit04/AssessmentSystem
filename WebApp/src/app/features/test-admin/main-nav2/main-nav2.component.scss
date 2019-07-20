@@ -1,3 +1,4 @@
+@import 'color.scss';
 .mat-sidenav-content {
 	overflow-x: hidden;
 }
@@ -18,7 +19,7 @@
 }
 .sidenav {
 	width: 250px;
-	background-color: rgb(1, 139, 188);
+	background-color: rgb(2, 93, 140);
 }
 
 .sidenav .mat-toolbar {
@@ -51,7 +52,7 @@
 .log {
 	font-size: 12px;
 	cursor: pointer;
-	color:black !important;
+	color: black !important;
 }
 .mat-toolbar.mat-primary {
 	position: sticky;

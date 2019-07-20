@@ -3,21 +3,21 @@
   <p-table [columns]="cols" [value]="questionList" [paginator]="true" [rows]="6" #dt [responsive]="true">
       <ng-template pTemplate="caption">
         <h3>Question List</h3>
-        <div style="text-align: right">        
-            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-            <input type="text" pInputText size="30" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'startsWith')" style="width:auto">
+        <div class="search">        
+            <i class="fa fa-search"></i>
+            <input type="text" pInputText size="30" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'startsWith')">
         </div>
       </ng-template>
       <ng-template pTemplate="header">
         <tr>
-          <th style="background-color:#000000; color:#ffffff;">S NO</th>
-          <th *ngFor="let col of colss" style="background-color:#000000; color:#ffffff; width: 50%">
+          <th>S NO</th>
+          <th *ngFor="let col of colss" class="wide">
             {{col.header}}
           </th>
-          <th *ngFor="let col of cols" [pSortableColumn]="col.field" style="background-color:#000000; color:#ffffff ">
+          <th *ngFor="let col of cols" [pSortableColumn]="col.field">
             {{col.header}}
           </th>
-          <th style="background-color:#000000; color:#ffffff ">Action</th>
+          <th>Action</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-i="rowIndex" let-rowData let-columns="columns">

@@ -5,7 +5,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 @Component({
 	selector: 'app-reporting-user',
 	templateUrl: './reporting-user.component.html',
-	styleUrls: ['./reporting-user.component.css']
+	styleUrls: ['./reporting-user.component.scss']
 })
 export class ReportingUserComponent implements OnInit {
 	Firstname: string;

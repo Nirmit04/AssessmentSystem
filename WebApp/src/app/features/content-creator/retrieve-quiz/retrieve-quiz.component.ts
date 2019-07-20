@@ -12,9 +12,8 @@ import { Subject } from 'rxjs';
 @Component({
 	selector: 'retrieve-quiz',
 	templateUrl: './retrieve-quiz.component.html',
-	styleUrls: ['./retrieve-quiz.component.css']
+	styleUrls: [ './retrieve-quiz.component.scss' ]
 })
-
 export class RetrieveQuizComponent implements OnInit {
 	tg: string = '';
 	QuizList: QuizModel[];
@@ -29,16 +28,18 @@ export class RetrieveQuizComponent implements OnInit {
 	cols: any[];
 	i: number;
 
-	constructor(private service: ContentCreatorServiceService,
+	constructor(
+		private service: ContentCreatorServiceService,
 		private router: Router,
 		private dialog: MatDialog,
-		private toastr: ToastrService) { }
+		private toastr: ToastrService
+	) {}
 
 	ngOnInit() {
 		this.dtOptions = {
 			pagingType: 'full_numbers',
 			pageLength: 10,
-			responsive: true,
+			responsive: true
 		};
 		this.cols = [
 			{ field: 'SerialNumber', header: 'S NO' },
@@ -49,7 +50,6 @@ export class RetrieveQuizComponent implements OnInit {
 			{ field: 'TotalQuestions', header: 'Total Questions' },
 			{ field: 'TotalMarks', header: 'Total Marks' },
 			{ field: 'QuizTime', header: 'Duration (HH:MM)' }
-
 		];
 		setTimeout(() => {
 			this.loadQuiz();
@@ -60,7 +60,7 @@ export class RetrieveQuizComponent implements OnInit {
 		this.service.getQuizzes().subscribe((res: any) => {
 			console.log(res);
 			this.QuizList = res as QuizModel[];
-			console.log(this.QuizList)
+			console.log(this.QuizList);
 			// this.dtTrigger.next();
 			for (this.i = 1; this.i <= this.QuizList.length; this.i++) {
 				this.QuizList[this.i - 1].SerialNumber = this.i;
@@ -69,7 +69,10 @@ export class RetrieveQuizComponent implements OnInit {
 					this.tg = this.tg + tag.Name + ',';
 				}
 				this.QuizList[this.i - 1].Tags1 = this.tg;
-				this.QuizList[this.i - 1].Tags1 = this.QuizList[this.i - 1].Tags1.substring(0, this.QuizList[this.i - 1].Tags1.length - 1);
+				this.QuizList[this.i - 1].Tags1 = this.QuizList[this.i - 1].Tags1.substring(
+					0,
+					this.QuizList[this.i - 1].Tags1.length - 1
+				);
 			}
 		});
 	}
@@ -77,11 +80,11 @@ export class RetrieveQuizComponent implements OnInit {
 	onCreate() {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
-		dialogConfig.width = "70%";
+		dialogConfig.width = '70%';
 		// dialogConfig.height = "90%";
 		dialogConfig.disableClose = true;
 		let dialogRef = this.dialog.open(CreateQuizComponent, dialogConfig);
-		dialogRef.afterClosed().subscribe(result => {
+		dialogRef.afterClosed().subscribe((result) => {
 			this.service.Difficulty = null;
 			this.service.QuestionType = null;
 			this.service.SubjectId = null;
@@ -112,10 +115,10 @@ export class RetrieveQuizComponent implements OnInit {
 			this.QuestionList = res as any[];
 			const dialogConfig = new MatDialogConfig();
 			dialogConfig.autoFocus = true;
-			dialogConfig.width = "70%";
+			dialogConfig.width = '70%';
 			dialogConfig.disableClose = true;
 			dialogConfig.data = this.QuestionList;
-			this.dialog.open(UpdateQuizComponent, dialogConfig).afterClosed().subscribe(res => {
+			this.dialog.open(UpdateQuizComponent, dialogConfig).afterClosed().subscribe((res) => {
 				this.loadQuiz();
 				this.service.Difficulty = null;
 				this.service.QuestionType = null;
@@ -126,11 +129,9 @@ export class RetrieveQuizComponent implements OnInit {
 				localStorage.removeItem('quizId');
 			});
 		});
-
 	}
 
 	ngOnDestroy() {
 		this.dtTrigger.unsubscribe();
 	}
-
 }

@@ -5,7 +5,7 @@ import { Question } from '../../content-creator/shared/question.model';
 @Component({
 	selector: 'app-view-answer',
 	templateUrl: './view-answer.component.html',
-	styleUrls: [ './view-answer.component.css' ]
+	styleUrls: [ './view-answer.component.scss' ]
 })
 export class ViewAnswerComponent implements OnInit {
 	ques: Question;

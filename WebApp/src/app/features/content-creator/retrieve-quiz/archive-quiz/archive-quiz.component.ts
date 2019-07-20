@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 @Component({
 	selector: 'app-archive-quiz',
 	templateUrl: './archive-quiz.component.html',
-	styleUrls: ['./archive-quiz.component.css']
+	styleUrls: [ './archive-quiz.component.scss' ]
 })
 export class ArchiveQuizComponent implements OnInit {
 	tg = '';
@@ -23,13 +23,12 @@ export class ArchiveQuizComponent implements OnInit {
 	cols: any[];
 	i: number;
 
-	constructor(private service: ContentCreatorServiceService,
-		private toastr: ToastrService) { }
+	constructor(private service: ContentCreatorServiceService, private toastr: ToastrService) {}
 
 	public ngOnInit() {
 		this.dtOptions = {
 			pagingType: 'full_numbers',
-			pageLength: 10,
+			pageLength: 10
 		};
 		this.cols = [
 			{ field: 'SerialNumber', header: 'S NO' },
@@ -38,7 +37,7 @@ export class ArchiveQuizComponent implements OnInit {
 			{ field: 'Difficulty', header: 'Difficulty' },
 			{ field: 'TotalQuestions', header: 'Total Questions' },
 			{ field: 'TotalMarks', header: 'Total Marks' },
-			{ field: 'Tags1', header: 'Tags' },
+			{ field: 'Tags1', header: 'Tags' }
 		];
 
 		this.loadQuiz();
@@ -53,14 +52,14 @@ export class ArchiveQuizComponent implements OnInit {
 			// this.dtTrigger.next();
 			for (this.i = 1; this.i <= this.QuizList.length; this.i++) {
 				this.QuizList[this.i - 1].SerialNumber = this.i;
-				this.tg = ''
+				this.tg = '';
 				for (let tag of this.QuizList[this.i - 1].Tags) {
 					this.tg = this.tg + tag.Name + ',';
 					this.QuizList[this.i - 1].Tags1 = this.tg;
 				}
-			//	this.QuizList[this.i - 1].Tags1 = this.QuizList[this.i - 1].Tags1.substring(0, this.QuizList[this.i - 1].Tags1.length - 1);
+				//	this.QuizList[this.i - 1].Tags1 = this.QuizList[this.i - 1].Tags1.substring(0, this.QuizList[this.i - 1].Tags1.length - 1);
 			}
-			console.log(this.QuizList)
+			console.log(this.QuizList);
 		});
 	}
 
@@ -79,5 +78,4 @@ export class ArchiveQuizComponent implements OnInit {
 	ngOnDestroy() {
 		this.dtTrigger.unsubscribe();
 	}
-
 }

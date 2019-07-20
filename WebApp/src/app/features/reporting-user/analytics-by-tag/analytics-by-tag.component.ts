@@ -8,7 +8,7 @@ import { Label, SingleDataSet } from 'ng2-charts';
 @Component({
   selector: 'app-analytics-by-tag',
   templateUrl: './analytics-by-tag.component.html',
-  styleUrls: ['./analytics-by-tag.component.css']
+  styleUrls: ['./analytics-by-tag.component.scss']
 })
 export class AnalyticsByTagComponent implements OnInit {
 

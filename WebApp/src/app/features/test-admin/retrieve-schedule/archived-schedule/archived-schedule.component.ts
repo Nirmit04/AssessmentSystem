@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 @Component({
   selector: 'app-archived-schedule',
   templateUrl: './archived-schedule.component.html',
-  styleUrls: ['./archived-schedule.component.css']
+  styleUrls: ['./archived-schedule.component.scss']
 })
 
 export class ArchivedScheduleComponent implements OnInit {

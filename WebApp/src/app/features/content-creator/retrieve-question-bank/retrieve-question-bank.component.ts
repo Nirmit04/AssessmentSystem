@@ -6,20 +6,22 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UpdateQuestionComponent } from '../update-question/update-question.component';
 import { Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
-import { ViewEncapsulation } from "@angular/core";
+import { ViewEncapsulation } from '@angular/core';
 
 declare var $: any;
 
 @Component({
 	selector: 'app-retrieve-question-bank',
-	styles: [`
+	styles: [
+		`
 		.sample {
 			background-color: #000000 !important;
 			color: #ffffff !important;
 		}
-	`],
+	`
+	],
 	templateUrl: './retrieve-question-bank.component.html',
-	styleUrls: ['./retrieve-question-bank.component.css'],
+	styleUrls: [ './retrieve-question-bank.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
 export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
@@ -33,9 +35,11 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 	colss: any[];
 	i: number;
 
-	constructor(private service: ContentCreatorServiceService,
+	constructor(
+		private service: ContentCreatorServiceService,
 		private toastr: ToastrService,
-		private dialog: MatDialog) { }
+		private dialog: MatDialog
+	) {}
 
 	ngOnInit(): void {
 		this.dtOptions = {
@@ -47,9 +51,7 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 			this.getQuesOfUser(localStorage.getItem('uid'));
 		}, 0);
 
-		this.colss = [
-			{ field: 'QuestionStatement', header: 'Question' }
-		]
+		this.colss = [ { field: 'QuestionStatement', header: 'Question' } ];
 		this.cols = [
 			{ field: 'QuestionType', header: 'Question Type' },
 			{ field: 'Difficulty', header: 'Difficulty Level' },
@@ -69,9 +71,12 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 					this.tg = this.tg + tag.Name + ',';
 					this.questionList[this.i - 1].Tags1 = this.tg;
 				}
-				this.questionList[this.i - 1].Tags1 = this.questionList[this.i - 1].Tags1.substring(0, this.questionList[this.i - 1].Tags1.length - 1);
+				this.questionList[this.i - 1].Tags1 = this.questionList[this.i - 1].Tags1.substring(
+					0,
+					this.questionList[this.i - 1].Tags1.length - 1
+				);
 			}
-		})
+		});
 	}
 
 	deleteQues(qid) {
@@ -88,7 +93,7 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 	editUserQues(quesid: number, arrayindex: number) {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
-		dialogConfig.width = "70%";
+		dialogConfig.width = '70%';
 		dialogConfig.disableClose = true;
 		this.service.readonlyStatus = false;
 		this.service.formData = this.questionList[arrayindex - 1];
@@ -100,16 +105,14 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 	viewUserQues(quesid: number, arrayindex: number) {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
-		dialogConfig.width = "70%";
+		dialogConfig.width = '70%';
 		dialogConfig.disableClose = true;
 		this.service.readonlyStatus = true;
 		this.service.formData = this.questionList[arrayindex - 1];
-		this.dialog.open(UpdateQuestionComponent, dialogConfig).afterClosed().subscribe((res: any) => {
-		});
+		this.dialog.open(UpdateQuestionComponent, dialogConfig).afterClosed().subscribe((res: any) => {});
 	}
 
 	ngOnDestroy() {
 		this.dtTrigger.unsubscribe();
 	}
-
 }

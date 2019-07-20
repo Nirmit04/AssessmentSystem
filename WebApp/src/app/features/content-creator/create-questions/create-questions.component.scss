@@ -1,9 +1,3 @@
-th {
-	text-align: center;
-}
-mat-dialog-content {
-	position: relative;
-}
 .pos {
 	position: absolute;
 	right: 0.5%;
@@ -18,4 +12,10 @@ mat-icon {
 	position: absolute;
 	left: 10%;
 	top: 10%;
+}
+.card-title {
+	text-align: center;
+}
+.form-group {
+	margin-top: 3%;
 }

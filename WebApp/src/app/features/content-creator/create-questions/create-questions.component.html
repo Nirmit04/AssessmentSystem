@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-body">
         <strong>
-          <h2 *ngIf="service.QuestionType" class="card-title" style="text-align: center">Add {{service.QuestionType}}
+          <h2 *ngIf="service.QuestionType" class="card-title">Add {{service.QuestionType}}
             Questions</h2>
         </strong>
         <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
@@ -196,7 +196,7 @@
               </div>
             </div>
           </div>
-          <div class="form-group" style="margin-top: 3%">
+          <div class="form-group">
             <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
           </div>
         </form>

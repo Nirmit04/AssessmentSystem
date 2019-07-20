@@ -3,7 +3,7 @@ mat-dialog-content {
 }
 .pos {
 	position: absolute;
-	left:100%;
+	left: 100%;
 	z-index: 9999;
 	width: 35px;
 	height: 35px;
@@ -14,4 +14,7 @@ mat-icon {
 	position: absolute;
 	left: 10%;
 	top: 10%;
+}
+.card-title {
+	text-align: center;
 }

@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-mainnav4',
   templateUrl: './mainnav4.component.html',
-  styleUrls: ['./mainnav4.component.css']
+  styleUrls: ['./mainnav4.component.scss']
 })
 export class Mainnav4Component {
 

@@ -3,7 +3,7 @@
 </button>
 <mat-dialog-content>
   <div class="card-body">
-    <strong><h5 class="card-title" style="text-align: center">Choose Questions</h5><br></strong>
+    <strong><h5 class="card-title">Choose Questions</h5><br></strong>
     <button type="button" (click)="add_new_ques()" class="btn btn-warning">New Ques.</button><br>
     <form #Questionform="ngForm" (submit)="onDetailsSubmit(Questionform)" autocomplete="off">
       <div *ngFor="let x of questions; let i = index"><br>

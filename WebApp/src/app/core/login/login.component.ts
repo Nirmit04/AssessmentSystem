@@ -7,13 +7,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.component.html',
-	styleUrls: ['./login.component.css']
+	styleUrls: [ './login.component.scss' ]
 })
 export class LoginComponent implements OnInit {
-
 	user: SocialUser;
 	returnURL: string;
-	constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
+	constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) {}
 
 	ngOnInit() {
 		localStorage.setItem('key', this.route.snapshot.queryParamMap.get('take-quiz'));
@@ -29,7 +28,7 @@ export class LoginComponent implements OnInit {
 				localStorage.setItem('id', this.user.id);
 				localStorage.setItem('imgurl', this.user.photoUrl);
 				localStorage.setItem('provider', this.user.provider);
-				this.router.navigate(['/home']);
+				this.router.navigate([ '/home' ]);
 			} else {
 				localStorage.clear();
 			}
@@ -43,5 +42,4 @@ export class LoginComponent implements OnInit {
 	signOut(): void {
 		this.authService.signOut();
 	}
-
 }

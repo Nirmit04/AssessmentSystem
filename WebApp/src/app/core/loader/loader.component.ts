@@ -3,15 +3,15 @@ import { Subject } from 'rxjs';
 import { LoaderServiceService } from '../../services/loader-service.service';
 
 @Component({
-  selector: 'app-loader',
-  templateUrl: './loader.component.html',
-  styleUrls: ['./loader.component.css']
+	selector: 'app-loader',
+	templateUrl: './loader.component.html',
+	styleUrls: [ './loader.component.scss' ]
 })
 export class LoaderComponent {
-  color = 'primary';
-  mode = 'indeterminate';
-  value = 50;
-  isLoading: Subject<boolean> = this.loaderService.isLoading;
+	color = 'primary';
+	mode = 'indeterminate';
+	value = 50;
+	isLoading: Subject<boolean> = this.loaderService.isLoading;
 
-  constructor(private loaderService: LoaderServiceService) { }
+	constructor(private loaderService: LoaderServiceService) {}
 }

@@ -1,9 +1,48 @@
 .card {
 	margin: 9px auto;
+	width: 80%;
+	.card-title {
+		text-align: center;
+	}
 }
 .container {
 	max-width: inherit;
 	max-height: inherit;
+}
+.form-row {
+	padding-left: 0px;
+}
+.form-group {
+	margin-top: 3%;
+}
+.card-body {
+	h5 {
+		text-align: center;
+	}
+}
+.temp {
+	.contain {
+		text-align: right;
+	}
+	.fa {
+		margin: 4px 4px 0 0;
+	}
+	input {
+		width: auto;
+	}
+}
+tr {
+	th {
+		background-color: black;
+		color: white;
+	}
+}
+.bold {
+	display: inline;
+}
+.form-control {
+	width: 70px;
+	display: inline;
 }
 button {
 	margin-left: 10px;
@@ -35,6 +74,13 @@ mat-icon {
 
 .can-toggle {
 	position: relative;
+}
+.can-toggle1 {
+	width: 50% !important;
+	padding-bottom: 0px;
+	label {
+		font-size: 15px;
+	}
 }
 .can-toggle *,
 .can-toggle *:before,

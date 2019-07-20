@@ -2,10 +2,10 @@
   <button type="button " [mat-dialog-close] class="btn btn-danger pos">
     <mat-icon>clear</mat-icon>
   </button>
-  <div class="card " style="width: 80%;">
+  <div class="card ">
     <div class="card-body">
       <strong>
-        <h2 class="card-title" style="text-align: center">Create A Quiz</h2>
+        <h2 class="card-title">Create A Quiz</h2>
       </strong>
       <ng-container *ngIf="!val">
         <form #form="ngForm" (submit)="fetchReqQues(form)" autocomplete="off">
@@ -52,20 +52,20 @@
               </div>
             </div>
           </div>
-          <div class="form-row col-md-12" style="padding-left:0px;">
+          <div class="form-row col-md-12">
             <div class="form-group col-md-4">
               <strong><label>Quiz Time (hh:mm)</label><br /></strong>
               <input required type="number" name="QuizHour" placeholder="hh" min="0" max="24" #QuizHour="ngModel"
-                [(ngModel)]="service.QuizHour" style="width:70px; display: inline;" class="form-control">&nbsp;
-              <strong style="display:inline;">:</strong>
-              <input required type="number" name="QuizMinute" style="width:70px; display: inline;" class="form-control"
+                [(ngModel)]="service.QuizHour" class="form-control">&nbsp;
+              <strong class="bold">:</strong>
+              <input required type="number" name="QuizMinute"  class="form-control"
                 placeholder="mm" min="0" max="60" #QuizMinute="ngModel" [(ngModel)]="service.QuizMinute">
               <div class="validation-error"
                 *ngIf="QuizHour.invalid && QuizHour.touched && QuizMinutes.invalid && QuizMinutes.touched">This field is
                 required.</div>
             </div>
-            <div class="can-toggle demo-rebrand-1 col-md-4 " style="width: 50% !important;padding-bottom:0px;">
-              <strong><label style="font-size:15px;">Quiz State</label></strong>
+            <div class="can-toggle demo-rebrand-1 col-md-4 can-toggle1" >
+              <strong><label>Quiz State</label></strong>
               <input id="d" type="checkbox" class="chb messageCheckbox" (change)="toggleEditable($event)" />
               <label for="d">
                 <div id="pro" class="can-toggle__switch" data-checked="ACTIVE" data-unchecked="INACTIVE"></div>
@@ -95,15 +95,15 @@
               <div class="validation-error" *ngIf="Questions.invalid && Questions.touched">This field is required.</div>
             </div>
           </div>
-          <div class="form-group" style="margin-top: 3%">
+          <div class="form-group" >
             <button type="submit" [disabled]="form.invalid || quizExists" class="btn btn-primary">Create</button>
           </div>
         </form>
       </ng-container>
       <div *ngIf="val">
         <div class="card-body">
-          <h5 *ngIf="length>0" class="card-title" style="text-align: center">Choose Questions</h5>
-          <h5 *ngIf="length==0" class="card-title" style="text-align: center">No Question Available</h5><br />
+          <h5 *ngIf="length>0" class="card-title">Choose Questions</h5>
+          <h5 *ngIf="length==0" class="card-title">No Question Available</h5><br />
           <div>
             <button type="button" (click)="add_new_ques()" class="btn btn-warning">New Ques.</button>
           </div>
@@ -111,18 +111,17 @@
           <form *ngIf="length!=0" #Questionform="ngForm" (submit)="onDetailsSubmit(Questionform)" autocomplete="off">
             <p-table [columns]="cols" [value]="questions" [scrollable]="true" scrollHeight="200px" #dt>
 
-              <ng-template pTemplate="caption">
-                <div style="text-align: right;">
-                  <i class="fa fa-search" aria-hidden="true" style="margin:4px 4px 0 0"></i>
+              <ng-template pTemplate="caption" class="temp">
+                <div class="contain">
+                  <i class="fa fa-search" aria-hidden="true"></i>
                   <input type="text" pInputText size="30" placeholder="Global Filter"
-                    (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                    (input)="dt.filterGlobal($event.target.value, 'contains')">
                 </div>
               </ng-template>
               <ng-template pTemplate="header">
                 <tr>
-                  <th style="background-color:black; color:white">Tick</th>
-                  <th *ngFor="let col of cols" [pSortableColumn]="col.field"
-                    style="background-color:black; color:white;">
+                  <th >Tick</th>
+                  <th *ngFor="let col of cols" [pSortableColumn]="col.field">
                     {{col.header}}
                   </th>
                 </tr>

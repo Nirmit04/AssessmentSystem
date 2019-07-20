@@ -8,9 +8,8 @@ import { Router } from '@angular/router';
 @Component({
 	selector: 'app-main-nav3',
 	templateUrl: './main-nav3.component.html',
-	styleUrls: ['./main-nav3.component.css']
+	styleUrls: [ './main-nav3.component.scss' ]
 })
-
 export class MainNav3Component {
 	isHandset$: Observable<boolean> = this.breakpointObserver
 		.observe(Breakpoints.Handset)
@@ -21,7 +20,7 @@ export class MainNav3Component {
 		private breakpointObserver: BreakpointObserver,
 		private authService: AuthService,
 		private router: Router
-	) { }
+	) {}
 
 	ngOnInit() {
 		this.cRole = localStorage.getItem('currentRole');
@@ -29,7 +28,7 @@ export class MainNav3Component {
 			if (user != null) {
 			} else {
 				localStorage.clear();
-				this.router.navigate(['/login']);
+				this.router.navigate([ '/login' ]);
 			}
 		});
 	}
@@ -37,7 +36,7 @@ export class MainNav3Component {
 	roleMatch(allowedRoles): boolean {
 		var isMatch = false;
 		var userRoles: string = localStorage.getItem('role');
-		allowedRoles.forEach(element => {
+		allowedRoles.forEach((element) => {
 			if (userRoles.indexOf(element) > -1) {
 				isMatch = true;
 				return false;
@@ -48,11 +47,10 @@ export class MainNav3Component {
 
 	aab(role: string) {
 		localStorage.setItem('currentRole', role);
-		this.router.navigate([role]);
+		this.router.navigate([ role ]);
 	}
 
 	logout() {
 		this.authService.signOut();
 	}
-
 }

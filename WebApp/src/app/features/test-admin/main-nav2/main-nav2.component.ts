@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 @Component({
 	selector: 'app-main-nav2',
 	templateUrl: './main-nav2.component.html',
-	styleUrls: ['./main-nav2.component.css']
+	styleUrls: ['./main-nav2.component.scss']
 })
 export class MainNav2Component {
 	isHandset$: Observable<boolean> = this.breakpointObserver

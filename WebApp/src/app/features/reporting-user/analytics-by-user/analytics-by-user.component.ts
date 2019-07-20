@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-analytics-by-user',
   templateUrl: './analytics-by-user.component.html',
-  styleUrls: ['./analytics-by-user.component.css']
+  styleUrls: ['./analytics-by-user.component.scss']
 })
 export class AnalyticsByUserComponent implements OnInit {
 
