@@ -2,7 +2,7 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="!(isHandset$ | async)">
-    <mat-toolbar><a mat-list-item routerLink="/cc-dash"><i class="fa fa-tachometer" aria-hidden="true"></i>
+    <mat-toolbar><a mat-list-item routerLink="/cc-dash" class="dash"><i class="fa fa-tachometer" aria-hidden="true"></i>
         Dashboard</a></mat-toolbar>
     <mat-nav-list class="nav">
       <ul class="nav">

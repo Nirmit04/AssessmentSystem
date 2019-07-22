@@ -42,8 +42,8 @@ tr {
 	display: inline;
 }
 .form-control {
-	width: 70px;
-	display: inline;
+	width: 90%;
+	display: block;
 }
 button {
 	margin-left: 10px;
@@ -60,7 +60,7 @@ mat-dialog-content {
 .pos {
 	position: absolute;
 	right: -2%;
-	top: -7%;
+	top: -5%;
 	z-index: 9999;
 	width: 38px;
 	height: 35px;
