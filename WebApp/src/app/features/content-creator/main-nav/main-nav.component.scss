@@ -1,14 +1,14 @@
 .nav li {
-	border-bottom: 3px solid rgba(0, 0, 0, 0);
+	border-bottom: 3px solid $dark;
 	width: 100%;
 }
 .nav li:hover {
-	border-bottom: 3px solid #eee;
+	border-bottom: 3px solid $li-hover;
 }
 .nav li.active {
-	border-bottom: 3px solid #eee;
+	border-bottom: 3px solid $li-hover;
 	width: 100%;
-	background-color: rgb(2, 93, 140);
+	background-color: $li-hover-active;
 }
 .mat-sidenav-content {
 	overflow-x: hidden;
@@ -17,7 +17,7 @@
 	height: 100%;
 }
 .sidenav-container a {
-	color: rgb(255, 255, 255);
+	color: $white;
 	font-size: 16px;
 	font-family: 'Encode Sans Expanded', sans-serif;
 }
@@ -26,28 +26,28 @@
 }
 .sidenav-container a:hover,
 .sidenav-container a:focus {
-	background-color: rgb(2, 93, 140) !important;
+	background-color: $li-hover-active !important;
 }
 .sidenav {
 	width: 250px;
-	background-color: rgb(1, 139, 188);
+	background-color: $sidebar;
 }
 
 .sidenav .mat-toolbar {
 	background: inherit;
-	border-bottom: 1px solid black;
+	border-bottom: 1px solid $dark;
 }
 .mat-toolbar {
 	text-decoration: none;
 }
 .ng-content {
-	background-color: rgb(185, 185, 185);
+	background-color: $slider;
 }
 .mat-toolbar span {
-	color: rgb(7, 7, 7);
+	color: $dark;
 }
 .mat-sidenav-content .mat-toolbar {
-	background-color: rgb(190, 190, 190) !important;
+	background-color: $slider !important;
 }
 .mat-sidenav-content {
 	background-color: rgb(235, 235, 235) !important;
@@ -61,7 +61,7 @@
 .log {
 	font-size: 12px;
 	cursor: pointer;
-	color: black !important;
+	color: $dark !important;
 }
 .mat-toolbar.mat-primary {
 	position: sticky;

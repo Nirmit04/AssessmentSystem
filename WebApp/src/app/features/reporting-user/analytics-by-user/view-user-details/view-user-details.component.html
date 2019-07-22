@@ -23,10 +23,7 @@
         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
           <div class="card-body">
             <div class="row">
-              <div style="display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;" *ngIf="polarAreaChartData">
+              <div class="contain" *ngIf="polarAreaChartData">
                 <div>
                   <div style="display: block">
                     <canvas baseChart [data]="polarAreaChartData" [labels]="polarAreaChartLabels"

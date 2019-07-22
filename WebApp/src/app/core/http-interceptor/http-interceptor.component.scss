@@ -1,11 +1,12 @@
+@import 'src/color.scss';
 h1 {
 	font-size: 50px;
-	color: aliceblue;
+	color: $white;
 }
 
 h2 {
 	font-size: 30px;
-	color: black;
+	color: $dark;
 }
 .btn-info {
 	width: 100px;

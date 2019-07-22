@@ -1,8 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
-
+@import 'src/color.scss';
 .jumbotron {
 	position: relative;
-	background-color: white;
+	background-color: $white;
 	margin-top: 10px;
 }
 .pic {
@@ -24,12 +24,12 @@ hr {
 	height: 3px;
 	margin: 20px auto;
 	border: 0;
-	background: #9b9b9b;
+	background: $hr-back;
 }
 h3 {
 	font-size: 25px;
 	font-weight: 80%;
-	color: rgb(1, 139, 188);
+	color: $sidebar;
 }
 h2 {
 	font-size: 60px;
@@ -53,8 +53,8 @@ h6 {
 	width: 80%;
 	right: 0px;
 	z-index: 9999;
-	background-color: rgb(1, 139, 188);
-	color: white;
+	background-color: $li-hover-active;
+	color: $white;
 	height: 100%;
 	text-align: center;
 }
@@ -70,7 +70,7 @@ h6 {
 	margin: 0 15px 0 0;
 	padding: 0 0 0 15px;
 	display: inline-block;
-	color: #dce3e7;
+	color: $white;
 	font-family: 'Roboto', sans-serif;
 	font-size: 20px;
 	z-index: 60;

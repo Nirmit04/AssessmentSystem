@@ -1,18 +1,15 @@
 <app-loader></app-loader>
 <app-mainnav4>
-  <div *ngIf="quizData" class="row" style="color:black">
-    <div style="text-align: center;" class="col">
+  <div *ngIf="quizData" class="row">
+    <div class="col">
       <strong>
-        <h2 style="text-align: center">Analytics of</h2>
+        <h2>Analytics of</h2>
         <h3>{{quizName}}</h3>
       </strong>
     </div>
   </div>
   <div class="row">
-    <div style="display: block;
-      margin-left: auto;
-      margin-right: auto;
-      width: 50%;" *ngIf="pieChartData">
+    <div class="contain" *ngIf="pieChartData">
       <div>
         <div style="display: block">
           <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [legend]="pieChartLegend"

@@ -1,7 +1,8 @@
+@import 'src/color.scss';
 a {
 	padding: 0 14px;
 	text-decoration: none;
-	color: #fff;
+	color: $white;
 	font-size: 20px;
 }
 a span {
@@ -11,7 +12,7 @@ a:hover {
 	transform: skew(-10deg);
 }
 mat-toolbar {
-	color: white;
+	color: $white;
 	background-color: transparent;
 }
 .example-spacer {
@@ -104,7 +105,7 @@ span.buttonText {
 }
 
 body {
-	background: #323c41;
+	background: $body;
 }
 
 .blog-card {
@@ -116,7 +117,7 @@ body {
 	margin: -250px 0 0 -175px;
 	overflow: hidden;
 	border-radius: 10px;
-	box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
+	box-shadow: $box-shadow;
 	text-align: center;
 }
 .blog-card1 {
@@ -128,7 +129,7 @@ body {
 	margin: -250px 0 0 -175px;
 	overflow: hidden;
 	border-radius: 10px;
-	box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
+	box-shadow: $box-shadow;
 	text-align: center;
 }
 .blog-card.spring-fever {
@@ -157,7 +158,7 @@ body {
 	bottom: 120px;
 }
 .blog-card:hover .color-overlay {
-	background: rgba(84, 104, 110, 0.8);
+	background: $hover-shade;
 }
 
 .blog-card1.spring-fever {
@@ -186,7 +187,7 @@ body {
 	bottom: 120px;
 }
 .blog-card1:hover .color-overlay {
-	background: rgba(84, 104, 110, 0.8);
+	background: $hover-shade;
 }
 .title-content {
 	text-align: center;
@@ -217,13 +218,13 @@ hr {
 	height: 3px;
 	margin: 20px auto;
 	border: 0;
-	background: #d0bb57;
+	background: $yellow;
 }
 
 .intro {
 	width: 170px;
 	margin: 0 auto;
-	color: #dce3e7;
+	color: #$white;
 	font-family: 'Droid Serif', serif;
 	font-size: 13px;
 	font-style: italic;
@@ -237,7 +238,7 @@ hr {
 	left: 0;
 	margin: 0 auto;
 	padding: 0 50px;
-	color: #dce3e7;
+	color: #$white;
 	font-family: 'Droid Serif', serif;
 	font-style: 16px;
 	line-height: 24px;
@@ -265,12 +266,12 @@ hr {
 	margin: 0 15px 0 0;
 	padding: 0 15 0 15px;
 	display: inline-block;
-	color: #dce3e7;
+	color: $white;
 	font-family: 'Roboto', sans-serif;
 	font-size: 20px;
 }
 blockquote {
-	border-left: 10px solid #ccc;
+	border-left: 10px solid $blockquote;
 	margin: 1.5em 10px;
 	padding: 0.5em 10px;
 	width: 80%;
@@ -283,7 +284,7 @@ blockquote {
 	quotes: "\201C""\201D""\2018""\2019";
 }
 blockquote:before {
-	color: #ccc;
+	color: $blockquote;
 	content: open-quote;
 	font-size: 4em;
 	line-height: 0.1em;

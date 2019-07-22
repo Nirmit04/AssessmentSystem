@@ -1,4 +1,6 @@
-th,td{
-    color: black;
-    text-align: center;
+@import 'src/color.scss';
+th,
+td {
+	color: $dark;
+	text-align: center;
 }

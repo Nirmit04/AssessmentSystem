@@ -1,0 +1,24 @@
+@import 'src/scss';
+.card {
+	width: 100%;
+	margin-top: 1%;
+}
+.card-title {
+	h2 {
+		text-align: center;
+	}
+	h4 {
+		text-align: center;
+		margin-bottom: 1%;
+	}
+}
+.gauge {
+	margin-left: 5%;
+	margin-right: 7%;
+}
+.text {
+	font-weight: bold;
+	color: $blue;
+	float: right;
+	margin-right: 1%;
+}

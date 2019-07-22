@@ -1,7 +1,8 @@
+@import 'src/color.scss';
 th,
 td {
 	text-align: center;
-	color: black;
+	color: $dark;
 }
 .search {
 	text-align: right;
@@ -14,8 +15,8 @@ td {
 }
 tr {
 	th {
-		background-color: black;
-		color: white;
+		background-color: $dark;
+		color: $white;
 	}
 }
 .btn-sm {

@@ -1,3 +1,20 @@
-th, td{
-    text-align: center;
+@import 'src/color.scss';
+th,
+td {
+	text-align: center;
+}
+.contain {
+	text-align: right;
+	fa {
+		margin: 4px 4px 0 0;
+	}
+	input {
+		width: auto;
+	}
+}
+tr {
+	th {
+		background-color: $dark;
+		color: $white;
+	}
 }

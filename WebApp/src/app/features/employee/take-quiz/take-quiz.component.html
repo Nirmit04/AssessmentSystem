@@ -12,8 +12,7 @@
       <h3 style="margin: 3%">Question - {{service.qnProgress+1}}/{{noOfQues}}</h3>
     </div>
     <div class="col col-md-6">
-      <div *ngIf="questions" class="card text-white bg-danger border-dark"
-        style="margin: 2%; width:38%; float: right;">
+      <div *ngIf="questions" class="card text-white bg-danger border-dark">
         <div class="card-body text-center">
           <strong>
             <h5 style="margin:2%">Time Left - {{this.hours}}:{{this.minutes}}:{{this.seconds}}</h5>
@@ -91,7 +90,7 @@
     </div>
     <div class="col col-md-3">
       <div class="card border-dark bg-secondary">
-        <div style="padding:3px 3px 3px 7px" class="card-body">
+        <div class="card-body">
           <strong>Legend</strong>
           <div>
             <button type="button" class="btn btn-sm btn-success"></button>&nbsp;Submitted

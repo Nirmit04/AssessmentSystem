@@ -34,14 +34,14 @@
   <p-table [columns]="cols" [value]="mockReportList" [paginator]="true" [rows]="6" #dt [responsive]="true">
     <ng-template pTemplate="caption">
       <h3>Mock Quiz Results</h3>
-      <div style="text-align: right">        
-          <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-          <input type="text" pInputText size="30" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'startsWith')" style="width:auto">
+      <div class="contain">        
+          <i class="fa fa-search"></i>
+          <input type="text" pInputText size="30" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'startsWith')">
       </div>
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th *ngFor="let col of cols" [pSortableColumn]="col.field" style="background-color:#000000; color:#ffffff ">
+        <th *ngFor="let col of cols" [pSortableColumn]="col.field">
           {{col.header}}
         </th>
     </ng-template>

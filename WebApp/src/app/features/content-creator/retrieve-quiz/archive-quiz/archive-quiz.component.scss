@@ -1,3 +1,4 @@
+@import 'src/color.scss';
 .search {
 	text-align: center;
 	.fa {
@@ -9,7 +10,7 @@
 }
 tr {
 	th {
-		background-color: black;
-		color: white;
+		background-color: $dark;
+		color: $white;
 	}
 }
