@@ -12,47 +12,47 @@ import { Subject } from 'rxjs';
 
 export class ArchivedScheduleComponent implements OnInit {
 
-  ScheduleList: Schedule[];
+  public ScheduleList: Schedule[];
   dtTrigger: Subject<Schedule> = new Subject();
   subscription: Subscription;
   dtOptions: DataTables.Settings = {};
-  col: any[];
-  cols: any[];
-  i: number;
+  public col: any[];
+  public cols: any[];
+  index: number;
 
   constructor(private service: TestAdminService, private toastr: ToastrService) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
     };
     this.cols = [
-			{ field: 'SerialNumber', header: 'Schedule NO' },
+      { field: 'SerialNumber', header: 'Schedule NO' },
       { field: 'QuizName', header: 'Quiz Name' }
-      
+
     ];
-    this.col=[
-      { field: 'StartDateTime', header: 'Start Time'},
-      { field: 'EndDateTime', header: 'End Time'},
+    this.col = [
+      { field: 'StartDateTime', header: 'Start Time' },
+      { field: 'EndDateTime', header: 'End Time' },
     ];
-    
+
     setTimeout(() => {
       this.loadArchivedSchedules();
-		}, 0);
+    }, 0);
   }
 
-  loadArchivedSchedules() {
+  private loadArchivedSchedules(): void {
     this.service.getArchivedSchedules().subscribe((res: any) => {
       this.ScheduleList = res as Schedule[];
       // this.dtTrigger.next();
-      for (this.i = 1; this.i <= this.ScheduleList.length; this.i++) {
-				this.ScheduleList[this.i - 1].SerialNumber = this.i;
-			}
+      for (this.index = 1; this.index <= this.ScheduleList.length; this.index++) {
+        this.ScheduleList[this.index - 1].SerialNumber = this.index;
+      }
     });
   }
 
-  unarchiveSchedule(id) {
+  public unarchiveSchedule(id): void {
     if (confirm('Are you sure you want to un-archive this')) {
       this.service.unArchiveSchedule(id).subscribe((res: any) => {
         this.toastr.success('Un-Archived Successfully', 'Assesment System');
@@ -62,7 +62,7 @@ export class ArchivedScheduleComponent implements OnInit {
     }
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this.dtTrigger.unsubscribe();
   }
 

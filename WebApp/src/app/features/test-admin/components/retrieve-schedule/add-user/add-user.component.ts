@@ -15,50 +15,50 @@ import { StorageService } from '../../../../../services/storage.service';
 })
 
 export class AddUserComponent implements OnInit {
-  scheduleList: Schedule[];
+  public scheduleList: Schedule[];
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<Schedule> = new Subject();
   subscription: Subscription;
-  col: any[];
-  cols: any[];
-  i: number;
-  
+  public col: any[];
+  public cols: any[];
+  private index: number;
+
   constructor(
     public toastr: ToastrService,
     public dialog: MatDialog,
     private service: TestAdminService,
     private storageService: StorageService) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
     };
     this.cols = [
-			{ field: 'SerialNumber', header: 'S NO' },
+      { field: 'SerialNumber', header: 'S NO' },
       { field: 'QuizName', header: 'Quiz Name' }
     ];
     this.col = [
-      { field: 'StartDateTime', header: 'Start Time'},
-      { field: 'EndDateTime', header: 'End Time'},
+      { field: 'StartDateTime', header: 'Start Time' },
+      { field: 'EndDateTime', header: 'End Time' },
 
     ];
     setTimeout(() => {
       this.loadSchedule();
-		}, 0);
+    }, 0);
   }
 
-  loadSchedule() {
+  private loadSchedule(): void {
     this.service.getSchedule(this.storageService.getStorage('uid')).subscribe((res: any) => {
       this.scheduleList = res as Schedule[];
       // this.dtTrigger.next();
-      for (this.i = 1; this.i <= this.scheduleList.length; this.i++) {
-				this.scheduleList[this.i - 1].SerialNumber = this.i;
-			}
+      for (this.index = 1; this.index <= this.scheduleList.length; this.index++) {
+        this.scheduleList[this.index - 1].SerialNumber = this.index;
+      }
     });
   }
 
-  addUserToSchedule(scheduleid: number, arrayindex: number) {
+  public addUserToSchedule(scheduleid: number, arrayindex: number): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
@@ -66,12 +66,10 @@ export class AddUserComponent implements OnInit {
     dialogConfig.data = scheduleid;
     this.dialog.open(AddUser1Component, dialogConfig).afterClosed().subscribe((res: any) => {
       this.loadSchedule();
-      // this.dtTrigger.unsubscribe();
-      // this.dtTrigger.next();
     });
   }
 
-  deleteUserfromSchedule(scheduleId: number, arrayIndex: number) {
+  public deleteUserfromSchedule(scheduleId: number, arrayIndex: number): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
@@ -86,8 +84,6 @@ export class AddUserComponent implements OnInit {
         this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe(() => {
           this.loadSchedule();
           this.service.deleteUserVisibility = false;
-          // this.dtTrigger.unsubscribe();
-          // this.dtTrigger.next();
         });
       }
     });

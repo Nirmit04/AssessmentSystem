@@ -12,14 +12,14 @@ import { Subject, Subscription } from 'rxjs';
 })
 
 export class AddUser1Component implements OnInit {
-  quiztakers: any[];
+  public quiztakers: any[];
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
-    public service: TestAdminService, public toastr: ToastrService, private dialogRef: MatDialogRef<AddUser1Component>) { }
+    private service: TestAdminService, public toastr: ToastrService, private dialogRef: MatDialogRef<AddUser1Component>) { }
 
   ngOnInit() {
     this.dtOptions = {
@@ -30,19 +30,19 @@ export class AddUser1Component implements OnInit {
     this.dtTrigger.next();
   };
 
-  loadUsers() {
+  private loadUsers(): void {
     this.service.retrieveAllEmployees(this.data).subscribe((res: any) => {
       res.forEach(obj => obj.selected = false);
       this.quiztakers = res as User[];
 
     });
-    }
+  }
 
-  updateSelectedUsers(index) {
+  public updateSelectedUsers(index): any {
     this.quiztakers[index].selected = !this.quiztakers[index].selected;
   }
 
-  onSubmit(form: NgForm) {
+  public onSubmit(form: NgForm): any {
     const quiztakerId = this.quiztakers.filter(Id => Id.selected).map(idSelected => idSelected.Id);
     this.service.addUserInExistingSchedule(this.data, quiztakerId).subscribe(res => {
       this.toastr.success('added succesfully');
