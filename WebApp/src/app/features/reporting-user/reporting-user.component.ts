@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReportingUserService } from './shared/reporting-user.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
 	selector: 'app-reporting-user',
@@ -20,13 +21,13 @@ export class ReportingUserComponent implements OnInit {
 	TotalUser: any;
 	TotalSub: any;
 	show = true;
-	constructor(private service: ReportingUserService, private ngxService: NgxUiLoaderService) { }
+	constructor(private service: ReportingUserService, private ngxService: NgxUiLoaderService, private storageService: StorageService) { }
 
 	ngOnInit() {
 		this.ngxService.startBackground('do-background-things');
 		this.ngxService.stopBackground('do-background-things');
 		this.ngxService.startLoader('loader-01');
-		this.profileUrl = localStorage.getItem('imgurl');
+		this.profileUrl = this.storageService.getStorage('imgurl');
 		this.loadUserDetails();
 		this.loadUserProgress();
 	}

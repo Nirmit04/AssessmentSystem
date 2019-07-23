@@ -11,9 +11,10 @@ import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Router, RouterModule } from '@angular/router';
 import { Injectable, Inject } from '@angular/core';
+import { StorageService } from './services/storage.service';
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
-  constructor(private router: Router) { }
+  constructor(private router: Router, private storageService: StorageService) { }
 
   errorCode: any;
   errorMsg: string;
@@ -34,8 +35,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
             // server-side error
             errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
             this.errorCode = error.status;
-            localStorage.setItem('errorCode', this.errorCode);
-            localStorage.setItem('errorMsg', error.error.Message);
+            this.storageService.setStorage('errorCode', this.errorCode);
+            this.storageService.setStorage('errorMsg', error.error.Message);
           }
           this.router.navigate(['/http-error']);
           return throwError(errorMessage);

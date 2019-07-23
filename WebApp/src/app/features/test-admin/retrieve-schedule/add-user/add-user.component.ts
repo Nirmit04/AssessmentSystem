@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
 import { AddUser1Component } from '../../add-user1/add-user1.component';
 import { ViewScheduleComponent } from '../view-schedule/view-schedule.component';
+import { StorageService } from '../../../../services/storage.service';
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
@@ -25,7 +26,8 @@ export class AddUserComponent implements OnInit {
   constructor(
     public toastr: ToastrService,
     public dialog: MatDialog,
-    private service: TestAdminService) { }
+    private service: TestAdminService,
+    private storageService: StorageService) { }
 
   ngOnInit() {
     this.dtOptions = {
@@ -47,7 +49,7 @@ export class AddUserComponent implements OnInit {
   }
 
   loadSchedule() {
-    this.service.getSchedule(localStorage.getItem('uid')).subscribe((res: any) => {
+    this.service.getSchedule(this.storageService.getStorage('uid')).subscribe((res: any) => {
       this.scheduleList = res as Schedule[];
       // this.dtTrigger.next();
       for (this.i = 1; this.i <= this.scheduleList.length; this.i++) {

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { StorageService } from '../../../services/storage.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -8,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class ReportingUserService {
 	rootUrl = environment.apiURl;
 	data: any = null;
-	constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient, private storageService: StorageService) { }
 
 	getTagAnalytics() {
 		return this.http.get(this.rootUrl + 'ReportingUser/AnalyticsByTag');
@@ -23,7 +24,7 @@ export class ReportingUserService {
 	}
 
 	getUserDetails() {
-		return this.http.get(this.rootUrl + 'GetUserDetails?email=' + localStorage.getItem('email'));
+		return this.http.get(this.rootUrl + 'GetUserDetails?email=' + this.storageService.getStorage('email'));
 	}
 
 	getAllQuizzes() {

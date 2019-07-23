@@ -1,11 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { TestAdminService } from '../../shared/test-admin.service';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
-import { UpdateQuestionComponent } from '../../../content-creator/update-question/update-question.component';
+import { UpdateQuestionComponent } from '../../../content-creator/components/update-question/update-question.component';
 import { ToastrService } from 'ngx-toastr';
 import { Schedule } from '../../shared/schedule.model';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { StorageService } from '../../../../services/storage.service';
 
 @Component({
   selector: 'app-view-schedule',
@@ -26,7 +27,7 @@ export class ViewScheduleComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<UpdateQuestionComponent>, public toastr: ToastrService, private service: TestAdminService,
-    public dialog: MatDialog, private datePipe: DatePipe) { }
+    public dialog: MatDialog, private datePipe: DatePipe, private storageService: StorageService) { }
 
   ngOnInit() {
     this.date = this.datePipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
@@ -37,7 +38,7 @@ export class ViewScheduleComponent implements OnInit {
     } else {
       this.label = 'Edit Schedule';
     }
-    this.CCreatedBy = localStorage.getItem('uid');
+    this.CCreatedBy = this.storageService.getStorage('uid');
    // this.usersList = this.data as any[];
    this.loadExistingUsers(+this.data);
   }

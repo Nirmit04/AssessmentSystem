@@ -1,12 +1,11 @@
 import { Component, Inject, OnInit, SystemJsNgModuleLoader } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { TestAdminService } from '../../shared/test-admin.service';
-import { QuizModel } from '../../../content-creator/shared/quiz.model';
+import { QuizModel } from '../../../content-creator/models/quiz.model';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
-import { invalid } from '@angular/compiler/src/render3/view/util';
-import * as m from 'moment';
+import { StorageService } from '../../../../services/storage.service';
 
 @Component({
 	selector: 'app-create-schedule',
@@ -28,7 +27,7 @@ export class CreateScheduleComponent implements OnInit {
 
 	constructor(
 		private service: TestAdminService,
-		private dialog: MatDialog,
+		private storageService: StorageService,
 		public toastr: ToastrService,
 		private datePipe: DatePipe
 	) {}
@@ -36,7 +35,7 @@ export class CreateScheduleComponent implements OnInit {
 	ngOnInit() {
 		this.resetForm();
 		this.date = this.datePipe.transform(new Date().getUTCHours(), 'yyyy-MM-ddThh:mm');
-		this.CCreatedBy = localStorage.getItem('uid');
+		this.CCreatedBy = this.storageService.getStorage('uid');
 		this.service.retriveAllQuizzes().subscribe((res) => {
 			this.QuizList = res as QuizModel[];
 		});

@@ -1380,7 +1380,7 @@ export class EmployeeService {
   }
 
   getNonMocks() {
-    return this.http.get(this.rootURL + &#x27;Employee/Scheduled/&#x27; + localStorage.getItem(&#x27;uid&#x27;));
+    return this.http.get(this.rootURL + &#x27;Employee/Scheduled/&#x27; + this.storageService.getStorage(&#x27;uid&#x27;));
   }
 
   getQuesOfQuiz(QuizId: number) {
@@ -1392,18 +1392,18 @@ export class EmployeeService {
   }
 
   checkValidUser(id: number) {
-    return this.http.post(this.rootURL + &#x27;UserSchedule/ValidQuizTaker/&#x27; + localStorage.getItem(&#x27;uid&#x27;), id);
+    return this.http.post(this.rootURL + &#x27;UserSchedule/ValidQuizTaker/&#x27; + this.storageService.getStorage(&#x27;uid&#x27;), id);
   }
 
   postanswers() {
     this.body.QuizScheduleId &#x3D; this.QuizScheduleId;
     this.body.QuizId &#x3D; this.QuizId;
-    this.body.UserId &#x3D; localStorage.getItem(&#x27;uid&#x27;);
+    this.body.UserId &#x3D; this.storageService.getStorage(&#x27;uid&#x27;);
     return this.http.post(this.rootURL + &#x27;Quiz/EvaluateQuiz&#x27;, this.body);
   }
 
   getUserDetails() {
-    return this.http.get(this.rootURL + &#x27;GetUserDetails?email&#x3D;&#x27; + localStorage.getItem(&#x27;email&#x27;));
+    return this.http.get(this.rootURL + &#x27;GetUserDetails?email&#x3D;&#x27; + this.storageService.getStorage(&#x27;email&#x27;));
   }
 
   getListOfMockQuizzes() {
@@ -1411,7 +1411,7 @@ export class EmployeeService {
   }
 
   getUserProgress() {
-    return this.http.get(this.rootURL + &#x27;/Employee/Stats/&#x27; + localStorage.getItem(&#x27;uid&#x27;))
+    return this.http.get(this.rootURL + &#x27;/Employee/Stats/&#x27; + this.storageService.getStorage(&#x27;uid&#x27;))
   }
 
   getReportOfNonMockQuiz(id) {
@@ -1423,7 +1423,7 @@ export class EmployeeService {
   }
 
   getDetailedReport() {
-    return this.http.get(this.rootURL + &#x27;/DetailedReport/&#x27; + localStorage.getItem(&#x27;uid&#x27;) + &#x27;/&#x27; + this.QuizId);
+    return this.http.get(this.rootURL + &#x27;/DetailedReport/&#x27; + this.storageService.getStorage(&#x27;uid&#x27;) + &#x27;/&#x27; + this.QuizId);
   }
 
   getQues(id: number) {

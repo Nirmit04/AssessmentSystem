@@ -912,7 +912,7 @@ export class RetrieveQuizComponent implements OnInit {
 	}
 
 	onEdit(id: number) {
-		localStorage.setItem(&#x27;quizId&#x27;, id.toString());
+		this.storageService.setStorage(&#x27;quizId&#x27;, id.toString());
 		this.service.getQuestionsByQuiz(id).subscribe((res: any) &#x3D;&gt; {
 			this.QuestionList &#x3D; res as any[];
 			const dialogConfig &#x3D; new MatDialogConfig();
@@ -924,7 +924,7 @@ export class RetrieveQuizComponent implements OnInit {
 				this.loadQuiz();
 				this.dtTrigger.unsubscribe();
 				this.dtTrigger.next();
-				localStorage.removeItem(&#x27;quizId&#x27;);
+				this.storageService.removeStorage(&#x27;quizId&#x27;);
 			});
 		});
 

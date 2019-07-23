@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { QuizModel } from '../../content-creator/shared/quiz.model';
+import { QuizModel } from '../../content-creator/models/quiz.model';
 import { environment } from '../../../../environments/environment';
 import { User } from './user.model';
 import { Schedule } from './schedule.model';
+import { StorageService } from '../../../services/storage.service';
 @Injectable({
 	providedIn: 'root'
 })
 export class TestAdminService {
-	constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient, private storageService: StorageService) { }
 	rooturl = environment.apiURl;
 	quiz: QuizModel[];
 	quiztakerId: string[] = null;
@@ -30,7 +31,7 @@ export class TestAdminService {
 	}
 
 	postSchedule(formdata: Schedule) {
-		formdata.CreatedBy = localStorage.getItem('uid');
+		formdata.CreatedBy = this.storageService.getStorage('uid');
 		return this.http.post(this.rooturl + 'QuizSchedule/ScheduleQuiz', formdata);
 	}
 
@@ -66,7 +67,7 @@ export class TestAdminService {
 	}
 
 	getArchivedSchedules() {
-		return this.http.get(this.rooturl + 'QuizSchedule/ArchivedList/' + localStorage.getItem('uid'));
+		return this.http.get(this.rooturl + 'QuizSchedule/ArchivedList/' + this.storageService.getStorage('uid'));
 	}
 
 	unArchiveSchedule(id: number) {
@@ -77,11 +78,11 @@ export class TestAdminService {
 	}
 
 	getUserDetails() {
-		return this.http.get(this.rooturl + 'GetUserDetails?email=' + localStorage.getItem('email'));
+		return this.http.get(this.rooturl + 'GetUserDetails?email=' + this.storageService.getStorage('email'));
 	}
 
 	getschedulecount() {
-		return this.http.get(this.rooturl + 'QuizSchedule/Stats/' + localStorage.getItem('uid'));
+		return this.http.get(this.rooturl + 'QuizSchedule/Stats/' + this.storageService.getStorage('uid'));
 	}
 
 }

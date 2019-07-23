@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { EmployeeService } from '../../features/employee/shared/employee.service';
+import { EmployeeService } from '../../features/employee/services/employee.service';
+import { StorageService } from '../../services/storage.service';
+import { HttpService } from '../http/http.service';
 
 @Component({
 	selector: 'app-home',
@@ -11,7 +13,11 @@ import { EmployeeService } from '../../features/employee/shared/employee.service
 })
 export class HomeComponent implements OnInit {
 
-	constructor(private router: Router, private http: HttpClient, private service: EmployeeService) { }
+	constructor(private router: Router,
+		private http: HttpClient,
+		private service: EmployeeService,
+		private storageService: StorageService,
+		private httpService: HttpService) { }
 
 	rooturl = environment.apiURl;
 	role = '';
@@ -21,25 +27,25 @@ export class HomeComponent implements OnInit {
 	time: any[];
 
 	ngOnInit() {
-		this.checkqid = localStorage.getItem('key');
-		this.checksid = localStorage.getItem('key1');
+		this.checkqid = this.storageService.getStorage('key');
+		this.checksid = this.storageService.getStorage('key1');
 
-		if (localStorage.getItem('id') != null) {
+		if (this.storageService.getStorage('id') != null) {
 			const body = {
-				FirstName: localStorage.getItem('firstname'),
-				LastName: localStorage.getItem('lastname'),
-				Email: localStorage.getItem('email'),
-				ImageURL: localStorage.getItem('imgurl'),
-				GoogleId: localStorage.getItem('id')
+				FirstName: this.storageService.getStorage('firstname'),
+				LastName: this.storageService.getStorage('lastname'),
+				Email: this.storageService.getStorage('email'),
+				ImageURL: this.storageService.getStorage('imgurl'),
+				GoogleId: this.storageService.getStorage('id')
 			};
 
 			this.http.post(this.rooturl + 'User/Register', body).subscribe(() => {
-				this.http.get(this.rooturl + 'GetUserDetails?email=' + localStorage.getItem('email'))
+				this.http.get(this.rooturl + 'GetUserDetails?email=' + this.storageService.getStorage('email'))
 					.subscribe((res1: any) => {
 						this.uid = res1.Id;
 						this.role = res1.Roles;
-						localStorage.setItem('uid', this.uid);
-						localStorage.setItem('role', this.role);
+						this.storageService.setStorage('uid', this.uid);
+						this.storageService.setStorage('role', this.role);
 						if (this.checkqid === 'null' && this.checksid === 'null') {
 							this.redirecttodash(this.role[0]);
 						}
@@ -48,10 +54,10 @@ export class HomeComponent implements OnInit {
 						}
 						else if (this.checkqid !== 'null' && this.checksid !== 'null') {
 
-							this.service.checkValidUser(+this.checkqid).subscribe(() => {
+							this.httpService.checkValidUser(+this.checkqid).subscribe(() => {
 
-								this.service.getQuesOfQuiz(+this.checkqid).subscribe((res: any) => {
-									this.time = localStorage.getItem('time').split(":");
+								this.httpService.getQuesOfQuiz(+this.checkqid).subscribe((res: any) => {
+									this.time = this.storageService.getStorage('time').split(":");
 									this.service.hours = parseInt(this.time[0]);
 									this.service.minutes = parseInt(this.time[1]);
 									this.service.noQuesOfQuiz = res.TotalQuestions;
@@ -61,8 +67,8 @@ export class HomeComponent implements OnInit {
 								});
 							})
 						} else {
-							localStorage.setItem('errorCode', '405');
-							localStorage.setItem('errorMsg', 'Not Allowed to enter the specified quiz.');
+							this.storageService.setStorage('errorCode', '405');
+							this.storageService.setStorage('errorMsg', 'Not Allowed to enter the specified quiz.');
 							this.router.navigate(['/http-error']);
 						}
 					});
@@ -76,20 +82,20 @@ export class HomeComponent implements OnInit {
 	redirecttodash(role: string) {
 
 		if (role === 'Test-Administrator') {
-			localStorage.setItem('currentRole', '//ta-dash');
+			this.storageService.setStorage('currentRole', '//ta-dash');
 			this.router.navigate(['/ta-dash']);
 
 		}
 		else if (role === 'Content-Creator') {
-			localStorage.setItem('currentRole', '//cc-dash');
+			this.storageService.setStorage('currentRole', '//cc-dash');
 			this.router.navigate(['/cc-dash']);
 		}
 		else if (role === 'Employee') {
-			localStorage.setItem('currentRole', '//emp-dash');
+			this.storageService.setStorage('currentRole', '//emp-dash');
 			this.router.navigate(['/emp-dash']);
 		}
 		else {
-			localStorage.setItem('currentRole', '//ru-dash');
+			this.storageService.setStorage('currentRole', '//ru-dash');
 			this.router.navigate(['/ru-dash']);
 		}
 	}

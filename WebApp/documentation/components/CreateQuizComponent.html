@@ -1592,7 +1592,7 @@ export class CreateQuizComponent implements OnInit {
     };
     this.resetForm();
     this.dtTrigger.next();
-    this.CCreatedBy &#x3D; localStorage.getItem(&#x27;uid&#x27;);
+    this.CCreatedBy &#x3D; this.storageService.getStorage(&#x27;uid&#x27;);
     this.service.retrieveQuizNames().subscribe((res: any) &#x3D;&gt; {
       this.quizzes &#x3D; res as any[]
     });

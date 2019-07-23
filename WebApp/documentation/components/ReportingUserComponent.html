@@ -748,7 +748,7 @@ export class ReportingUserComponent implements OnInit {
 		this.ngxService.startBackground(&#x27;do-background-things&#x27;);
 		this.ngxService.stopBackground(&#x27;do-background-things&#x27;);
 		this.ngxService.startLoader(&#x27;loader-01&#x27;);
-		this.profileUrl &#x3D; localStorage.getItem(&#x27;imgurl&#x27;);
+		this.profileUrl &#x3D; this.storageService.getStorage(&#x27;imgurl&#x27;);
 		this.loadUserDetails();
 		this.loadUserProgress();
 	}

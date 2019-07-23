@@ -729,7 +729,7 @@ export class AddUserComponent implements OnInit {
   }
 
   loadSchedule() {
-    this.service.getSchedule(localStorage.getItem(&#x27;uid&#x27;)).subscribe((res: any) &#x3D;&gt; {
+    this.service.getSchedule(this.storageService.getStorage(&#x27;uid&#x27;)).subscribe((res: any) &#x3D;&gt; {
       this.scheduleList &#x3D; res as Schedule[];
       this.dtTrigger.next();
     });

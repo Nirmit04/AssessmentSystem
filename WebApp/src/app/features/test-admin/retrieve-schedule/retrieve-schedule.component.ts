@@ -7,6 +7,7 @@ import { Schedule } from '../shared/schedule.model';
 import { ViewScheduleComponent } from './view-schedule/view-schedule.component';
 import { concat, Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
+import { StorageService } from '../../../services/storage.service';
 @Component({
 	selector: 'app-retrieve-schedule',
 	templateUrl: './retrieve-schedule.component.html',
@@ -31,7 +32,8 @@ export class RetrieveScheduleComponent implements OnInit {
 		private service: TestAdminService,
 		private toastr: ToastrService,
 		private dialog: MatDialog,
-		private router: Router
+		private router: Router,
+		private storageService: StorageService
 	) {}
 
 	ngOnInit() {
@@ -53,7 +55,7 @@ export class RetrieveScheduleComponent implements OnInit {
 	}
 
 	loadSchedule() {
-		this.service.getSchedule(localStorage.getItem('uid')).subscribe((res: any) => {
+		this.service.getSchedule(this.storageService.getStorage('uid')).subscribe((res: any) => {
 			this.scheduleList = res as Schedule[];
 			// this.dtTrigger.next();;
 			console.log(this.scheduleList)

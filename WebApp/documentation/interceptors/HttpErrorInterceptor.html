@@ -372,7 +372,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
             // server-side error
             errorMessage &#x3D; &#x60;Error Code: ${error.status}\nMessage: ${error.message}&#x60;;
             this.errorCode &#x3D; error.status;
-            localStorage.setItem(&#x27;errorCode&#x27;, this.errorCode);
+            this.storageService.setStorage(&#x27;errorCode&#x27;, this.errorCode);
           }
           this.router.navigate([&#x27;/http-error&#x27;]);
           return throwError(errorMessage);

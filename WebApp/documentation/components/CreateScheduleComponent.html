@@ -1004,7 +1004,7 @@ export class CreateScheduleComponent implements OnInit {
   ngOnInit() {
     this.resetForm();
     this.date &#x3D; this.datePipe.transform(new Date(), &#x27;yyyy-MM-ddThh:mm&#x27;);
-    this.CCreatedBy &#x3D; localStorage.getItem(&#x27;uid&#x27;);
+    this.CCreatedBy &#x3D; this.storageService.getStorage(&#x27;uid&#x27;);
     this.service.retriveAllQuizzes().subscribe((res) &#x3D;&gt; {
       this.QuizList &#x3D; res as QuizModel[];
     });

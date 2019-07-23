@@ -400,7 +400,7 @@ import { allResolved } from &#x27;q&#x27;;
 export class AuthGuard implements CanActivate, CanActivateChild {
 	constructor(private router: Router) { }
 	canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-		if (localStorage.getItem(&#x27;uid&#x27;) !&#x3D; null) {
+		if (this.storageService.getStorage(&#x27;uid&#x27;) !&#x3D; null) {
 			const roles &#x3D; next.data[&#x27;roles&#x27;] as Array&lt;string&gt;;
 			if (roles) {
 				var match &#x3D; this.roleMatch(roles);
@@ -413,7 +413,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 			else
 				return true;
 		}
-		localStorage.clear();
+		this.storageService.clearStorage();
 		this.router.navigate([&#x27;/login&#x27;]);
 		return false;
 	}
@@ -426,7 +426,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
 	roleMatch(allowedRoles): boolean {
 		var isMatch &#x3D; false;
-		var userRoles: string &#x3D; localStorage.getItem(&#x27;role&#x27;);
+		var userRoles: string &#x3D; this.storageService.getStorage(&#x27;role&#x27;);
 		allowedRoles.forEach(element &#x3D;&gt; {
 			if (userRoles.indexOf(element) &gt; -1) {
 				isMatch &#x3D; true;

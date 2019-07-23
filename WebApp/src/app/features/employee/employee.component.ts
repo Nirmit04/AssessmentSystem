@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { EmployeeService } from './shared/employee.service';
+import { EmployeeService } from './services/employee.service';
+import { StorageService } from '../../services/storage.service';
+import { HttpService } from '../../core/http/http.service';
 
 @Component({
 	selector: 'app-employee',
@@ -19,26 +21,28 @@ export class EmployeeComponent implements OnInit {
 	recentQuiz: any;
 	show: boolean = true;
 
-	constructor(private ngxService: NgxUiLoaderService, private service: EmployeeService) { }
+	constructor(private ngxService: NgxUiLoaderService,
+		private storageService: StorageService,
+		private httpService: HttpService) { }
 
 	ngOnInit() {
 		this.ngxService.startBackground('do-background-things');
 		this.ngxService.stopBackground('do-background-things');
 		this.ngxService.startLoader('loader-01');
-		this.profileUrl = localStorage.getItem('imgurl');
+		this.profileUrl = this.storageService.getStorage('imgurl');
 		this.loadUserDetails();
 		this.loadUserProgress();
 	}
 
 	loadUserDetails() {
-		this.service.getUserDetails().subscribe((res: any) => {
+		this.httpService.getUserDetails().subscribe((res: any) => {
 			this.Firstname = res.FirstName;
 			this.Lastname = res.LastName;
 			this.email = res.Email;
 		});
 	}
 	loadUserProgress(){
-		this.service.getUserProgress().subscribe((res:any) =>{
+		this.httpService.getEmployeeProgress().subscribe((res:any) =>{
 			this.mocks = res.Mock;
 			this.nmocks = res.Scheduled;
 			this.accuracy = res.Accuracy;

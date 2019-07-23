@@ -553,25 +553,25 @@ export class HomeComponent implements OnInit {
 	checksid: string &#x3D; null;
 
 	ngOnInit() {
-		this.checkqid &#x3D; localStorage.getItem(&#x27;key&#x27;);
-		this.checksid &#x3D; localStorage.getItem(&#x27;key1&#x27;);
+		this.checkqid &#x3D; this.storageService.getStorage(&#x27;key&#x27;);
+		this.checksid &#x3D; this.storageService.getStorage(&#x27;key1&#x27;);
 
-		if (localStorage.getItem(&#x27;id&#x27;) !&#x3D; null) {
+		if (this.storageService.getStorage(&#x27;id&#x27;) !&#x3D; null) {
 			const body &#x3D; {
-				FirstName: localStorage.getItem(&#x27;firstname&#x27;),
-				LastName: localStorage.getItem(&#x27;lastname&#x27;),
-				Email: localStorage.getItem(&#x27;email&#x27;),
-				ImageURL: localStorage.getItem(&#x27;imgurl&#x27;),
-				GoogleId: localStorage.getItem(&#x27;id&#x27;)
+				FirstName: this.storageService.getStorage(&#x27;firstname&#x27;),
+				LastName: this.storageService.getStorage(&#x27;lastname&#x27;),
+				Email: this.storageService.getStorage(&#x27;email&#x27;),
+				ImageURL: this.storageService.getStorage(&#x27;imgurl&#x27;),
+				GoogleId: this.storageService.getStorage(&#x27;id&#x27;)
 			};
 
 			this.http.post(this.rooturl + &#x27;User/Register&#x27;, body).subscribe(() &#x3D;&gt; {
-				this.http.get(this.rooturl + &#x27;GetUserDetails?email&#x3D;&#x27; + localStorage.getItem(&#x27;email&#x27;))
+				this.http.get(this.rooturl + &#x27;GetUserDetails?email&#x3D;&#x27; + this.storageService.getStorage(&#x27;email&#x27;))
 					.subscribe((res1: any) &#x3D;&gt; {
 						this.uid &#x3D; res1.Id;
 						this.role &#x3D; res1.Roles;
-						localStorage.setItem(&#x27;uid&#x27;, this.uid);
-						localStorage.setItem(&#x27;role&#x27;, this.role);
+						this.storageService.setStorage(&#x27;uid&#x27;, this.uid);
+						this.storageService.setStorage(&#x27;role&#x27;, this.role);
 						if (this.checkqid &#x3D;&#x3D;&#x3D; &#x27;null&#x27; &amp;&amp; this.checksid &#x3D;&#x3D;&#x3D; &#x27;null&#x27;) {
 							this.redirecttodash(this.role[0]);
 						}
@@ -590,8 +590,8 @@ export class HomeComponent implements OnInit {
 								});
 							})
 						} else {
-							localStorage.setItem(&#x27;errorCode&#x27;, &#x27;405&#x27;);
-							localStorage.setItem(&#x27;errorMsg&#x27;, &#x27;Not Allowed to enter the specified quiz.&#x27;);
+							this.storageService.setStorage(&#x27;errorCode&#x27;, &#x27;405&#x27;);
+							this.storageService.setStorage(&#x27;errorMsg&#x27;, &#x27;Not Allowed to enter the specified quiz.&#x27;);
 							this.router.navigate([&#x27;/http-error&#x27;]);
 						}
 					});
@@ -605,20 +605,20 @@ export class HomeComponent implements OnInit {
 	redirecttodash(role: string) {
 		
 		if (role &#x3D;&#x3D;&#x3D; &#x27;Test-Administrator&#x27;) {
-			localStorage.setItem(&#x27;currentRole&#x27;, &#x27;//ta-dash&#x27;);
+			this.storageService.setStorage(&#x27;currentRole&#x27;, &#x27;//ta-dash&#x27;);
 			this.router.navigate([&#x27;/ta-dash&#x27;]);
 		
 		}
 		else if (role &#x3D;&#x3D;&#x3D; &#x27;Content-Creator&#x27;) {
-			localStorage.setItem(&#x27;currentRole&#x27;, &#x27;//cc-dash&#x27;);
+			this.storageService.setStorage(&#x27;currentRole&#x27;, &#x27;//cc-dash&#x27;);
 			this.router.navigate([&#x27;/cc-dash&#x27;]);
 		}
 		else if (role &#x3D;&#x3D;&#x3D; &#x27;Employee&#x27;) {
-			localStorage.setItem(&#x27;currentRole&#x27;, &#x27;//emp-dash&#x27;);
+			this.storageService.setStorage(&#x27;currentRole&#x27;, &#x27;//emp-dash&#x27;);
 			this.router.navigate([&#x27;/emp-dash&#x27;]);
 		}
 		else {
-			localStorage.setItem(&#x27;currentRole&#x27;, &#x27;//ru-dash&#x27;);
+			this.storageService.setStorage(&#x27;currentRole&#x27;, &#x27;//ru-dash&#x27;);
 			this.router.navigate([&#x27;/ru-dash&#x27;]);
 		}
 	}

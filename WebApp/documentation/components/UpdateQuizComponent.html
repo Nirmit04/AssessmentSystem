@@ -688,7 +688,7 @@ export class UpdateQuizComponent implements OnInit {
   }
 
   loadingData() {
-    this.service.getQuestionsByQuiz(Number(localStorage.getItem(&#x27;quizId&#x27;))).subscribe((res: any) &#x3D;&gt; {
+    this.service.getQuestionsByQuiz(Number(this.storageService.getStorage(&#x27;quizId&#x27;))).subscribe((res: any) &#x3D;&gt; {
       this.UpdateQuizQuestionList &#x3D; res;
     });
   }
@@ -707,7 +707,7 @@ export class UpdateQuizComponent implements OnInit {
     dialogConfig.autoFocus &#x3D; true;
     dialogConfig.width &#x3D; &quot;70%&quot;;
     dialogConfig.disableClose &#x3D; true;
-    this.service.getQuizQuestions(Number(localStorage.getItem(&#x27;quizId&#x27;))).subscribe((res: any) &#x3D;&gt; {
+    this.service.getQuizQuestions(Number(this.storageService.getStorage(&#x27;quizId&#x27;))).subscribe((res: any) &#x3D;&gt; {
       dialogConfig.data &#x3D; res;
       this.dialog.open(AddQuesInQuizComponent, dialogConfig).afterClosed().subscribe(res &#x3D;&gt; {
         this.loadingData();

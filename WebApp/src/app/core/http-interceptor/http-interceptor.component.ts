@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-http-interceptor',
@@ -7,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./http-interceptor.component.css']
 })
 export class HttpInterceptorComponent implements OnInit {
-  constructor(private router: Router) { }
+  constructor(private router: Router, private storageService: StorageService) { }
 
   HTTP_CODES = {
     0: 'Method Not Found',
@@ -32,15 +33,15 @@ export class HttpInterceptorComponent implements OnInit {
 
   ngOnInit() {
     this.errorStackTrace = null;
-    this.errorCode = localStorage.getItem('errorCode');
+    this.errorCode = this.storageService.getStorage('errorCode');
     this.errorMsg = this.HTTP_CODES[+this.errorCode];
-    if (localStorage.getItem('errorMsg')) {
-      this.errorStackTrace = localStorage.getItem('errorMsg');
+    if (this.storageService.getStorage('errorMsg')) {
+      this.errorStackTrace = this.storageService.getStorage('errorMsg');
     }
   }
 
   login() {
-    localStorage.clear();
+    this.storageService.clearStorage();
     this.router.navigate(['']);
   }
 

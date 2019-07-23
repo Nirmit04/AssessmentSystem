@@ -39,7 +39,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           }
           this.document.location.href = "/home/nineleaps/Downloads/AssessmentSystem/WebApp/src/app/http-error-handling.html";
           window.alert("Error has occured. Please reload! " + error.status + ' - ' + error.statusText); 
-          localStorage.clear();
+          this.storageService.clearStorage();
           return throwError(errorMessage);
 
 

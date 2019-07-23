@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { TestAdminService } from './shared/test-admin.service';
+import { StorageService } from '../../services/storage.service';
 @Component({
 	selector: 'app-test-admin',
 	templateUrl: './test-admin.component.html',
@@ -14,13 +15,13 @@ export class TestAdminComponent implements OnInit {
 	profileUrl: any;
 	show = true;
 
-	constructor(private service: TestAdminService, private ngxService: NgxUiLoaderService) { }
+	constructor(private service: TestAdminService, private ngxService: NgxUiLoaderService, private storageService: StorageService) { }
 
 	ngOnInit() {
 		this.ngxService.startBackground('do-background-things');
 		this.ngxService.stopBackground('do-background-things');
 		this.ngxService.startLoader('loader-01');
-		this.profileUrl = localStorage.getItem('imgurl');
+		this.profileUrl = this.storageService.getStorage('imgurl');
 		this.loadUserDetails();
 		this.loadcount();
 	}

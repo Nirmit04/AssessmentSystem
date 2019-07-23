@@ -3,8 +3,9 @@ import { ReportingUserService } from '../../shared/reporting-user.service';
 import { Label } from 'ng2-charts';
 import { ChartType, ChartOptions } from 'chart.js';
 import { Router } from '@angular/router';
-import { EmployeeService } from '../../../employee/shared/employee.service';
+import { EmployeeService } from '../../../employee/services/employee.service';
 import { Subscription, Subject } from 'rxjs';
+import { HttpService } from '../../../../core/http/http.service';
 @Component({
   selector: 'app-view-user-details',
   templateUrl: './view-user-details.component.html',
@@ -32,7 +33,8 @@ export class ViewUserDetailsComponent implements OnInit {
   constructor(
     public service: ReportingUserService,
     public router: Router,
-    public empService: EmployeeService) { }
+    public empService: EmployeeService,
+    private httpService: HttpService) { }
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
@@ -68,7 +70,7 @@ export class ViewUserDetailsComponent implements OnInit {
   }
 
   fetchReports(id: string) {
-    this.empService.getReportOfNonMockQuiz(id).subscribe((res: any) => {
+    this.httpService.getReportOfNonMockQuiz(id).subscribe((res: any) => {
       this.scheduledReports = res as any[];
       this.dtTrigger.next();
       if (this.scheduledReports.length > 0) {

@@ -602,7 +602,7 @@ export class MockReportComponent implements OnInit {
   }
 
   getMockReport() {
-    this.service.getReportOfMockQuiz(localStorage.getItem(&#x27;uid&#x27;)).subscribe((res: any) &#x3D;&gt; {
+    this.service.getReportOfMockQuiz(this.storageService.getStorage(&#x27;uid&#x27;)).subscribe((res: any) &#x3D;&gt; {
       this.mockReportList &#x3D; res as any[];
       this.dtTrigger.next();
     });

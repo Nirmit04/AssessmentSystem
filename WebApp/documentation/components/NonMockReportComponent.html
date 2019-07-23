@@ -605,7 +605,7 @@ export class NonMockReportComponent implements OnInit {
   }
 
   getNonMockReport() {
-    this.service.getReportOfNonMockQuiz(localStorage.getItem(&#x27;uid&#x27;)).subscribe((res: any) &#x3D;&gt; {
+    this.service.getReportOfNonMockQuiz(this.storageService.getStorage(&#x27;uid&#x27;)).subscribe((res: any) &#x3D;&gt; {
       this.nonMockReportList &#x3D; res as any[];
       this.dtTrigger.next();
     });

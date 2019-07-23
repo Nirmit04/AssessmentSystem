@@ -777,7 +777,7 @@ export class CreatetagComponent implements OnInit {
 		private toastr: ToastrService) { }
 
 	ngOnInit() {
-		this.userId &#x3D; localStorage.getItem(&#x27;uid&#x27;);
+		this.userId &#x3D; this.storageService.getStorage(&#x27;uid&#x27;);
 		if (this.data &#x3D;&#x3D;&#x3D; null) {
 			this.Option &#x3D; &#x27;Create&#x27;;
 			this.resetForm();

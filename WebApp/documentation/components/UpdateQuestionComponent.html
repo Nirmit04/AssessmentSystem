@@ -888,7 +888,7 @@ export class UpdateQuestionComponent implements OnInit {
     if (this.service.formData.ImageName !&#x3D;&#x3D; null) {
       this.src &#x3D; environment.imgURl + this.service.formData.ImageName;
     }
-    this.CCreatedBy &#x3D; localStorage.getItem(&#x27;uid&#x27;);
+    this.CCreatedBy &#x3D; this.storageService.getStorage(&#x27;uid&#x27;);
     this.service.retrieveSubjects().subscribe(res &#x3D;&gt; {
       this.Subjects &#x3D; res as Subject[];
     });

@@ -1043,7 +1043,7 @@ export class AddQuesInQuizComponent implements OnInit {
   }
 
   loadQues() {
-    this.service.getQuizQuestions(+localStorage.getItem(&#x27;quizId&#x27;)).subscribe((res: any) &#x3D;&gt; {
+    this.service.getQuizQuestions(+this.storageService.getStorage(&#x27;quizId&#x27;)).subscribe((res: any) &#x3D;&gt; {
       this.questions &#x3D; res as [];
     });
   }

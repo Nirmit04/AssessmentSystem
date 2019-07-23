@@ -1154,7 +1154,7 @@ export class ViewScheduleComponent implements OnInit {
     } else {
       this.label &#x3D; &#x27;Edit Schedule&#x27;;
     }
-    this.CCreatedBy &#x3D; localStorage.getItem(&#x27;uid&#x27;);
+    this.CCreatedBy &#x3D; this.storageService.getStorage(&#x27;uid&#x27;);
     this.usersList &#x3D; this.data as any[];
   }
 

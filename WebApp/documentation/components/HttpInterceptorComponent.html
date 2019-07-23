@@ -449,12 +449,12 @@ export class HttpInterceptorComponent implements OnInit {
   errorMsg: string;
 
   ngOnInit() {
-    this.errorCode &#x3D; localStorage.getItem(&#x27;errorCode&#x27;);
+    this.errorCode &#x3D; this.storageService.getStorage(&#x27;errorCode&#x27;);
     this.errorMsg &#x3D; this.HTTP_CODES[+this.errorCode];
   }
 
   login() {
-    localStorage.clear();
+    this.storageService.clearStorage();
     this.router.navigate([&#x27;&#x27;]);
   }
 

@@ -451,21 +451,21 @@ export class LoginComponent implements OnInit {
 	constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
 
 	ngOnInit() {
-		localStorage.setItem(&#x27;key&#x27;, this.route.snapshot.queryParamMap.get(&#x27;take-quiz&#x27;));
-		localStorage.setItem(&#x27;key1&#x27;, this.route.snapshot.queryParamMap.get(&#x27;schedule-id&#x27;));
+		this.storageService.setStorage(&#x27;key&#x27;, this.route.snapshot.queryParamMap.get(&#x27;take-quiz&#x27;));
+		this.storageService.setStorage(&#x27;key1&#x27;, this.route.snapshot.queryParamMap.get(&#x27;schedule-id&#x27;));
 		this.authService.authState.subscribe((user) &#x3D;&gt; {
 			this.user &#x3D; user;
 			if (user !&#x3D; null) {
-				localStorage.setItem(&#x27;token&#x27;, this.user.idToken);
-				localStorage.setItem(&#x27;email&#x27;, this.user.email);
-				localStorage.setItem(&#x27;firstname&#x27;, this.user.firstName);
-				localStorage.setItem(&#x27;lastname&#x27;, this.user.lastName);
-				localStorage.setItem(&#x27;id&#x27;, this.user.id);
-				localStorage.setItem(&#x27;imgurl&#x27;, this.user.photoUrl);
-				localStorage.setItem(&#x27;provider&#x27;, this.user.provider);
+				this.storageService.setStorage(&#x27;token&#x27;, this.user.idToken);
+				this.storageService.setStorage(&#x27;email&#x27;, this.user.email);
+				this.storageService.setStorage(&#x27;firstname&#x27;, this.user.firstName);
+				this.storageService.setStorage(&#x27;lastname&#x27;, this.user.lastName);
+				this.storageService.setStorage(&#x27;id&#x27;, this.user.id);
+				this.storageService.setStorage(&#x27;imgurl&#x27;, this.user.photoUrl);
+				this.storageService.setStorage(&#x27;provider&#x27;, this.user.provider);
 				this.router.navigate([&#x27;/home&#x27;]);
 			} else {
-				localStorage.clear();
+				this.storageService.clearStorage();
 			}
 		});
 	}

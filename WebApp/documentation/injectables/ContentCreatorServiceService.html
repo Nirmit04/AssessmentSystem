@@ -2056,7 +2056,7 @@ export class ContentCreatorServiceService {
 	constructor(private http: HttpClient) { }
 
 	postQuestion(formData: Question) {
-		formData.CreatedBy &#x3D; localStorage.getItem(&#x27;uid&#x27;);
+		formData.CreatedBy &#x3D; this.storageService.getStorage(&#x27;uid&#x27;);
 		formData.QuestionType &#x3D; this.QuestionType;
 		this.formDataNew.append(&#x27;QuestionDetails&#x27;, JSON.stringify(formData));
 		if (this.selectedFile !&#x3D;&#x3D; null) {
@@ -2084,7 +2084,7 @@ export class ContentCreatorServiceService {
 	}
 
 	getQuesOfUser(uid: string) {
-		return this.http.get(this.rootURL + &#x27;Question/GetQuestionByUser/&#x27; + localStorage.getItem(&#x27;uid&#x27;));
+		return this.http.get(this.rootURL + &#x27;Question/GetQuestionByUser/&#x27; + this.storageService.getStorage(&#x27;uid&#x27;));
 	}
 
 	deleteQues(qid) {
@@ -2092,7 +2092,7 @@ export class ContentCreatorServiceService {
 	}
 
 	getArchivedQuizzes() {
-		return this.http.get(this.rootURL + &#x27;Quiz/Archived/&#x27; + localStorage.getItem(&#x27;uid&#x27;));
+		return this.http.get(this.rootURL + &#x27;Quiz/Archived/&#x27; + this.storageService.getStorage(&#x27;uid&#x27;));
 	}
 
 	unArchiveQuiz(id: number) {
@@ -2100,7 +2100,7 @@ export class ContentCreatorServiceService {
 	}
 
 	getTags() {
-		return this.http.get(this.rootURL + &#x27;Subject/GetSubjects/&#x27; + localStorage.getItem(&#x27;uid&#x27;));
+		return this.http.get(this.rootURL + &#x27;Subject/GetSubjects/&#x27; + this.storageService.getStorage(&#x27;uid&#x27;));
 	}
 
 	postTags(tagForm: TagModel) {
@@ -2116,7 +2116,7 @@ export class ContentCreatorServiceService {
 	}
 
 	getQuizzes() {
-		return this.http.get(this.rootURL + &#x27;Quiz/GetQuiz/&#x27; + localStorage.getItem(&#x27;uid&#x27;));
+		return this.http.get(this.rootURL + &#x27;Quiz/GetQuiz/&#x27; + this.storageService.getStorage(&#x27;uid&#x27;));
 	}
 
 	deleteQuiz(id: number) {
@@ -2136,13 +2136,13 @@ export class ContentCreatorServiceService {
 
 	putQuestionsSelected(questions: number[]) {
 		this.quizForm.QuestionIds &#x3D; questions;
-		this.quizForm.CreatedBy &#x3D; localStorage.getItem(&#x27;uid&#x27;);
-		return this.http.put(this.rootURL + &#x27;Quiz/EditQuiz/AddQuestion/&#x27; + Number(localStorage.getItem(&#x27;quizId&#x27;)), this.quizForm.QuestionIds);
+		this.quizForm.CreatedBy &#x3D; this.storageService.getStorage(&#x27;uid&#x27;);
+		return this.http.put(this.rootURL + &#x27;Quiz/EditQuiz/AddQuestion/&#x27; + Number(this.storageService.getStorage(&#x27;quizId&#x27;)), this.quizForm.QuestionIds);
 	}
 
 	deleteQuesOfQuiz(id) {
 		return this.http.delete(
-			this.rootURL + &#x27;Quiz/QuizQuestion/Delete/&#x27; + Number(localStorage.getItem(&#x27;quizId&#x27;)) + &#x27;/&#x27; + id
+			this.rootURL + &#x27;Quiz/QuizQuestion/Delete/&#x27; + Number(this.storageService.getStorage(&#x27;quizId&#x27;)) + &#x27;/&#x27; + id
 		);
 	}
 
@@ -2155,11 +2155,11 @@ export class ContentCreatorServiceService {
 	}
 
 	getUserDetails() {
-		return this.http.get(this.rootURL + &#x27;GetUserDetails?email&#x3D;&#x27; + localStorage.getItem(&#x27;email&#x27;));
+		return this.http.get(this.rootURL + &#x27;GetUserDetails?email&#x3D;&#x27; + this.storageService.getStorage(&#x27;email&#x27;));
 	}
 
 	getUserProgress() {
-		return this.http.get(this.rootURL + &#x27;Stats/&#x27; + localStorage.getItem(&#x27;uid&#x27;));
+		return this.http.get(this.rootURL + &#x27;Stats/&#x27; + this.storageService.getStorage(&#x27;uid&#x27;));
 	}
 
 	deleteImageFromQues(id) {

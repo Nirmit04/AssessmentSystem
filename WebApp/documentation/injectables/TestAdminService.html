@@ -1440,7 +1440,7 @@ export class TestAdminService {
 	}
 
 	getArchivedSchedules() {
-		return this.http.get(this.rooturl + &#x27;QuizSchedule/ArchivedList/&#x27; + localStorage.getItem(&#x27;uid&#x27;));
+		return this.http.get(this.rooturl + &#x27;QuizSchedule/ArchivedList/&#x27; + this.storageService.getStorage(&#x27;uid&#x27;));
 	}
 
 	unArchiveSchedule(id: number) {
@@ -1451,11 +1451,11 @@ export class TestAdminService {
 	}
 
 	getUserDetails() {
-		return this.http.get(this.rooturl + &#x27;GetUserDetails?email&#x3D;&#x27; + localStorage.getItem(&#x27;email&#x27;));
+		return this.http.get(this.rooturl + &#x27;GetUserDetails?email&#x3D;&#x27; + this.storageService.getStorage(&#x27;email&#x27;));
 	}
 
 	getschedulecount() {
-		return this.http.get(this.rooturl + &#x27;QuizSchedule/Stats/&#x27; + localStorage.getItem(&#x27;uid&#x27;));
+		return this.http.get(this.rooturl + &#x27;QuizSchedule/Stats/&#x27; + this.storageService.getStorage(&#x27;uid&#x27;));
 	}
 
 }
