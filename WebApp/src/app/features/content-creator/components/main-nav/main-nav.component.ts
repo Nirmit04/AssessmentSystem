@@ -10,13 +10,12 @@ import { StorageService } from '../../../../services/storage.service';
 @Component({
 	selector: 'app-main-nav',
 	templateUrl: './main-nav.component.html',
-	styleUrls: [ './main-nav.component.css' ]
+	styleUrls: ['./main-nav.component.css']
 })
 export class MainNavComponent {
 	isHandset$: Observable<boolean> = this.breakpointObserver
 		.observe(Breakpoints.Handset)
 		.pipe(map((result) => result.matches));
-	cRole: string;
 
 	constructor(
 		private breakpointObserver: BreakpointObserver,
@@ -24,30 +23,30 @@ export class MainNavComponent {
 		private router: Router,
 		private service: ContentCreatorServiceService,
 		private storageService: StorageService
-	) {}
-	Val: string[];
-	showSpinnner: boolean = true;
+	) { }
 
-	ngOnInit() {
-		$(document).on('click', 'ul.nav li', function() {
+	public currentRole: string;
+	private showSpinnner: boolean = true;
+
+	ngOnInit(): void {
+		$(document).on('click', 'ul.nav li', function () {
 			$(this).addClass('active').siblings().removeClass('active');
 		});
-		this.cRole = this.storageService.getStorage('currentRole');
+		this.currentRole = this.storageService.getStorage('currentRole');
 		if (this.storageService.getStorage('id') === null) {
-			this.router.navigate([ '/login' ]);
+			this.router.navigate(['/login']);
 		}
 		this.authService.authState.subscribe((user) => {
-			if (user != null) {
-			} else {
+			if (user === null) {
 				this.storageService.clearStorage();
-				this.router.navigate([ '/login' ]);
+				this.router.navigate(['/login']);
 			}
 		});
 	}
 
-	roleMatch(allowedRoles): boolean {
-		var isMatch = false;
-		var userRoles: string = this.storageService.getStorage('role');
+	public roleMatch(allowedRoles): boolean {
+		let isMatch = false;
+		const userRoles: string = this.storageService.getStorage('role');
 		allowedRoles.forEach((element) => {
 			if (userRoles.indexOf(element) > -1) {
 				isMatch = true;
@@ -57,18 +56,18 @@ export class MainNavComponent {
 		return isMatch;
 	}
 
-	aab(role: string) {
+	public currentRoleIs(role: string): void {
 		this.storageService.setStorage('currentRole', role);
-		this.router.navigate([ role ]);
+		this.router.navigate([role]);
 	}
 
-	logout() {
+	public setQuestionType(type: string): void {
+		this.service.QuestionType = type;
+		this.router.navigate(['/cc-dash/create-question']);
+	}
+
+	public logout(): void {
 		this.storageService.clearStorage();
 		this.authService.signOut();
-	}
-
-	setQuestionType(type: string) {
-		this.service.QuestionType = type;
-		this.router.navigate([ '/cc-dash/create-question' ]);
 	}
 }

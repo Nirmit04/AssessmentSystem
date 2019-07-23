@@ -7,7 +7,7 @@
             Questions</h2>
         </strong>
         <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
-          <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="CCreatedBy">
+          <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="createdBy">
           <div class="form-group">
             <strong><label>Question</label></strong>
             <textarea class="form-control" name="QuestionStatement" #QuestionStatement="ngModel"
@@ -72,7 +72,7 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <strong><label>Select Tag</label></strong>
-              <ng-multiselect-dropdown name="Tags" #Tags="ngModel" [placeholder]="Choose" required [data]="Subjects123"
+              <ng-multiselect-dropdown name="Tags" #Tags="ngModel" [placeholder]="Choose" required [data]="subjects"
                 [disabled]="disabled" [settings]="dropdownSettings" [(ngModel)]="selectedItems">
               </ng-multiselect-dropdown>
               <div class="validation-error" *ngIf="Tags.invalid && Tags.touched">This field is required.</div>
@@ -113,7 +113,7 @@
       <div class="card-body">
         <h3 style="text-align: center" class="card-title">Add Questions</h3>
         <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
-          <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="CCreatedBy">
+          <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="createdBy">
           <div class="form-group">
             <strong><label>Question</label></strong>
             <textarea class="form-control" name="QuestionStatement" #QuestionStatement="ngModel"
@@ -178,7 +178,7 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <strong><label>Select Subject</label></strong>
-              <ng-multiselect-dropdown name="Tags" #Tags="ngModel" [placeholder]="Choose" required [data]="Subjects123"
+              <ng-multiselect-dropdown name="Tags" #Tags="ngModel" [placeholder]="Choose" required [data]="subjects"
                 [settings]="dropdownSettings" [(ngModel)]="selectedItems">
               </ng-multiselect-dropdown>
               <div class="validation-error" *ngIf="SubjectId.invalid && SubjectId.touched">This field is required.</div>

@@ -6,25 +6,27 @@ import { Subject } from '../../models/subject.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { HttpService } from '../../../../core/http/http.service';
+
 @Component({
   selector: 'app-create-questions',
   templateUrl: './create-questions.component.html',
   styleUrls: ['./create-questions.component.css']
 })
+
 export class CreateQuestionsComponent implements OnInit {
 
-  public Subjects123: Subject[];
-  CCreatedBy = "";
-  boolea = false;
+  public subjects: Subject[];
+  public createdBy: string = '';
   dropdownSettings = {};
+
   constructor(public service: ContentCreatorServiceService,
     public toastr: ToastrService,
     private router: Router,
     private httpService: HttpService) { }
-  ngOnInit() {
+
+  ngOnInit(): void {
     this.resetForm();
     if (this.service.Difficulty != null) {
-      this.boolea = true;
       this.service.formData.SubjectId = this.service.SubjectId.toString();
       this.service.formData.Difficulty = this.service.Difficulty;
     }
@@ -42,11 +44,11 @@ export class CreateQuestionsComponent implements OnInit {
       allowSearchFilter: true,
     };
     this.httpService.retrieveSubjects().subscribe(res => {
-      this.Subjects123 = res as Subject[];
+      this.subjects = res as Subject[];
     });
   }
 
-  resetForm(form?: NgForm) {
+  private resetForm(form?: NgForm): void {
     if (form != null) {
       form.resetForm();
     }
@@ -64,11 +66,11 @@ export class CreateQuestionsComponent implements OnInit {
     }
   }
 
-  chooseFile(event) {
+  public chooseFile(event): void {
     this.service.selectedFile = event.target.files.item(0);
   }
 
-  onSubmit(form: NgForm) {
+  public onSubmit(form: NgForm): void {
     const response = this.service.postQuestion(form.value);
     if (response) {
       this.toastr.success('Inserted successfully');
