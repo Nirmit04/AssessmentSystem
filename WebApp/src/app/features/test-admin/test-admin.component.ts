@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { TestAdminService } from './shared/test-admin.service';
+import { TestAdminService } from './services/test-admin.service';
 import { StorageService } from '../../services/storage.service';
 @Component({
 	selector: 'app-test-admin',

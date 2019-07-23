@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ReportingUserService } from './shared/reporting-user.service';
+import { ReportingUserService } from './services/reporting-user.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { StorageService } from '../../services/storage.service';
 

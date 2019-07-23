@@ -10,9 +10,9 @@ import { CreateQuestionsComponent } from './features/content-creator/components/
 import { UserDetailsComponent } from './features/content-creator/components/user-details/user-details.component';
 import { AuthGuard } from './auth.guard';
 import { ArchiveQuizComponent } from './features/content-creator/components/retrieve-quiz/archive-quiz/archive-quiz.component';
-import { CreateScheduleComponent } from './features/test-admin/retrieve-schedule/create-schedule/create-schedule.component';
-import { RetrieveScheduleComponent } from './features/test-admin/retrieve-schedule/retrieve-schedule.component';
-import { ArchivedScheduleComponent } from './features/test-admin/retrieve-schedule/archived-schedule/archived-schedule.component';
+import { CreateScheduleComponent } from './features/test-admin/components/retrieve-schedule/create-schedule/create-schedule.component';
+import { RetrieveScheduleComponent } from './features/test-admin/components/retrieve-schedule/retrieve-schedule.component';
+import { ArchivedScheduleComponent } from './features/test-admin/components/retrieve-schedule/archived-schedule/archived-schedule.component';
 import { TestAdminComponent } from './features/test-admin/test-admin.component';
 import { NonMockComponent } from './features/employee/components/non-mock/non-mock.component';
 import { EmployeeComponent } from './features/employee/employee.component';
@@ -22,14 +22,14 @@ import { NonMockReportComponent } from './features/employee/components/non-mock-
 import { DetailedReportComponent } from './features/employee/components/detailed-report/detailed-report.component';
 import { MockComponent } from './features/employee/components/mock/mock.component';
 import { MockReportComponent } from './features/employee/components/mock-report/mock-report.component';
-import { AddUserComponent } from './features/test-admin/retrieve-schedule/add-user/add-user.component';
-import { AnalyticsByTagComponent } from './features/reporting-user/analytics-by-tag/analytics-by-tag.component';
-import { AnalyticsByUserComponent } from './features/reporting-user/analytics-by-user/analytics-by-user.component';
-import { AnalyticsByQuizComponent } from './features/reporting-user/analytics-by-quiz/analytics-by-quiz.component';
+import { AddUserComponent } from './features/test-admin/components/retrieve-schedule/add-user/add-user.component';
+import { AnalyticsByTagComponent } from './features/reporting-user/components/analytics-by-tag/analytics-by-tag.component';
+import { AnalyticsByUserComponent } from './features/reporting-user/components/analytics-by-user/analytics-by-user.component';
+import { AnalyticsByQuizComponent } from './features/reporting-user/components/analytics-by-quiz/analytics-by-quiz.component';
 import { ReportingUserComponent } from './features/reporting-user/reporting-user.component';
-import { HttpInterceptorComponent } from './core/http-interceptor/http-interceptor.component';
-import { ViewUserDetailsComponent } from './features/reporting-user/analytics-by-user/view-user-details/view-user-details.component';
-import { DetailsComponent } from './features/reporting-user/analytics-by-quiz/details/details.component';
+import { HttpInterceptorComponent } from './core/interceptors/http-interceptor/http-interceptor.component';
+import { ViewUserDetailsComponent } from './features/reporting-user/components/analytics-by-user/view-user-details/view-user-details.component';
+import { DetailsComponent } from './features/reporting-user/components/analytics-by-quiz/details/details.component';
 const routes: Routes = [
 	{ path: 'home', component: HomeComponent },
 	{ path: '', component: LoginComponent, pathMatch: 'full' },
