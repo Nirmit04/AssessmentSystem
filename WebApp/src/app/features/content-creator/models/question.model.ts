@@ -1,19 +1,19 @@
 export class Question {
-	SerialNumber? : number;
-	QuestionType?: string;
-	QuestionId: string;
-	QuestionStatement: string;
-	Option1: string;
-	Option2: string;
-	Option3: string;
-	Option4: string;
-	Answer: number;
-	Marks: number;
-	Difficulty?: string;
-	SubjectId?: string;
-	SubjectName?: string;
-	ImageName?: string;
-	CreatedBy?: string;
-	Tags?: any[]
-	Tags1?:string;
+	serialNumber?: number;
+	questionType?: string;
+	questionId: string;
+	questionStatement: string;
+	option1: string;
+	option2: string;
+	option3: string;
+	option4: string;
+	answer: number;
+	marks: number;
+	difficulty?: string;
+	subjectId?: string;
+	subjectName?: string;
+	imageName?: string;
+	createdBy?: string;
+	tags?: any[]
+	duplicatetags?: string;
 }

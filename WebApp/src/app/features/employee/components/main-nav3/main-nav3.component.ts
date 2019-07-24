@@ -16,7 +16,7 @@ export class MainNav3Component {
 	isHandset$: Observable<boolean> = this.breakpointObserver
 		.observe(Breakpoints.Handset)
 		.pipe(map((result) => result.matches));
-	cRole: string;
+	public currentRole: string;
 
 	constructor(
 		private breakpointObserver: BreakpointObserver,
@@ -25,18 +25,17 @@ export class MainNav3Component {
 		private storageService: StorageService
 	) { }
 
-	ngOnInit() {
-		this.cRole = this.storageService.getStorage('currentRole');
+	public ngOnInit(): void {
+		this.currentRole = this.storageService.getStorage('currentRole');
 		this.authService.authState.subscribe((user) => {
-			if (user != null) {
-			} else {
+			if (user === null) {
 				this.storageService.clearStorage();
 				this.router.navigate(['/login']);
 			}
 		});
 	}
 
-	roleMatch(allowedRoles): boolean {
+	public roleMatch(allowedRoles: []): boolean {
 		var isMatch = false;
 		var userRoles: string = this.storageService.getStorage('role');
 		allowedRoles.forEach(element => {
@@ -48,12 +47,12 @@ export class MainNav3Component {
 		return isMatch;
 	}
 
-	aab(role: string) {
+	public changeRole(role: string): void {
 		this.storageService.setStorage('currentRole', role);
 		this.router.navigate([role]);
 	}
 
-	logout() {
+	public logout(): void {
 		this.authService.signOut();
 	}
 

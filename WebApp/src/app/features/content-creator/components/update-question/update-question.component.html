@@ -6,13 +6,13 @@
     <div class="card-body">
       <h5 class="card-title">{{label}}</h5>
       <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
-        <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="CCreatedBy">
-        <input type="hidden" name="QuestionId" #QuestionId="ngModel" [(ngModel)]="service.formData.QuestionId">
-        <input type="hidden" name="ImageName" #ImageName="ngModel" [(ngModel)]="service.formData.ImageName">
+        <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="createdBy">
+        <input type="hidden" name="QuestionId" #QuestionId="ngModel" [(ngModel)]="service.formData.questionId">
+        <input type="hidden" name="ImageName" #ImageName="ngModel" [(ngModel)]="service.formData.imageName">
         <div class="form-group">
           <label>Question</label>
-          <textarea class="form-control" [readonly]="bool" name="QuestionStatement" #QuestionStatement="ngModel"
-            [(ngModel)]="service.formData.QuestionStatement" rows="3"></textarea>
+          <textarea class="form-control" [readonly]="flag" name="QuestionStatement" #QuestionStatement="ngModel"
+            [(ngModel)]="service.formData.questionStatement" rows="3"></textarea>
           <div class="validation-error" *ngIf="QuestionStatement.invalid && QuestionStatement.touched">This field is
             required.
           </div>
@@ -20,33 +20,33 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label>Option 1</label>
-            <input required type="text" [readonly]="bool" name="Option1" #Option1="ngModel"
-              [(ngModel)]="service.formData.Option1" class="form-control">
+            <input required type="text" [readonly]="flag" name="Option1" #Option1="ngModel"
+              [(ngModel)]="service.formData.option1" class="form-control">
             <div class="validation-error" *ngIf="Option1.invalid && Option1.touched">This field is required.</div>
           </div>
           <div class="form-group col-md-6">
             <label>Option 2</label>
-            <input required type="text" [readonly]="bool" name="Option2" #Option2="ngModel"
-              [(ngModel)]="service.formData.Option2" class="form-control">
+            <input required type="text" [readonly]="flag" name="Option2" #Option2="ngModel"
+              [(ngModel)]="service.formData.option2" class="form-control">
             <div class="validation-error" *ngIf="Option2.invalid && Option2.touched">This field is required.</div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label>Option 3</label>
-            <input type="text" [readonly]="bool" name="Option3" #Option3="ngModel"
-              [(ngModel)]="service.formData.Option3" class="form-control">
+            <input type="text" [readonly]="flag" name="Option3" #Option3="ngModel"
+              [(ngModel)]="service.formData.option3" class="form-control">
           </div>
           <div class="form-group col-md-6">
             <label>Option 4</label>
-            <input type="text" [readonly]="bool" name="Option4" #Option4="ngModel"
-              [(ngModel)]="service.formData.Option4" class="form-control">
+            <input type="text" [readonly]="flag" name="Option4" #Option4="ngModel"
+              [(ngModel)]="service.formData.option4" class="form-control">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label>Correct Option</label>
-            <select name="Answer" [disabled]="bool" required #Answer="ngModel" [(ngModel)]="service.formData.Answer"
+            <select name="Answer" [disabled]="flag" required #Answer="ngModel" [(ngModel)]="service.formData.answer"
               class="form-control">
               <option value="">Choose</option>
               <option value="1">1</option>
@@ -59,7 +59,7 @@
           </div>
           <div class="form-group col-md-6">
             <label>Marks</label>
-            <select name="Marks" [disabled]="bool" required #Marks="ngModel" [(ngModel)]="service.formData.Marks"
+            <select name="Marks" [disabled]="flag" required #Marks="ngModel" [(ngModel)]="service.formData.marks"
               class="form-control">
               <option value="">Choose</option>
               <option value="1">1</option>
@@ -73,20 +73,15 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label>Select Subject</label>
-            <!-- <select name="SubjectId" [disabled]="bool" required #SubjectId="ngModel"
-              [(ngModel)]="service.formData.SubjectId" class="form-control">
-              <option value="">Choose</option>
-              <option *ngFor="let Subject of Subjects" value="{{Subject.SubjectId}}">{{Subject.Name}}</option>
-            </select> -->
-            <ng-multiselect-dropdown name="Tags" #Tags="ngModel" [placeholder]="Choose" required
-                [data]="Subjects" [disabled]="bool" [settings]="dropdownSettings" [(ngModel)]="service.formData.Tags">
-              </ng-multiselect-dropdown>
+            <ng-multiselect-dropdown name="Tags" #Tags="ngModel" placeholder="Choose" required [data]="subjects"
+              [disabled]="flag" [settings]="dropdownSettings" [(ngModel)]="service.formData.tags">
+            </ng-multiselect-dropdown>
             <div class="validation-error" *ngIf="Tags.invalid && Tags.touched">This field is required.</div>
           </div>
           <div class="form-group col-md-6">
             <label>Select Difficulty-Level</label>
-            <select name="Difficulty" [disabled]="bool" required #Difficulty="ngModel"
-              [(ngModel)]="service.formData.Difficulty" class="form-control">
+            <select name="Difficulty" [disabled]="flag" required #Difficulty="ngModel"
+              [(ngModel)]="service.formData.difficulty" class="form-control">
               <option value="">Choose</option>
               <option value="Beginner">Beginner</option>
               <option value="Intermediate">Intermediate</option>
@@ -98,8 +93,8 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label>Select Type</label>
-            <select name="QuestionType" [disabled]="bool" required #QuestionType="ngModel"
-              [(ngModel)]="service.formData.QuestionType" class="form-control">
+            <select name="QuestionType" [disabled]="flag" required #QuestionType="ngModel"
+              [(ngModel)]="service.formData.questionType" class="form-control">
               <option value="">Choose</option>
               <option value="Mock">Mock</option>
               <option value="Scheduled">Scheduled</option>
@@ -107,7 +102,7 @@
             <div class="validation-error" *ngIf="QuestionType.invalid && QuestionType.touched">This field is required.
             </div>
           </div>
-          <div [hidden]="bool" class="form-group col-md-6">
+          <div [hidden]="flag" class="form-group col-md-6">
             <strong><label>Select/Change Image</label></strong>
             <input type="file" (change)="chooseFile($event)" name="ImageNameDemo" class="form-control">
           </div>
@@ -115,18 +110,17 @@
         <div style="float:right" class="form-group">
           <div class="row">
             <div class="col-md-6">
-              <button [hidden]="bool" type="submit" [disabled]="form.invalid || bool"
+              <button [hidden]="flag" type="submit" [disabled]="form.invalid || flag"
                 class="btn btn-primary">Submit</button>
             </div>
           </div>
         </div>
-        <strong><img [src]="src" alt="Image Does Not Exist"></strong>
+        <strong><img [src]="imageSource" alt="Image Does Not Exist"></strong>
         <br><br>
       </form>
-      <button type="button" *ngIf="src" (click)="deleteImg()" style="cursor: pointer;" [hidden]="bool"
+      <button type="button" *ngIf="imageSource" (click)="deleteImage()" style="cursor: pointer;" [hidden]="bool"
         class="btn btn-outline-danger">
-        <i class="fa fa-trash" aria-hidden="true"> Delete
-          Img</i></button>
+        <i class="fa fa-trash" aria-hidden="true"> Delete Image</i></button>
     </div>
   </mat-dialog-content>
 </div>

@@ -30,7 +30,7 @@
         <div class="input-group-prepend">
           <label class="input-group-text" for="inputGroupSelect01">Role</label>
         </div>
-        <select class="custom-select" #role id="inputGroupSelect01" [(ngModel)]="cRole" (change)="currentRoleIs(role.value)">
+        <select class="custom-select" #role id="inputGroupSelect01" [(ngModel)]="currentRole" (change)="currentRoleIs(role.value)">
           <option value="//emp-dash" *ngIf="roleMatch(['Employee'])">Employee</option>
           <option value="//cc-dash" *ngIf="roleMatch(['Content-Creator'])">Content-Creator</option>
           <option value="//ta-dash" *ngIf="roleMatch(['Test-Administrator'])">Test-Administrator</option>

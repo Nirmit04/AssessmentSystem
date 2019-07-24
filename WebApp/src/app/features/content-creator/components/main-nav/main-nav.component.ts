@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from 'angularx-social-login';
 import { Router } from '@angular/router';
-import { ContentCreatorServiceService } from '../../services/content-creator-service.service';
+import { ContentCreatorService } from '../../services/content-creator-service.service';
 import { StorageService } from '../../../../services/storage.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class MainNavComponent {
 		private breakpointObserver: BreakpointObserver,
 		private authService: AuthService,
 		private router: Router,
-		private service: ContentCreatorServiceService,
+		private service: ContentCreatorService,
 		private storageService: StorageService
 	) { }
 
@@ -62,7 +62,7 @@ export class MainNavComponent {
 	}
 
 	public setQuestionType(type: string): void {
-		this.service.QuestionType = type;
+		this.service.questionType = type;
 		this.router.navigate(['/cc-dash/create-question']);
 	}
 

@@ -57,8 +57,8 @@ export class ViewUserDetailsComponent implements OnInit {
     }
   }
 
-  fetchAnalytics(id: string) {
-    this.service.getUserAnalytics(id).subscribe((res: any) => {
+  fetchAnalytics(userId: number) {
+    this.service.getUserAnalytics(userId).subscribe((res: any) => {
       this.data2 = res;
       this.data1 = [];
       this.data1.push(this.data2.HighestScore);
@@ -69,8 +69,8 @@ export class ViewUserDetailsComponent implements OnInit {
     });
   }
 
-  fetchReports(id: string) {
-    this.httpService.getReportOfNonMockQuiz(id).subscribe((res: any) => {
+  fetchReports(userId: number) {
+    this.httpService.getReportOfNonMockQuiz(userId).subscribe((res: any) => {
       this.scheduledReports = res as any[];
       this.dtTrigger.next();
       if (this.scheduledReports.length > 0) {

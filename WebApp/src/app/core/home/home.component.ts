@@ -60,9 +60,9 @@ export class HomeComponent implements OnInit {
 									this.time = this.storageService.getStorage('time').split(":");
 									this.service.hours = parseInt(this.time[0]);
 									this.service.minutes = parseInt(this.time[1]);
-									this.service.noQuesOfQuiz = res.TotalQuestions;
-									this.service.QuizScheduleId = +this.checksid;
-									this.service.QuizId = +this.checkqid;
+									this.service.noOfQuestionsInQuiz = res.TotalQuestions;
+									this.service.quizScheduleId = +this.checksid;
+									this.service.quizId = +this.checkqid;
 									this.router.navigate(['/emp-dash/quiz/take-quiz']);
 								});
 							})

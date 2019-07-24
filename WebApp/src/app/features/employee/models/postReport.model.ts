@@ -1,8 +1,8 @@
 export interface postReport {
-    QuesAnswers: any[];
-    QuizId?: number;
-    QuizScheduleId?: number;
-    UserId?: string;
-    TimeTaken: string;
+    quesAnswers: any[];
+    quizId?: number;
+    quizScheduleId?: number;
+    userId?: string;
+    timeTaken: string;
 
 }

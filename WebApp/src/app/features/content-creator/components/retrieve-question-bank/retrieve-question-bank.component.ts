@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Question } from '../../models/question.model';
-import { ContentCreatorServiceService } from '../../services/content-creator-service.service';
+import { ContentCreatorService } from '../../services/content-creator-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UpdateQuestionComponent } from '../update-question/update-question.component';
@@ -33,9 +33,9 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 
 	public columns: any[];
 	public nonSortableColumns: any[];
-	i: number;
+	private index: number;
 
-	constructor(private service: ContentCreatorServiceService,
+	constructor(private service: ContentCreatorService,
 		private toastr: ToastrService,
 		private dialog: MatDialog,
 		private storageService: StorageService,
@@ -48,30 +48,30 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 			search: false
 		};
 		setTimeout(() => {
-			this.getQuesOfUser(this.storageService.getStorage('uid'));
+			this.getQuesOfUser();
 		}, 0);
 
 		this.nonSortableColumns = [
-			{ field: 'QuestionStatement', header: 'Question' }
+			{ field: 'questionStatement', header: 'Question' }
 		]
 		this.columns = [
-			{ field: 'QuestionType', header: 'Question Type' },
-			{ field: 'Difficulty', header: 'Difficulty Level' },
-			{ field: 'Tags1', header: 'Tags' }
+			{ field: 'questionType', header: 'Question Type' },
+			{ field: 'difficulty', header: 'Difficulty Level' },
+			{ field: 'duplicateTags', header: 'Tags' }
 		];
 	}
 
-	private getQuesOfUser(userId: string): void {
-		this.httpService.getQuesOfUser(userId).subscribe((data: any) => {
+	private getQuesOfUser(): void {
+		this.httpService.getQuesOfUser().subscribe((data: any) => {
 			this.questionList = data as Question[];
-			for (this.i = 1; this.i <= this.questionList.length; this.i++) {
+			for (this.index = 1; this.index <= this.questionList.length; this.index++) {
 				this.tag = '';
-				this.questionList[this.i - 1].SerialNumber = this.i;
-				for (let tag of this.questionList[this.i - 1].Tags) {
+				this.questionList[this.index - 1].serialNumber = this.index;
+				for (let tag of this.questionList[this.index - 1].tags) {
 					this.tag = this.tag + tag.Name + ',';
-					this.questionList[this.i - 1].Tags1 = this.tag;
+					this.questionList[this.index - 1].duplicatetags = this.tag;
 				}
-				this.questionList[this.i - 1].Tags1 = this.questionList[this.i - 1].Tags1.substring(0, this.questionList[this.i - 1].Tags1.length - 1);
+				this.questionList[this.index - 1].duplicatetags = this.questionList[this.index - 1].duplicatetags.substring(0, this.questionList[this.index - 1].duplicatetags.length - 1);
 			}
 		})
 	}
@@ -81,7 +81,7 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 			this.subscription = this.httpService.deleteQues(questionId).subscribe((res: any) => {
 				this.toastr.success('Deleted Successfully', 'Assesment System');
 				this.dtTrigger.unsubscribe();
-				this.getQuesOfUser(this.storageService.getStorage('uid'));
+				this.getQuesOfUser();
 				this.subscription.unsubscribe();
 			});
 		}
@@ -96,7 +96,7 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 		this.service.formData = this.questionList[arrayindex - 1];
 		this.dialog.open(UpdateQuestionComponent, dialogConfig).afterClosed().subscribe((res: any) => {
 			this.dtTrigger.unsubscribe();
-			this.getQuesOfUser(this.storageService.getStorage('uid'));
+			this.getQuesOfUser();
 		});
 	}
 

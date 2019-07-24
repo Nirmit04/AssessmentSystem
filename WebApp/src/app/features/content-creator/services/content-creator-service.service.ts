@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Question } from '../models/question.model';
-import { environment } from '../../../../environments/environment';
 import { TagModel } from '../models/tags.model';
 import { QuizModel } from '../models/quiz.model';
 import { NgForm } from '@angular/forms';
@@ -9,29 +8,29 @@ import { HttpService } from '../../../core/http/http.service';
 @Injectable({
 	providedIn: 'root'
 })
-export class ContentCreatorServiceService {
-	QuizState: boolean;
-	QuestionType: string;
-	Difficulty: string;
-	SubjectId: number;
-	tagForm: TagModel;
-	formData: Question;
-	formDataNew: FormData;
-	quizForm: QuizModel = null;
-	readonlyStatus: boolean;
-	QuizHour: number;
-	QuizMinute: number;
-	rootURL = environment.apiURl;
-	quesStat: boolean = false;
+export class ContentCreatorService {
+	public quizState: boolean;
+	public questionType: string;
+	public difficulty: string;
+	public subjectId: number;
+	public tagForm: TagModel;
+	public formData: Question;
+	public formDataNew: FormData;
+	public quizForm: QuizModel = null;
+	public readonlyStatus: boolean;
+	public quizHour: number;
+	public quizMinute: number;
+	public quesStat: boolean = false;
 	public createdBy;
 	public formDupli: NgForm;
-	selectedFile: File = null;
+	public selectedFile: File = null;
+
 	constructor(private httpService: HttpService, private storageService: StorageService) { }
 
-	postQuestion(formData: Question) {
+	public postQuestion(formData: Question): any {
 		this.formDataNew = new FormData();
-		formData.CreatedBy = this.storageService.getStorage('uid');
-		formData.QuestionType = this.QuestionType;
+		formData.createdBy = this.storageService.getStorage('uid');
+		formData.questionType = this.questionType;
 		this.formDataNew.append('QuestionDetails', JSON.stringify(formData));
 		if (this.selectedFile !== null) {
 			this.formDataNew.append('Image', this.selectedFile, this.selectedFile.name);
@@ -43,32 +42,32 @@ export class ContentCreatorServiceService {
 		return false;
 	}
 
-	updateQuestion(formData: Question) {
+	public updateQuestion(formData: Question):any {
 		this.formDataNew = new FormData();
 		this.formDataNew.append('QuestionDetails', JSON.stringify(formData));
 		if (this.selectedFile !== null) {
 			this.formDataNew.append('Image', this.selectedFile, this.selectedFile.name);
 			this.selectedFile = null;
 		}
-		this.httpService.putQuestion(formData.QuestionId, this.formDataNew).subscribe((res: any) => {
+		this.httpService.putQuestion(formData.questionId, this.formDataNew).subscribe((res: any) => {
 			return res;
 		});
 		return false;
 	}
 
-	postQuestionsSelected(questions: number[]) {
-		this.quizForm.QuestionIds = questions;
-		this.quizForm.QuizState = this.QuizState;
+	public postQuestionsSelected(questions: number[]) :any {
+		this.quizForm.questionIds = questions;
+		this.quizForm.quizState = this.quizState;
 		this.httpService.postSelectedQuestion(this.quizForm).subscribe((res: any) => {
 			return res;
 		});
 		return false;
 	}
 
-	putQuestionsSelected(questions: number[]) {
-		this.quizForm.QuestionIds = questions;
-		this.quizForm.CreatedBy = this.storageService.getStorage('uid');
-		this.httpService.putQuestionsSelected(this.storageService.getStorage('quizId'), this.quizForm.QuestionIds).subscribe((res: any) => {
+	public putQuestionsSelected(questions: number[]) :any {
+		this.quizForm.questionIds = questions;
+		this.quizForm.createdBy = this.storageService.getStorage('uid');
+		this.httpService.putQuestionsSelected(this.storageService.getStorage('quizId'), this.quizForm.questionIds).subscribe((res: any) => {
 			return res;
 		});
 		return false;

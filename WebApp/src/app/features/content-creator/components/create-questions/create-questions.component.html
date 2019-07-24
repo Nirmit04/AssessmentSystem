@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-body">
         <strong>
-          <h2 *ngIf="service.QuestionType" class="card-title" style="text-align: center">Add {{service.QuestionType}}
+          <h2 *ngIf="service.questionType" class="card-title" style="text-align: center">Add {{service.questionType}}
             Questions</h2>
         </strong>
         <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
@@ -11,7 +11,7 @@
           <div class="form-group">
             <strong><label>Question</label></strong>
             <textarea class="form-control" name="QuestionStatement" #QuestionStatement="ngModel"
-              [(ngModel)]="service.formData.QuestionStatement" rows="3" required></textarea>
+              [(ngModel)]="service.formData.questionStatement" rows="3" required></textarea>
             <div class="validation-error" *ngIf="QuestionStatement.invalid && QuestionStatement.touched">This field is
               required.
             </div>
@@ -19,13 +19,13 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <strong><label>Option 1</label></strong>
-              <input required type="text" name="Option1" #Option1="ngModel" [(ngModel)]="service.formData.Option1"
+              <input required type="text" name="Option1" #Option1="ngModel" [(ngModel)]="service.formData.option1"
                 class="form-control">
               <div class="validation-error" *ngIf="Option1.invalid && Option1.touched">This field is required.</div>
             </div>
             <div class="form-group col-md-6">
               <strong><label>Option 2</label></strong>
-              <input required type="text" name="Option2" #Option2="ngModel" [(ngModel)]="service.formData.Option2"
+              <input required type="text" name="Option2" #Option2="ngModel" [(ngModel)]="service.formData.option2"
                 class="form-control">
               <div class="validation-error" *ngIf="Option2.invalid && Option2.touched">This field is required.</div>
             </div>
@@ -33,32 +33,32 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <strong><label>Option 3</label></strong>
-              <input type="text" name="Option3" #Option3="ngModel" [(ngModel)]="service.formData.Option3"
+              <input type="text" name="Option3" #Option3="ngModel" [(ngModel)]="service.formData.option3"
                 class="form-control">
             </div>
             <div class="form-group col-md-6">
               <strong><label>Option 4</label></strong>
-              <input type="text" name="Option4" #Option4="ngModel" [(ngModel)]="service.formData.Option4"
+              <input type="text" name="Option4" #Option4="ngModel" [(ngModel)]="service.formData.option4"
                 class="form-control">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <strong><label>Correct Option</label></strong>
-              <select name="Answer" [disabled]="bool" required #Answer="ngModel" [(ngModel)]="service.formData.Answer"
+              <select name="Answer" [disabled]="bool" required #Answer="ngModel" [(ngModel)]="service.formData.answer"
                 class="form-control">
                 <option selected disabled value="">Choose</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
-                <option *ngIf="service.formData.Option3" value="3">3</option>
-                <option *ngIf="service.formData.Option4" value="4">4</option>
+                <option *ngIf="service.formData.option3" value="3">3</option>
+                <option *ngIf="service.formData.option4" value="4">4</option>
               </select>
               <div class="validation-error" *ngIf="Answer.invalid && Answer.touched">This field is required.
               </div>
             </div>
             <div class="form-group col-md-6">
               <strong><label>Marks</label></strong>
-              <select name="Marks" [disabled]="bool" required #Marks="ngModel" [(ngModel)]="service.formData.Marks"
+              <select name="Marks" [disabled]="bool" required #Marks="ngModel" [(ngModel)]="service.formData.marks"
                 class="form-control">
                 <option selected disabled value="">Choose</option>
                 <option value="1">1</option>
@@ -79,7 +79,7 @@
             </div>
             <div class="form-group col-md-6">
               <strong><label>Select Difficulty-Level</label></strong>
-              <select name="Difficulty" required #Difficulty="ngModel" [(ngModel)]="service.formData.Difficulty"
+              <select name="Difficulty" required #Difficulty="ngModel" [(ngModel)]="service.formData.difficulty"
                 class="form-control">
                 <option selected disabled value="">Choose an option...</option>
                 <option value="Beginner">Beginner</option>
@@ -117,7 +117,7 @@
           <div class="form-group">
             <strong><label>Question</label></strong>
             <textarea class="form-control" name="QuestionStatement" #QuestionStatement="ngModel"
-              [(ngModel)]="service.formData.QuestionStatement" rows="3" required></textarea>
+              [(ngModel)]="service.formData.questionStatement" rows="3" required></textarea>
             <div class="validation-error" *ngIf="QuestionStatement.invalid && QuestionStatement.touched">This field is
               required.
             </div>
@@ -125,13 +125,13 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <strong><label>Option 1</label></strong>
-              <input required type="text" name="Option1" #Option1="ngModel" [(ngModel)]="service.formData.Option1"
+              <input required type="text" name="Option1" #Option1="ngModel" [(ngModel)]="service.formData.option1"
                 class="form-control">
               <div class="validation-error" *ngIf="Option1.invalid && Option1.touched">This field is required.</div>
             </div>
             <div class="form-group col-md-6">
               <strong><label>Option 2</label></strong>
-              <input required type="text" name="Option2" #Option2="ngModel" [(ngModel)]="service.formData.Option2"
+              <input required type="text" name="Option2" #Option2="ngModel" [(ngModel)]="service.formData.option2"
                 class="form-control">
               <div class="validation-error" *ngIf="Option2.invalid && Option2.touched">This field is required.</div>
             </div>
@@ -139,32 +139,32 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <strong><label>Option 3</label></strong>
-              <input type="text" name="Option3" #Option3="ngModel" [(ngModel)]="service.formData.Option3"
+              <input type="text" name="Option3" #Option3="ngModel" [(ngModel)]="service.formData.option3"
                 class="form-control">
             </div>
             <div class="form-group col-md-6">
               <strong><label>Option 4</label></strong>
-              <input type="text" name="Option4" #Option4="ngModel" [(ngModel)]="service.formData.Option4"
+              <input type="text" name="Option4" #Option4="ngModel" [(ngModel)]="service.formData.option4"
                 class="form-control">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <strong><label>Correct Option</label></strong>
-              <select name="Answer" [disabled]="bool" required #Answer="ngModel" [(ngModel)]="service.formData.Answer"
+              <select name="Answer" [disabled]="bool" required #Answer="ngModel" [(ngModel)]="service.formData.answer"
                 class="form-control">
                 <option selected disabled value="">Choose</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
-                <option *ngIf="service.formData.Option3" value="3">3</option>
-                <option *ngIf="service.formData.Option4" value="4">4</option>
+                <option *ngIf="service.formData.option3" value="3">3</option>
+                <option *ngIf="service.formData.option4" value="4">4</option>
               </select>
               <div class="validation-error" *ngIf="Answer.invalid && Answer.touched">This field is required.
               </div>
             </div>
             <div class="form-group col-md-6">
               <strong><label>Marks</label></strong>
-              <select name="Marks" [disabled]="bool" required #Marks="ngModel" [(ngModel)]="service.formData.Marks"
+              <select name="Marks" [disabled]="bool" required #Marks="ngModel" [(ngModel)]="service.formData.marks"
                 class="form-control">
                 <option selected disabled value="">Choose</option>
                 <option value="1">1</option>
@@ -186,7 +186,7 @@
             <div class="form-group col-md-6">
               <strong><label>Select Difficulty-Level</label></strong>
               <select [disabled]="bool" name="Difficulty" required #Difficulty="ngModel"
-                [(ngModel)]="service.formData.Difficulty" class="form-control">
+                [(ngModel)]="service.formData.difficulty" class="form-control">
                 <option selected disabled value="">Choose an option...</option>
                 <option value="Beginner">Beginner</option>
                 <option value="Intermediate">Intermediate</option>

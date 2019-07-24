@@ -4,30 +4,7 @@
     <button type="button" (click)="onCreate()" class="btn btn-primary">Create Tag</button>
   </div>
   <br>
-  <!-- <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
-    class="row-border hover table table-bordered table-striped">
-    <thead class="thead-dark">
-      <tr>
-        <th>#S. No.</th>
-        <th>Subject</th>
-        <th>Department</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <ng-container *ngFor="let tag of tagList;index as i;">
-        <tr>
-          <th>{{i+1}}</th>
-          <td>{{tag.Name}}</td>
-          <td>{{tag.Department}}</td>
-          <td>
-            <a class="btn btn-sm btn-info text-white" (click)="onEdit(i+1)"><i aria-hidden="true" class="fa fa-pencil"></i></a>
-          </td>
-        </tr>
-      </ng-container>
-    </tbody>
-  </table> -->
-  <p-table [columns]="cols" [value]="tagList" [paginator]="true" [rows]="6" #dt [responsive]="true">
+  <p-table [columns]="columns" [value]="tagList" [paginator]="true" [rows]="6" #dt [responsive]="true">
     <ng-template pTemplate="caption">
       <div style="text-align: right">        
           <i class="fa fa-search" aria-hidden="true" style="margin:4px 4px 0 0"></i>
@@ -36,7 +13,7 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th *ngFor="let col of cols" [pSortableColumn]="col.field" style="background-color:#000000; color:#ffffff ">
+        <th *ngFor="let col of columns" [pSortableColumn]="col.field" style="background-color:#000000; color:#ffffff ">
           {{col.header}}
         </th>
         <th style="background-color:#000000; color:#ffffff ">Action</th>

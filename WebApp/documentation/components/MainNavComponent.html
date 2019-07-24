@@ -180,7 +180,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(breakpointObserver: BreakpointObserver, authService: AuthService, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, service: <a href="../injectables/ContentCreatorServiceService.html">ContentCreatorServiceService</a>)</code>
+<code>constructor(breakpointObserver: BreakpointObserver, authService: AuthService, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, service: <a href="../injectables/ContentCreatorService.html">ContentCreatorService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -242,7 +242,7 @@
                                                         <td>service</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/ContentCreatorServiceService.html" target="_self" >ContentCreatorServiceService</a></code>
+                                                                        <code><a href="../injectables/ContentCreatorService.html" target="_self" >ContentCreatorService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -692,7 +692,7 @@ import { AuthService } from &#x27;angularx-social-login&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 import { addAllToArray } from &#x27;@angular/core/src/render3/util&#x27;;
 import { stringify } from &#x27;@angular/core/src/util&#x27;;
-import { ContentCreatorServiceService } from &#x27;../shared/content-creator-service.service&#x27;;
+import { ContentCreatorService } from &#x27;../shared/content-creator-service.service&#x27;;
 
 @Component({
 	selector: &#x27;app-main-nav&#x27;,
@@ -709,7 +709,7 @@ export class MainNavComponent {
 		private breakpointObserver: BreakpointObserver,
 		private authService: AuthService,
 		private router: Router,
-		private service: ContentCreatorServiceService,
+		private service: ContentCreatorService,
 	) { }
 	Val: string[];
 	showSpinnner: boolean &#x3D; true;

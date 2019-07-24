@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizModel } from '../../../models/quiz.model';
-import { ContentCreatorServiceService } from '../../../services/content-creator-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
@@ -11,35 +10,30 @@ import { HttpService } from '../../../../../core/http/http.service';
 	styleUrls: ['./archive-quiz.component.css']
 })
 export class ArchiveQuizComponent implements OnInit {
-	tg = '';
-	QuizList: QuizModel[];
-	searchText = '';
-	difficultyLevel = '';
-	index = 0;
-	QuestionList: any[];
+	private tag: string = '';
+	public QuizList: QuizModel[];
 	dtOptions: DataTables.Settings = {};
 	dtTrigger: Subject<QuizModel> = new Subject();
 	subscription: Subscription;
-	cols: any[];
-	i: number;
+	public columns: any[];
+	private index: number;
 
-	constructor(private service: ContentCreatorServiceService,
-		private toastr: ToastrService,
+	constructor(private toastr: ToastrService,
 		private httpService: HttpService) { }
 
-	public ngOnInit() {
+	public ngOnInit(): void {
 		this.dtOptions = {
 			pagingType: 'full_numbers',
 			pageLength: 10,
 		};
-		this.cols = [
-			{ field: 'SerialNumber', header: 'S NO' },
-			{ field: 'QuizName', header: 'Quiz Name' },
-			{ field: 'QuizType', header: 'Quiz Type' },
-			{ field: 'Difficulty', header: 'Difficulty' },
-			{ field: 'TotalQuestions', header: 'Total Questions' },
-			{ field: 'TotalMarks', header: 'Total Marks' },
-			{ field: 'Tags1', header: 'Tags' },
+		this.columns = [
+			{ field: 'serialNumber', header: 'S NO' },
+			{ field: 'quizName', header: 'Quiz Name' },
+			{ field: 'quizType', header: 'Quiz Type' },
+			{ field: 'difficulty', header: 'Difficulty' },
+			{ field: 'totalQuestions', header: 'Total Questions' },
+			{ field: 'totalMarks', header: 'Total Marks' },
+			{ field: 'duplicateTags', header: 'Tags' },
 		];
 
 		this.loadQuiz();
@@ -48,24 +42,23 @@ export class ArchiveQuizComponent implements OnInit {
 		}, 0);
 	}
 
-	loadQuiz() {
+	private loadQuiz(): void {
 		this.httpService.getArchivedQuizzes().subscribe((res: any) => {
 			this.QuizList = res as QuizModel[];
-			for (this.i = 1; this.i <= this.QuizList.length; this.i++) {
-				this.QuizList[this.i - 1].SerialNumber = this.i;
-				this.tg = ''
-				for (let tag of this.QuizList[this.i - 1].Tags) {
-					this.tg = this.tg + tag.Name + ',';
-					this.QuizList[this.i - 1].Tags1 = this.tg;
+			for (this.index = 1; this.index <= this.QuizList.length; this.index++) {
+				this.QuizList[this.index - 1].serialNumber = this.index;
+				this.tag = ''
+				for (let tag of this.QuizList[this.index - 1].tags) {
+					this.tag = this.tag + tag.Name + ',';
+					this.QuizList[this.index - 1].duplicateTags = this.tag;
 				}
 			}
-			console.log(this.QuizList)
 		});
 	}
 
-	onUnArchived(id: number) {
+	public onUnArchived(quizId: number): void {
 		if (confirm('Are you sure you want to un-archive this quiz?')) {
-			this.httpService.unArchiveQuiz(id).subscribe((res: any) => {
+			this.httpService.unArchiveQuiz(quizId).subscribe((res: any) => {
 				this.dtTrigger.unsubscribe();
 				this.loadQuiz();
 				this.toastr.success('Un-Archived Successfully', 'Assesment System');
@@ -75,7 +68,7 @@ export class ArchiveQuizComponent implements OnInit {
 		}
 	}
 
-	ngOnDestroy() {
+	public ngOnDestroy(): void {
 		this.dtTrigger.unsubscribe();
 	}
 

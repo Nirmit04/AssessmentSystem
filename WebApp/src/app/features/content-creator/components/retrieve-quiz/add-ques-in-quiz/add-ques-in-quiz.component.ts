@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Subject } from '../../../models/subject.model';
-import { ContentCreatorServiceService } from '../../../services/content-creator-service.service';
+import { ContentCreatorService } from '../../../services/content-creator-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialogRef, MatDialog, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
 import { NgForm } from '@angular/forms';
@@ -18,7 +18,7 @@ export class AddQuesInQuizComponent implements OnInit {
   public questions: any[];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
-    public service: ContentCreatorServiceService,
+    public service: ContentCreatorService,
     public toastr: ToastrService,
     public dialog: MatDialog,
     private storageService: StorageService,
@@ -35,17 +35,17 @@ export class AddQuesInQuizComponent implements OnInit {
       form.resetForm();
     } else {
       this.service.quizForm = {
-        QuizId: null,
-        Difficulty: '',
-        TotalQuestions: null,
-        TotalMarks: null,
-        Tags: null,
-        QuizType: '',
-        CreatedBy: '',
-        QuestionIds: null,
-        SubjectId: null,
-        QuizName: '',
-        MinCutOff: null
+        quizId: null,
+        difficulty: '',
+        totalQuestions: null,
+        totalMarks: null,
+        tags: null,
+        quizType: '',
+        createdBy: '',
+        questionIds: null,
+        subjectId: null,
+        quizName: '',
+        minCutOff: null
       }
       if (this.questions) {
         this.questions.forEach(y => {

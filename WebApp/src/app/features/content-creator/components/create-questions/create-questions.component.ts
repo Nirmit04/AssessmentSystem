@@ -1,9 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ContentCreatorServiceService } from '../../services/content-creator-service.service'
+import { ContentCreatorService } from '../../services/content-creator-service.service'
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from '../../models/subject.model';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { HttpService } from '../../../../core/http/http.service';
 
@@ -19,19 +18,19 @@ export class CreateQuestionsComponent implements OnInit {
   public createdBy: string = '';
   dropdownSettings = {};
 
-  constructor(public service: ContentCreatorServiceService,
+  constructor(public service: ContentCreatorService,
     public toastr: ToastrService,
     private router: Router,
     private httpService: HttpService) { }
 
   ngOnInit(): void {
     this.resetForm();
-    if (this.service.Difficulty != null) {
-      this.service.formData.SubjectId = this.service.SubjectId.toString();
-      this.service.formData.Difficulty = this.service.Difficulty;
+    if (this.service.difficulty != null) {
+      this.service.formData.subjectId = this.service.subjectId.toString();
+      this.service.formData.difficulty = this.service.difficulty;
     }
     else {
-      if (this.service.QuestionType == null) {
+      if (this.service.questionType == null) {
         this.router.navigate(['/cc-dash'])
       }
     }
@@ -53,16 +52,16 @@ export class CreateQuestionsComponent implements OnInit {
       form.resetForm();
     }
     this.service.formData = {
-      QuestionId: null,
-      QuestionStatement: "",
-      Option1: "",
-      Option2: "",
-      Option3: "",
-      Option4: "",
-      Answer: null,
-      Marks: null,
-      Difficulty: "",
-      SubjectId: "",
+      questionId: null,
+      questionStatement: "",
+      option1: "",
+      option2: "",
+      option3: "",
+      option4: "",
+      answer: null,
+      marks: null,
+      difficulty: "",
+      subjectId: "",
     }
   }
 
@@ -76,9 +75,9 @@ export class CreateQuestionsComponent implements OnInit {
       this.toastr.success('Inserted successfully');
       this.service.selectedFile = null;
       this.resetForm(form);
-      if (this.service.Difficulty != null) {
-        this.service.formData.SubjectId = this.service.SubjectId.toString();
-        this.service.formData.Difficulty = this.service.Difficulty;
+      if (this.service.difficulty != null) {
+        this.service.formData.subjectId = this.service.subjectId.toString();
+        this.service.formData.difficulty = this.service.difficulty;
       }
     }
   }

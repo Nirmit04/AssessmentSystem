@@ -195,7 +195,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(data, dialogRef: <a href="../components/CreatetagComponent.html">MatDialogRef<CreatetagComponent></a>, service: <a href="../injectables/ContentCreatorServiceService.html">ContentCreatorServiceService</a>, toastr: ToastrService)</code>
+<code>constructor(data, dialogRef: <a href="../components/CreatetagComponent.html">MatDialogRef<CreatetagComponent></a>, service: <a href="../injectables/ContentCreatorService.html">ContentCreatorService</a>, toastr: ToastrService)</code>
                     </td>
                 </tr>
                         <tr>
@@ -244,7 +244,7 @@
                                                         <td>service</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/ContentCreatorServiceService.html" target="_self" >ContentCreatorServiceService</a></code>
+                                                                        <code><a href="../injectables/ContentCreatorService.html" target="_self" >ContentCreatorService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -748,7 +748,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Inject } from &#x27;@angular/core&#x27;;
-import { ContentCreatorServiceService } from &#x27;../../shared/content-creator-service.service&#x27;;
+import { ContentCreatorService } from &#x27;../../shared/content-creator-service.service&#x27;;
 import { TagModel } from &#x27;../../shared/tags.model&#x27;;
 import { NgForm } from &#x27;@angular/forms&#x27;;
 import { ToastrService } from &#x27;ngx-toastr&#x27;;
@@ -773,7 +773,7 @@ export class CreatetagComponent implements OnInit {
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data,
 		public dialogRef: MatDialogRef&lt;CreatetagComponent&gt;,
-		private service: ContentCreatorServiceService,
+		private service: ContentCreatorService,
 		private toastr: ToastrService) { }
 
 	ngOnInit() {

@@ -1,6 +1,6 @@
 export class TagModel {
-	SerialNumber?: number;
-	SubjectId: number;
-	Name: string;
-	Department: string;
+	serialNumber?: number;
+	subjectId: number;
+	name: string;
+	department: string;
 }

@@ -1,8 +1,7 @@
 <app-loader></app-loader>
 <app-main-nav3>
   <br /><br />
-  <p-table [columns]="cols" [value]="mockList" [paginator]="true" [rows]="10" #dt>
-      
+  <p-table [columns]="columns" [value]="mockList" [paginator]="true" [rows]="10" #dt>
     <ng-template pTemplate="caption">
       <h3>List of Mock Quizzes</h3>
       <div style="text-align: right">        
@@ -12,7 +11,7 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th *ngFor="let col of cols" [pSortableColumn]="col.field" style="background-color:black; color:white;">
+        <th *ngFor="let col of columns" [pSortableColumn]="col.field" style="background-color:black; color:white;">
           {{col.header}}
         </th>
         <th style="background-color: black; color: white;">Action</th>
