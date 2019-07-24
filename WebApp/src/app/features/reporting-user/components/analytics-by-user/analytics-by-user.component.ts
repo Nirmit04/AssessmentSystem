@@ -15,9 +15,9 @@ export class AnalyticsByUserComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
   dtOptions: DataTables.Settings = {};
-  allUsers: any[];
+  public allUsers: any[];
 
-  ngOnInit() {
+  public ngOnInit(): void {
 
     this.dtOptions = {
       lengthChange: false,
@@ -26,18 +26,18 @@ export class AnalyticsByUserComponent implements OnInit {
     };
     setTimeout(() => {
       this.loadAllEmployees();
-		}, 0);
+    }, 0);
   }
 
-  loadAllEmployees() {
+  private loadAllEmployees(): void {
     this.service.getAllUsers().subscribe((res: any) => {
       this.allUsers = res as any[];
-      console.log(this.allUsers);
+
       this.dtTrigger.next();
     });
   }
 
-  viewUserDetails(index: string) {
+  public viewUserDetails(index: string): void {
     this.service.data = this.allUsers[index];
     this.router.navigate(['/ru-dash/ana-by-user/user-detail']);
   }

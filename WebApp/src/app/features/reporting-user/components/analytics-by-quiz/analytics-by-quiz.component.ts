@@ -11,28 +11,28 @@ export class AnalyticsByQuizComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
   dtOptions: DataTables.Settings = {};
-  quizDetails: any[];
+  public quizDetails: any[];
 
   constructor(private service: ReportingUserService, private router: Router, ) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
     };
     setTimeout(() => {
       this.loadQuizDetails();
-		}, 0);
+    }, 0);
   }
 
-  loadQuizDetails() {
+  private loadQuizDetails(): void {
     this.service.getAllQuizzes().subscribe((res: any) => {
       this.quizDetails = res as any[];
-           this.dtTrigger.next();
+      this.dtTrigger.next();
     });
   }
 
-  onClick(index: any) {
+  public onClick(index: any): void {
     this.service.data = this.quizDetails[index];
     this.router.navigate(['/ru-dash/ana-by-user/quiz-detail']);
   }

@@ -13,10 +13,9 @@ import { HttpService } from '../../../../../core/http/http.service';
 })
 export class ViewUserDetailsComponent implements OnInit {
 
-  data1: any[];
-  scheduledReports: any[] = null;
-  bool = false;
-
+  private userData: any[];
+  public scheduledReports: any[] = null;
+  public bool = false;
   public polarAreaChartLabels: Label[] = ['Highest-Score', 'Lowest Score', 'Accuracy', 'Average-Score'];
   public polarAreaChartData: any[];
   public polarAreaLegend: boolean;
@@ -39,9 +38,9 @@ export class ViewUserDetailsComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
 
-  data2: any;
+  public apiResponse: any;
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.dtOptions = {
       lengthChange: false,
       paging: false,
@@ -57,19 +56,19 @@ export class ViewUserDetailsComponent implements OnInit {
     }
   }
 
-  fetchAnalytics(id: string) {
+  private fetchAnalytics(id: string): void {
     this.service.getUserAnalytics(id).subscribe((res: any) => {
-      this.data2 = res;
-      this.data1 = [];
-      this.data1.push(this.data2.HighestScore);
-      this.data1.push(this.data2.LowestScore);
-      this.data1.push(this.data2.Accuracy);
-      this.data1.push(this.data2.AverageScore);
-      this.polarAreaChartData = this.data1;
+      this.apiResponse = res;
+      this.userData = [];
+      this.userData.push(this.apiResponse.HighestScore);
+      this.userData.push(this.apiResponse.LowestScore);
+      this.userData.push(this.apiResponse.Accuracy);
+      this.userData.push(this.apiResponse.AverageScore);
+      this.polarAreaChartData = this.userData;
     });
   }
 
-  fetchReports(id: string) {
+  private fetchReports(id: string): void {
     this.httpService.getReportOfNonMockQuiz(id).subscribe((res: any) => {
       this.scheduledReports = res as any[];
       this.dtTrigger.next();

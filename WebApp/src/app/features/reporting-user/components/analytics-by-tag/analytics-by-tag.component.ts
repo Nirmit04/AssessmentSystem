@@ -12,13 +12,12 @@ import { Label, SingleDataSet } from 'ng2-charts';
 })
 export class AnalyticsByTagComponent implements OnInit {
 
-  tagAnalysisList: any[];
-  panelOpenState = false;
-  highdata = [];
-  lowdata = [];
-  label = [];
-  accuracy = [];
-  name = 'high';
+  public tagAnalysisList: any[];
+  private highdata = [];
+  public lowdata = [];
+  public label = [];
+  public accuracy = [];
+  private name = 'high';
 
   constructor(private service: ReportingUserService, private router: Router) { }
 
@@ -44,8 +43,8 @@ export class AnalyticsByTagComponent implements OnInit {
   public barChartLegend = true;
   public barChartData: ChartDataSets[];
   public barChartColors: any[] = [
-    { 
-      backgroundColor:["#FF0000", "#FFFFFF"] 
+    {
+      backgroundColor: ["#FF0000", "#FFFFFF"]
     }];
   public radarChartOptions: ChartOptions = {
     responsive: true,
@@ -64,17 +63,17 @@ export class AnalyticsByTagComponent implements OnInit {
   subscription: Subscription;
   dtOptions: DataTables.Settings = {};
 
-  ngOnInit() {
+  public ngOnInit(): void {
     setTimeout(() => {
       this.loadAnalyticOfTag();
-		}, 0);
+    }, 0);
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
     };
   }
 
-  loadAnalyticOfTag() {
+  private loadAnalyticOfTag(): void {
     this.service.getTagAnalytics().subscribe((res: any) => {
       this.tagAnalysisList = res as any[];
       console.log(this.tagAnalysisList);
@@ -104,4 +103,3 @@ export class AnalyticsByTagComponent implements OnInit {
   }
 
 }
- 
