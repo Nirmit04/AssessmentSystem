@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Schedule } from '../../../models/schedule.model';
 import { TestAdminService } from '../../../services/test-admin.service';
 import { ToastrService } from 'ngx-toastr';
@@ -10,14 +10,14 @@ import { Subject } from 'rxjs';
   styleUrls: ['./archived-schedule.component.css']
 })
 
-export class ArchivedScheduleComponent implements OnInit {
+export class ArchivedScheduleComponent implements OnInit,OnDestroy {
 
   public ScheduleList: Schedule[];
   dtTrigger: Subject<Schedule> = new Subject();
   subscription: Subscription;
   dtOptions: DataTables.Settings = {};
-  public col: any[];
-  public cols: any[];
+  public unSortableColumns: any[];
+  public columns: any[];
   index: number;
 
   constructor(private service: TestAdminService, private toastr: ToastrService) { }
@@ -27,12 +27,12 @@ export class ArchivedScheduleComponent implements OnInit {
       pagingType: 'full_numbers',
       pageLength: 10,
     };
-    this.cols = [
+    this.columns = [
       { field: 'SerialNumber', header: 'Schedule NO' },
       { field: 'QuizName', header: 'Quiz Name' }
 
     ];
-    this.col = [
+    this.unSortableColumns = [
       { field: 'StartDateTime', header: 'Start Time' },
       { field: 'EndDateTime', header: 'End Time' },
     ];

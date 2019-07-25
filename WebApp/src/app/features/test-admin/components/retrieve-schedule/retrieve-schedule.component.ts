@@ -13,14 +13,14 @@ import { StorageService } from '../../../../services/storage.service';
 	templateUrl: './retrieve-schedule.component.html',
 	styleUrls: ['./retrieve-schedule.component.css']
 })
-export class RetrieveScheduleComponent implements OnInit,OnDestroy {
+export class RetrieveScheduleComponent implements OnInit, OnDestroy {
 	public scheduleList: Schedule[];
 	dtOptions: DataTables.Settings = {};
 	dtTrigger: Subject<Schedule> = new Subject();
 	subscription: Subscription;
-	public col: any[];
-	public cols: any[];
-	i: number;
+	public nonSortableColumn: any[];
+	public columns: any[];
+	index: number;
 
 	onCreate() {
 		this.router.navigate(['/testAdminCreateScheDule']);
@@ -34,16 +34,16 @@ export class RetrieveScheduleComponent implements OnInit,OnDestroy {
 		private storageService: StorageService
 	) { }
 
-	public ngOnInit():void {
+	public ngOnInit(): void {
 		this.dtOptions = {
 			pagingType: 'full_numbers',
 			pageLength: 10
 		};
-		this.cols = [
+		this.columns = [
 			{ field: 'SerialNumber', header: 'S NO' },
 			{ field: 'QuizName', header: 'Quiz Name' },
 		];
-		this.col = [
+		this.nonSortableColumn = [
 			{ field: 'StartDateTime', header: 'Start Time' },
 			{ field: 'EndDateTime', header: 'End Time' },
 		];
@@ -52,16 +52,16 @@ export class RetrieveScheduleComponent implements OnInit,OnDestroy {
 		}, 0);
 	}
 
-	private loadSchedule():void {
+	private loadSchedule(): void {
 		this.service.getSchedule(this.storageService.getStorage('uid')).subscribe((res: any) => {
 			this.scheduleList = res as Schedule[];
-			for (this.i = 1; this.i <= this.scheduleList.length; this.i++) {
-				this.scheduleList[this.i - 1].SerialNumber = this.i;
+			for (this.index = 1; this.index <= this.scheduleList.length; this.index++) {
+				this.scheduleList[this.index - 1].SerialNumber = this.index;
 			}
 		});
 	}
 
-	public deleteSchedule(scheduleId):void {
+	public deleteSchedule(scheduleId): void {
 		this.service.deleteSchedule(scheduleId).subscribe((res: any) => {
 			if (res === 'Dissimilar Taken Status') {
 				this.toastr.error('Cannot Delete this Schedule. Users Exist!');
@@ -72,7 +72,7 @@ export class RetrieveScheduleComponent implements OnInit,OnDestroy {
 		});
 	}
 
-	public viewSchedule(scheduleid: number, arrayindex: number):void {
+	public viewSchedule(scheduleid: number, arrayindex: number): void {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = '70%';
@@ -83,7 +83,7 @@ export class RetrieveScheduleComponent implements OnInit,OnDestroy {
 		this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe((res: any) => { });
 	}
 
-	public editSchedule(scheduleid: number, arrayindex: number):void {
+	public editSchedule(scheduleid: number, arrayindex: number): void {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = '70%';
@@ -98,7 +98,7 @@ export class RetrieveScheduleComponent implements OnInit,OnDestroy {
 		});
 	}
 
-	public ngOnDestroy():void {
+	public ngOnDestroy(): void {
 		this.dtTrigger.unsubscribe();
 	}
 }

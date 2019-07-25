@@ -7,13 +7,13 @@
   </strong><br /><br />
   <ng-container *ngIf="!service.deleteUserVisibility">
     <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
-      <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="this.CCreatedBy">
+      <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="this.createdBy">
       <input type="hidden" name="QuizId" #QuizId="ngModel" [(ngModel)]="service.formdata.QuizId">
       <input type="hidden" name="ArchiveStatus" #ArchiveStatus="ngModel" [(ngModel)]="service.formdata.ArchiveStatus">
       <div class="form-group col-md-6">
         <label>Start Date Time:
           <input type="datetime-local" (focusout)="checkStartDate(StartDateTime)" [min]="date" required
-            [readonly]="bool" name="StartDateTime" #StartDateTime="ngModel"
+            [readonly]="readonlyStatus" name="StartDateTime" #StartDateTime="ngModel"
             [(ngModel)]="service.formdata.StartDateTime">
           <owl-date-time [pickerType]="'both'" #dt1></owl-date-time>
           <div class="validation-error" *ngIf="StartDateTime.invalid && StartDateTime.touched || startDateValid">This
@@ -24,7 +24,7 @@
       </div>
       <div class="form-group col-md-6">
         <label>End Date Time:
-          <input type="datetime-local" (focusout)="checkEndDate(EndDateTime)" [min]="q1" required [readonly]="bool"
+          <input type="datetime-local" (focusout)="checkEndDate(EndDateTime)" [min]="startDateTime" required [readonly]="readonlyStatus"
             name="EndDateTime" #EndDateTime="ngModel" [(ngModel)]="service.formdata.EndDateTime">
           <div class="validation-error" *ngIf="EndDateTime.invalid && EndDateTime.touched || endDateValid">This field is
             Wrong.
@@ -32,7 +32,7 @@
         </label>
       </div>
       <div class="form-group">
-        <button [hidden]="bool" style="margin:0 5%" type="submit" [disabled]="form.invalid || bool"
+        <button [hidden]="readonlyStatus" style="margin:0 5%" type="submit" [disabled]="form.invalid || readonlyStatus"
           class="btn btn-primary">Submit</button>
       </div>
     </form>

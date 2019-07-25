@@ -3,7 +3,6 @@ import { TestAdminService } from '../../../services/test-admin.service';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
 import { UpdateQuestionComponent } from '../../../../content-creator/components/update-question/update-question.component';
 import { ToastrService } from 'ngx-toastr';
-import { Schedule } from '../../../models/schedule.model';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { StorageService } from '../../../../../services/storage.service';
@@ -14,15 +13,15 @@ import { StorageService } from '../../../../../services/storage.service';
   styleUrls: ['./view-schedule.component.css']
 })
 export class ViewScheduleComponent implements OnInit {
-  public CCreatedBy = '';
+  public createdBy = '';
   public date: string;
-  public bool: boolean;
+  public readonlyStatus: boolean;
   public label: string;
   public usersList: any[];
   public startDateValid = false;
   public endDateValid = false;
-  public q1;
-  private stdate;
+  public startDateTime;
+  private startDate;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<UpdateQuestionComponent>, public toastr: ToastrService, private service: TestAdminService,
@@ -30,14 +29,14 @@ export class ViewScheduleComponent implements OnInit {
 
   public ngOnInit(): void {
     this.date = this.datePipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
-    this.bool = this.service.readonlyStatus;
-    if (this.bool === true) {
+    this.readonlyStatus = this.service.readonlyStatus;
+    if (this.readonlyStatus === true) {
       this.label = 'View Schedule';
-      this.q1 = this.service.formdata.StartDateTime;
+      this.startDateTime = this.service.formdata.StartDateTime;
     } else {
       this.label = 'Edit Schedule';
     }
-    this.CCreatedBy = this.storageService.getStorage('uid');
+    this.createdBy = this.storageService.getStorage('uid');
     this.loadExistingUsers(+this.data);
   }
 
@@ -62,7 +61,7 @@ export class ViewScheduleComponent implements OnInit {
   }
 
   public checkStartDate(date1: NgForm): void {
-    this.stdate = date1.value;
+    this.startDate = date1.value;
     this.date = (this.datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm'));
     if (date1.value < this.date) {
       this.startDateValid = true;
@@ -73,7 +72,7 @@ export class ViewScheduleComponent implements OnInit {
 
   public checkEndDate(date2: NgForm): void {
     this.date = (this.datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm'));
-    if (date2.value <= this.stdate || date2.value < this.date) {
+    if (date2.value <= this.startDate || date2.value < this.date) {
       this.endDateValid = true;
     } else {
       this.endDateValid = false;

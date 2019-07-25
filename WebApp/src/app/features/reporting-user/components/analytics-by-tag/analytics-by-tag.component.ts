@@ -76,7 +76,6 @@ export class AnalyticsByTagComponent implements OnInit {
   private loadAnalyticOfTag(): void {
     this.service.getTagAnalytics().subscribe((res: any) => {
       this.tagAnalysisList = res as any[];
-      console.log(this.tagAnalysisList);
       for (let i = 0; i < 7; i++) {
         this.highdata.push(
           this.tagAnalysisList[i].Properties.HighestScore
