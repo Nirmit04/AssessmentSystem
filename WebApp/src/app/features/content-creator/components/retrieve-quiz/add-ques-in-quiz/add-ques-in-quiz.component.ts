@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Subject } from '../../../models/subject.model';
-import { ContentCreatorServiceService } from '../../../services/content-creator-service.service';
+import { ContentCreatorService } from '../../../services/content-creator-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialogRef, MatDialog, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
 import { NgForm } from '@angular/forms';
@@ -15,29 +15,22 @@ import { HttpService } from '../../../../../core/http/http.service';
 })
 export class AddQuesInQuizComponent implements OnInit {
 
-  public Subjects: Subject[];
-  questions: any[];
-  val: boolean = false;
-  count: number = 0;
-  CDifficulty = "";
-  CSubjectID = null;
-  label: '';
+  public questions: any[];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
-    public service: ContentCreatorServiceService,
+    public service: ContentCreatorService,
     public toastr: ToastrService,
     public dialog: MatDialog,
     private storageService: StorageService,
     private httpService: HttpService,
     private dialogref: MatDialogRef<AddQuesInQuizComponent>) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.questions = this.data;
-    console.log(this.questions);
     this.resetForm();
   }
 
-  resetForm(form?: NgForm) {
+  private resetForm(form?: NgForm): void {
     if (form != null) {
       form.resetForm();
     } else {
@@ -55,16 +48,18 @@ export class AddQuesInQuizComponent implements OnInit {
         MinCutOff: null
       }
       if (this.questions) {
-        this.questions.map(y => y.selected = false);
+        this.questions.forEach(y => {
+          y.selected = false
+        });
       }
     }
   }
 
-  updateSelectedQuestions(index) {
+  public updateSelectedQuestions(index): void {
     this.questions[index].selected = !this.questions[index].selected;
   }
 
-  add_new_ques() {
+  public add_new_ques(): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = "70%";
@@ -74,17 +69,16 @@ export class AddQuesInQuizComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.service.quesStat = false;
       this.loadQues();
-
     });
   }
 
-  loadQues() {
+  private loadQues(): void {
     this.httpService.getQuizQuestions(+this.storageService.getStorage('quizId')).subscribe((res: any) => {
       this.questions = res as [];
     });
   }
 
-  onDetailsSubmit(form: NgForm) {
+  public onDetailsSubmit(form: NgForm): void {
     var QuestionId = this.questions.filter(QuestionId => QuestionId.selected).map(idSelected => idSelected.QuestionId);
     const response = this.service.putQuestionsSelected(QuestionId);
     if (response) {

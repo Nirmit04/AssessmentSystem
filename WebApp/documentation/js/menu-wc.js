@@ -250,8 +250,8 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-AppModule-071cf023266619939ac7663ef3c5db05"' :
                                         'id="xs-injectables-links-module-AppModule-071cf023266619939ac7663ef3c5db05"' }>
                                         <li class="link">
-                                            <a href="injectables/ContentCreatorServiceService.html"
-                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>ContentCreatorServiceService</a>
+                                            <a href="injectables/ContentCreatorService.html"
+                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>ContentCreatorService</a>
                                         </li>
                                         <li class="link">
                                             <a href="injectables/LoaderServiceService.html"

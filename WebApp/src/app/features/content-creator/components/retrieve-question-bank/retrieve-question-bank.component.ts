@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Question } from '../../models/question.model';
-import { ContentCreatorServiceService } from '../../services/content-creator-service.service';
+import { ContentCreatorService } from '../../services/content-creator-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UpdateQuestionComponent } from '../update-question/update-question.component';
@@ -25,71 +25,68 @@ declare var $: any;
 	encapsulation: ViewEncapsulation.None
 })
 export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
-	tg: string = '';
-	dtOptions: DataTables.Settings = {};
-	questionList: Question[];
-	dtTrigger: Subject<Question> = new Subject();
-	subscription: Subscription;
+	private tag: string = '';
+	public dtOptions: DataTables.Settings = {};
+	public questionList: Question[];
+	public dtTrigger: Subject<Question> = new Subject();
+	public subscription: Subscription;
 
-	cols: any[];
-	colss: any[];
-	i: number;
+	public columns: any[];
+	public nonSortableColumns: any[];
+	private index: number;
 
-	constructor(private service: ContentCreatorServiceService,
+	constructor(private service: ContentCreatorService,
 		private toastr: ToastrService,
 		private dialog: MatDialog,
-		private storageService: StorageService,
 		private httpService: HttpService) { }
 
-	ngOnInit(): void {
+	public ngOnInit(): void {
 		this.dtOptions = {
 			lengthChange: false,
 			paging: false,
 			search: false
 		};
 		setTimeout(() => {
-			this.getQuesOfUser(this.storageService.getStorage('uid'));
+			this.getQuesOfUser();
 		}, 0);
 
-		this.colss = [
+		this.nonSortableColumns = [
 			{ field: 'QuestionStatement', header: 'Question' }
 		]
-		this.cols = [
+		this.columns = [
 			{ field: 'QuestionType', header: 'Question Type' },
 			{ field: 'Difficulty', header: 'Difficulty Level' },
-			{ field: 'Tags1', header: 'Tags' }
+			{ field: 'DuplicateTags', header: 'Tags' }
 		];
 	}
 
-	getQuesOfUser(uid: string) {
-		this.httpService.getQuesOfUser(uid).subscribe((data: any) => {
-			console.log(data);
+	private getQuesOfUser(): void {
+		this.httpService.getQuesOfUser().subscribe((data: any) => {
 			this.questionList = data as Question[];
-			// this.dtTrigger.next();
-			for (this.i = 1; this.i <= this.questionList.length; this.i++) {
-				this.tg = '';
-				this.questionList[this.i - 1].SerialNumber = this.i;
-				for (let tag of this.questionList[this.i - 1].Tags) {
-					this.tg = this.tg + tag.Name + ',';
-					this.questionList[this.i - 1].Tags1 = this.tg;
+			for (this.index = 1; this.index <= this.questionList.length; this.index++) {
+				this.tag = '';
+				this.questionList[this.index - 1].SerialNumber = this.index;
+				for (let tag of this.questionList[this.index - 1].Tags) {
+					this.tag = this.tag + tag.Name + ',';
+					this.questionList[this.index - 1].DuplicateTags = this.tag;
 				}
-				this.questionList[this.i - 1].Tags1 = this.questionList[this.i - 1].Tags1.substring(0, this.questionList[this.i - 1].Tags1.length - 1);
+				this.questionList[this.index - 1].DuplicateTags = this.questionList[this.index - 1].DuplicateTags.substring(0, this.questionList[this.index - 1].DuplicateTags.length - 1);
 			}
-		})
+		});
 	}
 
-	deleteQues(qid) {
+	public deleteQues(questionId): void {
 		if (confirm('Are you sure you want to delete this record?')) {
-			this.subscription = this.httpService.deleteQues(qid).subscribe((res: any) => {
+			this.subscription = this.httpService.deleteQues(questionId).subscribe((res: any) => {
 				this.toastr.success('Deleted Successfully', 'Assesment System');
 				this.dtTrigger.unsubscribe();
-				this.getQuesOfUser(this.storageService.getStorage('uid'));
+				this.getQuesOfUser();
 				this.subscription.unsubscribe();
 			});
 		}
 	}
 
-	editUserQues(quesid: number, arrayindex: number) {
+	public editUserQues(arrayindex: number): void {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = "70%";
@@ -98,10 +95,11 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 		this.service.formData = this.questionList[arrayindex - 1];
 		this.dialog.open(UpdateQuestionComponent, dialogConfig).afterClosed().subscribe((res: any) => {
 			this.dtTrigger.unsubscribe();
-			this.getQuesOfUser(this.storageService.getStorage('uid'));
+			this.getQuesOfUser();
 		});
 	}
-	viewUserQues(quesid: number, arrayindex: number) {
+
+	public viewUserQues(arrayindex: number): void {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = "70%";
@@ -112,7 +110,7 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 		});
 	}
 
-	ngOnDestroy() {
+	public ngOnDestroy(): void {
 		this.dtTrigger.unsubscribe();
 	}
 

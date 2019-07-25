@@ -186,7 +186,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(service: <a href="../injectables/ContentCreatorServiceService.html">ContentCreatorServiceService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, dialog: MatDialog, toastr: ToastrService)</code>
+<code>constructor(service: <a href="../injectables/ContentCreatorService.html">ContentCreatorService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, dialog: MatDialog, toastr: ToastrService)</code>
                     </td>
                 </tr>
                         <tr>
@@ -212,7 +212,7 @@
                                                         <td>service</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/ContentCreatorServiceService.html" target="_self" >ContentCreatorServiceService</a></code>
+                                                                        <code><a href="../injectables/ContentCreatorService.html" target="_self" >ContentCreatorService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -632,7 +632,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { TagModel } from &#x27;../../shared/tags.model&#x27;;
-import { ContentCreatorServiceService } from &#x27;../../shared/content-creator-service.service&#x27;;
+import { ContentCreatorService } from &#x27;../../shared/content-creator-service.service&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 import { MatDialog, MatDialogConfig, MatDialogRef } from &#x27;@angular/material/dialog&#x27;;
 import { ToastrService } from &#x27;ngx-toastr&#x27;;
@@ -652,7 +652,7 @@ export class TagComponent implements OnInit {
 	dtTrigger: Subject&lt;TagModel&gt; &#x3D; new Subject();
 	subscription: Subscription;
 
-	constructor(private service: ContentCreatorServiceService,
+	constructor(private service: ContentCreatorService,
 		private router: Router,
 		private dialog: MatDialog,
 		private toastr: ToastrService) { }

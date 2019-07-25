@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 import { AddUser1Component } from '../../add-user1/add-user1.component';
 import { ViewScheduleComponent } from '../view-schedule/view-schedule.component';
 import { StorageService } from '../../../../../services/storage.service';
+import { HttpService } from '../../../../../core/http/http.service';
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
@@ -27,7 +28,8 @@ export class AddUserComponent implements OnInit {
     public toastr: ToastrService,
     public dialog: MatDialog,
     private service: TestAdminService,
-    private storageService: StorageService) { }
+    private storageService: StorageService,
+    private httpService: HttpService) { }
 
   public ngOnInit(): void {
     this.dtOptions = {
@@ -49,7 +51,7 @@ export class AddUserComponent implements OnInit {
   }
 
   private loadSchedule(): void {
-    this.service.getSchedule(this.storageService.getStorage('uid')).subscribe((res: any) => {
+    this.httpService.getSchedule(this.storageService.getStorage('uid')).subscribe((res: any) => {
       this.scheduleList = res as Schedule[];
           for (this.index = 1; this.index <= this.scheduleList.length; this.index++) {
         this.scheduleList[this.index - 1].SerialNumber = this.index;
@@ -57,7 +59,7 @@ export class AddUserComponent implements OnInit {
     });
   }
 
-  public addUserToSchedule(scheduleid: number, arrayindex: number): void {
+  public addUserToSchedule(scheduleid: number): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
@@ -68,12 +70,12 @@ export class AddUserComponent implements OnInit {
     });
   }
 
-  public deleteUserfromSchedule(scheduleId: number, arrayIndex: number): void {
+  public deleteUserfromSchedule(scheduleId: number): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
     dialogConfig.disableClose = true;
-    this.service.getScheduleQuizUsers(scheduleId).subscribe((res: any) => {
+    this.httpService.getScheduleQuizUsers(scheduleId).subscribe((res: any) => {
       if (res.length === 0) {
         this.toastr.error('No user Available to Delete');
       }

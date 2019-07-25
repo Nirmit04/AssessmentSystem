@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReportingUserService } from './services/reporting-user.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { StorageService } from '../../services/storage.service';
+import { HttpService } from '../../core/http/http.service';
 
 @Component({
 	selector: 'app-reporting-user',
@@ -17,7 +18,11 @@ export class ReportingUserComponent implements OnInit {
 	public totalQues: any;
 	public totalUser: any;
 	public totalSub: any;
-	constructor(private service: ReportingUserService, private ngxService: NgxUiLoaderService, private storageService: StorageService) { }
+
+	constructor(private service: ReportingUserService, 
+		private ngxService: NgxUiLoaderService, 
+		private storageService: StorageService,
+		private httpService: HttpService) { }
 
 	public ngOnInit(): void {
 		this.ngxService.startBackground('do-background-things');
@@ -27,19 +32,22 @@ export class ReportingUserComponent implements OnInit {
 		this.loadUserDetails();
 		this.loadUserProgress();
 	}
+
 	private loadUserDetails(): void {
-		this.service.getUserDetails().subscribe((res: any) => {
+		this.httpService.getUserDetails().subscribe((res: any) => {
 			this.firstName = res.FirstName;
 			this.lastName = res.LastName;
 			this.email = res.Email;
 		});
 	}
+
 	private loadUserProgress(): void {
-		this.service.getUserProgress().subscribe((res: any) => {
+		this.httpService.getUserProgress().subscribe((res: any) => {
 			this.totalQuiz = res.QuizCount;
 			this.totalQues = res.QuestionCount;
 			this.totalSub = res.SubjectCount;
 			this.totalUser = res.UserCount;
 		});
 	}
+	
 }

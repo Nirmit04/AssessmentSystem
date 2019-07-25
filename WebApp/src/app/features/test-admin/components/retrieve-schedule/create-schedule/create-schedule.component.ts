@@ -1,11 +1,11 @@
-import { Component, Inject, OnInit, SystemJsNgModuleLoader } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { TestAdminService } from '../../../services/test-admin.service';
 import { QuizModel } from '../../../../content-creator/models/quiz.model';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 import { StorageService } from '../../../../../services/storage.service';
+import { HttpService } from '../../../../../core/http/http.service';
 
 @Component({
 	selector: 'app-create-schedule',
@@ -28,14 +28,15 @@ export class CreateScheduleComponent implements OnInit {
 		private service: TestAdminService,
 		private storageService: StorageService,
 		public toastr: ToastrService,
-		private datePipe: DatePipe
+		private datePipe: DatePipe,
+		private httpService: HttpService
 	) {}
 
 	public ngOnInit():void {
 		this.resetForm();
 		this.date = this.datePipe.transform(new Date().getUTCHours(), 'yyyy-MM-ddThh:mm');
 		this.createdBy = this.storageService.getStorage('uid');
-		this.service.retriveAllQuizzes().subscribe((res) => {
+		this.httpService.retriveAllQuizzes().subscribe((res) => {
 			this.QuizList = res as QuizModel[];
 		});
 	}
@@ -50,7 +51,7 @@ export class CreateScheduleComponent implements OnInit {
 	}
 
 	public sub(form: NgForm):void {
-		this.service.postSchedule(form.value).subscribe((res: any) => {
+		this.httpService.postSchedule(form.value).subscribe((res: any) => {
 			this.toastr.success('Inserted successfully');
 			this.resetForm(form);
 		});

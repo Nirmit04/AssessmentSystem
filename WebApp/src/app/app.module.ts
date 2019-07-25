@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ContentCreatorComponent } from './features/content-creator/content-creator.component';
 import { RetrieveQuestionBankComponent } from './features/content-creator/components/retrieve-question-bank/retrieve-question-bank.component';
-import { ContentCreatorServiceService } from './features/content-creator/services/content-creator-service.service';
+import { ContentCreatorService } from './features/content-creator/services/content-creator-service.service';
 import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
 import { LoginComponent } from './core/login/login.component';
@@ -47,7 +47,6 @@ import { MockComponent } from './features/employee/components/mock/mock.componen
 import { MockReportComponent } from './features/employee/components/mock-report/mock-report.component';
 import { NonMockComponent } from './features/employee/components/non-mock/non-mock.component';
 import { TakeQuizComponent } from './features/employee/components/take-quiz/take-quiz.component';
-import { ViewAnswerComponent } from './features/employee/components/view-answer/view-answer.component';
 import { MainNav3Component } from './features/employee/components/main-nav3/main-nav3.component';
 import { ResultComponent } from './features/employee/components/result/result.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -144,7 +143,6 @@ export function provideConfig() {
 		MockReportComponent,
 		NonMockComponent,
 		TakeQuizComponent,
-		ViewAnswerComponent,
 		MainNav3Component,
 		ResultComponent,
 		NonMockReportComponent,
@@ -193,7 +191,7 @@ export function provideConfig() {
 		AuthGuard,
 		DatePipe,
 		LoaderServiceService,
-		ContentCreatorServiceService,
+		ContentCreatorService,
 		{
 			provide: AuthServiceConfig,
 			useFactory: provideConfig
@@ -218,7 +216,6 @@ export function provideConfig() {
 		AddQuesInQuizComponent,
 		AddUserComponent,
 		ViewScheduleComponent,
-		ViewAnswerComponent,
 		AddUser1Component,
 		ViewUserDetailsComponent,
 		CreateQuestionsComponent,

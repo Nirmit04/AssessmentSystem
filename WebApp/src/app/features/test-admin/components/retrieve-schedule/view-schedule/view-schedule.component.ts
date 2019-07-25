@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { StorageService } from '../../../../../services/storage.service';
+import { HttpService } from '../../../../../core/http/http.service';
 
 @Component({
   selector: 'app-view-schedule',
@@ -20,12 +21,17 @@ export class ViewScheduleComponent implements OnInit {
   public usersList: any[];
   public startDateValid = false;
   public endDateValid = false;
-  public startDateTime;
-  private startDate;
+  public startDateTime:Date;
+  private startDate:Date;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
-    public dialogRef: MatDialogRef<UpdateQuestionComponent>, public toastr: ToastrService, private service: TestAdminService,
-    public dialog: MatDialog, private datePipe: DatePipe, private storageService: StorageService) { }
+    public dialogRef: MatDialogRef<UpdateQuestionComponent>,
+    public toastr: ToastrService,
+    private service: TestAdminService,
+    public dialog: MatDialog,
+    private datePipe: DatePipe,
+    private storageService: StorageService,
+    private httpService: HttpService) { }
 
   public ngOnInit(): void {
     this.date = this.datePipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
@@ -41,20 +47,20 @@ export class ViewScheduleComponent implements OnInit {
   }
 
   private loadExistingUsers(scheduleQuizId: number): void {
-    this.service.getScheduleQuizUsers(scheduleQuizId).subscribe((res: any) => {
+    this.httpService.getScheduleQuizUsers(scheduleQuizId).subscribe((res: any) => {
       this.usersList = res as any[];
     });
   }
 
   public deleteUserFromSchedule(UserId: string): void {
-    this.service.deleteUserFromSchedule(+this.data, UserId).subscribe((res: any) => {
+    this.httpService.deleteUserFromSchedule(+this.data, UserId).subscribe((res: any) => {
       this.toastr.error('removed successfully');
       this.loadExistingUsers(+this.data);
     });
   }
 
   public onSubmit(form: NgForm): void {
-    this.service.editSchedule(this.data, form.value).subscribe(res => {
+    this.httpService.editSchedule(this.data, form.value).subscribe(res => {
       this.toastr.success('Changes Saved');
       this.dialogRef.close('Saved');
     });

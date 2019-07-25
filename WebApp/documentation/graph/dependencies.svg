@@ -598,15 +598,15 @@
 <path fill="none" stroke="#000000" d="M1016,-122.0109C1016,-144.4852 1016,-180 1016,-180 1016,-180 4352.0815,-180 4352.0815,-180"/>
 <polygon fill="#000000" stroke="#000000" points="4352.0815,-183.5001 4362.0815,-180 4352.0814,-176.5001 4352.0815,-183.5001"/>
 </g>
-<!-- ContentCreatorServiceService -->
+<!-- ContentCreatorService -->
 <g id="node48" class="node">
-<title>ContentCreatorServiceService</title>
+<title>ContentCreatorService</title>
 <ellipse fill="#fdb462" stroke="#000000" cx="800" cy="-104" rx="128.4647" ry="18"/>
-<text text-anchor="middle" x="800" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">ContentCreatorServiceService</text>
+<text text-anchor="middle" x="800" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">ContentCreatorService</text>
 </g>
-<!-- ContentCreatorServiceService&#45;&gt;AppModule -->
+<!-- ContentCreatorService&#45;&gt;AppModule -->
 <g id="edge47" class="edge">
-<title>ContentCreatorServiceService&#45;&gt;AppModule</title>
+<title>ContentCreatorService&#45;&gt;AppModule</title>
 <path fill="none" stroke="#000000" d="M800,-122.0908C800,-145.1328 800,-182 800,-182 800,-182 4352.279,-182 4352.279,-182"/>
 <polygon fill="#000000" stroke="#000000" points="4352.2791,-185.5001 4362.279,-182 4352.279,-178.5001 4352.2791,-185.5001"/>
 </g>

@@ -1,30 +1,26 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
 import { postReport } from '../models/postReport.model';
-import { StorageService } from '../../../services/storage.service';
 @Injectable({
   providedIn: 'root'
 })
 
 export class EmployeeService {
 
-  rootURL = environment.apiURl;
-  quizName: string;
-  noQuesOfQuiz: number;
-  quesOfQuiz: any[];
-  hours: number;
-  seconds: number;
-  minutes: number;
+  public quizName: string;
+  public noOfQuestionsInQuiz: number;
+  public questionsOfQuiz: any[];
+  public hours: number;
+  public seconds: number;
+  public minutes: number;
   timer;
-  qnProgress: number;
-  size: number;
-  QuizScheduleId: number;
-  body: postReport;
-  QuizId: number;
-  data: any;
-  correctAnswerCount = 0;
-  statusMapping: any[];
+  public qnProgress: number;
+  public size: number;
+  public quizScheduleId: number;
+  public body: postReport;
+  public quizId: number;
+  public data: any;
+  public correctAnswerCount = 0;
+  public statusMapping: any[];
 
   constructor() { }
 

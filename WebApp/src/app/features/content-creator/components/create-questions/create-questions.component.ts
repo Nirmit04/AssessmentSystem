@@ -1,35 +1,36 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ContentCreatorServiceService } from '../../services/content-creator-service.service'
+import { ContentCreatorService } from '../../services/content-creator-service.service'
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from '../../models/subject.model';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { HttpService } from '../../../../core/http/http.service';
+
 @Component({
   selector: 'app-create-questions',
   templateUrl: './create-questions.component.html',
   styleUrls: ['./create-questions.component.css']
 })
+
 export class CreateQuestionsComponent implements OnInit {
 
-  public Subjects123: Subject[];
-  CCreatedBy = "";
-  boolea = false;
+  public subjects: Subject[];
+  public createdBy: string = '';
   dropdownSettings = {};
-  constructor(public service: ContentCreatorServiceService,
+
+  constructor(public service: ContentCreatorService,
     public toastr: ToastrService,
     private router: Router,
     private httpService: HttpService) { }
-  ngOnInit() {
+
+  ngOnInit(): void {
     this.resetForm();
-    if (this.service.Difficulty != null) {
-      this.boolea = true;
-      this.service.formData.SubjectId = this.service.SubjectId.toString();
-      this.service.formData.Difficulty = this.service.Difficulty;
+    if (this.service.difficulty != null) {
+      this.service.formData.SubjectId = this.service.subjectId.toString();
+      this.service.formData.Difficulty = this.service.difficulty;
     }
     else {
-      if (this.service.QuestionType == null) {
+      if (this.service.questionType == null) {
         this.router.navigate(['/cc-dash'])
       }
     }
@@ -42,11 +43,11 @@ export class CreateQuestionsComponent implements OnInit {
       allowSearchFilter: true,
     };
     this.httpService.retrieveSubjects().subscribe(res => {
-      this.Subjects123 = res as Subject[];
+      this.subjects = res as Subject[];
     });
   }
 
-  resetForm(form?: NgForm) {
+  private resetForm(form?: NgForm): void {
     if (form != null) {
       form.resetForm();
     }
@@ -64,19 +65,19 @@ export class CreateQuestionsComponent implements OnInit {
     }
   }
 
-  chooseFile(event) {
+  public chooseFile(event): void {
     this.service.selectedFile = event.target.files.item(0);
   }
 
-  onSubmit(form: NgForm) {
+  public onSubmit(form: NgForm): void {
     const response = this.service.postQuestion(form.value);
     if (response) {
       this.toastr.success('Inserted successfully');
       this.service.selectedFile = null;
       this.resetForm(form);
-      if (this.service.Difficulty != null) {
-        this.service.formData.SubjectId = this.service.SubjectId.toString();
-        this.service.formData.Difficulty = this.service.Difficulty;
+      if (this.service.difficulty != null) {
+        this.service.formData.SubjectId = this.service.subjectId.toString();
+        this.service.formData.Difficulty = this.service.difficulty;
       }
     }
   }

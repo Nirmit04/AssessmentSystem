@@ -3,7 +3,7 @@
 </button>
 <div class="card">
   <div class="card-body">
-    <strong><h2 class="card-title" style="text-align: center">{{Option}} Tag</h2></strong>
+    <strong><h2 class="card-title" style="text-align: center">{{option}} Tag</h2></strong>
     <br><form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
       <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="userId">
       <div class="form-row">
@@ -16,7 +16,7 @@
         <div class="form-group col-md-6">
           <strong><label>Subject</label></strong>
           <input required type="text" name="Name" #Name="ngModel" [(ngModel)]="service.tagForm.Name"
-            (input)="check_avail(Name)" class="form-control">
+            (input)="checkAvail(Name)" class="form-control">
           <div class="validation-error" *ngIf="tagExists">Tag Already Exists</div>
           <div class="validation-error" *ngIf="Name.invalid && Name.touched">This field is required.</div>
         </div>

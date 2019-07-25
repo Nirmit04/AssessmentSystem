@@ -30,12 +30,12 @@ export class HttpService {
     return this.http.get(this.rootURL + 'Quiz/QuizQuestion?QuizId=' + QuizId + '&UserId=' + this.storageService.getStorage('uid'));
   }
 
-  checkValidUser(id: number) {
-    return this.http.post(this.rootURL + 'UserSchedule/ValidQuizTaker/' + this.storageService.getStorage('uid'), id);
+  checkValidUser(UserId: number) {
+    return this.http.post(this.rootURL + 'UserSchedule/ValidQuizTaker/' + this.storageService.getStorage('uid'), UserId);
   }
 
-  getQuestions(qid: number, index: number) {
-    return this.http.get(this.rootURL + 'Quiz/GetQuizQuestion?QuizId=' + qid + '&UserId=' + this.storageService.getStorage('uid') + '&Index=' + index);
+  getQuestions(quizId: number, index: number) {
+    return this.http.get(this.rootURL + 'Quiz/GetQuizQuestion?QuizId=' + quizId + '&UserId=' + this.storageService.getStorage('uid') + '&Index=' + index);
   }
 
   postanswers(body: any) {
@@ -58,24 +58,24 @@ export class HttpService {
     return this.http.get(this.rootURL + 'Stats/' + this.storageService.getStorage('uid'));
   }
 
-  getReportOfNonMockQuiz(id) {
-    return this.http.get(this.rootURL + 'Report/Scheduled/' + id);
+  getReportOfNonMockQuiz(userId: string) {
+    return this.http.get(this.rootURL + 'Report/Scheduled/' + userId);
   }
 
-  getReportOfMockQuiz(id) {
-    return this.http.get(this.rootURL + 'Report/Mock/' + id);
+  getReportOfMockQuiz(quizId: number) {
+    return this.http.get(this.rootURL + 'Report/Mock/' + quizId);
   }
 
   getDetailedReport() {
-    return this.http.get(this.rootURL + '/DetailedReport/' + this.storageService.getStorage('uid') + '/' + this.employeeService.QuizId);
+    return this.http.get(this.rootURL + '/DetailedReport/' + this.storageService.getStorage('uid') + '/' + this.employeeService.quizId);
   }
 
-  getQues(id: number) {
-    return this.http.get(this.rootURL + 'Question/' + id)
+  getQues(questionId: number) {
+    return this.http.get(this.rootURL + 'Question/' + questionId)
   }
 
   getAnswers() {
-    return this.http.get(this.rootURL + 'Quiz/SubmitMockQuiz/' + this.employeeService.QuizId);
+    return this.http.get(this.rootURL + 'Quiz/SubmitMockQuiz/' + this.employeeService.quizId);
   }
 
   retrieveQuizNames() {
@@ -89,6 +89,7 @@ export class HttpService {
   putQuestionsSelected(quizId: string, questionIds: any[]) {
     return this.http.put(this.rootURL + 'Quiz/EditQuiz/AddQuestion/' + quizId, questionIds);
   }
+
   postQuestion(form: any) {
     return this.http.post(this.rootURL + 'Question/CreateQuestion', form);
   }
@@ -101,20 +102,20 @@ export class HttpService {
     return this.http.get(this.rootURL + 'Subject/GetSubjects');
   }
 
-  getQuesOfUser(uid: string) {
+  getQuesOfUser() {
     return this.http.get(this.rootURL + 'Question/GetQuestionByUser/' + this.storageService.getStorage('uid'));
   }
 
-  deleteQues(qid) {
-    return this.http.delete(this.rootURL + '/Question/Delete/' + qid);
+  deleteQues(questionId: number) {
+    return this.http.delete(this.rootURL + '/Question/Delete/' + questionId);
   }
 
   getArchivedQuizzes() {
     return this.http.get(this.rootURL + 'Quiz/Archived/' + this.storageService.getStorage('uid'));
   }
 
-  unArchiveQuiz(id: number) {
-    return this.http.put(this.rootURL + '/Quiz/UnArchive', id);
+  unArchiveQuiz(quizId: number) {
+    return this.http.put(this.rootURL + '/Quiz/UnArchive', quizId);
   }
 
   getTags() {
@@ -129,48 +130,126 @@ export class HttpService {
     }
   }
 
-  deleteTags(id: number) {
-    return this.http.delete(this.rootURL + '/Tag/Delete/' + id);
+  deleteTags(tagId: number) {
+    return this.http.delete(this.rootURL + '/Tag/Delete/' + tagId);
   }
 
   getQuizzes() {
     return this.http.get(this.rootURL + 'Quiz/GetQuiz/' + this.storageService.getStorage('uid'));
   }
 
-  deleteQuiz(id: number) {
-    return this.http.delete(this.rootURL + '/Quiz/Delete/' + id);
+  deleteQuiz(quizId: number) {
+    return this.http.delete(this.rootURL + '/Quiz/Delete/' + quizId);
   }
 
   getQuesOfUserConstraints(form: any) {
-    console.log(form);
     const body = {
-      Tags: form.Tags,
-      Difficulty: form.Difficulty,
-      QuestionType: form.QuizType,
+      Tags: form.tags,
+      Difficulty: form.difficulty,
+      QuestionType: form.quizType,
     }
-    console.log(body);
     return this.http.post(this.rootURL + 'Question/GetQuestion', body);
   }
   generateRandom(form: any, question: number) {
-    console.log(form);
     return this.http.post(this.rootURL + 'Quiz/GetRandomQuestion?TotalQuestion=' + question, form);
   }
 
-  deleteQuesOfQuiz(id) {
+  deleteQuesOfQuiz(questionId: number) {
     return this.http.delete(
-      this.rootURL + 'Quiz/QuizQuestion/Delete/' + Number(this.storageService.getStorage('quizId')) + '/' + id
-    );
+      this.rootURL + 'Quiz/QuizQuestion/Delete/' + Number(this.storageService.getStorage('quizId')) + '/' + questionId);
   }
 
-  getQuestionsByQuiz(id: number) {
-    return this.http.get(this.rootURL + 'Quiz/QuizQuestion?QuizId=' + id);
+  getQuestionsByQuiz(quizId: number) {
+    return this.http.get(this.rootURL + 'Quiz/QuizQuestion?QuizId=' + quizId);
   }
 
-  getQuizQuestions(qid: number) {
-    return this.http.get(this.rootURL + 'Quiz/GetQuestionsNotInQuiz/' + qid);
+  getQuizQuestions(quizId: number) {
+    return this.http.get(this.rootURL + 'Quiz/GetQuestionsNotInQuiz/' + quizId);
   }
 
-  deleteImageFromQues(id) {
-    return this.http.delete(this.rootURL + 'Question/ImageDelete/' + id);
+  deleteImageFromQues(questionId) {
+    return this.http.delete(this.rootURL + 'Question/ImageDelete/' + questionId);
   }
+
+  getTagAnalytics() {
+    return this.http.get(this.rootURL + 'ReportingUser/AnalyticsByTag');
+  }
+
+  getAllUsers() {
+    return this.http.get(this.rootURL + 'User/GetUserAll');
+  }
+
+  getUserAnalytics(userId: string) {
+    return this.http.get(this.rootURL + 'ReportingUser/AnalyticsByUser/' + userId);
+  }
+
+  getAllQuizzes() {
+    return this.http.get(this.rootURL + '/Quiz/GetAllQuiz');
+  }
+
+  getQuizAnalysis(quizId: string) {
+    return this.http.get(this.rootURL + 'ReportingUser/AnalyticsByQuiz/' + quizId);
+  }
+
+  getUserProgress() {
+    return this.http.get(this.rootURL + '/ReportingUser/Stats');
+  }
+
+  retriveAllQuizzes() {
+    return this.http.get(this.rootURL + 'Quiz/GetAllScheduledQuiz');
+  }
+
+  retrieveAllEmployees(scheduleId: number) {
+    return this.http.get(this.rootURL + 'UserSchedule/UserNotAssignedQuiz/' + scheduleId);
+  }
+
+  retrieveSpecificEmployees(scheduleId: number) {
+    return this.http.get(this.rootURL + 'UserSchedule/UserNotAssignedQuiz/' + scheduleId);
+  }
+
+  postSchedule(formdata: any) {
+    formdata.CreatedBy = this.storageService.getStorage('uid');
+    return this.http.post(this.rootURL + 'QuizSchedule/ScheduleQuiz', formdata);
+  }
+
+  postUrl(imageUrl: string) {
+    return this.http.post(this.rootURL + '', imageUrl);
+  }
+
+  getSchedule(userId: string) {
+    return this.http.get(this.rootURL + 'QuizSchedule/GetAllQuizSchedule/' + userId);
+  }
+
+  getScheduleQuizUsers(scheduleId: number) {
+    return this.http.get(this.rootURL + 'UserSchedule/UserAssignedQuiz/' + scheduleId);
+  }
+
+  deleteSchedule(scheduleId: number) {
+    return this.http.delete(this.rootURL + 'QuizSchedule/DeleteQuizSchedule/' + scheduleId);
+  }
+
+  deleteUserFromSchedule(quizScheduleId: number, userId: string) {
+    return this.http.delete(this.rootURL + 'UserSchedule/UserDelete/' + quizScheduleId + '/' + userId);
+  }
+
+  addUserInExistingSchedule(quizScheuleId: number, userIds: string[]) {
+    return this.http.post(this.rootURL + 'UserSchedule/UserAdd/' + quizScheuleId, userIds);
+  }
+
+  editSchedule(quizScheduleId: number, formData: any) {
+    return this.http.put(this.rootURL + 'QuizSchedule/EditQuizSchedule/' + quizScheduleId, formData);
+  }
+
+  getArchivedSchedules() {
+    return this.http.get(this.rootURL + 'QuizSchedule/ArchivedList/' + this.storageService.getStorage('uid'));
+  }
+
+  unArchiveSchedule(scheduleId: number) {
+    return this.http.delete(this.rootURL + 'QuizSchedule/Unarchive/' + scheduleId);
+  }
+
+  getschedulecount() {
+    return this.http.get(this.rootURL + 'QuizSchedule/Stats/' + this.storageService.getStorage('uid'));
+  }
+
 }

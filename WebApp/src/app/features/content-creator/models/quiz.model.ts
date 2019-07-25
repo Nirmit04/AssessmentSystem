@@ -1,5 +1,5 @@
 export class QuizModel {
-    SerialNumber?: Number;
+    SerialNumber?: number;
     QuizId: number;
     Difficulty: string;
     TotalQuestions?: number;
@@ -13,5 +13,5 @@ export class QuizModel {
     QuizTime?: string;
     QuizState?:boolean;
     MinCutOff:number;
-    Tags1?:string;
+    DuplicateTags?:string;
 }

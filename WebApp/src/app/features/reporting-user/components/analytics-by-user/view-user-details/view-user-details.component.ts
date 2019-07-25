@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ReportingUserService } from '../../../services/reporting-user.service';
 import { Label } from 'ng2-charts';
 import { ChartType, ChartOptions } from 'chart.js';
@@ -34,6 +34,7 @@ export class ViewUserDetailsComponent implements OnInit {
     public router: Router,
     public empService: EmployeeService,
     private httpService: HttpService) { }
+
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
@@ -56,8 +57,8 @@ export class ViewUserDetailsComponent implements OnInit {
     }
   }
 
-  private fetchAnalytics(id: string): void {
-    this.service.getUserAnalytics(id).subscribe((res: any) => {
+  private fetchAnalytics(userId: string): void {
+    this.httpService.getUserAnalytics(userId).subscribe((res: any) => {
       this.apiResponse = res;
       this.userData = [];
       this.userData.push(this.apiResponse.HighestScore);
@@ -68,8 +69,8 @@ export class ViewUserDetailsComponent implements OnInit {
     });
   }
 
-  private fetchReports(id: string): void {
-    this.httpService.getReportOfNonMockQuiz(id).subscribe((res: any) => {
+  private fetchReports(userId: string): void {
+    this.httpService.getReportOfNonMockQuiz(userId).subscribe((res: any) => {
       this.scheduledReports = res as any[];
       this.dtTrigger.next();
       if (this.scheduledReports.length > 0) {

@@ -25,12 +25,10 @@ export class HttpErrorInterceptor implements HttpInterceptor {
       .pipe(
         retry(1),
         catchError((error: HttpErrorResponse) => {
-          console.log(error.error.Message);
           let errorMessage = '';
           if (error.error instanceof ErrorEvent) {
             // client-side error
             errorMessage = `Error: ${error.error.message}`;
-            console.log(errorMessage);
           } else {
             // server-side error
             errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;

@@ -1,9 +1,8 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../services/employee.service';
 import { Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { ViewAnswerComponent } from '../view-answer/view-answer.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router'
 import { HttpService } from '../../../../core/http/http.service';
 
@@ -18,10 +17,20 @@ export class DetailedReportComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
-  public doughnutChartLabels1;
-  public doughnutChartData1;
-  public doughnutChartType1;
-  quizname = '';
+  public doughnutChartLabels1: any[];
+  public doughnutChartData1: any[];
+  public doughnutChartType1: string;
+  public quizName: string = '';
+  public doughnutChartColors2: any[] = [{ backgroundColor: ["#FF713A", "#00B292"] }];
+  public doughnutChartColors1: any[] = [{ backgroundColor: ["#3E00B2", "#FFF53A"] }];
+  public doughnutChartLabels2: any[];
+  public doughnutChartData2: any[];
+  public doughnutChartType2: string;
+  public gaugeType: string = 'semi';
+  public gaugeValue: string;
+  public gaugeLabel: string = 'Performance';
+  public gaugeAppendText = '%';
+  public reports: any[];
 
   public doughnutChartOptions1 = {
     legend: {
@@ -30,15 +39,6 @@ export class DetailedReportComponent implements OnInit {
       }
     }
   }
-
-  private doughnutChartColors2: any[] = [{ backgroundColor: ["#FF713A", "#00B292"] }];
-  private doughnutChartColors1: any[] = [{ backgroundColor: ["#3E00B2", "#FFF53A"] }];
-
-
-  public doughnutChartLabels2;
-  public doughnutChartData2;
-  public doughnutChartType2;
-
   public doughnutChartOptions2 = {
     legend: {
       onClick: function (e) {
@@ -47,36 +47,21 @@ export class DetailedReportComponent implements OnInit {
     }
   }
 
-  gaugeType = 'semi';
-  gaugeValue;
-  gaugeLabel = 'Performance';
-  gaugeAppendText = '%';
-  reports: any[];
-
   constructor(private service: EmployeeService,
-    private dialog: MatDialog,
     private route: Router,
     private httpService: HttpService) { }
 
-  ngOnInit() {
-   // console.log(this.service.data.CorrectAnswers);
-   console.log(this.service.data);
-    if (this.service.data== null) {
-      console.log('he');
+  public ngOnInit(): void {
+    if (this.service.data === null) {
       this.route.navigate(['/emp-dash']);
     }
-
-
     this.doughnutChartLabels1 = ['Attempted:' + ((parseInt(this.service.data.CorrectAnswers)) + (parseInt(this.service.data.WrongAnswers))).toString(), 'UnAttempted: ' + this.service.data.UnattemptedAnswers];
     this.doughnutChartData1 = [(parseInt(this.service.data.CorrectAnswers) + parseInt(this.service.data.WrongAnswers)).toString(), this.service.data.UnattemptedAnswers];
     this.doughnutChartType1 = 'doughnut';
-
     this.doughnutChartLabels2 = ['Correct: ' + this.service.data.CorrectAnswers, 'InCorrect: ' + this.service.data.WrongAnswers];
     this.doughnutChartData2 = [this.service.data.CorrectAnswers, this.service.data.WrongAnswers];
     this.doughnutChartType2 = 'doughnut';
-
     this.gaugeValue = ((this.service.data.MarksScored / this.service.data.TotalMarks) * 100).toPrecision(2).toString();
-
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
@@ -86,16 +71,16 @@ export class DetailedReportComponent implements OnInit {
     }, 0);
   }
 
-  loadDetail() {
+  private loadDetail(): void {
     this.httpService.getDetailedReport().subscribe((res: any) => {
       this.reports = res as any[];
-      this.quizname = this.reports[0].QuizName;
+      this.quizName = this.reports[0].QuizName;
       this.calculate();
       this.dtTrigger.next();
-    })
+    });
   }
 
-  calculate() {
+  private calculate(): void {
     for (let i = 0; i < this.reports.length; i++) {
       if (this.reports[i].AttemptedAnswer === this.reports[i].CorrectAnswer) {
         this.reports[i].status = "Correct";
@@ -107,22 +92,7 @@ export class DetailedReportComponent implements OnInit {
     }
   }
 
-  viewques(id: number, markedanswer: number) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = "70%";
-    dialogConfig.disableClose = true;
-    dialogConfig.data = {
-      id: id,
-      markedanswer: markedanswer,
-    };
-    this.dialog.open(ViewAnswerComponent, dialogConfig).afterClosed().subscribe((res: any) => {
-      this.dtTrigger.unsubscribe();
-      this.dtTrigger.next();
-    });
-  }
-
-  ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
   }
 

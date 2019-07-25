@@ -1,6 +1,10 @@
 <app-loader></app-loader>
 <app-main-nav2>
+<<<<<<< HEAD
   <p-table [columns]="columns" [value]="scheduleList" [paginator]="true" [rows]="6" #dt [responsive]="true">
+=======
+  <p-table [columns]="cols" [value]="scheduleList" [paginator]="true" [rows]="6" #dt [responsive]="true">
+>>>>>>> 60859f08ebdcc64bbe7fa689418be528894999d0
     <ng-template pTemplate="caption">
       <h3>Add/Delete User in Schedule</h3>
       <div style="text-align: right">
@@ -28,11 +32,9 @@
           {{rowData[c.field] | date: 'medium'}}
         </td>
         <td>
-          <a class="btn btn-sm btn-info text-black"
-            (click)="addUserToSchedule(rowData.QuizScheduleId,rowData.SerialNumber)"><i aria-hidden="true"
+          <a class="btn btn-sm btn-info text-black" (click)="addUserToSchedule(rowData.QuizScheduleId)"><i aria-hidden="true"
               class="fa fa-user-plus"></i></a>
-          <a class="btn btn-sm btn-danger text-black"
-            (click)="deleteUserfromSchedule(rowData.QuizScheduleId,rowData.SerialNumber)"><i aria-hidden="true"
+          <a class="btn btn-sm btn-danger text-black" (click)="deleteUserfromSchedule(rowData.QuizScheduleId)"><i aria-hidden="true"
               class="fa fa-user-times"></i></a>
         </td>
       </tr>

@@ -5,6 +5,7 @@ import { User } from '../../models/user.model';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Subject, Subscription } from 'rxjs';
+import { HttpService } from '../../../../core/http/http.service';
 @Component({
   selector: 'app-add-user1',
   templateUrl: './add-user1.component.html',
@@ -19,7 +20,10 @@ export class AddUser1Component implements OnInit {
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
-    private service: TestAdminService, public toastr: ToastrService, private dialogRef: MatDialogRef<AddUser1Component>) { }
+    private service: TestAdminService,
+    public toastr: ToastrService,
+    private httpService: HttpService,
+    private dialogRef: MatDialogRef<AddUser1Component>) { }
 
   ngOnInit() {
     this.dtOptions = {
@@ -31,7 +35,7 @@ export class AddUser1Component implements OnInit {
   };
 
   private loadUsers(): void {
-    this.service.retrieveAllEmployees(this.data).subscribe((res: any) => {
+    this.httpService.retrieveAllEmployees(this.data).subscribe((res: any) => {
       res.forEach(obj => obj.selected = false);
       this.quizTakers = res as User[];
 
@@ -43,9 +47,9 @@ export class AddUser1Component implements OnInit {
   }
 
   public onSubmit(form: NgForm): any {
-    const quizTakersId = this.quizTakers.filter(Id => Id.selected).map(idSelected => idSelected.Id);
-    this.service.addUserInExistingSchedule(this.data, quizTakersId).subscribe(res => {
-      this.toastr.success('Added Succesfully');
+    const quiztakerId = this.quizTakers.filter(Id => Id.selected).map(idSelected => idSelected.Id);
+    this.httpService.addUserInExistingSchedule(this.data, quiztakerId).subscribe(res => {
+      this.toastr.success('added succesfully');
       this.dialogRef.close('Added');
     });
   }

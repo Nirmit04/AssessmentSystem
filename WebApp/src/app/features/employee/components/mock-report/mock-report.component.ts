@@ -14,23 +14,22 @@ export class MockReportComponent implements OnInit {
 
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
-  subscription: Subscription;
-  bool: false;
-  mockReportList: any[];
-  cols: any[];
-  i: number;
+  subscription: Subscription;;
+  public mockReportList: any[];
+  public columns: any[];
+  private index: number;
 
   constructor(private service: EmployeeService,
     private httpService: HttpService,
     private router: Router,
     private storageService: StorageService) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
     };
-    this.cols = [
+    this.columns = [
       { field: 'SerialNumber', header: 'S NO' },
       { field: 'QuizName', header: 'Quiz Name' },
       { field: 'CorrectAnswers', header: 'Correct Answers' },
@@ -47,19 +46,18 @@ export class MockReportComponent implements OnInit {
 
   }
 
-  getMockReport() {
+  private getMockReport(): void {
     this.httpService.getReportOfMockQuiz(this.storageService.getStorage('uid')).subscribe((res: any) => {
       this.mockReportList = res as any[];
-      // this.dtTrigger.next();
-      for (this.i = 1; this.i <= this.mockReportList.length; this.i++) {
-        this.mockReportList[this.i - 1].SerialNumber = this.i;
+      for (this.index = 1; this.index <= this.mockReportList.length; this.index++) {
+        this.mockReportList[this.index - 1].SerialNumber = this.index;
       }
     });
   }
 
-  viewDetailedReport(qid: number, index: number) {
+  public viewDetailedReport(quizId: number, index: number) {
     this.service.data = this.mockReportList[index - 1];
-    this.service.QuizId = qid;
+    this.service.quizId = quizId;
     this.router.navigate(['/emp-dash/quiz/detailed-report']);
   }
 

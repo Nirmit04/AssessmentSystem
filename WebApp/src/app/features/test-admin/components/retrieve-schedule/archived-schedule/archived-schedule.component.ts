@@ -2,8 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Schedule } from '../../../models/schedule.model';
 import { TestAdminService } from '../../../services/test-admin.service';
 import { ToastrService } from 'ngx-toastr';
-import { concat, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
+import { HttpService } from '../../../../../core/http/http.service';
 @Component({
   selector: 'app-archived-schedule',
   templateUrl: './archived-schedule.component.html',
@@ -20,7 +21,9 @@ export class ArchivedScheduleComponent implements OnInit,OnDestroy {
   public columns: any[];
   index: number;
 
-  constructor(private service: TestAdminService, private toastr: ToastrService) { }
+  constructor(private service: TestAdminService, 
+    private toastr: ToastrService,
+    private httpService: HttpService) { }
 
   public ngOnInit(): void {
     this.dtOptions = {
@@ -43,7 +46,7 @@ export class ArchivedScheduleComponent implements OnInit,OnDestroy {
   }
 
   private loadArchivedSchedules(): void {
-    this.service.getArchivedSchedules().subscribe((res: any) => {
+    this.httpService.getArchivedSchedules().subscribe((res: any) => {
       this.ScheduleList = res as Schedule[];
       // this.dtTrigger.next();
       for (this.index = 1; this.index <= this.ScheduleList.length; this.index++) {
@@ -54,7 +57,7 @@ export class ArchivedScheduleComponent implements OnInit,OnDestroy {
 
   public unarchiveSchedule(id): void {
     if (confirm('Are you sure you want to un-archive this')) {
-      this.service.unArchiveSchedule(id).subscribe((res: any) => {
+      this.httpService.unArchiveSchedule(id).subscribe((res: any) => {
         this.toastr.success('Un-Archived Successfully', 'Assesment System');
         // this.dtTrigger.unsubscribe();
         this.loadArchivedSchedules();

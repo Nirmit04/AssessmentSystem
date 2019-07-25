@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TagModel } from '../../../models/tags.model';
-import { ContentCreatorServiceService } from '../../../services/content-creator-service.service';
+import { ContentCreatorService } from '../../../services/content-creator-service.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreatetagComponent } from '../createtag/createtag.component';
 import { Subscription } from 'rxjs';
@@ -14,23 +14,22 @@ import { HttpService } from '../../../../../core/http/http.service';
 
 export class TagComponent implements OnInit {
 
-	tagList: TagModel[];
+	public tagList: TagModel[];
 	dtOptions: DataTables.Settings = {};
 	dtTrigger: Subject<TagModel> = new Subject();
 	subscription: Subscription;
-	cols: any[];
-	i: number;
+	public columns: any[];
+	private index: number;
 
-	constructor(private service: ContentCreatorServiceService,
-		private dialog: MatDialog,
+	constructor(private dialog: MatDialog,
 		private httpService: HttpService) { }
 
-	ngOnInit() {
+	public ngOnInit(): void {
 		this.dtOptions = {
 			pagingType: 'full_numbers',
 			pageLength: 10,
 		};
-		this.cols = [
+		this.columns = [
 			{ field: 'SerialNumber', header: 'S NO' },
 			{ field: 'Name', header: 'Subject' },
 			{ field: 'Department', header: 'Department' }
@@ -40,17 +39,16 @@ export class TagComponent implements OnInit {
 		}, 0);
 	}
 
-	loadTags() {
+	private loadTags(): void {
 		this.httpService.getTags().subscribe((res: any) => {
 			this.tagList = res as TagModel[];
-			console.log(res);
-			for (this.i = 1; this.i <= this.tagList.length; this.i++) {
-				this.tagList[this.i - 1].SerialNumber = this.i;
+			for (this.index = 1; this.index <= this.tagList.length; this.index++) {
+				this.tagList[this.index - 1].SerialNumber = this.index;
 			}
 		});
 	}
 
-	onCreate() {
+	public onCreate(): void {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = "70%";
@@ -60,20 +58,18 @@ export class TagComponent implements OnInit {
 		});
 	}
 
-	onEdit(id: number) {
+	public onEdit(tagId: number): void {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = "70%";
 		dialogConfig.disableClose = true;
-		dialogConfig.data = this.tagList[id - 1];
-		console.log(id);
-		console.log(dialogConfig.data);
-		let dialogRef = this.dialog.open(CreatetagComponent, dialogConfig).afterClosed().subscribe(res => {
+		dialogConfig.data = this.tagList[tagId - 1];
+		const dialogRef = this.dialog.open(CreatetagComponent, dialogConfig).afterClosed().subscribe(res => {
 			this.loadTags();
 		});
 	}
 
-	ngOnDestroy() {
+	public ngOnDestroy(): void {
 		this.dtTrigger.unsubscribe();
 	}
 

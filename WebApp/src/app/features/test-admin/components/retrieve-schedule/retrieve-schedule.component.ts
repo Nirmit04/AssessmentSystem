@@ -8,6 +8,7 @@ import { ViewScheduleComponent } from './view-schedule/view-schedule.component';
 import { Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
 import { StorageService } from '../../../../services/storage.service';
+import { HttpService } from '../../../../core/http/http.service';
 @Component({
 	selector: 'app-retrieve-schedule',
 	templateUrl: './retrieve-schedule.component.html',
@@ -31,7 +32,8 @@ export class RetrieveScheduleComponent implements OnInit, OnDestroy {
 		private toastr: ToastrService,
 		private dialog: MatDialog,
 		private router: Router,
-		private storageService: StorageService
+		private storageService: StorageService,
+		private httpService: HttpService
 	) { }
 
 	public ngOnInit(): void {
@@ -52,8 +54,8 @@ export class RetrieveScheduleComponent implements OnInit, OnDestroy {
 		}, 0);
 	}
 
-	private loadSchedule(): void {
-		this.service.getSchedule(this.storageService.getStorage('uid')).subscribe((res: any) => {
+	private loadSchedule():void {
+		this.httpService.getSchedule(this.storageService.getStorage('uid')).subscribe((res: any) => {
 			this.scheduleList = res as Schedule[];
 			for (this.index = 1; this.index <= this.scheduleList.length; this.index++) {
 				this.scheduleList[this.index - 1].SerialNumber = this.index;
@@ -61,8 +63,8 @@ export class RetrieveScheduleComponent implements OnInit, OnDestroy {
 		});
 	}
 
-	public deleteSchedule(scheduleId): void {
-		this.service.deleteSchedule(scheduleId).subscribe((res: any) => {
+	public deleteSchedule(scheduleId):void {
+		this.httpService.deleteSchedule(scheduleId).subscribe((res: any) => {
 			if (res === 'Dissimilar Taken Status') {
 				this.toastr.error('Cannot Delete this Schedule. Users Exist!');
 			} else {

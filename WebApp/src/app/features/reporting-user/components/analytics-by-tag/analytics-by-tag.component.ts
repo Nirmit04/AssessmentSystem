@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
 import { ReportingUserService } from '../../services/reporting-user.service';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
-import { Label, SingleDataSet } from 'ng2-charts';
+import { Label } from 'ng2-charts';
+import { HttpService } from '../../../../core/http/http.service';
 
 @Component({
   selector: 'app-analytics-by-tag',
@@ -19,7 +19,8 @@ export class AnalyticsByTagComponent implements OnInit {
   public accuracy = [];
   private name = 'high';
 
-  constructor(private service: ReportingUserService, private router: Router) { }
+  constructor(private service: ReportingUserService,
+     private httpService: HttpService) { }
 
 
   public barChartOptions: ChartOptions = {
@@ -74,7 +75,7 @@ export class AnalyticsByTagComponent implements OnInit {
   }
 
   private loadAnalyticOfTag(): void {
-    this.service.getTagAnalytics().subscribe((res: any) => {
+    this.httpService.getTagAnalytics().subscribe((res: any) => {
       this.tagAnalysisList = res as any[];
       for (let i = 0; i < 7; i++) {
         this.highdata.push(

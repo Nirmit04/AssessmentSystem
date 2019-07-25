@@ -1,4 +1,4 @@
-<mat-progress-bar style="height: 2%" color="primary" mode="determinate" value="{{ bar }}"></mat-progress-bar>
+<mat-progress-bar style="height: 2%" color="primary" mode="determinate" value="{{ progressBar }}"></mat-progress-bar>
 <app-loader></app-loader>
 <nav class="navbar navbar-light" *ngIf="questions">
   <div>
@@ -12,8 +12,7 @@
       <h3 style="margin: 3%">Question - {{service.qnProgress+1}}/{{noOfQues}}</h3>
     </div>
     <div class="col col-md-6">
-      <div *ngIf="questions" class="card text-white bg-danger border-dark"
-        style="margin: 2%; width:38%; float: right;">
+      <div *ngIf="questions" class="card text-white bg-danger border-dark" style="margin: 2%; width:38%; float: right;">
         <div class="card-body text-center">
           <strong>
             <h5 style="margin:2%">Time Left - {{this.hours}}:{{this.minutes}}:{{this.seconds}}</h5>
@@ -36,8 +35,8 @@
               <li *ngIf="option" class="list-group-item list-group-item-action">
                 <div class="form-check">
                   <label style="font-size: 18px; margin-left: -20px">
-                    <input  tabindex="1" id="profile" type="radio" name="answer" [value]="i+1"
-                      [(ngModel)]="options">&nbsp;&nbsp;{{option}}
+                    <input tabindex="1" id="profile" type="radio" name="answer" [value]="i+1"
+                      [(ngModel)]="selectedOptions">&nbsp;&nbsp;{{option}}
                   </label>
                 </div>
               </li>
@@ -54,10 +53,10 @@
           <h4>Questions</h4>
         </div>
         <div class="card-body table-wrapper-scroll-y my-custom-scrollbar" style="overflow-y: auto; height: 320px">
-          <div class="btn-group mb-4" role="group" *ngFor="let b of ArrayOne(noOfQues); let i=index;">
+          <div class="btn-group mb-4" role="group" *ngFor="let b of transformingIntoArray(noOfQuestions); let i=index;">
             <div class="btn-group mr-3">
               <a style="width:50px" type="button" id="{{i}}" class="btn btn-block text-center" [ngClass]="getStatus(i)"
-                (click)="Navigate(i)">{{i+1}}</a>
+                (click)="navigate(i)">{{i+1}}</a>
             </div>
           </div>
         </div>
@@ -68,24 +67,26 @@
     <div class="col col-md-9">
       <div class="card border-dark">
         <div class="card-body text-center">
-          <button class="btn btn-sm btn-danger text-white" (click)="Clear(service.qnProgress)"><i aria-hidden="true"
+          <button class="btn btn-sm btn-danger text-white" (click)="clear(service.qnProgress)"><i aria-hidden="true"
               class="fa fa-eraser"></i>&nbsp;Clear</button>
           &nbsp;&nbsp;
-          <button *ngIf="checkPrev" class="btn btn-sm btn-info text-white" (click)="Previous()"><i aria-hidden="true"
+          <button *ngIf="checkPrev" class="btn btn-sm btn-info text-white" (click)="previous()"><i aria-hidden="true"
               class="fa fa-backward"></i>&nbsp;Previous</button>
           &nbsp;&nbsp;
-          <button *ngIf="checkLast" class="btn btn-sm btn-warning text-white" (click)="Next()">Next&nbsp;<i
+          <button *ngIf="checkLast" class="btn btn-sm btn-warning text-white" (click)="next()">Next&nbsp;<i
               aria-hidden="true" class="fa fa-forward"></i></button>
           &nbsp;&nbsp;
-          <button class="btn btn-sm btn-primary text-white" [disabled]="!options"
-            (click)="Answer(service.qnProgress+1,options,'save')"><i aria-hidden="true"
+          <button class="btn btn-sm btn-primary text-white" [disabled]="!selectedOptions"
+            (click)="answer(service.qnProgress+1,selectedOptions,'save')"><i aria-hidden="true"
               class="fa fa-check-circle"></i>&nbsp;Save & Next</button>
           &nbsp;&nbsp;
-          <button class="btn btn-sm btn-dark text-white" (click)="Answer(service.qnProgress+1,options, 'review')"><i
-              aria-hidden="true" class="fa fa-star"></i>&nbsp;Mark for Review</button>
+          <button class="btn btn-sm btn-dark text-white"
+            (click)="answer(service.qnProgress+1,selectedOptions, 'review')"><i aria-hidden="true"
+              class="fa fa-star"></i>&nbsp;Mark for Review</button>
           &nbsp;&nbsp;
-          <button class="btn btn-sm btn-success text-white" (click)="Answer(service.qnProgress+1,options,'submit')"><i
-              aria-hidden="true" class="fa fa-forward"></i>&nbsp;Submit</button>
+          <button class="btn btn-sm btn-success text-white"
+            (click)="answer(service.qnProgress+1,selectedOptions,'submit')"><i aria-hidden="true"
+              class="fa fa-forward"></i>&nbsp;Submit</button>
         </div>
       </div>
     </div>

@@ -1,13 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { ContentCreatorServiceService } from '../../../services/content-creator-service.service';
+import { ContentCreatorService } from '../../../services/content-creator-service.service';
 import { TagModel } from '../../../models/tags.model';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { StorageService } from '../../../../../services/storage.service';
 import { HttpService } from '../../../../../core/http/http.service';
-
-
 @Component({
 	selector: 'app-createtag',
 	templateUrl: './createtag.component.html',
@@ -16,28 +14,27 @@ import { HttpService } from '../../../../../core/http/http.service';
 
 export class CreatetagComponent implements OnInit {
 
-	public model: TagModel;
-	userId = "";
-	existingTags: TagModel[];
-	Option: string = '';
-	tagExists = false;
+	public userId: string = "";
+	public existingTags: TagModel[];
+	public option: string = '';
+	public tagExists: boolean = false;
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data,
 		public dialogRef: MatDialogRef<CreatetagComponent>,
-		private service: ContentCreatorServiceService,
+		private service: ContentCreatorService,
 		private toastr: ToastrService,
 		private storageService: StorageService,
 		private httpService: HttpService) { }
 
-	ngOnInit() {
+	public ngOnInit(): void {
 		this.userId = this.storageService.getStorage('uid');
 		if (this.data === null) {
-			this.Option = 'Create';
+			this.option = 'Create';
 			this.resetForm();
 		}
 		else {
-			this.Option = 'Update';
+			this.option = 'Update';
 			this.service.tagForm = this.data;
 		}
 		this.httpService.retrieveSubjects().subscribe((res: any) => {
@@ -45,7 +42,11 @@ export class CreatetagComponent implements OnInit {
 		});
 	}
 
-	resetForm(form?: NgForm) {
+	public getSubjectId()	{
+		
+	}
+
+	private resetForm(form?: NgForm): void {
 		if (form != null) {
 			form.resetForm();
 		}
@@ -56,7 +57,7 @@ export class CreatetagComponent implements OnInit {
 		};
 	}
 
-	onSubmit(form: NgForm) {
+	public onSubmit(form: NgForm): void {
 		this.httpService.postTags(form.value).subscribe(res => {
 			this.toastr.success('Inserted successfully');
 			this.resetForm(form);
@@ -64,9 +65,9 @@ export class CreatetagComponent implements OnInit {
 		});
 	}
 
-	check_avail(name1: NgForm) {
+	public checkAvail(name: NgForm): void {
 		for (let tag of this.existingTags) {
-			if (tag.Name.toString().toLowerCase() === name1.value.toString().toLowerCase()) {
+			if (tag.Name.toString().toLowerCase() === name.value.toString().toLowerCase()) {
 				this.tagExists = true;
 				break;
 			}
@@ -75,4 +76,5 @@ export class CreatetagComponent implements OnInit {
 			}
 		}
 	}
+
 }

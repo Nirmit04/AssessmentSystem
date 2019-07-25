@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ContentCreatorServiceService } from '../../../services/content-creator-service.service';
+import { ContentCreatorService } from '../../../services/content-creator-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { CreateQuestionsComponent } from '../../create-questions/create-questions.component';
@@ -13,37 +13,31 @@ import { HttpService } from '../../../../../core/http/http.service';
   styleUrls: ['./create-quiz.component.css']
 })
 export class CreateQuizComponent implements OnInit {
-  public Subjects: any[];
-  questions: any[];
-  quizzes: any[];
-  quizExists: boolean;
-  val: boolean = false;
-  count: number = 0;
-  CCreatedBy = '';
-  length = 0;
-  flag = 1;
-  form1: NgForm;
-  QuizHour: string;
-  QuizMinute: string;
-  MockType: string;
-  TotalQuestions: number;
-  RandomQuizTime: number;
-  difficulty = '';
-  subjectid: number = null;
-  question_type = '';
-  dropdownSettings;
-  cols: any[];
-  i: number;
+  public subjects: any[];
+  public questions: any[];
+  private quizzes: any[];
+  public quizExists: boolean;
+  public val: boolean = false;
+  public createdBy: string = '';
+  public length: number = 0;
+  public quizHour: string;
+  public quizMinute: string;
+  public mockType: string;
+  public totalQuestions: number;
+  public dropdownSettings;
+  public columns: any[];
+  public index: number;
 
   constructor(
-    private service: ContentCreatorServiceService,
+    private service: ContentCreatorService,
     private dialogRef: MatDialogRef<CreateQuizComponent>,
     public toastr: ToastrService,
     private dialog: MatDialog,
     private storageService: StorageService,
     private httpService: HttpService
   ) { }
-  ngOnInit() {
+
+  public ngOnInit(): void {
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'SubjectId',
@@ -52,19 +46,18 @@ export class CreateQuizComponent implements OnInit {
       itemsShowLimit: 5,
       allowSearchFilter: true,
     };
-
     this.quizExists = false;
     this.resetForm();
-    this.CCreatedBy = this.storageService.getStorage('uid');
+    this.createdBy = this.storageService.getStorage('uid');
     this.httpService.retrieveQuizNames().subscribe((res: any) => {
       this.quizzes = res as any[];
     });
     this.httpService.retrieveSubjects().subscribe((data) => {
-      this.Subjects = data as any[];
+      this.subjects = data as any[];
     });
   }
 
-  resetForm(form?: NgForm) {
+  private resetForm(form?: NgForm): void {
     if (form != null) {
       form.resetForm();
     } else {
@@ -81,41 +74,35 @@ export class CreateQuizComponent implements OnInit {
         QuizName: '',
         MinCutOff: null
       };
-      this.service.QuizMinute = null;
-      this.service.QuizHour = null;
+      this.service.quizMinute = null;
+      this.service.quizHour = null;
       if (this.questions) {
         this.questions.forEach((y) => (y.selected = false));
       }
     }
   }
 
-  fetch(form: NgForm) {
-    this.fetchReqQues(form);
-  }
-
-  fetchReqQues(form: NgForm) {
-
-    console.log('1');
+  public fetchReqQues(form: NgForm): void {
     if (form.value.QuizType === 'Scheduled') {
-      this.service.QuestionType = 'Scheduled';
+      this.service.questionType = 'Scheduled';
     } else {
-      this.service.QuestionType = 'Mock';
+      this.service.questionType = 'Mock';
     }
-    this.service.Difficulty = this.service.quizForm.Difficulty;
-    this.service.SubjectId = this.service.quizForm.SubjectId;
+    this.service.difficulty = this.service.quizForm.Difficulty;
+    this.service.subjectId = this.service.quizForm.SubjectId;
     this.service.formDupli = form;
     this.service.quizForm = form.value;
-    this.QuizHour = this.service.QuizHour.toString();
-    this.QuizMinute = this.service.QuizMinute.toString();
-    if (this.service.QuizHour < 10) {
-      this.QuizHour = '0' + this.service.QuizHour.toString();
+    this.quizHour = this.service.quizHour.toString();
+    this.quizMinute = this.service.quizMinute.toString();
+    if (this.service.quizHour < 10) {
+      this.quizHour = '0' + this.service.quizHour.toString();
     }
-    if (this.service.QuizMinute < 10) {
-      this.QuizMinute = '0' + this.service.QuizMinute.toString();
+    if (this.service.quizMinute < 10) {
+      this.quizMinute = '0' + this.service.quizMinute.toString();
     }
-    this.service.quizForm.QuizTime = this.QuizHour + ':' + this.QuizMinute;
-    if (this.MockType == 'Random') {
-      this.httpService.generateRandom(form.value, this.TotalQuestions).subscribe((res: any) => {
+    this.service.quizForm.QuizTime = this.quizHour + ':' + this.quizMinute;
+    if (this.mockType == 'Random') {
+      this.httpService.generateRandom(form.value, this.totalQuestions).subscribe((res: any) => {
         if (res === 0) {
           this.toastr.error('No Questions Available!');
         } else {
@@ -124,32 +111,31 @@ export class CreateQuizComponent implements OnInit {
         this.dialogRef.close('Inserted');
       });
     } else {
-      console.log('2');
-
-      this.cols = [
-        { field: 'SerialNumber', header: 'S NO' },
-        { field: 'QuestionStatement', header: 'Questions' }
+      this.columns = [
+        { field: 'serialNumber', header: 'S NO' },
+        { field: 'questionStatement', header: 'Questions' }
       ];
       this.httpService.getQuesOfUserConstraints(form.value).subscribe((data: any) => {
-        console.log(data);
         data.forEach((obj) => (obj.selected = false));
         this.questions = data;
         this.length = this.questions.length;
-        for (this.i = 1; this.i <= this.questions.length; this.i++) {
-          this.questions[this.i - 1].SerialNumber = this.i;
+        for (this.index = 1; this.index <= this.questions.length; this.index++) {
+          this.questions[this.index - 1].SerialNumber = this.index;
         }
         this.checkVal();
       });
     }
   }
 
-  checkVal() {
+  private checkVal(): void {
     this.val = true;
   }
-  updateSelectedQuestions(index) {
+
+  public updateSelectedQuestions(index): void {
     this.questions[index].selected = !this.questions[index].selected;
   }
-  onDetailsSubmit(form: NgForm) {
+
+  public onDetailsSubmit(form: NgForm): void {
     var QuestionId = this.questions
       .filter((QuestionId) => QuestionId.selected)
       .map((idSelected) => idSelected.QuestionId);
@@ -160,7 +146,8 @@ export class CreateQuizComponent implements OnInit {
       this.dialogRef.close('Inserted');
     }
   }
-  reload(data1: any) {
+
+  private reload(data1: any): void {
     this.httpService.getQuesOfUserConstraints(data1).subscribe((data: any) => {
       data.forEach((obj) => (obj.selected = false));
       this.questions = data;
@@ -169,7 +156,7 @@ export class CreateQuizComponent implements OnInit {
     });
   }
 
-  checkAvail(inputName: NgForm) {
+  public checkAvail(inputName: NgForm): void {
     for (let name of this.quizzes) {
       if (name.QuizName.toString().toLowerCase() === inputName.value.toString().toLowerCase()) {
         this.quizExists = true;
@@ -180,39 +167,26 @@ export class CreateQuizComponent implements OnInit {
     }
   }
 
-  add_new_ques() {
+  public add_new_ques(): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = '70%';
     dialogConfig.disableClose = true;
     this.service.quesStat = true;
-    // this.service.formData = {
-    //   QuestionId: null,
-    //   QuestionStatement: '',
-    //   Option1: '',
-    //   Option2: '',
-    //   Option3: '',
-    //   Option4: '',
-    //   Answer: null,
-    //   Marks: null,
-    //   Difficulty: this.service.quizForm.Difficulty.toString(),
-    //   SubjectId: this.service.quizForm.SubjectId.toString()
-    // };
-    // this.service.formData.Difficulty = this.service.quizForm.Difficulty.toString();
-    // this.service.formData.SubjectId = this.service.quizForm.SubjectId.toString();
-    // console.log(this.service.formData);
     let dialogRef = this.dialog.open(CreateQuestionsComponent, dialogConfig);
     dialogRef.afterClosed().subscribe((result) => {
       this.service.quesStat = false;
       this.reload(this.service.quizForm);
     });
   }
-  toggleEditable(event) {
+
+  public toggleEditable(event): void {
     if (event.target.checked) {
-      this.service.QuizState = true;
+      this.service.quizState = true;
     }
     if (!event.target.checked) {
-      this.service.QuizState = false;
+      this.service.quizState = false;
     }
   }
+
 }
