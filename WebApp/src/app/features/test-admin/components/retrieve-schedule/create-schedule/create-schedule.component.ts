@@ -1,11 +1,11 @@
-import { Component, Inject, OnInit, SystemJsNgModuleLoader } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { TestAdminService } from '../../../services/test-admin.service';
 import { QuizModel } from '../../../../content-creator/models/quiz.model';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 import { StorageService } from '../../../../../services/storage.service';
+import { HttpService } from '../../../../../core/http/http.service';
 
 @Component({
 	selector: 'app-create-schedule',
@@ -13,35 +13,35 @@ import { StorageService } from '../../../../../services/storage.service';
 	styleUrls: [ './create-schedule.component.css' ]
 })
 export class CreateScheduleComponent implements OnInit {
-	date: string;
-	q1 = '';
-	q2 = '';
-	q3 = '';
-	stdate;
-	btndisable = true;
-	startDateValid = false;
-	endDateValid = false;
-	CCreatedBy = '';
-	scheduleUrl = 'localhost:4200//emp-dash/take-quiz/';
-	QuizList: QuizModel[];
+	public date: string;
+	public q1 = '';
+	public q2 = '';
+	public q3 = '';
+	public stdate;
+	public btndisable = true;
+	public startDateValid = false;
+	public endDateValid = false;
+	public CCreatedBy = '';
+	public QuizList: QuizModel[];
 
 	constructor(
 		private service: TestAdminService,
 		private storageService: StorageService,
 		public toastr: ToastrService,
-		private datePipe: DatePipe
+		private datePipe: DatePipe,
+		private httpService: HttpService
 	) {}
 
-	ngOnInit() {
+	public ngOnInit():void {
 		this.resetForm();
 		this.date = this.datePipe.transform(new Date().getUTCHours(), 'yyyy-MM-ddThh:mm');
 		this.CCreatedBy = this.storageService.getStorage('uid');
-		this.service.retriveAllQuizzes().subscribe((res) => {
+		this.httpService.retriveAllQuizzes().subscribe((res) => {
 			this.QuizList = res as QuizModel[];
 		});
 	}
 
-	resetForm(form?: NgForm) {
+	private resetForm(form?: NgForm):void {
 		if (form != null) {
 			form.resetForm();
 		}
@@ -50,13 +50,13 @@ export class CreateScheduleComponent implements OnInit {
 		this.q3 = '';
 	}
 
-	sub(form: NgForm) {
-		this.service.postSchedule(form.value).subscribe((res: any) => {
+	public sub(form: NgForm):void {
+		this.httpService.postSchedule(form.value).subscribe((res: any) => {
 			this.toastr.success('Inserted successfully');
 			this.resetForm(form);
 		});
 	}
-	checkStartDate(date1: NgForm) {
+	public checkStartDate(date1: NgForm):void {
 		this.stdate = date1.value;
 		this.date = this.datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm');
 		if (date1.value < this.date) {
@@ -66,7 +66,7 @@ export class CreateScheduleComponent implements OnInit {
 		}
 	}
 
-	checkEndDate(date2: NgForm) {
+	public checkEndDate(date2: NgForm):void {
 		this.date = this.datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm');
 		if (date2.value <= this.stdate || date2.value < this.date) {
 			this.endDateValid = true;

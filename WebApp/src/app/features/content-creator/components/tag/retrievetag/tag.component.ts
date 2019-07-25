@@ -43,7 +43,7 @@ export class TagComponent implements OnInit {
 		this.httpService.getTags().subscribe((res: any) => {
 			this.tagList = res as TagModel[];
 			for (this.index = 1; this.index <= this.tagList.length; this.index++) {
-				this.tagList[this.index - 1].serialNumber = this.index;
+				this.tagList[this.index - 1].SerialNumber = this.index;
 			}
 		});
 	}

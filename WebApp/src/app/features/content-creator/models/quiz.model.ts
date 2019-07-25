@@ -1,17 +1,17 @@
 export class QuizModel {
-    serialNumber?: number;
-    quizId: number;
-    difficulty: string;
-    totalQuestions?: number;
-    totalMarks?: number;
-    tags:any[];
-    quizType: string;
-    createdBy?: string;
-    questionIds: number[];
-    subjectId: number;
-    quizName: string;
-    quizTime?: string;
-    quizState?:boolean;
-    minCutOff:number;
-    duplicateTags?:string;
+    SerialNumber?: number;
+    QuizId: number;
+    Difficulty: string;
+    TotalQuestions?: number;
+    TotalMarks?: number;
+    Tags:any[];
+    QuizType: string;
+    CreatedBy?: string;
+    QuestionIds: number[];
+    SubjectId: number;
+    QuizName: string;
+    QuizTime?: string;
+    QuizState?:boolean;
+    MinCutOff:number;
+    DuplicateTags?:string;
 }

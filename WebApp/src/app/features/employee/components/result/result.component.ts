@@ -51,8 +51,8 @@ export class ResultComponent implements OnInit {
     }
     this.timeTaken = this.service.hours.toString() + ':' + this.service.minutes.toString() + ':' + this.service.seconds.toString();
     this.service.body = {
-      quesAnswers: dict,
-      timeTaken: this.timeTaken
+      QuesAnswers: dict,
+      TimeTaken: this.timeTaken
     }
   }
 

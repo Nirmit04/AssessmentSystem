@@ -37,13 +37,13 @@
               </div>
             </div>
             <br />
-            <div *ngIf="data2">
+            <div *ngIf="apiResponse">
               <div class="row">
                 <div class="col sm-4">
                   <div class="card">
                     <div class="card-body">
                       <h5 class="card-title apricot">Highest Score</h5>
-                      <label class="card-text">{{data2.HighestScore}}</label>
+                      <label class="card-text">{{apiResponse.HighestScore}}</label>
                     </div>
                   </div>
                 </div>
@@ -55,7 +55,7 @@
                         </span>
                       </i>
                       <h5 class="card-title apricot">Accuracy</h5>
-                      <h6 class="card-text">{{data2.Accuracy}}</h6>
+                      <h6 class="card-text">{{apiResponse.Accuracy}}</h6>
                     </div>
                   </div>
                 </div>
@@ -63,7 +63,7 @@
                   <div class="card">
                     <div class="card-body">
                       <h5 class="card-title apricot">Lowest Score</h5>
-                      <h6 class="card-text">{{data2.LowestScore}}</h6>
+                      <h6 class="card-text">{{apiResponse.LowestScore}}</h6>
                     </div>
                   </div>
                 </div>
@@ -78,7 +78,7 @@
                         </span>
                       </i>
                       <h5 class="card-title apricot">Performance</h5>
-                      <h6 class="card-text">{{data2.Performance}}</h6>
+                      <h6 class="card-text">{{apiResponse.Performance}}</h6>
                     </div>
                   </div>
                 </div>
@@ -90,7 +90,7 @@
                         </span>
                       </i>
                       <h5 class="card-title apricot">Average Score</h5>
-                      <h6 class="card-text">{{data2.AverageScore}}</h6>
+                      <h6 class="card-text">{{apiResponse.AverageScore}}</h6>
                     </div>
                   </div>
                 </div>
@@ -98,7 +98,7 @@
                   <div class="card">
                     <div class="card-body">
                       <h5 class="card-title apricot">Total Quiz Count</h5>
-                      <h6 class="card-text">{{data2.TotalQuizCount}}</h6>
+                      <h6 class="card-text">{{apiResponse.TotalQuizCount}}</h6>
                     </div>
                   </div>
                 </div>
@@ -109,7 +109,7 @@
                   <div class="card">
                     <div class="card-body">
                       <h5 class="card-title apricot">Scheduled Quizzes Given</h5>
-                      <h6 class="card-text">{{data2.ScheduledCount}}</h6>
+                      <h6 class="card-text">{{apiResponse.ScheduledCount}}</h6>
                     </div>
                   </div>
                 </div>
@@ -121,7 +121,7 @@
                         </span>
                       </i>
                       <h5 class="card-title apricot">Probability of Correctness</h5>
-                      <h6 class="card-text">{{data2.ProbabilityAnsweringCorrectly}}</h6>
+                      <h6 class="card-text">{{apiResponse.ProbabilityAnsweringCorrectly}}</h6>
                     </div>
                   </div>
                 </div>
@@ -129,7 +129,7 @@
                   <div class="card">
                     <div class="card-body">
                       <h5 class="card-title apricot">Mock Quizzes Given</h5>
-                      <h6 class="card-text">{{data2.MockCount}}</h6>
+                      <h6 class="card-text">{{apiResponse.MockCount}}</h6>
                     </div>
                   </div>
                 </div>

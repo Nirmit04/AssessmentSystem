@@ -62,17 +62,17 @@ export class CreateQuizComponent implements OnInit {
       form.resetForm();
     } else {
       this.service.quizForm = {
-        quizId: null,
-        difficulty: '',
-        totalQuestions: null,
-        totalMarks: null,
-        tags: null,
-        quizType: '',
-        createdBy: '',
-        questionIds: null,
-        subjectId: null,
-        quizName: '',
-        minCutOff: null
+        QuizId: null,
+        Difficulty: '',
+        TotalQuestions: null,
+        TotalMarks: null,
+        Tags: null,
+        QuizType: '',
+        CreatedBy: '',
+        QuestionIds: null,
+        SubjectId: null,
+        QuizName: '',
+        MinCutOff: null
       };
       this.service.quizMinute = null;
       this.service.quizHour = null;
@@ -88,8 +88,8 @@ export class CreateQuizComponent implements OnInit {
     } else {
       this.service.questionType = 'Mock';
     }
-    this.service.difficulty = this.service.quizForm.difficulty;
-    this.service.subjectId = this.service.quizForm.subjectId;
+    this.service.difficulty = this.service.quizForm.Difficulty;
+    this.service.subjectId = this.service.quizForm.SubjectId;
     this.service.formDupli = form;
     this.service.quizForm = form.value;
     this.quizHour = this.service.quizHour.toString();
@@ -100,7 +100,7 @@ export class CreateQuizComponent implements OnInit {
     if (this.service.quizMinute < 10) {
       this.quizMinute = '0' + this.service.quizMinute.toString();
     }
-    this.service.quizForm.quizTime = this.quizHour + ':' + this.quizMinute;
+    this.service.quizForm.QuizTime = this.quizHour + ':' + this.quizMinute;
     if (this.mockType == 'Random') {
       this.httpService.generateRandom(form.value, this.totalQuestions).subscribe((res: any) => {
         if (res === 0) {

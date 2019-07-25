@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ReportingUserService } from '../../../services/reporting-user.service';
 import { Label } from 'ng2-charts';
 import { ChartType, ChartOptions } from 'chart.js';
@@ -13,10 +13,9 @@ import { HttpService } from '../../../../../core/http/http.service';
 })
 export class ViewUserDetailsComponent implements OnInit {
 
-  data1: any[];
-  scheduledReports: any[] = null;
-  bool = false;
-
+  private userData: any[];
+  public scheduledReports: any[] = null;
+  public bool = false;
   public polarAreaChartLabels: Label[] = ['Highest-Score', 'Lowest Score', 'Accuracy', 'Average-Score'];
   public polarAreaChartData: any[];
   public polarAreaLegend: boolean;
@@ -35,13 +34,14 @@ export class ViewUserDetailsComponent implements OnInit {
     public router: Router,
     public empService: EmployeeService,
     private httpService: HttpService) { }
+
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
 
-  data2: any;
+  public apiResponse: any;
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.dtOptions = {
       lengthChange: false,
       paging: false,
@@ -57,19 +57,19 @@ export class ViewUserDetailsComponent implements OnInit {
     }
   }
 
-  fetchAnalytics(userId: number) {
-    this.service.getUserAnalytics(userId).subscribe((res: any) => {
-      this.data2 = res;
-      this.data1 = [];
-      this.data1.push(this.data2.HighestScore);
-      this.data1.push(this.data2.LowestScore);
-      this.data1.push(this.data2.Accuracy);
-      this.data1.push(this.data2.AverageScore);
-      this.polarAreaChartData = this.data1;
+  private fetchAnalytics(userId: string): void {
+    this.httpService.getUserAnalytics(userId).subscribe((res: any) => {
+      this.apiResponse = res;
+      this.userData = [];
+      this.userData.push(this.apiResponse.HighestScore);
+      this.userData.push(this.apiResponse.LowestScore);
+      this.userData.push(this.apiResponse.Accuracy);
+      this.userData.push(this.apiResponse.AverageScore);
+      this.polarAreaChartData = this.userData;
     });
   }
 
-  fetchReports(userId: number) {
+  private fetchReports(userId: string): void {
     this.httpService.getReportOfNonMockQuiz(userId).subscribe((res: any) => {
       this.scheduledReports = res as any[];
       this.dtTrigger.next();

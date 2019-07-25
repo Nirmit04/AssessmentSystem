@@ -27,13 +27,13 @@ export class ArchiveQuizComponent implements OnInit {
 			pageLength: 10,
 		};
 		this.columns = [
-			{ field: 'serialNumber', header: 'S NO' },
-			{ field: 'quizName', header: 'Quiz Name' },
-			{ field: 'quizType', header: 'Quiz Type' },
-			{ field: 'difficulty', header: 'Difficulty' },
-			{ field: 'totalQuestions', header: 'Total Questions' },
-			{ field: 'totalMarks', header: 'Total Marks' },
-			{ field: 'duplicateTags', header: 'Tags' },
+			{ field: 'SerialNumber', header: 'S NO' },
+			{ field: 'QuizName', header: 'Quiz Name' },
+			{ field: 'QuizType', header: 'Quiz Type' },
+			{ field: 'Difficulty', header: 'Difficulty' },
+			{ field: 'TotalQuestions', header: 'Total Questions' },
+			{ field: 'TotalMarks', header: 'Total Marks' },
+			{ field: 'DuplicateTags', header: 'Tags' },
 		];
 
 		this.loadQuiz();
@@ -46,11 +46,11 @@ export class ArchiveQuizComponent implements OnInit {
 		this.httpService.getArchivedQuizzes().subscribe((res: any) => {
 			this.QuizList = res as QuizModel[];
 			for (this.index = 1; this.index <= this.QuizList.length; this.index++) {
-				this.QuizList[this.index - 1].serialNumber = this.index;
+				this.QuizList[this.index - 1].SerialNumber = this.index;
 				this.tag = ''
-				for (let tag of this.QuizList[this.index - 1].tags) {
+				for (let tag of this.QuizList[this.index - 1].Tags) {
 					this.tag = this.tag + tag.Name + ',';
-					this.QuizList[this.index - 1].duplicateTags = this.tag;
+					this.QuizList[this.index - 1].DuplicateTags = this.tag;
 				}
 			}
 		});

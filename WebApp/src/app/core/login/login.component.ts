@@ -17,12 +17,13 @@ export class LoginComponent implements OnInit {
 	constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, private storageService: StorageService) { }
 
 	ngOnInit() {
-		this.storageService.setStorage('key', this.route.snapshot.queryParamMap.get('take-quiz'));
+		const takeQuiz = this.route.snapshot.queryParamMap.get('take-quiz');
+		this.storageService.setStorage('key', takeQuiz);
 		this.storageService.setStorage('key1', this.route.snapshot.queryParamMap.get('schedule-id'));
 		this.storageService.setStorage('time', this.route.snapshot.queryParamMap.get('time'));
 		this.authService.authState.subscribe((user) => {
 			this.user = user;
-			if (user != null) {
+			if (user !== null) {
 				this.storageService.setStorage('token', this.user.idToken);
 				this.storageService.setStorage('email', this.user.email);
 				this.storageService.setStorage('firstname', this.user.firstName);

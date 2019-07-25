@@ -51,9 +51,9 @@ export class CreatetagComponent implements OnInit {
 			form.resetForm();
 		}
 		this.service.tagForm = {
-			subjectId: null,
-			name: '',
-			department: ''
+			SubjectId: null,
+			Name: '',
+			Department: ''
 		};
 	}
 
@@ -67,7 +67,7 @@ export class CreatetagComponent implements OnInit {
 
 	public checkAvail(name: NgForm): void {
 		for (let tag of this.existingTags) {
-			if (tag.name.toString().toLowerCase() === name.value.toString().toLowerCase()) {
+			if (tag.Name.toString().toLowerCase() === name.value.toString().toLowerCase()) {
 				this.tagExists = true;
 				break;
 			}

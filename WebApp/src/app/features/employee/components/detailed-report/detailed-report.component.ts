@@ -48,7 +48,6 @@ export class DetailedReportComponent implements OnInit {
   }
 
   constructor(private service: EmployeeService,
-    private dialog: MatDialog,
     private route: Router,
     private httpService: HttpService) { }
 

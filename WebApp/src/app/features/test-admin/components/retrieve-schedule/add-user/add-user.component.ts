@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 import { AddUser1Component } from '../../add-user1/add-user1.component';
 import { ViewScheduleComponent } from '../view-schedule/view-schedule.component';
 import { StorageService } from '../../../../../services/storage.service';
+import { HttpService } from '../../../../../core/http/http.service';
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
@@ -15,50 +16,51 @@ import { StorageService } from '../../../../../services/storage.service';
 })
 
 export class AddUserComponent implements OnInit {
-  scheduleList: Schedule[];
+  public scheduleList: Schedule[];
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<Schedule> = new Subject();
   subscription: Subscription;
-  col: any[];
-  cols: any[];
-  i: number;
-  
+  public col: any[];
+  public cols: any[];
+  private index: number;
+
   constructor(
     public toastr: ToastrService,
     public dialog: MatDialog,
     private service: TestAdminService,
-    private storageService: StorageService) { }
+    private storageService: StorageService,
+    private httpService: HttpService) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
     };
     this.cols = [
-			{ field: 'SerialNumber', header: 'S NO' },
+      { field: 'SerialNumber', header: 'S NO' },
       { field: 'QuizName', header: 'Quiz Name' }
     ];
     this.col = [
-      { field: 'StartDateTime', header: 'Start Time'},
-      { field: 'EndDateTime', header: 'End Time'},
+      { field: 'StartDateTime', header: 'Start Time' },
+      { field: 'EndDateTime', header: 'End Time' },
 
     ];
     setTimeout(() => {
       this.loadSchedule();
-		}, 0);
+    }, 0);
   }
 
-  loadSchedule() {
-    this.service.getSchedule(this.storageService.getStorage('uid')).subscribe((res: any) => {
+  private loadSchedule(): void {
+    this.httpService.getSchedule(this.storageService.getStorage('uid')).subscribe((res: any) => {
       this.scheduleList = res as Schedule[];
       // this.dtTrigger.next();
-      for (this.i = 1; this.i <= this.scheduleList.length; this.i++) {
-				this.scheduleList[this.i - 1].SerialNumber = this.i;
-			}
+      for (this.index = 1; this.index <= this.scheduleList.length; this.index++) {
+        this.scheduleList[this.index - 1].SerialNumber = this.index;
+      }
     });
   }
 
-  addUserToSchedule(scheduleid: number, arrayindex: number) {
+  public addUserToSchedule(scheduleid: number): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
@@ -66,17 +68,15 @@ export class AddUserComponent implements OnInit {
     dialogConfig.data = scheduleid;
     this.dialog.open(AddUser1Component, dialogConfig).afterClosed().subscribe((res: any) => {
       this.loadSchedule();
-      // this.dtTrigger.unsubscribe();
-      // this.dtTrigger.next();
     });
   }
 
-  deleteUserfromSchedule(scheduleId: number, arrayIndex: number) {
+  public deleteUserfromSchedule(scheduleId: number): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
     dialogConfig.disableClose = true;
-    this.service.getScheduleQuizUsers(scheduleId).subscribe((res: any) => {
+    this.httpService.getScheduleQuizUsers(scheduleId).subscribe((res: any) => {
       if (res.length === 0) {
         this.toastr.error('No user Available to Delete');
       }
@@ -86,8 +86,6 @@ export class AddUserComponent implements OnInit {
         this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe(() => {
           this.loadSchedule();
           this.service.deleteUserVisibility = false;
-          // this.dtTrigger.unsubscribe();
-          // this.dtTrigger.next();
         });
       }
     });

@@ -29,46 +29,46 @@ export class ContentCreatorService {
 
 	public postQuestion(formData: Question): any {
 		this.formDataNew = new FormData();
-		formData.createdBy = this.storageService.getStorage('uid');
-		formData.questionType = this.questionType;
+		formData.CreatedBy = this.storageService.getStorage('uid');
+		formData.QuestionType = this.questionType;
 		this.formDataNew.append('QuestionDetails', JSON.stringify(formData));
 		if (this.selectedFile !== null) {
 			this.formDataNew.append('Image', this.selectedFile, this.selectedFile.name);
 			this.selectedFile = null;
 		}
 		this.httpService.postQuestion(this.formDataNew).subscribe((res: any) => {
-			return res;
+			return true;
 		});
 		return false;
 	}
 
-	public updateQuestion(formData: Question):any {
+	public updateQuestion(formData: Question): any {
 		this.formDataNew = new FormData();
 		this.formDataNew.append('QuestionDetails', JSON.stringify(formData));
 		if (this.selectedFile !== null) {
 			this.formDataNew.append('Image', this.selectedFile, this.selectedFile.name);
 			this.selectedFile = null;
 		}
-		this.httpService.putQuestion(formData.questionId, this.formDataNew).subscribe((res: any) => {
-			return res;
+		this.httpService.putQuestion(formData.QuestionId, this.formDataNew).subscribe((res: any) => {
+			return true;
 		});
 		return false;
 	}
 
-	public postQuestionsSelected(questions: number[]) :any {
-		this.quizForm.questionIds = questions;
-		this.quizForm.quizState = this.quizState;
+	public postQuestionsSelected(questions: number[]): any {
+		this.quizForm.QuestionIds = questions;
+		this.quizForm.QuizState = this.quizState;
 		this.httpService.postSelectedQuestion(this.quizForm).subscribe((res: any) => {
-			return res;
+			console.log(res);
 		});
 		return false;
 	}
 
-	public putQuestionsSelected(questions: number[]) :any {
-		this.quizForm.questionIds = questions;
-		this.quizForm.createdBy = this.storageService.getStorage('uid');
-		this.httpService.putQuestionsSelected(this.storageService.getStorage('quizId'), this.quizForm.questionIds).subscribe((res: any) => {
-			return res;
+	public putQuestionsSelected(questions: number[]): any {
+		this.quizForm.QuestionIds = questions;
+		this.quizForm.CreatedBy = this.storageService.getStorage('uid');
+		this.httpService.putQuestionsSelected(this.storageService.getStorage('quizId'), this.quizForm.QuestionIds).subscribe((res: any) => {
+			return true;
 		});
 		return false;
 	}

@@ -1,35 +1,7 @@
 <app-loader></app-loader>
 <app-main-nav2>
   <div>
-    <!-- <h1 style="text-align: center">List of Archived Schedules</h1>
-    <br /><br />
-    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
-      class="row-border hover table table-bordered table-striped">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">#Schedule ID</th>
-          <th scope="col">Quiz Name</th>
-          <th scope="col">Start Date/Time</th>
-          <th scope="col">End Date/Time</th>
-          <th scope="col">UnArchive</th>
-        </tr>
-      </thead>
-      <tbody>
-        <ng-container *ngFor="let item of ScheduleList;index as i;">
-          <tr>
-            <th>{{i+1}}</th>
-            <td>{{item.QuizName}}</td>
-            <td>{{item.StartDateTime | date:'medium'}}</td>
-            <td>{{item.EndDateTime | date:'medium'}}</td>
-            <td style="text-align:center;">
-              <a class="btn btn-sm btn-info text-white" (click)="unarchiveSchedule(item.QuizScheduleId)"><i aria-hidden="true"
-                  class="fa fa-pencil"></i></a>
-            </td>
-          </tr>
-        </ng-container>
-      </tbody>
-    </table> -->
-    <p-table [columns]="cols" [value]="ScheduleList" [paginator]="true" [rows]="6" #dt [responsive]="true">
+    <p-table [columns]="columns" [value]="ScheduleList" [paginator]="true" [rows]="6" #dt [responsive]="true">
       <ng-template pTemplate="caption">
         <h3>List of Archived Schedules</h3>
         <div style="text-align: right">
@@ -40,7 +12,7 @@
       </ng-template>
       <ng-template pTemplate="header">
         <tr>
-          <th *ngFor="let col of cols" [pSortableColumn]="col.field" style="background-color:#000000; color:#ffffff ">
+          <th *ngFor="let col of columns" [pSortableColumn]="col.field" style="background-color:#000000; color:#ffffff ">
             {{col.header}}
           </th>
           <th style="background-color:#000000; color:#ffffff ">Start Time</th>
@@ -53,7 +25,7 @@
           <td *ngFor="let col of columns;">
             {{rowData[col.field]}}
           </td>
-          <td *ngFor="let c of col;">
+          <td *ngFor="let c of nonSortableColumns;">
             {{rowData[c.field] | date: 'medium' :amLocal}}
           </td>
           <td style="text-align:center;">

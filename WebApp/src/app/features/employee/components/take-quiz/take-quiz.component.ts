@@ -188,7 +188,7 @@ export class TakeQuizComponent implements OnInit {
 			this.checkLast = false;
 			this.loadQues(questionIndex + 1);
 		}
-		else if (this.service.qnProgress == this.noOfQuestions) {
+		else if (this.service.qnProgress === this.noOfQuestions) {
 			this.service.qnProgress = 0;
 			this.loadQues(1);
 			this.checkPrev = false;
@@ -255,6 +255,7 @@ export class TakeQuizComponent implements OnInit {
 	}
 
 	public transformingIntoArray(totalQuestions: number): any[] {
+		console.log(totalQuestions);
 		return Array(totalQuestions);
 	}
 

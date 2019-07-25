@@ -15,10 +15,10 @@ export class MainNav2Component {
 	isHandset$: Observable<boolean> = this.breakpointObserver
 		.observe(Breakpoints.Handset)
 		.pipe(map((result) => result.matches));
-	cRole = '';
+	public currentRole = '';
 	constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService, private router: Router, private storageService: StorageService) { }
-	ngOnInit() {
-		this.cRole = this.storageService.getStorage('currentRole');
+	public ngOnInit(): void {
+		this.currentRole = this.storageService.getStorage('currentRole');
 		this.authService.authState.subscribe((user) => {
 			if (user != null) {
 			} else {
@@ -27,7 +27,7 @@ export class MainNav2Component {
 			}
 		});
 	}
-	roleMatch(allowedRoles): boolean {
+	public roleMatch(allowedRoles): boolean {
 		var isMatch = false;
 		const userRoles: string = this.storageService.getStorage('role');
 		allowedRoles.forEach(element => {
@@ -39,12 +39,12 @@ export class MainNav2Component {
 		return isMatch;
 	}
 
-	aab(role: string) {
+	public currentRoleIs(role: string): void {
 		this.storageService.setStorage('currentRole', role);
 		this.router.navigate([role]);
 	}
 
-	logout() {
+	public logout(): void {
 		this.authService.signOut();
 	}
 

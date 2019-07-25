@@ -26,8 +26,8 @@ export class CreateQuestionsComponent implements OnInit {
   ngOnInit(): void {
     this.resetForm();
     if (this.service.difficulty != null) {
-      this.service.formData.subjectId = this.service.subjectId.toString();
-      this.service.formData.difficulty = this.service.difficulty;
+      this.service.formData.SubjectId = this.service.subjectId.toString();
+      this.service.formData.Difficulty = this.service.difficulty;
     }
     else {
       if (this.service.questionType == null) {
@@ -52,16 +52,16 @@ export class CreateQuestionsComponent implements OnInit {
       form.resetForm();
     }
     this.service.formData = {
-      questionId: null,
-      questionStatement: "",
-      option1: "",
-      option2: "",
-      option3: "",
-      option4: "",
-      answer: null,
-      marks: null,
-      difficulty: "",
-      subjectId: "",
+      QuestionId: null,
+      QuestionStatement: "",
+      Option1: "",
+      Option2: "",
+      Option3: "",
+      Option4: "",
+      Answer: null,
+      Marks: null,
+      Difficulty: "",
+      SubjectId: "",
     }
   }
 
@@ -76,8 +76,8 @@ export class CreateQuestionsComponent implements OnInit {
       this.service.selectedFile = null;
       this.resetForm(form);
       if (this.service.difficulty != null) {
-        this.service.formData.subjectId = this.service.subjectId.toString();
-        this.service.formData.difficulty = this.service.difficulty;
+        this.service.formData.SubjectId = this.service.subjectId.toString();
+        this.service.formData.Difficulty = this.service.difficulty;
       }
     }
   }

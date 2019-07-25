@@ -1,5 +1,5 @@
 export class Subject {
-    subjectId: number;
-    name: string;
-    department: string;
+    SubjectId: number;
+    Name: string;
+    Department: string;
 }

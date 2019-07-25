@@ -37,8 +37,8 @@ export class UpdateQuestionComponent implements OnInit {
     } else {
       this.label = "Edit Questions";
     }
-    if (this.service.formData.imageName !== null) {
-      this.imageSource = environment.imgURl + this.service.formData.imageName;
+    if (this.service.formData.ImageName !== null) {
+      this.imageSource = environment.imgURl + this.service.formData.ImageName;
     }
     this.dropdownSettings = {
       singleSelection: false,
@@ -59,18 +59,18 @@ export class UpdateQuestionComponent implements OnInit {
       form.resetForm();
     }
     this.service.formData = {
-      questionType: "",
-      questionId: null,
-      questionStatement: "",
-      option1: "",
-      option2: "",
-      option3: "",
-      option4: "",
-      answer: null,
-      marks: null,
-      difficulty: "",
-      subjectId: "",
-      imageName: null
+      QuestionType: "",
+      QuestionId: null,
+      QuestionStatement: "",
+      Option1: "",
+      Option2: "",
+      Option3: "",
+      Option4: "",
+      Answer: null,
+      Marks: null,
+      Difficulty: "",
+      SubjectId: "",
+      ImageName: null
     }
   }
 
@@ -89,7 +89,7 @@ export class UpdateQuestionComponent implements OnInit {
   }
 
   public deleteImage(): void {
-    this.httpService.deleteImageFromQues(this.service.formData.questionId).subscribe(res => {
+    this.httpService.deleteImageFromQues(this.service.formData.QuestionId).subscribe(res => {
       this.toastr.success('Image Successfully Removed');
       this.dialogRef.close('Submitted');
     });

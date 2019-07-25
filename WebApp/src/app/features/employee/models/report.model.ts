@@ -1,13 +1,13 @@
 export class Report {
-    serialNumber?: number;
-    reportId: number;
-    correctAnswers: number;
-    wrongAnswers: number;
-    timeTaken: number;
-    unattemptedAnswers: number;
-    accuracy: number;
-    efficiency: number;
-    marksScored: number;
-    totalMarks: number;
-    quizType: string;
+    SerialNumber?: number;
+    ReportId: number;
+    CorrectAnswers: number;
+    WrongAnswers: number;
+    TimeTaken: number;
+    UnattemptedAnswers: number;
+    Accuracy: number;
+    Efficiency: number;
+    MarksScored: number;
+    TotalMarks: number;
+    QuizType: string;
 }

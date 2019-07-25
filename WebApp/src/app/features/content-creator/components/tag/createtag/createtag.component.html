@@ -8,21 +8,21 @@
       <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="userId">
       <div class="form-row">
         <div class="form-group col-md-6">
-          <input type="hidden" name="SubjectId" #SubjectId="ngModel" [(ngModel)]="service.tagForm.subjectId"
+          <input type="hidden" name="SubjectId" #SubjectId="ngModel" [(ngModel)]="service.tagForm.SubjectId"
             class="form-control">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
           <strong><label>Subject</label></strong>
-          <input required type="text" name="Name" #Name="ngModel" [(ngModel)]="service.tagForm.name"
+          <input required type="text" name="Name" #Name="ngModel" [(ngModel)]="service.tagForm.Name"
             (input)="checkAvail(Name)" class="form-control">
           <div class="validation-error" *ngIf="tagExists">Tag Already Exists</div>
           <div class="validation-error" *ngIf="Name.invalid && Name.touched">This field is required.</div>
         </div>
         <div class="form-group col-md-6">
           <strong><label>Department</label></strong>
-          <input required type="text" name="Department" #Department="ngModel" [(ngModel)]="service.tagForm.department"
+          <input required type="text" name="Department" #Department="ngModel" [(ngModel)]="service.tagForm.Department"
             class="form-control">
           <div class="validation-error" *ngIf="Department.invalid && Department.touched">This field is required.</div>
         </div>

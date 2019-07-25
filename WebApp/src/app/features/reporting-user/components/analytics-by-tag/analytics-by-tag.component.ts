@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
 import { ReportingUserService } from '../../services/reporting-user.service';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
-import { Label, SingleDataSet } from 'ng2-charts';
+import { Label } from 'ng2-charts';
+import { HttpService } from '../../../../core/http/http.service';
 
 @Component({
   selector: 'app-analytics-by-tag',
@@ -12,15 +12,15 @@ import { Label, SingleDataSet } from 'ng2-charts';
 })
 export class AnalyticsByTagComponent implements OnInit {
 
-  tagAnalysisList: any[];
-  panelOpenState = false;
-  highdata = [];
-  lowdata = [];
-  label = [];
-  accuracy = [];
-  name = 'high';
+  public tagAnalysisList: any[];
+  private highdata = [];
+  public lowdata = [];
+  public label = [];
+  public accuracy = [];
+  private name = 'high';
 
-  constructor(private service: ReportingUserService, private router: Router) { }
+  constructor(private service: ReportingUserService,
+     private httpService: HttpService) { }
 
 
   public barChartOptions: ChartOptions = {
@@ -44,8 +44,8 @@ export class AnalyticsByTagComponent implements OnInit {
   public barChartLegend = true;
   public barChartData: ChartDataSets[];
   public barChartColors: any[] = [
-    { 
-      backgroundColor:["#FF0000", "#FFFFFF"] 
+    {
+      backgroundColor: ["#FF0000", "#FFFFFF"]
     }];
   public radarChartOptions: ChartOptions = {
     responsive: true,
@@ -64,20 +64,19 @@ export class AnalyticsByTagComponent implements OnInit {
   subscription: Subscription;
   dtOptions: DataTables.Settings = {};
 
-  ngOnInit() {
+  public ngOnInit(): void {
     setTimeout(() => {
       this.loadAnalyticOfTag();
-		}, 0);
+    }, 0);
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
     };
   }
 
-  loadAnalyticOfTag() {
-    this.service.getTagAnalytics().subscribe((res: any) => {
+  private loadAnalyticOfTag(): void {
+    this.httpService.getTagAnalytics().subscribe((res: any) => {
       this.tagAnalysisList = res as any[];
-      console.log(this.tagAnalysisList);
       for (let i = 0; i < 7; i++) {
         this.highdata.push(
           this.tagAnalysisList[i].Properties.HighestScore
@@ -104,4 +103,3 @@ export class AnalyticsByTagComponent implements OnInit {
   }
 
 }
- 

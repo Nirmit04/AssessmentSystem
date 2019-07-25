@@ -75,8 +75,8 @@ export class UpdateQuizComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.check = false;
       this.loadingData();
-      this.service.formData.subjectId = null;
-      this.service.formData.difficulty = null;
+      this.service.formData.SubjectId = null;
+      this.service.formData.Difficulty = null;
       this.service.questionType = null;
     });
   }

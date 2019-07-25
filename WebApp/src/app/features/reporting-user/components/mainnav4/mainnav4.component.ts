@@ -18,7 +18,7 @@ export class Mainnav4Component {
     .pipe(
       map(result => result.matches)
     );
-  cRole: string;
+  public currentRole: string;
 
 
   constructor(
@@ -27,8 +27,8 @@ export class Mainnav4Component {
     private router: Router,
     private storageService: StorageService
   ) { }
-  ngOnInit() {
-    this.cRole = this.storageService.getStorage('currentRole');
+  public ngOnInit(): void {
+    this.currentRole = this.storageService.getStorage('currentRole');
     this.authService.authState.subscribe((user) => {
       if (user != null) {
       } else {
@@ -38,7 +38,7 @@ export class Mainnav4Component {
     });
   }
 
-  roleMatch(allowedRoles): boolean {
+  public roleMatch(allowedRoles): boolean {
     let isMatch = false;
     const userRoles: string = this.storageService.getStorage('role');
     allowedRoles.forEach(element => {
@@ -50,12 +50,12 @@ export class Mainnav4Component {
     return isMatch;
   }
 
-  aab(role: string) {
+  public changeRole(role: string): void {
     this.storageService.setStorage('currentRole', role);
     this.router.navigate([role]);
   }
 
-  logout() {
+  public logout(): void {
     this.authService.signOut();
   }
 

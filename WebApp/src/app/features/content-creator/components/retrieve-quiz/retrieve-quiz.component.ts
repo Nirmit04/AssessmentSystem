@@ -41,8 +41,8 @@ export class RetrieveQuizComponent implements OnInit {
 		this.columns = [
 			{ field: 'SerialNumber', header: 'S NO' },
 			{ field: 'QuizName', header: 'Quiz Name' },
+			{ field: 'DuplicateTags', header: 'Subject' },
 			{ field: 'Difficulty', header: 'Difficulty' },
-			{ field: 'Tags1', header: 'Tags' },
 			{ field: 'QuizType', header: 'Quiz Type' },
 			{ field: 'TotalQuestions', header: 'Total Questions' },
 			{ field: 'TotalMarks', header: 'Total Marks' },
@@ -58,13 +58,13 @@ export class RetrieveQuizComponent implements OnInit {
 		this.httpService.getQuizzes().subscribe((res: any) => {
 			this.quizList = res as QuizModel[];
 			for (this.index = 1; this.index <= this.quizList.length; this.index++) {
-				this.quizList[this.index - 1].serialNumber = this.index;
+				this.quizList[this.index - 1].SerialNumber = this.index;
 				this.tag = '';
-				for (let tag of this.quizList[this.index - 1].tags) {
+				for (let tag of this.quizList[this.index - 1].Tags) {
 					this.tag = this.tag + tag.Name + ',';
 				}
-				this.quizList[this.index - 1].duplicateTags = this.tag;
-				this.quizList[this.index - 1].duplicateTags = this.quizList[this.index - 1].duplicateTags.substring(0, this.quizList[this.index - 1].duplicateTags.length - 1);
+				this.quizList[this.index - 1].DuplicateTags = this.tag;
+				this.quizList[this.index - 1].DuplicateTags = this.quizList[this.index - 1].DuplicateTags.substring(0, this.quizList[this.index - 1].DuplicateTags.length - 1);
 			}
 		});
 	}
@@ -99,9 +99,9 @@ export class RetrieveQuizComponent implements OnInit {
 
 	public onEdit(quizId: number, index: number): void {
 		this.storageService.setStorage('quizId', quizId.toString());
-		this.service.difficulty = this.quizList[index].difficulty;
-		this.service.subjectId = this.quizList[index].subjectId;
-		this.service.questionType = this.quizList[index].quizType;
+		this.service.difficulty = this.quizList[index].Difficulty;
+		this.service.subjectId = this.quizList[index].SubjectId;
+		this.service.questionType = this.quizList[index].QuizType;
 		this.httpService.getQuestionsByQuiz(quizId).subscribe((res: any) => {
 			this.questionList = res as any[];
 			const dialogConfig = new MatDialogConfig();

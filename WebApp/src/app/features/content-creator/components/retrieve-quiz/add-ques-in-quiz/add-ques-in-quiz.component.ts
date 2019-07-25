@@ -35,17 +35,17 @@ export class AddQuesInQuizComponent implements OnInit {
       form.resetForm();
     } else {
       this.service.quizForm = {
-        quizId: null,
-        difficulty: '',
-        totalQuestions: null,
-        totalMarks: null,
-        tags: null,
-        quizType: '',
-        createdBy: '',
-        questionIds: null,
-        subjectId: null,
-        quizName: '',
-        minCutOff: null
+        QuizId: null,
+        Difficulty: '',
+        TotalQuestions: null,
+        TotalMarks: null,
+        Tags: null,
+        QuizType: '',
+        CreatedBy: '',
+        QuestionIds: null,
+        SubjectId: null,
+        QuizName: '',
+        MinCutOff: null
       }
       if (this.questions) {
         this.questions.forEach(y => {
