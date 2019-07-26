@@ -11,7 +11,7 @@ a span {
 a:hover {
 	transform: skew(-10deg);
 }
-mat-toolbar {
+.mat-toolbar {
 	color: $white;
 	background-color: transparent;
 }
@@ -68,8 +68,8 @@ mat-toolbar {
 i {
 	margin-right: 15px;
 }
-.container .card-block btn {
-	width: 60px;
+.container .card-block .btn {
+	width: 80%;
 	height: 30px;
 }
 .btn:hover {

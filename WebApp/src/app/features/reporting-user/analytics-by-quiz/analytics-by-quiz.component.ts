@@ -4,8 +4,8 @@ import { ReportingUserService } from '../shared/reporting-user.service';
 import { Router } from '@angular/router';
 @Component({
 	selector: 'app-analytics-by-quiz',
-	templateUrl: './analytics-by-quiz.component.html',
-	styleUrls: [ './analytics-by-quiz.component.scss' ]
+	templateUrl: './analytics-by-quiz.component.html'
+	// styleUrls: [ './analytics-by-quiz.component.scss' ]
 })
 export class AnalyticsByQuizComponent implements OnInit {
 	dtTrigger: Subject<any> = new Subject();

@@ -1,6 +1,7 @@
 @import 'src/color.scss';
 .mat-sidenav-content {
 	overflow-x: hidden;
+	background-color: $background !important;
 }
 .sidenav-container {
 	height: 100%;
@@ -24,7 +25,7 @@
 
 .sidenav .mat-toolbar {
 	background: inherit;
-	border-bottom: 1px solid $dark;
+	border-bottom: 1px solid $black;
 }
 .mat-toolbar {
 	text-decoration: none;
@@ -33,14 +34,14 @@
 	background-color: $slider;
 }
 .mat-toolbar span {
-	color: $dark;
+	color: $black;
 }
 .mat-sidenav-content .mat-toolbar {
 	background-color: $slider !important;
 }
-.mat-sidenav-content {
-	background-color: $background !important;
-}
+// .mat-sidenav-content {
+// 	background-color: $background !important;
+// }
 .mat-toolbar a {
 	font-size: 22px;
 }
@@ -50,7 +51,7 @@
 .log {
 	font-size: 12px;
 	cursor: pointer;
-	color: black !important;
+	color: $black !important;
 }
 .mat-toolbar.mat-primary {
 	position: sticky;

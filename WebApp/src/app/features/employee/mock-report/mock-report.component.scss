@@ -1,7 +1,7 @@
 @import 'src/color.scss';
 .contain {
 	text-align: right;
-	fa {
+	.fa {
 		margin: 4px 4px 0 0;
 	}
 	input {
@@ -10,7 +10,7 @@
 }
 tr {
 	th {
-		background-color: $dark;
+		background-color: $black;
 		color: $white;
 	}
 }

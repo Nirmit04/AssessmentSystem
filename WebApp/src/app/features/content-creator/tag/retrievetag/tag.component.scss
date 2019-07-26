@@ -2,7 +2,7 @@
 table {
 	width: 100%;
 	margin-top: 10px;
-	color: $dark;
+	color: $black;
 }
 .container-fluid {
 	margin: 7px auto;
@@ -10,11 +10,11 @@ table {
 }
 h4 {
 	text-align: center;
-	color: $dark;
+	color: $black;
 }
 .th .mat-header-cell {
 	padding-left: 20px !important;
-	color: $dark;
+	color: $black;
 }
 th,
 td {
@@ -22,7 +22,7 @@ td {
 }
 .contain {
 	text-align: right;
-	fa {
+	.fa {
 		margin: 4px 4px 0 0;
 	}
 	input {
@@ -31,7 +31,7 @@ td {
 }
 tr {
 	th {
-		background-color: $dark;
+		background-color: $black;
 		color: $white;
 	}
 }

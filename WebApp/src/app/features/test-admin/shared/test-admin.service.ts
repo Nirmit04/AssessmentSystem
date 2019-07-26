@@ -8,7 +8,7 @@ import { Schedule } from './schedule.model';
 	providedIn: 'root'
 })
 export class TestAdminService {
-	constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient) {}
 	rooturl = environment.apiURl;
 	quiz: QuizModel[];
 	quiztakerId: string[] = null;
@@ -55,9 +55,9 @@ export class TestAdminService {
 	}
 
 	addUserInExistingSchedule(QuizScheuleId: number, UserIds: string[]) {
-		const body = {
-			UserIds
-		};
+		// const body = {
+		// 	UserIds
+		// };
 		return this.http.post(this.rooturl + 'UserSchedule/UserAdd/' + QuizScheuleId, UserIds);
 	}
 
@@ -70,9 +70,9 @@ export class TestAdminService {
 	}
 
 	unArchiveSchedule(id: number) {
-		const body = {
-			QuizScheduleId: id
-		};
+		// const body = {
+		// 	QuizScheduleId: id
+		// };
 		return this.http.delete(this.rooturl + 'QuizSchedule/Unarchive/' + id);
 	}
 
@@ -83,5 +83,4 @@ export class TestAdminService {
 	getschedulecount() {
 		return this.http.get(this.rooturl + 'QuizSchedule/Stats/' + localStorage.getItem('uid'));
 	}
-
 }

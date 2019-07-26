@@ -57,9 +57,9 @@ export class TagComponent implements OnInit {
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = '70%';
 		dialogConfig.disableClose = true;
-		let dialogRef = this.dialog.open(CreatetagComponent, dialogConfig).afterClosed().subscribe((result) => {
-			this.loadTags();
-		});
+		// let dialogRef = this.dialog.open(CreatetagComponent, dialogConfig).afterClosed().subscribe((result) => {
+		// 	this.loadTags();
+		// });
 	}
 
 	onEdit(id: number) {
@@ -70,9 +70,9 @@ export class TagComponent implements OnInit {
 		dialogConfig.data = this.tagList[id - 1];
 		console.log(id);
 		console.log(dialogConfig.data);
-		let dialogRef = this.dialog.open(CreatetagComponent, dialogConfig).afterClosed().subscribe((res) => {
-			this.loadTags();
-		});
+		// let dialogRef = this.dialog.open(CreatetagComponent, dialogConfig).afterClosed().subscribe((res) => {
+		// 	this.loadTags();
+		// });
 	}
 
 	ngOnDestroy() {

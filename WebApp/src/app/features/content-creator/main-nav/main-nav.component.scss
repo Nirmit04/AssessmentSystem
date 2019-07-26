@@ -12,6 +12,7 @@
 }
 .mat-sidenav-content {
 	overflow-x: hidden;
+	background-color: rgb(235, 235, 235) !important;
 }
 .sidenav-container {
 	height: 100%;
@@ -32,13 +33,13 @@
 	width: 250px;
 	background-color: $sidebar;
 }
-.dash {
-	border-bottom: 1px solid $white;
-	width: 100%;
-}
+// .dash {
+// 	border-bottom: 1px solid $white;
+// 	width: 100%;
+// }
 .sidenav .mat-toolbar {
 	background: inherit;
-	border-bottom: 1px solid $dark;
+	border-bottom: 1px solid $black;
 }
 .mat-toolbar {
 	text-decoration: none;
@@ -47,14 +48,14 @@
 	background-color: $slider;
 }
 .mat-toolbar span {
-	color: $dark;
+	color: $black;
 }
 .mat-sidenav-content .mat-toolbar {
 	background-color: $slider !important;
 }
-.mat-sidenav-content {
-	background-color: rgb(235, 235, 235) !important;
-}
+// .mat-sidenav-content {
+// 	background-color: rgb(235, 235, 235) !important;
+// }
 .mat-toolbar a {
 	font-size: 22px;
 }
@@ -64,7 +65,7 @@
 .log {
 	font-size: 12px;
 	cursor: pointer;
-	color: $dark !important;
+	color: $black !important;
 }
 .mat-toolbar.mat-primary {
 	position: sticky;

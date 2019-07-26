@@ -1,5 +1,5 @@
   <button type="button " [mat-dialog-close] class="btn btn-danger pos">
-    <mat-icon>clear</mat-icon>
+    <mat-icon class="mat-icon">clear</mat-icon>
   </button>
   <strong>
     <h3 *ngIf="!service.deleteUserVisibility" class="card-title">{{label}}</h3>
@@ -37,7 +37,7 @@
       </div>
     </form>
   </ng-container>
-  <mat-dialog-content>
+  <mat-dialog-content class="mat-dialog-content">
     <ng-container *ngIf="usersList != 'null'">
       <table class="table table-bordered table-striped">
         <thead class="thead-dark">
