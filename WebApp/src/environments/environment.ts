@@ -4,8 +4,8 @@
 
 export const environment = {
 	production: false,
-	apiURl: 'http://192.168.1.141/webapiv2/api/',
-	imgURl: 'http://192.168.1.141/webapiv2/Images/'
+	apiURl: ' http://192.168.1.141/webapiv2/api/',
+	imgURl: ' http://192.168.1.141/webapiv2/Images/'
 };
 
 /*
