@@ -45,6 +45,7 @@ export class MainNav2Component {
 	}
 
 	public logout(): void {
+		this.storageService.clearStorage();
 		this.authService.signOut();
 	}
 

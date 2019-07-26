@@ -10,7 +10,7 @@ import { StorageService } from './services/storage.service';
 export class AuthGuard implements CanActivate, CanActivateChild {
 	constructor(private router: Router, private storageService: StorageService) { }
 	canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-		if (this.storageService.getStorage('uid') != null) {
+		if (this.storageService.getStorage('uid') !== null) {
 			const roles = next.data['roles'] as Array<string>;
 			if (roles) {
 				var match = this.roleMatch(roles);

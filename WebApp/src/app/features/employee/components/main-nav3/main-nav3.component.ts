@@ -53,6 +53,7 @@ export class MainNav3Component {
 	}
 
 	public logout(): void {
+		this.storageService.clearStorage();
 		this.authService.signOut();
 	}
 

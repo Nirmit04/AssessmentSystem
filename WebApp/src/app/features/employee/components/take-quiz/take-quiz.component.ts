@@ -40,6 +40,31 @@ export class TakeQuizComponent implements OnInit {
 		this.hours = this.service.hours;
 		this.minutes = this.service.minutes;
 		this.seconds = this.service.seconds;
+		this.prohibiting();
+		this.noOfQuestions = this.service.noOfQuestionsInQuiz;
+		this.activeQuestion = [false];
+		this.activeQuestion[0] = true;
+		this.submitQuestion = [false];
+		this.review = [false];
+		if (this.service.statusMapping !== null) {
+			for (let item of this.service.statusMapping) {
+				if (item.State === 'save') {
+					this.submitQuestion[item.Index - 1] = true;
+				}
+				else if (item.State === 'review') {
+					this.review[item.Index - 1] = true;
+				}
+				else if (item.State === 'submit') {
+					this.submitQuestion[item.Index - 1] = true;
+				}
+			}
+		}
+		this.loadQues(1);
+		this.openFullscreen();
+
+	}
+
+	private prohibiting(): void {
 		history.pushState(null, null, location.href);
 		this.browserElement = document.documentElement;
 		this.openFullscreen();
@@ -67,27 +92,8 @@ export class TakeQuizComponent implements OnInit {
 				}
 			};
 		};
-		this.noOfQuestions = this.service.noOfQuestionsInQuiz;
-		this.activeQuestion = [false];
-		this.activeQuestion[0] = true;
-		this.submitQuestion = [false];
-		this.review = [false];
-		if (this.service.statusMapping !== null) {
-			for (let item of this.service.statusMapping) {
-				if (item.State === 'save') {
-					this.submitQuestion[item.Index - 1] = true;
-				}
-				else if (item.State === 'review') {
-					this.review[item.Index - 1] = true;
-				}
-				else if (item.State === 'submit') {
-					this.submitQuestion[item.Index - 1] = true;
-				}
-			}
-		}
-		this.loadQues(1);
-		this.openFullscreen();
 	}
+
 
 	public openFullscreen(): void {
 		if (this.browserElement.requestFullscreen) {
@@ -149,7 +155,7 @@ export class TakeQuizComponent implements OnInit {
 		const time1 = this.questions.ResponseTime.split(":");
 		this.responseTime = (parseInt(time1[0]) + (this.today.getHours() - parseInt(time[0]))).toString() + ':' +
 			(parseInt(time1[1]) + (this.today.getMinutes() - parseInt(time[1]))).toString() + ':';
-		if (+(this.today.getSeconds) < parseInt(time[2])) {
+		if (+ (this.today.getSeconds) < parseInt(time[2])) {
 			this.responseTime = this.responseTime + (parseInt(time1[2] + (60 - parseInt(time[2] + this.today.getSeconds())))).toString();
 		}
 		else {
@@ -255,7 +261,6 @@ export class TakeQuizComponent implements OnInit {
 	}
 
 	public transformingIntoArray(totalQuestions: number): any[] {
-		console.log(totalQuestions);
 		return Array(totalQuestions);
 	}
 

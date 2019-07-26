@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
 	constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, private storageService: StorageService) { }
 
 	ngOnInit() {
+		this.storageService.clearStorage();
 		const takeQuiz = this.route.snapshot.queryParamMap.get('take-quiz');
 		this.storageService.setStorage('key', takeQuiz);
 		this.storageService.setStorage('key1', this.route.snapshot.queryParamMap.get('schedule-id'));
@@ -43,6 +44,7 @@ export class LoginComponent implements OnInit {
 	}
 
 	signOut(): void {
+		this.storageService.clearStorage();
 		this.authService.signOut();
 	}
 
