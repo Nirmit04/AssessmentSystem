@@ -20,8 +20,8 @@ export class AddUserComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<Schedule> = new Subject();
   subscription: Subscription;
-  public col: any[];
-  public cols: any[];
+  public unSortableColumn: any[];
+  public columns: any[];
   private index: number;
 
   constructor(
@@ -36,11 +36,11 @@ export class AddUserComponent implements OnInit {
       pagingType: 'full_numbers',
       pageLength: 10,
     };
-    this.cols = [
+    this.columns = [
       { field: 'SerialNumber', header: 'S NO' },
       { field: 'QuizName', header: 'Quiz Name' }
     ];
-    this.col = [
+    this.unSortableColumn = [
       { field: 'StartDateTime', header: 'Start Time' },
       { field: 'EndDateTime', header: 'End Time' },
 
@@ -53,8 +53,7 @@ export class AddUserComponent implements OnInit {
   private loadSchedule(): void {
     this.httpService.getSchedule(this.storageService.getStorage('uid')).subscribe((res: any) => {
       this.scheduleList = res as Schedule[];
-      // this.dtTrigger.next();
-      for (this.index = 1; this.index <= this.scheduleList.length; this.index++) {
+          for (this.index = 1; this.index <= this.scheduleList.length; this.index++) {
         this.scheduleList[this.index - 1].SerialNumber = this.index;
       }
     });

@@ -25,7 +25,7 @@
           <td *ngFor="let col of columns;">
             {{rowData[col.field]}}
           </td>
-          <td *ngFor="let c of nonSortableColumns;">
+          <td *ngFor="let c of unSortableColumns;">
             {{rowData[c.field] | date: 'medium' :amLocal}}
           </td>
           <td style="text-align:center;">

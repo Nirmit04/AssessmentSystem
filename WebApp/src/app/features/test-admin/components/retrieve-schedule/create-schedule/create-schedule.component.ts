@@ -14,14 +14,14 @@ import { HttpService } from '../../../../../core/http/http.service';
 })
 export class CreateScheduleComponent implements OnInit {
 	public date: string;
-	public q1 = '';
-	public q2 = '';
-	public q3 = '';
-	public stdate;
+	public checkStart = '';
+	public checkEnd = '';
+	public quizId = '';
+	public startDate;
 	public btndisable = true;
 	public startDateValid = false;
 	public endDateValid = false;
-	public CCreatedBy = '';
+	public createdBy = '';
 	public QuizList: QuizModel[];
 
 	constructor(
@@ -35,7 +35,7 @@ export class CreateScheduleComponent implements OnInit {
 	public ngOnInit():void {
 		this.resetForm();
 		this.date = this.datePipe.transform(new Date().getUTCHours(), 'yyyy-MM-ddThh:mm');
-		this.CCreatedBy = this.storageService.getStorage('uid');
+		this.createdBy = this.storageService.getStorage('uid');
 		this.httpService.retriveAllQuizzes().subscribe((res) => {
 			this.QuizList = res as QuizModel[];
 		});
@@ -45,9 +45,9 @@ export class CreateScheduleComponent implements OnInit {
 		if (form != null) {
 			form.resetForm();
 		}
-		this.q1 = '';
-		this.q2 = '';
-		this.q3 = '';
+		this.checkStart = '';
+		this.checkEnd = '';
+		this.quizId = '';
 	}
 
 	public sub(form: NgForm):void {
@@ -57,7 +57,7 @@ export class CreateScheduleComponent implements OnInit {
 		});
 	}
 	public checkStartDate(date1: NgForm):void {
-		this.stdate = date1.value;
+		this.startDate = date1.value;
 		this.date = this.datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm');
 		if (date1.value < this.date) {
 			this.startDateValid = true;
@@ -68,7 +68,7 @@ export class CreateScheduleComponent implements OnInit {
 
 	public checkEndDate(date2: NgForm):void {
 		this.date = this.datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm');
-		if (date2.value <= this.stdate || date2.value < this.date) {
+		if (date2.value <= this.startDate || date2.value < this.date) {
 			this.endDateValid = true;
 		} else {
 			this.endDateValid = false;

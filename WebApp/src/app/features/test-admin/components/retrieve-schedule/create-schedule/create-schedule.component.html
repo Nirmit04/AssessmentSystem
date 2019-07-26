@@ -4,11 +4,11 @@
   </strong><br/><br/>
   <form #form="ngForm" (submit)="sub(form)" autocomplete="off">
     <div class="form-row">
-      <input type="hidden" #CreatedBy="ngModel" name="CreatedBy" [(ngModel)]="CCreatedBy">
+      <input type="hidden" #CreatedBy="ngModel" name="CreatedBy" [(ngModel)]="createdBy">
       <div class="form-group col-md-6">
         <strong><label>Start Date Time :<br /></label></strong>&nbsp;
         <input type="datetime-local" (focusout)="checkStartDate(StartDateTime)" [min]="date" required
-          name="StartDateTime" #StartDateTime="ngModel" [(ngModel)]="q1" class="form-control">
+          name="StartDateTime" #StartDateTime="ngModel" [(ngModel)]="checkStart" class="form-control">
         <div class="validation-error" *ngIf="(StartDateTime.invalid && StartDateTime.touched) || startDateValid ">This
           field is wrong and required.
         </div>
@@ -17,8 +17,8 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <strong><label>End Date Time :</label></strong>&nbsp;
-        <input type="datetime-local" (focusout)="checkEndDate(EndDateTime)" required name="EndDateTime" [min]="q1"
-          #EndDateTime="ngModel" [(ngModel)]="q2" class="form-control">
+        <input type="datetime-local" (focusout)="checkEndDate(EndDateTime)" required name="EndDateTime" [min]="checkStart"
+          #EndDateTime="ngModel" [(ngModel)]="checkEnd" class="form-control">
         <div class="validation-error" *ngIf="(EndDateTime.invalid && EndDateTime.touched) || endDateValid">This field
           is wrong and required.
         </div>
@@ -27,7 +27,7 @@
     <div class="form-row">
       <div class="form-group col-md-6">
           <strong><label>Select Quiz</label></strong>
-        <select name="QuizId" required #QuizId="ngModel" [(ngModel)]="q3" class="form-control">
+        <select name="QuizId" required #QuizId="ngModel" [(ngModel)]="quizId" class="form-control">
           <option value="">Choose</option>
           <option *ngFor="let Quiz of QuizList" value="{{Quiz.QuizId}}">
             {{Quiz.QuizName}}</option>

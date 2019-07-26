@@ -16,13 +16,13 @@ import { HttpService } from '../../../../../core/http/http.service';
 export class ViewScheduleComponent implements OnInit {
   public createdBy = '';
   public date: string;
-  public flag: boolean;
+  public readonlyStatus: boolean;
   public label: string;
   public usersList: any[];
   public startDateValid = false;
   public endDateValid = false;
-  public startDateTime: Date;
-  private startDate: Date;
+  public startDateTime:Date;
+  private startDate:Date;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<UpdateQuestionComponent>,
@@ -35,8 +35,8 @@ export class ViewScheduleComponent implements OnInit {
 
   public ngOnInit(): void {
     this.date = this.datePipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
-    this.flag = this.service.readonlyStatus;
-    if (this.flag === true) {
+    this.readonlyStatus = this.service.readonlyStatus;
+    if (this.readonlyStatus === true) {
       this.label = 'View Schedule';
       this.startDateTime = this.service.formdata.StartDateTime;
     } else {

@@ -13,7 +13,7 @@ import { HttpService } from '../../../../core/http/http.service';
 })
 
 export class AddUser1Component implements OnInit {
-  public quiztakers: any[];
+  public quizTakers: any[];
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
@@ -37,17 +37,17 @@ export class AddUser1Component implements OnInit {
   private loadUsers(): void {
     this.httpService.retrieveAllEmployees(this.data).subscribe((res: any) => {
       res.forEach(obj => obj.selected = false);
-      this.quiztakers = res as User[];
+      this.quizTakers = res as User[];
 
     });
   }
 
   public updateSelectedUsers(index): any {
-    this.quiztakers[index].selected = !this.quiztakers[index].selected;
+    this.quizTakers[index].selected = !this.quizTakers[index].selected;
   }
 
   public onSubmit(form: NgForm): any {
-    const quiztakerId = this.quiztakers.filter(Id => Id.selected).map(idSelected => idSelected.Id);
+    const quiztakerId = this.quizTakers.filter(Id => Id.selected).map(idSelected => idSelected.Id);
     this.httpService.addUserInExistingSchedule(this.data, quiztakerId).subscribe(res => {
       this.toastr.success('added succesfully');
       this.dialogRef.close('Added');

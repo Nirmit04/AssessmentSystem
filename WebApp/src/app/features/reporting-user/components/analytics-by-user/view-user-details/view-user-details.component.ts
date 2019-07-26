@@ -15,7 +15,7 @@ export class ViewUserDetailsComponent implements OnInit {
 
   private userData: any[];
   public scheduledReports: any[] = null;
-  public bool = false;
+  public flag = false;
   public polarAreaChartLabels: Label[] = ['Highest-Score', 'Lowest Score', 'Accuracy', 'Average-Score'];
   public polarAreaChartData: any[];
   public polarAreaLegend: boolean;
@@ -74,7 +74,7 @@ export class ViewUserDetailsComponent implements OnInit {
       this.scheduledReports = res as any[];
       this.dtTrigger.next();
       if (this.scheduledReports.length > 0) {
-        this.bool = true;
+        this.flag = true;
       }
     })
   }

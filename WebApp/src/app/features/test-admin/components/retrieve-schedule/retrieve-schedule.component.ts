@@ -14,14 +14,14 @@ import { HttpService } from '../../../../core/http/http.service';
 	templateUrl: './retrieve-schedule.component.html',
 	styleUrls: ['./retrieve-schedule.component.css']
 })
-export class RetrieveScheduleComponent implements OnInit,OnDestroy {
+export class RetrieveScheduleComponent implements OnInit, OnDestroy {
 	public scheduleList: Schedule[];
 	dtOptions: DataTables.Settings = {};
 	dtTrigger: Subject<Schedule> = new Subject();
 	subscription: Subscription;
-	public col: any[];
-	public cols: any[];
-	private index: number;
+	public nonSortableColumn: any[];
+	public columns: any[];
+	index: number;
 
 	onCreate() {
 		this.router.navigate(['/testAdminCreateScheDule']);
@@ -36,16 +36,16 @@ export class RetrieveScheduleComponent implements OnInit,OnDestroy {
 		private httpService: HttpService
 	) { }
 
-	public ngOnInit():void {
+	public ngOnInit(): void {
 		this.dtOptions = {
 			pagingType: 'full_numbers',
 			pageLength: 10
 		};
-		this.cols = [
+		this.columns = [
 			{ field: 'SerialNumber', header: 'S NO' },
 			{ field: 'QuizName', header: 'Quiz Name' },
 		];
-		this.col = [
+		this.nonSortableColumn = [
 			{ field: 'StartDateTime', header: 'Start Time' },
 			{ field: 'EndDateTime', header: 'End Time' },
 		];
@@ -74,7 +74,7 @@ export class RetrieveScheduleComponent implements OnInit,OnDestroy {
 		});
 	}
 
-	public viewSchedule(scheduleid: number, arrayindex: number):void {
+	public viewSchedule(scheduleid: number, arrayindex: number): void {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = '70%';
@@ -85,7 +85,7 @@ export class RetrieveScheduleComponent implements OnInit,OnDestroy {
 		this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe((res: any) => { });
 	}
 
-	public editSchedule(scheduleid: number, arrayindex: number):void {
+	public editSchedule(scheduleid: number, arrayindex: number): void {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = '70%';
@@ -100,7 +100,7 @@ export class RetrieveScheduleComponent implements OnInit,OnDestroy {
 		});
 	}
 
-	public ngOnDestroy():void {
+	public ngOnDestroy(): void {
 		this.dtTrigger.unsubscribe();
 	}
 }
