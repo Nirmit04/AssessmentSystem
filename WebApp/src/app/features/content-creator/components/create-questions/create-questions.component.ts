@@ -42,9 +42,10 @@ export class CreateQuestionsComponent implements OnInit {
       itemsShowLimit: 5,
       allowSearchFilter: true,
     };
-    this.httpService.retrieveSubjects().subscribe(res => {
+    const subscription = this.httpService.retrieveSubjects().subscribe(res => {
       this.subjects = res as Subject[];
     });
+    subscription.unsubscribe();
   }
 
   private resetForm(form?: NgForm): void {

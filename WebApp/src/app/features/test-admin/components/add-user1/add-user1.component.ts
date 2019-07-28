@@ -48,10 +48,11 @@ export class AddUser1Component implements OnInit {
 
   public onSubmit(form: NgForm): any {
     const quiztakerId = this.quizTakers.filter(Id => Id.selected).map(idSelected => idSelected.Id);
-    this.httpService.addUserInExistingSchedule(this.data, quiztakerId).subscribe(res => {
+    const subscription = this.httpService.addUserInExistingSchedule(this.data, quiztakerId).subscribe(res => {
       this.toastr.success('added succesfully');
       this.dialogRef.close('Added');
     });
+    subscription.unsubscribe();
   }
 
 }

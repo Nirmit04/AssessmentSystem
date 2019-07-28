@@ -32,17 +32,19 @@ export class UpdateQuizComponent implements OnInit {
   }
 
   private loadingData(): void {
-    this.httpService.getQuestionsByQuiz(Number(this.storageService.getStorage('quizId'))).subscribe((res: any) => {
+    const subscription = this.httpService.getQuestionsByQuiz(Number(this.storageService.getStorage('quizId'))).subscribe((res: any) => {
       this.UpdateQuizQuestionList = res;
     });
+    subscription.unsubscribe();
   }
 
   public onDelete(quizId: number): void {
     if (confirm('Are you sure you want to delete this record?')) {
-      this.httpService.deleteQuesOfQuiz(quizId).subscribe((res: any) => {
+      const subscription = this.httpService.deleteQuesOfQuiz(quizId).subscribe((res: any) => {
         this.toastr.success('Deleted Successfully', 'Assesment System');
         this.loadingData();
       });
+      subscription.unsubscribe();
     }
   }
 
@@ -51,18 +53,20 @@ export class UpdateQuizComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "70%";
     dialogConfig.disableClose = true;
-    this.httpService.getQuizQuestions(Number(this.storageService.getStorage('quizId'))).subscribe((res: any) => {
+    const subscription = this.httpService.getQuizQuestions(Number(this.storageService.getStorage('quizId'))).subscribe((res: any) => {
       dialogConfig.data = res;
       if (dialogConfig.data.length === 0) {
         this.toastr.error('No Questions Available');
         this.check = true;
       }
       else {
-        this.dialog.open(AddQuesInQuizComponent, dialogConfig).afterClosed().subscribe(res => {
+        const resubscription = this.dialog.open(AddQuesInQuizComponent, dialogConfig).afterClosed().subscribe(res => {
           this.loadingData();
         });
+        resubscription.unsubscribe();
       }
     });
+    subscription.unsubscribe();
   }
 
   public add_new_ques(): void {
@@ -72,13 +76,18 @@ export class UpdateQuizComponent implements OnInit {
     dialogConfig.disableClose = true;
     this.service.quesStat = true;
     let dialogRef = this.dialog.open(CreateQuestionsComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe(result => {
+    const subscription = dialogRef.afterClosed().subscribe(result => {
       this.check = false;
       this.loadingData();
       this.service.formData.SubjectId = null;
       this.service.formData.Difficulty = null;
       this.service.questionType = null;
     });
+    subscription.unsubscribe();
+  }
+
+  public questionListById(index: number) {
+    return index;
   }
 
 }

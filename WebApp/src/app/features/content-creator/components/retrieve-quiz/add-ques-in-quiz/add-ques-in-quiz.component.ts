@@ -59,6 +59,10 @@ export class AddQuesInQuizComponent implements OnInit {
     this.questions[index].selected = !this.questions[index].selected;
   }
 
+  public questionsById(index: number) {
+    return index;
+  }
+
   public add_new_ques(): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
@@ -66,16 +70,18 @@ export class AddQuesInQuizComponent implements OnInit {
     dialogConfig.disableClose = true;
     this.service.quesStat = true;
     let dialogRef = this.dialog.open(CreateQuestionsComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe(result => {
+    const subscription = dialogRef.afterClosed().subscribe(result => {
       this.service.quesStat = false;
       this.loadQues();
     });
+    subscription.unsubscribe();
   }
 
   private loadQues(): void {
-    this.httpService.getQuizQuestions(+this.storageService.getStorage('quizId')).subscribe((res: any) => {
+    const subscription = this.httpService.getQuizQuestions(+this.storageService.getStorage('quizId')).subscribe((res: any) => {
       this.questions = res as [];
     });
+    subscription.unsubscribe();
   }
 
   public onDetailsSubmit(form: NgForm): void {

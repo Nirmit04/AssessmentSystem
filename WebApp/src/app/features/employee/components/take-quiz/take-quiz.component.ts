@@ -108,9 +108,8 @@ export class TakeQuizComponent implements OnInit {
 	}
 
 	private loadQues(questionIndex: number): void {
-		//this.active[index - 1] = true;
 		this.startTime = this.today.getHours() + ":" + this.today.getMinutes() + ":" + this.today.getSeconds();
-		this.httpService.getQuestions(this.service.quizId, questionIndex).subscribe((res: any) => {
+		const subscription = this.httpService.getQuestions(this.service.quizId, questionIndex).subscribe((res: any) => {
 			this.questions = res;
 			this.selectedOptions = this.questions.MarkedAnswer;
 			this.responseTime = this.questions.ResponseTime;
@@ -118,6 +117,7 @@ export class TakeQuizComponent implements OnInit {
 				this.questions.ImageName = "https://80c4bf11.ngrok.io/Images/" + this.questions.ImageName;
 			}
 		});
+		subscription.unsubscribe();
 		this.noOfQuestions = this.service.noOfQuestionsInQuiz;
 		this.service.size = this.noOfQuestions;
 		this.startTimer();
@@ -170,8 +170,9 @@ export class TakeQuizComponent implements OnInit {
 				ResponseTime: this.responseTime,
 				State: options,
 			}
-			this.httpService.postQuesOfQuiz(body).subscribe((res: any) => {
+			const subscription = this.httpService.postQuesOfQuiz(body).subscribe((res: any) => {
 			});
+			subscription.unsubscribe();
 		}
 		this.progressBar = (this.service.qnProgress + 1) / this.noOfQuestions * 100;
 		if (options === 'save') {
@@ -249,7 +250,7 @@ export class TakeQuizComponent implements OnInit {
 					TotalResponseTime: totalResponseTime,
 				}
 			}
-			this.httpService.postanswers(body).subscribe((res: any) => {
+			const subscription = this.httpService.postanswers(body).subscribe((res: any) => {
 				if (this.service.quizScheduleId !== null) {
 					this.router.navigate(['/emp-dash/non-mocks']);
 				}
@@ -257,6 +258,7 @@ export class TakeQuizComponent implements OnInit {
 					this.router.navigate(['/emp-dash/quiz/result']);
 				}
 			});
+			subscription.unsubscribe();
 		}
 	}
 

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { CreateQuestionsComponent } from './features/content-creator/components/create-questions/create-questions.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -73,6 +73,8 @@ import { LoaderServiceService } from './services/loader-service.service';
 import { InstructionsComponent } from './features/employee/components/take-quiz/instructions/instructions.component';
 import { TableModule } from 'primeng/table';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { GlobalErrorHandler } from './core/logs/global-error-handler.service';
+import { TokenInterceptor } from './token.interceptor';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 	bgsColor: '#00ACC1',
@@ -205,6 +207,12 @@ export function provideConfig() {
 			provide: HTTP_INTERCEPTORS,
 			useClass: LoaderInterceptorService,
 			multi: true
+		},
+		{ provide: HTTP_INTERCEPTORS, 
+			useClass: TokenInterceptor, multi: true },
+		{
+			provide: ErrorHandler,
+			useClass: GlobalErrorHandler
 		}
 	],
 	bootstrap: [ AppComponent ],

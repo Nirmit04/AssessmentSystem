@@ -55,16 +55,17 @@ export class RetrieveScheduleComponent implements OnInit, OnDestroy {
 	}
 
 	private loadSchedule():void {
-		this.httpService.getSchedule(this.storageService.getStorage('uid')).subscribe((res: any) => {
+		const subscription = this.httpService.getSchedule(this.storageService.getStorage('uid')).subscribe((res: any) => {
 			this.scheduleList = res as Schedule[];
 			for (this.index = 1; this.index <= this.scheduleList.length; this.index++) {
 				this.scheduleList[this.index - 1].SerialNumber = this.index;
 			}
 		});
+		subscription.unsubscribe();
 	}
 
 	public deleteSchedule(scheduleId):void {
-		this.httpService.deleteSchedule(scheduleId).subscribe((res: any) => {
+		const subscription = this.httpService.deleteSchedule(scheduleId).subscribe((res: any) => {
 			if (res === 'Dissimilar Taken Status') {
 				this.toastr.error('Cannot Delete this Schedule. Users Exist!');
 			} else {
@@ -72,6 +73,7 @@ export class RetrieveScheduleComponent implements OnInit, OnDestroy {
 				this.loadSchedule();
 			}
 		});
+		subscription.unsubscribe();
 	}
 
 	public viewSchedule(scheduleid: number, arrayindex: number): void {
@@ -82,7 +84,8 @@ export class RetrieveScheduleComponent implements OnInit, OnDestroy {
 		dialogConfig.data = scheduleid;
 		this.service.readonlyStatus = true;
 		this.service.formdata = this.scheduleList[arrayindex - 1];
-		this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe((res: any) => { });
+		const subscription = this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe((res: any) => { });
+		subscription.unsubscribe();
 	}
 
 	public editSchedule(scheduleid: number, arrayindex: number): void {
@@ -93,11 +96,12 @@ export class RetrieveScheduleComponent implements OnInit, OnDestroy {
 		this.service.readonlyStatus = false;
 		dialogConfig.data = scheduleid;
 		this.service.formdata = this.scheduleList[arrayindex - 1];
-		this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe((res: any) => {
+		const subscription = this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe((res: any) => {
 			this.loadSchedule();
 			this.dtTrigger.unsubscribe();
 			this.dtTrigger.next();
 		});
+		subscription.unsubscribe();
 	}
 
 	public ngOnDestroy(): void {

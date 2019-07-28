@@ -49,9 +49,10 @@ export class UpdateQuestionComponent implements OnInit {
       allowSearchFilter: true,
     };
     this.createdBy = this.storageService.getStorage('uid');
-    this.httpService.retrieveSubjects().subscribe(res => {
+    const subscription = this.httpService.retrieveSubjects().subscribe(res => {
       this.subjects = res as Subject[];
     });
+    subscription.unsubscribe();
   }
 
   private resetForm(form?: NgForm): void {
@@ -89,10 +90,11 @@ export class UpdateQuestionComponent implements OnInit {
   }
 
   public deleteImage(): void {
-    this.httpService.deleteImageFromQues(this.service.formData.QuestionId).subscribe(res => {
+    const subscription = this.httpService.deleteImageFromQues(this.service.formData.QuestionId).subscribe(res => {
       this.toastr.success('Image Successfully Removed');
       this.dialogRef.close('Submitted');
     });
+    subscription.unsubscribe();
   }
 
 }

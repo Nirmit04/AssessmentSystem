@@ -61,7 +61,7 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 	}
 
 	private getQuesOfUser(): void {
-		this.httpService.getQuesOfUser().subscribe((data: any) => {
+		const subscription = this.httpService.getQuesOfUser().subscribe((data: any) => {
 			this.questionList = data as Question[];
 			for (this.index = 1; this.index <= this.questionList.length; this.index++) {
 				this.tag = '';
@@ -73,6 +73,15 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 				this.questionList[this.index - 1].DuplicateTags = this.questionList[this.index - 1].DuplicateTags.substring(0, this.questionList[this.index - 1].DuplicateTags.length - 1);
 			}
 		});
+		subscription.unsubscribe();
+	}
+
+	nonSortableColumnsById(index: number) {
+		return index;
+	}
+
+	columnsById(index: number) {
+		return index;
 	}
 
 	public deleteQues(questionId): void {
@@ -93,10 +102,11 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 		dialogConfig.disableClose = true;
 		this.service.readonlyStatus = false;
 		this.service.formData = this.questionList[arrayindex - 1];
-		this.dialog.open(UpdateQuestionComponent, dialogConfig).afterClosed().subscribe((res: any) => {
+		const subscription = this.dialog.open(UpdateQuestionComponent, dialogConfig).afterClosed().subscribe((res: any) => {
 			this.dtTrigger.unsubscribe();
 			this.getQuesOfUser();
 		});
+		subscription.unsubscribe();
 	}
 
 	public viewUserQues(arrayindex: number): void {
@@ -106,8 +116,9 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 		dialogConfig.disableClose = true;
 		this.service.readonlyStatus = true;
 		this.service.formData = this.questionList[arrayindex - 1];
-		this.dialog.open(UpdateQuestionComponent, dialogConfig).afterClosed().subscribe((res: any) => {
+		const subscription = this.dialog.open(UpdateQuestionComponent, dialogConfig).afterClosed().subscribe((res: any) => {
 		});
+		subscription.unsubscribe();
 	}
 
 	public ngOnDestroy(): void {

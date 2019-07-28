@@ -72,12 +72,13 @@ export class DetailedReportComponent implements OnInit {
   }
 
   private loadDetail(): void {
-    this.httpService.getDetailedReport().subscribe((res: any) => {
+    const subscription = this.httpService.getDetailedReport().subscribe((res: any) => {
       this.reports = res as any[];
       this.quizName = this.reports[0].QuizName;
       this.calculate();
       this.dtTrigger.next();
     });
+    subscription.unsubscribe();
   }
 
   private calculate(): void {

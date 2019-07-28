@@ -11,7 +11,7 @@ import { HttpService } from '../../../../../core/http/http.service';
   styleUrls: ['./archived-schedule.component.css']
 })
 
-export class ArchivedScheduleComponent implements OnInit,OnDestroy {
+export class ArchivedScheduleComponent implements OnInit, OnDestroy {
 
   public ScheduleList: Schedule[];
   dtTrigger: Subject<Schedule> = new Subject();
@@ -21,7 +21,7 @@ export class ArchivedScheduleComponent implements OnInit,OnDestroy {
   public columns: any[];
   index: number;
 
-  constructor(private service: TestAdminService, 
+  constructor(private service: TestAdminService,
     private toastr: ToastrService,
     private httpService: HttpService) { }
 
@@ -46,22 +46,22 @@ export class ArchivedScheduleComponent implements OnInit,OnDestroy {
   }
 
   private loadArchivedSchedules(): void {
-    this.httpService.getArchivedSchedules().subscribe((res: any) => {
+    const subscription = this.httpService.getArchivedSchedules().subscribe((res: any) => {
       this.ScheduleList = res as Schedule[];
-      // this.dtTrigger.next();
       for (this.index = 1; this.index <= this.ScheduleList.length; this.index++) {
         this.ScheduleList[this.index - 1].SerialNumber = this.index;
       }
     });
+    subscription.unsubscribe();
   }
 
   public unarchiveSchedule(id): void {
     if (confirm('Are you sure you want to un-archive this')) {
-      this.httpService.unArchiveSchedule(id).subscribe((res: any) => {
+      const subscription = this.httpService.unArchiveSchedule(id).subscribe((res: any) => {
         this.toastr.success('Un-Archived Successfully', 'Assesment System');
-        // this.dtTrigger.unsubscribe();
         this.loadArchivedSchedules();
       });
+      subscription.unsubscribe();
     }
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ContentCreatorService } from '../../services/content-creator-service.service';
-import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { QuizModel } from '../../models/quiz.model';
 import { CreateQuizComponent } from './create-quiz/create-quiz.component';
@@ -54,8 +54,12 @@ export class RetrieveQuizComponent implements OnInit {
 		}, 0);
 	}
 
+	public columnsById(index: number)	{
+		return index;
+	}
+
 	private loadQuiz(): void {
-		this.httpService.getQuizzes().subscribe((res: any) => {
+		const subscription = this.httpService.getQuizzes().subscribe((res: any) => {
 			this.quizList = res as QuizModel[];
 			for (this.index = 1; this.index <= this.quizList.length; this.index++) {
 				this.quizList[this.index - 1].SerialNumber = this.index;
@@ -67,6 +71,7 @@ export class RetrieveQuizComponent implements OnInit {
 				this.quizList[this.index - 1].DuplicateTags = this.quizList[this.index - 1].DuplicateTags.substring(0, this.quizList[this.index - 1].DuplicateTags.length - 1);
 			}
 		});
+		subscription.unsubscribe();
 	}
 
 	public onCreate(): void {
@@ -75,7 +80,7 @@ export class RetrieveQuizComponent implements OnInit {
 		dialogConfig.width = "70%";
 		dialogConfig.disableClose = true;
 		let dialogRef = this.dialog.open(CreateQuizComponent, dialogConfig);
-		dialogRef.afterClosed().subscribe(result => {
+		const subscription = dialogRef.afterClosed().subscribe(result => {
 			this.service.difficulty = null;
 			this.service.questionType = null;
 			this.service.subjectId = null;
@@ -84,16 +89,18 @@ export class RetrieveQuizComponent implements OnInit {
 			this.dtTrigger.unsubscribe();
 			this.dtTrigger.next();
 		});
+		subscription.unsubscribe();
 	}
 
 	public onArchive(quizId: number): void {
 		if (confirm('Are you sure you want to archive this quiz?')) {
-			this.httpService.deleteQuiz(quizId).subscribe((res: any) => {
+			const subscription = this.httpService.deleteQuiz(quizId).subscribe((res: any) => {
 				this.toastr.success('Archieved Successfully', 'Assesment System');
 				this.loadQuiz();
 				this.dtTrigger.unsubscribe();
 				this.dtTrigger.next();
 			});
+			subscription.unsubscribe();
 		}
 	}
 
@@ -102,14 +109,14 @@ export class RetrieveQuizComponent implements OnInit {
 		this.service.difficulty = this.quizList[index].Difficulty;
 		this.service.subjectId = this.quizList[index].SubjectId;
 		this.service.questionType = this.quizList[index].QuizType;
-		this.httpService.getQuestionsByQuiz(quizId).subscribe((res: any) => {
+		const subscription = this.httpService.getQuestionsByQuiz(quizId).subscribe((res: any) => {
 			this.questionList = res as any[];
 			const dialogConfig = new MatDialogConfig();
 			dialogConfig.autoFocus = true;
 			dialogConfig.width = "70%";
 			dialogConfig.disableClose = true;
 			dialogConfig.data = this.questionList;
-			this.dialog.open(UpdateQuizComponent, dialogConfig).afterClosed().subscribe(res => {
+			const resubscription = this.dialog.open(UpdateQuizComponent, dialogConfig).afterClosed().subscribe(res => {
 				this.loadQuiz();
 				this.service.difficulty = null;
 				this.service.questionType = null;
@@ -119,7 +126,9 @@ export class RetrieveQuizComponent implements OnInit {
 				this.dtTrigger.next();
 				this.storageService.removeStorage('quizId');
 			});
+			resubscription.unsubscribe();
 		});
+		subscription.unsubscribe();
 	}
 
 	public ngOnDestroy(): void {

@@ -31,18 +31,20 @@ export class TestAdminComponent implements OnInit {
 	}
 
 	loadUserDetails() {
-		this.httpService.getUserDetails().subscribe((res: any) => {
+		const subscription = this.httpService.getUserDetails().subscribe((res: any) => {
 			this.Firstname = res.FirstName;
 			this.Lastname = res.LastName;
 			this.email = res.Email;
 		});
+		subscription.unsubscribe();
 	}
 
 	loadcount() {
-		this.httpService.getschedulecount().subscribe((res: any) => {
+		const subscription = this.httpService.getschedulecount().subscribe((res: any) => {
 			this.count = res;
 			this.show = false;
 		});
+		subscription.unsubscribe();
 	}
 
 }

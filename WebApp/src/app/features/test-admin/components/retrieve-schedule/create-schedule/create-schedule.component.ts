@@ -36,9 +36,10 @@ export class CreateScheduleComponent implements OnInit {
 		this.resetForm();
 		this.date = this.datePipe.transform(new Date().getUTCHours(), 'yyyy-MM-ddThh:mm');
 		this.createdBy = this.storageService.getStorage('uid');
-		this.httpService.retriveAllQuizzes().subscribe((res) => {
+		const subscription = this.httpService.retriveAllQuizzes().subscribe((res) => {
 			this.QuizList = res as QuizModel[];
 		});
+		subscription.unsubscribe();
 	}
 
 	private resetForm(form?: NgForm):void {
@@ -51,10 +52,11 @@ export class CreateScheduleComponent implements OnInit {
 	}
 
 	public sub(form: NgForm):void {
-		this.httpService.postSchedule(form.value).subscribe((res: any) => {
+		const subscription = this.httpService.postSchedule(form.value).subscribe((res: any) => {
 			this.toastr.success('Inserted successfully');
 			this.resetForm(form);
 		});
+		subscription.unsubscribe();
 	}
 	public checkStartDate(date1: NgForm):void {
 		this.startDate = date1.value;

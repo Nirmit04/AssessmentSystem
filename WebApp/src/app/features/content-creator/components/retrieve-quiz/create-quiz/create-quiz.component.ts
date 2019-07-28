@@ -49,12 +49,14 @@ export class CreateQuizComponent implements OnInit {
     this.quizExists = false;
     this.resetForm();
     this.createdBy = this.storageService.getStorage('uid');
-    this.httpService.retrieveQuizNames().subscribe((res: any) => {
+    const subscription = this.httpService.retrieveQuizNames().subscribe((res: any) => {
       this.quizzes = res as any[];
     });
-    this.httpService.retrieveSubjects().subscribe((data) => {
+    subscription.unsubscribe();
+    const resubscription = this.httpService.retrieveSubjects().subscribe((data) => {
       this.subjects = data as any[];
     });
+    resubscription.unsubscribe();
   }
 
   private resetForm(form?: NgForm): void {
@@ -82,6 +84,14 @@ export class CreateQuizComponent implements OnInit {
     }
   }
 
+  public colsById(index: number) {
+    return index;
+  }
+
+  public columnsById(index: number) {
+    return index;
+  }
+
   public fetchReqQues(form: NgForm): void {
     if (form.value.QuizType === 'Scheduled') {
       this.service.questionType = 'Scheduled';
@@ -102,7 +112,7 @@ export class CreateQuizComponent implements OnInit {
     }
     this.service.quizForm.QuizTime = this.quizHour + ':' + this.quizMinute;
     if (this.mockType == 'Random') {
-      this.httpService.generateRandom(form.value, this.totalQuestions).subscribe((res: any) => {
+      const subscription = this.httpService.generateRandom(form.value, this.totalQuestions).subscribe((res: any) => {
         if (res === 0) {
           this.toastr.error('No Questions Available!');
         } else {
@@ -110,12 +120,13 @@ export class CreateQuizComponent implements OnInit {
         }
         this.dialogRef.close('Inserted');
       });
+      subscription.unsubscribe();
     } else {
       this.columns = [
         { field: 'serialNumber', header: 'S NO' },
         { field: 'questionStatement', header: 'Questions' }
       ];
-      this.httpService.getQuesOfUserConstraints(form.value).subscribe((data: any) => {
+      const subscription = this.httpService.getQuesOfUserConstraints(form.value).subscribe((data: any) => {
         data.forEach((obj) => (obj.selected = false));
         this.questions = data;
         this.length = this.questions.length;
@@ -124,6 +135,7 @@ export class CreateQuizComponent implements OnInit {
         }
         this.checkVal();
       });
+      subscription.unsubscribe();
     }
   }
 
@@ -148,12 +160,13 @@ export class CreateQuizComponent implements OnInit {
   }
 
   private reload(data1: any): void {
-    this.httpService.getQuesOfUserConstraints(data1).subscribe((data: any) => {
+    const subscription = this.httpService.getQuesOfUserConstraints(data1).subscribe((data: any) => {
       data.forEach((obj) => (obj.selected = false));
       this.questions = data;
       this.length = this.questions.length;
       this.checkVal();
     });
+    subscription.unsubscribe();
   }
 
   public checkAvail(inputName: NgForm): void {
@@ -174,10 +187,11 @@ export class CreateQuizComponent implements OnInit {
     dialogConfig.disableClose = true;
     this.service.quesStat = true;
     let dialogRef = this.dialog.open(CreateQuestionsComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe((result) => {
+    const subscription = dialogRef.afterClosed().subscribe((result) => {
       this.service.quesStat = false;
       this.reload(this.service.quizForm);
     });
+    subscription.unsubscribe();
   }
 
   public toggleEditable(event): void {

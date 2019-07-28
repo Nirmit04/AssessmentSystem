@@ -10,10 +10,11 @@ export class StorageService {
 
   public getStorage(key: string) {
     const encryptedKey = this.encryptUsingAES256(key);
+    console.log('encryptedKey', encryptedKey);
     const encryptedValue = localStorage.getItem(encryptedKey);
+    console.log('encryptedvalue', encryptedValue);
     const decryptedValue = this.decryptUsingAES256((encryptedValue));
     return JSON.parse(decryptedValue);
-
   }
 
   public setStorage(key: string, value: any) {

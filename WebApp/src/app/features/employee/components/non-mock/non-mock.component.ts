@@ -42,7 +42,7 @@ export class NonMockComponent implements OnInit {
 	}
 
 	private loadNonMockSchedules():void {
-		this.httpService.getNonMocks().subscribe((res: any) => {
+		const subscription = this.httpService.getNonMocks().subscribe((res: any) => {
 			this.nonMockScheduleList = res as any[];
 			for (this.index = 1; this.index <= this.nonMockScheduleList.length; this.index++) {
 				this.nonMockScheduleList[this.index - 1].SerialNumber = this.index;
@@ -54,11 +54,12 @@ export class NonMockComponent implements OnInit {
 				this.nonMockScheduleList[this.index - 1].Tags1 = this.nonMockScheduleList[this.index - 1].Tags1.substring(0, this.nonMockScheduleList[this.index - 1].Tags1.length - 1);
 			}
 		});
+		subscription.unsubscribe();
 	}
 
 	public takeQuiz(quizId: number, quizScheduleId: number, quizName: string, index: number):void {
 		this.service.quizId = quizId;
-		this.httpService.getQuesOfQuiz(quizId).subscribe((res: any) => {
+		const subscription = this.httpService.getQuesOfQuiz(quizId).subscribe((res: any) => {
 			if (res !== 'Quiz Started') {
 				this.service.statusMapping = res.GetQuestionBuffers;
 				this.time = res.TimeLeft.split(':');
@@ -75,6 +76,7 @@ export class NonMockComponent implements OnInit {
 			this.service.quizScheduleId = quizScheduleId;
 			this.router.navigate(['/emp-dash/quiz/take-quiz']);
 		});
+		subscription.unsubscribe();
 	}
 
 	public ngOnDestroy():void {

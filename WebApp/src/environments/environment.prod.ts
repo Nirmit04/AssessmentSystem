@@ -1,5 +1,10 @@
 export const environment = {
-  production: true,
-  apiURl: ' http://f18f4274.ngrok.io/api/',
-	imgURl: ' http://f18f4274.ngrok.io/Images/'
+  appName: 'internal-assessment',
+	production: true,
+	apiURl: ' http://192.168.1.141/webapiv2/api/',
+	imgURl: ' http://192.168.1.141/webapiv2/Images/',
+	env: 'local',
+	endpoints: {
+		elasticSearchEndpoint: ''
+	}
 };

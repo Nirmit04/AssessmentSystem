@@ -34,20 +34,22 @@ export class ReportingUserComponent implements OnInit {
 	}
 
 	private loadUserDetails(): void {
-		this.httpService.getUserDetails().subscribe((res: any) => {
+		const subscription = this.httpService.getUserDetails().subscribe((res: any) => {
 			this.firstName = res.FirstName;
 			this.lastName = res.LastName;
 			this.email = res.Email;
 		});
+		subscription.unsubscribe();
 	}
 
 	private loadUserProgress(): void {
-		this.httpService.getUserProgress().subscribe((res: any) => {
+		const subscription = this.httpService.getUserProgress().subscribe((res: any) => {
 			this.totalQuiz = res.QuizCount;
 			this.totalQues = res.QuestionCount;
 			this.totalSub = res.SubjectCount;
 			this.totalUser = res.UserCount;
 		});
+		subscription.unsubscribe();
 	}
 	
 }

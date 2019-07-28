@@ -25,7 +25,7 @@ export class MockComponent implements OnInit {
     public router: Router,
     private httpService: HttpService) { }
 
-  public ngOnInit():void {
+  public ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
@@ -46,7 +46,7 @@ export class MockComponent implements OnInit {
   }
 
   private getMockList(): void {
-    this.httpService.getListOfMockQuizzes().subscribe((res: any) => {
+    const subscription = this.httpService.getListOfMockQuizzes().subscribe((res: any) => {
       this.mockList = res as any[];
       for (this.index = 1; this.index <= this.mockList.length; this.index++) {
         this.mockList[this.index - 1].SerialNumber = this.index;
@@ -58,11 +58,12 @@ export class MockComponent implements OnInit {
         this.mockList[this.index - 1].Tags1 = this.mockList[this.index - 1].Tags1.substring(0, this.mockList[this.index - 1].Tags1.length - 1);
       }
     });
+    subscription.unsubscribe();
   }
 
-  public takeMockQuiz(QuizId: number, QuizName: string, index: number):void{
+  public takeMockQuiz(QuizId: number, QuizName: string, index: number): void {
     this.service.quizId = QuizId;
-    this.httpService.getMockQuesOfQuiz(QuizId).subscribe((res: any) => {
+    const subscription = this.httpService.getMockQuesOfQuiz(QuizId).subscribe((res: any) => {
       if (res !== 'Quiz Started') {
         this.service.statusMapping = res.GetQuestionBuffers;
         this.time = res.TimeLeft.split(":");
@@ -80,6 +81,7 @@ export class MockComponent implements OnInit {
       this.service.quizScheduleId = null;
       this.router.navigate(['/emp-dash/quiz/take-quiz']);
     });
+    subscription.unsubscribe();
   }
 
 }

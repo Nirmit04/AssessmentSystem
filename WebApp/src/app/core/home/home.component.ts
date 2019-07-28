@@ -39,8 +39,8 @@ export class HomeComponent implements OnInit {
 				GoogleId: this.storageService.getStorage('id')
 			};
 
-			this.http.post(this.rooturl + 'User/Register', body).subscribe(() => {
-				this.http.get(this.rooturl + 'GetUserDetails?email=' + this.storageService.getStorage('email'))
+			const subscription = this.http.post(this.rooturl + 'User/Register', body).subscribe(() => {
+				const resubscription = this.http.get(this.rooturl + 'GetUserDetails?email=' + this.storageService.getStorage('email'))
 					.subscribe((res1: any) => {
 						this.uid = res1.Id;
 						this.role = res1.Roles;
@@ -72,7 +72,10 @@ export class HomeComponent implements OnInit {
 							this.router.navigate(['/http-error']);
 						}
 					});
+					resubscription.unsubscribe();
 			});
+			subscription.unsubscribe();
+			
 		} else {
 			this.router.navigate(['/login']);
 		}

@@ -42,8 +42,12 @@ export class ArchiveQuizComponent implements OnInit {
 		}, 0);
 	}
 
+	public columnsById(index: number)	{
+		return index;
+	}
+
 	private loadQuiz(): void {
-		this.httpService.getArchivedQuizzes().subscribe((res: any) => {
+		const subscription = this.httpService.getArchivedQuizzes().subscribe((res: any) => {
 			this.QuizList = res as QuizModel[];
 			for (this.index = 1; this.index <= this.QuizList.length; this.index++) {
 				this.QuizList[this.index - 1].SerialNumber = this.index;
@@ -54,17 +58,19 @@ export class ArchiveQuizComponent implements OnInit {
 				}
 			}
 		});
+		subscription.unsubscribe();
 	}
 
 	public onUnArchived(quizId: number): void {
 		if (confirm('Are you sure you want to un-archive this quiz?')) {
-			this.httpService.unArchiveQuiz(quizId).subscribe((res: any) => {
+			const subscription = this.httpService.unArchiveQuiz(quizId).subscribe((res: any) => {
 				this.dtTrigger.unsubscribe();
 				this.loadQuiz();
 				this.toastr.success('Un-Archived Successfully', 'Assesment System');
 				this.dtTrigger.unsubscribe();
 				this.dtTrigger.next();
 			});
+			subscription.unsubscribe();
 		}
 	}
 

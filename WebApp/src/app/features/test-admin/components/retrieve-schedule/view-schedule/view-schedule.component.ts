@@ -47,23 +47,26 @@ export class ViewScheduleComponent implements OnInit {
   }
 
   private loadExistingUsers(scheduleQuizId: number): void {
-    this.httpService.getScheduleQuizUsers(scheduleQuizId).subscribe((res: any) => {
+    const subscription = this.httpService.getScheduleQuizUsers(scheduleQuizId).subscribe((res: any) => {
       this.usersList = res as any[];
     });
+    subscription.unsubscribe();
   }
 
   public deleteUserFromSchedule(UserId: string): void {
-    this.httpService.deleteUserFromSchedule(+this.data, UserId).subscribe((res: any) => {
+    const subscription = this.httpService.deleteUserFromSchedule(+this.data, UserId).subscribe((res: any) => {
       this.toastr.error('removed successfully');
       this.loadExistingUsers(+this.data);
     });
+    subscription.unsubscribe();
   }
 
   public onSubmit(form: NgForm): void {
-    this.httpService.editSchedule(this.data, form.value).subscribe(res => {
+    const subscription = this.httpService.editSchedule(this.data, form.value).subscribe(res => {
       this.toastr.success('Changes Saved');
       this.dialogRef.close('Saved');
     });
+    subscription.unsubscribe();
   }
 
   public checkStartDate(date1: NgForm): void {

@@ -51,12 +51,13 @@ export class AddUserComponent implements OnInit {
   }
 
   private loadSchedule(): void {
-    this.httpService.getSchedule(this.storageService.getStorage('uid')).subscribe((res: any) => {
+    const subscription = this.httpService.getSchedule(this.storageService.getStorage('uid')).subscribe((res: any) => {
       this.scheduleList = res as Schedule[];
-          for (this.index = 1; this.index <= this.scheduleList.length; this.index++) {
+      for (this.index = 1; this.index <= this.scheduleList.length; this.index++) {
         this.scheduleList[this.index - 1].SerialNumber = this.index;
       }
     });
+    subscription.unsubscribe();
   }
 
   public addUserToSchedule(scheduleid: number): void {
@@ -75,19 +76,21 @@ export class AddUserComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
     dialogConfig.disableClose = true;
-    this.httpService.getScheduleQuizUsers(scheduleId).subscribe((res: any) => {
+    const subscription = this.httpService.getScheduleQuizUsers(scheduleId).subscribe((res: any) => {
       if (res.length === 0) {
         this.toastr.error('No user Available to Delete');
       }
       else {
         dialogConfig.data = scheduleId;
         this.service.deleteUserVisibility = true;
-        this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe(() => {
+        const resubscription = this.dialog.open(ViewScheduleComponent, dialogConfig).afterClosed().subscribe(() => {
           this.loadSchedule();
           this.service.deleteUserVisibility = false;
         });
+        resubscription.unsubscribe();
       }
     });
+    subscription.unsubscribe();
   }
 }
 

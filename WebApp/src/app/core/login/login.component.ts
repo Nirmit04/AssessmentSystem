@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 		this.storageService.setStorage('key', takeQuiz);
 		this.storageService.setStorage('key1', this.route.snapshot.queryParamMap.get('schedule-id'));
 		this.storageService.setStorage('time', this.route.snapshot.queryParamMap.get('time'));
-		this.authService.authState.subscribe((user) => {
+		const subscription = this.authService.authState.subscribe((user) => {
 			this.user = user;
 			if (user !== null) {
 				this.storageService.setStorage('token', this.user.idToken);
@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
 				this.storageService.clearStorage();
 			}
 		});
+		subscription.unsubscribe();
 	}
 
 	signInWithGoogle(): void {

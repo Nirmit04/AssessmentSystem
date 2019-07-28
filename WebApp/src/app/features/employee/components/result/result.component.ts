@@ -23,7 +23,7 @@ export class ResultComponent implements OnInit {
   public ngOnInit(): void {
     this.correct = [];
     if (this.service.quizScheduleId === null) {
-      this.httpService.getAnswers().subscribe((res: any) => {
+      const subscription = this.httpService.getAnswers().subscribe((res: any) => {
         this.questionsWithAnswer = res as any[];
         this.service.correctAnswerCount = 0;
         this.service.questionsOfQuiz.forEach((question, index) => {
@@ -33,7 +33,8 @@ export class ResultComponent implements OnInit {
           this.correct[index] = this.questionsWithAnswer[index].Answer;
         });
         this.displayCard = true;
-      })
+      });
+      subscription.unsubscribe();
     }
 
     const body = this.service.questionsOfQuiz.map(x => x.QuestionId);

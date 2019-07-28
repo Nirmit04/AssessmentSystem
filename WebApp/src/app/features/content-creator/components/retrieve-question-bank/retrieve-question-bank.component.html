@@ -11,10 +11,10 @@
       <ng-template pTemplate="header">
         <tr>
           <th style="background-color:#000000; color:#ffffff;">S NO</th>
-          <th *ngFor="let col of nonSortableColumns" style="background-color:#000000; color:#ffffff; width: 50%">
+          <th *ngFor="let col of nonSortableColumns; trackBy: nonSortableColumnsById" style="background-color:#000000; color:#ffffff; width: 50%">
             {{col.header}}
           </th>
-          <th *ngFor="let col of columns" [pSortableColumn]="col.field" style="background-color:#000000; color:#ffffff ">
+          <th *ngFor="let col of columns; trackBy:columnsById" [pSortableColumn]="col.field" style="background-color:#000000; color:#ffffff ">
             {{col.header}}
           </th>
           <th style="background-color:#000000; color:#ffffff ">Action</th>
@@ -25,7 +25,7 @@
         <tr [pSelectableRow]="rowData">
           <td (click)="viewUserQues(rowData.SerialNumber)">{{rowData.SerialNumber}}</td>
           <td (click)="viewUserQues(rowData.SerialNumber)">{{rowData.QuestionStatement}}</td>
-          <td *ngFor="let col of columns;" (click)="viewUserQues(rowData.QuestionId,rowData.SerialNumber)">
+          <td *ngFor="let col of columns; trackBy:columnsById" (click)="viewUserQues(rowData.QuestionId,rowData.SerialNumber)">
             {{rowData[col.field]}}
           </td>
           <td>

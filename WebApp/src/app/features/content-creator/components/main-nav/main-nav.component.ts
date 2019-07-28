@@ -36,12 +36,13 @@ export class MainNavComponent {
 		if (this.storageService.getStorage('id') === null) {
 			this.router.navigate(['/login']);
 		}
-		this.authService.authState.subscribe((user) => {
+		const subscription = this.authService.authState.subscribe((user) => {
 			if (user === null) {
 				this.storageService.clearStorage();
 				this.router.navigate(['/login']);
 			}
 		});
+		subscription.unsubscribe();
 	}
 
 	public roleMatch(allowedRoles): boolean {

@@ -27,12 +27,13 @@ export class MainNav3Component {
 
 	public ngOnInit(): void {
 		this.currentRole = this.storageService.getStorage('currentRole');
-		this.authService.authState.subscribe((user) => {
+		const subscription = this.authService.authState.subscribe((user) => {
 			if (user === null) {
 				this.storageService.clearStorage();
 				this.router.navigate(['/login']);
 			}
 		});
+		subscription.unsubscribe();
 	}
 
 	public roleMatch(allowedRoles: []): boolean {

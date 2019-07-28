@@ -119,7 +119,7 @@
               <ng-template pTemplate="header">
                 <tr>
                   <th style="background-color:black; color:white">Tick</th>
-                  <th *ngFor="let col of cols" [pSortableColumn]="col.field"
+                  <th *ngFor="let col of cols; trackBy:colsById" [pSortableColumn]="col.field"
                     style="background-color:black; color:white;">
                     {{col.header}}
                   </th>
@@ -132,7 +132,7 @@
                     <input [id]="'questions-'+rowData.SerialNumber" type="checkbox" value="{{questions.Question_ID}}"
                       [checked]="questions.selected" (change)="updateSelectedQuestions(rowData.SerialNumber-1)">
                   </td>
-                  <td *ngFor="let col of columns;">
+                  <td *ngFor="let col of columns; trackBy:columnsById">
                     {{rowData[col.field]}}
                   </td>
                 </tr>

@@ -16,17 +16,23 @@ export class MainNav2Component {
 		.observe(Breakpoints.Handset)
 		.pipe(map((result) => result.matches));
 	public currentRole = '';
-	constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService, private router: Router, private storageService: StorageService) { }
+
+	constructor(private breakpointObserver: BreakpointObserver,
+		private authService: AuthService,
+		private router: Router,
+		private storageService: StorageService) { }
+
 	public ngOnInit(): void {
 		this.currentRole = this.storageService.getStorage('currentRole');
-		this.authService.authState.subscribe((user) => {
-			if (user != null) {
-			} else {
+		const subscription = this.authService.authState.subscribe((user) => {
+			if (user === null) {
 				this.storageService.clearStorage();
 				this.router.navigate(['/login']);
 			}
 		});
+		subscription.unsubscribe();
 	}
+	
 	public roleMatch(allowedRoles): boolean {
 		var isMatch = false;
 		const userRoles: string = this.storageService.getStorage('role');

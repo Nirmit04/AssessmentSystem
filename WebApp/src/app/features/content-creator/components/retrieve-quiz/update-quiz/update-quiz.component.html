@@ -16,7 +16,7 @@
         <th scope="col">Action</th>
       </thead>
       <tbody>
-        <ng-container *ngFor="let item of UpdateQuizQuestionList;index as i">
+        <ng-container *ngFor="let item of UpdateQuizQuestionList;index as i; trackBy:questionListById">
           <tr>
             <th class="text-primary" scope="row">{{i+1}}</th>
             <th class="text-primary" scope="row">{{item.QuestionStatement}}</th>

@@ -47,12 +47,13 @@ export class MockReportComponent implements OnInit {
   }
 
   private getMockReport(): void {
-    this.httpService.getReportOfMockQuiz(this.storageService.getStorage('uid')).subscribe((res: any) => {
+    const subscription = this.httpService.getReportOfMockQuiz(this.storageService.getStorage('uid')).subscribe((res: any) => {
       this.mockReportList = res as any[];
       for (this.index = 1; this.index <= this.mockReportList.length; this.index++) {
         this.mockReportList[this.index - 1].SerialNumber = this.index;
       }
     });
+    subscription.unsubscribe();
   }
 
   public viewDetailedReport(quizId: number, index: number) {

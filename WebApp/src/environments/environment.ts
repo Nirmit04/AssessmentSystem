@@ -3,9 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+	appName: 'internal-assessment',
 	production: false,
 	apiURl: ' http://192.168.1.141/webapiv2/api/',
-	imgURl: ' http://192.168.1.141/webapiv2/Images/'
+	imgURl: ' http://192.168.1.141/webapiv2/Images/',
+	env: 'local',
+	endpoints: {
+		elasticSearchEndpoint: ''
+	}
 };
 
 /*
