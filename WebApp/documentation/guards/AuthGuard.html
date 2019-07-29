@@ -105,7 +105,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, storageService: <a href="../injectables/StorageService.html">StorageService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -132,6 +132,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>storageService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/StorageService.html" target="_self" >StorageService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -392,15 +404,15 @@
 import { CanActivate, CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from &#x27;@angular/router&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
-import { allResolved } from &#x27;q&#x27;;
+import { StorageService } from &#x27;./services/storage.service&#x27;;
 
 @Injectable({
 	providedIn: &#x27;root&#x27;
 })
 export class AuthGuard implements CanActivate, CanActivateChild {
-	constructor(private router: Router) { }
+	constructor(private router: Router, private storageService: StorageService) { }
 	canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-		if (this.storageService.getStorage(&#x27;uid&#x27;) !&#x3D; null) {
+		if (this.storageService.getStorage(&#x27;uid&#x27;) !&#x3D;&#x3D; null) {
 			const roles &#x3D; next.data[&#x27;roles&#x27;] as Array&lt;string&gt;;
 			if (roles) {
 				var match &#x3D; this.roleMatch(roles);
@@ -443,6 +455,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
 
 
+                   
 
 
 

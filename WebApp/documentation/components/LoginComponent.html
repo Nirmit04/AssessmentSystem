@@ -61,7 +61,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/login/login.component.ts</code>
+    <code>src/app/core/login/login.component.ts</code>
 </p>
 
 
@@ -174,12 +174,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(authService: AuthService, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>)</code>
+<code>constructor(authService: AuthService, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, storageService: <a href="../injectables/StorageService.html">StorageService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/login/login.component.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/core/login/login.component.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -232,6 +232,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>storageService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/StorageService.html" target="_self" >StorageService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -272,8 +284,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/app/login/login.component.ts:18</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/app/core/login/login.component.ts:19</a></div>
                 </td>
             </tr>
 
@@ -311,8 +323,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="38"
-                            class="link-to-prism">src/app/login/login.component.ts:38</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/app/core/login/login.component.ts:43</a></div>
                 </td>
             </tr>
 
@@ -350,8 +362,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/app/login/login.component.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/app/core/login/login.component.ts:47</a></div>
                 </td>
             </tr>
 
@@ -393,7 +405,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/login/login.component.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/core/login/login.component.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -420,7 +432,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/login/login.component.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/core/login/login.component.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -438,6 +450,7 @@ import { AuthService } from &#x27;angularx-social-login&#x27;;
 import { SocialUser } from &#x27;angularx-social-login&#x27;;
 import { GoogleLoginProvider } from &#x27;angularx-social-login&#x27;;
 import { Router, ActivatedRoute } from &#x27;@angular/router&#x27;;
+import { StorageService } from &#x27;../../services/storage.service&#x27;;
 
 @Component({
 	selector: &#x27;app-login&#x27;,
@@ -448,14 +461,17 @@ export class LoginComponent implements OnInit {
 
 	user: SocialUser;
 	returnURL: string;
-	constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
+	constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, private storageService: StorageService) { }
 
 	ngOnInit() {
-		this.storageService.setStorage(&#x27;key&#x27;, this.route.snapshot.queryParamMap.get(&#x27;take-quiz&#x27;));
+		this.storageService.clearStorage();
+		const takeQuiz &#x3D; this.route.snapshot.queryParamMap.get(&#x27;take-quiz&#x27;);
+		this.storageService.setStorage(&#x27;key&#x27;, takeQuiz);
 		this.storageService.setStorage(&#x27;key1&#x27;, this.route.snapshot.queryParamMap.get(&#x27;schedule-id&#x27;));
-		this.authService.authState.subscribe((user) &#x3D;&gt; {
+		this.storageService.setStorage(&#x27;time&#x27;, this.route.snapshot.queryParamMap.get(&#x27;time&#x27;));
+		const subscription &#x3D; this.authService.authState.subscribe((user) &#x3D;&gt; {
 			this.user &#x3D; user;
-			if (user !&#x3D; null) {
+			if (user !&#x3D;&#x3D; null) {
 				this.storageService.setStorage(&#x27;token&#x27;, this.user.idToken);
 				this.storageService.setStorage(&#x27;email&#x27;, this.user.email);
 				this.storageService.setStorage(&#x27;firstname&#x27;, this.user.firstName);
@@ -468,6 +484,7 @@ export class LoginComponent implements OnInit {
 				this.storageService.clearStorage();
 			}
 		});
+		subscription.unsubscribe();
 	}
 
 	signInWithGoogle(): void {
@@ -475,6 +492,7 @@ export class LoginComponent implements OnInit {
 	}
 
 	signOut(): void {
+		this.storageService.clearStorage();
 		this.authService.signOut();
 	}
 
@@ -487,10 +505,9 @@ export class LoginComponent implements OnInit {
   &lt;mat-toolbar&gt;
     &lt;mat-toolbar-row&gt;
       &lt;a href&#x3D;&quot;https://www.nineleaps.com/&quot;&gt;
-        &lt;span&gt;NINELEAPS&lt;/span&gt;
+        &lt;span&gt;&lt;img src&#x3D;&quot;../../assets/nineleaps_logo.jpg&quot; class&#x3D;&quot;pic&quot;&gt;&lt;/span&gt;
       &lt;/a&gt;
       &lt;span class&#x3D;&quot;example-spacer&quot;&gt;&lt;/span&gt;
-      &lt;a href&#x3D;&quot;#&quot;&gt;Contact Us&lt;/a&gt;
       &lt;a href&#x3D;&quot;#aboutus&quot;&gt;About Us&lt;/a&gt;
     &lt;/mat-toolbar-row&gt;
   &lt;/mat-toolbar&gt;
@@ -656,8 +673,7 @@ export class LoginComponent implements OnInit {
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;br /&gt;
-  &lt;br /&gt;
-&lt;/div&gt;</code></pre>
+  &lt;br /&gt;</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
@@ -688,7 +704,7 @@ mat-toolbar {
 }
 .container {
 	position: relative;
-	background-image: url(../../assets/2.jpg);
+	background-image: url(&#x27;src/assets/2.jpg&#x27;);
 	background-repeat: no-repeat;
 	height: 100%;
 	width: 100%;
@@ -697,7 +713,7 @@ mat-toolbar {
 }
 .container1 .aboutcontainer {
 	position: relative;
-	background-image: url(../../assets/2.jpg);
+	background-image: url(&#x27;src/assets/2.jpg&#x27;);
 	background-repeat: no-repeat;
 	height: 100%;
 	width: 100%;
@@ -964,17 +980,11 @@ blockquote p {
 	font-size: 20px;
 	font-family: &#x27;Roboto&#x27;, sans-serif;
 }
-/* .footer {
-	position: relative;
+.pic {
+	margin-left: -23px;
+	height: 52px;
+	width: 80%;
 }
-.footer .row {
-	position: absolute;
-	background-color: #323c41;
-	z-index: 999999;
-	height: 20px;
-	width: 100%;
-	bottom: -120%;
-} */
 </code></pre>
     </div>
 
@@ -1003,8 +1013,8 @@ blockquote p {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container">  <mat-toolbar>    <mat-toolbar-row>      <a href="https://www.nineleaps.com/">        <span>NINELEAPS</span>      </a>      <span class="example-spacer"></span>      <a href="#">Contact Us</a>      <a href="#aboutus">About Us</a>    </mat-toolbar-row>  </mat-toolbar>  <div class="name">    <h1>Assessment System</h1>  </div>  <div class="card-block">    <button class="btn btn-success" (click)="signInWithGoogle()">      <span class="buttonText">Sign in with:</span>      <span><i class="fa fa-google" aria-hidden="true"></i></span>    </button>  </div>  <div class="card-block" *ngIf="user">    <button class="btn btn-danger" (click)="signOut()">Sign out</button>  </div></div><div class="container1 aboutcontainer" id="aboutus">  <h4>ABOUT US</h4>  <br />  <blockquote>    <p>The goal of Assessment Systems is to provide software and consulting services utilizing best practices in      psychometrics, helping our clients to produce the best assessments possible, thereby providing the best      information about people’s skills, knowledge, abilities, and traits. This allows better decisions to be made about      people, or people to make decisions about themselves. Testing is our profession, not just our business.</p>  </blockquote>  <div class="row">    <div class="col-md-4">      <div class="blog-card spring-fever" style="background: url(../../assets/pulkit.png) no-repeat;">        <div class="card-info">          <div class="title-content">            <h3>PULKIT VERMA</h3>            <hr />            <h6>Team ASTER</h6>            <h6>Nineleaps Intern</h6>          </div>          <div class="utility-info">            <ul class="utility-list">              <li><a href=""><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>              <li><a href=""><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>              <li><a href=""><i class="fa fa-google-plus-square" aria-hidden="true"></i></a></li>            </ul>          </div>        </div>        <div class="gradient-overlay"></div>        <div class="color-overlay"></div>      </div>    </div>    <div class="col-md-4">      <div class="blog-card spring-fever" style="background: url(../../assets/logo.jpg) no-repeat;">        <div class="card-info">          <div class="title-content">            <h3>NIRMIT AGARWAL</h3>            <hr />            <h6>Team ASTER</h6>            <h6>Nineleaps Intern</h6>          </div>          <div class="utility-info">            <ul class="utility-list">              <li><a href=""><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>              <li><a href=""><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>              <li><a href=""><i class="fa fa-google-plus-square" aria-hidden="true"></i></a></li>            </ul>          </div>        </div>        <div class="gradient-overlay"></div>        <div class="color-overlay"></div>      </div>    </div>    <div class="col-md-4">      <div class="blog-card spring-fever"        style="background: url(../../assets/anand.jpg) no-repeat;image-orientation: 90deg flip; ">        <div class="card-info">          <div class="title-content">            <h3>ANAND ROY</h3>            <hr />            <h6>Team ASTER</h6>            <h6>Nineleaps Intern</h6>          </div>          <div class="utility-info">            <ul class="utility-list">              <li><a href=""><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>              <li><a href=""><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>              <li><a href=""><i class="fa fa-google-plus-square" aria-hidden="true"></i></a></li>            </ul>          </div>        </div>        <div class="gradient-overlay"></div>        <div class="color-overlay"></div>      </div>    </div>  </div>  <div class="row">    <div class="col-md-4">      <div class="blog-card1 spring-fever" style="background: url(../../assets/abhi.jpg) no-repeat;">        <div class="card-info">          <div class="title-content">            <h3>ABHIJEET ANAND SHAH</h3>            <hr />            <h6>Team ASTER</h6>            <h6>Nineleaps Intern</h6>          </div>          <div class="utility-info">            <ul class="utility-list">              <li><a href=""><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>              <li><a href=""><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>              <li><a href=""><i class="fa fa-google-plus-square" aria-hidden="true"></i></a></li>            </ul>          </div>        </div>        <div class="gradient-overlay"></div>        <div class="color-overlay"></div>      </div>    </div>    <div class="col-md-4">      <div class="blog-card1 spring-fever" style="background: url(../../assets/meg.jpg) no-repeat;">        <div class="card-info">          <div class="title-content">            <h3>SREEMEGHANA K S</h3>            <hr />            <h6>Team ASTER</h6>            <h6>Nineleaps Intern</h6>          </div>          <div class="utility-info">            <ul class="utility-list">              <li><a href=""><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>              <li><a href=""><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>              <li><a href=""><i class="fa fa-google-plus-square" aria-hidden="true"></i></a></li>            </ul>          </div>        </div>        <div class="gradient-overlay"></div>        <div class="color-overlay"></div>      </div>    </div>    <div class="col-md-4">      <div class="blog-card1 spring-fever" style="background: url(../../assets/mandeep.png) no-repeat;">        <div class="card-info">          <div class="title-content">            <h3>MANDEEP JAIN</h3>            <hr />            <h6>Team ASTER</h6>            <h6>Nineleaps Intern</h6>          </div>          <div class="utility-info">            <ul class="utility-list">              <li><a href=""><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>              <li><a href=""><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>              <li><a href=""><i class="fa fa-google-plus-square" aria-hidden="true"></i></a></li>            </ul>          </div>        </div>        <div class="gradient-overlay"></div>        <div class="color-overlay"></div>      </div>    </div>  </div>  <br />  <br /></div></div>'
-    var COMPONENTS = [{'name': 'AddQuesInQuizComponent', 'selector': 'app-add-ques-in-quiz'},{'name': 'AddUser1Component', 'selector': 'app-add-user1'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AnalyticsByQuizComponent', 'selector': 'app-analytics-by-quiz'},{'name': 'AnalyticsByTagComponent', 'selector': 'app-analytics-by-tag'},{'name': 'AnalyticsByUserComponent', 'selector': 'app-analytics-by-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchivedScheduleComponent', 'selector': 'app-archived-schedule'},{'name': 'ArchiveQuizComponent', 'selector': 'app-archive-quiz'},{'name': 'ContentCreatorComponent', 'selector': 'app-content-creator'},{'name': 'CreateQuestionsComponent', 'selector': 'app-create-questions'},{'name': 'CreateQuizComponent', 'selector': 'app-create-quiz'},{'name': 'CreateScheduleComponent', 'selector': 'app-create-schedule'},{'name': 'CreatetagComponent', 'selector': 'app-createtag'},{'name': 'DetailedReportComponent', 'selector': 'app-detailed-report'},{'name': 'DetailsComponent', 'selector': 'app-details'},{'name': 'EmployeeComponent', 'selector': 'app-employee'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HttpInterceptorComponent', 'selector': 'app-http-interceptor'},{'name': 'InstructionsComponent', 'selector': 'app-instructions'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainNav2Component', 'selector': 'app-main-nav2'},{'name': 'MainNav3Component', 'selector': 'app-main-nav3'},{'name': 'Mainnav4Component', 'selector': 'app-mainnav4'},{'name': 'MainNavComponent', 'selector': 'app-main-nav'},{'name': 'MockComponent', 'selector': 'app-mock'},{'name': 'MockReportComponent', 'selector': 'app-mock-report'},{'name': 'NonMockComponent', 'selector': 'app-non-mock'},{'name': 'NonMockReportComponent', 'selector': 'app-non-mock-report'},{'name': 'ReportingUserComponent', 'selector': 'app-reporting-user'},{'name': 'ResultComponent', 'selector': 'app-result'},{'name': 'RetrieveQuestionBankComponent', 'selector': 'app-retrieve-question-bank'},{'name': 'RetrieveQuizComponent', 'selector': 'retrieve-quiz'},{'name': 'RetrieveScheduleComponent', 'selector': 'app-retrieve-schedule'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TakeQuizComponent', 'selector': 'app-take-quiz'},{'name': 'TestAdminComponent', 'selector': 'app-test-admin'},{'name': 'UpdateQuestionComponent', 'selector': 'app-update-question'},{'name': 'UpdateQuizComponent', 'selector': 'app-update-quiz'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'ViewAnswerComponent', 'selector': 'app-view-answer'},{'name': 'ViewScheduleComponent', 'selector': 'app-view-schedule'},{'name': 'ViewUserDetailsComponent', 'selector': 'app-view-user-details'}];
+        var COMPONENT_TEMPLATE = '<div><div class="container">  <mat-toolbar>    <mat-toolbar-row>      <a href="https://www.nineleaps.com/">        <span><img src="../../assets/nineleaps_logo.jpg" class="pic"></span>      </a>      <span class="example-spacer"></span>      <a href="#aboutus">About Us</a>    </mat-toolbar-row>  </mat-toolbar>  <div class="name">    <h1>Assessment System</h1>  </div>  <div class="card-block">    <button class="btn btn-success" (click)="signInWithGoogle()">      <span class="buttonText">Sign in with:</span>      <span><i class="fa fa-google" aria-hidden="true"></i></span>    </button>  </div>  <div class="card-block" *ngIf="user">    <button class="btn btn-danger" (click)="signOut()">Sign out</button>  </div></div><div class="container1 aboutcontainer" id="aboutus">  <h4>ABOUT US</h4>  <br />  <blockquote>    <p>The goal of Assessment Systems is to provide software and consulting services utilizing best practices in      psychometrics, helping our clients to produce the best assessments possible, thereby providing the best      information about people’s skills, knowledge, abilities, and traits. This allows better decisions to be made about      people, or people to make decisions about themselves. Testing is our profession, not just our business.</p>  </blockquote>  <div class="row">    <div class="col-md-4">      <div class="blog-card spring-fever" style="background: url(../../assets/pulkit.png) no-repeat;">        <div class="card-info">          <div class="title-content">            <h3>PULKIT VERMA</h3>            <hr />            <h6>Team ASTER</h6>            <h6>Nineleaps Intern</h6>          </div>          <div class="utility-info">            <ul class="utility-list">              <li><a href=""><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>              <li><a href=""><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>              <li><a href=""><i class="fa fa-google-plus-square" aria-hidden="true"></i></a></li>            </ul>          </div>        </div>        <div class="gradient-overlay"></div>        <div class="color-overlay"></div>      </div>    </div>    <div class="col-md-4">      <div class="blog-card spring-fever" style="background: url(../../assets/logo.jpg) no-repeat;">        <div class="card-info">          <div class="title-content">            <h3>NIRMIT AGARWAL</h3>            <hr />            <h6>Team ASTER</h6>            <h6>Nineleaps Intern</h6>          </div>          <div class="utility-info">            <ul class="utility-list">              <li><a href=""><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>              <li><a href=""><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>              <li><a href=""><i class="fa fa-google-plus-square" aria-hidden="true"></i></a></li>            </ul>          </div>        </div>        <div class="gradient-overlay"></div>        <div class="color-overlay"></div>      </div>    </div>    <div class="col-md-4">      <div class="blog-card spring-fever"        style="background: url(../../assets/anand.jpg) no-repeat;image-orientation: 90deg flip; ">        <div class="card-info">          <div class="title-content">            <h3>ANAND ROY</h3>            <hr />            <h6>Team ASTER</h6>            <h6>Nineleaps Intern</h6>          </div>          <div class="utility-info">            <ul class="utility-list">              <li><a href=""><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>              <li><a href=""><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>              <li><a href=""><i class="fa fa-google-plus-square" aria-hidden="true"></i></a></li>            </ul>          </div>        </div>        <div class="gradient-overlay"></div>        <div class="color-overlay"></div>      </div>    </div>  </div>  <div class="row">    <div class="col-md-4">      <div class="blog-card1 spring-fever" style="background: url(../../assets/abhi.jpg) no-repeat;">        <div class="card-info">          <div class="title-content">            <h3>ABHIJEET ANAND SHAH</h3>            <hr />            <h6>Team ASTER</h6>            <h6>Nineleaps Intern</h6>          </div>          <div class="utility-info">            <ul class="utility-list">              <li><a href=""><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>              <li><a href=""><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>              <li><a href=""><i class="fa fa-google-plus-square" aria-hidden="true"></i></a></li>            </ul>          </div>        </div>        <div class="gradient-overlay"></div>        <div class="color-overlay"></div>      </div>    </div>    <div class="col-md-4">      <div class="blog-card1 spring-fever" style="background: url(../../assets/meg.jpg) no-repeat;">        <div class="card-info">          <div class="title-content">            <h3>SREEMEGHANA K S</h3>            <hr />            <h6>Team ASTER</h6>            <h6>Nineleaps Intern</h6>          </div>          <div class="utility-info">            <ul class="utility-list">              <li><a href=""><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>              <li><a href=""><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>              <li><a href=""><i class="fa fa-google-plus-square" aria-hidden="true"></i></a></li>            </ul>          </div>        </div>        <div class="gradient-overlay"></div>        <div class="color-overlay"></div>      </div>    </div>    <div class="col-md-4">      <div class="blog-card1 spring-fever" style="background: url(../../assets/mandeep.png) no-repeat;">        <div class="card-info">          <div class="title-content">            <h3>MANDEEP JAIN</h3>            <hr />            <h6>Team ASTER</h6>            <h6>Nineleaps Intern</h6>          </div>          <div class="utility-info">            <ul class="utility-list">              <li><a href=""><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>              <li><a href=""><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>              <li><a href=""><i class="fa fa-google-plus-square" aria-hidden="true"></i></a></li>            </ul>          </div>        </div>        <div class="gradient-overlay"></div>        <div class="color-overlay"></div>      </div>    </div>  </div>  <br />  <br /></div>'
+    var COMPONENTS = [{'name': 'AddQuesInQuizComponent', 'selector': 'app-add-ques-in-quiz'},{'name': 'AddUser1Component', 'selector': 'app-add-user1'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AnalyticsByQuizComponent', 'selector': 'app-analytics-by-quiz'},{'name': 'AnalyticsByTagComponent', 'selector': 'app-analytics-by-tag'},{'name': 'AnalyticsByUserComponent', 'selector': 'app-analytics-by-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchivedScheduleComponent', 'selector': 'app-archived-schedule'},{'name': 'ArchiveQuizComponent', 'selector': 'app-archive-quiz'},{'name': 'ContentCreatorComponent', 'selector': 'app-content-creator'},{'name': 'CreateQuestionsComponent', 'selector': 'app-create-questions'},{'name': 'CreateQuizComponent', 'selector': 'app-create-quiz'},{'name': 'CreateScheduleComponent', 'selector': 'app-create-schedule'},{'name': 'CreatetagComponent', 'selector': 'app-createtag'},{'name': 'DetailedReportComponent', 'selector': 'app-detailed-report'},{'name': 'DetailsComponent', 'selector': 'app-details'},{'name': 'EmployeeComponent', 'selector': 'app-employee'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HttpInterceptorComponent', 'selector': 'app-http-interceptor'},{'name': 'InstructionsComponent', 'selector': 'app-instructions'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainNav2Component', 'selector': 'app-main-nav2'},{'name': 'MainNav3Component', 'selector': 'app-main-nav3'},{'name': 'Mainnav4Component', 'selector': 'app-mainnav4'},{'name': 'MainNavComponent', 'selector': 'app-main-nav'},{'name': 'MockComponent', 'selector': 'app-mock'},{'name': 'MockReportComponent', 'selector': 'app-mock-report'},{'name': 'NonMockComponent', 'selector': 'app-non-mock'},{'name': 'NonMockReportComponent', 'selector': 'app-non-mock-report'},{'name': 'ReportingUserComponent', 'selector': 'app-reporting-user'},{'name': 'ResultComponent', 'selector': 'app-result'},{'name': 'RetrieveQuestionBankComponent', 'selector': 'app-retrieve-question-bank'},{'name': 'RetrieveQuizComponent', 'selector': 'retrieve-quiz'},{'name': 'RetrieveScheduleComponent', 'selector': 'app-retrieve-schedule'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TakeQuizComponent', 'selector': 'app-take-quiz'},{'name': 'TestAdminComponent', 'selector': 'app-test-admin'},{'name': 'UpdateQuestionComponent', 'selector': 'app-update-question'},{'name': 'UpdateQuizComponent', 'selector': 'app-update-quiz'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'ViewScheduleComponent', 'selector': 'app-view-schedule'},{'name': 'ViewUserDetailsComponent', 'selector': 'app-view-user-details'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'LoginComponent'};
 </script>
@@ -1019,6 +1029,7 @@ blockquote p {
 
 
 
+                   
 
 
 

@@ -61,7 +61,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/employee/result/result.component.ts</code>
+    <code>src/app/features/employee/components/result/result.component.ts</code>
 </p>
 
 
@@ -130,15 +130,19 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#correct">correct</a>
                             </li>
                             <li>
-                                <a href="#dispCard">dispCard</a>
+                                    <span class="modifier">Public</span>
+                                <a href="#displayCard">displayCard</a>
                             </li>
                             <li>
-                                <a href="#QuesWithAns">QuesWithAns</a>
+                                    <span class="modifier">Private</span>
+                                <a href="#questionsWithAnswer">questionsWithAnswer</a>
                             </li>
                             <li>
+                                    <span class="modifier">Private</span>
                                 <a href="#timeTaken">timeTaken</a>
                             </li>
                         </ul>
@@ -154,12 +158,15 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
                                 <a href="#closeFullscreen">closeFullscreen</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#goToHome">goToHome</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#ngOnInit">ngOnInit</a>
                             </li>
                         </ul>
@@ -180,12 +187,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(service: <a href="../injectables/EmployeeService.html">EmployeeService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, document: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+<code>constructor(service: <a href="../injectables/EmployeeService.html">EmployeeService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, httpService: <a href="../injectables/HttpService.html">HttpService</a>, document: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/employee/result/result.component.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/features/employee/components/result/result.component.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -219,6 +226,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>httpService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/HttpService.html" target="_self" >HttpService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -263,6 +282,7 @@
                     <a name="closeFullscreen"></a>
                     <span class="name">
                         <b>
+                            <span class="modifier">Private</span>
                             closeFullscreen
                         </b>
                         <a href="#closeFullscreen"><span class="icon ion-ios-link"></span></a>
@@ -271,15 +291,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>closeFullscreen()</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>closeFullscreen()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="71"
-                            class="link-to-prism">src/app/employee/result/result.component.ts:71</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/app/features/employee/components/result/result.component.ts:60</a></div>
                 </td>
             </tr>
 
@@ -302,6 +323,7 @@
                     <a name="goToHome"></a>
                     <span class="name">
                         <b>
+                            <span class="modifier">Public</span>
                             goToHome
                         </b>
                         <a href="#goToHome"><span class="icon ion-ios-link"></span></a>
@@ -310,15 +332,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>goToHome()</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>goToHome()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="83"
-                            class="link-to-prism">src/app/employee/result/result.component.ts:83</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="72"
+                            class="link-to-prism">src/app/features/employee/components/result/result.component.ts:72</a></div>
                 </td>
             </tr>
 
@@ -341,6 +364,7 @@
                     <a name="ngOnInit"></a>
                     <span class="name">
                         <b>
+                            <span class="modifier">Public</span>
                             ngOnInit
                         </b>
                         <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
@@ -349,15 +373,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>ngOnInit()</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngOnInit()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="22"
-                            class="link-to-prism">src/app/employee/result/result.component.ts:22</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/app/features/employee/components/result/result.component.ts:23</a></div>
                 </td>
             </tr>
 
@@ -386,6 +411,7 @@
                         <a name="correct"></a>
                         <span class="name">
                             <b>
+                                <span class="modifier">Public</span>
                             correct</b>
                             <a href="#correct"><span class="icon ion-ios-link"></span></a>
                         </span>
@@ -399,7 +425,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/employee/result/result.component.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/features/employee/components/result/result.component.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -410,14 +436,21 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="dispCard"></a>
+                        <a name="displayCard"></a>
                         <span class="name">
                             <b>
-                            dispCard</b>
-                            <a href="#dispCard"><span class="icon ion-ios-link"></span></a>
+                                <span class="modifier">Public</span>
+                            displayCard</b>
+                            <a href="#displayCard"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>false</code>
@@ -425,7 +458,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/employee/result/result.component.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/features/employee/components/result/result.component.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -436,11 +469,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="QuesWithAns"></a>
+                        <a name="questionsWithAnswer"></a>
                         <span class="name">
                             <b>
-                            QuesWithAns</b>
-                            <a href="#QuesWithAns"><span class="icon ion-ios-link"></span></a>
+                                <span class="modifier">Private</span>
+                            questionsWithAnswer</b>
+                            <a href="#questionsWithAnswer"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -452,7 +486,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/employee/result/result.component.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/features/employee/components/result/result.component.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -466,6 +500,7 @@
                         <a name="timeTaken"></a>
                         <span class="name">
                             <b>
+                                <span class="modifier">Private</span>
                             timeTaken</b>
                             <a href="#timeTaken"><span class="icon ion-ios-link"></span></a>
                         </span>
@@ -479,7 +514,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/employee/result/result.component.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/features/employee/components/result/result.component.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -493,10 +528,10 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Inject, OnInit } from &#x27;@angular/core&#x27;;
-import { EmployeeService } from &#x27;../shared/employee.service&#x27;;
-import { postReport } from &#x27;../shared/postReport.model&#x27;;
+import { EmployeeService } from &#x27;../../services/employee.service&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 import { DOCUMENT } from &#x27;@angular/common&#x27;;
+import { HttpService } from &#x27;../../../../core/http/http.service&#x27;;
 @Component({
   selector: &#x27;app-result&#x27;,
   templateUrl: &#x27;./result.component.html&#x27;,
@@ -504,37 +539,39 @@ import { DOCUMENT } from &#x27;@angular/common&#x27;;
 })
 export class ResultComponent implements OnInit {
 
-  timeTaken: any;
-  dispCard &#x3D; false;
-  QuesWithAns: any[];
-  correct: any[];
+  private timeTaken: any;
+  public displayCard: boolean &#x3D; false;
+  private questionsWithAnswer: any[];
+  public correct: any[];
 
   constructor(private service: EmployeeService,
     private router: Router,
+    private httpService: HttpService,
     @Inject(DOCUMENT) private document: any) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.correct &#x3D; [];
-    if (this.service.QuizScheduleId &#x3D;&#x3D; null) {
-      this.service.getAnswers().subscribe((res: any) &#x3D;&gt; {
-        this.QuesWithAns &#x3D; res as any[];
+    if (this.service.quizScheduleId &#x3D;&#x3D;&#x3D; null) {
+      const subscription &#x3D; this.httpService.getAnswers().subscribe((res: any) &#x3D;&gt; {
+        this.questionsWithAnswer &#x3D; res as any[];
         this.service.correctAnswerCount &#x3D; 0;
-        this.service.quesOfQuiz.forEach((e, i) &#x3D;&gt; {
-          if (e.answer &#x3D;&#x3D; this.QuesWithAns[i].Answer) {
+        this.service.questionsOfQuiz.forEach((question, index) &#x3D;&gt; {
+          if (question.answer &#x3D;&#x3D;&#x3D; this.questionsWithAnswer[index].Answer) {
             this.service.correctAnswerCount++;
           }
-          this.correct[i] &#x3D; this.QuesWithAns[i].Answer;
+          this.correct[index] &#x3D; this.questionsWithAnswer[index].Answer;
         });
-        this.dispCard &#x3D; true;
-      })
+        this.displayCard &#x3D; true;
+      });
+      subscription.unsubscribe();
     }
 
-    var body &#x3D; this.service.quesOfQuiz.map(x &#x3D;&gt; x.QuestionId);
-    var body1 &#x3D; this.service.quesOfQuiz.map(x &#x3D;&gt; x.answer);
-      var dict &#x3D; [];
-    var x &#x3D; body.length;
+    const body &#x3D; this.service.questionsOfQuiz.map(x &#x3D;&gt; x.QuestionId);
+    const body1 &#x3D; this.service.questionsOfQuiz.map(x &#x3D;&gt; x.answer);
+    var dict &#x3D; [];
+    const bodyLength &#x3D; body.length;
     this.closeFullscreen();
-    for (let i &#x3D; 0; i &lt; x; i++) {
+    for (let i &#x3D; 0; i &lt; bodyLength; i++) {
       dict.push(
         {
           QuestionId: body[i],
@@ -547,22 +584,9 @@ export class ResultComponent implements OnInit {
       QuesAnswers: dict,
       TimeTaken: this.timeTaken
     }
-
-    this.service.postanswers().subscribe(res &#x3D;&gt; {
-      if (this.service.QuizScheduleId !&#x3D; null) {
-        this.service.QuizScheduleId &#x3D; null;
-        this.service.quesOfQuiz &#x3D; null;
-        this.service.correctAnswerCount &#x3D; null;
-        this.service.QuizId &#x3D; null;
-        this.service.body &#x3D; null;
-        this.service.qnProgress &#x3D; null;
-        this.dispCard &#x3D; false;
-        this.router.navigate([(&#x27;/emp-dash&#x27;)]);
-      }
-    });
   }
 
-  closeFullscreen() {
+  private closeFullscreen(): void {
     if (this.document.exitFullscreen) {
       this.document.exitFullscreen();
     } else if (this.document.mozCancelFullscreen) {
@@ -573,14 +597,14 @@ export class ResultComponent implements OnInit {
       this.document.msExitFullscreen();
     }
   }
-  
-  goToHome() {
-    this.service.quesOfQuiz &#x3D; null;
+
+  public goToHome(): void {
+    this.service.questionsOfQuiz &#x3D; null;
     this.service.correctAnswerCount &#x3D; null;
-    this.service.QuizId &#x3D; null;
+    this.service.quizId &#x3D; null;
     this.service.body &#x3D; null;
     this.service.qnProgress &#x3D; null;
-    this.dispCard &#x3D; false;
+    this.displayCard &#x3D; false;
     this.router.navigate([&#x27;/emp-dash&#x27;]);
   }
 
@@ -589,26 +613,26 @@ export class ResultComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div *ngIf&#x3D;&quot;dispCard&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div *ngIf&#x3D;&quot;displayCard&quot;&gt;
   &lt;div class&#x3D;&quot;card blue-grey darken-1 mx-auto&quot; style&#x3D;&quot;width:80%;margin-top: 2%&quot;&gt;
     &lt;span class&#x3D;&quot;card-title&quot;&gt;
       &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;goToHome()&quot; class&#x3D;&quot;btn btn-primary banana&quot; data-toggle&#x3D;&quot;tooltip&quot;
         data-placement&#x3D;&quot;top&quot; title&#x3D;&quot;Go To Home&quot;&gt;&lt;i class&#x3D;&quot;fa fa-home fa-lg&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
       &lt;h3 class&#x3D;&quot;apricot&quot;&gt;Mock Quiz Report&lt;/h3&gt;
     &lt;/span&gt;
-    &lt;ng-container *ngFor&#x3D;&quot;let qn of service.quesOfQuiz;index as i&quot;&gt;
+    &lt;ng-container *ngFor&#x3D;&quot;let question of service.quesOfQuiz;index as i&quot;&gt;
       &lt;div class&#x3D;&quot;card-body white-text&quot;&gt;
-        &lt;strong&gt;&lt;span&gt;{{i+1}})&amp;nbsp;{{qn.QuestionStatement}}&lt;/span&gt;&lt;/strong&gt;
-        &lt;span style&#x3D;&quot;font-weight: bold;color: royalblue;float:right; margin-right: 1%&quot; *ngIf&#x3D;&quot;qn.answer&#x3D;&#x3D;0&quot;&gt;( This Question Was Skipped )&lt;/span&gt;
+        &lt;strong&gt;&lt;span&gt;{{i+1}})&amp;nbsp;{{question.QuestionStatement}}&lt;/span&gt;&lt;/strong&gt;
+        &lt;span style&#x3D;&quot;font-weight: bold;color: royalblue;float:right; margin-right: 1%&quot; *ngIf&#x3D;&quot;question.answer&#x3D;&#x3D;0&quot;&gt;( This Question Was Skipped )&lt;/span&gt;
       &lt;/div&gt;
       &lt;div&gt;
         &lt;ul&gt;
-          &lt;ng-container *ngFor&#x3D;&quot;let option of qn.Option;index as j&quot;&gt;
-            &lt;li *ngIf&#x3D;&quot;option !&#x3D; null&quot;&gt;
+          &lt;ng-container *ngFor&#x3D;&quot;let option of question.Option;index as j&quot;&gt;
+            &lt;li *ngIf&#x3D;&quot;option !&#x3D;&#x3D; null&quot;&gt;
               {{option}} &amp;nbsp; &amp;nbsp;
               &lt;span style&#x3D;&quot;color: green&quot; *ngIf&#x3D;&quot;correct[i]-1&#x3D;&#x3D;j&quot;&gt;&lt;i class&#x3D;&quot;fa fa-check-circle-o&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt;
                 Correct&lt;/span&gt;
-              &lt;span style&#x3D;&quot;color: red&quot; *ngIf&#x3D;&quot;qn.answer-1&#x3D;&#x3D;j &amp;&amp; (correct[i]-1)!&#x3D;j&quot;&gt;&lt;i class&#x3D;&quot;fa fa-times-circle-o&quot;
+              &lt;span style&#x3D;&quot;color: red&quot; *ngIf&#x3D;&quot;question.answer-1&#x3D;&#x3D;j &amp;&amp; (correct[i]-1)!&#x3D;j&quot;&gt;&lt;i class&#x3D;&quot;fa fa-times-circle-o&quot;
                   aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt; Marked&lt;/span&gt;
             &lt;/li&gt;
           &lt;/ng-container&gt;
@@ -663,8 +687,8 @@ export class ResultComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div *ngIf="dispCard">  <div class="card blue-grey darken-1 mx-auto" style="width:80%;margin-top: 2%">    <span class="card-title">      <button type="button" (click)="goToHome()" class="btn btn-primary banana" data-toggle="tooltip"        data-placement="top" title="Go To Home"><i class="fa fa-home fa-lg" aria-hidden="true"></i></button>      <h3 class="apricot">Mock Quiz Report</h3>    </span>    <ng-container *ngFor="let qn of service.quesOfQuiz;index as i">      <div class="card-body white-text">        <strong><span>{{i+1}})&nbsp;{{qn.QuestionStatement}}</span></strong>        <span style="font-weight: bold;color: royalblue;float:right; margin-right: 1%" *ngIf="qn.answer==0">( This Question Was Skipped )</span>      </div>      <div>        <ul>          <ng-container *ngFor="let option of qn.Option;index as j">            <li *ngIf="option != null">              {{option}} &nbsp; &nbsp;              <span style="color: green" *ngIf="correct[i]-1==j"><i class="fa fa-check-circle-o" aria-hidden="true"></i>                Correct</span>              <span style="color: red" *ngIf="qn.answer-1==j && (correct[i]-1)!=j"><i class="fa fa-times-circle-o"                  aria-hidden="true"></i> Marked</span>            </li>          </ng-container>        </ul>      </div>      <hr>    </ng-container>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AddQuesInQuizComponent', 'selector': 'app-add-ques-in-quiz'},{'name': 'AddUser1Component', 'selector': 'app-add-user1'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AnalyticsByQuizComponent', 'selector': 'app-analytics-by-quiz'},{'name': 'AnalyticsByTagComponent', 'selector': 'app-analytics-by-tag'},{'name': 'AnalyticsByUserComponent', 'selector': 'app-analytics-by-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchivedScheduleComponent', 'selector': 'app-archived-schedule'},{'name': 'ArchiveQuizComponent', 'selector': 'app-archive-quiz'},{'name': 'ContentCreatorComponent', 'selector': 'app-content-creator'},{'name': 'CreateQuestionsComponent', 'selector': 'app-create-questions'},{'name': 'CreateQuizComponent', 'selector': 'app-create-quiz'},{'name': 'CreateScheduleComponent', 'selector': 'app-create-schedule'},{'name': 'CreatetagComponent', 'selector': 'app-createtag'},{'name': 'DetailedReportComponent', 'selector': 'app-detailed-report'},{'name': 'DetailsComponent', 'selector': 'app-details'},{'name': 'EmployeeComponent', 'selector': 'app-employee'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HttpInterceptorComponent', 'selector': 'app-http-interceptor'},{'name': 'InstructionsComponent', 'selector': 'app-instructions'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainNav2Component', 'selector': 'app-main-nav2'},{'name': 'MainNav3Component', 'selector': 'app-main-nav3'},{'name': 'Mainnav4Component', 'selector': 'app-mainnav4'},{'name': 'MainNavComponent', 'selector': 'app-main-nav'},{'name': 'MockComponent', 'selector': 'app-mock'},{'name': 'MockReportComponent', 'selector': 'app-mock-report'},{'name': 'NonMockComponent', 'selector': 'app-non-mock'},{'name': 'NonMockReportComponent', 'selector': 'app-non-mock-report'},{'name': 'ReportingUserComponent', 'selector': 'app-reporting-user'},{'name': 'ResultComponent', 'selector': 'app-result'},{'name': 'RetrieveQuestionBankComponent', 'selector': 'app-retrieve-question-bank'},{'name': 'RetrieveQuizComponent', 'selector': 'retrieve-quiz'},{'name': 'RetrieveScheduleComponent', 'selector': 'app-retrieve-schedule'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TakeQuizComponent', 'selector': 'app-take-quiz'},{'name': 'TestAdminComponent', 'selector': 'app-test-admin'},{'name': 'UpdateQuestionComponent', 'selector': 'app-update-question'},{'name': 'UpdateQuizComponent', 'selector': 'app-update-quiz'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'ViewAnswerComponent', 'selector': 'app-view-answer'},{'name': 'ViewScheduleComponent', 'selector': 'app-view-schedule'},{'name': 'ViewUserDetailsComponent', 'selector': 'app-view-user-details'}];
+        var COMPONENT_TEMPLATE = '<div><div *ngIf="displayCard">  <div class="card blue-grey darken-1 mx-auto" style="width:80%;margin-top: 2%">    <span class="card-title">      <button type="button" (click)="goToHome()" class="btn btn-primary banana" data-toggle="tooltip"        data-placement="top" title="Go To Home"><i class="fa fa-home fa-lg" aria-hidden="true"></i></button>      <h3 class="apricot">Mock Quiz Report</h3>    </span>    <ng-container *ngFor="let question of service.quesOfQuiz;index as i">      <div class="card-body white-text">        <strong><span>{{i+1}})&nbsp;{{question.QuestionStatement}}</span></strong>        <span style="font-weight: bold;color: royalblue;float:right; margin-right: 1%" *ngIf="question.answer==0">( This Question Was Skipped )</span>      </div>      <div>        <ul>          <ng-container *ngFor="let option of question.Option;index as j">            <li *ngIf="option !== null">              {{option}} &nbsp; &nbsp;              <span style="color: green" *ngIf="correct[i]-1==j"><i class="fa fa-check-circle-o" aria-hidden="true"></i>                Correct</span>              <span style="color: red" *ngIf="question.answer-1==j && (correct[i]-1)!=j"><i class="fa fa-times-circle-o"                  aria-hidden="true"></i> Marked</span>            </li>          </ng-container>        </ul>      </div>      <hr>    </ng-container>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AddQuesInQuizComponent', 'selector': 'app-add-ques-in-quiz'},{'name': 'AddUser1Component', 'selector': 'app-add-user1'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AnalyticsByQuizComponent', 'selector': 'app-analytics-by-quiz'},{'name': 'AnalyticsByTagComponent', 'selector': 'app-analytics-by-tag'},{'name': 'AnalyticsByUserComponent', 'selector': 'app-analytics-by-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchivedScheduleComponent', 'selector': 'app-archived-schedule'},{'name': 'ArchiveQuizComponent', 'selector': 'app-archive-quiz'},{'name': 'ContentCreatorComponent', 'selector': 'app-content-creator'},{'name': 'CreateQuestionsComponent', 'selector': 'app-create-questions'},{'name': 'CreateQuizComponent', 'selector': 'app-create-quiz'},{'name': 'CreateScheduleComponent', 'selector': 'app-create-schedule'},{'name': 'CreatetagComponent', 'selector': 'app-createtag'},{'name': 'DetailedReportComponent', 'selector': 'app-detailed-report'},{'name': 'DetailsComponent', 'selector': 'app-details'},{'name': 'EmployeeComponent', 'selector': 'app-employee'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HttpInterceptorComponent', 'selector': 'app-http-interceptor'},{'name': 'InstructionsComponent', 'selector': 'app-instructions'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainNav2Component', 'selector': 'app-main-nav2'},{'name': 'MainNav3Component', 'selector': 'app-main-nav3'},{'name': 'Mainnav4Component', 'selector': 'app-mainnav4'},{'name': 'MainNavComponent', 'selector': 'app-main-nav'},{'name': 'MockComponent', 'selector': 'app-mock'},{'name': 'MockReportComponent', 'selector': 'app-mock-report'},{'name': 'NonMockComponent', 'selector': 'app-non-mock'},{'name': 'NonMockReportComponent', 'selector': 'app-non-mock-report'},{'name': 'ReportingUserComponent', 'selector': 'app-reporting-user'},{'name': 'ResultComponent', 'selector': 'app-result'},{'name': 'RetrieveQuestionBankComponent', 'selector': 'app-retrieve-question-bank'},{'name': 'RetrieveQuizComponent', 'selector': 'retrieve-quiz'},{'name': 'RetrieveScheduleComponent', 'selector': 'app-retrieve-schedule'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TakeQuizComponent', 'selector': 'app-take-quiz'},{'name': 'TestAdminComponent', 'selector': 'app-test-admin'},{'name': 'UpdateQuestionComponent', 'selector': 'app-update-question'},{'name': 'UpdateQuizComponent', 'selector': 'app-update-quiz'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'ViewScheduleComponent', 'selector': 'app-view-schedule'},{'name': 'ViewUserDetailsComponent', 'selector': 'app-view-user-details'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ResultComponent'};
 </script>
@@ -679,6 +703,7 @@ export class ResultComponent implements OnInit {
 
 
 
+                   
 
 
 

@@ -29,9 +29,6 @@ export class MainNavComponent {
 	private showSpinnner: boolean = true;
 
 	ngOnInit(): void {
-		$(document).on('click', 'ul.nav li', function () {
-			$(this).addClass('active').siblings().removeClass('active');
-		});
 		this.currentRole = this.storageService.getStorage('currentRole');
 		if (this.storageService.getStorage('id') === null) {
 			this.router.navigate(['/login']);

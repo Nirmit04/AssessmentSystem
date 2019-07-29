@@ -61,7 +61,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/reporting-user/analytics-by-user/analytics-by-user.component.ts</code>
+    <code>src/app/features/reporting-user/components/analytics-by-user/analytics-by-user.component.ts</code>
 </p>
 
 
@@ -130,6 +130,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#allUsers">allUsers</a>
                             </li>
                             <li>
@@ -154,12 +155,15 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
                                 <a href="#loadAllEmployees">loadAllEmployees</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#ngOnInit">ngOnInit</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#viewUserDetails">viewUserDetails</a>
                             </li>
                         </ul>
@@ -180,12 +184,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(service: <a href="../injectables/ReportingUserService.html">ReportingUserService</a>, dialog: MatDialog, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(service: <a href="../injectables/ReportingUserService.html">ReportingUserService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, httpService: <a href="../injectables/HttpService.html">HttpService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/reporting-user/analytics-by-user/analytics-by-user.component.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/analytics-by-user.component.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -215,10 +219,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>dialog</td>
+                                                        <td>router</td>
                                                   
                                                         <td>
-                                                                    <code>MatDialog</code>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -227,10 +231,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>router</td>
+                                                        <td>httpService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                                        <code><a href="../injectables/HttpService.html" target="_self" >HttpService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -263,6 +267,7 @@
                     <a name="loadAllEmployees"></a>
                     <span class="name">
                         <b>
+                            <span class="modifier">Private</span>
                             loadAllEmployees
                         </b>
                         <a href="#loadAllEmployees"><span class="icon ion-ios-link"></span></a>
@@ -271,15 +276,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>loadAllEmployees()</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadAllEmployees()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/app/reporting-user/analytics-by-user/analytics-by-user.component.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/analytics-by-user.component.ts:34</a></div>
                 </td>
             </tr>
 
@@ -302,6 +308,7 @@
                     <a name="ngOnInit"></a>
                     <span class="name">
                         <b>
+                            <span class="modifier">Public</span>
                             ngOnInit
                         </b>
                         <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
@@ -310,15 +317,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>ngOnInit()</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngOnInit()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/app/reporting-user/analytics-by-user/analytics-by-user.component.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/analytics-by-user.component.ts:22</a></div>
                 </td>
             </tr>
 
@@ -341,6 +349,7 @@
                     <a name="viewUserDetails"></a>
                     <span class="name">
                         <b>
+                            <span class="modifier">Public</span>
                             viewUserDetails
                         </b>
                         <a href="#viewUserDetails"><span class="icon ion-ios-link"></span></a>
@@ -349,15 +358,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>viewUserDetails(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>viewUserDetails(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/app/reporting-user/analytics-by-user/analytics-by-user.component.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/analytics-by-user.component.ts:43</a></div>
                 </td>
             </tr>
 
@@ -417,6 +427,7 @@
                         <a name="allUsers"></a>
                         <span class="name">
                             <b>
+                                <span class="modifier">Public</span>
                             allUsers</b>
                             <a href="#allUsers"><span class="icon ion-ios-link"></span></a>
                         </span>
@@ -430,7 +441,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/reporting-user/analytics-by-user/analytics-by-user.component.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/analytics-by-user.component.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -462,7 +473,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/reporting-user/analytics-by-user/analytics-by-user.component.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/analytics-by-user.component.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -494,7 +505,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/reporting-user/analytics-by-user/analytics-by-user.component.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/analytics-by-user.component.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -521,7 +532,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/reporting-user/analytics-by-user/analytics-by-user.component.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/analytics-by-user.component.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -536,10 +547,9 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { Subject, Subscription } from &#x27;rxjs&#x27;;
-import { ReportingUserService } from &#x27;../shared/reporting-user.service&#x27;;
-import { MatDialog, MatDialogConfig, MatDialogRef } from &#x27;@angular/material/dialog&#x27;;
-import { ViewUserDetailsComponent } from &#x27;./view-user-details/view-user-details.component&#x27;;
+import { ReportingUserService } from &#x27;../../services/reporting-user.service&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
+import { HttpService } from &#x27;../../../../core/http/http.service&#x27;;
 @Component({
   selector: &#x27;app-analytics-by-user&#x27;,
   templateUrl: &#x27;./analytics-by-user.component.html&#x27;,
@@ -547,39 +557,39 @@ import { Router } from &#x27;@angular/router&#x27;;
 })
 export class AnalyticsByUserComponent implements OnInit {
 
-  constructor(private service: ReportingUserService, private dialog: MatDialog, private router: Router) { }
+  constructor(private service: ReportingUserService,  
+    private router: Router,
+    private httpService: HttpService) { }
+
   dtTrigger: Subject&lt;any&gt; &#x3D; new Subject();
   subscription: Subscription;
   dtOptions: DataTables.Settings &#x3D; {};
-  allUsers: any[];
+  public allUsers: any[];
 
-  ngOnInit() {
+  public ngOnInit(): void {
 
     this.dtOptions &#x3D; {
       lengthChange: false,
       paging: false,
       search: false
     };
-    this.loadAllEmployees();
+    setTimeout(() &#x3D;&gt; {
+      this.loadAllEmployees();
+    }, 0);
   }
 
-  loadAllEmployees() {
-    this.service.getAllUsers().subscribe((res: any) &#x3D;&gt; {
+  private loadAllEmployees(): void {
+    const subscription &#x3D; this.httpService.getAllUsers().subscribe((res: any) &#x3D;&gt; {
       this.allUsers &#x3D; res as any[];
+
       this.dtTrigger.next();
     });
+    subscription.unsubscribe();
   }
 
-  viewUserDetails(index: string) {
+  public viewUserDetails(index: string): void {
     this.service.data &#x3D; this.allUsers[index];
     this.router.navigate([&#x27;/ru-dash/ana-by-user/user-detail&#x27;]);
-    // const dialogConfig &#x3D; new MatDialogConfig();
-    // dialogConfig.autoFocus &#x3D; true;
-    // dialogConfig.width &#x3D; &quot;90%&quot;;
-    // dialogConfig.disableClose &#x3D; true;
-    // dialogConfig.data &#x3D; this.allUsers[index];
-    // this.dialog.open(ViewUserDetailsComponent, dialogConfig).afterClosed().subscribe((res: any) &#x3D;&gt; {
-    // });
   }
 
 }
@@ -587,28 +597,30 @@ export class AnalyticsByUserComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;app-mainnav4&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;app-loader&gt;&lt;/app-loader&gt;
+&lt;app-mainnav4&gt;
+  &lt;h1 style&#x3D;&quot;text-align: center&quot;&gt;Analytics by User&lt;/h1&gt;
   &lt;br /&gt;&lt;br /&gt;
   &lt;table datatable [dtTrigger]&#x3D;&quot;dtTrigger&quot; class&#x3D;&quot;row-border hover table table-bordered table-striped&quot;
     [dtOptions]&#x3D;&quot;dtOptions&quot;&gt;
     &lt;thead class&#x3D;&quot;thead-dark&quot;&gt;
       &lt;tr&gt;
-        &lt;th scope&#x3D;&quot;col&quot;&gt;#S. No.&lt;/th&gt;
-        &lt;th scope&#x3D;&quot;col&quot;&gt;User Name&lt;/th&gt;
-        &lt;th scope&#x3D;&quot;col&quot;&gt;First Name&lt;/th&gt;
-        &lt;th scope&#x3D;&quot;col&quot;&gt;E-Mail&lt;/th&gt;
-        &lt;th scope&#x3D;&quot;col&quot;&gt;View Details&lt;/th&gt;
+        &lt;th&gt;#S. No.&lt;/th&gt;
+        &lt;th&gt;User Name&lt;/th&gt;
+        &lt;th&gt;Full Name&lt;/th&gt;
+        &lt;th&gt;E-Mail&lt;/th&gt;
+        &lt;th&gt;View Details&lt;/th&gt;
       &lt;/tr&gt;
     &lt;/thead&gt;
     &lt;tbody&gt;
       &lt;ng-container *ngFor&#x3D;&quot;let item of allUsers;index as i;&quot;&gt;
         &lt;tr&gt;
-          &lt;th scope&#x3D;&quot;row&quot;&gt;{{i+1}}&lt;/th&gt;
-          &lt;td scope&#x3D;&quot;row&quot;&gt;{{item.UserName}}&lt;/td&gt;
-          &lt;td scope&#x3D;&quot;row&quot;&gt;{{item.FirstName}}&lt;/td&gt;
-          &lt;td scope&#x3D;&quot;row&quot;&gt;{{item.Email}}&lt;/td&gt;
+          &lt;th&gt;{{i+1}}&lt;/th&gt;
+          &lt;td&gt;{{item.UserName}}&lt;/td&gt;
+          &lt;td&gt;{{item.FirstName}}&amp;nbsp;{{item.LastName}}&lt;/td&gt;
+          &lt;td&gt;{{item.Email}}&lt;/td&gt;
           &lt;td style&#x3D;&quot;text-align:center;&quot;&gt;
-            &lt;a class&#x3D;&quot;btn btn-sm btn-info text-white&quot; (click)&#x3D;&quot;viewUserDetails(i)&quot;&gt;&lt;i class&#x3D;&quot;fa fa-paper-plane&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+            &lt;a class&#x3D;&quot;btn btn-sm btn-info text-white&quot; (click)&#x3D;&quot;viewUserDetails(i)&quot;&gt;&lt;i aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;fa fa-paper-plane&quot;&gt;&lt;/i&gt;&lt;/a&gt;
           &lt;/td&gt;
         &lt;/tr&gt;
       &lt;/ng-container&gt;
@@ -649,8 +661,8 @@ export class AnalyticsByUserComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><app-mainnav4>  <br /><br />  <table datatable [dtTrigger]="dtTrigger" class="row-border hover table table-bordered table-striped"    [dtOptions]="dtOptions">    <thead class="thead-dark">      <tr>        <th scope="col">#S. No.</th>        <th scope="col">User Name</th>        <th scope="col">First Name</th>        <th scope="col">E-Mail</th>        <th scope="col">View Details</th>      </tr>    </thead>    <tbody>      <ng-container *ngFor="let item of allUsers;index as i;">        <tr>          <th scope="row">{{i+1}}</th>          <td scope="row">{{item.UserName}}</td>          <td scope="row">{{item.FirstName}}</td>          <td scope="row">{{item.Email}}</td>          <td style="text-align:center;">            <a class="btn btn-sm btn-info text-white" (click)="viewUserDetails(i)"><i class="fa fa-paper-plane"></i></a>          </td>        </tr>      </ng-container>    </tbody>  </table></app-mainnav4></div>'
-    var COMPONENTS = [{'name': 'AddQuesInQuizComponent', 'selector': 'app-add-ques-in-quiz'},{'name': 'AddUser1Component', 'selector': 'app-add-user1'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AnalyticsByQuizComponent', 'selector': 'app-analytics-by-quiz'},{'name': 'AnalyticsByTagComponent', 'selector': 'app-analytics-by-tag'},{'name': 'AnalyticsByUserComponent', 'selector': 'app-analytics-by-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchivedScheduleComponent', 'selector': 'app-archived-schedule'},{'name': 'ArchiveQuizComponent', 'selector': 'app-archive-quiz'},{'name': 'ContentCreatorComponent', 'selector': 'app-content-creator'},{'name': 'CreateQuestionsComponent', 'selector': 'app-create-questions'},{'name': 'CreateQuizComponent', 'selector': 'app-create-quiz'},{'name': 'CreateScheduleComponent', 'selector': 'app-create-schedule'},{'name': 'CreatetagComponent', 'selector': 'app-createtag'},{'name': 'DetailedReportComponent', 'selector': 'app-detailed-report'},{'name': 'DetailsComponent', 'selector': 'app-details'},{'name': 'EmployeeComponent', 'selector': 'app-employee'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HttpInterceptorComponent', 'selector': 'app-http-interceptor'},{'name': 'InstructionsComponent', 'selector': 'app-instructions'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainNav2Component', 'selector': 'app-main-nav2'},{'name': 'MainNav3Component', 'selector': 'app-main-nav3'},{'name': 'Mainnav4Component', 'selector': 'app-mainnav4'},{'name': 'MainNavComponent', 'selector': 'app-main-nav'},{'name': 'MockComponent', 'selector': 'app-mock'},{'name': 'MockReportComponent', 'selector': 'app-mock-report'},{'name': 'NonMockComponent', 'selector': 'app-non-mock'},{'name': 'NonMockReportComponent', 'selector': 'app-non-mock-report'},{'name': 'ReportingUserComponent', 'selector': 'app-reporting-user'},{'name': 'ResultComponent', 'selector': 'app-result'},{'name': 'RetrieveQuestionBankComponent', 'selector': 'app-retrieve-question-bank'},{'name': 'RetrieveQuizComponent', 'selector': 'retrieve-quiz'},{'name': 'RetrieveScheduleComponent', 'selector': 'app-retrieve-schedule'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TakeQuizComponent', 'selector': 'app-take-quiz'},{'name': 'TestAdminComponent', 'selector': 'app-test-admin'},{'name': 'UpdateQuestionComponent', 'selector': 'app-update-question'},{'name': 'UpdateQuizComponent', 'selector': 'app-update-quiz'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'ViewAnswerComponent', 'selector': 'app-view-answer'},{'name': 'ViewScheduleComponent', 'selector': 'app-view-schedule'},{'name': 'ViewUserDetailsComponent', 'selector': 'app-view-user-details'}];
+        var COMPONENT_TEMPLATE = '<div><app-loader></app-loader><app-mainnav4>  <h1 style="text-align: center">Analytics by User</h1>  <br /><br />  <table datatable [dtTrigger]="dtTrigger" class="row-border hover table table-bordered table-striped"    [dtOptions]="dtOptions">    <thead class="thead-dark">      <tr>        <th>#S. No.</th>        <th>User Name</th>        <th>Full Name</th>        <th>E-Mail</th>        <th>View Details</th>      </tr>    </thead>    <tbody>      <ng-container *ngFor="let item of allUsers;index as i;">        <tr>          <th>{{i+1}}</th>          <td>{{item.UserName}}</td>          <td>{{item.FirstName}}&nbsp;{{item.LastName}}</td>          <td>{{item.Email}}</td>          <td style="text-align:center;">            <a class="btn btn-sm btn-info text-white" (click)="viewUserDetails(i)"><i aria-hidden="true" class="fa fa-paper-plane"></i></a>          </td>        </tr>      </ng-container>    </tbody>  </table></app-mainnav4></div>'
+    var COMPONENTS = [{'name': 'AddQuesInQuizComponent', 'selector': 'app-add-ques-in-quiz'},{'name': 'AddUser1Component', 'selector': 'app-add-user1'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AnalyticsByQuizComponent', 'selector': 'app-analytics-by-quiz'},{'name': 'AnalyticsByTagComponent', 'selector': 'app-analytics-by-tag'},{'name': 'AnalyticsByUserComponent', 'selector': 'app-analytics-by-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchivedScheduleComponent', 'selector': 'app-archived-schedule'},{'name': 'ArchiveQuizComponent', 'selector': 'app-archive-quiz'},{'name': 'ContentCreatorComponent', 'selector': 'app-content-creator'},{'name': 'CreateQuestionsComponent', 'selector': 'app-create-questions'},{'name': 'CreateQuizComponent', 'selector': 'app-create-quiz'},{'name': 'CreateScheduleComponent', 'selector': 'app-create-schedule'},{'name': 'CreatetagComponent', 'selector': 'app-createtag'},{'name': 'DetailedReportComponent', 'selector': 'app-detailed-report'},{'name': 'DetailsComponent', 'selector': 'app-details'},{'name': 'EmployeeComponent', 'selector': 'app-employee'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HttpInterceptorComponent', 'selector': 'app-http-interceptor'},{'name': 'InstructionsComponent', 'selector': 'app-instructions'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainNav2Component', 'selector': 'app-main-nav2'},{'name': 'MainNav3Component', 'selector': 'app-main-nav3'},{'name': 'Mainnav4Component', 'selector': 'app-mainnav4'},{'name': 'MainNavComponent', 'selector': 'app-main-nav'},{'name': 'MockComponent', 'selector': 'app-mock'},{'name': 'MockReportComponent', 'selector': 'app-mock-report'},{'name': 'NonMockComponent', 'selector': 'app-non-mock'},{'name': 'NonMockReportComponent', 'selector': 'app-non-mock-report'},{'name': 'ReportingUserComponent', 'selector': 'app-reporting-user'},{'name': 'ResultComponent', 'selector': 'app-result'},{'name': 'RetrieveQuestionBankComponent', 'selector': 'app-retrieve-question-bank'},{'name': 'RetrieveQuizComponent', 'selector': 'retrieve-quiz'},{'name': 'RetrieveScheduleComponent', 'selector': 'app-retrieve-schedule'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TakeQuizComponent', 'selector': 'app-take-quiz'},{'name': 'TestAdminComponent', 'selector': 'app-test-admin'},{'name': 'UpdateQuestionComponent', 'selector': 'app-update-question'},{'name': 'UpdateQuizComponent', 'selector': 'app-update-quiz'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'ViewScheduleComponent', 'selector': 'app-view-schedule'},{'name': 'ViewUserDetailsComponent', 'selector': 'app-view-user-details'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AnalyticsByUserComponent'};
 </script>
@@ -665,6 +677,7 @@ export class AnalyticsByUserComponent implements OnInit {
 
 
 
+                   
 
 
 
