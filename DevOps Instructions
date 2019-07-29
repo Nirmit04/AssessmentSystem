@@ -1,0 +1,13 @@
+Node Version :- 10.16.0
+----------------------------------------------------------
+List of Commands Once Jenkins Job is hooked to a branch:-
+rm -rf build
+npm install -g @angular/cli
+ng build --prod --build-optimizer
+cd build
+tar -pczf ../NL-assessment-system.tgz .
+cd ../
+rm -rf NL-assessment-system
+mkdir NL-assessment-system
+tar -xvzf NL-assessment-system.tgz -C NL-assessment-system
+rm -rf NL-assessment-system.tgz]
