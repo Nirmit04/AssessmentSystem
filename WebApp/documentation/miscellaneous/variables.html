@@ -43,6 +43,7 @@
 
 
 
+                   
 
 <ol class="breadcrumb">
   <li>Miscellaneous</li>
@@ -57,7 +58,7 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
-                            <a href="#$" title="src/app/content-creator/retrieve-question-bank/retrieve-question-bank.component.ts"><b>$</b>&nbsp;&nbsp;&nbsp;(src/.../retrieve-question-bank.component.ts)</a>
+                            <a href="#$" title="src/app/features/content-creator/components/retrieve-question-bank/retrieve-question-bank.component.ts"><b>$</b>&nbsp;&nbsp;&nbsp;(src/.../retrieve-question-bank.component.ts)</a>
                         </li>
                         <li>
                             <a href="#config" title="src/app/app.module.ts"><b>config</b>&nbsp;&nbsp;&nbsp;(src/.../app.module.ts)</a>
@@ -69,7 +70,7 @@
                             <a href="#environment" title="src/environments/environment.ts"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.ts)</a>
                         </li>
                         <li>
-                            <a href="#ngxUiLoaderConfig" title="src/app/app.module.ts"><b>ngxUiLoaderConfig</b>&nbsp;&nbsp;&nbsp;(src/.../app.module.ts)</a>
+                            <a href="#ngxUiLoaderConfig" title="src/app/services/shared.module.ts"><b>ngxUiLoaderConfig</b>&nbsp;&nbsp;&nbsp;(src/.../shared.module.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -78,7 +79,7 @@
     </table>
 </section>
 
-    <h3>src/app/content-creator/retrieve-question-bank/retrieve-question-bank.component.ts</h3>
+    <h3>src/app/features/content-creator/components/retrieve-question-bank/retrieve-question-bank.component.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
             <tbody>
@@ -120,64 +121,11 @@
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>new AuthServiceConfig([
-	{
-		id: GoogleLoginProvider.PROVIDER_ID,
-		provider: new GoogleLoginProvider(&#x27;819840688710-ljvg9sqe86d08r2hlgv6e9s74i3jmiq0.apps.googleusercontent.com&#x27;)
-	}
+    {
+        id: GoogleLoginProvider.PROVIDER_ID,
+        provider: new GoogleLoginProvider(&#x27;819840688710-ljvg9sqe86d08r2hlgv6e9s74i3jmiq0.apps.googleusercontent.com&#x27;)
+    }
 ])</code>
-                        </td>
-                    </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="ngxUiLoaderConfig"></a>
-                        <span class="name">
-                            <b>
-                            ngxUiLoaderConfig</b>
-                            <a href="#ngxUiLoaderConfig"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code>NgxUiLoaderConfig</code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>{
-	bgsColor: &#x27;#00ACC1&#x27;,
-	bgsOpacity: 0.7,
-	bgsPosition: &#x27;bottom-right&#x27;,
-	bgsSize: 60,
-	bgsType: &#x27;rectangle-bounce-pulse-out&#x27;,
-	blur: 16,
-	fgsColor: &#x27;#00ACC1&#x27;,
-	fgsPosition: &#x27;center-center&#x27;,
-	fgsSize: 60,
-	fgsType: &#x27;rectangle-bounce-pulse-out&#x27;,
-	gap: 24,
-	logoPosition: &#x27;center-center&#x27;,
-	logoSize: 120,
-	logoUrl: &#x27;&#x27;,
-	masterLoaderId: &#x27;master&#x27;,
-	overlayBorderRadius: &#x27;0&#x27;,
-	overlayColor: &#x27;rgba(40, 40, 40, 0.8)&#x27;,
-	pbColor: &#x27;#00ACC1&#x27;,
-	pbDirection: &#x27;ltr&#x27;,
-	pbThickness: 1,
-	hasProgressBar: false,
-	text: &#x27;LOADING...&#x27;,
-	textColor: &#x27;#FFFFFF&#x27;,
-	textPosition: &#x27;center-center&#x27;,
-	threshold: 500
-}</code>
                         </td>
                     </tr>
 
@@ -208,7 +156,14 @@
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
-  production: true
+  appName: &#x27;internal-assessment&#x27;,
+	production: true,
+	apiURl: &#x27; http://192.168.1.141/webapiv2/api/&#x27;,
+	imgURl: &#x27; http://192.168.1.141/webapiv2/Images/&#x27;,
+	env: &#x27;local&#x27;,
+	endpoints: {
+		elasticSearchEndpoint: &#x27;&#x27;
+	}
 }</code>
                         </td>
                     </tr>
@@ -240,9 +195,70 @@
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
-  production: false,
-  apiURl: &#x27;http://e0e33b44.ngrok.io/api/&#x27;,
-  imgURl: &#x27;http://e0e33b44.ngrok.io/Images/&#x27;
+	appName: &#x27;internal-assessment&#x27;,
+	production: false,
+	apiURl: &#x27; http://192.168.1.141/webapiv2/api/&#x27;,
+	imgURl: &#x27; http://192.168.1.141/webapiv2/Images/&#x27;,
+	env: &#x27;local&#x27;,
+	endpoints: {
+		elasticSearchEndpoint: &#x27;&#x27;
+	}
+}</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/app/services/shared.module.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngxUiLoaderConfig"></a>
+                        <span class="name">
+                            <b>
+                            ngxUiLoaderConfig</b>
+                            <a href="#ngxUiLoaderConfig"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>NgxUiLoaderConfig</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+  bgsColor: &#x27;#00ACC1&#x27;,
+  bgsOpacity: 0.7,
+  bgsPosition: &#x27;bottom-right&#x27;,
+  bgsSize: 60,
+  bgsType: &#x27;rectangle-bounce-pulse-out&#x27;,
+  blur: 16,
+  fgsColor: &#x27;#00ACC1&#x27;,
+  fgsPosition: &#x27;center-center&#x27;,
+  fgsSize: 60,
+  fgsType: &#x27;rectangle-bounce-pulse-out&#x27;,
+  gap: 24,
+  logoPosition: &#x27;center-center&#x27;,
+  logoSize: 120,
+  logoUrl: &#x27;&#x27;,
+  masterLoaderId: &#x27;master&#x27;,
+  overlayBorderRadius: &#x27;0&#x27;,
+  overlayColor: &#x27;rgba(40, 40, 40, 0.8)&#x27;,
+  pbColor: &#x27;#00ACC1&#x27;,
+  pbDirection: &#x27;ltr&#x27;,
+  pbThickness: 1,
+  hasProgressBar: false,
+  text: &#x27;LOADING...&#x27;,
+  textColor: &#x27;#FFFFFF&#x27;,
+  textPosition: &#x27;center-center&#x27;,
+  threshold: 500
 }</code>
                         </td>
                     </tr>

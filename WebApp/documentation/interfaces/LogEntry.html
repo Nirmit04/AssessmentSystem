@@ -1,0 +1,389 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>web-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">web-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Interfaces</li>
+  <li>LogEntry</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/core/logs/logger.ts</code>
+        </p>
+
+
+
+        <section>
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#data">data</a>
+                                </li>
+                                <li>
+                                        <a href="#message">message</a>
+                                </li>
+                                <li>
+                                        <a href="#type">type</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section>
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="data"></a>
+                                        <span class="name"><b>data</b><a href="#data"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>data:         <code><a href="../interfaces/LogFields.html" target="_self" >LogFields</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../interfaces/LogFields.html" target="_self" >LogFields</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="message"></a>
+                                        <span class="name"><b>message</b><a href="#message"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>message:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="type"></a>
+                                        <span class="name"><b>type</b><a href="#type"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>type:         <code><a href="../miscellaneous/typealiases.html#LogType" target="_self" >LogType</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#LogType" target="_self" >LogType</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { environment } from &#x27;../../../environments/environment&#x27;;
+import * as moment from &#x27;moment&#x27;;
+import { Subject } from &#x27;rxjs&#x27;;
+import { debounceTime, filter } from &#x27;rxjs/operators&#x27;;
+import { LogFields } from &#x27;./log-data.interface&#x27;;
+
+export type LogType &#x3D; &#x27;Error&#x27; | &#x27;Warning&#x27; | &#x27;Information&#x27;;
+
+interface LogEntry {
+  type: LogType;
+  message: string;
+  data: LogFields;
+}
+
+enum LoggerEvents {
+  Flush &#x3D; 1
+}
+
+export class Logger {
+  private readonly APP_FIELD &#x3D; &#x27;Application&#x27;;
+  private readonly ENV_FIELD &#x3D; &#x27;Environment&#x27;;
+  private readonly VERSION_FIELD &#x3D; &#x27;Version&#x27;;
+  private readonly USER_NAME_FIELD &#x3D; &#x27;UserName&#x27;;
+  private readonly ELAPSED_MS_FIELD &#x3D; &#x27;ElapsedMilliseconds&#x27;;
+  private readonly REQUEST_PATH_FIELD &#x3D; &#x27;RequestPath&#x27;;
+  private readonly URL_FIELD &#x3D; &#x27;Url&#x27;;
+  private readonly APP_STATE_FIELD &#x3D; &#x27;AppState&#x27;;
+
+  private buffer: LogEntry[] &#x3D; [];
+  private flush &#x3D; new Subject&lt;LoggerEvents&gt;();
+
+  constructor(private appName: string, private logEndpoint: string) {
+    const subscription &#x3D; this.flush
+      .pipe(debounceTime(5000), filter((event) &#x3D;&gt; event &#x3D;&#x3D;&#x3D; LoggerEvents.Flush))
+      .subscribe(() &#x3D;&gt; this.flushBuffer());
+      subscription.unsubscribe();
+  }
+
+  public log(type: LogType, message: string, data: LogFields) {
+    this.buffer.push({
+      type,
+      message,
+      data
+    });
+    this.flush.next(LoggerEvents.Flush);
+  }
+
+  private flushBuffer() {
+    const data &#x3D; this.buffer.splice(0);
+
+    if (data.length &#x3D;&#x3D;&#x3D; 0) {
+      return;
+    }
+
+    const body &#x3D; data
+      .map((entry) &#x3D;&gt; this.buildLogString(entry))
+      .reduce((sum, entry) &#x3D;&gt; (sum +&#x3D; entry), &#x27;&#x27;);
+
+    if (!environment.production) {
+      // This is nested to make sure we always end up in here when running locally
+      // as in do not &amp;&amp; this to the above if...
+        // tslint:disable-next-line:no-console
+        console.log({
+          body,
+          data
+        });
+    } else {
+      const xobj &#x3D; new XMLHttpRequest();
+      // tslint:disable-next-line:no-console
+      xobj.onerror &#x3D; (err) &#x3D;&gt; console.error(err);
+      xobj.open(&#x27;POST&#x27;, this.logEndpoint, true);
+      xobj.send(body);
+    }
+  }
+
+  private buildLogString(entry: LogEntry): string {
+    const index &#x3D; this.buildIndexChunk();
+    const body &#x3D; this.buildBodyChunk(entry);
+
+    return &#x60;${index}\n${body}\n&#x60;;
+  }
+
+  private buildIndexChunk() {
+    const date &#x3D; moment();
+    const index &#x3D; {
+      index: {
+        _index: &#x60;logstash-${date.format(&#x27;YYYY.M.D&#x27;)}&#x60;,
+        _type: &#x27;logevent&#x27;
+      }
+    };
+
+    return JSON.stringify(index);
+  }
+
+  private buildBodyChunk(entry: LogEntry) {
+    const { type, message, data } &#x3D; entry;
+    const level &#x3D; type;
+    const date &#x3D; moment();
+    const messageTemplate &#x3D; this.getMessageTemplate();
+    const fields &#x3D; this.getFields(data);
+    const body &#x3D; {
+      &#x27;@timestamp&#x27;: &#x60;${date.toISOString()}&#x60;,
+      level,
+      messageTemplate,
+      message,
+      fields
+    };
+
+    return JSON.stringify(body);
+  }
+
+  private getMessageTemplate() {
+    const fields: string[] &#x3D; [
+      this.APP_FIELD,
+      this.ENV_FIELD,
+      this.VERSION_FIELD,
+      this.USER_NAME_FIELD,
+      this.ELAPSED_MS_FIELD,
+      this.REQUEST_PATH_FIELD,
+      this.URL_FIELD,
+      this.APP_STATE_FIELD
+    ];
+    const template &#x3D; fields.map((field) &#x3D;&gt; &#x60;{${field}}&#x60;).join(&#x27; - &#x27;);
+
+    return template;
+  }
+
+  private getFields(data: LogFields) {
+    return {
+      [this.APP_FIELD]: this.appName,
+      [this.ENV_FIELD]: data.environment,
+      [this.VERSION_FIELD]: data.appVersion,
+      [this.USER_NAME_FIELD]: data.userId,
+      [this.ELAPSED_MS_FIELD]: data.elapsedTime,
+      [this.REQUEST_PATH_FIELD]: data.requestPath,
+      [this.URL_FIELD]: data.url
+    };
+  }
+}</code></pre>
+    </div>
+</div>
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'LogEntry.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
