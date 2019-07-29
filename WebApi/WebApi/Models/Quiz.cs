@@ -1,13 +1,12 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
+using WebApi.Repository;
 
 namespace WebApi.Models
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class Quiz
     {
         [Key]

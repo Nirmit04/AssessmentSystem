@@ -8,6 +8,7 @@ using System.Web;
 
 namespace WebApi.Models
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class QuizSchedule
     {
         [Key]
@@ -16,9 +17,9 @@ namespace WebApi.Models
         public DateTime EndDateTime { get; set; }
         public bool ArchiveStatus { get; set; }
         public string[] UserId { get; set; }
+
         [ForeignKey("Quiz")]
         public int QuizId { get; set; }
-
         [ForeignKey("TestAdmin")]
         public string CreatedBy { get; set; }
 

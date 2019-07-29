@@ -1,35 +1,48 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using WebApi.Models;
+using WebApi.Repository;
+using WebApi.Services;
 
 namespace WebApi.Controllers
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+    [RoutePrefix("api/v1/Subject")]
+    [Authorize]
     public class SubjectController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
         private HelperClass helper = new HelperClass();
+        private ISubject rSubject = new RSubject();
 
         /// <summary>
         /// Returns all the Tags/Subjects available
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/Subject/GetSubjects")]
-        public IHttpActionResult GetSubjectAll()
+        [Route]
+        public async Task<IHttpActionResult> GetAllSubjects()
         {
-            var subject = db.Subjects.
-                Select(x => new
-                {
-                   x.SubjectId,
-                   x.Name
-                }).ToList();
+            var subject = await rSubject.GetAllSubjects();
+            return Ok(subject);
+        }
+
+        /// <summary>
+        /// Returns all the Tags/Subjects created by that particular user
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("{UserId}")]
+        public async Task<IHttpActionResult> GetSubjectsByUser([FromUri]string UserId)
+        {
+            if (!helper.ValidateUserId(UserId))
+            {
+                return BadRequest("Invalid UserId");
+            }
+            var subject = await rSubject.GetSubjectsByUser(UserId);
             return Ok(subject);
         }
 
@@ -39,12 +52,32 @@ namespace WebApi.Controllers
         /// <param name="subject">Model</param>
         /// <returns></returns>
         [HttpPost]
-        [Route("api/Subject/CreateSubject")]
-        public IHttpActionResult CreateSubject(Subject subject)
+        [Route]
+        public async Task<IHttpActionResult> CreateSubject([FromBody]Subject subject)
         {
-            db.Subjects.Add(subject);
-            db.SaveChanges();
-            return CreatedAtRoute("DefaultApi", new { id = subject.SubjectId }, subject);
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var resultSubjectCreation = await rSubject.CreateSubject(subject);
+                    if (resultSubjectCreation > 0)
+                    {
+                        return Content(HttpStatusCode.Created, subject);
+                    }
+                    else
+                    {
+                        return BadRequest("Not Created");
+                    }
+                }
+                else
+                {
+                    return BadRequest("Invalid ModelState");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }
         }
 
         /// <summary>
@@ -54,66 +87,44 @@ namespace WebApi.Controllers
         /// <param name="SubjectId">Mandatory</param>
         /// <returns></returns>
         [HttpPut]
-        [Route("api/Subject/Edit/{SubjectId}")]
-        public IHttpActionResult EditSubject(int SubjectId, Subject subject)
+        [Route("{SubjectId}")]
+        public async Task<IHttpActionResult> UpdateSubject([FromUri]int SubjectId, [FromBody]Subject subject)
         {
             if (SubjectId != subject.SubjectId)
             {
-                return BadRequest("Invalid QuestionId");
+                return BadRequest("Invalid SubjectId");
             }
-
-            db.Entry(subject).State = EntityState.Modified;
-
             try
             {
-                db.SaveChanges();
+                if (ModelState.IsValid)
+                {
+                    var resultSubjectUpdation = await rSubject.UpdateSubject(subject);
+                    if (resultSubjectUpdation > 0)
+                    {
+                        return Content(HttpStatusCode.Accepted, subject);
+                    }
+                    else
+                    {
+                        return StatusCode(HttpStatusCode.NotModified);
+                    }
+                }
+                else
+                {
+                    return BadRequest("Invalid ModelState");
+                }
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
-                if (!SubjectExists(SubjectId))
+                if (!await rSubject.SubjectExists(SubjectId))
                 {
                     return NotFound();
                 }
                 else
                 {
-                    throw;
+                    return BadRequest(ex.Message.ToString());
                 }
             }
-            return StatusCode(HttpStatusCode.OK);
         }
-
-        /// <summary>
-        /// Retuns all the Tags/Subjects created by that particular user
-        /// </summary>
-        /// <param name="UserId"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("api/Subject/GetSubjects/{UserId}")]
-        public IHttpActionResult GetSubjectAll(string UserId)
-        {
-            if (!helper.ValidateUserId(UserId))
-            {
-                return BadRequest("Invalid Id");
-            }
-            var subject = db.Subjects.Where(x => x.CreatedBy==UserId)
-                .Select(x => new
-                {
-                    x.SubjectId,
-                    x.Name,
-                    x.Department,
-                    x.CreatedBy
-                }).ToList();
-            return Ok(subject);
-        }
-
-        #region Helpers
-
-        private bool SubjectExists(int id)
-        {
-            return db.Questions.Count(x => x.QuestionId == id) > 0;
-        }
-
-        #endregion
 
     }
 }

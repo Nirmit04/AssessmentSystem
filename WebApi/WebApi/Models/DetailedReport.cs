@@ -8,6 +8,7 @@ using System.Web;
 
 namespace WebApi.Models
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class DetailedReport
     {
         [Key]
@@ -22,6 +23,7 @@ namespace WebApi.Models
         public int QuestionId { get; set; }
         [ForeignKey("User")]
         public string UserId { get; set; }
+
         [JsonIgnore]
         public virtual Question Question { get; set; }
         [JsonIgnore]

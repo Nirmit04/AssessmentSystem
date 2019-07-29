@@ -1,20 +1,111 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using WebApi.Models;
+using WebApi.Repository;
+using WebApi.Services;
 
 namespace WebApi.Controllers
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+    [RoutePrefix("api/v1/Quiz")]
+    [Authorize]
     public class QuizController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
         private HelperClass helper = new HelperClass();
+        private IQuiz rQuiz = new RQuiz();
+        private IQuestion rQuestion = new RQuestion();
+        private IQuizQuestion rQuizQuestion = new RQuizQuestion();
+        private IQuizTag rQuizTag = new RQuizTag();
+        private IQuizBuffer rQuizBuffer = new RQuizBuffer();
+        private IDetailedReport rDetailedReport = new RDetailedReport();
+        private IUserSchedule rUserSchedule = new RUserSchedule();
+        private IReport rReport = new RReport();
+
+        /// <summary>
+        /// Returns all the quiz present
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route]
+        public async Task<IHttpActionResult> GetAllQuizzes()
+        {
+            var quizList = await rQuiz.GetAllQuizzes();
+            return Ok(quizList);
+        }
+
+        /// <summary>
+        /// Adds a new question to an existing quiz
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("NameType")]
+        public async Task<IHttpActionResult> GetAllQuizNameType()
+        {
+            var quizList = await rQuiz.GetAllQuizzes();
+            return Ok(quizList);
+        }
+
+        /// <summary>
+        /// Returns the quiz created by that particular user/content creator
+        /// </summary>
+        /// <param name="UserId">User Id</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("{CreatedBy}")]
+        public async Task<IHttpActionResult> GetQuizzesByUsers([FromUri]string UserId)
+        {
+            if (!helper.ValidateUserId(UserId))
+            {
+                return BadRequest("Invalid UserId");
+            }
+            var quizList = await rQuiz.GetQuizzesByUserStatus(UserId, false);
+            return Ok(quizList);
+        }
+
+        /// <summary>
+        /// Returns all the mock quiz present
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("Mock")]
+        public async Task<IHttpActionResult> GetAllMockQuiz()
+        {
+            var quizList = await rQuiz.GetQuizzesByType("Mock", false);
+            return Ok(quizList);
+        }
+
+        /// <summary>
+        /// Returns all scheduled quiz present
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("Scheduled")]
+        public async Task<IHttpActionResult> GetAllScheduledQuiz()
+        {
+            var quizList = await rQuiz.GetQuizzesByType("Scheduled", false);
+            return Ok(quizList);
+        }
+
+        /// <summary>
+        /// Returns all the quizzes archived by that user
+        /// </summary>
+        /// <param name="UserId">UserId</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("Archived/{CreatedBy}")]
+        public async Task<IHttpActionResult> GetAllArchviedQuizzes([FromUri]string UserId)
+        {
+            if (!helper.ValidateUserId(UserId))
+            {
+                return BadRequest("Invalid User");
+            }
+            var quizList = await rQuiz.GetQuizzesByUserStatus(UserId, true);
+            return Ok(quizList);
+        }
 
         /// <summary>
         /// Created a quiz and associates the list of questions to that quiz
@@ -22,135 +113,77 @@ namespace WebApi.Controllers
         /// <param name="quiz">Quiz Model</param>
         /// <returns></returns>
         [HttpPost]
-        [Route("api/Quiz/CreateQuiz")]
-        public IHttpActionResult CreateQuiz(Quiz quiz)
+        [Route]
+        public async Task<IHttpActionResult> CreateQuiz([FromBody]Quiz quiz)
         {
-            Question ques = new Question();
-            quiz.TotalMarks = 0;
-            quiz.TotalQuestions = quiz.QuestionIds.Length;
-            foreach (var item in quiz.QuestionIds)
+            try
             {
-                ques = db.Questions.Find(item);
-                quiz.TotalMarks += ques.Marks;
-            }
-            quiz.ArchiveStatus = false;
-            quiz.QuizState = false;
-            db.Quizs.Add(quiz);
-
-            QuizQuestion quizQuestion;
-            foreach (var item in quiz.QuestionIds)
-            {
-                quizQuestion = new QuizQuestion()
+                if (ModelState.IsValid)
                 {
-                    QuizId = quiz.QuizId,
-                    QuestionId = item
-                };
-                db.QuizQuestions.Add(quizQuestion);
-                db.SaveChanges();
-            }
-            QuizTag quizTag;
-            foreach (var item in quiz.Tags)
-            {
-                quizTag = new QuizTag()
+                    var resultQuizCreation = await rQuiz.CreateQuiz(quiz);
+                    if (resultQuizCreation > 0)
+                    {
+                        return Content(HttpStatusCode.Created, quiz);
+                    }
+                    else
+                    {
+                        return BadRequest("Not Created");
+                    }
+                }
+                else
                 {
-                    QuizId = quiz.QuizId,
-                    SubjectId = item.SubjectId
-                };
-                db.QuizTags.Add(quizTag);
-                db.SaveChanges();
+                    return BadRequest("Invalid ModelState");
+                }
             }
-            db.SaveChanges();
-            return Ok();
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }
         }
 
         /// <summary>
-        /// Returns the quiz created by that particular user/content creator
-        /// </summary>
-        /// <param name="CreatedBy">User Id</param>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("api/Quiz/GetQuiz/{CreatedBy}")]
-        public IHttpActionResult GetQuiz(string CreatedBy)
-        {
-            if (db.Users.Find(CreatedBy) == null)
-            {
-                return BadRequest("Invalid UserId");
-            }
-            var quiz = db.Quizs.AsEnumerable().Where(x => x.CreatedBy == CreatedBy && x.ArchiveStatus == false)
-                 .Select(x => new
-                 {
-                     x.QuizId,
-                     x.QuizName,
-                     x.Difficulty,
-                     x.TotalQuestions,
-                     x.TotalMarks,
-                     x.ArchiveStatus,
-                     x.QuizType,
-                     x.QuizTime,
-                     x.QuizState,
-                     x.MinCutOff,
-                     Tags=helper.GetQuizSubjectTags(x.QuizId)
-                })
-                .OrderByDescending(z => z.QuizId)
-                .ToList();
-            return Ok(quiz);
-        }
-
-        /// <summary>
-        /// Used to delete a quiz based on QuizId
+        /// Used to invert a quiz archive status based on QuizId
         /// </summary>
         /// <param name="QuizId"></param>
         /// <returns></returns>
         [HttpDelete]
-        [Route("api/Quiz/Delete/{QuizId}")]
-        public IHttpActionResult Archive(int QuizId)
+        [Route("{QuizId}")]
+        public async Task<IHttpActionResult> InvertQuizArchiveStatus([FromUri]int QuizId)
         {
-            Quiz quiz = db.Quizs.Find(QuizId);
-            quiz.ArchiveStatus = true;
-            db.SaveChanges();
-            return Ok();
-        }
-
-        /// <summary>
-        /// Used to Unacrhive an Archived Quiz
-        /// </summary>
-        /// <param name="QuizId"></param>
-        /// <returns></returns>
-        [HttpPut]
-        [Route("api/Quiz/Unarchive")]
-        public IHttpActionResult UnArchive([FromBody]int QuizId)
-        {
-            Quiz quiz = db.Quizs.Find(QuizId);
+            Quiz quiz = await rQuiz.InvertQuizArchiveStatus(QuizId);
             if (quiz == null)
             {
-                return BadRequest("QuizId Not Found");
+                return NotFound();
             }
-            quiz.ArchiveStatus = false;
-            db.SaveChanges();
             return Ok();
         }
-
         
+
+        /// <summary>
+        /// Triggers TakeQuiz Function Mock and Scheduled, Creates Buffer, Resumes Quiz,  
+        /// </summary>
+        /// <param name="QuizId"></param>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
         [HttpGet]
-        [Route("api/Quiz/QuizQuestion")]
-        public IHttpActionResult GetQuizQuestionTakeQuiz([FromUri]int QuizId, [FromUri]string UserId = null)
+        [Route("TakeQuiz")]
+        public async Task<IHttpActionResult> TakeQuiz([FromUri]int QuizId, [FromUri]string UserId)
         {
-            if (db.Quizs.Find(QuizId) == null)
+            if (!helper.ValidateQuizId(QuizId))
             {
-                return BadRequest("QuizId Not Found");
+                return BadRequest("Invalid QuizId");
             }
-            var qIds = db.QuizQuestions
-                .Where(x => x.QuizId == QuizId)
-                .Select(x => x.QuestionId)
-                .ToList();
-            if (UserId != null)
+            var quiz = await rQuiz.GetQuizById(QuizId);
+            var qIds = await rQuizQuestion.GetQuizQuestionIds(QuizId);
+            if (quiz.QuizType == "Scheduled")
             {
-                if (helper.ValidateUserId(UserId) == false)
+                if (!helper.ValidateUserId(UserId))
                 {
-                    return BadRequest("UserId Not Found");
+                    return BadRequest("Invalid UserId");
                 }
-                var tempQuizBuffer = db.QuizBuffers.Where(x => x.QuizId == QuizId && x.UserId == UserId).ToList();
-                if (tempQuizBuffer.Count() == db.Quizs.Find(QuizId).TotalQuestions)
+                var tempQuizBuffer = await rQuizBuffer.GetQuizBufferUsersQuiz(QuizId, UserId);
+                
+                if (tempQuizBuffer.Count() == quiz.TotalQuestions)
                 {
                     DateTime time = DateTime.Parse("00:00:00");
                     List<GetQuestionBuffer> getQuestionBuffer = new List<GetQuestionBuffer>();
@@ -164,34 +197,46 @@ namespace WebApi.Controllers
                         });
                         time = time + TimeSpan.Parse(item.ResponseTime);
                     }
-                    var TimeLeft = DateTime.Parse(db.Quizs.Find(QuizId).QuizTime) - time;
-                    ResumeQuizBuffer resumeQuizBuffer = new ResumeQuizBuffer();
-                    resumeQuizBuffer.GetQuestionBuffers = getQuestionBuffer;
-                    resumeQuizBuffer.TimeLeft = TimeLeft.ToString();
+                    var TimeLeft = DateTime.Parse(quiz.QuizTime) - time;
+                    ResumeQuizBuffer resumeQuizBuffer = new ResumeQuizBuffer()
+                    {
+                        GetQuestionBuffers = getQuestionBuffer,
+                        TimeLeft = TimeLeft.ToString()
+                    };
                     return Ok(resumeQuizBuffer);
                 }
                 else
                 {
-                    int index = 1;
-                    QuizBuffer quizBuffer = new QuizBuffer();
-                    quizBuffer.QuizId = QuizId;
-                    quizBuffer.UserId = UserId;
-                    foreach (int qId in qIds)
+                    try
                     {
-                        quizBuffer.Index = index;
-                        quizBuffer.QuestionId = qId;
-                        index++;
-                        db.QuizBuffers.Add(quizBuffer);
-                        db.SaveChanges();
+                        if (ModelState.IsValid)
+                        {
+                            var resultQuizBufferCreation = await rQuizBuffer.CreateQuizBuffer(qIds, QuizId, UserId);
+                            if (resultQuizBufferCreation > 0)
+                            {
+                                return Ok("Quiz Started");
+                            }
+                            else
+                            {
+                                return BadRequest("QuizBuffer Not Created");
+                            }
+                        }
+                        else
+                        {
+                            return BadRequest("Invalid ModelState");
+                        }
                     }
-                    return Ok("Quiz Started");
+                    catch (Exception ex)
+                    {
+                        return BadRequest(ex.Message.ToString());
+                    }
                 }
             }
             else
             {
-                var questions = db.Questions
-                     .AsEnumerable()
-                     .Where(y => qIds.Contains(y.QuestionId))
+                var questions = await rQuestion.GetAllQuestionsByIds(qIds);
+                var questionList = questions
+                    .AsEnumerable()
                     .Select(x => new
                     {
                         x.QuestionId,
@@ -204,7 +249,7 @@ namespace WebApi.Controllers
                         Tags = helper.GetQuestionSubjectTags(x.QuestionId),
                         x.CreatedBy
                     }).ToList();
-                return Ok(questions);
+                return Ok(questionList);
             }
         }
 
@@ -215,21 +260,22 @@ namespace WebApi.Controllers
         /// <param name="QuizId"></param>
         /// <returns></returns>
         [HttpDelete]
-        [Route("api/Quiz/QuizQuestion/Delete/{QuizId}/{QuestionId}")]
-        public IHttpActionResult DeleteQuestion(int QuestionId, int QuizId)
+        [Route("DeleteQuizQuestion/{QuizId}/{QuestionId}")]
+        public async Task<IHttpActionResult> DeleteQuestion([FromUri]int QuestionId, [FromUri]int QuizId)
         {
-            if(db.Questions.Find(QuestionId)==null || db.Quizs.Find(QuizId)==null)
+            if(!helper.ValidateQuestionId(QuestionId) || !helper.ValidateQuizId(QuizId))
             {
                 return BadRequest("Invalid Parameters");
             }
-            var quizquestion = db.QuizQuestions.FirstOrDefault(x => x.QuestionId == QuestionId && x.QuizId == QuizId);
-            db.QuizQuestions.Remove(quizquestion);
-            var question = db.Questions.FirstOrDefault(x => x.QuestionId == QuestionId);
-            var quiz = db.Quizs.FirstOrDefault(x => x.QuizId == QuizId);
-            quiz.TotalMarks = quiz.TotalMarks - question.Marks;
-            quiz.TotalQuestions--;
-            db.SaveChanges();
-            return Ok();
+            var resultQuizQuestionDeletion = await rQuizQuestion.DeleteQuizQuestion(QuestionId, QuizId);
+            if (resultQuizQuestionDeletion > 0)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         /// <summary>
@@ -238,238 +284,68 @@ namespace WebApi.Controllers
         /// <param name="QuizId"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/Quiz/GetQuestionsNotInQuiz/{QuizId}")]
-        public IHttpActionResult GetQuestionsNotInQuiz(int QuizId)
+        [Route("GetQuestionsNotInQuiz/{QuizId}")]
+        public async Task<IHttpActionResult> GetQuestionsNotInQuiz([FromUri]int QuizId)
         {
-            if(db.Quizs.Find(QuizId)==null)
+            if (!helper.ValidateQuizId(QuizId))
             {
-                return BadRequest("Invalid Quizid");
+                return BadRequest("Invalid QuizId");
             }
-            var quiz = db.Quizs.Single(x => x.QuizId == QuizId);
-            var qIdsInQuiz = db.QuizQuestions.AsEnumerable()
-                .Where(x => x.QuizId == QuizId)
-                .Select(z => z.QuestionId).ToList();
-            var Tags = db.QuizTags.Where(x => x.QuizId == quiz.QuizId).Select(z => z.SubjectId);
-
-            List<SubjectTag> subjectTag = new List<SubjectTag>();
-            SubjectTag subject = new SubjectTag();
-            foreach (var item in Tags)
-            {
-                subject.SubjectId = item;
-                subject.Name = "";
-                subjectTag.Add(subject);
-            }
-            var questionIds = helper.GetQuestionIdsBySubject(subjectTag.ToArray());
-            var questions = db.Questions.AsEnumerable().Where(x =>questionIds.Contains(x.QuestionId) && x.Difficulty == quiz.Difficulty && x.QuestionType == quiz.QuizType && !qIdsInQuiz.Contains(x.QuestionId))
-               .Select(z => new
-               {
-                   z.QuestionId,
-                   z.QuestionStatement,
-                   z.Option1,
-                   z.Option2,
-                   z.Option3,
-                   z.Option4,
-                   z.Answer,
-                   z.Marks,
-                   z.QuestionType,
-                   Tags = helper.GetQuestionSubjectTags(z.QuestionId),
-                   z.Difficulty,
-                   z.ImageName
-               }).ToList();
-            return Ok(questions);
-        }
-
-        /// <summary>
-        /// Returns all the quizzes archived by that user
-        /// </summary>
-        /// <param name="CreatedBy">UserId</param>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("api/Quiz/Archived/{CreatedBy}")]
-        public IHttpActionResult ArchviedQuiz(string CreatedBy)
-        {
-            if (!helper.ValidateUserId(CreatedBy))
-            {
-                return BadRequest("Invalid User");
-            }
-            var quiz = db.Quizs.AsEnumerable().Where(x => x.CreatedBy == CreatedBy).Where(x => x.ArchiveStatus == true)
-                .Select(x => new
-                {
-                    x.QuizId,
-                    x.QuizName,
-                    x.Difficulty,
-                    x.TotalQuestions,
-                    x.TotalMarks,
-                    x.ArchiveStatus,
-                    x.QuizType,
-                    x.QuizTime,
-                    x.QuizState,
-                    x.MinCutOff,
-                    Tags = helper.GetQuizSubjectTags(x.QuizId)
-                }).ToList();
-            return Ok(quiz);
-        }
-
-        /// <summary>
-        /// Returns all the quiz present
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("api/Quiz/GetAllQuiz")]
-        public IHttpActionResult GetAllQuiz()
-        {
-            var quiz = db.Quizs.Where(x => x.ArchiveStatus == false)
-                .AsEnumerable()
-                .Select(x => new
-                {
-                    x.QuizId,
-                    x.QuizName,
-                    x.Difficulty,
-                    x.TotalQuestions,
-                    x.TotalMarks,
-                    x.ArchiveStatus,
-                    x.QuizType,
-                    x.QuizTime,
-                    x.QuizState,
-                    x.MinCutOff,
-                    Tags = helper.GetQuizSubjectTags(x.QuizId),
-                    CreatedBy = helper.GetCreatedName(x.CreatedBy)
-                })
-                .OrderByDescending(z => z.QuizId)
-                .ToList();
-            return Ok(quiz);
-        }
-
-        /// <summary>
-        /// Adds a new question to an existing quiz
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("api/Quiz/GetAllQuizName")]
-        public IHttpActionResult GetAllQuizName()
-        {
-            var quiz = db.Quizs
-                .Select(x => new
-                {
-                    x.QuizId,
-                    x.QuizName,
-                    x.QuizType
-                })
-                .ToList();
-            return Ok(quiz);
+            var quiz = await rQuiz.GetQuizById(QuizId);
+            var qIdsInQuiz = await rQuizQuestion.GetQuizQuestionIds(QuizId);
+            var subjectIds = await rQuizTag.GetQuizTagsByQuiz(quiz.QuizId);
+            var questionIdsOfSameSubject = helper.GetQuestionIdsBySubject(subjectIds);
+            var qIdsNotInQuiz = questionIdsOfSameSubject.Except(qIdsInQuiz).ToList();
+            var questionList = await rQuestion.GetQuestionsByDifficultyType(qIdsNotInQuiz, quiz.Difficulty, quiz.QuizType);
+            return Ok(questionList);
         }
 
         /// <summary>
         /// Adds a new question to an existing quiz
         /// </summary>
         /// <param name="QuizId"></param>
-        /// <param name="QuestionId"></param>
+        /// <param name="QuestionIds"></param>
         /// <returns></returns>
         [HttpPut]
-        [Route("api/Quiz/EditQuiz/AddQuestion/{QuizId}")]
-        public IHttpActionResult AddQuestions(int QuizId, [FromBody]int[] QuestionId)
+        [Route("AddQuizQuestion/{QuizId}")]
+        public async Task<IHttpActionResult> AddQuestions([FromUri]int QuizId, [FromBody]int[] QuestionIds)
         {
-            QuizQuestion quizQuestion = new QuizQuestion();
-            Quiz quiz = new Quiz();
-            Question question = new Question();
-            foreach (var item in QuestionId)
+            if (!helper.ValidateQuizId(QuizId))
             {
-                quizQuestion.QuizId = QuizId;
-                quizQuestion.QuestionId = item;
-                db.QuizQuestions.Add(quizQuestion);
-                quiz = db.Quizs.FirstOrDefault(x => x.QuizId == QuizId);
-                question = db.Questions.FirstOrDefault(x => x.QuestionId == item);
-                quiz.TotalQuestions++;
-                quiz.TotalMarks += question.Marks;
-                db.SaveChanges();
+                return NotFound();
             }
-            return Ok();
+            Quiz quiz = await rQuiz.GetQuizById(QuizId);
+            var resultQuizQuestionCreation = await rQuizQuestion.AddQuizQuestions(quiz, QuestionIds);
+            if (resultQuizQuestionCreation == QuestionIds.Count())
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         /// <summary>
-        /// Returns all the mock quiz present
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("api/Quiz/MockQuiz")]
-        public IHttpActionResult GetAllMockQuiz()
-        {
-            var Mock = db.Quizs.AsEnumerable().Where(x => x.QuizType == "Mock" && x.ArchiveStatus == false)
-                .Select(x => new
-                {
-                    x.QuizId,
-                    x.QuizName,
-                    x.Difficulty,
-                    x.TotalMarks,
-                    x.ArchiveStatus,
-                    x.QuizTime,
-                    x.QuizType,
-                    x.TotalQuestions,
-                    x.QuizState,
-                    x.MinCutOff,
-                    Tags = helper.GetQuizSubjectTags(x.QuizId),
-                    CreatedBy = helper.GetCreatedName(x.CreatedBy)
-                })
-                .OrderByDescending(z => z.QuizId)
-                .ToList();
-            return Ok(Mock);
-        }
-
-        /// <summary>
-        /// Returns all scheduled quiz present
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("api/Quiz/GetAllScheduledQuiz")]
-        public IHttpActionResult GetAllScheduledQuiz()
-        {
-            var quiz = db.Quizs.AsEnumerable().Where(x => x.QuizType == "Scheduled" && x.ArchiveStatus == false)
-                .Select(x => new
-                {
-                    x.QuizId,
-                    x.QuizName,
-                    x.Difficulty,
-                    x.TotalQuestions,
-                    x.TotalMarks,
-                    x.ArchiveStatus,
-                    x.QuizType,
-                    x.QuizTime,
-                    x.QuizState,
-                    x.MinCutOff,
-                    Tags = helper.GetQuizSubjectTags(x.QuizId),
-                    CreatedBy = helper.GetCreatedName(x.CreatedBy)
-                })
-                .OrderByDescending(z => z.QuizId)
-                .ToList();
-            return Ok(quiz);
-        }
-
-        /// <summary>
-        /// Submit the Quiz and Call Evaluation Method which creates a Report and also a Detailed Report
-        /// which calculates marks correct, incorrect, unattempted and TotalResponse of a Scheduled Quiz
+        /// Submit the Quiz and Call Evaluation Method which creates a Report and also a Detailed Report which calculates marks correct, incorrect, unattempted and TotalResponse of a Scheduled Quiz
         /// </summary>
         /// <param name="submitQuiz"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("api/Quiz/SubmitQuiz")]
-        public IHttpActionResult SubmitQuiz(SubmitQuiz submitQuiz)
+        [Route("SubmitScheduledQuiz")]
+        public async Task<IHttpActionResult> SubmitScheduledQuiz([FromBody]SubmitQuiz submitQuiz)
         {
-            var quizBuffer = db.QuizBuffers.Where(x => x.UserId == submitQuiz.UserId && x.QuizId == submitQuiz.QuizId).ToList();
-            List<int> qIDs = new List<int>();
-            foreach (var item in quizBuffer)
-            {
-                qIDs.Add(item.QuestionId);
-            }
-            var CorrectAnswers = db.Questions
+            var quizBuffer = await rQuizBuffer.GetQuizBufferUsersQuiz(submitQuiz.QuizId, submitQuiz.UserId);
+            var quiz = await rQuiz.GetQuizById(submitQuiz.QuizId);
+            List<int> qIds = quizBuffer.Select(x => x.QuestionId).ToList();
+            var questions = await rQuestion.GetAllQuestionsByIds(qIds);
+            var CorrectAnswers = questions
                 .AsEnumerable()
-                .Where(x => qIDs.Contains(x.QuestionId))
-                .OrderBy(x => { return Array.IndexOf(qIDs.ToArray(), x.QuestionId); })
+                .OrderBy(x => { return Array.IndexOf(qIds.ToArray(), x.QuestionId); })
                 .Select(z => new { z.Answer, z.Marks })
                 .ToList();
             int i = 0, CAnswer = 0, WAnswer = 0, UAttempted = 0;
             decimal TMarks = 0;
-            DetailedReport detailedReport = new DetailedReport();
-            Report report = new Report();
             foreach (var item in quizBuffer)
             {
                 if (item.MarkedAnswer == CorrectAnswers[i].Answer)
@@ -485,44 +361,66 @@ namespace WebApi.Controllers
                 {
                     WAnswer++;
                 }
-                if (db.Quizs.FirstOrDefault(x => x.QuizId == submitQuiz.QuizId).QuizType == "Scheduled")
+
+                if (quiz.QuizType == "Scheduled")
                 {
-                    detailedReport.AttemptedAnswer = item.MarkedAnswer;
-                    detailedReport.CorrectAnswer = CorrectAnswers[i].Answer;
-                    detailedReport.QuizId = submitQuiz.QuizId;
-                    detailedReport.QuestionId = item.QuestionId;
-                    detailedReport.UserId = submitQuiz.UserId;
-                    detailedReport.ResponseTime = item.ResponseTime;
-                    db.DetailedReports.Add(detailedReport);
-                    db.SaveChanges();
+                    DetailedReport detailedReport = new DetailedReport()
+                    {
+                        AttemptedAnswer = item.MarkedAnswer,
+                        CorrectAnswer = CorrectAnswers[i].Answer,
+                        QuizId = submitQuiz.QuizId,
+                        QuestionId = item.QuestionId,
+                        UserId = submitQuiz.UserId,
+                        ResponseTime = item.ResponseTime,
+                    };
+                    var resultDetailedReportCreation = await rDetailedReport.CreateDetailedReport(detailedReport);
+                    if (resultDetailedReportCreation == 0)
+                    {
+                        return BadRequest();
+                    }
                 }
                 i++;
             }
-            report.CorrectAnswers = CAnswer;
-            report.WrongAnswers = WAnswer;
-            report.UnattemptedAnswers = UAttempted;
-            report.TimeTaken = submitQuiz.TotalResponseTime;
-            //Here CorrectAnswers.Count() is TotalQuestions
-            report.Accuracy = (CAnswer * 100) / CorrectAnswers.Count();
-            report.MarksScored = TMarks;
-            report.QuizType = db.Quizs.FirstOrDefault(x => x.QuizId == submitQuiz.QuizId).QuizType;
-            report.UserId = submitQuiz.UserId;
-            report.QuizId = submitQuiz.QuizId;
-            var userSchedule = db.UserSchedules.FirstOrDefault(x => x.QuizScheduleId == submitQuiz.QuizScheduleId && x.UserId == submitQuiz.UserId && x.QuizId == submitQuiz.QuizId);
+            Report report = new Report()
+            {
+                CorrectAnswers = CAnswer,
+                WrongAnswers = WAnswer,
+                UnattemptedAnswers = UAttempted,
+                TimeTaken = submitQuiz.TotalResponseTime,
+                //Here CorrectAnswers.Count() is TotalQuestions
+                Accuracy = (CAnswer * 100) / CorrectAnswers.Count(),
+                MarksScored = TMarks,
+                QuizType = quiz.QuizType,
+                UserId = submitQuiz.UserId,
+                QuizId = submitQuiz.QuizId
+            };
+            
+            var userSchedule = await rUserSchedule.GetUserSchedule(submitQuiz.QuizScheduleId, submitQuiz.UserId, submitQuiz.QuizId);
             if (userSchedule != null)
             {
-                userSchedule.Taken = true;
+                var resultUserScheduleTakenStatusUpdation = await rUserSchedule.UpdateUserScheduleTakenStatus(userSchedule);
+                if (resultUserScheduleTakenStatusUpdation == 0)
+                {
+                    return BadRequest();
+                }
             }
-            db.Reports.Add(report);
-            if (db.Quizs.FirstOrDefault(x => x.QuizId == submitQuiz.QuizId).QuizType == "Scheduled")
-            {
-                db.QuizBuffers.RemoveRange(quizBuffer);
-            }
-            db.SaveChanges();
-            return Ok();
-        }
 
-       
+            var resultReportCreation = await rReport.CreateReport(report);
+            if (resultReportCreation == 0)
+            {
+                return BadRequest();
+            }
+            if (quiz.QuizType == "Scheduled")
+            {
+                var quizBufferCount = quizBuffer.Count();
+                var resultQuizBufferDeletion = await rQuizBuffer.DeleteQuizBuffer(quizBuffer);
+                if (resultQuizBufferDeletion != quizBuffer.Count())
+                {
+                    return BadRequest();
+                }
+            }
+            return Ok("Quiz Submitted Successfully");
+        }
 
         /// <summary>
         /// Evaluates a Mock Quiz
@@ -531,14 +429,14 @@ namespace WebApi.Controllers
         /// <param name="UserId"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/Quiz/SubmitMockQuiz")]
-        public IHttpActionResult SubmitMockQuiz([FromUri]int QuizId,[FromUri]string UserId)
+        [Route("SubmitMockQuiz")]
+        public async Task<IHttpActionResult> SubmitMockQuiz([FromUri]int QuizId,[FromUri]string UserId)
         {
-            var quizBuffer = db.QuizBuffers.Where(x => x.UserId == UserId && x.QuizId == QuizId).ToList();
+            var quizBuffer = await rQuizBuffer.GetQuizBufferUsersQuiz(QuizId, UserId);
             List<MockQuizSubmitDetails> QuesAns = new List<MockQuizSubmitDetails>();
             foreach (var item in quizBuffer)
             {
-                var question = db.Questions.Find(item.QuestionId);
+                var question = await rQuestion.GetQuestionById(item.QuestionId);
                 QuesAns.Add(new MockQuizSubmitDetails()
                 {
                     QuestionId = item.QuestionId,
@@ -548,13 +446,17 @@ namespace WebApi.Controllers
                     Option3 = question.Option3,
                     Option4 = question.Option4,
                     ImageName = question.ImageName,
-                    CorrectAnswer = db.Questions.Find(item.QuestionId).Answer,
+                    CorrectAnswer = question.Answer,
                     MarkedAnswer = item.MarkedAnswer,
                     ResponseTime = item.ResponseTime
                 });
             }
-            db.QuizBuffers.RemoveRange(quizBuffer);
-            db.SaveChanges();
+            var quizBufferCount = quizBuffer.Count();
+            var resultQuizBufferDeletion = await rQuizBuffer.DeleteQuizBuffer(quizBuffer);
+            if (resultQuizBufferDeletion != quizBuffer.Count())
+            {
+                return BadRequest();
+            }
             return Ok(QuesAns);
         }
 
@@ -565,50 +467,39 @@ namespace WebApi.Controllers
         /// <param name="TotalQuestion">Total Number of Questions to be added in the Quiz</param>
         /// <returns></returns>
         [HttpPost]
-        [Route("api/Quiz/GetRandomQuestion")]
-        public IHttpActionResult GenerateMockQuiz([FromBody]Quiz quiz, [FromUri]int TotalQuestion)
+        [Route("GenerateRandomMockQuiz")]
+        public async Task<IHttpActionResult> GenerateRandomMockQuiz([FromBody]Quiz quiz, [FromUri]int TotalQuestion)
         {
-            List<int> subjectId = new List<int>();
-            foreach (var item in quiz.Tags)
-            {
-                subjectId.Add(item.SubjectId);
-            }
+            List<int> subjectIds = quiz.Tags.Select(x => x.SubjectId).ToList();
+            var questionIdsOfSubject = helper.GetQuestionIdsBySubject(subjectIds);
+            var randomQuestionLists = await rQuestion.GetRandomQuestions(questionIdsOfSubject, quiz.Difficulty, quiz.QuizType, TotalQuestion);
+            var randomQuestions = randomQuestionLists
+                .AsEnumerable()
+                .Select(x => new
+                {
+                    x.QuestionId,
+                    x.QuestionStatement,
+                    x.Option1,
+                    x.Option2,
+                    x.Option3,
+                    x.Option4,
+                    x.ImageName,
+                    x.Marks,
+                    Tags = helper.GetQuestionSubjectTags(x.QuestionId)
+                }).ToList();
+            var randomQIds = randomQuestions.Select(x => x.QuestionId).ToList();
+            quiz.TotalMarks = randomQuestions.Sum(x => x.Marks);
+            quiz.TotalQuestions = randomQIds.Count();
             
-
-            var questions = db.Questions.AsEnumerable()
-                .Where(y =>y.Difficulty == quiz.Difficulty && y.QuestionType == quiz.QuizType)
-                .Select(x => new { x.QuestionId, x.QuestionStatement, x.Option1, x.Option2, x.Option3, x.Option4, x.ImageName, x.Marks, Tags =helper.GetQuestionSubjectTags(x.QuestionId) }).AsEnumerable()
-                .Where(z => subjectId.Contains(z.Tags.Select(t => t.SubjectId).FirstOrDefault())).Select(x=>new { x.QuestionId, x.QuestionStatement, x.Option1, x.Option2, x.Option3, x.Option4, x.ImageName, x.Marks, Tags = helper.GetQuestionSubjectTags(x.QuestionId) })
-                .OrderBy(y => Guid.NewGuid())
-                .Take(TotalQuestion)
-                .ToList();
-            foreach (var item in questions)
+            if (randomQIds.Count() > 0)
             {
-                quiz.TotalMarks += item.Marks;
-            }
-            quiz.TotalQuestions = questions.Count();
-            if (questions.Count() > 0)
-            {
-                db.Quizs.Add(quiz);
-                db.SaveChanges();
-                QuizTag quizTag;
-                foreach (var item in quiz.Tags)
+                var resultRandomQuizCreation = await rQuiz.CreateRandomQuiz(quiz, randomQIds);
+                if (resultRandomQuizCreation < 0)
                 {
-                    quizTag = new QuizTag()
-                    {
-                        QuizId = quiz.QuizId,
-                        SubjectId = item.SubjectId
-                    };
-                    db.QuizTags.Add(quizTag);
-                    db.SaveChanges();
-                }
-                foreach (var item in questions)
-                {
-                    db.QuizQuestions.Add(new QuizQuestion() { QuizId = quiz.QuizId, QuestionId = item.QuestionId });
-                    db.SaveChanges();
+                    return BadRequest();
                 }
             }
-            return Ok(questions.Count());
+            return Ok(randomQIds.Count());
         }
 
         /// <summary>
@@ -619,47 +510,66 @@ namespace WebApi.Controllers
         /// <param name="Index"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/Quiz/GetQuizQuestion")]
-        public IHttpActionResult GetQuizQuestion(string UserId, int QuizId, int Index)
+        [Route("GetQuizQuestion")]
+        public async Task<IHttpActionResult> GetQuizQuestion(string UserId, int QuizId, int Index)
         {
-            var quizBuffer = db.QuizBuffers.FirstOrDefault(x => x.Index == Index && x.QuizId == QuizId && x.UserId == UserId);
-            if (helper.ValidateUserId(UserId)==false || quizBuffer == null)
+            var quizBuffer = await rQuizBuffer.GetQuizBuffer(UserId, QuizId, Index);
+            if (!helper.ValidateUserId(UserId) || quizBuffer == null)
             {
-                return BadRequest("Invalid User or Index");
+                return BadRequest("Invalid UserId or Index");
             }
-            var question = db.Questions.Where(y => y.QuestionId == quizBuffer.QuestionId)
-                .AsEnumerable()
-                .Select(x => new
-                {
-                    x.QuestionId,
-                    x.QuestionStatement,
-                    Option = new string[] { x.Option1, x.Option2, x.Option3, x.Option4 },
-                    x.ImageName,
-                    x.Marks,
-                    x.QuestionType,
-                    x.Difficulty,
-                    Tags = helper.GetQuestionSubjectTags(x.QuestionId),
-                    x.CreatedBy,
-                    quizBuffer.MarkedAnswer,
-                    quizBuffer.ResponseTime
-                }).Single();
-            return Ok(question);
+            var question = await rQuestion.GetQuestionById(quizBuffer.QuestionId);
+
+            TestQuestion testQuestion = new TestQuestion()
+            {
+                QuestionId = question.QuestionId,
+                QuestionStatement = question.QuestionStatement,
+                Option = new string[] { question.Option1, question.Option2, question.Option3, question.Option4 },
+                ImageName = question.ImageName,
+                Marks = question.Marks,
+                QuestionType = question.QuestionType,
+                Difficulty = question.Difficulty,
+                Tags = helper.GetQuestionSubjectTags(question.QuestionId),
+                CreatedBy = question.CreatedBy,
+                MarkedAnswer = quizBuffer.MarkedAnswer,
+                ResponseTime = quizBuffer.ResponseTime
+            };
+            return Ok(testQuestion);
         }
 
+        /// <summary>
+        /// Submit the Quiz Question one by one
+        /// </summary>
+        /// <param name="quizBuffer"></param>
+        /// <returns></returns>
         [HttpPut]
-        [Route("api/Quiz/SubmitQuestion")]
-        public IHttpActionResult SubmitQuizQuestion(QuizBuffer quizBuffer)
+        [Route("SubmitQuestion")]
+        public async Task<IHttpActionResult> SubmitQuizQuestion([FromBody]QuizBuffer quizBuffer)
         {
-            var buffer = db.QuizBuffers.FirstOrDefault(x => x.Index == quizBuffer.Index && x.QuizId == quizBuffer.QuizId && x.UserId == quizBuffer.UserId);
-            if (helper.ValidateUserId(quizBuffer.UserId) == false || buffer == null)
+            var tempBuffer = await rQuizBuffer.GetQuizBuffer(quizBuffer.UserId, quizBuffer.QuizId, quizBuffer.Index);
+            if (!helper.ValidateUserId(quizBuffer.UserId) || tempBuffer == null)
             {
-                return BadRequest("Invalid User or Index");
+                return BadRequest("Invalid UserId or Index");
             }
-            buffer.MarkedAnswer=quizBuffer.MarkedAnswer;
-            buffer.ResponseTime = quizBuffer.ResponseTime;
-            buffer.State = quizBuffer.State;
-            db.SaveChanges();
-            return Ok();
+            tempBuffer.MarkedAnswer = quizBuffer.MarkedAnswer;
+            tempBuffer.ResponseTime = quizBuffer.ResponseTime;
+            tempBuffer.State = quizBuffer.State;
+            if (ModelState.IsValid)
+            {
+                var resultQuizBufferUpdation = await rQuizBuffer.UpdateQuizBuffer(tempBuffer);
+                if (resultQuizBufferUpdation > 0)
+                {
+                    return Ok("Question Submitted");
+                }
+                else
+                {
+                    return StatusCode(HttpStatusCode.NotModified);
+                }
+            }
+            else
+            {
+                return BadRequest("Invalid ModelState");
+            }
         }
 
     }

@@ -8,6 +8,7 @@ using System.Web;
 
 namespace WebApi.Models
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class QuizQuestion
     {
         [Key, Column(Order = 0), ForeignKey("Quiz")]

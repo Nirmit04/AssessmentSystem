@@ -1,18 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using WebApi.Models;
+using WebApi.Repository;
+using WebApi.Services;
 
 namespace WebApi.Controllers
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+    [RoutePrefix("api/v1/UserSchedule")]
+    [Authorize]
     public class UserScheduleController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private HelperClass helper = new HelperClass();
+        private IQuiz rQuiz = new RQuiz();
+        private IQuizSchedule rQuizSchedule = new RQuizSchedule();
+        private IUserSchedule rUserSchedule = new RUserSchedule();
+        private IUser rUser = new RUser();
 
         /// <summary>
         /// Returns the users which are not present/scheduled in a particular Schedule
@@ -20,30 +26,17 @@ namespace WebApi.Controllers
         /// <param name="QuizScheduleId"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/UserSchedule/UserNotAssignedQuiz/{QuizScheduleId}")]
-        public IHttpActionResult UserNotAssignedQuiz(int QuizScheduleId)
+        [Route("UserNotAssignedQuiz/{QuizScheduleId}")]
+        public async Task<IHttpActionResult> UserNotAssignedQuiz([FromUri]int QuizScheduleId)
         {
             if(!helper.ValidateQuizSchedule(QuizScheduleId))
             {
-                return BadRequest("Invalid Id");
+                return BadRequest("Invalid QuizScheduleId");
             }
-            int QuizId = db.QuizSchedules.FirstOrDefault(z => z.QuizScheduleId == QuizScheduleId).QuizId;
-            var userIds = db.UserSchedules.AsEnumerable()
-                .Where(x => x.QuizId == QuizId)
-                .Select(y => y.UserId).ToList();
-            var users = db.Users
-                .Where(x => !userIds.Contains(x.Id))
-                .Select(z => new
-                {
-                    z.Id,
-                    z.UserName,
-                    z.FirstName,
-                    z.LastName,
-                    z.Email,
-                    z.ImageURL,
-                    z.GoogleId
-                }).ToList();
-            return Ok(users);
+            var quizSchedule = await rQuizSchedule.GetQuizScheduleById(QuizScheduleId);
+            var userIds = await rUserSchedule.GetUserScheduleUserIdsByQuizId(quizSchedule.QuizId);
+            var userList = await rUser.GetUsersByUserIdsNotAssignedQuiz(userIds);
+            return Ok(userList);
         }
 
         /// <summary>
@@ -52,34 +45,16 @@ namespace WebApi.Controllers
         /// <param name="QuizScheduleId"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/UserSchedule/UserAssignedQuiz/{QuizScheduleId}")]
-        public IHttpActionResult UserAssignedQuiz(int QuizScheduleId)
+        [Route("UserAssignedQuiz/{QuizScheduleId}")]
+        public async Task<IHttpActionResult> UserAssignedQuiz([FromUri]int QuizScheduleId)
         {
             if (!helper.ValidateQuizSchedule(QuizScheduleId))
             {
-                return BadRequest("Invalid Id");
+                return BadRequest("Invalid QuizScheduleId");
             }
-            var userScheduleUserIds = db.UserSchedules.AsEnumerable()
-                .Where(x => x.QuizScheduleId == QuizScheduleId)
-                .Select(y => y.UserId).ToList();
-            var users = db.Users
-                .Where(x => userScheduleUserIds.Contains(x.Id))
-                .Select(z => new
-                {
-                    z.Id,
-                    z.UserName,
-                    z.FirstName,
-                    z.LastName,
-                    z.Email,
-                    z.ImageURL,
-                    z.GoogleId,
-                    QuizTaken = db.UserSchedules.FirstOrDefault(x => x.UserId == z.Id && x.QuizScheduleId == QuizScheduleId).Taken
-                }).ToList();
-            if (users.Count() > 0)
-                return Ok(users);
-            else
-                return Ok("null");
-
+            var userIds = await rUserSchedule.GetUserScheduleUserIdsByQuizScheduleId(QuizScheduleId);
+            var users = await rUser.GetUsersByUserIdsAssignedQuiz(userIds, QuizScheduleId);
+            return Ok(users);
         }
 
         /// <summary>
@@ -89,24 +64,30 @@ namespace WebApi.Controllers
         /// <param name="UserId"></param>
         /// <returns></returns>
         [HttpDelete]
-        [Route("api/UserSchedule/UserDelete/{QuizScheduleId}/{UserId}")]
-        public IHttpActionResult UserDelete(int QuizScheduleId, string UserId)
+        [Route("{QuizScheduleId}/{UserId}")]
+        public async Task<IHttpActionResult> UserScheduleDelete([FromUri]int QuizScheduleId, [FromUri]string UserId)
         {
             if ((!helper.ValidateQuizSchedule(QuizScheduleId)) || (!helper.ValidateUserId(UserId)))
             {
                 return BadRequest("Invalid Id");
             }
-            int QuizId = db.QuizSchedules.FirstOrDefault(x => x.QuizScheduleId == QuizScheduleId).QuizId;
-            UserSchedule user = db.UserSchedules.SingleOrDefault(x => x.QuizScheduleId == QuizScheduleId && x.UserId == UserId && x.QuizId == QuizId);
-            if (user.Taken == false)
+            var quizSchedule = await rQuizSchedule.GetQuizScheduleById(QuizScheduleId);
+            UserSchedule userSchedule = await rUserSchedule.GetUserSchedule(QuizScheduleId, UserId, quizSchedule.QuizId);
+            if (userSchedule.Taken == false)
             {
-                db.UserSchedules.Remove(user);
-                db.SaveChanges();
-                return Ok();
+                var resultUserScheduleDeletion = await rUserSchedule.DelteUserSchedule(userSchedule);
+                if (resultUserScheduleDeletion > 0)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest();
+                }
             }
             else
             {
-                return BadRequest("CantDeleteUser");
+                return BadRequest("Can't Delete User");
             }   
         }
 
@@ -117,27 +98,33 @@ namespace WebApi.Controllers
         /// <param name="UserIds"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("api/UserSchedule/UserAdd/{QuizScheduleId}")]
-        public IHttpActionResult UserAdd(int QuizScheduleId, [FromBody] string[] UserIds)
+        [Route("{QuizScheduleId}")]
+        public async Task<IHttpActionResult> AddUserSchedule([FromUri]int QuizScheduleId, [FromBody] string[] UserIds)
         {
             if (!helper.ValidateQuizSchedule(QuizScheduleId))
             {
                 return BadRequest("Invalid Id");
             }
-            UserSchedule userSchedule = new UserSchedule();
-            userSchedule.QuizScheduleId = QuizScheduleId;
-            userSchedule.QuizId = db.QuizSchedules.FirstOrDefault(x => x.QuizScheduleId == QuizScheduleId).QuizId;
-            userSchedule.Taken = false;
+            var quizSchedule = await rQuizSchedule.GetQuizScheduleById(QuizScheduleId);
+            UserSchedule userSchedule = new UserSchedule()
+            {
+                QuizScheduleId = QuizScheduleId,
+                QuizId = quizSchedule.QuizId,
+                Taken = false
+            };
             foreach (var item in UserIds)
             { 
                 userSchedule.UserId = item;
-                db.UserSchedules.Add(userSchedule);
-                db.SaveChanges();
+                var resultUserScheduleCreation = await rUserSchedule.CreateUserSchedule(userSchedule);
+                if (resultUserScheduleCreation == 0)
+                {
+                    return BadRequest("Something went Wrong !");
+                }
             }
-            var userEmails = db.Users.Where(x => UserIds.Contains(x.Id)).Select(y => y.Email).ToArray();
-            var quizId = db.QuizSchedules.Single(x => x.QuizScheduleId == QuizScheduleId).QuizId;
-            var time = db.Quizs.Single(y => y.QuizId == quizId).QuizTime;
-            var EmailResponse = helper.InviteUser(userEmails, "Click on the Link Below to take Quiz. \n <a href=\"" + "http://localhost:4200/?take-quiz=" + quizId +"&schedule-id="+ QuizScheduleId + "&time="+ time +"\">Click Here</a>");
+            var userEmails = await rUser.GetAllUserEmails(UserIds);
+            var quiz = await rQuiz.GetQuizById(quizSchedule.QuizId);
+            var Time = quiz.QuizTime;
+            var EmailResponse = helper.InviteUser(userEmails, "Click on the Link Below to take Quiz. \n <a href=\"" + "http://localhost:4200/?take-quiz=" + quiz.QuizId +"&schedule-id="+ QuizScheduleId + "&time="+ Time +"\">Click Here</a>");
             return Ok();
         }
 
@@ -146,40 +133,23 @@ namespace WebApi.Controllers
         /// </summary>
         /// <param name="QuizScheduleId"></param>
         /// <param name="UserId"></param>
+        /// <param name="QuizId"></param>
         /// <returns></returns>
         [HttpPut]
-        [Route("api/UserSchedule/QuizAttemptStatus/{QuizScheduleId}/{UserId}")]
-        public IHttpActionResult QuizAttemptStatus(int QuizScheduleId, string UserId)
+        [Route("QuizAttemptStatus/{QuizScheduleId}/{UserId}/{QuizId}")]
+        public async Task<IHttpActionResult> QuizAttemptStatus([FromUri]int QuizScheduleId, [FromUri]string UserId, [FromUri]int QuizId)
         {
-            if ((!helper.ValidateQuizSchedule(QuizScheduleId)) || (!helper.ValidateUserId(UserId)))
+            if ((!helper.ValidateQuizSchedule(QuizScheduleId)) || (!helper.ValidateUserId(UserId)) || (!helper.ValidateQuizId(QuizId)))
             {
                 return BadRequest("Invalid Id");
             }
-            var user = db.UserSchedules.SingleOrDefault(x => x.QuizScheduleId == QuizScheduleId && x.UserId == UserId);
-            user.Taken = true;
-            db.SaveChanges();
+            var userSchedule = await rUserSchedule.GetUserSchedule(QuizScheduleId, UserId, QuizId);
+            var resultUserScheduleTakenStatusUpdation = await rUserSchedule.UpdateUserScheduleTakenStatus(userSchedule);
+            if (resultUserScheduleTakenStatusUpdation == 0)
+            {
+                return BadRequest();
+            }
             return Ok();
-        }
-
-        /// <summary>
-        /// Returns UserStatus of a particular QuizSchedule
-        /// </summary>
-        /// <param name="QuizScheduleId"></param>
-        /// <param name="UserId"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("api/UserSchedule/Status/{ScheduleId}/{UserId}")]
-        public IHttpActionResult UserStatus(int QuizScheduleId, string UserId)
-        {
-            var user = db.UserSchedules.Where(x => x.QuizScheduleId == QuizScheduleId && x.UserId == UserId);
-            if (User != null)
-            {
-                return Ok("true");
-            }
-            else
-            {
-                return BadRequest("false");
-            }
         }
 
         /// <summary>
@@ -189,13 +159,13 @@ namespace WebApi.Controllers
         /// <param name="QuizId"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("api/UserSchedule/ValidQuizTaker/{UserId}")]
-        public IHttpActionResult ValidQuizTaker(string UserId, [FromBody]int QuizId)
+        [Route("ValidQuizTaker/{UserId}")]
+        public async Task<IHttpActionResult> ValidQuizTaker(string UserId, [FromBody]int QuizId)
         {
-            var userSchedule = db.UserSchedules.FirstOrDefault(x => x.QuizId == QuizId && x.UserId == UserId && x.Taken == false);
+            var userSchedule = await rUserSchedule.ValidateUserSchedule(QuizId, UserId, false);
             if (userSchedule != null)
             {
-                var quizSchedule = db.QuizSchedules.FirstOrDefault(x => x.QuizId == QuizId && x.QuizScheduleId == userSchedule.QuizScheduleId);
+                var quizSchedule = await rQuizSchedule.GetQuizScheduleById(userSchedule.QuizScheduleId);
                 if (DateTime.UtcNow >= quizSchedule.StartDateTime && DateTime.UtcNow <= quizSchedule.EndDateTime)
                 {
                     return Ok();
@@ -206,8 +176,7 @@ namespace WebApi.Controllers
                 }
                 else
                 {
-                    quizSchedule.ArchiveStatus = true;
-                    userSchedule.Taken = true;
+                    await rQuizSchedule.InValidateSchedule(quizSchedule, userSchedule);
                     return BadRequest("Quiz has Expired");
                 }
             }

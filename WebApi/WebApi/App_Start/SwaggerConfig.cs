@@ -7,7 +7,8 @@ using Swashbuckle.Application;
 
 namespace WebApi
 {
-	public class SwaggerConfig
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+    public class SwaggerConfig
 	{
 		public static void Register()
 		{
@@ -256,5 +257,5 @@ namespace WebApi
 		{
 			return System.AppDomain.CurrentDomain.BaseDirectory + @"\bin\WebApi.xml";
 		}
-	}
+    }
 }

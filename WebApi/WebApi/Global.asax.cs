@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace WebApi
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class WebApiApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
@@ -14,7 +15,6 @@ namespace WebApi
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-
         }
     }
 }

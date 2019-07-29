@@ -3,15 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using WebApi.Models;
+using WebApi.Repository;
+using WebApi.Services;
 
 namespace WebApi.Controllers
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+    [RoutePrefix("api/v1/ReportingUser")]
+    [Authorize]
     public class ReportingUserController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private HelperClass helper = new HelperClass();
+        private IReport rReport = new RReport();
+        private ISubject rSubject = new RSubject();
+        private IQuestion rQuestion = new RQuestion();
+        private IQuiz rQuiz = new RQuiz();
+        private IUser rUser = new RUser();
+        private IQuizTag rQuizTag = new RQuizTag();
 
         /// <summary>
         /// Returns the complete analysis of a particular user such as Accuracy, Highest ,Lowest Marks,Performace, Average Score
@@ -19,17 +30,17 @@ namespace WebApi.Controllers
         /// <param name="UserId"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/ReportingUser/AnalyticsByUser/{UserId}")]
-        public IHttpActionResult AnalyticsByUser(string UserId)
+        [Route("AnalyticsByUser/{UserId}")]
+        public async Task<IHttpActionResult> AnalyticsByUser([FromUri]string UserId)
         {
-            if (db.Users.Find(UserId) != null)
+            if (helper.ValidateUserId(UserId))
             {
                 UserAnalytics userAnalytics = new UserAnalytics();
-                var userReport = db.Reports.Where(x => x.UserId == UserId).ToList();
+                var userReport = await rReport.GetQuizReportByUser(UserId);
                 if (userReport.Count() != 0)
                 {
-                    userAnalytics.MockCount = db.Reports.Where(x => x.UserId == UserId && x.QuizType == "Mock").Count();
-                    userAnalytics.ScheduledCount = db.Reports.Where(x => x.UserId == UserId && x.QuizType == "Scheduled").Count();
+                    userAnalytics.MockCount = await rReport.GetQuizReportByQuizTypeCount(UserId, "Mock");
+                    userAnalytics.ScheduledCount = await rReport.GetQuizReportByQuizTypeCount(UserId, "Scheduled");
                     userAnalytics.TotalQuizCount = userReport.Count();
                     userAnalytics.HighestScore = userReport.Select(max => max.MarksScored).DefaultIfEmpty().Max();
                     userAnalytics.LowestScore = userReport.Select(max => max.MarksScored).DefaultIfEmpty().Min();
@@ -74,36 +85,33 @@ namespace WebApi.Controllers
         /// <param name="QuizId"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/ReportingUser/AnalyticsByQuiz/{QuizId}")]
-        public IHttpActionResult AnalyticsByQuiz(int QuizId)
+        [Route("AnalyticsByQuiz/{QuizId}")]
+        public async Task<IHttpActionResult> AnalyticsByQuiz([FromUri]int QuizId)
         {
-            if (db.Quizs.Find(QuizId) != null)
+            if (helper.ValidateQuizId(QuizId))
             {
-                var quizreports = db.Reports.Where(x => x.QuizId == QuizId).ToList();
+                var quizReports = await rReport.GetQuizReportByQuiz(QuizId);
                 decimal TotalAccuracy = 0, TotalMarks = 0;
-                Property property = new Property();
-                if (quizreports.Count() != 0)
+                QuizProperty quizProperty = new QuizProperty();
+                if (quizReports.Count() != 0)
                 {
-                    property.HighestScore = quizreports.Select(x => x.MarksScored).DefaultIfEmpty().Max();
-                    property.LowestScore = quizreports.Select(x => x.MarksScored).DefaultIfEmpty().Min();
-                    property.NoOfQuiz = quizreports.Count();
-                    foreach (var item in quizreports)
-                    {
-                        TotalAccuracy += item.Accuracy;
-                        TotalMarks += item.MarksScored;
-                    }
+                    quizProperty.HighestScore = quizReports.Select(x => x.MarksScored).DefaultIfEmpty().Max();
+                    quizProperty.LowestScore = quizReports.Select(x => x.MarksScored).DefaultIfEmpty().Min();
+                    quizProperty.NoOfQuiz = quizReports.Count();
+                    TotalAccuracy = quizReports.Sum(x => x.Accuracy);
+                    TotalMarks = quizReports.Sum(x => x.MarksScored);
                     try
                     {
-                        property.AverageMarks = Math.Round(TotalMarks / property.NoOfQuiz, 2);
-                        property.Accuracy = Math.Round(TotalAccuracy / property.NoOfQuiz, 2);
+                        quizProperty.AverageMarks = Math.Round(TotalMarks / quizProperty.NoOfQuiz, 2);
+                        quizProperty.Accuracy = Math.Round(TotalAccuracy / quizProperty.NoOfQuiz, 2);
                     }
                     catch (Exception)
                     {
                         throw;
                     }
-                    return Ok(property);
+                    return Ok(quizProperty);
                 }
-                return Ok(property);
+                return Ok(quizProperty);
             }
             else
             {
@@ -116,36 +124,31 @@ namespace WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/ReportingUser/AnalyticsByTag")]
-        public IHttpActionResult AnalyticsByTag()
+        [Route("AnalyticsByTag")]
+        public async Task<IHttpActionResult> AnalyticsByTag()
         {        
             List<SubjectAnalytics> subjectAnalyticsList = new List<SubjectAnalytics>();
-            var SubjectIds = db.Subjects.Select(x => x.SubjectId).ToList();
-            if (SubjectIds != null)
+            var subjectList = await rSubject.GetAllSubjects();
+            if (subjectList != null)
             {
-                foreach (var subjectId in SubjectIds)
+                foreach (var subject in subjectList)
                 {
                     SubjectAnalytics subjectAnalysis = new SubjectAnalytics();
-                    subjectAnalysis.SubjectId = subjectId;
-                    subjectAnalysis.SubjectName = db.Subjects.FirstOrDefault(x => x.SubjectId == subjectId).Name;
-                    var QuizIds = db.QuizTags.Where(x => x.SubjectId == subjectId).Select(x => x.QuizId).ToList();
-                    var quizReports = db.Reports.Where(x => QuizIds.Contains(x.QuizId)).ToList();
+                    subjectAnalysis.SubjectId = subject.SubjectId;
+                    subjectAnalysis.SubjectName = subject.Name;
+                    var quizIds = await rQuizTag.GetQuizTagsBySubject(subject.SubjectId);
+                    var quizReports = await rReport.GetQuizReportByQuizIds(quizIds);
                     if (quizReports.Count() != 0)
                     {
-                        subjectAnalysis.Properties.HighestScore = quizReports.Select(max => max.MarksScored).DefaultIfEmpty().Max();
-                        subjectAnalysis.Properties.LowestScore = quizReports.Select(max => max.MarksScored).DefaultIfEmpty().Min();
-                        decimal TotalAccuracy = 0;
-                        decimal TotalMarks = 0;
-                        foreach (var item in quizReports)
-                        {
-                            TotalAccuracy = TotalAccuracy + item.Accuracy;
-                            TotalMarks = TotalMarks + item.MarksScored;
-                        }
+                        subjectAnalysis.QuizProperties.HighestScore = quizReports.Select(max => max.MarksScored).DefaultIfEmpty().Max();
+                        subjectAnalysis.QuizProperties.LowestScore = quizReports.Select(max => max.MarksScored).DefaultIfEmpty().Min();
+                        decimal TotalAccuracy = quizReports.Sum(x => x.Accuracy);
+                        decimal TotalMarks = quizReports.Sum(x => x.MarksScored); ;
                         try
                         {
-                            subjectAnalysis.Properties.Accuracy = Math.Round(TotalAccuracy / quizReports.Count(),2);
-                            subjectAnalysis.Properties.NoOfQuiz = QuizIds.Count();
-                            subjectAnalysis.Properties.AverageMarks = Math.Round(TotalMarks / quizReports.Count(),2);
+                            subjectAnalysis.QuizProperties.Accuracy = Math.Round(TotalAccuracy / quizReports.Count(),2);
+                            subjectAnalysis.QuizProperties.NoOfQuiz = quizIds.Count();
+                            subjectAnalysis.QuizProperties.AverageMarks = Math.Round(TotalMarks / quizReports.Count(),2);
                         }
                         catch(Exception)
                         {
@@ -155,26 +158,26 @@ namespace WebApi.Controllers
                     subjectAnalyticsList.Add(subjectAnalysis);
                 }
             }
-            return Ok(subjectAnalyticsList.OrderByDescending(x => x.Properties.Accuracy));
+            return Ok(subjectAnalyticsList.OrderByDescending(x => x.QuizProperties.Accuracy));
         }
+
         /// <summary>
         /// Returns the stats of the entire system such as QuizCount, QuestionCount, UserCount, SubjectCount
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/ReportingUser/Stats")]
-        public IHttpActionResult AllStats()
+        [Route("Stats")]
+        public async Task<IHttpActionResult> Stats()
         {
             Dictionary<string, string> allStats = new Dictionary<string, string>();
-            var quizCount = db.Quizs.Count();
-            var userCount = db.Users.Count();
-            var questionCount = db.Questions.Count();
-            var subjectCount = db.Subjects.Count();
-            allStats.Add("QuizCount",quizCount.ToString());
-            allStats.Add("QuestionCount", questionCount.ToString());
-            allStats.Add("UserCount", userCount.ToString());
-            allStats.Add("SubjectCount", subjectCount.ToString());
-
+            var quizzes = await rQuiz.GetAllQuizzes();
+            var users = await rUser.GetAllUsers();
+            var questionsCount = await rQuestion.GetAllQuestionsCount();
+            var subjects = await rSubject.GetAllSubjects();
+            allStats.Add("QuizCount",quizzes.Count().ToString());
+            allStats.Add("QuestionCount", questionsCount.ToString());
+            allStats.Add("UserCount", users.Count().ToString());
+            allStats.Add("SubjectCount", subjects.Count().ToString());
             return Ok(allStats);
         }
 

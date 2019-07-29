@@ -3,175 +3,139 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
-using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.Description;
 using System.Web.Script.Serialization;
 using WebApi.Models;
-
+using WebApi.Repository;
+using WebApi.Services;
 
 namespace WebApi.Controllers
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+    [RoutePrefix("api/v1/Question")]
+    [Authorize]
     public class QuestionController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        
         private HelperClass helper = new HelperClass();
-
-        /// <summary>
-        /// Returns all the questions of a particular Subject
-        /// </summary>
-        /// <param name="QuestionSpecs"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("api/Question/GetQuestionBySubjects")]
-        public IHttpActionResult GetQuestion(QuestionSpecs QuestionSpecs)
-        {
-            foreach (var item in QuestionSpecs.Tags)
-            {
-                if (db.Subjects.Find(item.SubjectId) == null)
-                {
-                    return BadRequest("Invalid Parameters");
-                }
-            }
-            var qIds = helper.GetQuestionIdsBySubject(QuestionSpecs.Tags);
-            var questions = db.Questions
-                .AsEnumerable()
-                .Where(z => qIds.Contains(z.QuestionId))
-                .Select(x => new
-                {
-                    x.QuestionId,
-                    x.QuestionStatement,
-                    x.Option1,
-                    x.Option2,
-                    x.Option3,
-                    x.Option4,
-                    x.Answer,
-                    x.Marks,
-                    x.QuestionType,
-                    x.Difficulty,
-                    x.ImageName,
-                    Tags = helper.GetQuestionSubjectTags(x.QuestionId)
-                })
-                .OrderByDescending(y => y.QuestionId)
-                .ToList();
-            return Ok(questions);
-        }
-
-        /// <summary>
-        /// Returns all the questions of a particualr difficulty and a subject
-        /// </summary>
-        /// <param name="QuestionSpecs"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("api/Question/GetQuestion")]
-        public IHttpActionResult GetQuestionDifficultySubjectType([FromBody]QuestionSpecs QuestionSpecs)
-        {
-            foreach (var item in QuestionSpecs.Tags)
-            {
-                if (db.Subjects.Find(item.SubjectId) == null)
-                {
-                    return BadRequest("Invalid Parameters");
-                }
-            }
-            var qIds = helper.GetQuestionIdsBySubject(QuestionSpecs.Tags);
-            var questions = db.Questions
-                .AsEnumerable()
-                .Where(z => qIds.Contains(z.QuestionId) && z.Difficulty == QuestionSpecs.Difficulty && z.QuestionType == QuestionSpecs.QuestionType)
-                .Select(x => new
-                {
-                    x.QuestionId,
-                    x.QuestionStatement,
-                    x.Option1,
-                    x.Option2,
-                    x.Option3,
-                    x.Option4,
-                    x.Answer,
-                    x.Marks,
-                    x.QuestionType,
-                    x.Difficulty,
-                    x.ImageName,
-                    Tags = helper.GetQuestionSubjectTags(x.QuestionId)
-                })
-                .OrderByDescending(y => y.QuestionId)
-                .ToList();
-            return Ok(questions);
-        }
+        private IQuestion rQuestion = new RQuestion();
+        private readonly string ImageDirectoryUrl = HttpContext.Current.Server.MapPath("/Images/");
 
         /// <summary>
         /// Returns all the questions present in the question bank
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/Question/GetAllQuestions")]
-        public IHttpActionResult GetAllQuestion()
+        [Route]
+        public async Task<IHttpActionResult> GetAllQuestion()
         {
-            var questions = db.Questions
-                .AsEnumerable()
-                .Select(x => new
-                {
-                    x.QuestionId,
-                    x.QuestionStatement,
-                    x.Option1,
-                    x.Option2,
-                    x.Option3,
-                    x.Option4,
-                    x.Answer,
-                    x.Marks,
-                    x.QuestionType,
-                    x.Difficulty,
-                    x.ImageName,
-                    Tags = helper.GetQuestionSubjectTags(x.QuestionId)
-                })
-                .OrderByDescending(y => y.QuestionId)
-                .ToList();
-            return Ok(questions);
+            var questionList = await rQuestion.GetAllQuestions();
+            return Ok(questionList);
         }
 
         /// <summary>
-        /// Creates/post a question in the question bank
+        /// Returns a question of the specified Question Id
+        /// </summary>
+        /// <param name="QuestionId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("{QuestionId}")]
+        public async Task<IHttpActionResult> GetQuestionById([FromUri]int QuestionId)
+        {
+            var question = await rQuestion.GetQuestionById(QuestionId);
+            if (question != null)
+            {
+                return Ok(question);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+        /// <summary>
+        /// Get all the questions created by that particular user
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("{UserId}")]
+        public async Task<IHttpActionResult> GetQuestionsByUsers([FromUri]string UserId)
+        {
+            if (!helper.ValidateUserId(UserId))
+            {
+                return BadRequest("Invalid UserId");
+            }
+            var questionList = await rQuestion.GetQuestionsByUsers(UserId);
+            return Ok(questionList);
+        }
+
+        /// <summary>
+        /// Creates a question in the question bank
         /// </summary>
         /// <returns></returns>
         [HttpPost, Microsoft.AspNetCore.Mvc.DisableRequestSizeLimit]
-        [Route("api/Question/CreateQuestion")]
-        public IHttpActionResult PostQuestion()
+        [Route]
+        public async Task<IHttpActionResult> CreateQuestion()
         {
             var httpRequest = HttpContext.Current.Request;
-            var question = new JavaScriptSerializer().Deserialize<Question>(httpRequest.Form["QuestionDetails"]);
-            
-            string imageName = null;
+            Question question = new JavaScriptSerializer().Deserialize<Question>(httpRequest.Form["QuestionDetails"]);
+
             var postedFile = httpRequest.Files["Image"];
             if (postedFile != null)
             {
-                var ImageDirectoryUrl = HttpContext.Current.Server.MapPath("/Images/");
-                imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).ToArray()).Replace(" ", "-");
-                imageName = imageName + DateTime.UtcNow.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
-                var filePath = ImageDirectoryUrl + imageName;
-                question.ImageName = imageName;
-                Stream stream = postedFile.InputStream;
-                helper.ReduceImageSize(0.90, stream, filePath);
+                question.ImageName = helper.ImageProperties(postedFile, ImageDirectoryUrl);
             }
-            db.Questions.Add(question);
-       
-            QuestionTag questionTag;
-            foreach (var item in question.Tags)
+            try
             {
-                questionTag = new QuestionTag()
+                if (ModelState.IsValid)
                 {
-                    QuestionId = question.QuestionId,
-                    SubjectId = item.SubjectId
-                };
-                db.QuestionTags.Add(questionTag);
-                db.SaveChanges();
+                    var resultQuestionCreation = await rQuestion.CreateQuestion(question);
+                    if (resultQuestionCreation > 0)
+                    {
+                        return Content(HttpStatusCode.Created, question);
+                    }
+                    else
+                    {
+                        return BadRequest("Not Created");
+                    }
+                }
+                else
+                {
+                    return BadRequest("Invalid ModelState");
+                }
             }
-            db.SaveChanges();
-            return StatusCode(HttpStatusCode.Created);
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Returns all the questions of a particular Subject, Difficulty, Type
+        /// </summary>
+        /// <param name="questionSpecs"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("ByDifficulty-QuestionType-Tags")]
+        public async Task<IHttpActionResult> GetQuestionsByDifficultyQuestionTypeTags([FromBody]QuestionSpecs questionSpecs)
+        {
+            foreach (var item in questionSpecs.Tags)
+            {
+                if (!helper.ValidateSubjectId(item.SubjectId))
+                {
+                    return BadRequest("Invalid Parameters");
+                }
+            }
+            var subjectIds = questionSpecs.Tags.Select(x => x.SubjectId).ToList();
+            var qIds = helper.GetQuestionIdsBySubject(subjectIds);
+            var questionList = await rQuestion.GetQuestionsByDifficultyType(qIds, questionSpecs.Difficulty, questionSpecs.QuestionType);
+            return Ok(questionList);
         }
 
         /// <summary>
@@ -180,8 +144,8 @@ namespace WebApi.Controllers
         /// <param name="QuestionId"></param>
         /// <returns></returns>
         [HttpPut]
-        [Route("api/Question/Edit/{QuestionId}")]
-        public IHttpActionResult EditQuestion(int QuestionId)
+        [Route("{QuestionId}")]
+        public async Task<IHttpActionResult> UpdateQuestion([FromUri]int QuestionId)
         {
             var httpRequest = HttpContext.Current.Request;
             var question = new JavaScriptSerializer().Deserialize<Question>(httpRequest.Form["QuestionDetails"]);
@@ -191,55 +155,47 @@ namespace WebApi.Controllers
                 return BadRequest("Invalid QuestionId");
             }
 
-            string imageName = null;
             var postedFile = httpRequest.Files["Image"];
             if (postedFile != null)
             {
-                var ImageDirectoryUrl = HttpContext.Current.Server.MapPath("/Images/");
-                imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).ToArray()).Replace(" ", "-");
-                imageName = imageName + DateTime.UtcNow.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
-                var filePath = ImageDirectoryUrl + imageName;
+                question.ImageName = helper.ImageProperties(postedFile, ImageDirectoryUrl);
                 if (question.ImageName != null)
                 {
                     File.Delete(ImageDirectoryUrl + question.ImageName);
                 }
-                question.ImageName = imageName;
-                Stream stream = postedFile.InputStream;
-                helper.ReduceImageSize(0.90, stream, filePath);
             }
-
-            db.Entry(question).State = EntityState.Modified;
-
+            
             try
             {
-                var qIds = db.QuestionTags.Where(x => x.QuestionId == question.QuestionId);
-                db.QuestionTags.RemoveRange(qIds);
-                QuestionTag questionTag;
-                foreach (var item in question.Tags)
+                if (ModelState.IsValid)
                 {
-                    questionTag = new QuestionTag()
+                    var resultQuestionUpdation = await rQuestion.UpdateQuestion(QuestionId, question);
+                    if (resultQuestionUpdation > 0)
                     {
-                        QuestionId = question.QuestionId,
-                        SubjectId = item.SubjectId
-                    };
-                    db.QuestionTags.Add(questionTag);
+                        return Content(HttpStatusCode.Accepted, question);
+                    }
+                    else
+                    {
+                        return StatusCode(HttpStatusCode.NotModified);
+                    }
                 }
-                db.SaveChanges();
+                else
+                {
+                    return BadRequest("Invalid ModelState");
+                }
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
-                if (!QuestionExists(QuestionId))
+                if (!await rQuestion.QuestionExists(QuestionId))
                 {
                     return NotFound();
                 }
                 else
                 {
-                    throw;
+                    return BadRequest(ex.Message.ToString());
                 }
             }
-            return StatusCode(HttpStatusCode.OK);
         }
-
 
         /// <summary>
         /// To delete the specified question
@@ -247,22 +203,19 @@ namespace WebApi.Controllers
         /// <param name="QuestionId"></param>
         /// <returns></returns>
         [HttpDelete]
-        [Route("api/Question/Delete/{QuestionId}")]
-        public IHttpActionResult DeleteQuestion(int? QuestionId)
+        [Route("{QuestionId}")]
+        public async Task<IHttpActionResult> DeleteQuestion([FromUri]int QuestionId)
         {
-            Question question = db.Questions.Find(QuestionId);
-
+            Question question = await rQuestion.DeleteQuestion(QuestionId);
             if (question == null)
             {
                 return NotFound();
             }
             if (question.ImageName != null)
             {
-                File.Delete(HttpContext.Current.Server.MapPath("/Images/") + question.ImageName);
+                File.Delete(ImageDirectoryUrl + question.ImageName);
             }
-            db.Questions.Remove(question);
-            db.SaveChanges();
-            return Ok(question);
+            return Ok();
         }
 
         /// <summary>
@@ -271,104 +224,22 @@ namespace WebApi.Controllers
         /// <param name="QuestionId"></param>
         /// <returns></returns>
         [HttpDelete]
-        [Route("api/Question/ImageDelete/{QuestionId}")]
-        public IHttpActionResult DeleteQuestionImage(int QuestionId)
+        [Route("ImageDelete/{QuestionId}")]
+        public async Task<IHttpActionResult> DeleteQuestionImage([FromUri]int QuestionId)
         {
-            Question question = db.Questions.Find(QuestionId);
+            string questionImageName = await rQuestion.DeleteQuestionImage(QuestionId);
 
-            if (question == null)
+            if (questionImageName == null)
             {
-                return NotFound();
+                return Content(HttpStatusCode.NotFound, "ImageNotFound");
             }
 
-            if (question.ImageName != null)
+            if (questionImageName != null)
             {
-                File.Delete(HttpContext.Current.Server.MapPath("/Images/") + question.ImageName);
-                question.ImageName = null;
+                File.Delete(ImageDirectoryUrl + questionImageName);
             }
-
-            db.SaveChanges();
-            return Ok(question);
+            return Ok();
         }
 
-        /// <summary>
-        /// Get all the questions created by that particular user
-        /// </summary>
-        /// <param name="UserId"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("api/Question/GetQuestionByUser/{UserId}")]
-        public IHttpActionResult UserCreatedQuestions(string UserId)
-        {
-            if (db.Users.Find(UserId) == null)
-            {
-                return BadRequest("Invalid UserId");
-            }
-            var questions = db.Questions
-                .AsEnumerable()
-                .Where(y => y.CreatedBy == UserId)
-                .Select(x => new
-                {
-                    x.QuestionId,
-                    x.QuestionStatement,
-                    x.Option1,
-                    x.Option2,
-                    x.Option3,
-                    x.Option4,
-                    x.Answer,
-                    x.Marks,
-                    x.QuestionType,
-                    x.Difficulty,
-                    x.ImageName,
-                    Tags = helper.GetQuestionSubjectTags(x.QuestionId)
-                })
-                .OrderByDescending(y => y.QuestionId)
-                .ToList();
-            return Ok(questions);
-        }
-
-        /// <summary>
-        /// Returns a question of the specified Question Id
-        /// </summary>
-        /// <param name="QuestionId"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("api/Question/{QuestionId}")]
-        public IHttpActionResult QuestionById(int QuestionId)
-        {
-            if (db.Questions.Find(QuestionId) == null)
-            {
-                return BadRequest("Invalid QuestionId");
-            }
-            var question = db.Questions
-                .AsEnumerable()
-                .Where(z => z.QuestionId == QuestionId)
-                .Select(x => new
-                {
-                    x.QuestionId,
-                    x.QuestionStatement,
-                    x.Option1,
-                    x.Option2,
-                    x.Option3,
-                    x.Option4,
-                    x.Answer,
-                    x.Marks,
-                    x.QuestionType,
-                    x.Difficulty,
-                    x.ImageName,
-                    Tags = helper.GetQuestionSubjectTags(QuestionId)
-                })
-                .Single();
-            return Ok(question);
-        }
-
-        #region Helpers
-
-        private bool QuestionExists(int id)
-        {
-            return db.Questions.Count(x => x.QuestionId == id) > 0;
-        }
-
-        #endregion
     }
 }

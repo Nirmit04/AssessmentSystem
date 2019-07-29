@@ -2,7 +2,9 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
@@ -11,10 +13,9 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Mail;
 using System.Web;
-using System.Web.Http;
 using WebApi.Models;
 
-namespace WebApi.Controllers
+namespace WebApi.Repository
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class HelperClass
@@ -22,6 +23,11 @@ namespace WebApi.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         private static UserStore<ApplicationUser> userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
         private UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(userStore);
+
+        private readonly string AdminEmail = ConfigurationManager.AppSettings["AdminEmail"];
+        private readonly string AdminPassword = ConfigurationManager.AppSettings["AdminPassword"];
+        private readonly int EmailPort = Convert.ToInt32(ConfigurationManager.AppSettings["EmailPort"]);
+        private readonly string EmailHost = ConfigurationManager.AppSettings["EmailHost"];
 
         /// <summary>
         /// This method is to invite the users to take a Scheduled Quiz via Email
@@ -34,7 +40,7 @@ namespace WebApi.Controllers
             try
             {
                 MailMessage mailMessage = new MailMessage();
-                mailMessage.From = new MailAddress("abhijeet.anand99@gmail.com");
+                mailMessage.From = new MailAddress(AdminEmail);
                 foreach (var id in UserEmailIds)
                 {
                     mailMessage.To.Add(id);
@@ -45,10 +51,10 @@ namespace WebApi.Controllers
                 mailMessage.Body = "Hi,\n\n" + Message + "\n\nRegards,\nAbhijeet Anand Shah";
                 mailMessage.IsBodyHtml = true;
                 SmtpClient smtpClient = new SmtpClient();
-                smtpClient.Host = "smtp.gmail.com";
-                NetworkCredential credentials = new NetworkCredential("abhijeet.anand99@gmail.com", "upmsfuviwsogdsyb");
+                smtpClient.Host = EmailHost;
+                NetworkCredential credentials = new NetworkCredential(AdminEmail, AdminPassword);
                 smtpClient.Credentials = credentials;
-                smtpClient.Port = 587;
+                smtpClient.Port = EmailPort;
                 smtpClient.EnableSsl = true;
                 smtpClient.Send(mailMessage);
                 return "Invite Sent";
@@ -87,6 +93,15 @@ namespace WebApi.Controllers
             return googleApiTokenInfo;
         }
 
+        public string ImageProperties(HttpPostedFile postedFile, string ImageDirectoryUrl)
+        {
+            string imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).ToArray()).Replace(" ", "-");
+            imageName = imageName + DateTime.UtcNow.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
+            var filePath = ImageDirectoryUrl + imageName;
+            Stream stream = postedFile.InputStream;
+            ReduceImageSize(0.90, stream, filePath);
+            return imageName;
+        }
 
         public void ReduceImageSize(double scaleFactor, Stream sourcePath, string targetPath)
         {
@@ -105,20 +120,61 @@ namespace WebApi.Controllers
             }
         }
 
-        public List<int> GetQuestionIdsBySubject(SubjectTag[] subjectTags)
+        public IEnumerable QuestionFields(List<Question> questions)
         {
-            List<int> subIds = new List<int>();
-            foreach (var item in subjectTags)
-            {
-                subIds.Add(item.SubjectId);
-            }
-            HelperClass helper = new HelperClass();
-            var qIds = db.QuestionTags
+            var questionList = questions
                 .AsEnumerable()
-                .Where(x => subIds.Contains(x.SubjectId) && helper.GetQuestionSubjectTags(x.QuestionId).Count() >= subIds.Count())
-                .Select(x => x.QuestionId)
-                .ToList();
-            return qIds;
+                .Select(x => new
+                {
+                    x.QuestionId,
+                    x.QuestionStatement,
+                    x.Option1,
+                    x.Option2,
+                    x.Option3,
+                    x.Option4,
+                    x.Answer,
+                    x.Marks,
+                    x.QuestionType,
+                    x.Difficulty,
+                    x.ImageName,
+                    Tags = GetQuestionSubjectTags(x.QuestionId)
+                });
+            return questionList;
+        }
+
+        public IEnumerable QuizFields(List<Quiz> quizzes)
+        {
+            var quizList = quizzes
+                .AsEnumerable()
+                .Select(x => new
+                {
+                    x.QuizId,
+                    x.QuizName,
+                    x.Difficulty,
+                    x.TotalQuestions,
+                    x.TotalMarks,
+                    x.ArchiveStatus,
+                    x.QuizType,
+                    x.QuizTime,
+                    x.QuizState,
+                    x.MinCutOff,
+                    Tags = GetQuizSubjectTags(x.QuizId),
+                    CreatedBy = GetCreatedName(x.CreatedBy)
+                });
+            return quizList;
+        }
+
+        public List<int> GetQuestionIdsBySubject(IEnumerable<int> subjectIds)
+        {
+            using (var dbtemp = new ApplicationDbContext())
+            {
+                var qIds = dbtemp.QuestionTags
+                    .AsEnumerable()
+                    .Where(x => subjectIds.Contains(x.SubjectId) && GetQuestionSubjectTags(x.QuestionId).Count() >= subjectIds.Count())
+                    .Select(x => x.QuestionId)
+                    .ToList();
+                return qIds;
+            }
         }
 
         public string[] GetUserRoles(string userId)
@@ -131,20 +187,59 @@ namespace WebApi.Controllers
             return roles.ToArray();
         }
 
-        public Boolean ValidateQuizSchedule(int QuizScheduleId)
+        public bool ValidateQuizSchedule(int QuizScheduleId)
         {
-            if (db.QuizSchedules.Find(QuizScheduleId) == null)
-                return false;
-            else
-                return true;
+            using (var dbtemp = new ApplicationDbContext())
+            {
+                if (dbtemp.QuizSchedules.Find(QuizScheduleId) == null)
+                    return false;
+                else
+                    return true;
+            }            
         }
 
-        public Boolean ValidateUserId(string UserId)
+        public bool ValidateUserId(string UserId)
         {
-            if (db.Users.Find(UserId) == null)
-                return false;
-            else
-                return true;
+            using (var dbtemp = new ApplicationDbContext())
+            {
+                if (dbtemp.Users.Find(UserId) == null)
+                    return false;
+                else
+                    return true;
+            }
+        }
+
+        public bool ValidateQuizId(int QuizId)
+        {
+            using (var dbtemp = new ApplicationDbContext())
+            {
+                if (dbtemp.Quizs.Find(QuizId) == null)
+                    return false;
+                else
+                    return true;
+            }
+        }
+
+        public bool ValidateQuestionId(int QuestionId)
+        {
+            using (var dbtemp = new ApplicationDbContext())
+            {
+                if (dbtemp.Questions.Find(QuestionId) == null)
+                    return false;
+                else
+                    return true;
+            }
+        }
+
+        public bool ValidateSubjectId(int SubjectId)
+        {
+            using (var dbtemp = new ApplicationDbContext())
+            {
+                if (dbtemp.Subjects.Find(SubjectId) == null)
+                    return false;
+                else
+                    return true;
+            }
         }
 
         public SubjectTag[] GetQuestionSubjectTags(int QuestionId)
@@ -178,9 +273,13 @@ namespace WebApi.Controllers
                 }).ToArray();
             return subjectTags;
         }
+
         public string GetCreatedName(string UserId)
         {
-            return db.Users.FirstOrDefault(z => z.Id == UserId).FirstName;
+            using (var dbtemp = new ApplicationDbContext())
+            {
+                return dbtemp.Users.FirstOrDefault(z => z.Id == UserId).FirstName;
+            }
         }
 
     }

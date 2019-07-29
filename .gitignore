@@ -385,3 +385,6 @@ Migrations
 
 #ConnectionString
 connectionString.config
+
+#applicationConfig
+appSettings.config

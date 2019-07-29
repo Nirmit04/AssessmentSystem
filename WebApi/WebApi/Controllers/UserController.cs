@@ -1,27 +1,26 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using WebApi.Models;
+using WebApi.Repository;
+using WebApi.Services;
 
 namespace WebApi.Controllers
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+    [RoutePrefix("api/v1/User")]
+    [Authorize]
     public class UserController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
         private HelperClass helper = new HelperClass();
-        private static UserStore<ApplicationUser> userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
-        private UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(userStore);
+        private Services.IUser rUser = new RUser();
+        private IQuestion rQuestion = new RQuestion();
+        private IQuiz rQuiz = new RQuiz();
+        private ISubject rSubject = new RSubject();
 
         /// <summary>
         /// Registers a new User(Employee)
@@ -30,32 +29,97 @@ namespace WebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
-        [Route("api/User/Register")]
-        public async Task<IdentityResult> Register(Account model)
+        [Route("Register")]
+        public async Task<IdentityResult> Register([FromBody]Account model)
         {
-            var tempUser = userManager.FindByEmail(model.Email);
+            var tempUser = await rUser.GetUserByEmail(model.Email);
             if (tempUser == null)
             {
-                ApplicationUser user = new ApplicationUser() { UserName = model.Email.Substring(0, model.Email.LastIndexOf("@")), Email = model.Email };
-
-                user.FirstName = model.FirstName;
-                user.LastName = model.LastName;
-                user.ImageURL = model.ImageURL;
-                user.GoogleId = model.GoogleId;
+                ApplicationUser user = new ApplicationUser()
+                {
+                    UserName = model.Email.Substring(0, model.Email.LastIndexOf("@")),
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    ImageURL = model.ImageURL,
+                    GoogleId = model.GoogleId
+                };               
                 string id = user.Id;
-                IdentityResult result = await userManager.CreateAsync(user);
+                IdentityResult userResult = await rUser.CreateUser(user);
                 try
                 {
-                    var tempuser = userManager.FindByEmail(user.Email);
-                    userManager.AddToRole(tempuser.Id, "Employee");
+                    var userTemp = await rUser.GetUserByEmail(user.Email);
+                    IdentityResult roleResult = await rUser.AddRole(userTemp);
                 }
                 catch (Exception) { }
-                return result;
+                return userResult;
             }
             else
             {
                 return IdentityResult.Failed();
             }
+        }
+
+        /// <summary>
+        /// Returns all the user Registered
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route]
+        public async Task<IHttpActionResult> GetAllUser()
+        {
+            var userList = await rUser.GetAllUsers();
+            return Ok(userList);
+        }
+
+        /// <summary>
+        /// Returns the details of a particular user
+        /// </summary>
+        /// <param name="Email">Mandatory</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("{Email}")]
+        public async Task<IHttpActionResult> UserDetails([FromUri]string Email)
+        {
+            if (Email == null)
+            {
+                return null;
+            }
+            var applicationUser = await rUser.GetUserByEmail(Email);
+            Account user = new Account()
+            {
+                Id = applicationUser.Id,
+                Email = applicationUser.Email,
+                FirstName = applicationUser.FirstName,
+                LastName = applicationUser.LastName,
+                UserName = applicationUser.UserName,
+                Roles = helper.GetUserRoles(applicationUser.Id),
+                GoogleId = applicationUser.GoogleId
+            };
+            return Ok(user);
+        }
+
+        /// <summary>
+        /// Returns Quiz,Questions, Tags created by that user
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("Stats/{UserId}")]
+        public async Task<IHttpActionResult> UserStats([FromUri]string UserId)
+        {
+            if (!helper.ValidateUserId(UserId))
+            {
+                return BadRequest("Invalid UserId");
+            }
+            Dictionary<string, int> userStats = new Dictionary<string, int>();
+            var quizzes = await rQuiz.GetAllQuizzesByUsers(UserId);
+            var questionsCount = await rQuestion.GetQuestionsByUsersCount(UserId);
+            var subjects = await rSubject.GetSubjectsByUser(UserId);
+            userStats.Add("QuizzesCreated", quizzes.Count());
+            userStats.Add("QuestionsCreated", questionsCount);
+            userStats.Add("TagsCreated", subjects.Count());
+            return Ok(userStats);
         }
 
         #region RoleAuthorization
@@ -91,79 +155,5 @@ namespace WebApi.Controllers
         //    return "For Test-Administrator Role";
         //}
         #endregion
-
-        /// <summary>
-        /// Returns all the user Registered
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("api/User/GetUserAll")]
-        public IQueryable<Account> GetUserAll()
-        {
-            var users = userManager.Users;
-            List<Account> userlist = new List<Account>();
-            foreach (var user in users)
-            {
-                userlist.Add(new Account
-                {
-                    Id = user.Id,
-                    UserName = user.UserName,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Email = user.Email,
-                    ImageURL = user.ImageURL,
-                    Roles = helper.GetUserRoles(user.Id),
-                    GoogleId = user.GoogleId,
-                });
-            }
-            return userlist.AsQueryable();
-        }
-
-        /// <summary>
-        /// Returns the details of a particular user
-        /// </summary>
-        /// <param name="email">Mandatory</param>
-        /// <returns></returns>
-        [HttpGet]
-        [AllowAnonymous]
-        [Route("api/GetUserDetails")]
-        public async Task<IHttpActionResult> UserDetails(string email)
-        {
-            if (email == null)
-            {
-                return null;
-            }
-            var applicationUser = await userManager.FindByEmailAsync(email);
-            Account user = new Account();
-            user.Id = applicationUser.Id;
-            user.Email = applicationUser.Email;
-            user.FirstName = applicationUser.FirstName;
-            user.LastName = applicationUser.LastName;
-            user.UserName = applicationUser.UserName;
-            user.Roles = helper.GetUserRoles(applicationUser.Id);
-            user.GoogleId = applicationUser.GoogleId;
-            return Ok(user);
-        }
-
-        /// <summary>
-        /// Returns Quiz,Questions, Tags created by that user
-        /// </summary>
-        /// <param name="UserId"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("api/Stats/{UserId}")]
-        public IHttpActionResult UserStats(string UserId)
-        {
-            if (!helper.ValidateUserId(UserId))
-            {
-                return BadRequest("Invalid Id");
-            }
-            Dictionary<string, int> userStats = new Dictionary<string, int>();
-            userStats.Add("QuizzesCreated", db.Quizs.Where(x => x.CreatedBy == UserId).Count());
-            userStats.Add("QuestionsCreated", db.Questions.Where(x => x.CreatedBy == UserId).Count());
-            userStats.Add("TagsCreated", db.Subjects.Where(x => x.CreatedBy == UserId).Count());
-            return Ok(userStats);
-        }
-
     }
 }

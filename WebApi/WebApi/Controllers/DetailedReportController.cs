@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Threading.Tasks;
 using System.Web.Http;
-using WebApi.Models;
+using WebApi.Repository;
+using WebApi.Services;
 
 namespace WebApi.Controllers
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+    [RoutePrefix("api/v1/DetailedReport")]
+    [Authorize]
     public class DetailedReportController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private HelperClass helper = new HelperClass();
+        private IDetailedReport rDetailedReport = new RDetailedReport();
+
         /// <summary>
         /// Returns the detailed report of the particular user in a particular quiz taken
         /// </summary>
@@ -19,29 +20,14 @@ namespace WebApi.Controllers
         /// <param name="QuizId">Mandatory</param>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/DetailedReport/{UserId}/{QuizId}")]
-        public IHttpActionResult GetMockReport(string UserId, int QuizId)
+        [Route("{UserId}/{QuizId}")]
+        public async Task<IHttpActionResult> GetMockReport([FromUri]string UserId, [FromUri]int QuizId)
         {
-            var detailedReport = db.DetailedReports
-                .Where(x => x.QuizId == QuizId && x.UserId == UserId)
-                .Select(y => new
-                {
-                    y.DetailedReportId,
-                    y.QuizId,
-                    db.Quizs.FirstOrDefault(z => z.QuizId == y.QuizId).QuizName,
-                    y.UserId,
-                    y.QuestionId,
-                    y.AttemptedAnswer,
-                    y.CorrectAnswer,
-                    db.Questions.FirstOrDefault(z => z.QuestionId == y.QuestionId).QuestionStatement,
-                    Option = new List<string>()
-                    {
-                        db.Questions.FirstOrDefault(z=>z.QuestionId == y.QuestionId).Option1,
-                        db.Questions.FirstOrDefault(z=>z.QuestionId == y.QuestionId).Option2,
-                        db.Questions.FirstOrDefault(z=>z.QuestionId == y.QuestionId).Option3,
-                        db.Questions.FirstOrDefault(z=>z.QuestionId == y.QuestionId).Option4
-                    }
-                });
+            if (!helper.ValidateUserId(UserId))
+            {
+                return BadRequest("Invalid UserId");
+            }
+            var detailedReport = await rDetailedReport.GetMockReport(UserId, QuizId);
             return Ok(detailedReport);
         }
     }

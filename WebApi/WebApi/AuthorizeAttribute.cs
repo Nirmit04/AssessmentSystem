@@ -5,6 +5,7 @@ using System.Web;
 
 namespace WebApi
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class AuthorizeAttribute : System.Web.Http.AuthorizeAttribute
     {
         protected override void HandleUnauthorizedRequest(System.Web.Http.Controllers.HttpActionContext actionContext)

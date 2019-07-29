@@ -1,44 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using WebApi.Models;
+using WebApi.Repository;
+using WebApi.Services;
 
 namespace WebApi.Controllers
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+    [RoutePrefix("api/v1/QuizSchedule")]
+    [Authorize]
     public class QuizScheduleController : ApiController
     { 
-        private ApplicationDbContext db = new ApplicationDbContext();
         private HelperClass helper = new HelperClass();
+        private IQuizSchedule rQuizSchedule = new RQuizSchedule();
 
         /// <summary>
         /// Returns all the schedules created by that user
         /// </summary>
-        /// <param name="CreatedBy"></param>
+        /// <param name="UserId"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/QuizSchedule/GetAllQuizSchedule/{CreatedBy}")]
-        public IHttpActionResult GetAllQuizSchedule(string CreatedBy)
+        [Route("{UserId}")]
+        public async Task<IHttpActionResult> GetQuizScheduleByUsers([FromUri]string UserId)
         {
-            if (!helper.ValidateUserId(CreatedBy))
+            if (!helper.ValidateUserId(UserId))
             {
                 return BadRequest("Invalid Id");
             }
-            var quizSchedule = db.QuizSchedules.Where(x => x.CreatedBy == CreatedBy && x.ArchiveStatus == false)
-                .Select(x => new
-                {
-                    QuizScheduleId = x.QuizScheduleId,
-                    StartDateTime = x.StartDateTime,
-                    EndDateTime = x.EndDateTime,
-                    QuizId = x.QuizId,
-                    QuizName = db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).QuizName,
-                    ArchiveStatus = x.ArchiveStatus,
-                })
-                .OrderByDescending(z=>z.QuizScheduleId)
-                .ToList();
+            var quizSchedule = await rQuizSchedule.GetQuizScheduleByUsersStatus(UserId, false);
             return Ok(quizSchedule);
         }
 
@@ -48,41 +40,64 @@ namespace WebApi.Controllers
         /// <param name="quizSchedule">QuizSchedule Model</param>
         /// <returns></returns>
         [HttpPost]
-        [Route("api/QuizSchedule/ScheduleQuiz")]
-        public IHttpActionResult ScheduleQuiz(QuizSchedule quizSchedule)
+        [Route]
+        public async Task<IHttpActionResult> CreateQuizSchedule([FromBody]QuizSchedule quizSchedule)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest();
+                if (ModelState.IsValid)
+                {
+                    var resultQuizScheduleCreation = await rQuizSchedule.CreateQuizSchedule(quizSchedule);
+                    if (resultQuizScheduleCreation > 0)
+                    {
+                        return Content(HttpStatusCode.Created, quizSchedule);
+                    }
+                    else
+                    {
+                        return BadRequest("Not Created");
+                    }
+                }
+                else
+                {
+                    return BadRequest("Invalid ModelState");
+                }
             }
-            quizSchedule.StartDateTime = quizSchedule.StartDateTime.ToUniversalTime();
-            quizSchedule.EndDateTime = quizSchedule.EndDateTime.ToUniversalTime();
-            db.QuizSchedules.Add(quizSchedule);
-            db.SaveChanges();
-            return StatusCode(HttpStatusCode.Created);
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }
         }
 
         /// <summary>
         /// Edit a existing Quiz Schedule
         /// </summary>
-        /// <param name="QuizScheduleId"></param>
-        /// <param name="newQuizSchedule"></param>
+        /// <param name="quizSchedule">Model</param>
+        /// <param name="QuizScheduleId">Mandatory</param>
         /// <returns></returns>
         [HttpPut]
-        [Route("api/QuizSchedule/EditQuizSchedule/{QuizScheduleId}")]
-        public IHttpActionResult EditQuizSchedule(int QuizScheduleId, QuizSchedule newQuizSchedule)
+        [Route("{QuizScheduleId}")]
+        public async Task<IHttpActionResult> UpdateQuizSchedule([FromUri]int QuizScheduleId, [FromBody]QuizSchedule quizSchedule)
         {
-            if (!helper.ValidateQuizSchedule(QuizScheduleId))
+            if (QuizScheduleId != quizSchedule.QuizScheduleId)
             {
-                return BadRequest("Invalid Id");
+                return BadRequest("Invalid SubjectId");
             }
-            var quizSchedule = db.QuizSchedules.Find(QuizScheduleId);
-            quizSchedule.StartDateTime = newQuizSchedule.StartDateTime;
-            quizSchedule.EndDateTime = newQuizSchedule.EndDateTime;
-            quizSchedule.ArchiveStatus = newQuizSchedule.ArchiveStatus;
-            quizSchedule.QuizId = newQuizSchedule.QuizId;
-            db.SaveChanges();
-            return StatusCode(HttpStatusCode.OK);
+            if (ModelState.IsValid)
+            {
+                var resultQuizScheduleUpdation = await rQuizSchedule.UpdateQuizSchedule(quizSchedule);
+                if (resultQuizScheduleUpdation > 0)
+                {
+                    return Content(HttpStatusCode.Accepted, quizSchedule);
+                }
+                else
+                {
+                    return StatusCode(HttpStatusCode.NotModified);
+                }
+            }
+            else
+            {
+                return BadRequest("Invalid ModelState");
+            }
         }
 
         /// <summary>
@@ -91,52 +106,39 @@ namespace WebApi.Controllers
         /// <param name="QuizScheduleId"></param>
         /// <returns></returns>
         [HttpDelete]
-        [Route("api/QuizSchedule/DeleteQuizSchedule/{QuizScheduleId}")]
-        public IHttpActionResult DeleteQuizSchedule(int QuizScheduleId)
+        [Route("{QuizScheduleId}")]
+        public async Task<IHttpActionResult> DeleteQuizSchedule([FromUri]int QuizScheduleId)
         {
-            var quizSchedule = db.QuizSchedules.Find(QuizScheduleId);
             if(!helper.ValidateQuizSchedule(QuizScheduleId))
             {
-                return Ok("Invalid Id");
+                return BadRequest("Invalid QuizScheduleId");
             }
-            var userScheduleTrue = db.UserSchedules.Where(x => x.QuizScheduleId == QuizScheduleId).All(z => z.Taken == true);
-            var userScheduleFalse = db.UserSchedules.Where(x => x.QuizScheduleId == QuizScheduleId).All(z => z.Taken == false);
-            if (userScheduleTrue == true && userScheduleFalse == true)
+            var resultQuizScheduleDeletion = await rQuizSchedule.DeleteQuizSchedule(QuizScheduleId);
+            if (resultQuizScheduleDeletion != null)
             {
-                quizSchedule.ArchiveStatus = true;
-                db.SaveChanges();
-                return Ok();
+                return Ok(resultQuizScheduleDeletion);
             }
             else
             {
-                return Ok("Dissimilar Taken Status");
+                return BadRequest("Dissimilar Taken Status");
             }
         }
+
         /// <summary>
         /// Returns the list of Archived Schedules
         /// </summary>
-        /// <param name="CreatedBy">UserId</param>
+        /// <param name="UserId">UserId</param>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/QuizSchedule/ArchivedList/{CreatedBy}")]
-        public IHttpActionResult ArchivedList(string CreatedBy)
+        [Route("Archived/{UserId}")]
+        public async Task<IHttpActionResult> GetAllArchviedQuizSchedules(string UserId)
         {
-            if (!helper.ValidateUserId(CreatedBy))
+            if (!helper.ValidateUserId(UserId))
             {
-                return BadRequest("Invalid Id");
+                return BadRequest("Invalid UserId");
             }
-            var quizSchedule = db.QuizSchedules
-                .Where(x => x.CreatedBy == CreatedBy && x.ArchiveStatus == true)
-                .Select(y => new
-                {
-                    QuizScheduleId = y.QuizScheduleId,
-                    StartDateTime = y.StartDateTime,
-                    EndDateTime = y.EndDateTime,
-                    QuizId = y.QuizId,
-                    QuizName = db.Quizs.FirstOrDefault(z => z.QuizId == y.QuizId).QuizName,
-                    ArchiveStatus = y.ArchiveStatus
-                }).ToList();
-            return Ok(quizSchedule);
+            var quizScheduleList = await rQuizSchedule.GetQuizScheduleByUsersStatus(UserId, true);
+            return Ok(quizScheduleList);
         }
        
         /// <summary>
@@ -145,34 +147,40 @@ namespace WebApi.Controllers
         /// <param name="QuizScheduleId"></param>
         /// <returns></returns>
         [HttpDelete]
-        [Route("api/QuizSchedule/Unarchive/{QuizScheduleId}")]
-        public IHttpActionResult Unarchive(int QuizScheduleId)
+        [Route("Unarchive/{QuizScheduleId}")]
+        public async Task<IHttpActionResult> UnarchiveQuizSchedule(int QuizScheduleId)
         {
             if (!helper.ValidateQuizSchedule(QuizScheduleId))
             {
-                return BadRequest("Invalid Id");
+                return BadRequest("Invalid QuizScheduleId");
             }
-            var quizSchedule = db.QuizSchedules.Find(QuizScheduleId);
-            quizSchedule.ArchiveStatus = false;
-            db.SaveChanges();
-            return Ok();
+            var quizSchedule = await rQuizSchedule.GetQuizScheduleById(QuizScheduleId);
+            var resultUnarchive = await rQuizSchedule.UnarchiveQuizSchedule(quizSchedule);
+            if (resultUnarchive > 0)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            } 
         }
 
         /// <summary>
         /// Returns the number of schedules created by the user
         /// </summary>
-        /// <param name="CreatedBy"> User Id</param>
+        /// <param name="UserId"> User Id</param>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/QuizSchedule/Stats/{CreatedBy}")]
-        public IHttpActionResult Stats(string CreatedBy)
+        [Route("Stats/{UserId}")]
+        public async Task<IHttpActionResult> Stats(string UserId)
         {
-            if (!helper.ValidateUserId(CreatedBy))
+            if (!helper.ValidateUserId(UserId))
             {
-                return BadRequest("Invalid Id");
+                return BadRequest("Invalid UserId");
             }
-            int testSchdeule = db.QuizSchedules.Where(x => x.CreatedBy == CreatedBy).Count();
-            return Ok(testSchdeule);
+            int quizScheduleCount = await rQuizSchedule.GetQuizScheduleCountByUsers(UserId);
+            return Ok(quizScheduleCount);
         }
         
     }

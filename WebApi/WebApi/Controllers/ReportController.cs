@@ -1,76 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Http;
-using WebApi.Models;
+using WebApi.Repository;
+using WebApi.Services;
 
 namespace WebApi.Controllers
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+    [RoutePrefix("api/v1/Report")]
+    [Authorize]
     public class ReportController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-        private HelperClass helper = new HelperClass();
+        private IReport rReport = new RReport();
 
         /// <summary>
-        /// Returns all the non mock quiz reports of a particular user
+        /// Returns all the scheduled quiz reports of a particular user
         /// </summary>
         /// <param name="UserId"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/Report/Scheduled/{UserId}")]
-        public IHttpActionResult GetScheduledReport(string UserId)
+        [Route("Scheduled/{UserId}")]
+        public async Task<IHttpActionResult> GetScheduledReport([FromUri]string UserId)
         {
-            
-            var report = db.Reports.Where(x => x.UserId == UserId && x.QuizType== "Scheduled")
-                .Select(x => new
-                {
-                    x.ReportId,
-                    x.Accuracy,
-                    x.CorrectAnswers,
-                    x.QuizId,
-                    x.TimeTaken,
-                    x.MarksScored,
-                    x.UnattemptedAnswers,
-                    x.WrongAnswers,
-                    x.UserId,
-                    db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).QuizName,
-                    db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).TotalMarks
-                })
-                .OrderByDescending(z => z.ReportId)
-                .ToList();
-            return Ok(report);
+            var reportList = await rReport.GetQuizReportByQuizType(UserId, "Scheduled");
+            return Ok(reportList);
         }
 
         /// <summary>
-        /// Returns all the non mock quiz reports of a particular user
+        /// Returns all the mock quiz reports of a particular user
         /// </summary>
         /// <param name="UserId"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/Report/Mock/{UserId}")]
-        public IHttpActionResult GetMockReport(string UserId)
+        [Route("Mock/{UserId}")]
+        public async Task<IHttpActionResult> GetMockReport([FromUri]string UserId)
         {
-            var report = db.Reports.Where(x => x.UserId == UserId && x.QuizType == "Mock")
-                .Select(x => new
-                {
-                    x.ReportId,
-                    x.Accuracy,
-                    x.CorrectAnswers,
-                    x.QuizId,
-                    x.TimeTaken,
-                    x.MarksScored,
-                    x.UnattemptedAnswers,
-                    x.WrongAnswers,
-                    x.UserId,
-                    db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).QuizName,
-                    db.Quizs.FirstOrDefault(y => y.QuizId == x.QuizId).TotalMarks
-                })
-                .OrderByDescending(z => z.ReportId)
-                .ToList();
-            return Ok(report);
+            var reportList = await rReport.GetQuizReportByQuizType(UserId, "Mock");
+            return Ok(reportList);
         }
     }
 }
