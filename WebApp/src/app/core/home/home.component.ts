@@ -72,10 +72,10 @@ export class HomeComponent implements OnInit {
 							this.router.navigate(['/http-error']);
 						}
 					});
-					resubscription.unsubscribe();
+
 			});
-			subscription.unsubscribe();
-			
+
+
 		} else {
 			this.router.navigate(['/login']);
 		}
