@@ -30,11 +30,10 @@ export class AddQuesInQuizComponent implements OnInit {
 
 	ngOnInit() {
 		this.questions = this.data;
-		console.log(this.questions);
 		this.resetForm();
 	}
 
-	resetForm(form?: NgForm) {
+	private resetForm(form?: NgForm) {
 		if (form != null) {
 			form.resetForm();
 		} else {
@@ -57,36 +56,39 @@ export class AddQuesInQuizComponent implements OnInit {
 		}
 	}
 
-	updateSelectedQuestions(index) {
+	public updateSelectedQuestions(index) {
 		this.questions[index].selected = !this.questions[index].selected;
 	}
 
-	add_new_ques() {
+	public add_new_ques() {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = '70%';
 		dialogConfig.disableClose = true;
 		this.service.quesStat = true;
 		let dialogRef = this.dialog.open(CreateQuestionsComponent, dialogConfig);
-		dialogRef.afterClosed().subscribe((result) => {
+		const subscription = dialogRef.afterClosed().subscribe(() => {
 			this.service.quesStat = false;
 			this.loadQues();
 		});
+		subscription.unsubscribe();
 	}
 
-	loadQues() {
-		this.service.getQuizQuestions(+localStorage.getItem('quizId')).subscribe((res: any) => {
+	private loadQues() {
+		const subscription = this.service.getQuizQuestions(+localStorage.getItem('quizId')).subscribe((res: any) => {
 			this.questions = res as [];
 		});
+		subscription.unsubscribe();
 	}
 
-	onDetailsSubmit(form: NgForm) {
+	public onDetailsSubmit(form: NgForm): void {
 		var QuestionId = this.questions
 			.filter((QuestionId) => QuestionId.selected)
 			.map((idSelected) => idSelected.QuestionId);
-		this.service.putQuestionsSelected(QuestionId).subscribe((res) => {
+		const response = this.service.putQuestionsSelected(QuestionId);
+		if (response) {
 			this.toastr.success('Inserted successfully');
 			this.dialogref.close('Inserted');
-		});
+		}
 	}
 }

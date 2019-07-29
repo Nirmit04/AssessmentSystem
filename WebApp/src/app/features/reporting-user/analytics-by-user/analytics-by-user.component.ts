@@ -7,14 +7,13 @@ import { Router } from '@angular/router';
 @Component({
 	selector: 'app-analytics-by-user',
 	templateUrl: './analytics-by-user.component.html'
-	// styleUrls: ['./analytics-by-user.component.scss']
 })
 export class AnalyticsByUserComponent implements OnInit {
 	constructor(private service: ReportingUserService, private dialog: MatDialog, private router: Router) {}
 	dtTrigger: Subject<any> = new Subject();
 	subscription: Subscription;
 	dtOptions: DataTables.Settings = {};
-	allUsers: any[];
+	public allUsers: any[];
 
 	ngOnInit() {
 		this.dtOptions = {
@@ -27,15 +26,16 @@ export class AnalyticsByUserComponent implements OnInit {
 		}, 0);
 	}
 
-	loadAllEmployees() {
-		this.service.getAllUsers().subscribe((res: any) => {
+	private loadAllEmployees() {
+		const subscription = this.service.getAllUsers().subscribe((res: any) => {
 			this.allUsers = res as any[];
 			console.log(this.allUsers);
 			this.dtTrigger.next();
 		});
+		subscription.unsubscribe();
 	}
 
-	viewUserDetails(index: string) {
+	private viewUserDetails(index: string) {
 		this.service.data = this.allUsers[index];
 		this.router.navigate([ '/ru-dash/ana-by-user/user-detail' ]);
 	}

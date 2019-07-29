@@ -47,7 +47,6 @@ import { MockComponent } from './features/employee/mock/mock.component';
 import { MockReportComponent } from './features/employee/mock-report/mock-report.component';
 import { NonMockComponent } from './features/employee/non-mock/non-mock.component';
 import { TakeQuizComponent } from './features/employee/take-quiz/take-quiz.component';
-import { ViewAnswerComponent } from './features/employee/view-answer/view-answer.component';
 import { MainNav3Component } from './features/employee/main-nav3/main-nav3.component';
 import { ResultComponent } from './features/employee/result/result.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -71,7 +70,6 @@ import { LoaderComponent } from './core/loader/loader.component';
 import { LoaderInterceptorService } from '../app/services/loader-interceptor.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoaderServiceService } from './services/loader-service.service';
-import { InstructionsComponent } from './features/employee/take-quiz/instructions/instructions.component';
 import { TableModule } from 'primeng/table';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
@@ -144,7 +142,6 @@ export function provideConfig() {
 		MockReportComponent,
 		NonMockComponent,
 		TakeQuizComponent,
-		ViewAnswerComponent,
 		MainNav3Component,
 		ResultComponent,
 		NonMockReportComponent,
@@ -157,8 +154,7 @@ export function provideConfig() {
 		ViewUserDetailsComponent,
 		DetailsComponent,
 		HttpInterceptorComponent,
-		LoaderComponent,
-		InstructionsComponent
+		LoaderComponent
 	],
 	imports: [
 		BrowserModule,
@@ -218,7 +214,6 @@ export function provideConfig() {
 		AddQuesInQuizComponent,
 		AddUserComponent,
 		ViewScheduleComponent,
-		ViewAnswerComponent,
 		AddUser1Component,
 		ViewUserDetailsComponent,
 		CreateQuestionsComponent,

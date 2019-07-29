@@ -109,7 +109,7 @@
           </div>
           <br>
           <form *ngIf="length!=0" #Questionform="ngForm" (submit)="onDetailsSubmit(Questionform)" autocomplete="off">
-            <p-table [columns]="cols" [value]="questions" [scrollable]="true" scrollHeight="200px" #dt>
+            <p-table [columns]="colums" [value]="questions" [scrollable]="true" scrollHeight="200px" #dt>
 
               <ng-template pTemplate="caption" class="temp">
                 <div class="contain">
@@ -121,7 +121,7 @@
               <ng-template pTemplate="header">
                 <tr>
                   <th >Tick</th>
-                  <th *ngFor="let col of cols" [pSortableColumn]="col.field">
+                  <th *ngFor="let col of columns" [pSortableColumn]="col.field">
                     {{col.header}}
                   </th>
                 </tr>

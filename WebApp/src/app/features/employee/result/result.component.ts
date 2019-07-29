@@ -8,28 +8,28 @@ import { DOCUMENT } from '@angular/common';
 	styleUrls: [ './result.component.scss' ]
 })
 export class ResultComponent implements OnInit {
-	timeTaken: any;
-	dispCard = false;
-	QuesWithAns: any[];
-	correct: any[];
+	private timeTaken: any;
+	public displayCard: boolean = false;
+	private questionsWithAnswer: any[];
+	public correct: any[];
 
 	constructor(private service: EmployeeService, private router: Router, @Inject(DOCUMENT) private document: any) {}
 
 	ngOnInit() {
 		this.correct = [];
 		if (this.service.QuizScheduleId === null) {
-			this.service.getAnswers().subscribe((res: any) => {
-				console.log(res);
-				this.QuesWithAns = res as any[];
+			const subscription = this.service.getAnswers().subscribe((res: any) => {
+				this.questionsWithAnswer = res as any[];
 				this.service.correctAnswerCount = 0;
-				this.service.quesOfQuiz.forEach((e, i) => {
-					if (e.answer === this.QuesWithAns[i].Answer) {
+				this.service.quesOfQuiz.forEach((question, index) => {
+					if (question.answer === this.questionsWithAnswer[index].Answer) {
 						this.service.correctAnswerCount++;
 					}
-					this.correct[i] = this.QuesWithAns[i].Answer;
+					this.correct[index] = this.questionsWithAnswer[index].Answer;
 				});
-				this.dispCard = true;
+				this.displayCard = true;
 			});
+			subscription.unsubscribe();
 		}
 
 		var body = this.service.quesOfQuiz.map((x) => x.QuestionId);
@@ -53,19 +53,6 @@ export class ResultComponent implements OnInit {
 			QuesAnswers: dict,
 			TimeTaken: this.timeTaken
 		};
-
-		// this.service.postanswers().subscribe(res => {
-		//   if (this.service.QuizScheduleId != null) {
-		//     this.service.QuizScheduleId = null;
-		//     this.service.quesOfQuiz = null;
-		//     this.service.correctAnswerCount = null;
-		//     this.service.QuizId = null;
-		//     this.service.body = null;
-		//     this.service.qnProgress = null;
-		//     this.dispCard = false;
-		//     this.router.navigate([('/emp-dash')]);
-		//   }
-		// });
 	}
 
 	closeFullscreen() {
@@ -86,7 +73,7 @@ export class ResultComponent implements OnInit {
 		this.service.QuizId = null;
 		this.service.body = null;
 		this.service.qnProgress = null;
-		this.dispCard = false;
+		this.displayCard = false;
 		this.router.navigate([ '/emp-dash' ]);
 	}
 }

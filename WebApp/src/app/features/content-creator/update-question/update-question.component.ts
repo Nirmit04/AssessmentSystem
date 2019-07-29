@@ -13,11 +13,11 @@ import { environment } from '../../../../environments/environment';
 })
 export class UpdateQuestionComponent implements OnInit {
 	public Subjects: Subject[];
-	public CCreatedBy = '';
-	bool = false;
-	label: string;
-	src: string = null;
-	dropdownSettings = null;
+	public createdBy = '';
+	public flag: boolean = false;
+	public label: string;
+	public imagesource: string = null;
+	public dropdownSettings = null;
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data,
@@ -27,14 +27,14 @@ export class UpdateQuestionComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
-		this.bool = this.service.readonlyStatus;
-		if (this.bool === true) {
+		this.flag = this.service.readonlyStatus;
+		if (this.flag === true) {
 			this.label = 'View Question';
 		} else {
 			this.label = 'Edit Questions';
 		}
 		if (this.service.formData.ImageName !== null) {
-			this.src = environment.imgURl + this.service.formData.ImageName;
+			this.imagesource = environment.imgURl + this.service.formData.ImageName;
 		}
 		this.dropdownSettings = {
 			singleSelection: false,
@@ -44,13 +44,14 @@ export class UpdateQuestionComponent implements OnInit {
 			itemsShowLimit: 5,
 			allowSearchFilter: true
 		};
-		this.CCreatedBy = localStorage.getItem('uid');
-		this.service.retrieveSubjects().subscribe((res) => {
+		this.createdBy = localStorage.getItem('uid');
+		const subscription = this.service.retrieveSubjects().subscribe((res) => {
 			this.Subjects = res as Subject[];
 		});
+		subscription.unsubscribe();
 	}
 
-	resetForm(form?: NgForm) {
+	private resetForm(form?: NgForm): void {
 		if (form != null) {
 			form.resetForm();
 		}
@@ -70,11 +71,11 @@ export class UpdateQuestionComponent implements OnInit {
 		};
 	}
 
-	chooseFile(event) {
+	public chooseFile(event) {
 		this.service.selectedFile = event.target.files.item(0);
 	}
 
-	onSubmit(form: NgForm) {
+	public onSubmit(form: NgForm) {
 		this.service.updateQuestion(form.value).subscribe((res) => {
 			this.toastr.success('Updated successfully');
 			this.service.selectedFile = null;
@@ -83,10 +84,11 @@ export class UpdateQuestionComponent implements OnInit {
 		});
 	}
 
-	deleteImg() {
-		this.service.deleteImageFromQues(this.service.formData.QuestionId).subscribe((res) => {
+	public deleteImg() {
+		const subscription = this.service.deleteImageFromQues(this.service.formData.QuestionId).subscribe((res) => {
 			this.toastr.success('Image Successfully Removed');
 			this.dialogRef.close('Submitted');
 		});
+		subscription.unsubscribe();
 	}
 }

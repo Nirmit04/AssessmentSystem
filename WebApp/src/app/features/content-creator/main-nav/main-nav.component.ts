@@ -1,11 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from 'angularx-social-login';
 import { Router } from '@angular/router';
-import { addAllToArray } from '@angular/core/src/render3/util';
-import { stringify } from '@angular/core/src/util';
 import { ContentCreatorServiceService } from '../shared/content-creator-service.service';
 
 @Component({
@@ -13,11 +11,10 @@ import { ContentCreatorServiceService } from '../shared/content-creator-service.
 	templateUrl: './main-nav.component.html',
 	styleUrls: [ './main-nav.component.scss' ]
 })
-export class MainNavComponent {
+export class MainNavComponent implements OnInit, OnDestroy {
 	isHandset$: Observable<boolean> = this.breakpointObserver
 		.observe(Breakpoints.Handset)
 		.pipe(map((result) => result.matches));
-	cRole: string;
 
 	constructor(
 		private breakpointObserver: BreakpointObserver,
@@ -25,18 +22,19 @@ export class MainNavComponent {
 		private router: Router,
 		private service: ContentCreatorServiceService
 	) {}
-	Val: string[];
-	showSpinnner: boolean = true;
+	public currentRole: string;
+	public showSpinnner: boolean = true;
+	subscription: Subscription;
 
 	ngOnInit() {
 		$(document).on('click', 'ul.nav li', function() {
 			$(this).addClass('active').siblings().removeClass('active');
 		});
-		this.cRole = localStorage.getItem('currentRole');
+		this.currentRole = localStorage.getItem('currentRole');
 		if (localStorage.getItem('id') === null) {
 			this.router.navigate([ '/login' ]);
 		}
-		this.authService.authState.subscribe((user) => {
+		this.subscription = this.authService.authState.subscribe((user) => {
 			if (user != null) {
 			} else {
 				localStorage.clear();
@@ -45,7 +43,7 @@ export class MainNavComponent {
 		});
 	}
 
-	roleMatch(allowedRoles): boolean {
+	public roleMatch(allowedRoles): boolean {
 		var isMatch = false;
 		var userRoles: string = localStorage.getItem('role');
 		allowedRoles.forEach((element) => {
@@ -57,18 +55,21 @@ export class MainNavComponent {
 		return isMatch;
 	}
 
-	aab(role: string) {
+	public currentRoleIs(role: string) {
 		localStorage.setItem('currentRole', role);
 		this.router.navigate([ role ]);
 	}
 
-	logout() {
+	public logout() {
 		localStorage.clear();
 		this.authService.signOut();
 	}
 
-	setQuestionType(type: string) {
+	public setQuestionType(type: string) {
 		this.service.QuestionType = type;
 		this.router.navigate([ '/cc-dash/create-question' ]);
+	}
+	ngOnDestroy() {
+		this.subscription.unsubscribe();
 	}
 }

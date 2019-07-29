@@ -9,9 +9,8 @@ import { Router } from '@angular/router';
 })
 export class AnalyticsByQuizComponent implements OnInit {
 	dtTrigger: Subject<any> = new Subject();
-	subscription: Subscription;
 	dtOptions: DataTables.Settings = {};
-	quizDetails: any[];
+	public quizDetails: any[];
 
 	constructor(private service: ReportingUserService, private router: Router) {}
 
@@ -25,11 +24,12 @@ export class AnalyticsByQuizComponent implements OnInit {
 		}, 0);
 	}
 
-	loadQuizDetails() {
-		this.service.getAllQuizzes().subscribe((res: any) => {
+	private loadQuizDetails() {
+		const subscription = this.service.getAllQuizzes().subscribe((res: any) => {
 			this.quizDetails = res as any[];
 			this.dtTrigger.next();
 		});
+		subscription.unsubscribe();
 	}
 
 	onClick(index: any) {

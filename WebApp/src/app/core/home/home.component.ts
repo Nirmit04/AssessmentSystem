@@ -1,23 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { EmployeeService } from '../../features/employee/shared/employee.service';
+import { Subscription } from 'rxjs';
 
 @Component({
 	selector: 'app-home',
 	templateUrl: './home.component.html'
 	// styleUrls: [ './home.component.scss' ]
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 	constructor(private router: Router, private http: HttpClient, private service: EmployeeService) {}
 
 	rooturl = environment.apiURl;
 	role = '';
-	uid = '';
+	userid = '';
 	checkqid: string = null;
 	checksid: string = null;
 	time: any[];
+	subscription: Subscription;
+	resubscription: Subscription;
 
 	ngOnInit() {
 		this.checkqid = localStorage.getItem('key');
@@ -32,13 +35,13 @@ export class HomeComponent implements OnInit {
 				GoogleId: localStorage.getItem('id')
 			};
 
-			this.http.post(this.rooturl + 'User/Register', body).subscribe(() => {
-				this.http
+			this.subscription = this.http.post(this.rooturl + 'User/Register', body).subscribe(() => {
+				this.resubscription = this.http
 					.get(this.rooturl + 'GetUserDetails?email=' + localStorage.getItem('email'))
 					.subscribe((res1: any) => {
-						this.uid = res1.Id;
+						this.userid = res1.Id;
 						this.role = res1.Roles;
-						localStorage.setItem('uid', this.uid);
+						localStorage.setItem('uid', this.userid);
 						localStorage.setItem('role', this.role);
 						if (this.checkqid === 'null' && this.checksid === 'null') {
 							this.redirecttodash(this.role[0]);
@@ -82,5 +85,9 @@ export class HomeComponent implements OnInit {
 			localStorage.setItem('currentRole', '//ru-dash');
 			this.router.navigate([ '/ru-dash' ]);
 		}
+	}
+	ngOnDestroy() {
+		this.resubscription.unsubscribe();
+		this.subscription.unsubscribe();
 	}
 }

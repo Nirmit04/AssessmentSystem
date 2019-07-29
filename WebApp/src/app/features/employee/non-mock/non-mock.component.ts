@@ -11,22 +11,14 @@ import { Time } from '@angular/common';
 	styleUrls: [ './non-mock.component.scss' ]
 })
 export class NonMockComponent implements OnInit {
-	nonMockScheduleList: any[];
+	public nonMockScheduleList: any[];
 	dtTrigger: Subject<any> = new Subject();
-	subscription: Subscription;
 	dtOptions: DataTables.Settings = {};
-	time: any[];
-	// QuizTime: string;
-	// QuizTimeSplit: any[];
-	// QuizTimeHour: number;
-	// QuizTimeMinutes: number;
-	// QuizTimeSeconds: number;
-	// timeString: string = "";
-	// dateTime = null;
-	cols: any[];
-	col: any[];
-	i: number;
-	tg: string = '';
+	private time: any[];
+	public columns: any[];
+	public nonSortableColumns: any[];
+	private index: number;
+	private tag: string = '';
 	constructor(private service: EmployeeService, private router: Router) {}
 
 	ngOnInit() {
@@ -37,38 +29,37 @@ export class NonMockComponent implements OnInit {
 			pagingType: 'full_numbers',
 			pageLength: 10
 		};
-		this.cols = [
+		this.columns = [
 			{ field: 'SerialNumber', header: 'S NO' },
 			{ field: 'QuizName', header: 'Quiz' },
 			{ field: 'QuizTime', header: 'Quiz Time' },
-			{ field: 'Tags1', header: 'Tags' }
+			{ field: 'DuplicateTags', header: 'Tags' }
 		];
-		this.col = [ { field: 'StartDateTime', header: 'Start Time' }, { field: 'EndDateTime', header: 'End Time' } ];
-		// this.QuizTime = "00:00:00";
-		// this.QuizTimeSeconds = parseInt((this.QuizTime.split(":"))[2]);
+		this.nonSortableColumns = [
+			{ field: 'StartDateTime', header: 'Start Time' },
+			{ field: 'EndDateTime', header: 'End Time' }
+		];
 	}
-
-	loadNonMockSchedules() {
-		this.service.getNonMocks().subscribe((res: any) => {
+	private loadNonMockSchedules(): void {
+		const subscription = this.service.getNonMocks().subscribe((res: any) => {
 			this.nonMockScheduleList = res as any[];
-			// this.dtTrigger.next();
-			for (this.i = 1; this.i <= this.nonMockScheduleList.length; this.i++) {
-				this.nonMockScheduleList[this.i - 1].SerialNumber = this.i;
-				this.tg = '';
-				for (let tag of this.nonMockScheduleList[this.i - 1].Tags) {
-					this.tg = this.tg + tag.Name + ',';
+			for (this.index = 1; this.index <= this.nonMockScheduleList.length; this.index++) {
+				this.nonMockScheduleList[this.index - 1].SerialNumber = this.index;
+				this.tag = '';
+				for (let tag of this.nonMockScheduleList[this.index - 1].Tags) {
+					this.tag = this.tag + tag.Name + ',';
 				}
-				this.nonMockScheduleList[this.i - 1].Tags1 = this.tg;
-				this.nonMockScheduleList[this.i - 1].Tags1 = this.nonMockScheduleList[this.i - 1].Tags1.substring(
-					0,
-					this.nonMockScheduleList[this.i - 1].Tags1.length - 1
-				);
+				this.nonMockScheduleList[this.index - 1].DuplicateTags = this.tag;
+				this.nonMockScheduleList[this.index - 1].DuplicateTags = this.nonMockScheduleList[
+					this.index - 1
+				].DuplicateTags.substring(0, this.nonMockScheduleList[this.index - 1].DuplicateTags.length - 1);
 			}
 		});
+		subscription.unsubscribe();
 	}
 	takeQuiz(QuizId: number, Id: number, QuizName: string, index: number) {
 		this.service.QuizId = QuizId;
-		this.service.getQuesOfQuiz(QuizId).subscribe((res: any) => {
+		const subscription = this.service.getQuesOfQuiz(QuizId).subscribe((res: any) => {
 			if (res !== 'Quiz Started') {
 				this.service.statusMapping = res.GetQuestionBuffers;
 				this.time = res.TimeLeft.split(':');
@@ -85,6 +76,7 @@ export class NonMockComponent implements OnInit {
 			this.service.QuizScheduleId = Id;
 			this.router.navigate([ '/emp-dash/quiz/take-quiz' ]);
 		});
+		subscription.unsubscribe();
 	}
 
 	ngOnDestroy() {

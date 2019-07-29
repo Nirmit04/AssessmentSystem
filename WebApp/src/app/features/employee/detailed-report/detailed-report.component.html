@@ -27,8 +27,7 @@
             <ng-container *ngFor="let qn of reports;index as i">
                 <div class="card-body white-text">
                     <strong><span>{{i+1}})&nbsp;{{qn.QuestionStatement}}</span></strong>
-                    <span class="text">
-                        *ngIf="qn.AttemptedAnswer==0">( This Question Was Skipped )</span>
+                    <span class="text" *ngIf="qn.AttemptedAnswer==0">( This Question Was Skipped )</span>
                 </div>
                 <div>
                     <ul>

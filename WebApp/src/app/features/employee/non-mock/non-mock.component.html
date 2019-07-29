@@ -1,7 +1,7 @@
 <app-loader></app-loader>
 <app-main-nav3>
   <div>
-    <p-table [columns]="cols" [value]="nonMockScheduleList" [paginator]="true" [rows]="10" #dt>
+    <p-table [columns]="columns" [value]="nonMockScheduleList" [paginator]="true" [rows]="10" #dt>
       
       <ng-template pTemplate="caption">
         <h3>Schedule Quizzes</h3>
@@ -12,7 +12,7 @@
       </ng-template>
       <ng-template pTemplate="header">
         <tr>
-          <th *ngFor="let col of cols" [pSortableColumn]="col.field">
+          <th *ngFor="let col of columns" [pSortableColumn]="col.field">
             {{col.header}}
           </th>
           <th>Start Time</th>

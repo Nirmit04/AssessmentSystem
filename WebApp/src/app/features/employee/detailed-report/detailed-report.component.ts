@@ -3,7 +3,6 @@ import { EmployeeService } from '../shared/employee.service';
 import { concat, Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { ViewAnswerComponent } from '../view-answer/view-answer.component';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,11 +14,20 @@ export class DetailedReportComponent implements OnInit {
 	dtOptions: DataTables.Settings = {};
 	dtTrigger: Subject<any> = new Subject();
 	subscription: Subscription;
-	public doughnutChartLabels1;
-	public doughnutChartData1;
-	public doughnutChartType1;
-	quizname = '';
-
+	public doughnutChartLabels1: any[];
+	public doughnutChartData1: any[];
+	public doughnutChartType1: string;
+	public quizName: string = '';
+	public doughnutChartColors2: any[] = [ { backgroundColor: [ '#FF713A', '#00B292' ] } ];
+	public doughnutChartColors1: any[] = [ { backgroundColor: [ '#3E00B2', '#FFF53A' ] } ];
+	public doughnutChartLabels2: any[];
+	public doughnutChartData2: any[];
+	public doughnutChartType2: string;
+	public gaugeType: string = 'semi';
+	public gaugeValue: string;
+	public gaugeLabel: string = 'Performance';
+	public gaugeAppendText = '%';
+	public reports: any[];
 	public doughnutChartOptions1 = {
 		legend: {
 			onClick: function(e) {
@@ -27,13 +35,6 @@ export class DetailedReportComponent implements OnInit {
 			}
 		}
 	};
-
-	private doughnutChartColors2: any[] = [ { backgroundColor: [ '#FF713A', '#00B292' ] } ];
-	private doughnutChartColors1: any[] = [ { backgroundColor: [ '#3E00B2', '#FFF53A' ] } ];
-
-	public doughnutChartLabels2;
-	public doughnutChartData2;
-	public doughnutChartType2;
 
 	public doughnutChartOptions2 = {
 		legend: {
@@ -43,17 +44,9 @@ export class DetailedReportComponent implements OnInit {
 		}
 	};
 
-	gaugeType = 'semi';
-	gaugeValue;
-	gaugeLabel = 'Performance';
-	gaugeAppendText = '%';
-	reports: any[];
-
 	constructor(private service: EmployeeService, private dialog: MatDialog, private route: Router) {}
 
 	ngOnInit() {
-		// console.log(this.service.data.CorrectAnswers);
-		console.log(this.service.data);
 		if (this.service.data == null) {
 			console.log('he');
 			this.route.navigate([ '/emp-dash' ]);
@@ -90,16 +83,17 @@ export class DetailedReportComponent implements OnInit {
 		}, 0);
 	}
 
-	loadDetail() {
-		this.service.getDetailedReport().subscribe((res: any) => {
+	private loadDetail() {
+		const subscription = this.service.getDetailedReport().subscribe((res: any) => {
 			this.reports = res as any[];
-			this.quizname = this.reports[0].QuizName;
+			this.quizName = this.reports[0].QuizName;
 			this.calculate();
 			this.dtTrigger.next();
 		});
+		subscription.unsubscribe();
 	}
 
-	calculate() {
+	private calculate() {
 		for (let i = 0; i < this.reports.length; i++) {
 			if (this.reports[i].AttemptedAnswer === this.reports[i].CorrectAnswer) {
 				this.reports[i].status = 'Correct';
@@ -109,21 +103,6 @@ export class DetailedReportComponent implements OnInit {
 				this.reports[i].color = 'background-color: red';
 			}
 		}
-	}
-
-	viewques(id: number, markedanswer: number) {
-		const dialogConfig = new MatDialogConfig();
-		dialogConfig.autoFocus = true;
-		dialogConfig.width = '70%';
-		dialogConfig.disableClose = true;
-		dialogConfig.data = {
-			id: id,
-			markedanswer: markedanswer
-		};
-		this.dialog.open(ViewAnswerComponent, dialogConfig).afterClosed().subscribe((res: any) => {
-			this.dtTrigger.unsubscribe();
-			this.dtTrigger.next();
-		});
 	}
 
 	ngOnDestroy() {

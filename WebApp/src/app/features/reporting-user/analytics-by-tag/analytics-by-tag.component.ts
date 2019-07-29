@@ -11,13 +11,11 @@ import { Label, SingleDataSet } from 'ng2-charts';
 	// styleUrls: ['./analytics-by-tag.component.scss']
 })
 export class AnalyticsByTagComponent implements OnInit {
-	tagAnalysisList: any[];
-	panelOpenState = false;
-	highdata = [];
-	lowdata = [];
-	label = [];
-	accuracy = [];
-	name = 'high';
+	public tagAnalysisList: any[];
+	private highdata = [];
+	public lowdata = [];
+	public label = [];
+	public accuracy = [];
 
 	constructor(private service: ReportingUserService, private router: Router) {}
 

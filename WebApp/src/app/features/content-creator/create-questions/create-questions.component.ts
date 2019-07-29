@@ -1,26 +1,24 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ContentCreatorServiceService } from '../shared/content-creator-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from '../shared/subject.model';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import * as $ from 'jquery';
+import { Subscription } from 'rxjs';
 @Component({
 	selector: 'app-create-questions',
 	templateUrl: './create-questions.component.html',
 	styleUrls: [ './create-questions.component.scss' ]
 })
-export class CreateQuestionsComponent implements OnInit {
-	public Subjects123: Subject[];
-	CCreatedBy = '';
-	boolea = false;
+export class CreateQuestionsComponent implements OnInit, OnDestroy {
+	public Subjects: Subject[];
+	public CreatedBy = '';
 	dropdownSettings = {};
+	subscription: Subscription;
 	constructor(public service: ContentCreatorServiceService, public toastr: ToastrService, private router: Router) {}
 	ngOnInit() {
 		this.resetForm();
 		if (this.service.Difficulty != null) {
-			this.boolea = true;
 			this.service.formData.SubjectId = this.service.SubjectId.toString();
 			this.service.formData.Difficulty = this.service.Difficulty;
 		} else {
@@ -36,12 +34,12 @@ export class CreateQuestionsComponent implements OnInit {
 			itemsShowLimit: 5,
 			allowSearchFilter: true
 		};
-		this.service.retrieveSubjects().subscribe((res) => {
-			this.Subjects123 = res as Subject[];
+		this.subscription = this.service.retrieveSubjects().subscribe((res) => {
+			this.Subjects = res as Subject[];
 		});
 	}
 
-	resetForm(form?: NgForm) {
+	private resetForm(form?: NgForm): void {
 		if (form != null) {
 			form.resetForm();
 		}
@@ -59,12 +57,11 @@ export class CreateQuestionsComponent implements OnInit {
 		};
 	}
 
-	chooseFile(event) {
+	public chooseFile(event) {
 		this.service.selectedFile = event.target.files.item(0);
 	}
 
-	onSubmit(form: NgForm) {
-		console.log(form.value);
+	public onSubmit(form: NgForm) {
 		this.service.postQuestion(form.value).subscribe((res: any) => {
 			this.toastr.success('Inserted successfully');
 			this.service.selectedFile = null;
@@ -74,5 +71,8 @@ export class CreateQuestionsComponent implements OnInit {
 				this.service.formData.Difficulty = this.service.Difficulty;
 			}
 		});
+	}
+	ngOnDestroy() {
+		this.subscription.unsubscribe();
 	}
 }

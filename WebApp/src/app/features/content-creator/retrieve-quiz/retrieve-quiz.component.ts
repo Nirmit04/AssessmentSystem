@@ -15,18 +15,13 @@ import { Subject } from 'rxjs';
 	styleUrls: [ './retrieve-quiz.component.scss' ]
 })
 export class RetrieveQuizComponent implements OnInit {
-	tg: string = '';
-	QuizList: QuizModel[];
-	searchText = '';
-	difficultyLevel = '';
-	index = 0;
-	QuestionList: any[];
+	private tag: string = '';
+	public QuizList: QuizModel[];
+	public QuestionList: any[];
 	dtOptions: DataTables.Settings = {};
 	dtTrigger: Subject<QuizModel> = new Subject();
-	subscription: Subscription;
-
-	cols: any[];
-	i: number;
+	public columns: any[];
+	public index: number;
 
 	constructor(
 		private service: ContentCreatorServiceService,
@@ -41,11 +36,11 @@ export class RetrieveQuizComponent implements OnInit {
 			pageLength: 10,
 			responsive: true
 		};
-		this.cols = [
+		this.columns = [
 			{ field: 'SerialNumber', header: 'S NO' },
 			{ field: 'QuizName', header: 'Quiz Name' },
 			{ field: 'Difficulty', header: 'Difficulty' },
-			{ field: 'Tags1', header: 'Tags' },
+			{ field: 'DuplicateTags', header: 'Tags' },
 			{ field: 'QuizType', header: 'Quiz Type' },
 			{ field: 'TotalQuestions', header: 'Total Questions' },
 			{ field: 'TotalMarks', header: 'Total Marks' },
@@ -56,35 +51,34 @@ export class RetrieveQuizComponent implements OnInit {
 		}, 0);
 	}
 
-	loadQuiz() {
-		this.service.getQuizzes().subscribe((res: any) => {
-			console.log(res);
+	private loadQuiz(): void {
+		const subscription = this.service.getQuizzes().subscribe((res: any) => {
 			this.QuizList = res as QuizModel[];
 			console.log(this.QuizList);
-			// this.dtTrigger.next();
-			for (this.i = 1; this.i <= this.QuizList.length; this.i++) {
-				this.QuizList[this.i - 1].SerialNumber = this.i;
-				this.tg = '';
-				for (let tag of this.QuizList[this.i - 1].Tags) {
-					this.tg = this.tg + tag.Name + ',';
+			for (this.index = 1; this.index <= this.QuizList.length; this.index++) {
+				this.QuizList[this.index - 1].SerialNumber = this.index;
+				this.tag = '';
+				for (let tag of this.QuizList[this.index - 1].Tags) {
+					this.tag = this.tag + tag.Name + ',';
 				}
-				this.QuizList[this.i - 1].Tags1 = this.tg;
-				this.QuizList[this.i - 1].Tags1 = this.QuizList[this.i - 1].Tags1.substring(
+				this.QuizList[this.index - 1].DuplicateTags = this.tag;
+				this.QuizList[this.index - 1].DuplicateTags = this.QuizList[this.index - 1].DuplicateTags.substring(
 					0,
-					this.QuizList[this.i - 1].Tags1.length - 1
+					this.QuizList[this.index - 1].DuplicateTags.length - 1
 				);
 			}
 		});
+		subscription.unsubscribe();
 	}
 
-	onCreate() {
+	public onCreate() {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = '70%';
 		// dialogConfig.height = "90%";
 		dialogConfig.disableClose = true;
 		let dialogRef = this.dialog.open(CreateQuizComponent, dialogConfig);
-		dialogRef.afterClosed().subscribe((result) => {
+		const subscription = dialogRef.afterClosed().subscribe((result) => {
 			this.service.Difficulty = null;
 			this.service.QuestionType = null;
 			this.service.SubjectId = null;
@@ -93,42 +87,49 @@ export class RetrieveQuizComponent implements OnInit {
 			this.dtTrigger.unsubscribe();
 			this.dtTrigger.next();
 		});
+		subscription.unsubscribe();
 	}
 
-	onArchive(id: number) {
+	public onArchive(id: number) {
 		if (confirm('Are you sure you want to archive this quiz?')) {
-			this.service.deleteQuiz(id).subscribe((res: any) => {
+			const subscription = this.service.deleteQuiz(id).subscribe((res: any) => {
 				this.toastr.success('Archieved Successfully', 'Assesment System');
 				this.loadQuiz();
 				this.dtTrigger.unsubscribe();
 				this.dtTrigger.next();
 			});
+			subscription.unsubscribe();
 		}
 	}
 
-	onEdit(id: number, index: number) {
+	public onEdit(id: number, index: number) {
 		localStorage.setItem('quizId', id.toString());
 		this.service.Difficulty = this.QuizList[index].Difficulty;
 		this.service.SubjectId = this.QuizList[index].SubjectId;
 		this.service.QuestionType = this.QuizList[index].QuizType;
-		this.service.getQuestionsByQuiz(id).subscribe((res: any) => {
+		const subscription = this.service.getQuestionsByQuiz(id).subscribe((res: any) => {
 			this.QuestionList = res as any[];
 			const dialogConfig = new MatDialogConfig();
 			dialogConfig.autoFocus = true;
 			dialogConfig.width = '70%';
 			dialogConfig.disableClose = true;
 			dialogConfig.data = this.QuestionList;
-			this.dialog.open(UpdateQuizComponent, dialogConfig).afterClosed().subscribe((res) => {
-				this.loadQuiz();
-				this.service.Difficulty = null;
-				this.service.QuestionType = null;
-				this.service.SubjectId = null;
-				this.service.quesStat = false;
-				this.dtTrigger.unsubscribe();
-				this.dtTrigger.next();
-				localStorage.removeItem('quizId');
-			});
+			const resubscription = this.dialog
+				.open(UpdateQuizComponent, dialogConfig)
+				.afterClosed()
+				.subscribe((res) => {
+					this.loadQuiz();
+					this.service.Difficulty = null;
+					this.service.QuestionType = null;
+					this.service.SubjectId = null;
+					this.service.quesStat = false;
+					this.dtTrigger.unsubscribe();
+					this.dtTrigger.next();
+					localStorage.removeItem('quizId');
+				});
+			resubscription.unsubscribe();
 		});
+		subscription.unsubscribe();
 	}
 
 	ngOnDestroy() {

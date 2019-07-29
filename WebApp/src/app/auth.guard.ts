@@ -8,7 +8,7 @@ import { allResolved } from 'q';
 	providedIn: 'root'
 })
 export class AuthGuard implements CanActivate, CanActivateChild {
-	constructor(private router: Router) { }
+	constructor(private router: Router) {}
 	canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 		if (localStorage.getItem('uid') != null) {
 			const roles = next.data['roles'] as Array<string>;
@@ -16,15 +16,13 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 				var match = this.roleMatch(roles);
 				if (match) return true;
 				else {
-					this.router.navigate(['/http-error']);
+					this.router.navigate([ '/http-error' ]);
 					return false;
 				}
-			}
-			else
-				return true;
+			} else return true;
 		}
 		localStorage.clear();
-		this.router.navigate(['/login']);
+		this.router.navigate([ '/login' ]);
 		return false;
 	}
 	canActivateChild(
@@ -37,7 +35,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 	roleMatch(allowedRoles): boolean {
 		var isMatch = false;
 		var userRoles: string = localStorage.getItem('role');
-		allowedRoles.forEach(element => {
+		allowedRoles.forEach((element) => {
 			if (userRoles.indexOf(element) > -1) {
 				isMatch = true;
 			}

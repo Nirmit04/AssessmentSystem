@@ -20,8 +20,8 @@ export class RetrieveScheduleComponent implements OnInit {
 	dtTrigger: Subject<Schedule> = new Subject();
 	subscription: Subscription;
 	col: any[];
-	cols: any[];
-  	i: number;
+	columns: any[];
+	i: number;
 
 	onCreate() {
 		this.router.navigate([ '/testAdminCreateScheDule' ]);
@@ -39,14 +39,8 @@ export class RetrieveScheduleComponent implements OnInit {
 			pagingType: 'full_numbers',
 			pageLength: 10
 		};
-		this.cols = [
-			{ field: 'SerialNumber', header: 'S NO' },
-      		{ field: 'QuizName', header: 'Quiz Name' },
-		];
-		this.col=[
-      		{ field: 'StartDateTime', header: 'Start Time'},
-			{ field: 'EndDateTime', header: 'End Time'},
-		];
+		this.columns = [ { field: 'SerialNumber', header: 'S NO' }, { field: 'QuizName', header: 'Quiz Name' } ];
+		this.col = [ { field: 'StartDateTime', header: 'Start Time' }, { field: 'EndDateTime', header: 'End Time' } ];
 		setTimeout(() => {
 			this.loadSchedule();
 		}, 0);
@@ -56,7 +50,7 @@ export class RetrieveScheduleComponent implements OnInit {
 		this.service.getSchedule(localStorage.getItem('uid')).subscribe((res: any) => {
 			this.scheduleList = res as Schedule[];
 			// this.dtTrigger.next();;
-			console.log(this.scheduleList)
+			console.log(this.scheduleList);
 			for (this.i = 1; this.i <= this.scheduleList.length; this.i++) {
 				this.scheduleList[this.i - 1].SerialNumber = this.i;
 			}

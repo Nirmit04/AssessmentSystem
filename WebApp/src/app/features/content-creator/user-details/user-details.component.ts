@@ -8,14 +8,14 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 	styleUrls: [ './user-details.component.scss' ]
 })
 export class UserDetailsComponent implements OnInit {
-	Firstname: string;
-	Lastname: string;
-	email: string;
-	Quizzes: any;
-	Questions: any;
-	Tags: any;
-	profileUrl: any;
-	show: boolean = true;
+	public firstName: string;
+	public lastName: string;
+	public email: string;
+	public quizzes: any;
+	public questions: any;
+	public tags: any;
+	public profileUrl: any;
+	public show: boolean = true;
 
 	constructor(private service: ContentCreatorServiceService, private ngxService: NgxUiLoaderService) {}
 
@@ -30,17 +30,17 @@ export class UserDetailsComponent implements OnInit {
 
 	loadUserDetails() {
 		this.service.getUserDetails().subscribe((res: any) => {
-			this.Firstname = res.FirstName;
-			this.Lastname = res.LastName;
+			this.firstName = res.FirstName;
+			this.lastName = res.LastName;
 			this.email = res.Email;
 		});
 	}
 
 	loadUserProgress() {
 		this.service.getUserProgress().subscribe((res: any) => {
-			this.Quizzes = res.QuizzesCreated;
-			this.Questions = res.QuestionsCreated;
-			this.Tags = res.TagsCreated;
+			this.quizzes = res.QuizzesCreated;
+			this.questions = res.QuestionsCreated;
+			this.tags = res.TagsCreated;
 			this.show = false;
 		});
 	}

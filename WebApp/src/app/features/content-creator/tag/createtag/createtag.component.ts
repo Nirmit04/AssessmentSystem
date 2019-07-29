@@ -12,11 +12,10 @@ import { forEach } from '@angular/router/src/utils/collection';
 	styleUrls: [ './createtag.component.scss' ]
 })
 export class CreatetagComponent implements OnInit {
-	public model: TagModel;
-	userId = '';
-	existingTags: TagModel[];
-	Option: string = '';
-	tagExists = false;
+	public userId = '';
+	public existingTags: TagModel[];
+	public Option: string = '';
+	public tagExists = false;
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data,
@@ -39,7 +38,7 @@ export class CreatetagComponent implements OnInit {
 		});
 	}
 
-	resetForm(form?: NgForm) {
+	private resetForm(form?: NgForm): void {
 		if (form != null) {
 			form.resetForm();
 		}
@@ -50,15 +49,16 @@ export class CreatetagComponent implements OnInit {
 		};
 	}
 
-	onSubmit(form: NgForm) {
-		this.service.postTags(form.value).subscribe((res) => {
+	public onSubmit(form: NgForm) {
+		const subscription = this.service.postTags(form.value).subscribe((res) => {
 			this.toastr.success('Inserted successfully');
 			this.resetForm(form);
 			this.dialogRef.close('Inserted');
 		});
+		subscription.unsubscribe();
 	}
 
-	check_avail(name1: NgForm) {
+	public check_avail(name1: NgForm) {
 		for (let tag of this.existingTags) {
 			if (tag.Name.toString().toLowerCase() === name1.value.toString().toLowerCase()) {
 				this.tagExists = true;

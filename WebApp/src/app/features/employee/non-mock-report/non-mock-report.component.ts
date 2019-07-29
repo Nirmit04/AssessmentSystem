@@ -12,11 +12,9 @@ import { Router } from '@angular/router';
 export class NonMockReportComponent implements OnInit {
 	dtOptions: DataTables.Settings = {};
 	dtTrigger: Subject<any> = new Subject();
-	subscription: Subscription;
-	bool: false;
-	nonMockReportList: any[];
-	cols: any[];
-	i: number;
+	public nonMockReportList: any[];
+	public columns: any[];
+	private index: number;
 
 	constructor(private service: EmployeeService, private toastr: ToastrService, private router: Router) {}
 
@@ -27,7 +25,7 @@ export class NonMockReportComponent implements OnInit {
 			//   responsive: true,
 			// scrollX: true
 		};
-		this.cols = [
+		this.columns = [
 			{ field: 'SerialNumber', header: 'S NO' },
 			{ field: 'QuizName', header: 'Quiz Name' },
 			{ field: 'CorrectAnswers', header: 'Correct Answers' },
@@ -46,16 +44,15 @@ export class NonMockReportComponent implements OnInit {
 	getNonMockReport() {
 		this.service.getReportOfNonMockQuiz(localStorage.getItem('uid')).subscribe((res: any) => {
 			this.nonMockReportList = res as any[];
-			// this.dtTrigger.next();
-			for (this.i = 1; this.i <= this.nonMockReportList.length; this.i++) {
-				this.nonMockReportList[this.i - 1].SerialNumber = this.i;
+			for (this.index = 1; this.index <= this.nonMockReportList.length; this.index++) {
+				this.nonMockReportList[this.index - 1].SerialNumber = this.index;
 			}
 		});
 	}
 
-	viewDetailedReport(qid: number, index: number) {
+	viewDetailedReport(quizid: number, index: number) {
 		this.service.data = this.nonMockReportList[index - 1];
-		this.service.QuizId = qid;
+		this.service.QuizId = quizid;
 		this.router.navigate([ '/emp-dash/quiz/detailed-report' ]);
 		this.dtTrigger.next();
 	}

@@ -12,14 +12,13 @@ import { Router } from '@angular/router';
 export class MockComponent implements OnInit {
 	dtOptions: DataTables.Settings = {};
 	dtTrigger: Subject<any> = new Subject();
-	subscription: Subscription;
-	time: any[];
-	tg: string = '';
-	mockList: any[];
-	cols: any[];
-	i: number;
+	private time: any[];
+	private tag: string = '';
+	public mockList: any[];
+	public columns: any[];
+	public index: number;
 
-	constructor(private service: EmployeeService, private toastr: ToastrService, public router: Router) {}
+	constructor(private service: EmployeeService, public router: Router) {}
 
 	ngOnInit() {
 		this.dtOptions = {
@@ -30,10 +29,10 @@ export class MockComponent implements OnInit {
 		setTimeout(() => {
 			this.getMockList();
 		}, 0);
-		this.cols = [
+		this.columns = [
 			{ field: 'SerialNumber', header: 'S NO' },
 			{ field: 'QuizName', header: 'Quiz Name' },
-			{ field: 'Tags1', header: 'Tags' },
+			{ field: 'DuplicateTags', header: 'Tags' },
 			{ field: 'Difficulty', header: 'Difficulty Level' },
 			{ field: 'TotalQuestions', header: 'Total Questions' },
 			{ field: 'TotalMarks', header: 'Total Marks' },
@@ -43,27 +42,26 @@ export class MockComponent implements OnInit {
 	}
 
 	getMockList() {
-		this.service.getListOfMockQuizzes().subscribe((res: any) => {
+		const subscription = this.service.getListOfMockQuizzes().subscribe((res: any) => {
 			this.mockList = res as any[];
-			for (this.i = 1; this.i <= this.mockList.length; this.i++) {
-				this.mockList[this.i - 1].SerialNumber = this.i;
-				this.tg = '';
-				for (let tag of this.mockList[this.i - 1].Tags) {
-					this.tg = this.tg + tag.Name + ',';
+			for (this.index = 1; this.index <= this.mockList.length; this.index++) {
+				this.mockList[this.index - 1].SerialNumber = this.index;
+				this.tag = '';
+				for (let tag of this.mockList[this.index - 1].Tags) {
+					this.tag = this.tag + tag.Name + ',';
 				}
-				this.mockList[this.i - 1].Tags1 = this.tg;
-				this.mockList[this.i - 1].Tags1 = this.mockList[this.i - 1].Tags1.substring(
+				this.mockList[this.index - 1].DuplicateTags = this.tag;
+				this.mockList[this.index - 1].DuplicateTags = this.mockList[this.index - 1].DuplicateTags.substring(
 					0,
-					this.mockList[this.i - 1].Tags1.length - 1
+					this.mockList[this.index - 1].DuplicateTags.length - 1
 				);
 			}
-			console.log(this.mockList);
 		});
+		subscription.unsubscribe();
 	}
 	takeMockQuiz(QuizId: number, QuizName: string, index: number) {
 		this.service.QuizId = QuizId;
-		this.service.getMockQuesOfQuiz(QuizId).subscribe((res: any) => {
-			console.log(res);
+		const subscription = this.service.getMockQuesOfQuiz(QuizId).subscribe((res: any) => {
 			if (res !== 'Quiz Started') {
 				this.service.statusMapping = res.GetQuestionBuffers;
 				this.time = res.TimeLeft.split(':');
@@ -80,5 +78,6 @@ export class MockComponent implements OnInit {
 			this.service.QuizScheduleId = null;
 			this.router.navigate([ '/emp-dash/quiz/take-quiz' ]);
 		});
+		subscription.unsubscribe();
 	}
 }

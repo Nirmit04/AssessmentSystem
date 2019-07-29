@@ -1,24 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from 'angularx-social-login';
 import { SocialUser } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.component.html',
 	styleUrls: [ './login.component.scss' ]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 	user: SocialUser;
 	returnURL: string;
+	subscription: Subscription;
 	constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) {}
 
 	ngOnInit() {
 		localStorage.setItem('key', this.route.snapshot.queryParamMap.get('take-quiz'));
 		localStorage.setItem('key1', this.route.snapshot.queryParamMap.get('schedule-id'));
 		localStorage.setItem('time', this.route.snapshot.queryParamMap.get('time'));
-		this.authService.authState.subscribe((user) => {
+		this.subscription = this.authService.authState.subscribe((user) => {
 			this.user = user;
 			if (user != null) {
 				localStorage.setItem('token', this.user.idToken);
@@ -40,6 +42,10 @@ export class LoginComponent implements OnInit {
 	}
 
 	signOut(): void {
+		localStorage.clear();
 		this.authService.signOut();
+	}
+	ngOnDestroy() {
+		this.subscription.unsubscribe();
 	}
 }

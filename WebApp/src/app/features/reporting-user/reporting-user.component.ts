@@ -5,22 +5,18 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 @Component({
 	selector: 'app-reporting-user',
 	templateUrl: './reporting-user.component.html',
-	styleUrls: ['./reporting-user.component.scss']
+	styleUrls: [ './reporting-user.component.scss' ]
 })
 export class ReportingUserComponent implements OnInit {
-	Firstname: string;
-	Lastname: string;
-	email: string;
-	Quizzes: any;
-	Questions: any;
-	Tags: any;
-	profileUrl: any;
-	TotalQuiz: any;
-	TotalQues: any;
-	TotalUser: any;
-	TotalSub: any;
-	show = true;
-	constructor(private service: ReportingUserService, private ngxService: NgxUiLoaderService) { }
+	public firstName: string;
+	public lastName: string;
+	public email: string;
+	public profileUrl: any;
+	public totalQuiz: any;
+	public totalQues: any;
+	public totalUser: any;
+	public totalSub: any;
+	constructor(private service: ReportingUserService, private ngxService: NgxUiLoaderService) {}
 
 	ngOnInit() {
 		this.ngxService.startBackground('do-background-things');
@@ -32,17 +28,17 @@ export class ReportingUserComponent implements OnInit {
 	}
 	loadUserDetails() {
 		this.service.getUserDetails().subscribe((res: any) => {
-			this.Firstname = res.FirstName;
-			this.Lastname = res.LastName;
+			this.firstName = res.FirstName;
+			this.lastName = res.LastName;
 			this.email = res.Email;
 		});
 	}
 	loadUserProgress() {
 		this.service.getUserProgress().subscribe((res: any) => {
-			this.TotalQuiz = res.QuizCount;
-			this.TotalQues = res.QuestionCount;
-			this.TotalSub = res.SubjectCount;
-			this.TotalUser = res.UserCount;
+			this.totalQuiz = res.QuizCount;
+			this.totalQues = res.QuestionCount;
+			this.totalSub = res.SubjectCount;
+			this.totalUser = res.UserCount;
 		});
 	}
 }

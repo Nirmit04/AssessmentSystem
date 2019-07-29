@@ -53,7 +53,7 @@
           <h4>Questions</h4>
         </div>
         <div class="card-body table-wrapper-scroll-y my-custom-scrollbar" style="overflow-y: auto; height: 320px">
-          <div class="btn-group mb-4" role="group" *ngFor="let b of ArrayOne(noOfQues); let i=index;">
+          <div class="btn-group mb-4" role="group" *ngFor="let b of transformingIntoArray(noOfQues); let i=index;">
             <div class="btn-group mr-3">
               <a style="width:50px" type="button" id="{{i}}" class="btn btn-block text-center" [ngClass]="getStatus(i)"
                 (click)="Navigate(i)">{{i+1}}</a>
@@ -77,13 +77,13 @@
               aria-hidden="true" class="fa fa-forward"></i></button>
           &nbsp;&nbsp;
           <button class="btn btn-sm btn-primary text-white" [disabled]="!options"
-            (click)="Answer(service.qnProgress+1,options,'save')"><i aria-hidden="true"
+            (click)="answer(service.qnProgress+1,options,'save')"><i aria-hidden="true"
               class="fa fa-check-circle"></i>&nbsp;Save & Next</button>
           &nbsp;&nbsp;
-          <button class="btn btn-sm btn-dark text-white" (click)="Answer(service.qnProgress+1,options, 'review')"><i
+          <button class="btn btn-sm btn-dark text-white" (click)="answer(service.qnProgress+1,options, 'review')"><i
               aria-hidden="true" class="fa fa-star"></i>&nbsp;Mark for Review</button>
           &nbsp;&nbsp;
-          <button class="btn btn-sm btn-success text-white" (click)="Answer(service.qnProgress+1,options,'submit')"><i
+          <button class="btn btn-sm btn-success text-white" (click)="answer(service.qnProgress+1,options,'submit')"><i
               aria-hidden="true" class="fa fa-forward"></i>&nbsp;Submit</button>
         </div>
       </div>

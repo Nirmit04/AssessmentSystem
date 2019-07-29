@@ -1,5 +1,5 @@
 export class Question {
-	SerialNumber? : number;
+	SerialNumber?: number;
 	QuestionType?: string;
 	QuestionId: string;
 	QuestionStatement: string;
@@ -14,6 +14,6 @@ export class Question {
 	SubjectName?: string;
 	ImageName?: string;
 	CreatedBy?: string;
-	Tags?: any[]
-	Tags1?:string;
+	Tags?: any[];
+	DuplicateTags?: string;
 }

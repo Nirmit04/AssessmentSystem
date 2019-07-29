@@ -15,26 +15,19 @@ import * as moment from 'moment';
 })
 export class CreateQuizComponent implements OnInit {
 	public Subjects: any[];
-	questions: any[];
-	quizzes: any[];
-	quizExists: boolean;
-	val: boolean = false;
-	count: number = 0;
-	CCreatedBy = '';
-	length = 0;
-	flag = 1;
-	form1: NgForm;
-	QuizHour: string;
-	QuizMinute: string;
-	MockType: string;
-	TotalQuestions: number;
-	RandomQuizTime: number;
-	difficulty = '';
-	subjectid: number = null;
-	question_type = '';
-	dropdownSettings;
-	cols: any[];
-	i: number;
+	public questions: any[];
+	private quizzes: any[];
+	public quizExists: boolean;
+	public val: boolean = false;
+	public CreatedBy: string = '';
+	public length = 0;
+	public QuizHour: string;
+	public QuizMinute: string;
+	public mockType: string;
+	public totalQuestions: number;
+	public dropdownSettings;
+	public columns: any[];
+	public index: number;
 
 	constructor(
 		private service: ContentCreatorServiceService,
@@ -54,7 +47,7 @@ export class CreateQuizComponent implements OnInit {
 
 		this.quizExists = false;
 		this.resetForm();
-		this.CCreatedBy = localStorage.getItem('uid');
+		this.CreatedBy = localStorage.getItem('uid');
 		this.service.retrieveQuizNames().subscribe((res: any) => {
 			this.quizzes = res as any[];
 		});
@@ -112,8 +105,8 @@ export class CreateQuizComponent implements OnInit {
 			this.QuizMinute = '0' + this.service.QuizMinute.toString();
 		}
 		this.service.quizForm.QuizTime = this.QuizHour + ':' + this.QuizMinute;
-		if (this.MockType == 'Random') {
-			this.service.generateRandom(form.value, this.TotalQuestions).subscribe((res: any) => {
+		if (this.mockType == 'Random') {
+			this.service.generateRandom(form.value, this.totalQuestions).subscribe((res: any) => {
 				if (res === 0) {
 					this.toastr.error('No Questions Available!');
 				} else {
@@ -122,9 +115,7 @@ export class CreateQuizComponent implements OnInit {
 				this.dialogRef.close('Inserted');
 			});
 		} else {
-			console.log('2');
-
-			this.cols = [
+			this.columns = [
 				{ field: 'SerialNumber', header: 'S NO' },
 				{ field: 'QuestionStatement', header: 'Questions' }
 			];
@@ -133,40 +124,42 @@ export class CreateQuizComponent implements OnInit {
 				data.forEach((obj) => (obj.selected = false));
 				this.questions = data;
 				this.length = this.questions.length;
-				for (this.i = 1; this.i <= this.questions.length; this.i++) {
-					this.questions[this.i - 1].SerialNumber = this.i;
+				for (this.index = 1; this.index <= this.questions.length; this.index++) {
+					this.questions[this.index - 1].SerialNumber = this.index;
 				}
 				this.checkVal();
 			});
 		}
 	}
 
-	checkVal() {
+	private checkVal(): void {
 		this.val = true;
 	}
-	updateSelectedQuestions(index) {
+	public updateSelectedQuestions(index) {
 		this.questions[index].selected = !this.questions[index].selected;
 	}
-	onDetailsSubmit(form: NgForm) {
+	public onDetailsSubmit(form: NgForm) {
 		var QuestionId = this.questions
 			.filter((QuestionId) => QuestionId.selected)
 			.map((idSelected) => idSelected.QuestionId);
-		this.service.postQuestionsSelected(QuestionId).subscribe((res) => {
+		const response = this.service.postQuestionsSelected(QuestionId);
+		if (response) {
 			this.toastr.success('Inserted successfully');
 			this.service.quizForm = null;
 			this.dialogRef.close('Inserted');
-		});
+		}
 	}
-	reload(data1: any) {
-		this.service.getQuesOfUserConstraints(data1).subscribe((data: any) => {
+	private reload(data1: any) {
+		const subscription = this.service.getQuesOfUserConstraints(data1).subscribe((data: any) => {
 			data.forEach((obj) => (obj.selected = false));
 			this.questions = data;
 			this.length = this.questions.length;
 			this.checkVal();
 		});
+		subscription.unsubscribe();
 	}
 
-	checkAvail(inputName: NgForm) {
+	public checkAvail(inputName: NgForm): void {
 		for (let name of this.quizzes) {
 			if (name.QuizName.toString().toLowerCase() === inputName.value.toString().toLowerCase()) {
 				this.quizExists = true;
@@ -177,34 +170,20 @@ export class CreateQuizComponent implements OnInit {
 		}
 	}
 
-	add_new_ques() {
+	public add_new_ques(): void {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = '70%';
 		dialogConfig.disableClose = true;
 		this.service.quesStat = true;
-		// this.service.formData = {
-		//   QuestionId: null,
-		//   QuestionStatement: '',
-		//   Option1: '',
-		//   Option2: '',
-		//   Option3: '',
-		//   Option4: '',
-		//   Answer: null,
-		//   Marks: null,
-		//   Difficulty: this.service.quizForm.Difficulty.toString(),
-		//   SubjectId: this.service.quizForm.SubjectId.toString()
-		// };
-		// this.service.formData.Difficulty = this.service.quizForm.Difficulty.toString();
-		// this.service.formData.SubjectId = this.service.quizForm.SubjectId.toString();
-		// console.log(this.service.formData);
 		let dialogRef = this.dialog.open(CreateQuestionsComponent, dialogConfig);
-		dialogRef.afterClosed().subscribe((result) => {
+		const subscription = dialogRef.afterClosed().subscribe((result) => {
 			this.service.quesStat = false;
 			this.reload(this.service.quizForm);
 		});
+		subscription.unsubscribe();
 	}
-	toggleEditable(event) {
+	public toggleEditable(event): void {
 		if (event.target.checked) {
 			this.service.QuizState = true;
 		}

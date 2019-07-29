@@ -10,9 +10,8 @@ import { Router } from '@angular/router';
 	styleUrls: [ './details.component.scss' ]
 })
 export class DetailsComponent implements OnInit {
-	quizData: any = null;
-	quizName = '';
-
+	public quizData: any = null;
+	public quizName = '';
 	public pieChartLabels: Label[] = [ 'Highest-Score', 'Lowest Score', 'Average-Score', 'Number of Schedules' ];
 	public pieChartData: any[];
 	public pieChartLegend: boolean;
@@ -25,7 +24,7 @@ export class DetailsComponent implements OnInit {
 			}
 		}
 	};
-	chartData: any[];
+	public chartData: any[];
 	constructor(public service: ReportingUserService, public router: Router) {}
 
 	ngOnInit() {
@@ -41,7 +40,7 @@ export class DetailsComponent implements OnInit {
 	}
 
 	getDetails(id: string) {
-		this.service.getQuizAnalysis(id).subscribe((res: any) => {
+		const subscription = this.service.getQuizAnalysis(id).subscribe((res: any) => {
 			this.quizData = res;
 			this.chartData = [];
 			this.chartData.push(this.quizData.HighestScore);
@@ -50,5 +49,6 @@ export class DetailsComponent implements OnInit {
 			this.chartData.push(this.quizData.NoOfQuiz);
 			this.pieChartData = this.chartData;
 		});
+		subscription.unsubscribe();
 	}
 }

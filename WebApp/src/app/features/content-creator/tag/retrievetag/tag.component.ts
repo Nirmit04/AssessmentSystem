@@ -13,26 +13,20 @@ import { Subject } from 'rxjs';
 	styleUrls: [ './tag.component.scss' ]
 })
 export class TagComponent implements OnInit {
-	tagList: TagModel[];
+	public tagList: TagModel[];
 	dtOptions: DataTables.Settings = {};
 	dtTrigger: Subject<TagModel> = new Subject();
-	subscription: Subscription;
-	cols: any[];
-	i: number;
+	public columns: any[];
+	public index: number;
 
-	constructor(
-		private service: ContentCreatorServiceService,
-		private router: Router,
-		private dialog: MatDialog,
-		private toastr: ToastrService
-	) {}
+	constructor(private service: ContentCreatorServiceService) {}
 
 	ngOnInit() {
 		this.dtOptions = {
 			pagingType: 'full_numbers',
 			pageLength: 10
 		};
-		this.cols = [
+		this.columns = [
 			{ field: 'SerialNumber', header: 'S NO' },
 			{ field: 'Name', header: 'Subject' },
 			{ field: 'Department', header: 'Department' }
@@ -43,13 +37,13 @@ export class TagComponent implements OnInit {
 	}
 
 	loadTags() {
-		this.service.getTags().subscribe((res: any) => {
+		const subscription = this.service.getTags().subscribe((res: any) => {
 			this.tagList = res as TagModel[];
-			console.log(res);
-			for (this.i = 1; this.i <= this.tagList.length; this.i++) {
-				this.tagList[this.i - 1].SerialNumber = this.i;
+			for (this.index = 1; this.index <= this.tagList.length; this.index++) {
+				this.tagList[this.index - 1].SerialNumber = this.index;
 			}
 		});
+		subscription.unsubscribe();
 	}
 
 	onCreate() {
@@ -57,9 +51,6 @@ export class TagComponent implements OnInit {
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = '70%';
 		dialogConfig.disableClose = true;
-		// let dialogRef = this.dialog.open(CreatetagComponent, dialogConfig).afterClosed().subscribe((result) => {
-		// 	this.loadTags();
-		// });
 	}
 
 	onEdit(id: number) {
@@ -68,11 +59,6 @@ export class TagComponent implements OnInit {
 		dialogConfig.width = '70%';
 		dialogConfig.disableClose = true;
 		dialogConfig.data = this.tagList[id - 1];
-		console.log(id);
-		console.log(dialogConfig.data);
-		// let dialogRef = this.dialog.open(CreatetagComponent, dialogConfig).afterClosed().subscribe((res) => {
-		// 	this.loadTags();
-		// });
 	}
 
 	ngOnDestroy() {

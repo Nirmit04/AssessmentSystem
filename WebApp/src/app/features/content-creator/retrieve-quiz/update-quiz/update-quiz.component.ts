@@ -12,8 +12,8 @@ import { CreateQuestionsComponent } from '../../create-questions/create-question
 	styleUrls: [ './update-quiz.component.scss' ]
 })
 export class UpdateQuizComponent implements OnInit {
-	UpdateQuizQuestionList: Question[];
-	check: boolean;
+	public UpdateQuizQuestionList: Question[];
+	public check: boolean;
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data,
@@ -28,13 +28,16 @@ export class UpdateQuizComponent implements OnInit {
 		this.check = false;
 	}
 
-	loadingData() {
-		this.service.getQuestionsByQuiz(Number(localStorage.getItem('quizId'))).subscribe((res: any) => {
-			this.UpdateQuizQuestionList = res;
-		});
+	private loadingData() {
+		const subscription = this.service
+			.getQuestionsByQuiz(Number(localStorage.getItem('quizId')))
+			.subscribe((res: any) => {
+				this.UpdateQuizQuestionList = res;
+			});
+		subscription.unsubscribe();
 	}
 
-	onDelete(id: number) {
+	public onDelete(id: number) {
 		if (confirm('Are you sure you want to delete this record?')) {
 			this.service.deleteQuesOfQuiz(id).subscribe((res: any) => {
 				this.toastr.success('Deleted Successfully', 'Assesment System');
@@ -43,37 +46,45 @@ export class UpdateQuizComponent implements OnInit {
 		}
 	}
 
-	onCreate() {
+	public onCreate() {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = '70%';
 		dialogConfig.disableClose = true;
-		this.service.getQuizQuestions(Number(localStorage.getItem('quizId'))).subscribe((res: any) => {
-			dialogConfig.data = res;
-			if (dialogConfig.data.length === 0) {
-				this.toastr.error('No Questions Available');
-				this.check = true;
-			} else {
-				this.dialog.open(AddQuesInQuizComponent, dialogConfig).afterClosed().subscribe((res) => {
-					this.loadingData();
-				});
-			}
-		});
+		const subscription = this.service
+			.getQuizQuestions(Number(localStorage.getItem('quizId')))
+			.subscribe((res: any) => {
+				dialogConfig.data = res;
+				if (dialogConfig.data.length === 0) {
+					this.toastr.error('No Questions Available');
+					this.check = true;
+				} else {
+					const resubscription = this.dialog
+						.open(AddQuesInQuizComponent, dialogConfig)
+						.afterClosed()
+						.subscribe((res) => {
+							this.loadingData();
+						});
+					resubscription.unsubscribe();
+				}
+			});
+		subscription.unsubscribe();
 	}
 
-	add_new_ques() {
+	public add_new_ques() {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = '70%';
 		dialogConfig.disableClose = true;
 		this.service.quesStat = true;
 		let dialogRef = this.dialog.open(CreateQuestionsComponent, dialogConfig);
-		dialogRef.afterClosed().subscribe((result) => {
+		const subscription = dialogRef.afterClosed().subscribe((result) => {
 			this.check = false;
 			this.loadingData();
 			this.service.formData.SubjectId = null;
 			this.service.formData.Difficulty = null;
 			this.service.QuestionType = null;
 		});
+		subscription.unsubscribe();
 	}
 }

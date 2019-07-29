@@ -25,7 +25,7 @@ export class ContentCreatorServiceService {
 	public createdBy;
 	public formDupli: NgForm;
 	selectedFile: File = null;
-	constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient) {}
 
 	postQuestion(formData: Question) {
 		this.formDataNew = new FormData();
@@ -103,8 +103,8 @@ export class ContentCreatorServiceService {
 		const body = {
 			Tags: form.Tags,
 			Difficulty: form.Difficulty,
-			QuestionType: form.QuizType,
-		}
+			QuestionType: form.QuizType
+		};
 		console.log(body);
 		return this.http.post(this.rootURL + 'Question/GetQuestion', body);
 	}
@@ -114,7 +114,7 @@ export class ContentCreatorServiceService {
 	}
 	postQuestionsSelected(questions: number[]) {
 		this.quizForm.QuestionIds = questions;
-		this.quizForm.QuizState=this.QuizState;
+		this.quizForm.QuizState = this.QuizState;
 		console.log(this.quizForm);
 		return this.http.post(this.rootURL + 'Quiz/CreateQuiz', this.quizForm);
 	}
@@ -122,7 +122,10 @@ export class ContentCreatorServiceService {
 	putQuestionsSelected(questions: number[]) {
 		this.quizForm.QuestionIds = questions;
 		this.quizForm.CreatedBy = localStorage.getItem('uid');
-		return this.http.put(this.rootURL + 'Quiz/EditQuiz/AddQuestion/' + Number(localStorage.getItem('quizId')), this.quizForm.QuestionIds);
+		return this.http.put(
+			this.rootURL + 'Quiz/EditQuiz/AddQuestion/' + Number(localStorage.getItem('quizId')),
+			this.quizForm.QuestionIds
+		);
 	}
 
 	deleteQuesOfQuiz(id) {
@@ -150,5 +153,4 @@ export class ContentCreatorServiceService {
 	deleteImageFromQues(id) {
 		return this.http.delete(this.rootURL + 'Question/ImageDelete/' + id);
 	}
-
 }
