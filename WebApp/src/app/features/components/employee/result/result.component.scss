@@ -1,0 +1,23 @@
+@import 'assets/scss/color.scss';
+.banana {
+	float: right;
+	margin-top: 1.5%;
+	margin-right: 1%;
+}
+.apricot {
+	text-align: center;
+	margin-top: 1.5%;
+	float: inline-start;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	font-weight: 900;
+}
+.card {
+	width: 80%;
+	margin-top: 2%;
+}
+.text {
+	font-weight: bold;
+	color: $blue;
+	float: right;
+	margin-right: 1%;
+}

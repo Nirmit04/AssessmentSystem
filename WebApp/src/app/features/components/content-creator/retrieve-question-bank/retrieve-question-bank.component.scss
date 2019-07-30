@@ -1,0 +1,19 @@
+@import 'assets/scss/color.scss';
+.search {
+	text-align: right;
+	.fa {
+		margin: 4px 4px 0 0;
+	}
+	input {
+		width: 50%;
+	}
+}
+tr {
+	th {
+		background-color: $black;
+		color: $white;
+	}
+	.wide {
+		width: 50%;
+	}
+}

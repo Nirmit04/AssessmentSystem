@@ -1,0 +1,24 @@
+@import 'assets/scss/color.scss';
+th,
+td {
+	text-align: center;
+	color: black;
+}
+.search {
+	text-align: right;
+	.fa {
+		margin: 4px 4px 0 0;
+	}
+	input {
+		width: auto;
+	}
+}
+tr {
+	th {
+		background-color: $black;
+		color: $white;
+	}
+}
+.btn-sm {
+	margin-right: 10px;
+}
