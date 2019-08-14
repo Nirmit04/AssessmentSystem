@@ -11,7 +11,7 @@
         Question</a></li>
       <li><a mat-list-item (click)="setQuestionType('Mock')"><i class="fa fa-code" aria-hidden="true"></i> Create Mock
         Question</a></li>
-      <li><a mat-list-item routerLink="/cc-dash/quiz"><i class="fa fa-retweet" aria-hidden="true"></i> Create/Retrieve
+      <li><a mat-list-item routerLink="/cc-dash/quiz" routerLinkActive="active" ><i class="fa fa-retweet" aria-hidden="true"></i> Create/Retrieve
         Quiz</a></li>
       <li><a mat-list-item routerLink="/cc-dash/tag"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Create / Edit
         Tag</a></li>
@@ -30,7 +30,7 @@
         <div class="input-group-prepend">
           <label class="input-group-text" for="inputGroupSelect01">Role</label>
         </div>
-        <select class="custom-select" #role id="inputGroupSelect01" [(ngModel)]="cRole" (change)="aab(role.value)">
+        <select class="custom-select" #role id="inputGroupSelect01" [(ngModel)]="currentRole" (change)="currentRoleIs(role.value)">
           <option value="//emp-dash" *ngIf="roleMatch(['Employee'])">Employee</option>
           <option value="//cc-dash" *ngIf="roleMatch(['Content-Creator'])">Content-Creator</option>
           <option value="//ta-dash" *ngIf="roleMatch(['Test-Administrator'])">Test-Administrator</option>

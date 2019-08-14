@@ -1,14 +1,14 @@
-mat-dialog-content {
+.mat-dialog-content {
 	position: relative;
 }
 .pos {
 	position: absolute;
-	left:100%;
+	left: 100%;
 	z-index: 9999;
 	width: 35px;
 	height: 35px;
 }
-mat-icon {
+.mat-icon {
 	width: 30px;
 	height: 30px;
 	position: absolute;

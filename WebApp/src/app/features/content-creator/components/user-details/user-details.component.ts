@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ContentCreatorServiceService } from '../../services/content-creator-service.service';
+import { ContentCreatorService } from '../../services/content-creator-service.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { StorageService } from '../../../../services/storage.service';
 import { HttpService } from '../../../../core/http/http.service';
@@ -11,21 +11,20 @@ import { HttpService } from '../../../../core/http/http.service';
 })
 export class UserDetailsComponent implements OnInit {
 
-	Firstname: string;
-	Lastname: string;
-	email: string;
-	Quizzes: any;
-	Questions: any;
-	Tags: any;
-	profileUrl: any;
-	show: boolean = true;
+	public firstName: string;
+	public lastName: string;
+	public email: string;
+	public quizzes: any;
+	public questions: any;
+	public tags: any;
+	public profileUrl: any;
+	public show: boolean = true;
 
-	constructor(private service: ContentCreatorServiceService,
-		private ngxService: NgxUiLoaderService,
+	constructor(private ngxService: NgxUiLoaderService,
 		private storageService: StorageService,
 		private httpService: HttpService) { }
 
-	ngOnInit() {
+	public ngOnInit(): void {
 		this.ngxService.startBackground('do-background-things');
 		this.ngxService.stopBackground('do-background-things');
 		this.ngxService.startLoader('loader-01');
@@ -34,21 +33,23 @@ export class UserDetailsComponent implements OnInit {
 		this.loadUserProgress();
 	}
 
-	loadUserDetails() {
-		this.httpService.getUserDetails().subscribe((res: any) => {
-			this.Firstname = res.FirstName;
-			this.Lastname = res.LastName;
+	private loadUserDetails(): void {
+		const subscription = this.httpService.getUserDetails().subscribe((res: any) => {
+			this.firstName = res.FirstName;
+			this.lastName = res.LastName;
 			this.email = res.Email;
 		});
+		subscription.unsubscribe();
 	}
 
-	loadUserProgress() {
-		this.httpService.getContentCreatorProgress().subscribe((res: any) => {
-			this.Quizzes = res.QuizzesCreated;
-			this.Questions = res.QuestionsCreated;
-			this.Tags = res.TagsCreated;
+	private loadUserProgress(): void {
+		const subscription = this.httpService.getContentCreatorProgress().subscribe((res: any) => {
+			this.quizzes = res.QuizzesCreated;
+			this.questions = res.QuestionsCreated;
+			this.tags = res.TagsCreated;
 			this.show = false;
 		});
+		subscription.unsubscribe();
 	}
 
 }

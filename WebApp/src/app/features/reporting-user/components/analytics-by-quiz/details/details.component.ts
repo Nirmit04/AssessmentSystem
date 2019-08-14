@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ReportingUserService } from '../../../services/reporting-user.service';
-import { SingleDataSet, Label } from 'ng2-charts';
+import { Label } from 'ng2-charts';
 import { ChartType, ChartOptions } from 'chart.js';
 import { Router } from '@angular/router';
+import { ReportingUserService } from '../../../services/reporting-user.service';
+import { HttpService } from '../../../../../core/http/http.service';
 @Component({
 	selector: 'app-details',
 	templateUrl: './details.component.html',
@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 export class DetailsComponent implements OnInit {
 	public quizData: any = null;
 	public quizName = '';
-
 	public pieChartLabels: Label[] = ['Highest-Score', 'Lowest Score', 'Average-Score', 'Number of Schedules'];
 	public pieChartData: any[];
 	public pieChartLegend: boolean;
@@ -25,8 +24,10 @@ export class DetailsComponent implements OnInit {
 			}
 		}
 	};
-	chartData: any[];
-	constructor(public service: ReportingUserService, public router: Router) { }
+	public chartData: any[];
+	constructor(public router: Router,
+		private service: ReportingUserService,
+		private httpService: HttpService) { }
 
 	public ngOnInit(): void {
 		if (this.service.data !== null) {
@@ -40,8 +41,8 @@ export class DetailsComponent implements OnInit {
 		}
 	}
 
-	private getDetails(id: string): void {
-		this.service.getQuizAnalysis(id).subscribe((res: any) => {
+	private getDetails(quizId: string): void {
+		const subscription = this.httpService.getQuizAnalysis(quizId).subscribe((res: any) => {
 			this.quizData = res;
 			this.chartData = [];
 			this.chartData.push(this.quizData.HighestScore);
@@ -50,5 +51,6 @@ export class DetailsComponent implements OnInit {
 			this.chartData.push(this.quizData.NoOfQuiz);
 			this.pieChartData = this.chartData;
 		});
+		subscription.unsubscribe();
 	}
 }

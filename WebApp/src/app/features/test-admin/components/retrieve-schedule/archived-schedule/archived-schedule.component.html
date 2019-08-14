@@ -1,7 +1,7 @@
 <app-loader></app-loader>
 <app-main-nav2>
   <div>
-    <p-table [columns]="cols" [value]="ScheduleList" [paginator]="true" [rows]="6" #dt [responsive]="true">
+    <p-table [columns]="columns" [value]="ScheduleList" [paginator]="true" [rows]="6" #dt [responsive]="true">
       <ng-template pTemplate="caption">
         <h3>List of Archived Schedules</h3>
         <div style="text-align: right">
@@ -12,7 +12,7 @@
       </ng-template>
       <ng-template pTemplate="header">
         <tr>
-          <th *ngFor="let col of cols" [pSortableColumn]="col.field" style="background-color:#000000; color:#ffffff ">
+          <th *ngFor="let col of columns" [pSortableColumn]="col.field" style="background-color:#000000; color:#ffffff ">
             {{col.header}}
           </th>
           <th style="background-color:#000000; color:#ffffff ">Start Time</th>
@@ -25,7 +25,7 @@
           <td *ngFor="let col of columns;">
             {{rowData[col.field]}}
           </td>
-          <td *ngFor="let c of col;">
+          <td *ngFor="let c of unSortableColumns;">
             {{rowData[c.field] | date: 'medium' :amLocal}}
           </td>
           <td style="text-align:center;">

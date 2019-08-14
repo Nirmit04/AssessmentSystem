@@ -61,7 +61,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/test-admin/main-nav2/main-nav2.component.ts</code>
+    <code>src/app/features/test-admin/components/main-nav2/main-nav2.component.ts</code>
 </p>
 
 
@@ -124,7 +124,8 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#cRole">cRole</a>
+                                    <span class="modifier">Public</span>
+                                <a href="#currentRole">currentRole</a>
                             </li>
                             <li>
                                 <a href="#isHandset$">isHandset$</a>
@@ -142,15 +143,19 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#aab">aab</a>
+                                    <span class="modifier">Public</span>
+                                <a href="#currentRoleIs">currentRoleIs</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#logout">logout</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#ngOnInit">ngOnInit</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#roleMatch">roleMatch</a>
                             </li>
                         </ul>
@@ -171,12 +176,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(breakpointObserver: BreakpointObserver, authService: AuthService, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(breakpointObserver: BreakpointObserver, authService: AuthService, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, storageService: <a href="../injectables/StorageService.html">StorageService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/test-admin/main-nav2/main-nav2.component.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/features/test-admin/components/main-nav2/main-nav2.component.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -229,6 +234,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>storageService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/StorageService.html" target="_self" >StorageService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -251,26 +268,28 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="aab"></a>
+                    <a name="currentRoleIs"></a>
                     <span class="name">
                         <b>
-                            aab
+                            <span class="modifier">Public</span>
+                            currentRoleIs
                         </b>
-                        <a href="#aab"><span class="icon ion-ios-link"></span></a>
+                        <a href="#currentRoleIs"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>aab(role: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>currentRoleIs(role: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">src/app/test-admin/main-nav2/main-nav2.component.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/app/features/test-admin/components/main-nav2/main-nav2.component.ts:48</a></div>
                 </td>
             </tr>
 
@@ -324,6 +343,7 @@
                     <a name="logout"></a>
                     <span class="name">
                         <b>
+                            <span class="modifier">Public</span>
                             logout
                         </b>
                         <a href="#logout"><span class="icon ion-ios-link"></span></a>
@@ -332,15 +352,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>logout()</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>logout()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/app/test-admin/main-nav2/main-nav2.component.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/app/features/test-admin/components/main-nav2/main-nav2.component.ts:53</a></div>
                 </td>
             </tr>
 
@@ -363,6 +384,7 @@
                     <a name="ngOnInit"></a>
                     <span class="name">
                         <b>
+                            <span class="modifier">Public</span>
                             ngOnInit
                         </b>
                         <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
@@ -371,15 +393,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>ngOnInit()</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngOnInit()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">src/app/test-admin/main-nav2/main-nav2.component.ts:19</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/app/features/test-admin/components/main-nav2/main-nav2.component.ts:25</a></div>
                 </td>
             </tr>
 
@@ -402,6 +425,7 @@
                     <a name="roleMatch"></a>
                     <span class="name">
                         <b>
+                            <span class="modifier">Public</span>
                             roleMatch
                         </b>
                         <a href="#roleMatch"><span class="icon ion-ios-link"></span></a>
@@ -410,15 +434,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>roleMatch(allowedRoles)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>roleMatch(allowedRoles)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/app/test-admin/main-nav2/main-nav2.component.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/app/features/test-admin/components/main-nav2/main-nav2.component.ts:36</a></div>
                 </td>
             </tr>
 
@@ -471,11 +496,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="cRole"></a>
+                        <a name="currentRole"></a>
                         <span class="name">
                             <b>
-                            cRole</b>
-                            <a href="#cRole"><span class="icon ion-ios-link"></span></a>
+                                <span class="modifier">Public</span>
+                            currentRole</b>
+                            <a href="#currentRole"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -492,7 +518,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/test-admin/main-nav2/main-nav2.component.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/features/test-admin/components/main-nav2/main-nav2.component.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -526,7 +552,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/test-admin/main-nav2/main-nav2.component.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/features/test-admin/components/main-nav2/main-nav2.component.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -545,6 +571,7 @@ import { Observable } from &#x27;rxjs&#x27;;
 import { map } from &#x27;rxjs/operators&#x27;;
 import { AuthService } from &#x27;angularx-social-login&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
+import { StorageService } from &#x27;../../../../services/storage.service&#x27;;
 
 @Component({
 	selector: &#x27;app-main-nav2&#x27;,
@@ -555,19 +582,25 @@ export class MainNav2Component {
 	isHandset$: Observable&lt;boolean&gt; &#x3D; this.breakpointObserver
 		.observe(Breakpoints.Handset)
 		.pipe(map((result) &#x3D;&gt; result.matches));
-	cRole &#x3D; &#x27;&#x27;;
-	constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService, private router: Router) { }
-	ngOnInit() {
-		this.cRole &#x3D; this.storageService.getStorage(&#x27;currentRole&#x27;);
-		this.authService.authState.subscribe((user) &#x3D;&gt; {
-			if (user !&#x3D; null) {
-			} else {
+	public currentRole &#x3D; &#x27;&#x27;;
+
+	constructor(private breakpointObserver: BreakpointObserver,
+		private authService: AuthService,
+		private router: Router,
+		private storageService: StorageService) { }
+
+	public ngOnInit(): void {
+		this.currentRole &#x3D; this.storageService.getStorage(&#x27;currentRole&#x27;);
+		const subscription &#x3D; this.authService.authState.subscribe((user) &#x3D;&gt; {
+			if (user &#x3D;&#x3D;&#x3D; null) {
 				this.storageService.clearStorage();
 				this.router.navigate([&#x27;/login&#x27;]);
 			}
 		});
+		subscription.unsubscribe();
 	}
-	roleMatch(allowedRoles): boolean {
+	
+	public roleMatch(allowedRoles): boolean {
 		var isMatch &#x3D; false;
 		const userRoles: string &#x3D; this.storageService.getStorage(&#x27;role&#x27;);
 		allowedRoles.forEach(element &#x3D;&gt; {
@@ -579,12 +612,13 @@ export class MainNav2Component {
 		return isMatch;
 	}
 
-	aab(role: string) {
+	public currentRoleIs(role: string): void {
 		this.storageService.setStorage(&#x27;currentRole&#x27;, role);
 		this.router.navigate([role]);
 	}
 
-	logout() {
+	public logout(): void {
+		this.storageService.clearStorage();
 		this.authService.signOut();
 	}
 
@@ -611,15 +645,14 @@ export class MainNav2Component {
   &lt;/mat-sidenav&gt;
   &lt;mat-sidenav-content&gt;
     &lt;mat-toolbar&gt;
-      &lt;button type&#x3D;&quot;button&quot; aria-label&#x3D;&quot;Toggle sidenav&quot; mat-icon-button (click)&#x3D;&quot;drawer.toggle()&quot;
-        *ngIf&#x3D;&quot;isHandset$ | async&quot;&gt;
+      &lt;button type&#x3D;&quot;button&quot; aria-label&#x3D;&quot;Toggle sidenav&quot; mat-icon-button (click)&#x3D;&quot;drawer.toggle()&quot;&gt;
         &lt;mat-icon aria-label&#x3D;&quot;Side nav toggle icon&quot;&gt;menu&lt;/mat-icon&gt;
       &lt;/button&gt;
-      &lt;div class&#x3D;&quot;input-group mb-6&quot; style&#x3D;&quot;width:17%; float: left;&quot;&gt;
+      &lt;div class&#x3D;&quot;input-group mb-6&quot; style&#x3D;&quot;width:37%; float: left;&quot;&gt;
         &lt;div class&#x3D;&quot;input-group-prepend&quot;&gt;
           &lt;label class&#x3D;&quot;input-group-text&quot; for&#x3D;&quot;inputGroupSelect01&quot;&gt;Role&lt;/label&gt;
         &lt;/div&gt;
-        &lt;select class&#x3D;&quot;custom-select&quot; #role id&#x3D;&quot;inputGroupSelect01&quot; [(ngModel)]&#x3D;&quot;cRole&quot; (change)&#x3D;&quot;aab(role.value)&quot;&gt;
+        &lt;select class&#x3D;&quot;custom-select&quot; #role id&#x3D;&quot;inputGroupSelect01&quot; [(ngModel)]&#x3D;&quot;currentRole&quot; (change)&#x3D;&quot;currentRoleIs(role.value)&quot;&gt;
           &lt;option value&#x3D;&quot;//emp-dash&quot; *ngIf&#x3D;&quot;roleMatch([&#x27;Employee&#x27;])&quot;&gt;Employee&lt;/option&gt;
           &lt;option value&#x3D;&quot;//cc-dash&quot; *ngIf&#x3D;&quot;roleMatch([&#x27;Content-Creator&#x27;])&quot;&gt;Content-Creator&lt;/option&gt;
           &lt;option value&#x3D;&quot;//ta-dash&quot; *ngIf&#x3D;&quot;roleMatch([&#x27;Test-Administrator&#x27;])&quot;&gt;Test-Administrator&lt;/option&gt;
@@ -737,8 +770,8 @@ export class MainNav2Component {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-sidenav-container class="sidenav-container">  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"    [attr.role]="(isHandset$ | async) ? \'dialog\' : \'navigation\'" [mode]="(isHandset$ | async) ? \'over\' : \'side\'"    [opened]="!(isHandset$ | async)">    <mat-toolbar><a mat-list-item routerLink="/ta-dash"><i class="fa fa-tachometer" aria-hidden="true"></i>        Dashboard</a></mat-toolbar>    <mat-nav-list>      <a mat-list-item routerLink="/ta-dash/retrieve-schedule"><i class="fa fa-code" aria-hidden="true"></i>        Retrieve/Edit Schedule</a>      <a mat-list-item routerLink="/ta-dash/testAdminCreateScheDule"><i class="fa fa-retweet" aria-hidden="true"></i>        Create Schedule</a>      <a mat-list-item routerLink="/ta-dash/archive-schedule"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>        Archieved Schedule</a>      <a mat-list-item routerLink="/ta-dash/add-user"><i class="fa fa-check" aria-hidden="true"></i> Add/Delete User</a>    </mat-nav-list>  </mat-sidenav>  <mat-sidenav-content>    <mat-toolbar>      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"        *ngIf="isHandset$ | async">        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>      </button>      <div class="input-group mb-6" style="width:17%; float: left;">        <div class="input-group-prepend">          <label class="input-group-text" for="inputGroupSelect01">Role</label>        </div>        <select class="custom-select" #role id="inputGroupSelect01" [(ngModel)]="cRole" (change)="aab(role.value)">          <option value="//emp-dash" *ngIf="roleMatch([\'Employee\'])">Employee</option>          <option value="//cc-dash" *ngIf="roleMatch([\'Content-Creator\'])">Content-Creator</option>          <option value="//ta-dash" *ngIf="roleMatch([\'Test-Administrator\'])">Test-Administrator</option>          <option value="//ru-dash" *ngIf="roleMatch([\'Reporting-User\'])">Reporting-User</option>        </select>      </div>      <span class="spacer"></span>      &nbsp;&nbsp;&nbsp;&nbsp;      <button type="button" (click)="logout()" class="btn btn-dark btn-sm"><i aria-hidden="true"          style="cursor: pointer;" class="fa fa-sign-out fa-lg">Log Out</i></button>    </mat-toolbar>    <div class="content">      <ng-content></ng-content>    </div>  </mat-sidenav-content></mat-sidenav-container></div>'
-    var COMPONENTS = [{'name': 'AddQuesInQuizComponent', 'selector': 'app-add-ques-in-quiz'},{'name': 'AddUser1Component', 'selector': 'app-add-user1'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AnalyticsByQuizComponent', 'selector': 'app-analytics-by-quiz'},{'name': 'AnalyticsByTagComponent', 'selector': 'app-analytics-by-tag'},{'name': 'AnalyticsByUserComponent', 'selector': 'app-analytics-by-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchivedScheduleComponent', 'selector': 'app-archived-schedule'},{'name': 'ArchiveQuizComponent', 'selector': 'app-archive-quiz'},{'name': 'ContentCreatorComponent', 'selector': 'app-content-creator'},{'name': 'CreateQuestionsComponent', 'selector': 'app-create-questions'},{'name': 'CreateQuizComponent', 'selector': 'app-create-quiz'},{'name': 'CreateScheduleComponent', 'selector': 'app-create-schedule'},{'name': 'CreatetagComponent', 'selector': 'app-createtag'},{'name': 'DetailedReportComponent', 'selector': 'app-detailed-report'},{'name': 'DetailsComponent', 'selector': 'app-details'},{'name': 'EmployeeComponent', 'selector': 'app-employee'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HttpInterceptorComponent', 'selector': 'app-http-interceptor'},{'name': 'InstructionsComponent', 'selector': 'app-instructions'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainNav2Component', 'selector': 'app-main-nav2'},{'name': 'MainNav3Component', 'selector': 'app-main-nav3'},{'name': 'Mainnav4Component', 'selector': 'app-mainnav4'},{'name': 'MainNavComponent', 'selector': 'app-main-nav'},{'name': 'MockComponent', 'selector': 'app-mock'},{'name': 'MockReportComponent', 'selector': 'app-mock-report'},{'name': 'NonMockComponent', 'selector': 'app-non-mock'},{'name': 'NonMockReportComponent', 'selector': 'app-non-mock-report'},{'name': 'ReportingUserComponent', 'selector': 'app-reporting-user'},{'name': 'ResultComponent', 'selector': 'app-result'},{'name': 'RetrieveQuestionBankComponent', 'selector': 'app-retrieve-question-bank'},{'name': 'RetrieveQuizComponent', 'selector': 'retrieve-quiz'},{'name': 'RetrieveScheduleComponent', 'selector': 'app-retrieve-schedule'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TakeQuizComponent', 'selector': 'app-take-quiz'},{'name': 'TestAdminComponent', 'selector': 'app-test-admin'},{'name': 'UpdateQuestionComponent', 'selector': 'app-update-question'},{'name': 'UpdateQuizComponent', 'selector': 'app-update-quiz'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'ViewAnswerComponent', 'selector': 'app-view-answer'},{'name': 'ViewScheduleComponent', 'selector': 'app-view-schedule'},{'name': 'ViewUserDetailsComponent', 'selector': 'app-view-user-details'}];
+        var COMPONENT_TEMPLATE = '<div><mat-sidenav-container class="sidenav-container">  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"    [attr.role]="(isHandset$ | async) ? \'dialog\' : \'navigation\'" [mode]="(isHandset$ | async) ? \'over\' : \'side\'"    [opened]="!(isHandset$ | async)">    <mat-toolbar><a mat-list-item routerLink="/ta-dash"><i class="fa fa-tachometer" aria-hidden="true"></i>        Dashboard</a></mat-toolbar>    <mat-nav-list>      <a mat-list-item routerLink="/ta-dash/retrieve-schedule"><i class="fa fa-code" aria-hidden="true"></i>        Retrieve/Edit Schedule</a>      <a mat-list-item routerLink="/ta-dash/testAdminCreateScheDule"><i class="fa fa-retweet" aria-hidden="true"></i>        Create Schedule</a>      <a mat-list-item routerLink="/ta-dash/archive-schedule"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>        Archieved Schedule</a>      <a mat-list-item routerLink="/ta-dash/add-user"><i class="fa fa-check" aria-hidden="true"></i> Add/Delete User</a>    </mat-nav-list>  </mat-sidenav>  <mat-sidenav-content>    <mat-toolbar>      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>      </button>      <div class="input-group mb-6" style="width:37%; float: left;">        <div class="input-group-prepend">          <label class="input-group-text" for="inputGroupSelect01">Role</label>        </div>        <select class="custom-select" #role id="inputGroupSelect01" [(ngModel)]="currentRole" (change)="currentRoleIs(role.value)">          <option value="//emp-dash" *ngIf="roleMatch([\'Employee\'])">Employee</option>          <option value="//cc-dash" *ngIf="roleMatch([\'Content-Creator\'])">Content-Creator</option>          <option value="//ta-dash" *ngIf="roleMatch([\'Test-Administrator\'])">Test-Administrator</option>          <option value="//ru-dash" *ngIf="roleMatch([\'Reporting-User\'])">Reporting-User</option>        </select>      </div>      <span class="spacer"></span>      &nbsp;&nbsp;&nbsp;&nbsp;      <button type="button" (click)="logout()" class="btn btn-dark btn-sm"><i aria-hidden="true"          style="cursor: pointer;" class="fa fa-sign-out fa-lg">Log Out</i></button>    </mat-toolbar>    <div class="content">      <ng-content></ng-content>    </div>  </mat-sidenav-content></mat-sidenav-container></div>'
+    var COMPONENTS = [{'name': 'AddQuesInQuizComponent', 'selector': 'app-add-ques-in-quiz'},{'name': 'AddUser1Component', 'selector': 'app-add-user1'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AnalyticsByQuizComponent', 'selector': 'app-analytics-by-quiz'},{'name': 'AnalyticsByTagComponent', 'selector': 'app-analytics-by-tag'},{'name': 'AnalyticsByUserComponent', 'selector': 'app-analytics-by-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchivedScheduleComponent', 'selector': 'app-archived-schedule'},{'name': 'ArchiveQuizComponent', 'selector': 'app-archive-quiz'},{'name': 'ContentCreatorComponent', 'selector': 'app-content-creator'},{'name': 'CreateQuestionsComponent', 'selector': 'app-create-questions'},{'name': 'CreateQuizComponent', 'selector': 'app-create-quiz'},{'name': 'CreateScheduleComponent', 'selector': 'app-create-schedule'},{'name': 'CreatetagComponent', 'selector': 'app-createtag'},{'name': 'DetailedReportComponent', 'selector': 'app-detailed-report'},{'name': 'DetailsComponent', 'selector': 'app-details'},{'name': 'EmployeeComponent', 'selector': 'app-employee'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HttpInterceptorComponent', 'selector': 'app-http-interceptor'},{'name': 'InstructionsComponent', 'selector': 'app-instructions'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainNav2Component', 'selector': 'app-main-nav2'},{'name': 'MainNav3Component', 'selector': 'app-main-nav3'},{'name': 'Mainnav4Component', 'selector': 'app-mainnav4'},{'name': 'MainNavComponent', 'selector': 'app-main-nav'},{'name': 'MockComponent', 'selector': 'app-mock'},{'name': 'MockReportComponent', 'selector': 'app-mock-report'},{'name': 'NonMockComponent', 'selector': 'app-non-mock'},{'name': 'NonMockReportComponent', 'selector': 'app-non-mock-report'},{'name': 'ReportingUserComponent', 'selector': 'app-reporting-user'},{'name': 'ResultComponent', 'selector': 'app-result'},{'name': 'RetrieveQuestionBankComponent', 'selector': 'app-retrieve-question-bank'},{'name': 'RetrieveQuizComponent', 'selector': 'retrieve-quiz'},{'name': 'RetrieveScheduleComponent', 'selector': 'app-retrieve-schedule'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TakeQuizComponent', 'selector': 'app-take-quiz'},{'name': 'TestAdminComponent', 'selector': 'app-test-admin'},{'name': 'UpdateQuestionComponent', 'selector': 'app-update-question'},{'name': 'UpdateQuizComponent', 'selector': 'app-update-quiz'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'ViewScheduleComponent', 'selector': 'app-view-schedule'},{'name': 'ViewUserDetailsComponent', 'selector': 'app-view-user-details'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'MainNav2Component'};
 </script>
@@ -753,6 +786,7 @@ export class MainNav2Component {
 
 
 
+                   
 
 
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ContentCreatorServiceService } from '../../services/content-creator-service.service'
+import { ContentCreatorService } from '../../services/content-creator-service.service'
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from '../../models/subject.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -16,29 +16,29 @@ import { HttpService } from '../../../../core/http/http.service';
 
 export class UpdateQuestionComponent implements OnInit {
 
-  public Subjects: Subject[];
-  public CCreatedBy = '';
-  bool = false;
-  label: string;
-  src: string = null;
-  dropdownSettings = null;
+  public subjects: Subject[];
+  public createdBy: string = '';
+  public flag: boolean = false;
+  public label: string;
+  public imageSource: string = null;
+  public dropdownSettings = null;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<UpdateQuestionComponent>,
-    public service: ContentCreatorServiceService,
+    public service: ContentCreatorService,
     private storageService: StorageService,
     public toastr: ToastrService,
     private httpService: HttpService) { }
 
-  ngOnInit() {
-    this.bool = this.service.readonlyStatus;
-    if (this.bool === true) {
+  public ngOnInit(): void {
+    this.flag = this.service.readonlyStatus;
+    if (this.flag === true) {
       this.label = "View Question";
     } else {
       this.label = "Edit Questions";
     }
     if (this.service.formData.ImageName !== null) {
-      this.src = environment.imgURl + this.service.formData.ImageName;
+      this.imageSource = environment.imgURl + this.service.formData.ImageName;
     }
     this.dropdownSettings = {
       singleSelection: false,
@@ -48,13 +48,14 @@ export class UpdateQuestionComponent implements OnInit {
       itemsShowLimit: 5,
       allowSearchFilter: true,
     };
-    this.CCreatedBy = this.storageService.getStorage('uid');
-    this.httpService.retrieveSubjects().subscribe(res => {
-      this.Subjects = res as Subject[];
+    this.createdBy = this.storageService.getStorage('uid');
+    const subscription = this.httpService.retrieveSubjects().subscribe(res => {
+      this.subjects = res as Subject[];
     });
+    subscription.unsubscribe();
   }
 
-  resetForm(form?: NgForm) {
+  private resetForm(form?: NgForm): void {
     if (form != null) {
       form.resetForm();
     }
@@ -74,11 +75,11 @@ export class UpdateQuestionComponent implements OnInit {
     }
   }
 
-  chooseFile(event) {
+  public chooseFile(event): void {
     this.service.selectedFile = event.target.files.item(0);
   }
 
-  onSubmit(form: NgForm) {
+  public onSubmit(form: NgForm): void {
     const response = this.service.updateQuestion(form.value);
     if (response) {
       this.toastr.success('Updated successfully');
@@ -88,11 +89,12 @@ export class UpdateQuestionComponent implements OnInit {
     }
   }
 
-  deleteImg() {
-    this.httpService.deleteImageFromQues(this.service.formData.QuestionId).subscribe(res => {
+  public deleteImage(): void {
+    const subscription = this.httpService.deleteImageFromQues(this.service.formData.QuestionId).subscribe(res => {
       this.toastr.success('Image Successfully Removed');
       this.dialogRef.close('Submitted');
     });
+    subscription.unsubscribe();
   }
 
 }

@@ -8,38 +8,36 @@ import { StorageService } from '../../../../services/storage.service';
 
 @Component({
 	selector: 'app-main-nav3',
-	templateUrl: './main-nav3.component.html',
-	styleUrls: ['./main-nav3.component.css']
+	templateUrl: './main-nav3.component.html'
 })
-
 export class MainNav3Component {
 	isHandset$: Observable<boolean> = this.breakpointObserver
 		.observe(Breakpoints.Handset)
 		.pipe(map((result) => result.matches));
-	cRole: string;
+	public currentRole: string;
 
 	constructor(
 		private breakpointObserver: BreakpointObserver,
 		private authService: AuthService,
 		private router: Router,
 		private storageService: StorageService
-	) { }
+	) {}
 
-	ngOnInit() {
-		this.cRole = this.storageService.getStorage('currentRole');
-		this.authService.authState.subscribe((user) => {
-			if (user != null) {
-			} else {
+	public ngOnInit(): void {
+		this.currentRole = this.storageService.getStorage('currentRole');
+		const subscription = this.authService.authState.subscribe((user) => {
+			if (user === null) {
 				this.storageService.clearStorage();
-				this.router.navigate(['/login']);
+				this.router.navigate([ '/login' ]);
 			}
 		});
+		subscription.unsubscribe();
 	}
 
-	roleMatch(allowedRoles): boolean {
+	public roleMatch(allowedRoles: []): boolean {
 		var isMatch = false;
 		var userRoles: string = this.storageService.getStorage('role');
-		allowedRoles.forEach(element => {
+		allowedRoles.forEach((element) => {
 			if (userRoles.indexOf(element) > -1) {
 				isMatch = true;
 				return false;
@@ -48,13 +46,13 @@ export class MainNav3Component {
 		return isMatch;
 	}
 
-	aab(role: string) {
+	public changeRole(role: string): void {
 		this.storageService.setStorage('currentRole', role);
-		this.router.navigate([role]);
+		this.router.navigate([ role ]);
 	}
 
-	logout() {
+	public logout(): void {
+		this.storageService.clearStorage();
 		this.authService.signOut();
 	}
-
 }

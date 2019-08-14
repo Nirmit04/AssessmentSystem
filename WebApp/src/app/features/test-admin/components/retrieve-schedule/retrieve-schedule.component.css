@@ -1,4 +1,5 @@
-th,td{
-    color: black;
-    text-align: center;
+.th,
+.td {
+	color: black;
+	text-align: center;
 }

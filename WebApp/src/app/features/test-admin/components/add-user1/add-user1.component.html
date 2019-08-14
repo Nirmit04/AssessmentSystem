@@ -15,8 +15,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let x of quiztakers; let i = index">
-        <td><input [id]="'quiztakers-'+i" type="checkbox" value="{{x.Id}}" [checked]="x.selected"
+      <tr *ngFor="let x of quizTakers; let i = index">
+        <td><input [id]="'quizTakers-'+i" type="checkbox" value="{{x.Id}}" [checked]="x.selected"
             (change)="updateSelectedUsers(i)"></td>
         <td>{{x.FirstName}}&nbsp;{{x.LastName}}</td>
         <td>{{x.Email}}</td>

@@ -9,7 +9,7 @@
       </strong>
       <ng-container *ngIf="!val">
         <form #form="ngForm" (submit)="fetchReqQues(form)" autocomplete="off">
-          <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="CCreatedBy">
+          <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="createdBy">
           <div class="form-row">
             <div class="form-group col-md-6">
               <strong><label>Select Difficulty-Level</label></strong>
@@ -24,7 +24,7 @@
             </div>
             <div class="form-group col-md-6">
               <strong><label>Select Subject</label></strong>
-              <ng-multiselect-dropdown name="Tags" #Tags="ngModel" [placeholder]="Choose" required [data]="Subjects"
+              <ng-multiselect-dropdown name="Tags" #Tags="ngModel" [placeholder]="Choose" required [data]="subjects"
                 [disabled]="disabled" [settings]="dropdownSettings" [(ngModel)]="selectedItems">
               </ng-multiselect-dropdown>
               <div class="validation-error" *ngIf="Tags.invalid && Tags.touched">This field is required.</div>
@@ -75,22 +75,20 @@
               <strong><label>CutOff Percentage</label></strong>
               <br />
               <input type="text" required name="MinCutOff" #MinCutOff="ngModel" [(ngModel)]="tts" class="form-control">
-
             </div>
             <div *ngIf="service.quizForm.QuizType == 'Mock'" class="form-group col-md-6">
               <strong><label>Select Mock Quiz</label></strong>
-              <select name="MockTypess" required #MockTypess="ngModel" [(ngModel)]="MockType" class="form-control">
+              <select name="MockTypes" required #MockTypes="ngModel" [(ngModel)]="mockType" class="form-control">
                 <option value="" disabled>Choose an option...</option>
                 <option value="Random">Random</option>
                 <option value="Personalized">Personalized</option>
               </select>
-              <div class="validation-error" *ngIf="MockTypess.invalid && MockTypess.touched">This field is required.
+              <div class="validation-error" *ngIf="MockTypes.invalid && MockTypes.touched">This field is required.
               </div>
             </div>
-
             <div *ngIf="MockType == 'Random'" class="form-group col-md-6">
               <strong><label>Number Of Questions</label></strong>
-              <input type="text" name="Questions" #Questions="ngModel" [(ngModel)]="TotalQuestions"
+              <input type="text" name="Questions" #Questions="ngModel" [(ngModel)]=totalQuestions"
                 class="form-control">
               <div class="validation-error" *ngIf="Questions.invalid && Questions.touched">This field is required.</div>
             </div>
@@ -121,7 +119,7 @@
               <ng-template pTemplate="header">
                 <tr>
                   <th style="background-color:black; color:white">Tick</th>
-                  <th *ngFor="let col of cols" [pSortableColumn]="col.field"
+                  <th *ngFor="let col of cols; trackBy:colsById" [pSortableColumn]="col.field"
                     style="background-color:black; color:white;">
                     {{col.header}}
                   </th>
@@ -134,7 +132,7 @@
                     <input [id]="'questions-'+rowData.SerialNumber" type="checkbox" value="{{questions.Question_ID}}"
                       [checked]="questions.selected" (change)="updateSelectedQuestions(rowData.SerialNumber-1)">
                   </td>
-                  <td *ngFor="let col of columns;">
+                  <td *ngFor="let col of columns; trackBy:columnsById">
                     {{rowData[col.field]}}
                   </td>
                 </tr>
@@ -143,8 +141,6 @@
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>
-
-
       </div>
     </div>
   </div>

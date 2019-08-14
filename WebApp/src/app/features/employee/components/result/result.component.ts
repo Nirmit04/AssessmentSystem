@@ -10,39 +10,39 @@ import { HttpService } from '../../../../core/http/http.service';
 })
 export class ResultComponent implements OnInit {
 
-  timeTaken: any;
-  dispCard = false;
-  QuesWithAns: any[];
-  correct: any[];
+  private timeTaken: any;
+  public displayCard: boolean = false;
+  private questionsWithAnswer: any[];
+  public correct: any[];
 
   constructor(private service: EmployeeService,
     private router: Router,
     private httpService: HttpService,
     @Inject(DOCUMENT) private document: any) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.correct = [];
-    if (this.service.QuizScheduleId === null) {
-      this.httpService.getAnswers().subscribe((res: any) => {
-        console.log(res);
-        this.QuesWithAns = res as any[];
+    if (this.service.quizScheduleId === null) {
+      const subscription = this.httpService.getAnswers().subscribe((res: any) => {
+        this.questionsWithAnswer = res as any[];
         this.service.correctAnswerCount = 0;
-        this.service.quesOfQuiz.forEach((e, i) => {
-          if (e.answer === this.QuesWithAns[i].Answer) {
+        this.service.questionsOfQuiz.forEach((question, index) => {
+          if (question.answer === this.questionsWithAnswer[index].Answer) {
             this.service.correctAnswerCount++;
           }
-          this.correct[i] = this.QuesWithAns[i].Answer;
+          this.correct[index] = this.questionsWithAnswer[index].Answer;
         });
-        this.dispCard = true;
-      })
+        this.displayCard = true;
+      });
+      subscription.unsubscribe();
     }
 
-    var body = this.service.quesOfQuiz.map(x => x.QuestionId);
-    var body1 = this.service.quesOfQuiz.map(x => x.answer);
+    const body = this.service.questionsOfQuiz.map(x => x.QuestionId);
+    const body1 = this.service.questionsOfQuiz.map(x => x.answer);
     var dict = [];
-    var x = body.length;
+    const bodyLength = body.length;
     this.closeFullscreen();
-    for (let i = 0; i < x; i++) {
+    for (let i = 0; i < bodyLength; i++) {
       dict.push(
         {
           QuestionId: body[i],
@@ -55,22 +55,9 @@ export class ResultComponent implements OnInit {
       QuesAnswers: dict,
       TimeTaken: this.timeTaken
     }
-
-    // this.service.postanswers().subscribe(res => {
-    //   if (this.service.QuizScheduleId != null) {
-    //     this.service.QuizScheduleId = null;
-    //     this.service.quesOfQuiz = null;
-    //     this.service.correctAnswerCount = null;
-    //     this.service.QuizId = null;
-    //     this.service.body = null;
-    //     this.service.qnProgress = null;
-    //     this.dispCard = false;
-    //     this.router.navigate([('/emp-dash')]);
-    //   }
-    // });
   }
 
-  closeFullscreen() {
+  private closeFullscreen(): void {
     if (this.document.exitFullscreen) {
       this.document.exitFullscreen();
     } else if (this.document.mozCancelFullscreen) {
@@ -82,13 +69,13 @@ export class ResultComponent implements OnInit {
     }
   }
 
-  goToHome() {
-    this.service.quesOfQuiz = null;
+  public goToHome(): void {
+    this.service.questionsOfQuiz = null;
     this.service.correctAnswerCount = null;
-    this.service.QuizId = null;
+    this.service.quizId = null;
     this.service.body = null;
     this.service.qnProgress = null;
-    this.dispCard = false;
+    this.displayCard = false;
     this.router.navigate(['/emp-dash']);
   }
 

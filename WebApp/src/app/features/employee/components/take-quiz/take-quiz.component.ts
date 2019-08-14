@@ -1,53 +1,71 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { EmployeeService } from '../../services/employee.service';
 import { Router } from '@angular/router';
-import { DOCUMENT, Time } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { StorageService } from '../../../../services/storage.service';
 import { HttpService } from '../../../../core/http/http.service';
 @Component({
 	selector: 'app-take-quiz',
-	templateUrl: './take-quiz.component.html',
-	styleUrls: ['./take-quiz.component.css']
+	templateUrl: './take-quiz.component.html'
 })
-
 export class TakeQuizComponent implements OnInit {
-	noOfQues: number;
-	bar: number;
-	elem: any;
-	seconds: number;
-	minutes: number;
-	hours: number;
-	totaltime: number;
-	checkLast = true;
-	checkPrev = false;
-	options: number;
-	active: boolean[];
-	submit: boolean[];
-	review: boolean[];
-	responseTime: string;
-	startTime: string;
-	time: string[];
-	time1: string[];
-	questions: any;
-	answer: number = 0;
-	today = new Date();
-	TotalResponseTIme: string;
-	body;
-	constructor(private service: EmployeeService,
+	public noOfQuestions: number;
+	public progressBar: number;
+	private browserElement: any;
+	public seconds: number;
+	public minutes: number;
+	public hours: number;
+	private totalTime: number;
+	public checkLast: boolean = true;
+	public checkPrev: boolean = false;
+	public selectedOptions: number;
+	private activeQuestion: boolean[];
+	private submitQuestion: boolean[];
+	private review: boolean[];
+	private responseTime: string;
+	private startTime: string;
+	public questions: any;
+	private today = new Date();
+
+	constructor(
+		private service: EmployeeService,
 		private router: Router,
 		private storageService: StorageService,
 		private httpService: HttpService,
-		@Inject(DOCUMENT) private document: any) { }
+		@Inject(DOCUMENT) private document: any
+	) {}
 
-	ngOnInit() {
+	public ngOnInit(): void {
 		this.service.qnProgress = 0;
 		this.hours = this.service.hours;
 		this.minutes = this.service.minutes;
 		this.seconds = this.service.seconds;
-		history.pushState(null, null, location.href);
-		this.elem = document.documentElement;
+		this.prohibiting();
+		this.noOfQuestions = this.service.noOfQuestionsInQuiz;
+		this.activeQuestion = [ false ];
+		this.activeQuestion[0] = true;
+		this.submitQuestion = [ false ];
+		this.review = [ false ];
+		if (this.service.statusMapping !== null) {
+			for (let item of this.service.statusMapping) {
+				if (item.State === 'save') {
+					this.submitQuestion[item.Index - 1] = true;
+				} else if (item.State === 'review') {
+					this.review[item.Index - 1] = true;
+				} else if (item.State === 'submit') {
+					this.submitQuestion[item.Index - 1] = true;
+				}
+			}
+		}
+		this.loadQues(1);
 		this.openFullscreen();
-		window.onpopstate = function () {
+	}
+
+	private prohibiting(): void {
+		history.pushState(null, null, location.href);
+		this.browserElement = document.documentElement;
+		this.openFullscreen();
+		window.onpopstate = function() {
 			history.go(1);
 		};
 		document.oncontextmenu = preventDefaultAction;
@@ -59,8 +77,8 @@ export class TakeQuizComponent implements OnInit {
 				event.returnValue = false;
 			}
 		}
-		window.onload = function () {
-			document.onkeydown = function (e) {
+		window.onload = function() {
+			document.onkeydown = function(e) {
 				if ((e.which || e.keyCode) == 116) {
 					e.preventDefault();
 					e.returnValue = false;
@@ -71,65 +89,41 @@ export class TakeQuizComponent implements OnInit {
 				}
 			};
 		};
-		this.noOfQues = this.service.noQuesOfQuiz;
-		this.active = [false];
-		this.active[0] = true;
-		this.submit = [false];
-		this.review = [false];
-		if (this.service.statusMapping !== null) {
-			for (let item of this.service.statusMapping) {
-				if (item.State === 'save') {
-					this.submit[item.Index - 1] = true;
-				}
-				else if (item.State === 'review') {
-					this.review[item.Index - 1] = true;
-				}
-				else if (item.State === 'submit') {
-					this.submit[item.Index - 1] = true;
-				}
-			}
-		}
-		this.loadQues(1);
-		this.openFullscreen();
 	}
 
-	onKeydown(event) {
-	}
-	openFullscreen() {
-		if (this.elem.requestFullscreen) {
-			this.elem.requestFullscreen();
-		} else if (this.elem.mozRequestFullScreen) {
-			this.elem.mozRequestFullScreen();
-		} else if (this.elem.webkitRequestFullscreen) {
-			this.elem.webkitRequestFullscreen();
-		} else if (this.elem.msRequestFullscreen) {
-			this.elem.msRequestFullscreen();
+	public openFullscreen(): void {
+		if (this.browserElement.requestFullscreen) {
+			this.browserElement.requestFullscreen();
+		} else if (this.browserElement.mozRequestFullScreen) {
+			this.browserElement.mozRequestFullScreen();
+		} else if (this.browserElement.webkitRequestFullscreen) {
+			this.browserElement.webkitRequestFullscreen();
+		} else if (this.browserElement.msRequestFullscreen) {
+			this.browserElement.msRequestFullscreen();
 		}
 	}
 
-	loadQues(index: number) {
-		//this.active[index - 1] = true;
-		this.startTime = this.today.getHours() + ":" + this.today.getMinutes() + ":" + this.today.getSeconds();
-		this.httpService.getQuestions(this.service.QuizId, index).subscribe((res: any) => {
+	private loadQues(questionIndex: number): void {
+		this.startTime = this.today.getHours() + ':' + this.today.getMinutes() + ':' + this.today.getSeconds();
+		const subscription = this.httpService.getQuestions(this.service.quizId, questionIndex).subscribe((res: any) => {
 			this.questions = res;
-			this.options = this.questions.MarkedAnswer;
+			this.selectedOptions = this.questions.MarkedAnswer;
 			this.responseTime = this.questions.ResponseTime;
 			if (this.questions.ImageName != null) {
-				this.questions.ImageName = "https://80c4bf11.ngrok.io/Images/" + this.questions.ImageName;
+				this.questions.ImageName = 'https://80c4bf11.ngrok.io/Images/' + this.questions.ImageName;
 			}
 		});
-		this.noOfQues = this.service.noQuesOfQuiz;
-		this.service.size = this.noOfQues;
+		subscription.unsubscribe();
+		this.noOfQuestions = this.service.noOfQuestionsInQuiz;
+		this.service.size = this.noOfQuestions;
 		this.startTimer();
 	}
 
-	startTimer() {
+	private startTimer(): void {
 		this.service.timer = setInterval(() => {
 			if (this.hours == 0 && this.minutes == 0 && this.seconds == 0) {
-
-				this.router.navigate(['/emp-dash/quiz/result']);
-			}
-			else if (this.seconds == 0) {
+				this.router.navigate([ '/emp-dash/quiz/result' ]);
+			} else if (this.seconds == 0) {
 				if (this.hours == 1) {
 					this.hours = 0;
 					this.minutes = 59;
@@ -147,155 +141,170 @@ export class TakeQuizComponent implements OnInit {
 		}, 1000);
 	}
 
-	Answer(index: number, choice: number, options: string) {
+	public answer(questionIndex: number, choice: number, options: string): void {
 		this.checkPrev = true;
 		this.checkLast = true;
 		this.today = new Date();
-		this.time = this.startTime.split(":");
-		this.time1 = this.questions.ResponseTime.split(":");
-		this.responseTime = (parseInt(this.time1[0]) + (this.today.getHours() - parseInt(this.time[0]))).toString() + ':' +
-			(parseInt(this.time1[1]) + (this.today.getMinutes() - parseInt(this.time[1]))).toString() + ':';
-		if (+(this.today.getSeconds) < parseInt(this.time[2])) {
-			this.responseTime = this.responseTime + (parseInt(this.time1[2] + (60 - parseInt(this.time[2] + this.today.getSeconds())))).toString();
-		}
-		else {
-			this.responseTime = this.responseTime + (parseInt(this.time1[2]) + (this.today.getSeconds() - parseInt(this.time[2]))).toString();
+		const time = this.startTime.split(':');
+		const time1 = this.questions.ResponseTime.split(':');
+		this.responseTime =
+			(parseInt(time1[0]) + (this.today.getHours() - parseInt(time[0]))).toString() +
+			':' +
+			(parseInt(time1[1]) + (this.today.getMinutes() - parseInt(time[1]))).toString() +
+			':';
+		if (+this.today.getSeconds < parseInt(time[2])) {
+			this.responseTime =
+				this.responseTime + parseInt(time1[2] + (60 - parseInt(time[2] + this.today.getSeconds()))).toString();
+		} else {
+			this.responseTime =
+				this.responseTime + (parseInt(time1[2]) + (this.today.getSeconds() - parseInt(time[2]))).toString();
 		}
 		if (choice !== null) {
-			this.answer = choice;
 			const body = {
-				QuizId: this.service.QuizId,
+				QuizId: this.service.quizId,
 				UserId: this.storageService.getStorage('uid'),
 				Index: this.service.qnProgress + 1,
 				MarkedAnswer: choice,
 				ResponseTime: this.responseTime,
-				State: options,
-			}
-			this.httpService.postQuesOfQuiz(body).subscribe((res: any) => {
-			});
+				State: options
+			};
+			const subscription = this.httpService.postQuesOfQuiz(body).subscribe((res: any) => {});
+			subscription.unsubscribe();
 		}
-		this.bar = (this.service.qnProgress + 1) / this.noOfQues * 100;
+		this.progressBar = (this.service.qnProgress + 1) / this.noOfQuestions * 100;
 		if (options === 'save') {
 			if (this.review[this.service.qnProgress]) {
 				this.review[this.service.qnProgress] = false;
 			}
-			this.submit[this.service.qnProgress] = true;
+			this.submitQuestion[this.service.qnProgress] = true;
 		}
 		if (options === 'review') {
-			if (this.submit[this.service.qnProgress]) {
-				this.submit[this.service.qnProgress] = false;
+			if (this.submitQuestion[this.service.qnProgress]) {
+				this.submitQuestion[this.service.qnProgress] = false;
 			}
 			this.review[this.service.qnProgress] = true;
 		}
 		if (options === 'submit') {
-			this.Submit();
+			this.submit();
 		}
 		this.service.qnProgress++;
-		if (this.service.qnProgress + 1 === this.noOfQues) {
+		if (this.service.qnProgress + 1 === this.noOfQuestions) {
 			this.checkLast = false;
-			this.loadQues(index + 1);
-		}
-		else if (this.service.qnProgress == this.noOfQues) {
+			this.loadQues(questionIndex + 1);
+		} else if (this.service.qnProgress === this.noOfQuestions) {
 			this.service.qnProgress = 0;
 			this.loadQues(1);
 			this.checkPrev = false;
 			this.checkLast = true;
+		} else {
+			this.loadQues(questionIndex + 1);
 		}
-		else {
-			this.loadQues(index + 1);
-		}
-		this.active = [false];
-		this.active[this.service.qnProgress] = true;
+		this.activeQuestion = [ false ];
+		this.activeQuestion[this.service.qnProgress] = true;
 	}
-	Previous() {
+
+	public previous(): void {
 		this.checkLast = true;
 		this.service.qnProgress--;
 		if (this.service.qnProgress == 0) {
 			this.checkPrev = false;
 		}
-		this.active = [false];
-		this.active[this.service.qnProgress] = true;
+		this.activeQuestion = [ false ];
+		this.activeQuestion[this.service.qnProgress] = true;
 		this.loadQues(this.service.qnProgress + 1);
 	}
-	Clear(Questionid: number) {
-		this.submit[Questionid] = false;
-		this.options = null;
+
+	public clear(questionid: number): void {
+		this.submitQuestion[questionid] = false;
+		this.selectedOptions = null;
 		this.questions.MarkedAnswer = 0;
 	}
-	Submit() {
+
+	public submit(): void {
 		if (confirm('Do you want to submit the quiz?')) {
-			this.totaltime = (this.service.hours * 60 * 60 + this.service.minutes * 60) - (this.hours * 60 * 60 + this.minutes * 60 + this.seconds);
-			this.service.hours = parseInt((this.totaltime / 3600).toPrecision(1));
-			this.totaltime = this.totaltime % 3600;
-			this.service.minutes = parseInt((this.totaltime / 60).toPrecision(1));
-			this.totaltime = this.totaltime % 60;
-			this.service.seconds = this.totaltime;
-			this.TotalResponseTIme = this.service.hours.toString() + ':' + this.service.minutes.toString() + ':' + this.service.seconds.toString();
-			if (this.service.QuizScheduleId !== null) {
-				this.body = {
-					QuizId: this.service.QuizId,
+			let totalResponseTime: string = '';
+			let body: any;
+			this.totalTime =
+				this.service.hours * 60 * 60 +
+				this.service.minutes * 60 -
+				(this.hours * 60 * 60 + this.minutes * 60 + this.seconds);
+			this.service.hours = parseInt((this.totalTime / 3600).toPrecision(1));
+			this.totalTime = this.totalTime % 3600;
+			this.service.minutes = parseInt((this.totalTime / 60).toPrecision(1));
+			this.totalTime = this.totalTime % 60;
+			this.service.seconds = this.totalTime;
+			totalResponseTime =
+				this.service.hours.toString() +
+				':' +
+				this.service.minutes.toString() +
+				':' +
+				this.service.seconds.toString();
+			if (this.service.quizScheduleId !== null) {
+				body = {
+					QuizId: this.service.quizId,
 					UserId: this.storageService.getStorage('uid'),
-					QuizScheduleId: this.service.QuizScheduleId,
-					TotalResponseTime: this.TotalResponseTIme,
-				}
+					QuizScheduleId: this.service.quizScheduleId,
+					TotalResponseTime: totalResponseTime
+				};
 			} else {
-				this.body = {
-					QuizId: this.service.QuizId,
+				body = {
+					QuizId: this.service.quizId,
 					UserId: this.storageService.getStorage('uid'),
-					TotalResponseTime: this.TotalResponseTIme,
-				}
+					TotalResponseTime: totalResponseTime
+				};
 			}
-			console.log(this.body);
-			this.httpService.postanswers(this.body).subscribe((res: any) => {
-				if (this.service.QuizScheduleId !== null) {
-					this.router.navigate(['/emp-dash/non-mocks']);
-				}
-				else {
-					//	console.log(res);
-					this.router.navigate(['/emp-dash/quiz/result']);
+			const subscription = this.httpService.postanswers(body).subscribe((res: any) => {
+				if (this.service.quizScheduleId !== null) {
+					this.router.navigate([ '/emp-dash/non-mocks' ]);
+				} else {
+					this.router.navigate([ '/emp-dash/quiz/result' ]);
 				}
 			});
+			subscription.unsubscribe();
 		}
 	}
-	ArrayOne(n: number): any[] {
-		return Array(n);
+
+	public transformingIntoArray(totalQuestions: number): any[] {
+		return Array(totalQuestions);
 	}
-	Navigate(index: number) {
-		if (index == 0) {
+
+	public navigate(questionIndex: number): void {
+		if (questionIndex == 0) {
 			this.checkPrev = false;
-		}
-		else {
+		} else {
 			this.checkPrev = true;
 		}
 		this.checkLast = true;
-		this.active = [false];
-		this.service.qnProgress = index;
-		if (this.service.qnProgress + 1 === this.noOfQues) {
+		this.activeQuestion = [ false ];
+		this.service.qnProgress = questionIndex;
+		if (this.service.qnProgress + 1 === this.noOfQuestions) {
 			this.checkLast = false;
 		}
-		this.loadQues(index + 1);
-		this.active[index] = true;
+		this.loadQues(questionIndex + 1);
+		this.activeQuestion[questionIndex] = true;
 	}
-	getStatus(index: number) {
-		for (let item = 0; item < this.submit.length; item++) {
-			if (this.submit[index]) {
+
+	public getStatus(index: number): string {
+		for (let item = 0; item < this.submitQuestion.length; item++) {
+			if (this.submitQuestion[index]) {
 				return 'btn-success';
 			}
 			if (this.review[index]) {
 				return 'btn-info';
 			}
 		}
-		if (this.active[index]) {
+		if (this.activeQuestion[index]) {
 			return 'btn-warning';
 		}
 	}
-	Next() {
+
+	public next(): void {
 		this.checkPrev = true;
 		this.service.qnProgress++;
-		this.active = [false];
-		this.active[this.service.qnProgress] = true;
+		this.activeQuestion = [ false ];
+		this.activeQuestion[this.service.qnProgress] = true;
 		this.loadQues(this.service.qnProgress + 1);
-		if (this.service.qnProgress + 1 === this.noOfQues) {
+		if (this.service.qnProgress + 1 === this.noOfQuestions) {
 			this.checkLast = false;
 		}
 	}

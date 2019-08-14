@@ -1,45 +1,42 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { ReportingUserService } from '../../services/reporting-user.service';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { ViewUserDetailsComponent } from './view-user-details/view-user-details.component';
 import { Router } from '@angular/router';
+import { HttpService } from '../../../../core/http/http.service';
 @Component({
-  selector: 'app-analytics-by-user',
-  templateUrl: './analytics-by-user.component.html',
-  styleUrls: ['./analytics-by-user.component.css']
+	selector: 'app-analytics-by-user',
+	templateUrl: './analytics-by-user.component.html'
 })
 export class AnalyticsByUserComponent implements OnInit {
+	constructor(private service: ReportingUserService, private router: Router, private httpService: HttpService) {}
 
-  constructor(private service: ReportingUserService, private dialog: MatDialog, private router: Router) { }
-  dtTrigger: Subject<any> = new Subject();
-  subscription: Subscription;
-  dtOptions: DataTables.Settings = {};
-  public allUsers: any[];
+	dtTrigger: Subject<any> = new Subject();
+	subscription: Subscription;
+	dtOptions: DataTables.Settings = {};
+	public allUsers: any[];
 
-  public ngOnInit(): void {
+	public ngOnInit(): void {
+		this.dtOptions = {
+			lengthChange: false,
+			paging: false,
+			search: false
+		};
+		setTimeout(() => {
+			this.loadAllEmployees();
+		}, 0);
+	}
 
-    this.dtOptions = {
-      lengthChange: false,
-      paging: false,
-      search: false
-    };
-    setTimeout(() => {
-      this.loadAllEmployees();
-    }, 0);
-  }
+	private loadAllEmployees(): void {
+		const subscription = this.httpService.getAllUsers().subscribe((res: any) => {
+			this.allUsers = res as any[];
 
-  private loadAllEmployees(): void {
-    this.service.getAllUsers().subscribe((res: any) => {
-      this.allUsers = res as any[];
+			this.dtTrigger.next();
+		});
+		subscription.unsubscribe();
+	}
 
-      this.dtTrigger.next();
-    });
-  }
-
-  public viewUserDetails(index: string): void {
-    this.service.data = this.allUsers[index];
-    this.router.navigate(['/ru-dash/ana-by-user/user-detail']);
-  }
-
+	public viewUserDetails(index: string): void {
+		this.service.data = this.allUsers[index];
+		this.router.navigate([ '/ru-dash/ana-by-user/user-detail' ]);
+	}
 }

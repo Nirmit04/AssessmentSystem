@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig, MatDialog } from '@angular/material/dialog';
-import { ContentCreatorServiceService } from '../../../services/content-creator-service.service';
+import { ContentCreatorService } from '../../../services/content-creator-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { Question } from '../../../models/question.model';
 import { AddQuesInQuizComponent } from '../add-ques-in-quiz/add-ques-in-quiz.component';
@@ -13,71 +13,81 @@ import { HttpService } from '../../../../../core/http/http.service';
   templateUrl: './update-quiz.component.html',
   styleUrls: ['./update-quiz.component.css']
 })
+
 export class UpdateQuizComponent implements OnInit {
-  UpdateQuizQuestionList: Question[];
-  check: boolean;
+  public UpdateQuizQuestionList: Question[];
+  public check: boolean;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<UpdateQuizComponent>,
-    public service: ContentCreatorServiceService,
+    public service: ContentCreatorService,
     public toastr: ToastrService,
     public dialog: MatDialog,
     private storageService: StorageService,
     private httpService: HttpService) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.UpdateQuizQuestionList = this.data;
     this.check = false;
   }
 
-  loadingData() {
-    this.httpService.getQuestionsByQuiz(Number(this.storageService.getStorage('quizId'))).subscribe((res: any) => {
+  private loadingData(): void {
+    const subscription = this.httpService.getQuestionsByQuiz(Number(this.storageService.getStorage('quizId'))).subscribe((res: any) => {
       this.UpdateQuizQuestionList = res;
     });
+    subscription.unsubscribe();
   }
 
-  onDelete(id: number) {
+  public onDelete(quizId: number): void {
     if (confirm('Are you sure you want to delete this record?')) {
-      this.httpService.deleteQuesOfQuiz(id).subscribe((res: any) => {
+      const subscription = this.httpService.deleteQuesOfQuiz(quizId).subscribe((res: any) => {
         this.toastr.success('Deleted Successfully', 'Assesment System');
         this.loadingData();
       });
+      subscription.unsubscribe();
     }
   }
 
-  onCreate() {
+  public onCreate(): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = "70%";
     dialogConfig.disableClose = true;
-    this.httpService.getQuizQuestions(Number(this.storageService.getStorage('quizId'))).subscribe((res: any) => {
+    const subscription = this.httpService.getQuizQuestions(Number(this.storageService.getStorage('quizId'))).subscribe((res: any) => {
       dialogConfig.data = res;
       if (dialogConfig.data.length === 0) {
         this.toastr.error('No Questions Available');
         this.check = true;
       }
       else {
-        this.dialog.open(AddQuesInQuizComponent, dialogConfig).afterClosed().subscribe(res => {
+        const resubscription = this.dialog.open(AddQuesInQuizComponent, dialogConfig).afterClosed().subscribe(res => {
           this.loadingData();
         });
+        resubscription.unsubscribe();
       }
     });
+    subscription.unsubscribe();
   }
 
-  add_new_ques() {
+  public add_new_ques(): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = "70%";
     dialogConfig.disableClose = true;
     this.service.quesStat = true;
     let dialogRef = this.dialog.open(CreateQuestionsComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe(result => {
+    const subscription = dialogRef.afterClosed().subscribe(result => {
       this.check = false;
       this.loadingData();
-      this.service.formData.SubjectId=null;
-      this.service.formData.Difficulty=null;
-      this.service.QuestionType=null;
+      this.service.formData.SubjectId = null;
+      this.service.formData.Difficulty = null;
+      this.service.questionType = null;
     });
+    subscription.unsubscribe();
+  }
+
+  public questionListById(index: number) {
+    return index;
   }
 
 }

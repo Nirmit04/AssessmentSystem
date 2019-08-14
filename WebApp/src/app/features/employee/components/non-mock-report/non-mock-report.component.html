@@ -1,42 +1,6 @@
 <app-loader></app-loader>
 <app-main-nav3>
-  <!-- <strong><h1 style="text-align: center">Scheduled Quizzes' Result</h1></strong>
-    <br /><br />
-  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
-    class="row-border hover table table-bordered table-striped">
-    <thead class="thead-dark">
-      <tr>
-        <th>#S No.</th>
-        <th>Quiz Name</th>
-        <th>Correct Answers</th>
-        <th>Wrong Answers</th>
-        <th>Unattempted Questions</th>
-        <th>Marks Scored</th>
-        <th>Total Marks</th>
-        <th>Accuracy</th>
-        <th>Time Taken (hh:mm:ss)</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let quiz of nonMockReportList; index as i;">
-        <th>{{i+1}}</th>
-        <td>{{quiz.QuizName}}</td>
-        <td>{{quiz.CorrectAnswers}}</td>
-        <td>{{quiz.WrongAnswers}}</td>
-        <td>{{quiz.UnattemptedAnswers}}</td>
-        <td>{{quiz.MarksScored}}</td>
-        <td>{{quiz.TotalMarks}}</td>
-        <td>{{quiz.Accuracy}}&nbsp;%</td>
-        <td>{{quiz.TimeTaken}}</td>
-        <td>
-          <a class="btn btn-sm btn-info text-white" (click)="viewDetailedReport(quiz.QuizId,i)"><i aria-hidden="true"
-              class="fa fa-file"></i></a>
-        </td>
-      </tr>
-    </tbody>
-  </table> -->
-  <p-table [columns]="cols" [value]="nonMockReportList" [paginator]="true" [rows]="6" #dt [responsive]="true">
+  <p-table [columns]="columns" [value]="nonMockReportList" [paginator]="true" [rows]="6" #dt [responsive]="true">
     <ng-template pTemplate="caption">
       <h3>Scheduled Quiz Results</h3>
       <div style="text-align: right">        
@@ -46,7 +10,7 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th *ngFor="let col of cols" [pSortableColumn]="col.field" style="background-color:#000000; color:#ffffff ">
+        <th *ngFor="let col of columns" [pSortableColumn]="col.field" style="background-color:#000000; color:#ffffff ">
           {{col.header}}
         </th>
         <th style="background-color:#000000; color:#ffffff ">Action</th>

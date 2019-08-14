@@ -1,5 +1,5 @@
 export class Report {
-    SerialNumber?: Number;
+    SerialNumber?: number;
     ReportId: number;
     CorrectAnswers: number;
     WrongAnswers: number;

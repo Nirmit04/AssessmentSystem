@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { EmployeeService } from './services/employee.service';
 import { StorageService } from '../../services/storage.service';
 import { HttpService } from '../../core/http/http.service';
 
@@ -11,21 +10,21 @@ import { HttpService } from '../../core/http/http.service';
 })
 export class EmployeeComponent implements OnInit {
 
-	Firstname: string;
-	Lastname: string;
-	email: string;
-	profileUrl: any;
-	mocks: any;
-	nmocks: any;
-	accuracy: any;
-	recentQuiz: any;
-	show: boolean = true;
+	public firstName: string;
+	public lastName: string;
+	public email: string;
+	public profileUrl: any;
+	public mocks: any;
+	public nonMocks: any;
+	public accuracy: any;
+	public recentQuiz: any;
+	public show: boolean = true;
 
 	constructor(private ngxService: NgxUiLoaderService,
 		private storageService: StorageService,
 		private httpService: HttpService) { }
 
-	ngOnInit() {
+	public ngOnInit(): void {
 		this.ngxService.startBackground('do-background-things');
 		this.ngxService.stopBackground('do-background-things');
 		this.ngxService.startLoader('loader-01');
@@ -34,21 +33,23 @@ export class EmployeeComponent implements OnInit {
 		this.loadUserProgress();
 	}
 
-	loadUserDetails() {
+	private loadUserDetails(): void {
 		this.httpService.getUserDetails().subscribe((res: any) => {
-			this.Firstname = res.FirstName;
-			this.Lastname = res.LastName;
+			this.firstName = res.FirstName;
+			this.lastName = res.LastName;
 			this.email = res.Email;
 		});
 	}
-	loadUserProgress(){
-		this.httpService.getEmployeeProgress().subscribe((res:any) =>{
+
+	private loadUserProgress(): void {
+		const subscription = this.httpService.getEmployeeProgress().subscribe((res: any) => {
 			this.mocks = res.Mock;
-			this.nmocks = res.Scheduled;
+			this.nonMocks = res.Scheduled;
 			this.accuracy = res.Accuracy;
 			this.recentQuiz = res.RecentActivity
 			this.show = false;
-		})
+		});
+		subscription.unsubscribe();
 	}
 
 }

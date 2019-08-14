@@ -1,4 +1,4 @@
-mat-dialog-content {
+.mat-dialog-content {
 	position: relative;
 }
 
@@ -11,7 +11,7 @@ mat-dialog-content {
 	height: 35px;
 }
 
-mat-icon {
+.mat-icon {
 	width: 30px;
 	height: 30px;
 	position: absolute;

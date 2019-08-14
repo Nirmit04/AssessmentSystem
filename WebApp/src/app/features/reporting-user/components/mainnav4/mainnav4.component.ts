@@ -29,13 +29,13 @@ export class Mainnav4Component {
   ) { }
   public ngOnInit(): void {
     this.currentRole = this.storageService.getStorage('currentRole');
-    this.authService.authState.subscribe((user) => {
-      if (user != null) {
-      } else {
+    const subscription = this.authService.authState.subscribe((user) => {
+      if (user === null) {
         this.storageService.clearStorage();
         this.router.navigate(['/login']);
       }
     });
+    subscription.unsubscribe();
   }
 
   public roleMatch(allowedRoles): boolean {
@@ -56,6 +56,7 @@ export class Mainnav4Component {
   }
 
   public logout(): void {
+    this.storageService.clearStorage();
     this.authService.signOut();
   }
 
