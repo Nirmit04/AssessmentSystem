@@ -39,6 +39,6 @@ td {
 .validation-error {
 	color: red;
 }
-mat-dialog-container {
+.mat-dialog-container {
 	position: relative !important;
 }

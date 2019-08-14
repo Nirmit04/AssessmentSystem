@@ -12,6 +12,7 @@
 }
 .mat-sidenav-content {
 	overflow-x: hidden;
+	background-color: rgb(235, 235, 235) !important;
 }
 .sidenav-container {
 	height: 100%;
@@ -48,9 +49,6 @@
 }
 .mat-sidenav-content .mat-toolbar {
 	background-color: rgb(190, 190, 190) !important;
-}
-.mat-sidenav-content {
-	background-color: rgb(235, 235, 235) !important;
 }
 .mat-toolbar a {
 	font-size: 22px;

@@ -6,8 +6,7 @@ import { Router } from '@angular/router';
 import { HttpService } from '../../../../core/http/http.service';
 @Component({
 	selector: 'app-non-mock',
-	templateUrl: './non-mock.component.html',
-	styleUrls: ['./non-mock.component.css']
+	templateUrl: './non-mock.component.html'
 })
 export class NonMockComponent implements OnInit {
 	public nonMockScheduleList: any[];
@@ -20,9 +19,7 @@ export class NonMockComponent implements OnInit {
 	private index: number;
 	private tag: string = '';
 
-	constructor(private service: EmployeeService,
-		private router: Router,
-		private httpService: HttpService) { }
+	constructor(private service: EmployeeService, private router: Router, private httpService: HttpService) {}
 
 	public ngOnInit(): void {
 		setTimeout(() => {
@@ -38,10 +35,13 @@ export class NonMockComponent implements OnInit {
 			{ field: 'QuizTime', header: 'Quiz Time' },
 			{ field: 'Tags1', header: 'Tags' }
 		];
-		this.nonSortableColumns = [{ field: 'StartDateTime', header: 'Start Time' }, { field: 'EndDateTime', header: 'End Time' }];
+		this.nonSortableColumns = [
+			{ field: 'StartDateTime', header: 'Start Time' },
+			{ field: 'EndDateTime', header: 'End Time' }
+		];
 	}
 
-	private loadNonMockSchedules():void {
+	private loadNonMockSchedules(): void {
 		const subscription = this.httpService.getNonMocks().subscribe((res: any) => {
 			this.nonMockScheduleList = res as any[];
 			for (this.index = 1; this.index <= this.nonMockScheduleList.length; this.index++) {
@@ -51,13 +51,15 @@ export class NonMockComponent implements OnInit {
 					this.tag = this.tag + listTag.Name + ',';
 				}
 				this.nonMockScheduleList[this.index - 1].Tags1 = this.tag;
-				this.nonMockScheduleList[this.index - 1].Tags1 = this.nonMockScheduleList[this.index - 1].Tags1.substring(0, this.nonMockScheduleList[this.index - 1].Tags1.length - 1);
+				this.nonMockScheduleList[this.index - 1].Tags1 = this.nonMockScheduleList[
+					this.index - 1
+				].Tags1.substring(0, this.nonMockScheduleList[this.index - 1].Tags1.length - 1);
 			}
 		});
 		subscription.unsubscribe();
 	}
 
-	public takeQuiz(quizId: number, quizScheduleId: number, quizName: string, index: number):void {
+	public takeQuiz(quizId: number, quizScheduleId: number, quizName: string, index: number): void {
 		this.service.quizId = quizId;
 		const subscription = this.httpService.getQuesOfQuiz(quizId).subscribe((res: any) => {
 			if (res !== 'Quiz Started') {
@@ -74,12 +76,12 @@ export class NonMockComponent implements OnInit {
 			this.service.hours = parseInt(this.time[0]);
 			this.service.minutes = parseInt(this.time[1]);
 			this.service.quizScheduleId = quizScheduleId;
-			this.router.navigate(['/emp-dash/quiz/take-quiz']);
+			this.router.navigate([ '/emp-dash/quiz/take-quiz' ]);
 		});
 		subscription.unsubscribe();
 	}
 
-	public ngOnDestroy():void {
+	public ngOnDestroy(): void {
 		this.dtTrigger.unsubscribe();
 	}
 }

@@ -8,8 +8,7 @@ import { HttpService } from '../http/http.service';
 
 @Component({
 	selector: 'app-home',
-	templateUrl: './home.component.html',
-	styleUrls: ['./home.component.css']
+	templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
 	/* This class is used to register the user to the system if he is not already registered and capture user-specific details from the google sso.*/
@@ -80,12 +79,12 @@ export class HomeComponent implements OnInit {
 							/* user is not allowed to enter that quiz */
 							this.storageService.setStorage('errorCode', '405');
 							this.storageService.setStorage('errorMsg', 'Not Allowed to enter the specified quiz.');
-							this.router.navigate(['/http-error']);
+							this.router.navigate([ '/http-error' ]);
 						}
 					});
 			});
 		} else {
-			this.router.navigate(['/login']);
+			this.router.navigate([ '/login' ]);
 		}
 	}
 
@@ -100,15 +99,13 @@ export class HomeComponent implements OnInit {
 		}
 		else if (role === 'Content-Creator') {
 			this.storageService.setStorage('currentRole', '//cc-dash');
-			this.router.navigate(['/cc-dash']);
-		}
-		else if (role === 'Employee') {
+			this.router.navigate([ '/cc-dash' ]);
+		} else if (role === 'Employee') {
 			this.storageService.setStorage('currentRole', '//emp-dash');
-			this.router.navigate(['/emp-dash']);
-		}
-		else {
+			this.router.navigate([ '/emp-dash' ]);
+		} else {
 			this.storageService.setStorage('currentRole', '//ru-dash');
-			this.router.navigate(['/ru-dash']);
+			this.router.navigate([ '/ru-dash' ]);
 		}
 	}
 }

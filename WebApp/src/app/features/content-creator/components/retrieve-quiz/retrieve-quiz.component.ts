@@ -78,23 +78,25 @@ export class RetrieveQuizComponent implements OnInit {
 	}
 
 	public onCreate(): void {
+		/* creating a new quiz by clicking on the 'Create Quiz' button*/
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = "70%";
 		dialogConfig.disableClose = true;
-		let dialogRef = this.dialog.open(CreateQuizComponent, dialogConfig);
-		dialogRef.afterClosed().subscribe(result => {
+		let dialogRef = this.dialog.open(CreateQuizComponent, dialogConfig); // loading the 'CreateQuiz' component in the mat dialog
+		dialogRef.afterClosed().subscribe(result => { // after the dialog box is closed, reset the form values
 			this.service.difficulty = null;
 			this.service.questionType = null;
 			this.service.subjectId = null;
 			this.service.quesStat = false;
-			this.loadQuiz();
+			this.loadQuiz(); // refresh to load the latest data of the newly created quiz
 			this.dtTrigger.unsubscribe();
 			this.dtTrigger.next();
 		});
 	}
 
 	public onArchive(quizId: number): void {
+		
 		if (confirm('Are you sure you want to archive this quiz?')) {
 			this.httpService.deleteQuiz(quizId).subscribe((res: any) => {
 				this.toastr.success('Archieved Successfully', 'Assesment System');

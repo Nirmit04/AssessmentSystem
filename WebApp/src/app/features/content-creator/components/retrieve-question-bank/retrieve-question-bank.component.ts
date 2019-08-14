@@ -13,14 +13,15 @@ declare var $: any;
 
 @Component({
 	selector: 'app-retrieve-question-bank',
-	styles: [`
+	styles: [
+		`
 		.sample {
 			background-color: #000000 !important;
 			color: #ffffff !important;
 		}
-	`],
+	`
+	],
 	templateUrl: './retrieve-question-bank.component.html',
-	styleUrls: ['./retrieve-question-bank.component.css'],
 	encapsulation: ViewEncapsulation.None
 })
 export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
@@ -34,7 +35,8 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 	public nonSortableColumns: any[];
 	private index: number;
 
-	constructor(private service: ContentCreatorService,
+	constructor(
+		private service: ContentCreatorService,
 		private toastr: ToastrService,
 		private dialog: MatDialog,
 		private httpService: HttpService) {
@@ -51,9 +53,7 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 			this.getQuesOfUser();
 		}, 0);
 
-		this.nonSortableColumns = [
-			{ field: 'QuestionStatement', header: 'Question' }
-		]
+		this.nonSortableColumns = [ { field: 'QuestionStatement', header: 'Question' } ];
 		this.columns = [
 			{ field: 'QuestionType', header: 'Question Type' },
 			{ field: 'Difficulty', header: 'Difficulty Level' },
@@ -72,7 +72,9 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 					this.tag = this.tag + tag.Name + ',';
 					this.questionList[this.index - 1].DuplicateTags = this.tag;
 				}
-				this.questionList[this.index - 1].DuplicateTags = this.questionList[this.index - 1].DuplicateTags.substring(0, this.questionList[this.index - 1].DuplicateTags.length - 1);
+				this.questionList[this.index - 1].DuplicateTags = this.questionList[
+					this.index - 1
+				].DuplicateTags.substring(0, this.questionList[this.index - 1].DuplicateTags.length - 1);
 			}
 		});
 	}
@@ -103,7 +105,7 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 		/* user wants to edit a particular question by clicking on the 'Edit' icon, a mat dialog is presented to the user from where he can edit the question */
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
-		dialogConfig.width = "70%";
+		dialogConfig.width = '70%';
 		dialogConfig.disableClose = true;
 		this.service.readonlyStatus = false; // user can edit the question
 		this.service.formData = this.questionList[arrayindex - 1];
@@ -117,7 +119,7 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 		/* user wants to view a particular question by clicking on the 'View' icon, a mat dialog is presented to the user from where he can view the detailed information of the question */
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
-		dialogConfig.width = "70%";
+		dialogConfig.width = '70%';
 		dialogConfig.disableClose = true;
 		this.service.readonlyStatus = true; // user can only view the question
 		this.service.formData = this.questionList[arrayindex - 1];
@@ -129,5 +131,4 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 		/* component is destroyed */
 		this.dtTrigger.unsubscribe();
 	}
-
 }

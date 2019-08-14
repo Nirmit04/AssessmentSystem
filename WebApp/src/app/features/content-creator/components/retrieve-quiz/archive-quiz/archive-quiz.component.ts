@@ -6,8 +6,7 @@ import { Subject } from 'rxjs';
 import { HttpService } from '../../../../../core/http/http.service';
 @Component({
 	selector: 'app-archive-quiz',
-	templateUrl: './archive-quiz.component.html',
-	styleUrls: ['./archive-quiz.component.css']
+	templateUrl: './archive-quiz.component.html'
 })
 export class ArchiveQuizComponent implements OnInit {
 	/* this class is used to archive a quiz on user`s request, that is, soft delete a quiz */
@@ -19,14 +18,13 @@ export class ArchiveQuizComponent implements OnInit {
 	public columns: any[];
 	private index: number;
 
-	constructor(private toastr: ToastrService,
-		private httpService: HttpService) { }
+	constructor(private toastr: ToastrService, private httpService: HttpService) {}
 
 	public ngOnInit(): void {
 		/* setting up the component, the headings of the table to be displayed and loading all those quizzes that are currently soft-deleted*/
 		this.dtOptions = {
 			pagingType: 'full_numbers',
-			pageLength: 10,
+			pageLength: 10
 		};
 		this.columns = [
 			{ field: 'SerialNumber', header: 'S NO' },
@@ -35,7 +33,7 @@ export class ArchiveQuizComponent implements OnInit {
 			{ field: 'Difficulty', header: 'Difficulty' },
 			{ field: 'TotalQuestions', header: 'Total Questions' },
 			{ field: 'TotalMarks', header: 'Total Marks' },
-			{ field: 'DuplicateTags', header: 'Tags' },
+			{ field: 'DuplicateTags', header: 'Tags' }
 		];
 
 		this.loadQuiz(); // loading all those quizzes that are currently soft-deleted
@@ -56,7 +54,7 @@ export class ArchiveQuizComponent implements OnInit {
 			for (this.index = 1; this.index <= this.QuizList.length; this.index++) {
 				/* loop to display the multiple subjects in the correct form if a quiz contains it */
 				this.QuizList[this.index - 1].SerialNumber = this.index;
-				this.tag = ''
+				this.tag = '';
 				for (let tag of this.QuizList[this.index - 1].Tags) {
 					this.tag = this.tag + tag.Name + ',';
 					this.QuizList[this.index - 1].DuplicateTags = this.tag;
@@ -83,5 +81,4 @@ export class ArchiveQuizComponent implements OnInit {
 		/* destroying the component, once the user moves away from the component */
 		this.dtTrigger.unsubscribe();
 	}
-
 }

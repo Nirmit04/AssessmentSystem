@@ -8,10 +8,8 @@ import { StorageService } from '../../../../services/storage.service';
 
 @Component({
 	selector: 'app-main-nav3',
-	templateUrl: './main-nav3.component.html',
-	styleUrls: ['./main-nav3.component.css']
+	templateUrl: './main-nav3.component.html'
 })
-
 export class MainNav3Component {
 	isHandset$: Observable<boolean> = this.breakpointObserver
 		.observe(Breakpoints.Handset)
@@ -23,14 +21,14 @@ export class MainNav3Component {
 		private authService: AuthService,
 		private router: Router,
 		private storageService: StorageService
-	) { }
+	) {}
 
 	public ngOnInit(): void {
 		this.currentRole = this.storageService.getStorage('currentRole');
 		const subscription = this.authService.authState.subscribe((user) => {
 			if (user === null) {
 				this.storageService.clearStorage();
-				this.router.navigate(['/login']);
+				this.router.navigate([ '/login' ]);
 			}
 		});
 		subscription.unsubscribe();
@@ -39,7 +37,7 @@ export class MainNav3Component {
 	public roleMatch(allowedRoles: []): boolean {
 		var isMatch = false;
 		var userRoles: string = this.storageService.getStorage('role');
-		allowedRoles.forEach(element => {
+		allowedRoles.forEach((element) => {
 			if (userRoles.indexOf(element) > -1) {
 				isMatch = true;
 				return false;
@@ -50,12 +48,11 @@ export class MainNav3Component {
 
 	public changeRole(role: string): void {
 		this.storageService.setStorage('currentRole', role);
-		this.router.navigate([role]);
+		this.router.navigate([ role ]);
 	}
 
 	public logout(): void {
 		this.storageService.clearStorage();
 		this.authService.signOut();
 	}
-
 }
