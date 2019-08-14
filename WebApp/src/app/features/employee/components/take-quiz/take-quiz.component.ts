@@ -96,6 +96,7 @@ export class TakeQuizComponent implements OnInit {
 
 
 	public openFullscreen(): void {
+		// TODO: Pulkit|right click disabled and copy paste disabled and preventing escaping full screen - 10/04/2019
 		if (this.browserElement.requestFullscreen) {
 			this.browserElement.requestFullscreen();
 		} else if (this.browserElement.mozRequestFullScreen) {
@@ -124,6 +125,7 @@ export class TakeQuizComponent implements OnInit {
 	}
 
 	private startTimer(): void {
+		//TODO: Pulkit| timer to be set up instead of manually handling it - 20/04/2019
 		this.service.timer = setInterval(() => {
 			if (this.hours == 0 && this.minutes == 0 && this.seconds == 0) {
 

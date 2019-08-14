@@ -9,6 +9,7 @@ import { TagModel } from '../../features/content-creator/models/tags.model';
   providedIn: 'root'
 })
 export class HttpService {
+  /* thee http service class which is used to make api calls */
 
   private rootURL = environment.apiURl;
 

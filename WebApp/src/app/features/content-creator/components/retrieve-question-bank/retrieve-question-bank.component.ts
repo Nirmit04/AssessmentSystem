@@ -7,7 +7,6 @@ import { UpdateQuestionComponent } from '../update-question/update-question.comp
 import { Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
 import { ViewEncapsulation } from "@angular/core";
-import { StorageService } from '../../../../services/storage.service';
 import { HttpService } from '../../../../core/http/http.service';
 
 declare var $: any;
@@ -25,12 +24,12 @@ declare var $: any;
 	encapsulation: ViewEncapsulation.None
 })
 export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
+	/* This class is used to display all the questions present in the question bank of the system entered by the current user */
 	private tag: string = '';
 	public dtOptions: DataTables.Settings = {};
 	public questionList: Question[];
 	public dtTrigger: Subject<Question> = new Subject();
 	public subscription: Subscription;
-
 	public columns: any[];
 	public nonSortableColumns: any[];
 	private index: number;
@@ -38,9 +37,11 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 	constructor(private service: ContentCreatorService,
 		private toastr: ToastrService,
 		private dialog: MatDialog,
-		private httpService: HttpService) { }
+		private httpService: HttpService) {
+	}
 
 	public ngOnInit(): void {
+		/* setting up the component and the headings of the table to be displayed */
 		this.dtOptions = {
 			lengthChange: false,
 			paging: false,
@@ -61,7 +62,8 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 	}
 
 	private getQuesOfUser(): void {
-		const subscription = this.httpService.getQuesOfUser().subscribe((data: any) => {
+		/* this functions gets all the questions that the current user entered in the question bank and displays it to the user in the form of tables */
+		this.httpService.getQuesOfUser().subscribe((data: any) => {
 			this.questionList = data as Question[];
 			for (this.index = 1; this.index <= this.questionList.length; this.index++) {
 				this.tag = '';
@@ -73,55 +75,58 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 				this.questionList[this.index - 1].DuplicateTags = this.questionList[this.index - 1].DuplicateTags.substring(0, this.questionList[this.index - 1].DuplicateTags.length - 1);
 			}
 		});
-		subscription.unsubscribe();
 	}
 
 	nonSortableColumnsById(index: number) {
+		/* trackBy function */
 		return index;
 	}
 
 	columnsById(index: number) {
+		/* trackBy function */
 		return index;
 	}
 
-	public deleteQues(questionId): void {
+	public deleteQues(questionId: number): void {
+		/* it is used to delete a question from the question bank on user confirmation */
 		if (confirm('Are you sure you want to delete this record?')) {
-			this.subscription = this.httpService.deleteQues(questionId).subscribe((res: any) => {
+			/* if user clicks on the 'Yes' button, then the question is deleted from the question bank */
+			this.httpService.deleteQues(questionId).subscribe((res: any) => {
 				this.toastr.success('Deleted Successfully', 'Assesment System');
 				this.dtTrigger.unsubscribe();
 				this.getQuesOfUser();
-				this.subscription.unsubscribe();
 			});
 		}
 	}
 
 	public editUserQues(arrayindex: number): void {
+		/* user wants to edit a particular question by clicking on the 'Edit' icon, a mat dialog is presented to the user from where he can edit the question */
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = "70%";
 		dialogConfig.disableClose = true;
-		this.service.readonlyStatus = false;
+		this.service.readonlyStatus = false; // user can edit the question
 		this.service.formData = this.questionList[arrayindex - 1];
-		const subscription = this.dialog.open(UpdateQuestionComponent, dialogConfig).afterClosed().subscribe((res: any) => {
+		this.dialog.open(UpdateQuestionComponent, dialogConfig).afterClosed().subscribe((res: any) => {
 			this.dtTrigger.unsubscribe();
-			this.getQuesOfUser();
+			this.getQuesOfUser(); // refreshes the question bank table displaying the latest information
 		});
-		subscription.unsubscribe();
 	}
 
 	public viewUserQues(arrayindex: number): void {
+		/* user wants to view a particular question by clicking on the 'View' icon, a mat dialog is presented to the user from where he can view the detailed information of the question */
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = "70%";
 		dialogConfig.disableClose = true;
-		this.service.readonlyStatus = true;
+		this.service.readonlyStatus = true; // user can only view the question
 		this.service.formData = this.questionList[arrayindex - 1];
-		const subscription = this.dialog.open(UpdateQuestionComponent, dialogConfig).afterClosed().subscribe((res: any) => {
+		this.dialog.open(UpdateQuestionComponent, dialogConfig).afterClosed().subscribe((res: any) => {
 		});
-		subscription.unsubscribe();
 	}
 
 	public ngOnDestroy(): void {
+		/* component is destroyed */
 		this.dtTrigger.unsubscribe();
 	}
 
