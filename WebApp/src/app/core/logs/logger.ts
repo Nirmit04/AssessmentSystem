@@ -30,10 +30,9 @@ export class Logger {
   private flush = new Subject<LoggerEvents>();
 
   constructor(private appName: string, private logEndpoint: string) {
-    const subscription = this.flush
+    this.flush
       .pipe(debounceTime(5000), filter((event) => event === LoggerEvents.Flush))
       .subscribe(() => this.flushBuffer());
-      subscription.unsubscribe();
   }
 
   public log(type: LogType, message: string, data: LogFields) {

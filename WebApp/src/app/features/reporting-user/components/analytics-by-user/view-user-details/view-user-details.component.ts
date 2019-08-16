@@ -58,7 +58,7 @@ export class ViewUserDetailsComponent implements OnInit {
   }
 
   private fetchAnalytics(userId: string): void {
-    const subscription = this.httpService.getUserAnalytics(userId).subscribe((res: any) => {
+    this.httpService.getUserAnalytics(userId).subscribe((res: any) => {
       this.apiResponse = res;
       this.userData = [];
       this.userData.push(this.apiResponse.HighestScore);
@@ -67,18 +67,16 @@ export class ViewUserDetailsComponent implements OnInit {
       this.userData.push(this.apiResponse.AverageScore);
       this.polarAreaChartData = this.userData;
     });
-    subscription.unsubscribe();
   }
 
   private fetchReports(userId: string): void {
-    const subscription = this.httpService.getReportOfNonMockQuiz(userId).subscribe((res: any) => {
+    this.httpService.getReportOfNonMockQuiz(userId).subscribe((res: any) => {
       this.scheduledReports = res as any[];
       this.dtTrigger.next();
       if (this.scheduledReports.length > 0) {
         this.flag = true;
       }
     });
-    subscription.unsubscribe();
   }
 
   public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {

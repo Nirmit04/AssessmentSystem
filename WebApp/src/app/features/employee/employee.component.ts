@@ -42,14 +42,13 @@ export class EmployeeComponent implements OnInit {
 	}
 
 	private loadUserProgress(): void {
-		const subscription = this.httpService.getEmployeeProgress().subscribe((res: any) => {
+		this.httpService.getEmployeeProgress().subscribe((res: any) => {
 			this.mocks = res.Mock;
 			this.nonMocks = res.Scheduled;
 			this.accuracy = res.Accuracy;
 			this.recentQuiz = res.RecentActivity
 			this.show = false;
 		});
-		subscription.unsubscribe();
 	}
 
 }

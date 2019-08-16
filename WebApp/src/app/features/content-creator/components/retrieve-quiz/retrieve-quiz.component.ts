@@ -112,14 +112,14 @@ export class RetrieveQuizComponent implements OnInit {
 		this.service.difficulty = this.quizList[index].Difficulty;
 		this.service.subjectId = this.quizList[index].SubjectId;
 		this.service.questionType = this.quizList[index].QuizType;
-		const subscription = this.httpService.getQuestionsByQuiz(quizId).subscribe((res: any) => {
+		this.httpService.getQuestionsByQuiz(quizId).subscribe((res: any) => {
 			this.questionList = res as any[];
 			const dialogConfig = new MatDialogConfig();
 			dialogConfig.autoFocus = true;
 			dialogConfig.width = "70%";
 			dialogConfig.disableClose = true;
 			dialogConfig.data = this.questionList;
-			const resubscription = this.dialog.open(UpdateQuizComponent, dialogConfig).afterClosed().subscribe(res => {
+			this.dialog.open(UpdateQuizComponent, dialogConfig).afterClosed().subscribe(res => {
 				this.loadQuiz();
 				this.service.difficulty = null;
 				this.service.questionType = null;
@@ -129,9 +129,7 @@ export class RetrieveQuizComponent implements OnInit {
 				this.dtTrigger.next();
 				this.storageService.removeStorage('quizId');
 			});
-			resubscription.unsubscribe();
 		});
-		subscription.unsubscribe();
 	}
 
 	public ngOnDestroy(): void {

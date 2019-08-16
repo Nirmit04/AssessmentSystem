@@ -66,12 +66,12 @@ export function provideConfig() {
             useClass: LoaderInterceptorService,
             multi: true
         },
-		// { provide: HTTP_INTERCEPTORS, 
-		// 	useClass: TokenInterceptor, multi: true },
-		{
-			provide: ErrorHandler,
-			useClass: GlobalErrorHandler
-		}
+		{ provide: HTTP_INTERCEPTORS, 
+			useClass: TokenInterceptor, multi: true },
+		// {
+		// 	provide: ErrorHandler,
+		// 	useClass: GlobalErrorHandler
+		// }
 	],
 	bootstrap: [AppComponent],
 	

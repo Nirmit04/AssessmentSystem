@@ -37,10 +37,9 @@ export class CreatetagComponent implements OnInit {
 			this.option = 'Update';
 			this.service.tagForm = this.data;
 		}
-		const subscription = this.httpService.retrieveSubjects().subscribe((res: any) => {
+		this.httpService.retrieveSubjects().subscribe((res: any) => {
 			this.existingTags = res as TagModel[];
 		});
-		subscription.unsubscribe();
 	}
 
 	public getSubjectId()	{
@@ -59,12 +58,11 @@ export class CreatetagComponent implements OnInit {
 	}
 
 	public onSubmit(form: NgForm): void {
-		const subscription = this.httpService.postTags(form.value).subscribe(res => {
+		this.httpService.postTags(form.value).subscribe(res => {
 			this.toastr.success('Inserted successfully');
 			this.resetForm(form);
 			this.dialogRef.close('Inserted');
 		});
-		subscription.unsubscribe();
 	}
 
 	public checkAvail(name: NgForm): void {

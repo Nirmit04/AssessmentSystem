@@ -27,12 +27,11 @@ export class AnalyticsByUserComponent implements OnInit {
 	}
 
 	private loadAllEmployees(): void {
-		const subscription = this.httpService.getAllUsers().subscribe((res: any) => {
+		this.httpService.getAllUsers().subscribe((res: any) => {
 			this.allUsers = res as any[];
 
 			this.dtTrigger.next();
 		});
-		subscription.unsubscribe();
 	}
 
 	public viewUserDetails(index: string): void {

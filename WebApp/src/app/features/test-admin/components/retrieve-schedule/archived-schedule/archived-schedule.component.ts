@@ -37,22 +37,20 @@ export class ArchivedScheduleComponent implements OnInit, OnDestroy {
 	}
 
 	private loadArchivedSchedules(): void {
-		const subscription = this.httpService.getArchivedSchedules().subscribe((res: any) => {
+		this.httpService.getArchivedSchedules().subscribe((res: any) => {
 			this.ScheduleList = res as Schedule[];
 			for (this.index = 1; this.index <= this.ScheduleList.length; this.index++) {
 				this.ScheduleList[this.index - 1].SerialNumber = this.index;
 			}
 		});
-		subscription.unsubscribe();
 	}
 
 	public unarchiveSchedule(id): void {
 		if (confirm('Are you sure you want to un-archive this')) {
-			const subscription = this.httpService.unArchiveSchedule(id).subscribe((res: any) => {
+			this.httpService.unArchiveSchedule(id).subscribe((res: any) => {
 				this.toastr.success('Un-Archived Successfully', 'Assesment System');
 				this.loadArchivedSchedules();
 			});
-			subscription.unsubscribe();
 		}
 	}
 

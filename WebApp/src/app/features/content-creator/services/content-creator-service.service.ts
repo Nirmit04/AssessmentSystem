@@ -36,10 +36,9 @@ export class ContentCreatorService {
 			this.formDataNew.append('Image', this.selectedFile, this.selectedFile.name);
 			this.selectedFile = null;
 		}
-		const subscription = this.httpService.postQuestion(this.formDataNew).subscribe((res: any) => {
+		this.httpService.postQuestion(this.formDataNew).subscribe((res: any) => {
 			return true;
 		});
-		subscription.unsubscribe();
 		return false;
 	}
 
@@ -50,30 +49,26 @@ export class ContentCreatorService {
 			this.formDataNew.append('Image', this.selectedFile, this.selectedFile.name);
 			this.selectedFile = null;
 		}
-		const subscription = this.httpService.putQuestion(formData.QuestionId, this.formDataNew).subscribe((res: any) => {
+		this.httpService.putQuestion(formData.QuestionId, this.formDataNew).subscribe((res: any) => {
 			return true;
 		});
-		subscription.unsubscribe();
 		return false;
 	}
 
 	public postQuestionsSelected(questions: number[]): any {
 		this.quizForm.QuestionIds = questions;
 		this.quizForm.QuizState = this.quizState;
-		const subscription = this.httpService.postSelectedQuestion(this.quizForm).subscribe((res: any) => {
+		this.httpService.postSelectedQuestion(this.quizForm).subscribe((res: any) => {
 		});
-		subscription.unsubscribe();
 		return false;
 	}
 
 	public putQuestionsSelected(questions: number[]): any {
 		this.quizForm.QuestionIds = questions;
 		this.quizForm.CreatedBy = this.storageService.getStorage('uid');
-		const subscription = this.httpService.putQuestionsSelected(this.storageService.getStorage('quizId'), this.quizForm.QuestionIds).subscribe((res: any) => {
+		this.httpService.putQuestionsSelected(this.storageService.getStorage('quizId'), this.quizForm.QuestionIds).subscribe((res: any) => {
 			return true;
 		});
-
-		subscription.unsubscribe();
 		return false;
 	}
 

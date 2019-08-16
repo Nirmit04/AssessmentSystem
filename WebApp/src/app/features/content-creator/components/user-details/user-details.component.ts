@@ -34,22 +34,20 @@ export class UserDetailsComponent implements OnInit {
 	}
 
 	private loadUserDetails(): void {
-		const subscription = this.httpService.getUserDetails().subscribe((res: any) => {
+		this.httpService.getUserDetails().subscribe((res: any) => {
 			this.firstName = res.FirstName;
 			this.lastName = res.LastName;
 			this.email = res.Email;
 		});
-		subscription.unsubscribe();
 	}
 
 	private loadUserProgress(): void {
-		const subscription = this.httpService.getContentCreatorProgress().subscribe((res: any) => {
+	 this.httpService.getContentCreatorProgress().subscribe((res: any) => {
 			this.quizzes = res.QuizzesCreated;
 			this.questions = res.QuestionsCreated;
 			this.tags = res.TagsCreated;
 			this.show = false;
 		});
-		subscription.unsubscribe();
 	}
 
 }

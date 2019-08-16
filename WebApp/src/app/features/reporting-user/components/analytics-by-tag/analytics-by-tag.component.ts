@@ -70,7 +70,7 @@ export class AnalyticsByTagComponent implements OnInit {
 	}
 
 	private loadAnalyticOfTag(): void {
-		const subscription = this.httpService.getTagAnalytics().subscribe((res: any) => {
+		this.httpService.getTagAnalytics().subscribe((res: any) => {
 			this.tagAnalysisList = res as any[];
 			for (let i = 0; i < 7; i++) {
 				this.highdata.push(this.tagAnalysisList[i].Properties.HighestScore);
@@ -87,6 +87,5 @@ export class AnalyticsByTagComponent implements OnInit {
 			];
 			this.dtTrigger.next();
 		});
-		subscription.unsubscribe();
 	}
 }
