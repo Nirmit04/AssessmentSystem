@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ErrorHandler} from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,14 @@ import { TestAdminModule } from './features/test-admin/test-admin.module'
 import { ReportingUserModule } from './features/reporting-user/reporting-user.module';
 import { GlobalErrorHandler } from './core/logs/global-error-handler.service';
 import { TokenInterceptor } from './token.interceptor';
+import * as rb from 'rollbar';
+import { CommonModule } from '@angular/common';
+import {
+    Injectable,
+    Injector,
+    InjectionToken,
+    Inject
+} from '@angular/core';
 
 const config = new AuthServiceConfig([
     {
@@ -31,6 +39,35 @@ export function provideConfig() {
     return config;
 }
 
+const rollbarConfig = {
+    accessToken: '62740a9a7bf74f5bb9b1b845e411fac7',
+    captureUncaught: true,
+    captureUnhandledRejections: true,
+    autoInstrument: {
+        network: true,
+        log: true,
+        dom: true,
+        navigation: true,
+        connectivity: true,
+        networkResponseHeaders: true,
+        networkResponseBody: true,
+        networkRequestBody: true
+    }
+};
+
+export const RollbarService = new InjectionToken<rb>('rollbar');
+@Injectable()
+export class RollbarErrorHandler implements ErrorHandler {
+    constructor(@Inject(RollbarService) private rollbar: rb) { }
+
+    handleError(err: any): void {
+        this.rollbar.error(err.originalError || err);
+    }
+}
+
+export function rollbarFactory() {
+    return new rb(rollbarConfig);
+}
 @NgModule({
     declarations: [
         AppComponent,
@@ -66,14 +103,16 @@ export function provideConfig() {
             useClass: LoaderInterceptorService,
             multi: true
         },
-		// { provide: HTTP_INTERCEPTORS, 
-		// 	useClass: TokenInterceptor, multi: true },
-		{
-			provide: ErrorHandler,
-			useClass: GlobalErrorHandler
-		}
-	],
-	bootstrap: [AppComponent],
-	
+        // { provide: HTTP_INTERCEPTORS,
+        // 	useClass: TokenInterceptor, multi: true },
+        // {
+        //     provide: ErrorHandler,
+        //     useClass: GlobalErrorHandler
+        // },
+        { provide: RollbarService, useFactory: rollbarFactory },
+        { provide: ErrorHandler, useClass: RollbarErrorHandler },
+    ],
+    bootstrap: [AppComponent],
+
 })
 export class AppModule { }
