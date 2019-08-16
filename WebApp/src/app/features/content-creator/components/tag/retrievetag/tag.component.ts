@@ -40,13 +40,12 @@ export class TagComponent implements OnInit {
 	}
 
 	private loadTags(): void {
-		const subscription = this.httpService.getTags().subscribe((res: any) => {
+		this.httpService.getTags().subscribe((res: any) => {
 			this.tagList = res as TagModel[];
 			for (this.index = 1; this.index <= this.tagList.length; this.index++) {
 				this.tagList[this.index - 1].SerialNumber = this.index;
 			}
 		});
-		subscription.unsubscribe();
 	}
 
 	public onCreate(): void {
@@ -54,10 +53,9 @@ export class TagComponent implements OnInit {
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = "70%";
 		dialogConfig.disableClose = true;
-		const dialogRef = this.dialog.open(CreatetagComponent, dialogConfig).afterClosed().subscribe(result => {
+		this.dialog.open(CreatetagComponent, dialogConfig).afterClosed().subscribe(result => {
 			this.loadTags();
 		});
-		dialogRef.unsubscribe();
 	}
 
 	public onEdit(tagId: number): void {

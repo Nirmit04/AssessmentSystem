@@ -28,14 +28,14 @@ export class AddUserComponent implements OnInit {
 		private service: TestAdminService,
 		private storageService: StorageService,
 		private httpService: HttpService
-	) {}
+	) { }
 
 	public ngOnInit(): void {
 		this.dtOptions = {
 			pagingType: 'full_numbers',
 			pageLength: 10
 		};
-		this.columns = [ { field: 'SerialNumber', header: 'S NO' }, { field: 'QuizName', header: 'Quiz Name' } ];
+		this.columns = [{ field: 'SerialNumber', header: 'S NO' }, { field: 'QuizName', header: 'Quiz Name' }];
 		this.unSortableColumn = [
 			{ field: 'StartDateTime', header: 'Start Time' },
 			{ field: 'EndDateTime', header: 'End Time' }
@@ -46,15 +46,14 @@ export class AddUserComponent implements OnInit {
 	}
 
 	private loadSchedule(): void {
-		const subscription = this.httpService
-			.getSchedule(this.storageService.getStorage('uid'))
-			.subscribe((res: any) => {
-				this.scheduleList = res as Schedule[];
-				for (this.index = 1; this.index <= this.scheduleList.length; this.index++) {
-					this.scheduleList[this.index - 1].SerialNumber = this.index;
-				}
-			});
-		subscription.unsubscribe();
+		this.httpService
+		.getSchedule(this.storageService.getStorage('uid'))
+		.subscribe((res: any) => {
+			this.scheduleList = res as Schedule[];
+			for (this.index = 1; this.index <= this.scheduleList.length; this.index++) {
+				this.scheduleList[this.index - 1].SerialNumber = this.index;
+			}
+		});
 	}
 
 	public addUserToSchedule(scheduleid: number): void {
@@ -73,22 +72,20 @@ export class AddUserComponent implements OnInit {
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = '60%';
 		dialogConfig.disableClose = true;
-		const subscription = this.httpService.getScheduleQuizUsers(scheduleId).subscribe((res: any) => {
+		this.httpService.getScheduleQuizUsers(scheduleId).subscribe((res: any) => {
 			if (res.length === 0) {
 				this.toastr.error('No user Available to Delete');
 			} else {
 				dialogConfig.data = scheduleId;
 				this.service.deleteUserVisibility = true;
-				const resubscription = this.dialog
+				this.dialog
 					.open(ViewScheduleComponent, dialogConfig)
 					.afterClosed()
 					.subscribe(() => {
 						this.loadSchedule();
 						this.service.deleteUserVisibility = false;
 					});
-				resubscription.unsubscribe();
 			}
 		});
-		subscription.unsubscribe();
 	}
 }

@@ -42,7 +42,7 @@ export class DetailsComponent implements OnInit {
 	}
 
 	private getDetails(quizId: string): void {
-		const subscription = this.httpService.getQuizAnalysis(quizId).subscribe((res: any) => {
+		this.httpService.getQuizAnalysis(quizId).subscribe((res: any) => {
 			this.quizData = res;
 			this.chartData = [];
 			this.chartData.push(this.quizData.HighestScore);
@@ -51,6 +51,5 @@ export class DetailsComponent implements OnInit {
 			this.chartData.push(this.quizData.NoOfQuiz);
 			this.pieChartData = this.chartData;
 		});
-		subscription.unsubscribe();
 	}
 }

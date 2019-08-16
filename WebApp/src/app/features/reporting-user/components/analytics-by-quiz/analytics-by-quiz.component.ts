@@ -26,11 +26,10 @@ export class AnalyticsByQuizComponent implements OnInit {
 	}
 
 	private loadQuizDetails(): void {
-		const subscription = this.httpService.getAllQuizzes().subscribe((res: any) => {
+		this.httpService.getAllQuizzes().subscribe((res: any) => {
 			this.quizDetails = res as any[];
 			this.dtTrigger.next();
 		});
-		subscription.unsubscribe();
 	}
 
 	public onClick(index: any): void {

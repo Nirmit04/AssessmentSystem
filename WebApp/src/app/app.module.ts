@@ -103,14 +103,16 @@ export function rollbarFactory() {
             useClass: LoaderInterceptorService,
             multi: true
         },
-        // { provide: HTTP_INTERCEPTORS,
-        // 	useClass: TokenInterceptor, multi: true },
-        // {
-        //     provide: ErrorHandler,
-        //     useClass: GlobalErrorHandler
-        // },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptor, multi: true
+        },
         { provide: RollbarService, useFactory: rollbarFactory },
         { provide: ErrorHandler, useClass: RollbarErrorHandler },
+        // {
+        // 	provide: ErrorHandler,
+        // 	useClass: GlobalErrorHandler
+        // }
     ],
     bootstrap: [AppComponent],
 

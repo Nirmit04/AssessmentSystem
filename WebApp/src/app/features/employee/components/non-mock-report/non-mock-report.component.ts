@@ -47,13 +47,12 @@ export class NonMockReportComponent implements OnInit {
   }
 
   private getNonMockReport(): void {
-    const subscription = this.httpService.getReportOfNonMockQuiz(this.storageService.getStorage('uid')).subscribe((res: any) => {
+    this.httpService.getReportOfNonMockQuiz(this.storageService.getStorage('uid')).subscribe((res: any) => {
       this.nonMockReportList = res as any[];
       for (this.index = 1; this.index <= this.nonMockReportList.length; this.index++) {
         this.nonMockReportList[this.index - 1].SerialNumber = this.index;
       }
     });
-    subscription.unsubscribe();
   }
 
   public viewDetailedReport(quizId: number, index: number): void {

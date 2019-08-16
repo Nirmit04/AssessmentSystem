@@ -7,8 +7,7 @@ import { HttpService } from '../../../../core/http/http.service';
 
 @Component({
   selector: 'app-mock-report',
-  templateUrl: './mock-report.component.html',
-  styleUrls: ['./mock-report.component.css']
+  templateUrl: './mock-report.component.html'
 })
 export class MockReportComponent implements OnInit {
 
@@ -47,13 +46,12 @@ export class MockReportComponent implements OnInit {
   }
 
   private getMockReport(): void {
-    const subscription = this.httpService.getReportOfMockQuiz(this.storageService.getStorage('uid')).subscribe((res: any) => {
+    this.httpService.getReportOfMockQuiz(this.storageService.getStorage('uid')).subscribe((res: any) => {
       this.mockReportList = res as any[];
       for (this.index = 1; this.index <= this.mockReportList.length; this.index++) {
         this.mockReportList[this.index - 1].SerialNumber = this.index;
       }
     });
-    subscription.unsubscribe();
   }
 
   public viewDetailedReport(quizId: number, index: number) {
