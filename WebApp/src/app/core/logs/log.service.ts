@@ -4,70 +4,66 @@ import { Logger } from './logger';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class LogService {
-  private logger: Logger;
+	private logger: Logger;
 
-  constructor(private userId: string) {}
+	constructor(private userId: string) {}
 
-  public initialize() {
-    this.logger = new Logger(environment.appName, environment.endpoints.elasticSearchEndpoint);
-  }
+	public initialize() {
+		this.logger = new Logger(environment.appName, environment.endpoints.elasticSearchEndpoint);
+	}
 
-  public logHttpInfo(info: any, elapsedTime: number, requestPath: string) {
-    // TODO: create and set correlation id
-    const url = location.href;
-    const logFields: LogFields = {
-      environment: environment.env,
-      userId: this.userId,
-      requestPath,
-      elapsedTime,
-      url,
-    };
+	public logHttpInfo(info: any, elapsedTime: number, requestPath: string) {
+		// TODO: create and set correlation id
+		const url = location.href;
+		const logFields: LogFields = {
+			environment: environment.env,
+			userId: this.userId,
+			requestPath,
+			elapsedTime,
+			url
+		};
 
-    this.logger.log('Information', `${info}`, logFields);
-  }
+		this.logger.log('Information', `${info}`, logFields);
+	}
 
-  public logWarning(errorMsg: string) {
-    const url = location.href;
+	public logWarning(errorMsg: string) {
+		const logFields = this.logging();
+		this.logger.log('Warning', errorMsg, logFields);
+	}
 
-    const logFields: LogFields = {
-      environment: environment.env,
-      userId: this.userId,
-      requestPath: '',
-      elapsedTime: 0,
-      url: url,
-    };
+	private logging() {
+		const url = location.href;
 
-    this.logger.log('Warning', errorMsg, logFields);
-  }
+		const logFields: LogFields = {
+			environment: environment.env,
+			userId: this.userId,
+			requestPath: '',
+			elapsedTime: 0,
+			url: url
+		};
+		return logFields;
+	}
 
-  public logError(errorMsg: string) {
-    const url = location.href;
+	public logError(errorMsg: string) {
+		const logFields = this.logging();
+		this.logger.log('Warning', errorMsg, logFields);
+		this.logger.log('Error', errorMsg, logFields);
+	}
 
-    const logFields: LogFields = {
-      environment: environment.env,
-      userId: this.userId,
-      requestPath: '',
-      elapsedTime: 0,
-      url: url,
-    };
+	public logInfo(info: any) {
+		const url = location.href;
 
-    this.logger.log('Error', errorMsg, logFields);
-  }
+		const logFields: LogFields = {
+			environment: environment.env,
+			userId: this.userId,
+			requestPath: '',
+			elapsedTime: 0,
+			url
+		};
 
-  public logInfo(info: any) {
-    const url = location.href;
-
-    const logFields: LogFields = {
-      environment: environment.env,
-      userId: this.userId,
-      requestPath: '',
-      elapsedTime: 0,
-      url,
-    };
-
-    this.logger.log('Information', info, logFields);
-  }
+		this.logger.log('Information', info, logFields);
+	}
 }

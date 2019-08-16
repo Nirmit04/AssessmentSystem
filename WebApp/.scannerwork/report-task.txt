@@ -1,0 +1,6 @@
+projectKey=PulkitSonar
+serverUrl=http://localhost:9000
+serverVersion=7.5.0.20543
+dashboardUrl=http://localhost:9000/dashboard?id=PulkitSonar
+ceTaskId=AWyO0ommK32g5FKpI97_
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AWyO0ommK32g5FKpI97_

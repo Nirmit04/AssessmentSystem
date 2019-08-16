@@ -1,5 +1,4 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Subject } from '../../../models/subject.model';
 import { ContentCreatorService } from '../../../services/content-creator-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialogRef, MatDialog, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
@@ -14,7 +13,7 @@ import { HttpService } from '../../../../../core/http/http.service';
   styleUrls: ['./add-ques-in-quiz.component.css']
 })
 export class AddQuesInQuizComponent implements OnInit {
-
+  /* this class is used to add questions to a particlar quiz by selecting from amongst the question that has the subject and difficulty level similar to that of the quiz*/
   public questions: any[];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
@@ -26,12 +25,14 @@ export class AddQuesInQuizComponent implements OnInit {
     private dialogref: MatDialogRef<AddQuesInQuizComponent>) { }
 
   public ngOnInit(): void {
+    /* loads all the questions that has the subject and difficulty level similar to that of the quiz */
     this.questions = this.data;
     this.resetForm();
   }
 
   private resetForm(form?: NgForm): void {
-    if (form != null) {
+    /* this is used to reset the create questions form once the user presses the reset button, refreshes the page or once the details have been submitted */
+    if (form !== null) {
       form.resetForm();
     } else {
       this.service.quizForm = {
@@ -48,6 +49,7 @@ export class AddQuesInQuizComponent implements OnInit {
         MinCutOff: null
       }
       if (this.questions) {
+        /* refreshes the list of the question present in the quiz */
         this.questions.forEach(y => {
           y.selected = false
         });
@@ -56,35 +58,38 @@ export class AddQuesInQuizComponent implements OnInit {
   }
 
   public updateSelectedQuestions(index): void {
+    /* the table shows the latest questions that are present in that quiz */
     this.questions[index].selected = !this.questions[index].selected;
   }
 
   public questionsById(index: number) {
+    /* trackBy function */
     return index;
   }
 
   public add_new_ques(): void {
+    /* if a user wants to add a fresh question to the quiz, then this function is called when 'Add New Ques' is hit by the user */
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = "70%";
     dialogConfig.disableClose = true;
     this.service.quesStat = true;
-    let dialogRef = this.dialog.open(CreateQuestionsComponent, dialogConfig);
-    const subscription = dialogRef.afterClosed().subscribe(result => {
+    let dialogRef = this.dialog.open(CreateQuestionsComponent, dialogConfig); // open the mat dialog and loads the creat question component in it
+    dialogRef.afterClosed().subscribe(result => {
       this.service.quesStat = false;
-      this.loadQues();
+      this.loadQues(); // once the question is added and the mat dialog box is closed, it has to refresh the page showing the newly added question
     });
-    subscription.unsubscribe();
   }
 
   private loadQues(): void {
-    const subscription = this.httpService.getQuizQuestions(+this.storageService.getStorage('quizId')).subscribe((res: any) => {
+    /* loads all the questions that has the subject and difficulty level similar to that of the quiz */
+    this.httpService.getQuizQuestions(+this.storageService.getStorage('quizId')).subscribe((res: any) => {
       this.questions = res as [];
     });
-    subscription.unsubscribe();
   }
 
   public onDetailsSubmit(form: NgForm): void {
+    /* user selects the question that he wants to add in the quiz and submits his request */
     var QuestionId = this.questions.filter(QuestionId => QuestionId.selected).map(idSelected => idSelected.QuestionId);
     const response = this.service.putQuestionsSelected(QuestionId);
     if (response) {

@@ -8,9 +8,20 @@ import { StorageService } from '../../../services/storage.service';
   styleUrls: ['./http-interceptor.component.css']
 })
 export class HttpInterceptorComponent implements OnInit {
-  constructor(private router: Router, private storageService: StorageService) { }
+  /* this class is used to display error page corresponding the error that has occured with relevant http error code and error message */
+  private errorCode: string;
+  private errorMsg: string;
+  private errorStackTrace: string;
+  constructor(
+    private router: Router,
+    private storageService: StorageService) {
+    this.errorCode = '';
+    this.errorMsg = '';
+    this.errorStackTrace = '';
+  }
 
-  HTTP_CODES = {
+  private HTTP_CODES = {
+    /* list of possible http error status codes */
     0: 'Method Not Found',
     203: 'Non-Authoritative Information',
     400: 'Bad Request',
@@ -27,20 +38,17 @@ export class HttpInterceptorComponent implements OnInit {
     505: 'HTTP Version Not Supported',
   };
 
-  errorCode: string;
-  errorMsg: string;
-  errorStackTrace: string;
-
-  ngOnInit() {
-    this.errorStackTrace = null;
+  public ngOnInit(): void {
+    /* sets the errorCode and errorMessage in case of any http error */
     this.errorCode = this.storageService.getStorage('errorCode');
-    this.errorMsg = this.HTTP_CODES[+this.errorCode];
+    this.errorMsg = this.HTTP_CODES[this.errorCode];
     if (this.storageService.getStorage('errorMsg')) {
       this.errorStackTrace = this.storageService.getStorage('errorMsg');
     }
   }
 
-  login() {
+  public login(): void {
+    /* redirects back tot he login page */
     this.storageService.clearStorage();
     this.router.navigate(['']);
   }

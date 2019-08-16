@@ -6,67 +6,57 @@ import { Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
 import { HttpService } from '../../../../../core/http/http.service';
 @Component({
-  selector: 'app-archived-schedule',
-  templateUrl: './archived-schedule.component.html',
-  styleUrls: ['./archived-schedule.component.css']
+	selector: 'app-archived-schedule',
+	templateUrl: './archived-schedule.component.html'
 })
-
 export class ArchivedScheduleComponent implements OnInit, OnDestroy {
+	public ScheduleList: Schedule[];
+	dtTrigger: Subject<Schedule> = new Subject();
+	subscription: Subscription;
+	dtOptions: DataTables.Settings = {};
+	public unSortableColumns: any[];
+	public columns: any[];
+	index: number;
 
-  public ScheduleList: Schedule[];
-  dtTrigger: Subject<Schedule> = new Subject();
-  subscription: Subscription;
-  dtOptions: DataTables.Settings = {};
-  public unSortableColumns: any[];
-  public columns: any[];
-  index: number;
+	constructor(private service: TestAdminService, private toastr: ToastrService, private httpService: HttpService) {}
 
-  constructor(private service: TestAdminService,
-    private toastr: ToastrService,
-    private httpService: HttpService) { }
+	public ngOnInit(): void {
+		this.dtOptions = {
+			pagingType: 'full_numbers',
+			pageLength: 10
+		};
+		this.columns = [ { field: 'SerialNumber', header: 'Schedule NO' }, { field: 'QuizName', header: 'Quiz Name' } ];
+		this.unSortableColumns = [
+			{ field: 'StartDateTime', header: 'Start Time' },
+			{ field: 'EndDateTime', header: 'End Time' }
+		];
 
-  public ngOnInit(): void {
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 10,
-    };
-    this.columns = [
-      { field: 'SerialNumber', header: 'Schedule NO' },
-      { field: 'QuizName', header: 'Quiz Name' }
+		setTimeout(() => {
+			this.loadArchivedSchedules();
+		}, 0);
+	}
 
-    ];
-    this.unSortableColumns = [
-      { field: 'StartDateTime', header: 'Start Time' },
-      { field: 'EndDateTime', header: 'End Time' },
-    ];
+	private loadArchivedSchedules(): void {
+		const subscription = this.httpService.getArchivedSchedules().subscribe((res: any) => {
+			this.ScheduleList = res as Schedule[];
+			for (this.index = 1; this.index <= this.ScheduleList.length; this.index++) {
+				this.ScheduleList[this.index - 1].SerialNumber = this.index;
+			}
+		});
+		subscription.unsubscribe();
+	}
 
-    setTimeout(() => {
-      this.loadArchivedSchedules();
-    }, 0);
-  }
+	public unarchiveSchedule(id): void {
+		if (confirm('Are you sure you want to un-archive this')) {
+			const subscription = this.httpService.unArchiveSchedule(id).subscribe((res: any) => {
+				this.toastr.success('Un-Archived Successfully', 'Assesment System');
+				this.loadArchivedSchedules();
+			});
+			subscription.unsubscribe();
+		}
+	}
 
-  private loadArchivedSchedules(): void {
-    const subscription = this.httpService.getArchivedSchedules().subscribe((res: any) => {
-      this.ScheduleList = res as Schedule[];
-      for (this.index = 1; this.index <= this.ScheduleList.length; this.index++) {
-        this.ScheduleList[this.index - 1].SerialNumber = this.index;
-      }
-    });
-    subscription.unsubscribe();
-  }
-
-  public unarchiveSchedule(id): void {
-    if (confirm('Are you sure you want to un-archive this')) {
-      const subscription = this.httpService.unArchiveSchedule(id).subscribe((res: any) => {
-        this.toastr.success('Un-Archived Successfully', 'Assesment System');
-        this.loadArchivedSchedules();
-      });
-      subscription.unsubscribe();
-    }
-  }
-
-  public ngOnDestroy() {
-    this.dtTrigger.unsubscribe();
-  }
-
+	public ngOnDestroy() {
+		this.dtTrigger.unsubscribe();
+	}
 }

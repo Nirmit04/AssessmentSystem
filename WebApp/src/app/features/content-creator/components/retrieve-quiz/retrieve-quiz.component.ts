@@ -17,6 +17,7 @@ import { HttpService } from '../../../../core/http/http.service';
 })
 
 export class RetrieveQuizComponent implements OnInit {
+	/* this class is used to get all the quizzes that have been created by the current user */
 	private tag: string = '';
 	public quizList: QuizModel[];
 	public questionList: any[];
@@ -33,6 +34,7 @@ export class RetrieveQuizComponent implements OnInit {
 		private httpService: HttpService) { }
 
 	public ngOnInit(): void {
+		/* setting up the component and loading all the quizzes that have been created by the current user */
 		this.dtOptions = {
 			pagingType: 'full_numbers',
 			pageLength: 10,
@@ -50,57 +52,58 @@ export class RetrieveQuizComponent implements OnInit {
 
 		];
 		setTimeout(() => {
-			this.loadQuiz();
+			this.loadQuiz(); // load the user creaated quizzes
 		}, 0);
 	}
 
 	public columnsById(index: number)	{
+		/* trackBy function */
 		return index;
 	}
 
 	private loadQuiz(): void {
-		const subscription = this.httpService.getQuizzes().subscribe((res: any) => {
+		/* loads the user created quizzes */
+		this.httpService.getQuizzes().subscribe((res: any) => {
 			this.quizList = res as QuizModel[];
 			for (this.index = 1; this.index <= this.quizList.length; this.index++) {
-				this.quizList[this.index - 1].SerialNumber = this.index;
+				this.quizList[this.index - 1].SerialNumber = this.index; // prepares serial number for the retrieved quizzes
 				this.tag = '';
 				for (let tag of this.quizList[this.index - 1].Tags) {
-					this.tag = this.tag + tag.Name + ',';
+					this.tag = this.tag + tag.Name + ','; // prepares tags of the quizzes by separating them with commas
 				}
-				this.quizList[this.index - 1].DuplicateTags = this.tag;
+				this.quizList[this.index - 1].DuplicateTags = this.tag; // assigning the prepared tags to the tag element of the model
 				this.quizList[this.index - 1].DuplicateTags = this.quizList[this.index - 1].DuplicateTags.substring(0, this.quizList[this.index - 1].DuplicateTags.length - 1);
 			}
 		});
-		subscription.unsubscribe();
 	}
 
 	public onCreate(): void {
+		/* creating a new quiz by clicking on the 'Create Quiz' button*/
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = "70%";
 		dialogConfig.disableClose = true;
-		let dialogRef = this.dialog.open(CreateQuizComponent, dialogConfig);
-		const subscription = dialogRef.afterClosed().subscribe(result => {
+		let dialogRef = this.dialog.open(CreateQuizComponent, dialogConfig); // loading the 'CreateQuiz' component in the mat dialog
+		dialogRef.afterClosed().subscribe(result => { // after the dialog box is closed, reset the form values
 			this.service.difficulty = null;
 			this.service.questionType = null;
 			this.service.subjectId = null;
 			this.service.quesStat = false;
-			this.loadQuiz();
+			this.loadQuiz(); // refresh to load the latest data of the newly created quiz
 			this.dtTrigger.unsubscribe();
 			this.dtTrigger.next();
 		});
-		subscription.unsubscribe();
 	}
 
 	public onArchive(quizId: number): void {
+		
 		if (confirm('Are you sure you want to archive this quiz?')) {
-			const subscription = this.httpService.deleteQuiz(quizId).subscribe((res: any) => {
+			this.httpService.deleteQuiz(quizId).subscribe((res: any) => {
 				this.toastr.success('Archieved Successfully', 'Assesment System');
 				this.loadQuiz();
 				this.dtTrigger.unsubscribe();
 				this.dtTrigger.next();
 			});
-			subscription.unsubscribe();
 		}
 	}
 
