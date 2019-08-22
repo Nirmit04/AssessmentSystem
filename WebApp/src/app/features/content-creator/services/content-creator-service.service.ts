@@ -29,8 +29,8 @@ export class ContentCreatorService {
 
 	public postQuestion(formData: Question): any {
 		this.formDataNew = new FormData();
-		formData.CreatedBy = this.storageService.getStorage('uid');
-		formData.QuestionType = this.questionType;
+		formData.createdBy = this.storageService.getStorage('uid');
+		formData.questionType = this.questionType;
 		this.formDataNew.append('QuestionDetails', JSON.stringify(formData));
 		if (this.selectedFile !== null) {
 			this.formDataNew.append('Image', this.selectedFile, this.selectedFile.name);
@@ -49,7 +49,7 @@ export class ContentCreatorService {
 			this.formDataNew.append('Image', this.selectedFile, this.selectedFile.name);
 			this.selectedFile = null;
 		}
-		this.httpService.putQuestion(formData.QuestionId, this.formDataNew).subscribe((res: any) => {
+		this.httpService.putQuestion(formData.questionId, this.formDataNew).subscribe((res: any) => {
 			return true;
 		});
 		return false;

@@ -19,7 +19,8 @@ export class CreateQuestionsComponent implements OnInit {
   public createdBy: string;
   dropdownSettings: object;
 
-  constructor(public service: ContentCreatorService,
+  constructor(
+    public service: ContentCreatorService,
     public toastr: ToastrService,
     private router: Router,
     private httpService: HttpService) {
@@ -27,17 +28,16 @@ export class CreateQuestionsComponent implements OnInit {
     this.dropdownSettings = {};
   }
 
-  public ngOnInit(): void {
+  public ngOnInit() {
     this.resetForm(); // to reset the create questions form
     if (this.service.difficulty !== null) {
       /* this is used when the user wants to add questions to a particular quiz, by clicking 'Edit Quiz' */
-      this.service.formData.SubjectId = this.service.subjectId.toString();
-      this.service.formData.Difficulty = this.service.difficulty;
-    }
-    else {
+      this.service.formData.subjectId = this.service.subjectId.toString();
+      this.service.formData.difficulty = this.service.difficulty;
+    } else {
       /* this is used when the user is adding questions generally to the question bank */
       if (this.service.questionType == null) {
-        this.router.navigate(['/cc-dash'])
+        this.router.navigate(['/cc-dash']);
       }
     }
     this.dropdownSettings = {
@@ -61,17 +61,17 @@ export class CreateQuestionsComponent implements OnInit {
       form.resetForm();
     }
     this.service.formData = {
-      QuestionId: null,
-      QuestionStatement: "",
-      Option1: "",
-      Option2: "",
-      Option3: "",
-      Option4: "",
-      Answer: null,
-      Marks: null,
-      Difficulty: "",
-      SubjectId: "",
-    }
+      questionId: null,
+      questionStatement: '',
+      option1: '',
+      option2: '',
+      option3: '',
+      option4: '',
+      answer: null,
+      marks: null,
+      difficulty: '',
+      subjectId: '',
+    };
   }
 
   public chooseFile(event): void {
@@ -88,8 +88,8 @@ export class CreateQuestionsComponent implements OnInit {
       this.resetForm(form); // calling the resetForm function to reset the form
       if (this.service.difficulty !== null) {
         /* picking up details of the subject and difficulty for adding questions to a particular quiz, even after adding a question */
-        this.service.formData.SubjectId = this.service.subjectId.toString();
-        this.service.formData.Difficulty = this.service.difficulty;
+        this.service.formData.subjectId = this.service.subjectId.toString();
+        this.service.formData.difficulty = this.service.difficulty;
       }
     }
   }

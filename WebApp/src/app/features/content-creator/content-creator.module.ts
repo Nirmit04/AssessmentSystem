@@ -16,6 +16,7 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
 import { ArchiveQuizComponent } from './components/retrieve-quiz/archive-quiz/archive-quiz.component';
 import { SharedModule } from '../../services/shared.module';
 import { FormsModule } from '@angular/forms';
+import { ContentCreatorRoutingModule } from './content-creator-routing.module';
 @NgModule({
   declarations: [
     CreateQuestionsComponent,
@@ -35,6 +36,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     SharedModule,
     FormsModule,
+    ContentCreatorRoutingModule
   ],
   providers: [ContentCreatorService,],
   entryComponents: [

@@ -33,12 +33,12 @@ export class UpdateQuestionComponent implements OnInit {
   public ngOnInit(): void {
     this.flag = this.service.readonlyStatus;
     if (this.flag === true) {
-      this.label = "View Question";
+      this.label = 'View Question';
     } else {
-      this.label = "Edit Questions";
+      this.label = 'Edit Questions';
     }
-    if (this.service.formData.ImageName !== null) {
-      this.imageSource = environment.imgURl + this.service.formData.ImageName;
+    if (this.service.formData.imageName !== null) {
+      this.imageSource = environment.imgURl + this.service.formData.imageName;
     }
     this.dropdownSettings = {
       singleSelection: false,
@@ -59,19 +59,19 @@ export class UpdateQuestionComponent implements OnInit {
       form.resetForm();
     }
     this.service.formData = {
-      QuestionType: "",
-      QuestionId: null,
-      QuestionStatement: "",
-      Option1: "",
-      Option2: "",
-      Option3: "",
-      Option4: "",
-      Answer: null,
-      Marks: null,
-      Difficulty: "",
-      SubjectId: "",
-      ImageName: null
-    }
+      questionType: '',
+      questionId: null,
+      questionStatement: '',
+      option1: '',
+      option2: '',
+      option3: '',
+      option4: '',
+      answer: null,
+      marks: null,
+      difficulty: '',
+      subjectId: '',
+      imageName: null
+    };
   }
 
   public chooseFile(event): void {
@@ -89,7 +89,7 @@ export class UpdateQuestionComponent implements OnInit {
   }
 
   public deleteImage(): void {
-    this.httpService.deleteImageFromQues(this.service.formData.QuestionId).subscribe(res => {
+    this.httpService.deleteImageFromQues(this.service.formData.questionId).subscribe(res => {
       this.toastr.success('Image Successfully Removed');
       this.dialogRef.close('Submitted');
     });

@@ -7,7 +7,8 @@ import { AnalyticsByUserComponent } from './components/analytics-by-user/analyti
 import { Mainnav4Component } from './components/mainnav4/mainnav4.component';
 import { ViewUserDetailsComponent } from './components/analytics-by-user/view-user-details/view-user-details.component';
 import { DetailsComponent } from './components/analytics-by-quiz/details/details.component';
-import { SharedModule} from '../../services/shared.module'
+import { SharedModule} from '../../services/shared.module';
+import { ReportingUserRoutingModule } from './reporting-user-routing.module';
 @NgModule({
   declarations: [
     ReportingUserComponent,
@@ -20,7 +21,8 @@ import { SharedModule} from '../../services/shared.module'
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    ReportingUserRoutingModule
   ],
   entryComponents: [
     ViewUserDetailsComponent,

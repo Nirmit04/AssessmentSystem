@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TagModel } from '../../../models/tags.model';
 import { ContentCreatorService } from '../../../services/content-creator-service.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -12,7 +12,7 @@ import { HttpService } from '../../../../../core/http/http.service';
 	styleUrls: ['./tag.component.css']
 })
 
-export class TagComponent implements OnInit {
+export class TagComponent implements OnInit, OnDestroy {
 
 	public tagList: TagModel[];
 	dtOptions: DataTables.Settings = {};
@@ -21,7 +21,8 @@ export class TagComponent implements OnInit {
 	public columns: any[];
 	private index: number;
 
-	constructor(private dialog: MatDialog,
+	constructor(
+		private dialog: MatDialog,
 		private httpService: HttpService) { }
 
 	public ngOnInit(): void {
@@ -51,7 +52,7 @@ export class TagComponent implements OnInit {
 	public onCreate(): void {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
-		dialogConfig.width = "70%";
+		dialogConfig.width = '70%';
 		dialogConfig.disableClose = true;
 		this.dialog.open(CreatetagComponent, dialogConfig).afterClosed().subscribe(result => {
 			this.loadTags();
@@ -61,7 +62,7 @@ export class TagComponent implements OnInit {
 	public onEdit(tagId: number): void {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
-		dialogConfig.width = "70%";
+		dialogConfig.width = '70%';
 		dialogConfig.disableClose = true;
 		dialogConfig.data = this.tagList[tagId - 1];
 		const dialogRef = this.dialog.open(CreatetagComponent, dialogConfig).afterClosed().subscribe(res => {

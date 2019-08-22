@@ -67,14 +67,14 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 			this.questionList = data as Question[];
 			for (this.index = 1; this.index <= this.questionList.length; this.index++) {
 				this.tag = '';
-				this.questionList[this.index - 1].SerialNumber = this.index;
-				for (let tag of this.questionList[this.index - 1].Tags) {
+				this.questionList[this.index - 1].serialNumber = this.index;
+				for (let tag of this.questionList[this.index - 1].tags) {
 					this.tag = this.tag + tag.Name + ',';
-					this.questionList[this.index - 1].DuplicateTags = this.tag;
+					this.questionList[this.index - 1].duplicateTags = this.tag;
 				}
-				this.questionList[this.index - 1].DuplicateTags = this.questionList[
+				this.questionList[this.index - 1].duplicateTags = this.questionList[
 					this.index - 1
-				].DuplicateTags.substring(0, this.questionList[this.index - 1].DuplicateTags.length - 1);
+				].duplicateTags.substring(0, this.questionList[this.index - 1].duplicateTags.length - 1);
 			}
 		});
 	}

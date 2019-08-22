@@ -54,7 +54,7 @@ export class RetrieveScheduleComponent implements OnInit, OnDestroy {
 		}, 0);
 	}
 
-	private loadSchedule():void {
+	private loadSchedule(): void {
 		this.httpService.getSchedule(this.storageService.getStorage('uid')).subscribe((res: any) => {
 			this.scheduleList = res as Schedule[];
 			for (this.index = 1; this.index <= this.scheduleList.length; this.index++) {
@@ -63,7 +63,7 @@ export class RetrieveScheduleComponent implements OnInit, OnDestroy {
 		});
 	}
 
-	public deleteSchedule(scheduleId):void {
+	public deleteSchedule(scheduleId): void {
 		this.httpService.deleteSchedule(scheduleId).subscribe((res: any) => {
 			if (res === 'Dissimilar Taken Status') {
 				this.toastr.error('Cannot Delete this Schedule. Users Exist!');

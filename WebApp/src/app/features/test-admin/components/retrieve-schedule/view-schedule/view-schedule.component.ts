@@ -21,10 +21,11 @@ export class ViewScheduleComponent implements OnInit {
   public usersList: any[];
   public startDateValid = false;
   public endDateValid = false;
-  public startDateTime:Date;
-  private startDate:Date;
+  public startDateTime: Date;
+  private startDate: Date;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data,
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<UpdateQuestionComponent>,
     public toastr: ToastrService,
     private service: TestAdminService,
@@ -47,7 +48,7 @@ export class ViewScheduleComponent implements OnInit {
   }
 
   private loadExistingUsers(scheduleQuizId: number): void {
-   this.httpService.getScheduleQuizUsers(scheduleQuizId).subscribe((res: any) => {
+    this.httpService.getScheduleQuizUsers(scheduleQuizId).subscribe((res: any) => {
       this.usersList = res as any[];
     });
   }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -11,13 +11,14 @@ import { StorageService } from '../../../../services/storage.service';
 	templateUrl: './main-nav2.component.html',
 	styleUrls: ['./main-nav2.component.css']
 })
-export class MainNav2Component {
+export class MainNav2Component implements OnInit {
 	isHandset$: Observable<boolean> = this.breakpointObserver
 		.observe(Breakpoints.Handset)
 		.pipe(map((result) => result.matches));
 	public currentRole = '';
 
-	constructor(private breakpointObserver: BreakpointObserver,
+	constructor(
+		private breakpointObserver: BreakpointObserver,
 		private authService: AuthService,
 		private router: Router,
 		private storageService: StorageService) { }
@@ -31,7 +32,7 @@ export class MainNav2Component {
 			}
 		});
 	}
-	
+
 	public roleMatch(allowedRoles): boolean {
 		var isMatch = false;
 		const userRoles: string = this.storageService.getStorage('role');

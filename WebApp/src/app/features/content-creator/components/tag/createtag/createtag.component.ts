@@ -14,7 +14,7 @@ import { HttpService } from '../../../../../core/http/http.service';
 
 export class CreatetagComponent implements OnInit {
 
-	public userId: string = "";
+	public userId: string = '';
 	public existingTags: TagModel[];
 	public option: string = '';
 	public tagExists: boolean = false;

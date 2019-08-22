@@ -19,7 +19,8 @@ export class UpdateQuizComponent implements OnInit {
   public UpdateQuizQuestionList: Question[];
   public check: boolean;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data,
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<UpdateQuizComponent>,
     public service: ContentCreatorService,
     public toastr: ToastrService,
@@ -56,7 +57,7 @@ export class UpdateQuizComponent implements OnInit {
     // to add new questions to the quiz of the same type as that of the quiz having the same difficulty level and subjects as that of the quiz */
     const dialogConfig = new MatDialogConfig(); // mat--dialog set up
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "70%";
+    dialogConfig.width = '70%';
     dialogConfig.disableClose = true;
     this.httpService.getQuizQuestions(this.storageService.getStorage('quizId')).subscribe((res: any) => {
       /* getting all those questions that have the same type that of the quiz */
@@ -79,15 +80,15 @@ export class UpdateQuizComponent implements OnInit {
     /* adding fresh new questions to the question bank with the same type as that of the quiz */
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "70%";
+    dialogConfig.width = '70%';
     dialogConfig.disableClose = true;
     this.service.quesStat = true;
     let dialogRef = this.dialog.open(CreateQuestionsComponent, dialogConfig); // loading the create question component in the mat dialog 
     dialogRef.afterClosed().subscribe(result => {
       this.check = false;
       this.loadingData(); // refreshing with the latest data of the questions
-      this.service.formData.SubjectId = null;
-      this.service.formData.Difficulty = null;
+      this.service.formData.subjectId = null;
+      this.service.formData.difficulty = null;
       this.service.questionType = null;
     });
   }

@@ -10,7 +10,8 @@ import { MainNav3Component } from './components/main-nav3/main-nav3.component';
 import { ResultComponent } from './components/result/result.component';
 import { NonMockReportComponent } from './components/non-mock-report/non-mock-report.component';
 import { InstructionsComponent } from './components/take-quiz/instructions/instructions.component';
-import { SharedModule} from '../../services/shared.module'
+import { SharedModule} from '../../services/shared.module';
+import { EmployeeRoutingModule } from './emploee-routing.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SharedModule} from '../../services/shared.module'
     InstructionsComponent],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    EmployeeRoutingModule
   ]
 })
 export class EmployeeModule { }

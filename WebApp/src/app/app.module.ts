@@ -12,14 +12,13 @@ import { AuthGuard } from './auth.guard';
 import { HttpInterceptorComponent } from './core/interceptors/http-interceptor/http-interceptor.component';
 import { HttpErrorInterceptor } from './core/interceptors/http-error-interceptor';
 import { LoaderInterceptorService } from './services/loader-interceptor.service';
-import { ContentCreatorModule } from './features/content-creator/content-creator.module';
 import { SharedModule } from './services/shared.module';
 import { EmployeeModule } from './features/employee/employee.module'
 import { TestAdminModule } from './features/test-admin/test-admin.module'
 import { ReportingUserModule } from './features/reporting-user/reporting-user.module';
 import { GlobalErrorHandler } from './core/logs/global-error-handler.service';
 import { TokenInterceptor } from './token.interceptor';
-import * as rb from 'rollbar';
+// import * as rb from 'rollbar';
 import { CommonModule } from '@angular/common';
 import {
     Injectable,
@@ -55,19 +54,19 @@ const rollbarConfig = {
     }
 };
 
-export const RollbarService = new InjectionToken<rb>('rollbar');
-@Injectable()
-export class RollbarErrorHandler implements ErrorHandler {
-    constructor(@Inject(RollbarService) private rollbar: rb) { }
+// export const RollbarService = new InjectionToken<rb>('rollbar');
+// @Injectable()
+// export class RollbarErrorHandler implements ErrorHandler {
+//     constructor(@Inject(RollbarService) private rollbar: rb) { }
 
-    handleError(err: any): void {
-        this.rollbar.error(err.originalError || err);
-    }
-}
+//     handleError(err: any): void {
+//         this.rollbar.error(err.originalError || err);
+//     }
+// }
 
-export function rollbarFactory() {
-    return new rb(rollbarConfig);
-}
+// export function rollbarFactory() {
+//     return new rb(rollbarConfig);
+// }
 @NgModule({
     declarations: [
         AppComponent,
@@ -81,7 +80,6 @@ export function rollbarFactory() {
         HttpClientModule,
         BrowserAnimationsModule,
         SocialLoginModule,
-        ContentCreatorModule,
         SharedModule,
         EmployeeModule,
         TestAdminModule,
@@ -107,8 +105,8 @@ export function rollbarFactory() {
             provide: HTTP_INTERCEPTORS,
             useClass: TokenInterceptor, multi: true
         },
-        { provide: RollbarService, useFactory: rollbarFactory },
-        { provide: ErrorHandler, useClass: RollbarErrorHandler },
+        // { provide: RollbarService, useFactory: rollbarFactory },
+        // { provide: ErrorHandler, useClass: RollbarErrorHandler },
         // {
         // 	provide: ErrorHandler,
         // 	useClass: GlobalErrorHandler
