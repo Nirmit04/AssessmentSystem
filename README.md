@@ -42,6 +42,57 @@ ng serve --open
 Browse to the application at [http://localhost:4200]
 Sign in to the application.
 
+## Feature list
+
+ * Content Creator
+ 1) Add Mock Questions
+ 2) Add Scheduled Questions 
+ 3) Add Subjects/Tags
+ 4) Add Quiz - Scheduled/Mock
+ 4) Retrieve Questions
+ 5) Retrieve Quiz
+ 6) Retrieve Tags
+ 7) Edit Questions
+ 8) Edit Quiz Details
+ 9) Edit Tags/Subjects
+ 10) Archived Quizzes
+ * Test Administrator
+ 1) Schedule Quizzes
+ 2) Add Users to Schedule Quiz
+ 3) Remove Existing Users from Schedule Quizzes
+ * Employee
+ 1) View Scheduled Quizzes for that user
+ 2) View Mock Quizzes
+ 3) Take Quiz - Mock/Scheduled
+ 4) View Qui Reports - Mock/Scheduled
+ * Reporting user
+ 1) Analysis By User
+ 2) Analysis By Tag
+ 3) Analysis By Quiz
+ 
+ 
+## Angular 4 features used
+
+ * Modules
+ * Routes
+ * Services
+ * Components
+ * Browser Animations
+ * Forms Module
+ * Reactive Forms
+ * Directives
+ * Pipes
+ * Filters
+ 
+
+## Libraries Used
+
+ * Bootstrap
+ * Font Awesome Icons
+ * Angular Material Dialog Box
+ * Toster for success/error messages
+
+
 ## Running the tests
 
 Run ng test to execute the unit tests via Karma.
@@ -60,6 +111,14 @@ List of Commands Once Jenkins Job is hooked to a branch:-
 9. tar -xvzf assessment-system.tgz -C assessment-system
 10. rm -rf assessment-system.tgz]
 
+## Code scaffolding
+
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
@@ -68,12 +127,8 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
 ## Authors
 
-* **Pulkit Varma** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Pulkit Varma** - *Initial work*
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
