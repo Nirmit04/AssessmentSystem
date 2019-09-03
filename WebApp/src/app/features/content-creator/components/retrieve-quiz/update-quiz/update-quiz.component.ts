@@ -18,6 +18,7 @@ export class UpdateQuizComponent implements OnInit {
   /* this class is used to update the quiz detaiils, such as timing of the quiz, adding or removing questions from the quiz */
   public UpdateQuizQuestionList: Question[];
   public check: boolean;
+  public noQuestionFlag: boolean;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
@@ -31,11 +32,15 @@ export class UpdateQuizComponent implements OnInit {
   public ngOnInit(): void {
     /* sets up the component and loads the data that has been provided to the mat dialog */
     this.UpdateQuizQuestionList = this.data;
+    if (this.UpdateQuizQuestionList.length === 0) {
+      this.noQuestionFlag = true;
+    }
     this.check = false;
   }
 
   private loadingData(): void {
     /* getting questions of type that of the quiz and of difficulty level and subject ype as that of the quiz */
+    this.noQuestionFlag = false;
     this.httpService.getQuestionsByQuiz(Number(this.storageService.getStorage('quizId'))).subscribe((res: any) => {
       this.UpdateQuizQuestionList = res; //updating the local variable with the response from the backend
     });
@@ -66,8 +71,7 @@ export class UpdateQuizComponent implements OnInit {
         /* no questions of that type exists in the database */
         this.toastr.error('No Questions Available');
         this.check = true;
-      }
-      else {
+      } else {
         /* adding the selected questions to the quiz */
         this.dialog.open(AddQuesInQuizComponent, dialogConfig).afterClosed().subscribe(res => {
           this.loadingData(); // refreshing with the latest data of the questions

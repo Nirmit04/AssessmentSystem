@@ -9,16 +9,18 @@ import { ArchivedScheduleComponent } from './components/retrieve-schedule/archiv
 import { AddUser1Component } from './components/add-user1/add-user1.component';
 import { SharedModule } from '../../services/shared.module';
 import { TestAdminRoutingModule } from './test-admin-routing.module';
+import { CreateScheduleComponent } from './components/retrieve-schedule/create-schedule/create-schedule.component';
 
 @NgModule({
   declarations: [
     TestAdminComponent,
     RetrieveScheduleComponent,
     AddUserComponent,
-    MainNav2Component,
     ViewScheduleComponent,
     ArchivedScheduleComponent,
     AddUser1Component,
+    CreateScheduleComponent,
+    MainNav2Component
   ],
   imports: [
     CommonModule,

@@ -42,6 +42,7 @@ export class TagComponent implements OnInit, OnDestroy {
 
 	private loadTags(): void {
 		this.httpService.getTags().subscribe((res: any) => {
+			console.log(res);
 			this.tagList = res as TagModel[];
 			for (this.index = 1; this.index <= this.tagList.length; this.index++) {
 				this.tagList[this.index - 1].SerialNumber = this.index;
@@ -65,10 +66,9 @@ export class TagComponent implements OnInit, OnDestroy {
 		dialogConfig.width = '70%';
 		dialogConfig.disableClose = true;
 		dialogConfig.data = this.tagList[tagId - 1];
-		const dialogRef = this.dialog.open(CreatetagComponent, dialogConfig).afterClosed().subscribe(res => {
+		this.dialog.open(CreatetagComponent, dialogConfig).afterClosed().subscribe(res => {
 			this.loadTags();
 		});
-		dialogRef.unsubscribe();
 	}
 
 	public ngOnDestroy(): void {

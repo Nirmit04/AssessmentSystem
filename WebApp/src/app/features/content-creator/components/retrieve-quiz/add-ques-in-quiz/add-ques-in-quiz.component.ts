@@ -32,7 +32,7 @@ export class AddQuesInQuizComponent implements OnInit {
 
   private resetForm(form?: NgForm): void {
     /* this is used to reset the create questions form once the user presses the reset button, refreshes the page or once the details have been submitted */
-    if (form !== null) {
+    if (form != null) {
       form.resetForm();
     } else {
       this.service.quizForm = {

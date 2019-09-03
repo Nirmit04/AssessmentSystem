@@ -57,7 +57,7 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 		this.columns = [
 			{ field: 'QuestionType', header: 'Question Type' },
 			{ field: 'Difficulty', header: 'Difficulty Level' },
-			{ field: 'DuplicateTags', header: 'Tags' }
+			{ field: 'duplicateTags', header: 'Tags' }
 		];
 	}
 
@@ -68,7 +68,7 @@ export class RetrieveQuestionBankComponent implements OnDestroy, OnInit {
 			for (this.index = 1; this.index <= this.questionList.length; this.index++) {
 				this.tag = '';
 				this.questionList[this.index - 1].serialNumber = this.index;
-				for (let tag of this.questionList[this.index - 1].tags) {
+				for (const tag of this.questionList[this.index - 1].Tags) {
 					this.tag = this.tag + tag.Name + ',';
 					this.questionList[this.index - 1].duplicateTags = this.tag;
 				}

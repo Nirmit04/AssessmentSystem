@@ -57,7 +57,7 @@ export class CreateQuestionsComponent implements OnInit {
 
   private resetForm(form?: NgForm): void {
     /* this is used to reset the create questions form once the user presses the reset button, refreshes the page or once the details have been submitted */
-    if (form !== null) {
+    if (form != null) {
       form.resetForm();
     }
     this.service.formData = {
@@ -79,18 +79,16 @@ export class CreateQuestionsComponent implements OnInit {
     this.service.selectedFile = event.target.files.item(0);
   }
 
-  public onSubmit(form: NgForm): void {
+  public async onSubmit(form: NgForm): Promise<any> {
     /* submitting the form details to the backend by pressing the 'Submit' button */
-    const response = this.service.postQuestion(form.value); // posting the form to the backend through a service helper function
-    if (response) {
-      this.toastr.success('Inserted successfully');
-      this.service.selectedFile = null;
-      this.resetForm(form); // calling the resetForm function to reset the form
-      if (this.service.difficulty !== null) {
-        /* picking up details of the subject and difficulty for adding questions to a particular quiz, even after adding a question */
-        this.service.formData.subjectId = this.service.subjectId.toString();
-        this.service.formData.difficulty = this.service.difficulty;
-      }
+    await this.service.postQuestion(form.value); // posting the form to the backend through a service helper function
+    this.toastr.success('Inserted successfully');
+    this.service.selectedFile = null;
+    this.resetForm(form); // calling the resetForm function to reset the form
+    if (this.service.difficulty !== null) {
+      /* picking up details of the subject and difficulty for adding questions to a particular quiz, even after adding a question */
+      this.service.formData.subjectId = this.service.subjectId.toString();
+      this.service.formData.difficulty = this.service.difficulty;
     }
   }
 }

@@ -42,8 +42,8 @@ export class CreatetagComponent implements OnInit {
 		});
 	}
 
-	public getSubjectId()	{
-		
+	public getSubjectId() {
+
 	}
 
 	private resetForm(form?: NgForm): void {
@@ -59,14 +59,19 @@ export class CreatetagComponent implements OnInit {
 
 	public onSubmit(form: NgForm): void {
 		this.httpService.postTags(form.value).subscribe(res => {
-			this.toastr.success('Inserted successfully');
+			if (this.option === 'Create') {
+				this.toastr.success('Inserted successfully');
+			} else {
+				this.toastr.success('Updated successfully');
+			}
 			this.resetForm(form);
 			this.dialogRef.close('Inserted');
 		});
 	}
 
 	public checkAvail(name: NgForm): void {
-		for (let tag of this.existingTags) {
+		console.log(name);
+		for (const tag of this.existingTags) {
 			if (tag.Name.toString().toLowerCase() === name.value.toString().toLowerCase()) {
 				this.tagExists = true;
 				break;

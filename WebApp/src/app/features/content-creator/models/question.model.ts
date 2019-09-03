@@ -14,6 +14,6 @@ export class Question {
 	subjectName?: string;
 	imageName?: string;
 	createdBy?: string;
-	tags?: any[];
+	Tags?: any[];
 	duplicateTags?: string;
 }

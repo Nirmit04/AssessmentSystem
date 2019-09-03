@@ -5,8 +5,8 @@
 export const environment = {
 	appName: 'internal-assessment',
 	production: false,
-	apiURl: ' http://c8a595ee.ngrok.io/api/',
-	imgURl: ' http://4706caa7.ngrok.io/api/Images/',
+	apiURl: ' http://b0aeddca.ngrok.io/api/',
+	imgURl: ' http://b0aeddca.ngrok.io/api/Images/',
 	env: 'local',
 	endpoints: {
 		elasticSearchEndpoint: ''

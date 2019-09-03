@@ -1,206 +1,222 @@
 <ng-container *ngIf="!service.quesStat">
-  <app-main-nav>
-    <div class="card">
-      <div class="card-body">
-        <strong>
-          <h2 *ngIf="service.questionType" class="card-title" style="text-align: center">Add {{service.questionType}}
-            Questions</h2>
-        </strong>
-        <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
-          <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="createdBy">
-          <div class="form-group">
-            <strong><label>Question</label></strong>
-            <textarea class="form-control" name="QuestionStatement" #QuestionStatement="ngModel"
-              [(ngModel)]="service.formData.questionStatement" rows="3" required></textarea>
-            <div class="validation-error" *ngIf="QuestionStatement.invalid && QuestionStatement.touched">This field is
-              required.
+    <app-main-nav>
+        <div class="card">
+            <div class="card-body">
+                <strong>
+                    <h2 *ngIf="service.questionType" class="card-title" style="text-align: center">Add
+                        {{service.questionType}}
+                        Questions</h2>
+                </strong>
+                <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+                    <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="createdBy">
+                    <div class="form-group">
+                        <strong><label>Question</label></strong>
+                        <textarea class="form-control" name="QuestionStatement" #QuestionStatement="ngModel"
+                            [(ngModel)]="service.formData.questionStatement" rows="3" required></textarea>
+                        <div class="validation-error" *ngIf="QuestionStatement.invalid && QuestionStatement.touched">
+                            This field is
+                            required.
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <strong><label>Option 1</label></strong>
+                            <input required type="text" name="Option1" #Option1="ngModel"
+                                [(ngModel)]="service.formData.option1" class="form-control">
+                            <div class="validation-error" *ngIf="Option1.invalid && Option1.touched">This field is
+                                required.</div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <strong><label>Option 2</label></strong>
+                            <input required type="text" name="Option2" #Option2="ngModel"
+                                [(ngModel)]="service.formData.option2" class="form-control">
+                            <div class="validation-error" *ngIf="Option2.invalid && Option2.touched">This field is
+                                required.</div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <strong><label>Option 3</label></strong>
+                            <input type="text" name="Option3" #Option3="ngModel" [(ngModel)]="service.formData.option3"
+                                class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <strong><label>Option 4</label></strong>
+                            <input type="text" name="Option4" #Option4="ngModel" [(ngModel)]="service.formData.option4"
+                                class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <strong><label>Correct Option</label></strong>
+                            <select name="Answer" [disabled]="bool" required #Answer="ngModel"
+                                [(ngModel)]="service.formData.answer" class="form-control">
+                                <option selected disabled value="">Choose</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3" *ngIf="service.formData.option3">3</option>
+                                <option value="4" *ngIf="service.formData.option4">4</option>
+                            </select>
+                            <div class="validation-error" *ngIf="Answer.invalid && Answer.touched">This field is
+                                required.
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <strong><label>Marks</label></strong>
+                            <select name="Marks" [disabled]="bool" required #Marks="ngModel"
+                                [(ngModel)]="service.formData.marks" class="form-control">
+                                <option selected disabled value="">Choose</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="5">5</option>
+                            </select>
+                            <div class="validation-error" *ngIf="Marks.invalid && Marks.touched">This field is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <strong><label>Select Tag</label></strong>
+                            <ng-multiselect-dropdown name="Tags" #Tags="ngModel" [placeholder]="Choose" required
+                                [data]="subjects" [disabled]="disabled" [settings]="dropdownSettings"
+                                [(ngModel)]="selectedItems">
+                            </ng-multiselect-dropdown>
+                            <div class="validation-error" *ngIf="Tags.invalid && Tags.touched">This field is required.
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <strong><label>Select Difficulty-Level</label></strong>
+                            <select name="Difficulty" required #Difficulty="ngModel"
+                                [(ngModel)]="service.formData.difficulty" class="form-control">
+                                <option selected disabled value="">Choose an option...</option>
+                                <option value="Beginner">Beginner</option>
+                                <option value="Intermediate">Intermediate</option>
+                                <option value="Advanced">Advanced</option>
+                            </select>
+                            <div class="validation-error" *ngIf="Difficulty.invalid && Difficulty.touched">This field is
+                                required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <strong><label>Select Image</label></strong>
+                            <input type="file" (change)="chooseFile($event)" Name="ImageName" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:2%">
+                        <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
             </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <strong><label>Option 1</label></strong>
-              <input required type="text" name="Option1" #Option1="ngModel" [(ngModel)]="service.formData.option1"
-                class="form-control">
-              <div class="validation-error" *ngIf="Option1.invalid && Option1.touched">This field is required.</div>
-            </div>
-            <div class="form-group col-md-6">
-              <strong><label>Option 2</label></strong>
-              <input required type="text" name="Option2" #Option2="ngModel" [(ngModel)]="service.formData.option2"
-                class="form-control">
-              <div class="validation-error" *ngIf="Option2.invalid && Option2.touched">This field is required.</div>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <strong><label>Option 3</label></strong>
-              <input type="text" name="Option3" #Option3="ngModel" [(ngModel)]="service.formData.option3"
-                class="form-control">
-            </div>
-            <div class="form-group col-md-6">
-              <strong><label>Option 4</label></strong>
-              <input type="text" name="Option4" #Option4="ngModel" [(ngModel)]="service.formData.option4"
-                class="form-control">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <strong><label>Correct Option</label></strong>
-              <select name="Answer" [disabled]="bool" required #Answer="ngModel" [(ngModel)]="service.formData.answer"
-                class="form-control">
-                <option selected disabled value="">Choose</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option *ngIf="service.formData.option3" value="3">3</option>
-                <option *ngIf="service.formData.option4" value="4">4</option>
-              </select>
-              <div class="validation-error" *ngIf="Answer.invalid && Answer.touched">This field is required.
-              </div>
-            </div>
-            <div class="form-group col-md-6">
-              <strong><label>Marks</label></strong>
-              <select name="Marks" [disabled]="bool" required #Marks="ngModel" [(ngModel)]="service.formData.marks"
-                class="form-control">
-                <option selected disabled value="">Choose</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="5">5</option>
-              </select>
-              <div class="validation-error" *ngIf="Marks.invalid && Marks.touched">This field is required.</div>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <strong><label>Select Tag</label></strong>
-              <ng-multiselect-dropdown name="Tags" #Tags="ngModel" [placeholder]="Choose" required [data]="subjects"
-                [disabled]="disabled" [settings]="dropdownSettings" [(ngModel)]="selectedItems">
-              </ng-multiselect-dropdown>
-              <div class="validation-error" *ngIf="Tags.invalid && Tags.touched">This field is required.</div>
-            </div>
-            <div class="form-group col-md-6">
-              <strong><label>Select Difficulty-Level</label></strong>
-              <select name="Difficulty" required #Difficulty="ngModel" [(ngModel)]="service.formData.difficulty"
-                class="form-control">
-                <option selected disabled value="">Choose an option...</option>
-                <option value="Beginner">Beginner</option>
-                <option value="Intermediate">Intermediate</option>
-                <option value="Advanced">Advanced</option>
-              </select>
-              <div class="validation-error" *ngIf="Difficulty.invalid && Difficulty.touched">This field is required.
-              </div>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <strong><label>Select Image</label></strong>
-              <input type="file" (change)="chooseFile($event)" Name="ImageName" class="form-control">
-            </div>
-          </div>
-          <div class="form-group" style="margin-top:2%">
-            <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </app-main-nav>
+        </div>
+    </app-main-nav>
 </ng-container>
 <ng-container *ngIf="service.quesStat">
-  <mat-dialog-content>
-    <button type="button " [mat-dialog-close] class="btn btn-danger pos">
-      <mat-icon>clear</mat-icon>
-    </button>
-    <div class="card">
-      <div class="card-body">
-        <h3 style="text-align: center" class="card-title">Add Questions</h3>
-        <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
-          <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="createdBy">
-          <div class="form-group">
-            <strong><label>Question</label></strong>
-            <textarea class="form-control" name="QuestionStatement" #QuestionStatement="ngModel"
-              [(ngModel)]="service.formData.questionStatement" rows="3" required></textarea>
-            <div class="validation-error" *ngIf="QuestionStatement.invalid && QuestionStatement.touched">This field is
-              required.
+    <mat-dialog-content>
+        <button type="button " [mat-dialog-close] class="btn btn-danger pos">
+            <mat-icon>clear</mat-icon>
+        </button>
+        <div class="card">
+            <div class="card-body">
+                <h3 style="text-align: center" class="card-title">Add Questions</h3>
+                <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+                    <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="createdBy">
+                    <div class="form-group">
+                        <strong><label>Question</label></strong>
+                        <textarea class="form-control" name="QuestionStatement" #QuestionStatement="ngModel"
+                            [(ngModel)]="service.formData.questionStatement" rows="3" required></textarea>
+                        <div class="validation-error" *ngIf="QuestionStatement.invalid && QuestionStatement.touched">
+                            This field is
+                            required.
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <strong><label>Option 1</label></strong>
+                            <input required type="text" name="Option1" #Option1="ngModel"
+                                [(ngModel)]="service.formData.option1" class="form-control">
+                            <div class="validation-error" *ngIf="Option1.invalid && Option1.touched">This field is
+                                required.</div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <strong><label>Option 2</label></strong>
+                            <input required type="text" name="Option2" #Option2="ngModel"
+                                [(ngModel)]="service.formData.option2" class="form-control">
+                            <div class="validation-error" *ngIf="Option2.invalid && Option2.touched">This field is
+                                required.</div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <strong><label>Option 3</label></strong>
+                            <input type="text" name="Option3" #Option3="ngModel" [(ngModel)]="service.formData.option3"
+                                class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <strong><label>Option 4</label></strong>
+                            <input type="text" name="Option4" #Option4="ngModel" [(ngModel)]="service.formData.option4"
+                                class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <strong><label>Correct Option</label></strong>
+                            <select name="Answer" [disabled]="bool" required #Answer="ngModel"
+                                [(ngModel)]="service.formData.answer" class="form-control">
+                                <option selected disabled value="">Choose</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option *ngIf="service.formData.option3" value="3">3</option>
+                                <option *ngIf="service.formData.option4" value="4">4</option>
+                            </select>
+                            <div class="validation-error" *ngIf="Answer.invalid && Answer.touched">This field is
+                                required.
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <strong><label>Marks</label></strong>
+                            <select name="Marks" [disabled]="bool" required #Marks="ngModel"
+                                [(ngModel)]="service.formData.marks" class="form-control">
+                                <option selected disabled value="">Choose</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="5">5</option>
+                            </select>
+                            <div class="validation-error" *ngIf="Marks.invalid && Marks.touched">This field is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <strong><label>Select Subject</label></strong>
+                            <ng-multiselect-dropdown name="Tags" #Tags="ngModel" [placeholder]="Choose" required
+                                [data]="subjects" [settings]="dropdownSettings" [(ngModel)]="selectedItems">
+                            </ng-multiselect-dropdown>
+                            <div class="validation-error" *ngIf="SubjectId.invalid && SubjectId.touched">This field is
+                                required.</div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <strong><label>Select Difficulty-Level</label></strong>
+                            <select [disabled]="bool" name="Difficulty" required #Difficulty="ngModel"
+                                [(ngModel)]="service.formData.difficulty" class="form-control">
+                                <option selected disabled value="">Choose an option...</option>
+                                <option value="Beginner">Beginner</option>
+                                <option value="Intermediate">Intermediate</option>
+                                <option value="Advanced">Advanced</option>
+                            </select>
+                            <div class="validation-error" *ngIf="Difficulty.invalid && Difficulty.touched">This field is
+                                required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top: 3%">
+                        <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
             </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <strong><label>Option 1</label></strong>
-              <input required type="text" name="Option1" #Option1="ngModel" [(ngModel)]="service.formData.option1"
-                class="form-control">
-              <div class="validation-error" *ngIf="Option1.invalid && Option1.touched">This field is required.</div>
-            </div>
-            <div class="form-group col-md-6">
-              <strong><label>Option 2</label></strong>
-              <input required type="text" name="Option2" #Option2="ngModel" [(ngModel)]="service.formData.option2"
-                class="form-control">
-              <div class="validation-error" *ngIf="Option2.invalid && Option2.touched">This field is required.</div>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <strong><label>Option 3</label></strong>
-              <input type="text" name="Option3" #Option3="ngModel" [(ngModel)]="service.formData.option3"
-                class="form-control">
-            </div>
-            <div class="form-group col-md-6">
-              <strong><label>Option 4</label></strong>
-              <input type="text" name="Option4" #Option4="ngModel" [(ngModel)]="service.formData.option4"
-                class="form-control">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <strong><label>Correct Option</label></strong>
-              <select name="Answer" [disabled]="bool" required #Answer="ngModel" [(ngModel)]="service.formData.answer"
-                class="form-control">
-                <option selected disabled value="">Choose</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option *ngIf="service.formData.option3" value="3">3</option>
-                <option *ngIf="service.formData.option4" value="4">4</option>
-              </select>
-              <div class="validation-error" *ngIf="Answer.invalid && Answer.touched">This field is required.
-              </div>
-            </div>
-            <div class="form-group col-md-6">
-              <strong><label>Marks</label></strong>
-              <select name="Marks" [disabled]="bool" required #Marks="ngModel" [(ngModel)]="service.formData.marks"
-                class="form-control">
-                <option selected disabled value="">Choose</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="5">5</option>
-              </select>
-              <div class="validation-error" *ngIf="Marks.invalid && Marks.touched">This field is required.</div>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <strong><label>Select Subject</label></strong>
-              <ng-multiselect-dropdown name="Tags" #Tags="ngModel" [placeholder]="Choose" required [data]="subjects"
-                [settings]="dropdownSettings" [(ngModel)]="selectedItems">
-              </ng-multiselect-dropdown>
-              <div class="validation-error" *ngIf="SubjectId.invalid && SubjectId.touched">This field is required.</div>
-            </div>
-            <div class="form-group col-md-6">
-              <strong><label>Select Difficulty-Level</label></strong>
-              <select [disabled]="bool" name="Difficulty" required #Difficulty="ngModel"
-                [(ngModel)]="service.formData.difficulty" class="form-control">
-                <option selected disabled value="">Choose an option...</option>
-                <option value="Beginner">Beginner</option>
-                <option value="Intermediate">Intermediate</option>
-                <option value="Advanced">Advanced</option>
-              </select>
-              <div class="validation-error" *ngIf="Difficulty.invalid && Difficulty.touched">This field is required.
-              </div>
-            </div>
-          </div>
-          <div class="form-group" style="margin-top: 3%">
-            <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </mat-dialog-content>
+        </div>
+    </mat-dialog-content>
 </ng-container>

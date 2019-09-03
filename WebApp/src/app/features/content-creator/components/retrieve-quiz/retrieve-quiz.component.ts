@@ -81,7 +81,7 @@ export class RetrieveQuizComponent implements OnInit {
 		/* creating a new quiz by clicking on the 'Create Quiz' button*/
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
-		dialogConfig.width = "70%";
+		dialogConfig.width = '70%';
 		dialogConfig.disableClose = true;
 		let dialogRef = this.dialog.open(CreateQuizComponent, dialogConfig); // loading the 'CreateQuiz' component in the mat dialog
 		dialogRef.afterClosed().subscribe(result => { // after the dialog box is closed, reset the form values
@@ -114,9 +114,9 @@ export class RetrieveQuizComponent implements OnInit {
 		this.service.questionType = this.quizList[index].QuizType;
 		this.httpService.getQuestionsByQuiz(quizId).subscribe((res: any) => {
 			this.questionList = res as any[];
-			const dialogConfig = new MatDialogConfig();
+			const dialogConfig = new  MatDialogConfig();
 			dialogConfig.autoFocus = true;
-			dialogConfig.width = "70%";
+			dialogConfig.width = '70%';
 			dialogConfig.disableClose = true;
 			dialogConfig.data = this.questionList;
 			this.dialog.open(UpdateQuizComponent, dialogConfig).afterClosed().subscribe(res => {

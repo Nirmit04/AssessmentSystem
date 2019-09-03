@@ -63,7 +63,7 @@ export class CreateQuizComponent implements OnInit {
 
   private resetForm(form?: NgForm): void {
     /* this is used to reset the form of creating the quiz and reseting the select option of adding the questions the quiz */
-    if (form !== null) {
+    if (form != null) {
       form.resetForm();
     } else {
       this.service.quizForm = {

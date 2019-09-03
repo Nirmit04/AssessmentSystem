@@ -10,8 +10,8 @@ import { HttpService } from '../../../core/http/http.service';
 })
 export class ContentCreatorService {
 	public quizState: boolean;
-	public questionType: string;
-	public difficulty: string;
+	public questionType: string = null;
+	public difficulty: string = null;
 	public subjectId: number;
 	public tagForm: TagModel;
 	public formData: Question;
@@ -27,7 +27,7 @@ export class ContentCreatorService {
 
 	constructor(private httpService: HttpService, private storageService: StorageService) { }
 
-	public postQuestion(formData: Question): any {
+	public postQuestion(formData: Question): Promise<any> {
 		this.formDataNew = new FormData();
 		formData.createdBy = this.storageService.getStorage('uid');
 		formData.questionType = this.questionType;
@@ -36,10 +36,8 @@ export class ContentCreatorService {
 			this.formDataNew.append('Image', this.selectedFile, this.selectedFile.name);
 			this.selectedFile = null;
 		}
-		this.httpService.postQuestion(this.formDataNew).subscribe((res: any) => {
-			return true;
-		});
-		return false;
+		return this.httpService.postQuestion(this.formDataNew).toPromise();
+
 	}
 
 	public updateQuestion(formData: Question): any {

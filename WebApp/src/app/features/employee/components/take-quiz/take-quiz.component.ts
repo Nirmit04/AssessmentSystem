@@ -47,7 +47,7 @@ export class TakeQuizComponent implements OnInit {
 		this.submitQuestion = [false];
 		this.review = [false];
 		if (this.service.statusMapping !== null) {
-			for (let item of this.service.statusMapping) {
+			for (const item of this.service.statusMapping) {
 				if (item.State === 'save') {
 					this.submitQuestion[item.Index - 1] = true;
 				} else if (item.State === 'review') {
@@ -65,7 +65,7 @@ export class TakeQuizComponent implements OnInit {
 		history.pushState(null, null, location.href);
 		this.browserElement = document.documentElement;
 		this.openFullscreen();
-		window.onpopstate = function () {
+		window.onpopstate = () => {
 			history.go(1);
 		};
 		document.oncontextmenu = preventDefaultAction;
@@ -77,13 +77,13 @@ export class TakeQuizComponent implements OnInit {
 				event.returnValue = false;
 			}
 		}
-		window.onload = function () {
-			document.onkeydown = function (e) {
-				if ((e.which || e.keyCode) == 116) {
+		window.onload = () => {
+			document.onkeydown = e => {
+				if ((e.which || e.keyCode) === 116) {
 					e.preventDefault();
 					e.returnValue = false;
 				}
-				if ((e.which || e.keyCode) == 82) {
+				if ((e.which || e.keyCode) === 82) {
 					e.preventDefault();
 					e.returnValue = false;
 				}
@@ -147,7 +147,7 @@ export class TakeQuizComponent implements OnInit {
 		this.checkLast = true;
 		this.today = new Date();
 		this.generatingResponseTime();
-		if (choice !== null) {
+		if (choice) {
 			this.generatingAnswerBody(choice, options);
 		}
 		this.progressBar = (this.service.qnProgress + 1) / this.noOfQuestions * 100;
@@ -218,7 +218,7 @@ export class TakeQuizComponent implements OnInit {
 	public previous(): void {
 		this.checkLast = true;
 		this.service.qnProgress--;
-		if (this.service.qnProgress == 0) {
+		if (this.service.qnProgress === 0) {
 			this.checkPrev = false;
 		}
 		this.activeQuestion = [false];
@@ -234,10 +234,10 @@ export class TakeQuizComponent implements OnInit {
 
 	public submit(): void {
 		if (confirm('Do you want to submit the quiz?')) {
-			let totalResponseTime: string = '';
+			let totalResponseTime = '';
 			let body: any;
 			totalResponseTime = this.generatingTotalResponseTime();
-			if (this.service.quizScheduleId !== null) {
+			if (this.service.quizScheduleId) {
 				body = this.genratingBody('Scheduled', totalResponseTime);
 			} else {
 				body = this.genratingBody('Mock', totalResponseTime);
@@ -300,7 +300,7 @@ export class TakeQuizComponent implements OnInit {
 	}
 
 	public navigate(questionIndex: number): void {
-		if (questionIndex == 0) {
+		if (questionIndex === 0) {
 			this.checkPrev = false;
 		} else {
 			this.checkPrev = true;
