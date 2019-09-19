@@ -39,7 +39,7 @@ export function provideConfig() {
 }
 
 const rollbarConfig = {
-    accessToken: '62740a9a7bf74f5bb9b1b845e411fac7',
+    accessToken: 'a503665a11e2452f880c398007d18be2',
     captureUncaught: true,
     captureUnhandledRejections: true,
     autoInstrument: {
@@ -54,19 +54,19 @@ const rollbarConfig = {
     }
 };
 
-// export const RollbarService = new InjectionToken<rb>('rollbar');
-// @Injectable()
-// export class RollbarErrorHandler implements ErrorHandler {
-//     constructor(@Inject(RollbarService) private rollbar: rb) { }
+export const RollbarService = new InjectionToken<rb>('rollbar');
+@Injectable()
+export class RollbarErrorHandler implements ErrorHandler {
+    constructor(@Inject(RollbarService) private rollbar: rb) { }
 
-//     handleError(err: any): void {
-//         this.rollbar.error(err.originalError || err);
-//     }
-// }
+    handleError(err: any): void {
+        this.rollbar.error(err.originalError || err);
+    }
+}
 
-// export function rollbarFactory() {
-//     return new rb(rollbarConfig);
-// }
+export function rollbarFactory() {
+    return new rb(rollbarConfig);
+}
 @NgModule({
     declarations: [
         AppComponent,
@@ -105,12 +105,12 @@ const rollbarConfig = {
             provide: HTTP_INTERCEPTORS,
             useClass: TokenInterceptor, multi: true
         },
-        // { provide: RollbarService, useFactory: rollbarFactory },
-        // { provide: ErrorHandler, useClass: RollbarErrorHandler },
-        // {
-        // 	provide: ErrorHandler,
-        // 	useClass: GlobalErrorHandler
-        // }
+        { provide: RollbarService, useFactory: rollbarFactory },
+        { provide: ErrorHandler, useClass: RollbarErrorHandler },
+        {
+            provide: ErrorHandler,
+            useClass: GlobalErrorHandler
+        }
     ],
     bootstrap: [AppComponent],
 

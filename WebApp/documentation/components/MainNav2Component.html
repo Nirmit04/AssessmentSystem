@@ -66,6 +66,12 @@
 
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
 
 
 <section>
@@ -401,8 +407,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/app/features/test-admin/components/main-nav2/main-nav2.component.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/app/features/test-admin/components/main-nav2/main-nav2.component.ts:26</a></div>
                 </td>
             </tr>
 
@@ -565,7 +571,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { BreakpointObserver, Breakpoints } from &#x27;@angular/cdk/layout&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
 import { map } from &#x27;rxjs/operators&#x27;;
@@ -578,28 +584,28 @@ import { StorageService } from &#x27;../../../../services/storage.service&#x27;;
 	templateUrl: &#x27;./main-nav2.component.html&#x27;,
 	styleUrls: [&#x27;./main-nav2.component.css&#x27;]
 })
-export class MainNav2Component {
+export class MainNav2Component implements OnInit {
 	isHandset$: Observable&lt;boolean&gt; &#x3D; this.breakpointObserver
 		.observe(Breakpoints.Handset)
 		.pipe(map((result) &#x3D;&gt; result.matches));
 	public currentRole &#x3D; &#x27;&#x27;;
 
-	constructor(private breakpointObserver: BreakpointObserver,
+	constructor(
+		private breakpointObserver: BreakpointObserver,
 		private authService: AuthService,
 		private router: Router,
 		private storageService: StorageService) { }
 
 	public ngOnInit(): void {
 		this.currentRole &#x3D; this.storageService.getStorage(&#x27;currentRole&#x27;);
-		const subscription &#x3D; this.authService.authState.subscribe((user) &#x3D;&gt; {
+		this.authService.authState.subscribe((user) &#x3D;&gt; {
 			if (user &#x3D;&#x3D;&#x3D; null) {
 				this.storageService.clearStorage();
 				this.router.navigate([&#x27;/login&#x27;]);
 			}
 		});
-		subscription.unsubscribe();
 	}
-	
+
 	public roleMatch(allowedRoles): boolean {
 		var isMatch &#x3D; false;
 		const userRoles: string &#x3D; this.storageService.getStorage(&#x27;role&#x27;);
@@ -675,10 +681,7 @@ export class MainNav2Component {
                 <p class="comment">
                     <code>./main-nav2.component.css</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">.mat-sidenav-content {
-	overflow-x: hidden;
-}
-.sidenav-container {
+                <pre class="line-numbers"><code class="language-scss">.sidenav-container {
 	height: 100%;
 }
 .sidenav-container a {
@@ -717,6 +720,7 @@ export class MainNav2Component {
 	background-color: rgb(190, 190, 190) !important;
 }
 .mat-sidenav-content {
+	overflow-x: hidden;
 	background-color: rgb(235, 235, 235) !important;
 }
 .mat-toolbar a {
@@ -728,7 +732,7 @@ export class MainNav2Component {
 .log {
 	font-size: 12px;
 	cursor: pointer;
-	color:black !important;
+	color: black !important;
 }
 .mat-toolbar.mat-primary {
 	position: sticky;

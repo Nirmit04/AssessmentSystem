@@ -49,9 +49,6 @@
             <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
         </li>
         <li >
-            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li >
             <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
@@ -94,10 +91,6 @@
                 <td class="col-md-9"><code>app-analytics-by-user</code></td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./analytics-by-user.component.css</code></td>
-            </tr>
 
 
 
@@ -189,7 +182,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/analytics-by-user.component.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/analytics-by-user.component.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -284,8 +277,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/analytics-by-user.component.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/analytics-by-user.component.ts:29</a></div>
                 </td>
             </tr>
 
@@ -325,8 +318,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="22"
-                            class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/analytics-by-user.component.ts:22</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/analytics-by-user.component.ts:18</a></div>
                 </td>
             </tr>
 
@@ -366,8 +359,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/analytics-by-user.component.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/analytics-by-user.component.ts:37</a></div>
                 </td>
             </tr>
 
@@ -441,7 +434,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/analytics-by-user.component.ts:20</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/analytics-by-user.component.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -473,7 +466,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/analytics-by-user.component.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/analytics-by-user.component.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -505,7 +498,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/analytics-by-user.component.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/analytics-by-user.component.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -532,7 +525,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/analytics-by-user.component.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/analytics-by-user.component.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -551,47 +544,40 @@ import { ReportingUserService } from &#x27;../../services/reporting-user.service
 import { Router } from &#x27;@angular/router&#x27;;
 import { HttpService } from &#x27;../../../../core/http/http.service&#x27;;
 @Component({
-  selector: &#x27;app-analytics-by-user&#x27;,
-  templateUrl: &#x27;./analytics-by-user.component.html&#x27;,
-  styleUrls: [&#x27;./analytics-by-user.component.css&#x27;]
+	selector: &#x27;app-analytics-by-user&#x27;,
+	templateUrl: &#x27;./analytics-by-user.component.html&#x27;
 })
 export class AnalyticsByUserComponent implements OnInit {
+	constructor(private service: ReportingUserService, private router: Router, private httpService: HttpService) {}
 
-  constructor(private service: ReportingUserService,  
-    private router: Router,
-    private httpService: HttpService) { }
+	dtTrigger: Subject&lt;any&gt; &#x3D; new Subject();
+	subscription: Subscription;
+	dtOptions: DataTables.Settings &#x3D; {};
+	public allUsers: any[];
 
-  dtTrigger: Subject&lt;any&gt; &#x3D; new Subject();
-  subscription: Subscription;
-  dtOptions: DataTables.Settings &#x3D; {};
-  public allUsers: any[];
+	public ngOnInit(): void {
+		this.dtOptions &#x3D; {
+			lengthChange: false,
+			paging: false,
+			search: false
+		};
+		setTimeout(() &#x3D;&gt; {
+			this.loadAllEmployees();
+		}, 0);
+	}
 
-  public ngOnInit(): void {
+	private loadAllEmployees(): void {
+		this.httpService.getAllUsers().subscribe((res: any) &#x3D;&gt; {
+			this.allUsers &#x3D; res as any[];
 
-    this.dtOptions &#x3D; {
-      lengthChange: false,
-      paging: false,
-      search: false
-    };
-    setTimeout(() &#x3D;&gt; {
-      this.loadAllEmployees();
-    }, 0);
-  }
+			this.dtTrigger.next();
+		});
+	}
 
-  private loadAllEmployees(): void {
-    const subscription &#x3D; this.httpService.getAllUsers().subscribe((res: any) &#x3D;&gt; {
-      this.allUsers &#x3D; res as any[];
-
-      this.dtTrigger.next();
-    });
-    subscription.unsubscribe();
-  }
-
-  public viewUserDetails(index: string): void {
-    this.service.data &#x3D; this.allUsers[index];
-    this.router.navigate([&#x27;/ru-dash/ana-by-user/user-detail&#x27;]);
-  }
-
+	public viewUserDetails(index: string): void {
+		this.service.data &#x3D; this.allUsers[index];
+		this.router.navigate([ &#x27;/ru-dash/ana-by-user/user-detail&#x27; ]);
+	}
 }
 </code></pre>
     </div>
@@ -629,12 +615,6 @@ export class AnalyticsByUserComponent implements OnInit {
 &lt;/app-mainnav4&gt;</code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-styleData">
-                <p class="comment">
-                    <code>./analytics-by-user.component.css</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
-    </div>
 
     <div class="tab-pane fade " id="c-tree">
         <div id="tree-container"></div>

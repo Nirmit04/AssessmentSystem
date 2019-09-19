@@ -338,8 +338,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/app/features/content-creator/components/tag/createtag/createtag.component.ts:70</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="72"
+                            class="link-to-prism">src/app/features/content-creator/components/tag/createtag/createtag.component.ts:72</a></div>
                 </td>
             </tr>
 
@@ -410,8 +410,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/app/features/content-creator/components/tag/createtag/createtag.component.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">src/app/features/content-creator/components/tag/createtag/createtag.component.ts:45</a></div>
                 </td>
             </tr>
 
@@ -492,8 +492,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="61"
-                            class="link-to-prism">src/app/features/content-creator/components/tag/createtag/createtag.component.ts:61</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/app/features/content-creator/components/tag/createtag/createtag.component.ts:60</a></div>
                 </td>
             </tr>
 
@@ -564,8 +564,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/app/features/content-creator/components/tag/createtag/createtag.component.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/app/features/content-creator/components/tag/createtag/createtag.component.ts:49</a></div>
                 </td>
             </tr>
 
@@ -792,7 +792,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>&quot;&quot;</code>
+                            <i>Default value : </i><code>&#x27;&#x27;</code>
                         </td>
                     </tr>
                         <tr>
@@ -826,7 +826,7 @@ import { HttpService } from &#x27;../../../../../core/http/http.service&#x27;;
 
 export class CreatetagComponent implements OnInit {
 
-	public userId: string &#x3D; &quot;&quot;;
+	public userId: string &#x3D; &#x27;&#x27;;
 	public existingTags: TagModel[];
 	public option: string &#x3D; &#x27;&#x27;;
 	public tagExists: boolean &#x3D; false;
@@ -849,14 +849,13 @@ export class CreatetagComponent implements OnInit {
 			this.option &#x3D; &#x27;Update&#x27;;
 			this.service.tagForm &#x3D; this.data;
 		}
-		const subscription &#x3D; this.httpService.retrieveSubjects().subscribe((res: any) &#x3D;&gt; {
+		this.httpService.retrieveSubjects().subscribe((res: any) &#x3D;&gt; {
 			this.existingTags &#x3D; res as TagModel[];
 		});
-		subscription.unsubscribe();
 	}
 
-	public getSubjectId()	{
-		
+	public getSubjectId() {
+
 	}
 
 	private resetForm(form?: NgForm): void {
@@ -871,16 +870,20 @@ export class CreatetagComponent implements OnInit {
 	}
 
 	public onSubmit(form: NgForm): void {
-		const subscription &#x3D; this.httpService.postTags(form.value).subscribe(res &#x3D;&gt; {
-			this.toastr.success(&#x27;Inserted successfully&#x27;);
+		this.httpService.postTags(form.value).subscribe(res &#x3D;&gt; {
+			if (this.option &#x3D;&#x3D;&#x3D; &#x27;Create&#x27;) {
+				this.toastr.success(&#x27;Inserted successfully&#x27;);
+			} else {
+				this.toastr.success(&#x27;Updated successfully&#x27;);
+			}
 			this.resetForm(form);
 			this.dialogRef.close(&#x27;Inserted&#x27;);
 		});
-		subscription.unsubscribe();
 	}
 
 	public checkAvail(name: NgForm): void {
-		for (let tag of this.existingTags) {
+		console.log(name);
+		for (const tag of this.existingTags) {
 			if (tag.Name.toString().toLowerCase() &#x3D;&#x3D;&#x3D; name.value.toString().toLowerCase()) {
 				this.tagExists &#x3D; true;
 				break;
@@ -897,47 +900,52 @@ export class CreatetagComponent implements OnInit {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;button type&#x3D;&quot;button &quot; [mat-dialog-close] class&#x3D;&quot;btn btn-danger pos&quot;&gt;
-  &lt;mat-icon&gt;clear&lt;/mat-icon&gt;
+    &lt;mat-icon&gt;clear&lt;/mat-icon&gt;
 &lt;/button&gt;
 &lt;div class&#x3D;&quot;card&quot;&gt;
-  &lt;div class&#x3D;&quot;card-body&quot;&gt;
-    &lt;strong&gt;&lt;h2 class&#x3D;&quot;card-title&quot; style&#x3D;&quot;text-align: center&quot;&gt;{{option}} Tag&lt;/h2&gt;&lt;/strong&gt;
-    &lt;br&gt;&lt;form #form&#x3D;&quot;ngForm&quot; (submit)&#x3D;&quot;onSubmit(form)&quot; autocomplete&#x3D;&quot;off&quot;&gt;
-      &lt;input type&#x3D;&quot;hidden&quot; name&#x3D;&quot;CreatedBy&quot; #CreatedBy&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;userId&quot;&gt;
-      &lt;div class&#x3D;&quot;form-row&quot;&gt;
-        &lt;div class&#x3D;&quot;form-group col-md-6&quot;&gt;
-          &lt;input type&#x3D;&quot;hidden&quot; name&#x3D;&quot;SubjectId&quot; #SubjectId&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;service.tagForm.SubjectId&quot;
-            class&#x3D;&quot;form-control&quot;&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div class&#x3D;&quot;form-row&quot;&gt;
-        &lt;div class&#x3D;&quot;form-group col-md-6&quot;&gt;
-          &lt;strong&gt;&lt;label&gt;Subject&lt;/label&gt;&lt;/strong&gt;
-          &lt;input required type&#x3D;&quot;text&quot; name&#x3D;&quot;Name&quot; #Name&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;service.tagForm.Name&quot;
-            (input)&#x3D;&quot;checkAvail(Name)&quot; class&#x3D;&quot;form-control&quot;&gt;
-          &lt;div class&#x3D;&quot;validation-error&quot; *ngIf&#x3D;&quot;tagExists&quot;&gt;Tag Already Exists&lt;/div&gt;
-          &lt;div class&#x3D;&quot;validation-error&quot; *ngIf&#x3D;&quot;Name.invalid &amp;&amp; Name.touched&quot;&gt;This field is required.&lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class&#x3D;&quot;form-group col-md-6&quot;&gt;
-          &lt;strong&gt;&lt;label&gt;Department&lt;/label&gt;&lt;/strong&gt;
-          &lt;input required type&#x3D;&quot;text&quot; name&#x3D;&quot;Department&quot; #Department&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;service.tagForm.Department&quot;
-            class&#x3D;&quot;form-control&quot;&gt;
-          &lt;div class&#x3D;&quot;validation-error&quot; *ngIf&#x3D;&quot;Department.invalid &amp;&amp; Department.touched&quot;&gt;This field is required.&lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div class&#x3D;&quot;form-group&quot;&gt;
-        &lt;button type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;form.invalid || tagExists&quot; class&#x3D;&quot;btn btn-primary&quot;&gt;Submit&lt;/button&gt;
-      &lt;/div&gt;
-    &lt;/form&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+    &lt;div class&#x3D;&quot;card-body&quot;&gt;
+        &lt;strong&gt;
+            &lt;h2 class&#x3D;&quot;card-title&quot; style&#x3D;&quot;text-align: center&quot;&gt;{{option}} Tag&lt;/h2&gt;
+        &lt;/strong&gt;
+        &lt;br&gt;
+        &lt;form #form&#x3D;&quot;ngForm&quot; (submit)&#x3D;&quot;onSubmit(form)&quot; autocomplete&#x3D;&quot;off&quot;&gt;
+            &lt;input type&#x3D;&quot;hidden&quot; name&#x3D;&quot;CreatedBy&quot; #CreatedBy&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;userId&quot;&gt;
+            &lt;div class&#x3D;&quot;form-row&quot;&gt;
+                &lt;div class&#x3D;&quot;form-group col-md-6&quot;&gt;
+                    &lt;input type&#x3D;&quot;hidden&quot; name&#x3D;&quot;SubjectId&quot; #SubjectId&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;service.tagForm.SubjectId&quot;
+                        class&#x3D;&quot;form-control&quot;&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;form-row&quot;&gt;
+                &lt;div class&#x3D;&quot;form-group col-md-6&quot;&gt;
+                    &lt;strong&gt;&lt;label&gt;Subject&lt;/label&gt;&lt;/strong&gt;
+                    &lt;input required type&#x3D;&quot;text&quot; name&#x3D;&quot;Name&quot; #Name&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;service.tagForm.Name&quot;
+                        (input)&#x3D;&quot;checkAvail(Name.value)&quot; class&#x3D;&quot;form-control&quot;&gt;
+                    &lt;div class&#x3D;&quot;validation-error&quot; *ngIf&#x3D;&quot;tagExists&quot;&gt;Tag Already Exists&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;validation-error&quot; *ngIf&#x3D;&quot;Name.invalid &amp;&amp; Name.touched&quot;&gt;This field is required.&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;form-group col-md-6&quot;&gt;
+                    &lt;strong&gt;&lt;label&gt;Department&lt;/label&gt;&lt;/strong&gt;
+                    &lt;input required type&#x3D;&quot;text&quot; name&#x3D;&quot;Department&quot; #Department&#x3D;&quot;ngModel&quot;
+                        [(ngModel)]&#x3D;&quot;service.tagForm.Department&quot; class&#x3D;&quot;form-control&quot;&gt;
+                    &lt;div class&#x3D;&quot;validation-error&quot; *ngIf&#x3D;&quot;Department.invalid &amp;&amp; Department.touched&quot;&gt;This field is
+                        required.&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                &lt;button type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;form.invalid || tagExists&quot; class&#x3D;&quot;btn btn-primary&quot;&gt;Submit&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
                 <p class="comment">
                     <code>./createtag.component.css</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">mat-dialog-content {
+                <pre class="line-numbers"><code class="language-scss">.mat-dialog-content {
 	position: relative;
 }
 .pos {
@@ -948,7 +956,7 @@ export class CreatetagComponent implements OnInit {
 	width: 35px;
 	height: 35px;
 }
-mat-icon {
+.mat-icon {
 	width: 30px;
 	height: 30px;
 	position: absolute;
@@ -983,7 +991,7 @@ mat-icon {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><button type="button " [mat-dialog-close] class="btn btn-danger pos">  <mat-icon>clear</mat-icon></button><div class="card">  <div class="card-body">    <strong><h2 class="card-title" style="text-align: center">{{option}} Tag</h2></strong>    <br><form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">      <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="userId">      <div class="form-row">        <div class="form-group col-md-6">          <input type="hidden" name="SubjectId" #SubjectId="ngModel" [(ngModel)]="service.tagForm.SubjectId"            class="form-control">        </div>      </div>      <div class="form-row">        <div class="form-group col-md-6">          <strong><label>Subject</label></strong>          <input required type="text" name="Name" #Name="ngModel" [(ngModel)]="service.tagForm.Name"            (input)="checkAvail(Name)" class="form-control">          <div class="validation-error" *ngIf="tagExists">Tag Already Exists</div>          <div class="validation-error" *ngIf="Name.invalid && Name.touched">This field is required.</div>        </div>        <div class="form-group col-md-6">          <strong><label>Department</label></strong>          <input required type="text" name="Department" #Department="ngModel" [(ngModel)]="service.tagForm.Department"            class="form-control">          <div class="validation-error" *ngIf="Department.invalid && Department.touched">This field is required.</div>        </div>      </div>      <div class="form-group">        <button type="submit" [disabled]="form.invalid || tagExists" class="btn btn-primary">Submit</button>      </div>    </form>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><button type="button " [mat-dialog-close] class="btn btn-danger pos">    <mat-icon>clear</mat-icon></button><div class="card">    <div class="card-body">        <strong>            <h2 class="card-title" style="text-align: center">{{option}} Tag</h2>        </strong>        <br>        <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">            <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="userId">            <div class="form-row">                <div class="form-group col-md-6">                    <input type="hidden" name="SubjectId" #SubjectId="ngModel" [(ngModel)]="service.tagForm.SubjectId"                        class="form-control">                </div>            </div>            <div class="form-row">                <div class="form-group col-md-6">                    <strong><label>Subject</label></strong>                    <input required type="text" name="Name" #Name="ngModel" [(ngModel)]="service.tagForm.Name"                        (input)="checkAvail(Name.value)" class="form-control">                    <div class="validation-error" *ngIf="tagExists">Tag Already Exists</div>                    <div class="validation-error" *ngIf="Name.invalid && Name.touched">This field is required.</div>                </div>                <div class="form-group col-md-6">                    <strong><label>Department</label></strong>                    <input required type="text" name="Department" #Department="ngModel"                        [(ngModel)]="service.tagForm.Department" class="form-control">                    <div class="validation-error" *ngIf="Department.invalid && Department.touched">This field is                        required.</div>                </div>            </div>            <div class="form-group">                <button type="submit" [disabled]="form.invalid || tagExists" class="btn btn-primary">Submit</button>            </div>        </form>    </div></div></div>'
     var COMPONENTS = [{'name': 'AddQuesInQuizComponent', 'selector': 'app-add-ques-in-quiz'},{'name': 'AddUser1Component', 'selector': 'app-add-user1'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AnalyticsByQuizComponent', 'selector': 'app-analytics-by-quiz'},{'name': 'AnalyticsByTagComponent', 'selector': 'app-analytics-by-tag'},{'name': 'AnalyticsByUserComponent', 'selector': 'app-analytics-by-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchivedScheduleComponent', 'selector': 'app-archived-schedule'},{'name': 'ArchiveQuizComponent', 'selector': 'app-archive-quiz'},{'name': 'ContentCreatorComponent', 'selector': 'app-content-creator'},{'name': 'CreateQuestionsComponent', 'selector': 'app-create-questions'},{'name': 'CreateQuizComponent', 'selector': 'app-create-quiz'},{'name': 'CreateScheduleComponent', 'selector': 'app-create-schedule'},{'name': 'CreatetagComponent', 'selector': 'app-createtag'},{'name': 'DetailedReportComponent', 'selector': 'app-detailed-report'},{'name': 'DetailsComponent', 'selector': 'app-details'},{'name': 'EmployeeComponent', 'selector': 'app-employee'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HttpInterceptorComponent', 'selector': 'app-http-interceptor'},{'name': 'InstructionsComponent', 'selector': 'app-instructions'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainNav2Component', 'selector': 'app-main-nav2'},{'name': 'MainNav3Component', 'selector': 'app-main-nav3'},{'name': 'Mainnav4Component', 'selector': 'app-mainnav4'},{'name': 'MainNavComponent', 'selector': 'app-main-nav'},{'name': 'MockComponent', 'selector': 'app-mock'},{'name': 'MockReportComponent', 'selector': 'app-mock-report'},{'name': 'NonMockComponent', 'selector': 'app-non-mock'},{'name': 'NonMockReportComponent', 'selector': 'app-non-mock-report'},{'name': 'ReportingUserComponent', 'selector': 'app-reporting-user'},{'name': 'ResultComponent', 'selector': 'app-result'},{'name': 'RetrieveQuestionBankComponent', 'selector': 'app-retrieve-question-bank'},{'name': 'RetrieveQuizComponent', 'selector': 'retrieve-quiz'},{'name': 'RetrieveScheduleComponent', 'selector': 'app-retrieve-schedule'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TakeQuizComponent', 'selector': 'app-take-quiz'},{'name': 'TestAdminComponent', 'selector': 'app-test-admin'},{'name': 'UpdateQuestionComponent', 'selector': 'app-update-question'},{'name': 'UpdateQuizComponent', 'selector': 'app-update-quiz'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'ViewScheduleComponent', 'selector': 'app-view-schedule'},{'name': 'ViewUserDetailsComponent', 'selector': 'app-view-user-details'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'CreatetagComponent'};

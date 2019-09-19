@@ -344,8 +344,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="84"
-                            class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/view-user-details/view-user-details.component.ts:84</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/view-user-details/view-user-details.component.ts:82</a></div>
                 </td>
             </tr>
 
@@ -487,8 +487,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/view-user-details/view-user-details.component.ts:73</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="72"
+                            class="link-to-prism">src/app/features/reporting-user/components/analytics-by-user/view-user-details/view-user-details.component.ts:72</a></div>
                 </td>
             </tr>
 
@@ -1101,7 +1101,7 @@ export class ViewUserDetailsComponent implements OnInit {
   }
 
   private fetchAnalytics(userId: string): void {
-    const subscription &#x3D; this.httpService.getUserAnalytics(userId).subscribe((res: any) &#x3D;&gt; {
+    this.httpService.getUserAnalytics(userId).subscribe((res: any) &#x3D;&gt; {
       this.apiResponse &#x3D; res;
       this.userData &#x3D; [];
       this.userData.push(this.apiResponse.HighestScore);
@@ -1110,18 +1110,16 @@ export class ViewUserDetailsComponent implements OnInit {
       this.userData.push(this.apiResponse.AverageScore);
       this.polarAreaChartData &#x3D; this.userData;
     });
-    subscription.unsubscribe();
   }
 
   private fetchReports(userId: string): void {
-    const subscription &#x3D; this.httpService.getReportOfNonMockQuiz(userId).subscribe((res: any) &#x3D;&gt; {
+    this.httpService.getReportOfNonMockQuiz(userId).subscribe((res: any) &#x3D;&gt; {
       this.scheduledReports &#x3D; res as any[];
       this.dtTrigger.next();
       if (this.scheduledReports.length &gt; 0) {
         this.flag &#x3D; true;
       }
     });
-    subscription.unsubscribe();
   }
 
   public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {

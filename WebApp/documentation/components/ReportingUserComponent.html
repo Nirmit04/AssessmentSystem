@@ -203,7 +203,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(service: <a href="../injectables/ReportingUserService.html">ReportingUserService</a>, ngxService: NgxUiLoaderService, storageService: <a href="../injectables/StorageService.html">StorageService</a>, httpService: <a href="../injectables/HttpService.html">HttpService</a>)</code>
+<code>constructor(service: <a href="../injectables/ReportingUserService.html">ReportingUserService</a>, ngxLoader: NgxUiLoaderService, storageService: <a href="../injectables/StorageService.html">StorageService</a>, httpService: <a href="../injectables/HttpService.html">HttpService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -238,7 +238,7 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>ngxService</td>
+                                                        <td>ngxLoader</td>
                                                   
                                                         <td>
                                                                     <code>NgxUiLoaderService</code>
@@ -356,8 +356,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/app/features/reporting-user/reporting-user.component.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/app/features/reporting-user/reporting-user.component.ts:44</a></div>
                 </td>
             </tr>
 
@@ -671,39 +671,37 @@ export class ReportingUserComponent implements OnInit {
 	public totalUser: any;
 	public totalSub: any;
 
-	constructor(private service: ReportingUserService, 
-		private ngxService: NgxUiLoaderService, 
+	constructor(private service: ReportingUserService,
+		private ngxLoader: NgxUiLoaderService,
 		private storageService: StorageService,
 		private httpService: HttpService) { }
 
 	public ngOnInit(): void {
-		this.ngxService.startBackground(&#x27;do-background-things&#x27;);
-		this.ngxService.stopBackground(&#x27;do-background-things&#x27;);
-		this.ngxService.startLoader(&#x27;loader-01&#x27;);
+		this.ngxLoader.startBackground(&#x27;do-background-things&#x27;);
+		this.ngxLoader.stopBackground(&#x27;do-background-things&#x27;);
+		this.ngxLoader.startLoader(&#x27;loader-01&#x27;);
 		this.profileUrl &#x3D; this.storageService.getStorage(&#x27;imgurl&#x27;);
 		this.loadUserDetails();
 		this.loadUserProgress();
 	}
 
 	private loadUserDetails(): void {
-		const subscription &#x3D; this.httpService.getUserDetails().subscribe((res: any) &#x3D;&gt; {
+		this.httpService.getUserDetails().subscribe((res: any) &#x3D;&gt; {
 			this.firstName &#x3D; res.FirstName;
 			this.lastName &#x3D; res.LastName;
 			this.email &#x3D; res.Email;
 		});
-		subscription.unsubscribe();
 	}
 
 	private loadUserProgress(): void {
-		const subscription &#x3D; this.httpService.getUserProgress().subscribe((res: any) &#x3D;&gt; {
+		this.httpService.getUserProgress().subscribe((res: any) &#x3D;&gt; {
 			this.totalQuiz &#x3D; res.QuizCount;
 			this.totalQues &#x3D; res.QuestionCount;
 			this.totalSub &#x3D; res.SubjectCount;
 			this.totalUser &#x3D; res.UserCount;
 		});
-		subscription.unsubscribe();
 	}
-	
+
 }
 </code></pre>
     </div>

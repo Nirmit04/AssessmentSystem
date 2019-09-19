@@ -49,9 +49,6 @@
             <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
         </li>
         <li >
-            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li >
             <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
@@ -94,10 +91,6 @@
                 <td class="col-md-9"><code>app-archive-quiz</code></td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./archive-quiz.component.css</code></td>
-            </tr>
 
 
 
@@ -364,8 +357,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/app/features/content-creator/components/retrieve-quiz/archive-quiz/archive-quiz.component.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/app/features/content-creator/components/retrieve-quiz/archive-quiz/archive-quiz.component.ts:50</a></div>
                 </td>
             </tr>
 
@@ -405,8 +398,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/app/features/content-creator/components/retrieve-quiz/archive-quiz/archive-quiz.component.ts:77</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/app/features/content-creator/components/retrieve-quiz/archive-quiz/archive-quiz.component.ts:80</a></div>
                 </td>
             </tr>
 
@@ -446,8 +439,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/app/features/content-creator/components/retrieve-quiz/archive-quiz/archive-quiz.component.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/app/features/content-creator/components/retrieve-quiz/archive-quiz/archive-quiz.component.ts:23</a></div>
                 </td>
             </tr>
 
@@ -487,8 +480,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="64"
-                            class="link-to-prism">src/app/features/content-creator/components/retrieve-quiz/archive-quiz/archive-quiz.component.ts:64</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/app/features/content-creator/components/retrieve-quiz/archive-quiz/archive-quiz.component.ts:66</a></div>
                 </td>
             </tr>
 
@@ -763,10 +756,10 @@ import { Subject } from &#x27;rxjs&#x27;;
 import { HttpService } from &#x27;../../../../../core/http/http.service&#x27;;
 @Component({
 	selector: &#x27;app-archive-quiz&#x27;,
-	templateUrl: &#x27;./archive-quiz.component.html&#x27;,
-	styleUrls: [&#x27;./archive-quiz.component.css&#x27;]
+	templateUrl: &#x27;./archive-quiz.component.html&#x27;
 })
 export class ArchiveQuizComponent implements OnInit {
+	/* this class is used to archive a quiz on user&#x60;s request, that is, soft delete a quiz */
 	private tag: string &#x3D; &#x27;&#x27;;
 	public QuizList: QuizModel[];
 	dtOptions: DataTables.Settings &#x3D; {};
@@ -775,13 +768,13 @@ export class ArchiveQuizComponent implements OnInit {
 	public columns: any[];
 	private index: number;
 
-	constructor(private toastr: ToastrService,
-		private httpService: HttpService) { }
+	constructor(private toastr: ToastrService, private httpService: HttpService) {}
 
 	public ngOnInit(): void {
+		/* setting up the component, the headings of the table to be displayed and loading all those quizzes that are currently soft-deleted*/
 		this.dtOptions &#x3D; {
 			pagingType: &#x27;full_numbers&#x27;,
-			pageLength: 10,
+			pageLength: 10
 		};
 		this.columns &#x3D; [
 			{ field: &#x27;SerialNumber&#x27;, header: &#x27;S NO&#x27; },
@@ -790,51 +783,54 @@ export class ArchiveQuizComponent implements OnInit {
 			{ field: &#x27;Difficulty&#x27;, header: &#x27;Difficulty&#x27; },
 			{ field: &#x27;TotalQuestions&#x27;, header: &#x27;Total Questions&#x27; },
 			{ field: &#x27;TotalMarks&#x27;, header: &#x27;Total Marks&#x27; },
-			{ field: &#x27;DuplicateTags&#x27;, header: &#x27;Tags&#x27; },
+			{ field: &#x27;DuplicateTags&#x27;, header: &#x27;Tags&#x27; }
 		];
 
-		this.loadQuiz();
+		this.loadQuiz(); // loading all those quizzes that are currently soft-deleted
 		setTimeout(() &#x3D;&gt; {
 			this.loadQuiz();
 		}, 0);
 	}
 
-	public columnsById(index: number)	{
+	public columnsById(index: number) {
+		/* trackBy function */
 		return index;
 	}
 
 	private loadQuiz(): void {
-		const subscription &#x3D; this.httpService.getArchivedQuizzes().subscribe((res: any) &#x3D;&gt; {
+		/* loads all those quizzes that are currently soft-deleted */
+		this.httpService.getArchivedQuizzes().subscribe((res: any) &#x3D;&gt; {
 			this.QuizList &#x3D; res as QuizModel[];
 			for (this.index &#x3D; 1; this.index &lt;&#x3D; this.QuizList.length; this.index++) {
+				/* loop to display the multiple subjects in the correct form if a quiz contains it */
 				this.QuizList[this.index - 1].SerialNumber &#x3D; this.index;
-				this.tag &#x3D; &#x27;&#x27;
+				this.tag &#x3D; &#x27;&#x27;;
 				for (let tag of this.QuizList[this.index - 1].Tags) {
 					this.tag &#x3D; this.tag + tag.Name + &#x27;,&#x27;;
 					this.QuizList[this.index - 1].DuplicateTags &#x3D; this.tag;
 				}
 			}
 		});
-		subscription.unsubscribe();
 	}
 
 	public onUnArchived(quizId: number): void {
+		/* un-archiving a quiz, and making it to be displayed along with all other non-soft delete quizzes */
 		if (confirm(&#x27;Are you sure you want to un-archive this quiz?&#x27;)) {
-			const subscription &#x3D; this.httpService.unArchiveQuiz(quizId).subscribe((res: any) &#x3D;&gt; {
+			/* on user confirmation, the un-archiving of the quiz is done */
+			this.httpService.unArchiveQuiz(quizId).subscribe((res: any) &#x3D;&gt; {
 				this.dtTrigger.unsubscribe();
-				this.loadQuiz();
-				this.toastr.success(&#x27;Un-Archived Successfully&#x27;, &#x27;Assesment System&#x27;);
+				this.loadQuiz(); // refreshing the list of the quizzes that are archived 
+				this.toastr.success(&#x27;Un-Archived Successfully&#x27;, &#x27;Assesment System&#x27;); // displaying the toaster on success
 				this.dtTrigger.unsubscribe();
 				this.dtTrigger.next();
 			});
-			subscription.unsubscribe();
 		}
 	}
 
 	public ngOnDestroy(): void {
+		/* destroying the component, once the user moves away from the component */
 		this.dtTrigger.unsubscribe();
 	}
-
 }
 </code></pre>
     </div>
@@ -877,12 +873,6 @@ export class ArchiveQuizComponent implements OnInit {
 &lt;/app-main-nav&gt;</code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-styleData">
-                <p class="comment">
-                    <code>./archive-quiz.component.css</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
-    </div>
 
     <div class="tab-pane fade " id="c-tree">
         <div id="tree-container"></div>

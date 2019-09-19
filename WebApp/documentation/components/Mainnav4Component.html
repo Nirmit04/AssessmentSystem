@@ -288,8 +288,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="53"
-                            class="link-to-prism">src/app/features/reporting-user/components/mainnav4/mainnav4.component.ts:53</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/app/features/reporting-user/components/mainnav4/mainnav4.component.ts:52</a></div>
                 </td>
             </tr>
 
@@ -360,8 +360,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/app/features/reporting-user/components/mainnav4/mainnav4.component.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/app/features/reporting-user/components/mainnav4/mainnav4.component.ts:57</a></div>
                 </td>
             </tr>
 
@@ -442,8 +442,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">src/app/features/reporting-user/components/mainnav4/mainnav4.component.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/app/features/reporting-user/components/mainnav4/mainnav4.component.ts:40</a></div>
                 </td>
             </tr>
 
@@ -592,13 +592,12 @@ export class Mainnav4Component {
   ) { }
   public ngOnInit(): void {
     this.currentRole &#x3D; this.storageService.getStorage(&#x27;currentRole&#x27;);
-    const subscription &#x3D; this.authService.authState.subscribe((user) &#x3D;&gt; {
+    this.authService.authState.subscribe((user) &#x3D;&gt; {
       if (user &#x3D;&#x3D;&#x3D; null) {
         this.storageService.clearStorage();
         this.router.navigate([&#x27;/login&#x27;]);
       }
     });
-    subscription.unsubscribe();
   }
 
   public roleMatch(allowedRoles): boolean {
@@ -675,10 +674,7 @@ export class Mainnav4Component {
                 <p class="comment">
                     <code>./mainnav4.component.css</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">.mat-sidenav-content {
-	overflow-x: hidden;
-}
-.sidenav-container {
+                <pre class="line-numbers"><code class="language-scss">.sidenav-container {
 	height: 100%;
 }
 .sidenav-container a {
@@ -715,6 +711,7 @@ export class Mainnav4Component {
 	background-color: rgb(190, 190, 190) !important;
 }
 .mat-sidenav-content {
+	overflow-x: hidden;
 	background-color: rgb(235, 235, 235) !important;
 }
 .mat-toolbar a {
@@ -726,7 +723,7 @@ export class Mainnav4Component {
 .log {
 	font-size: 12px;
 	cursor: pointer;
-	color:black !important;
+	color: black !important;
 }
 .mat-toolbar.mat-primary {
 	position: sticky;

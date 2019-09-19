@@ -20,14 +20,14 @@ export class EmployeeComponent implements OnInit {
 	public recentQuiz: any;
 	public show: boolean = true;
 
-	constructor(private ngxService: NgxUiLoaderService,
+	constructor(private ngxLoaderService: NgxUiLoaderService,
 		private storageService: StorageService,
 		private httpService: HttpService) { }
 
 	public ngOnInit(): void {
-		this.ngxService.startBackground('do-background-things');
-		this.ngxService.stopBackground('do-background-things');
-		this.ngxService.startLoader('loader-01');
+		this.ngxLoaderService.startBackground('do-background-things');
+		this.ngxLoaderService.stopBackground('do-background-things');
+		this.ngxLoaderService.startLoader('loader-01');
 		this.profileUrl = this.storageService.getStorage('imgurl');
 		this.loadUserDetails();
 		this.loadUserProgress();

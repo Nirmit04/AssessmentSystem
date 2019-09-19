@@ -222,10 +222,9 @@ export class Logger {
   private flush &#x3D; new Subject&lt;LoggerEvents&gt;();
 
   constructor(private appName: string, private logEndpoint: string) {
-    const subscription &#x3D; this.flush
+    this.flush
       .pipe(debounceTime(5000), filter((event) &#x3D;&gt; event &#x3D;&#x3D;&#x3D; LoggerEvents.Flush))
       .subscribe(() &#x3D;&gt; this.flushBuffer());
-      subscription.unsubscribe();
   }
 
   public log(type: LogType, message: string, data: LogFields) {

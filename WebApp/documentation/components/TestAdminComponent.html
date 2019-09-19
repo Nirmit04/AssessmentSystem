@@ -296,8 +296,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/app/features/test-admin/test-admin.component.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/app/features/test-admin/test-admin.component.ts:41</a></div>
                 </td>
             </tr>
 
@@ -597,20 +597,18 @@ export class TestAdminComponent implements OnInit {
 	}
 
 	loadUserDetails() {
-		const subscription &#x3D; this.httpService.getUserDetails().subscribe((res: any) &#x3D;&gt; {
+		this.httpService.getUserDetails().subscribe((res: any) &#x3D;&gt; {
 			this.Firstname &#x3D; res.FirstName;
 			this.Lastname &#x3D; res.LastName;
 			this.email &#x3D; res.Email;
 		});
-		subscription.unsubscribe();
 	}
 
 	loadcount() {
-		const subscription &#x3D; this.httpService.getschedulecount().subscribe((res: any) &#x3D;&gt; {
+		this.httpService.getschedulecount().subscribe((res: any) &#x3D;&gt; {
 			this.count &#x3D; res;
 			this.show &#x3D; false;
 		});
-		subscription.unsubscribe();
 	}
 
 }

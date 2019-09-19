@@ -40,7 +40,7 @@ export class TakeQuizComponent implements OnInit {
 		this.hours = this.service.hours;
 		this.minutes = this.service.minutes;
 		this.seconds = this.service.seconds;
-		this.prohibiting();
+		// this.prohibiting();
 		this.noOfQuestions = this.service.noOfQuestionsInQuiz;
 		this.activeQuestion = [false];
 		this.activeQuestion[0] = true;
@@ -58,51 +58,10 @@ export class TakeQuizComponent implements OnInit {
 			}
 		}
 		this.loadQues(1);
-		this.openFullscreen();
+		// 	this.openFullscreen();
 	}
 
-	private prohibiting(): void {
-		history.pushState(null, null, location.href);
-		this.browserElement = document.documentElement;
-		this.openFullscreen();
-		window.onpopstate = () => {
-			history.go(1);
-		};
-		document.oncontextmenu = preventDefaultAction;
-		function preventDefaultAction(event) {
-			event = event || window.event;
-			if (event.preventDefault) {
-				event.preventDefault();
-			} else {
-				event.returnValue = false;
-			}
-		}
-		window.onload = () => {
-			document.onkeydown = e => {
-				if ((e.which || e.keyCode) === 116) {
-					e.preventDefault();
-					e.returnValue = false;
-				}
-				if ((e.which || e.keyCode) === 82) {
-					e.preventDefault();
-					e.returnValue = false;
-				}
-			};
-		};
-	}
 
-	public openFullscreen(): void {
-		// TODO: Pulkit|right click disabled and copy paste disabled and preventing escaping full screen - 10/04/2019
-		if (this.browserElement.requestFullscreen) {
-			this.browserElement.requestFullscreen();
-		} else if (this.browserElement.mozRequestFullScreen) {
-			this.browserElement.mozRequestFullScreen();
-		} else if (this.browserElement.webkitRequestFullscreen) {
-			this.browserElement.webkitRequestFullscreen();
-		} else if (this.browserElement.msRequestFullscreen) {
-			this.browserElement.msRequestFullscreen();
-		}
-	}
 
 	private loadQues(questionIndex: number): void {
 		this.startTime = this.today.getHours() + ':' + this.today.getMinutes() + ':' + this.today.getSeconds();

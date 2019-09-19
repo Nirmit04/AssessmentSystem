@@ -49,9 +49,6 @@
             <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
         </li>
         <li >
-            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li >
             <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
@@ -94,10 +91,6 @@
                 <td class="col-md-9"><code>app-analytics-by-quiz</code></td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./analytics-by-quiz.component.css</code></td>
-            </tr>
 
 
 
@@ -189,7 +182,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/features/reporting-user/components/analytics-by-quiz/analytics-by-quiz.component.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/features/reporting-user/components/analytics-by-quiz/analytics-by-quiz.component.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -284,8 +277,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/app/features/reporting-user/components/analytics-by-quiz/analytics-by-quiz.component.ts:31</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/app/features/reporting-user/components/analytics-by-quiz/analytics-by-quiz.component.ts:28</a></div>
                 </td>
             </tr>
 
@@ -325,8 +318,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="21"
-                            class="link-to-prism">src/app/features/reporting-user/components/analytics-by-quiz/analytics-by-quiz.component.ts:21</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/app/features/reporting-user/components/analytics-by-quiz/analytics-by-quiz.component.ts:18</a></div>
                 </td>
             </tr>
 
@@ -366,8 +359,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/app/features/reporting-user/components/analytics-by-quiz/analytics-by-quiz.component.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/app/features/reporting-user/components/analytics-by-quiz/analytics-by-quiz.component.ts:35</a></div>
                 </td>
             </tr>
 
@@ -445,7 +438,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/features/reporting-user/components/analytics-by-quiz/analytics-by-quiz.component.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/features/reporting-user/components/analytics-by-quiz/analytics-by-quiz.component.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -477,7 +470,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/features/reporting-user/components/analytics-by-quiz/analytics-by-quiz.component.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/features/reporting-user/components/analytics-by-quiz/analytics-by-quiz.component.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -505,7 +498,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/features/reporting-user/components/analytics-by-quiz/analytics-by-quiz.component.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/features/reporting-user/components/analytics-by-quiz/analytics-by-quiz.component.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -532,7 +525,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/features/reporting-user/components/analytics-by-quiz/analytics-by-quiz.component.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/features/reporting-user/components/analytics-by-quiz/analytics-by-quiz.component.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -551,43 +544,38 @@ import { Router } from &#x27;@angular/router&#x27;;
 import { HttpService } from &#x27;../../../../core/http/http.service&#x27;;
 import { ReportingUserService } from &#x27;../../services/reporting-user.service&#x27;;
 @Component({
-  selector: &#x27;app-analytics-by-quiz&#x27;,
-  templateUrl: &#x27;./analytics-by-quiz.component.html&#x27;,
-  styleUrls: [&#x27;./analytics-by-quiz.component.css&#x27;]
+	selector: &#x27;app-analytics-by-quiz&#x27;,
+	templateUrl: &#x27;./analytics-by-quiz.component.html&#x27;
 })
 export class AnalyticsByQuizComponent implements OnInit {
-  dtTrigger: Subject&lt;any&gt; &#x3D; new Subject();
-  subscription: Subscription;
-  dtOptions: DataTables.Settings &#x3D; {};
-  public quizDetails: any[];
+	dtTrigger: Subject&lt;any&gt; &#x3D; new Subject();
+	subscription: Subscription;
+	dtOptions: DataTables.Settings &#x3D; {};
+	public quizDetails: any[];
 
-  constructor(private router: Router,
-    private service: ReportingUserService,
-    private httpService: HttpService) { }
+	constructor(private router: Router, private service: ReportingUserService, private httpService: HttpService) {}
 
-  public ngOnInit(): void {
-    this.dtOptions &#x3D; {
-      pagingType: &#x27;full_numbers&#x27;,
-      pageLength: 10,
-    };
-    setTimeout(() &#x3D;&gt; {
-      this.loadQuizDetails();
-    }, 0);
-  }
+	public ngOnInit(): void {
+		this.dtOptions &#x3D; {
+			pagingType: &#x27;full_numbers&#x27;,
+			pageLength: 10
+		};
+		setTimeout(() &#x3D;&gt; {
+			this.loadQuizDetails();
+		}, 0);
+	}
 
-  private loadQuizDetails(): void {
-    const subscription &#x3D; this.httpService.getAllQuizzes().subscribe((res: any) &#x3D;&gt; {
-      this.quizDetails &#x3D; res as any[];
-      this.dtTrigger.next();
-    });
-    subscription.unsubscribe();
-  }
+	private loadQuizDetails(): void {
+		this.httpService.getAllQuizzes().subscribe((res: any) &#x3D;&gt; {
+			this.quizDetails &#x3D; res as any[];
+			this.dtTrigger.next();
+		});
+	}
 
-  public onClick(index: any): void {
-    this.service.data &#x3D; this.quizDetails[index];
-    this.router.navigate([&#x27;/ru-dash/ana-by-user/quiz-detail&#x27;]);
-  }
-
+	public onClick(index: any): void {
+		this.service.data &#x3D; this.quizDetails[index];
+		this.router.navigate([ &#x27;/ru-dash/ana-by-user/quiz-detail&#x27; ]);
+	}
 }
 </code></pre>
     </div>
@@ -631,12 +619,6 @@ export class AnalyticsByQuizComponent implements OnInit {
 &lt;/app-mainnav4&gt;</code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-styleData">
-                <p class="comment">
-                    <code>./analytics-by-quiz.component.css</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
-    </div>
 
     <div class="tab-pane fade " id="c-tree">
         <div id="tree-container"></div>

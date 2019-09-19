@@ -207,7 +207,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(ngxService: NgxUiLoaderService, storageService: <a href="../injectables/StorageService.html">StorageService</a>, httpService: <a href="../injectables/HttpService.html">HttpService</a>)</code>
+<code>constructor(ngxLoaderService: NgxUiLoaderService, storageService: <a href="../injectables/StorageService.html">StorageService</a>, httpService: <a href="../injectables/HttpService.html">HttpService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -230,7 +230,7 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>ngxService</td>
+                                                        <td>ngxLoaderService</td>
                                                   
                                                         <td>
                                                                     <code>NgxUiLoaderService</code>
@@ -697,14 +697,14 @@ export class EmployeeComponent implements OnInit {
 	public recentQuiz: any;
 	public show: boolean &#x3D; true;
 
-	constructor(private ngxService: NgxUiLoaderService,
+	constructor(private ngxLoaderService: NgxUiLoaderService,
 		private storageService: StorageService,
 		private httpService: HttpService) { }
 
 	public ngOnInit(): void {
-		this.ngxService.startBackground(&#x27;do-background-things&#x27;);
-		this.ngxService.stopBackground(&#x27;do-background-things&#x27;);
-		this.ngxService.startLoader(&#x27;loader-01&#x27;);
+		this.ngxLoaderService.startBackground(&#x27;do-background-things&#x27;);
+		this.ngxLoaderService.stopBackground(&#x27;do-background-things&#x27;);
+		this.ngxLoaderService.startLoader(&#x27;loader-01&#x27;);
 		this.profileUrl &#x3D; this.storageService.getStorage(&#x27;imgurl&#x27;);
 		this.loadUserDetails();
 		this.loadUserProgress();
@@ -719,14 +719,13 @@ export class EmployeeComponent implements OnInit {
 	}
 
 	private loadUserProgress(): void {
-		const subscription &#x3D; this.httpService.getEmployeeProgress().subscribe((res: any) &#x3D;&gt; {
+		this.httpService.getEmployeeProgress().subscribe((res: any) &#x3D;&gt; {
 			this.mocks &#x3D; res.Mock;
 			this.nonMocks &#x3D; res.Scheduled;
 			this.accuracy &#x3D; res.Accuracy;
 			this.recentQuiz &#x3D; res.RecentActivity
 			this.show &#x3D; false;
 		});
-		subscription.unsubscribe();
 	}
 
 }

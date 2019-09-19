@@ -19,15 +19,15 @@ export class ReportingUserComponent implements OnInit {
 	public totalUser: any;
 	public totalSub: any;
 
-	constructor(private service: ReportingUserService, 
-		private ngxService: NgxUiLoaderService, 
+	constructor(private service: ReportingUserService,
+		private ngxLoader: NgxUiLoaderService,
 		private storageService: StorageService,
 		private httpService: HttpService) { }
 
 	public ngOnInit(): void {
-		this.ngxService.startBackground('do-background-things');
-		this.ngxService.stopBackground('do-background-things');
-		this.ngxService.startLoader('loader-01');
+		this.ngxLoader.startBackground('do-background-things');
+		this.ngxLoader.stopBackground('do-background-things');
+		this.ngxLoader.startLoader('loader-01');
 		this.profileUrl = this.storageService.getStorage('imgurl');
 		this.loadUserDetails();
 		this.loadUserProgress();
@@ -49,5 +49,5 @@ export class ReportingUserComponent implements OnInit {
 			this.totalUser = res.UserCount;
 		});
 	}
-	
+
 }

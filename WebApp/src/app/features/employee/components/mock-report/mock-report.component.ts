@@ -24,10 +24,6 @@ export class MockReportComponent implements OnInit {
     private storageService: StorageService) { }
 
   public ngOnInit(): void {
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 10,
-    };
     this.columns = [
       { field: 'SerialNumber', header: 'S NO' },
       { field: 'QuizName', header: 'Quiz Name' },

@@ -34,7 +34,7 @@
 
 <ol class="breadcrumb">
     <li>Modules</li>
-    <li>AppRoutingModule</li>
+    <li>ContentCreatorRoutingModule</li>
 </ol>
 
 
@@ -54,7 +54,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/app-routing.module.ts</code>
+            <code>src/app/features/content-creator/content-creator-routing.module.ts</code>
         </p>
 
 
@@ -72,29 +72,27 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { Routes, RouterModule } from &#x27;@angular/router&#x27;;
-import { HomeComponent } from &#x27;./core/home/home.component&#x27;;
-import { LoginComponent } from &#x27;./core/login/login.component&#x27;;
-import { AppComponent } from &#x27;./app.component&#x27;;
-import { AuthGuard } from &#x27;./auth.guard&#x27;;
-import { HttpInterceptorComponent } from &#x27;./core/interceptors/http-interceptor/http-interceptor.component&#x27;;
-
+import { RetrieveQuestionBankComponent } from &#x27;./components/retrieve-question-bank/retrieve-question-bank.component&#x27;;
+import { TagComponent } from &#x27;./components/tag/retrievetag/tag.component&#x27;;
+import { RetrieveQuizComponent } from &#x27;./components/retrieve-quiz/retrieve-quiz.component&#x27;;
+import { CreateQuestionsComponent } from &#x27;./components/create-questions/create-questions.component&#x27;;
+import { UserDetailsComponent } from &#x27;./components/user-details/user-details.component&#x27;;
+import { AuthGuard } from &#x27;../../auth.guard&#x27;;
+import { ArchiveQuizComponent } from &#x27;./components/retrieve-quiz/archive-quiz/archive-quiz.component&#x27;;
 const routes: Routes &#x3D; [
-	{ path: &#x27;home&#x27;, component: HomeComponent },
-	{ path: &#x27;&#x27;, component: LoginComponent, pathMatch: &#x27;full&#x27; },
-	{ path: &#x27;app-root&#x27;, component: AppComponent },
-	{ path: &#x27;cc-dash&#x27;, loadChildren: &#x27;./features/content-creator/content-creator.module#ContentCreatorModule&#x27;, canActivate: [AuthGuard], data: { roles: [&#x27;Content-Creator&#x27;] } },
-	{ path: &#x27;login&#x27;, component: LoginComponent },
-	{ path: &#x27;ta-dash&#x27;, loadChildren: &#x27;./features/test-admin/test-admin.module#TestAdminModule&#x27;, canActivate: [AuthGuard], data: { roles: [&#x27;Test-Administrator&#x27;] } },
-	{ path: &#x27;emp-dash&#x27;, loadChildren: &#x27;./features/employee/employee.module#EmployeeModule&#x27;, canActivate: [AuthGuard], data: { roles: [&#x27;Employee&#x27;] } },
-	{ path: &#x27;ru-dash&#x27;, loadChildren: &#x27;./features/reporting-user/reporting-user.module#ReportingUserModule&#x27;, canActivate: [AuthGuard], data: { roles: [&#x27;Reporting-User&#x27;] } },
-	{ path: &#x27;http-error&#x27;, component: HttpInterceptorComponent },
+    { path: &#x27;&#x27;, component: UserDetailsComponent, canActivate: [AuthGuard] },
+    { path: &#x27;tag&#x27;, component: TagComponent, canActivate: [AuthGuard] },
+    { path: &#x27;quiz&#x27;, component: RetrieveQuizComponent, canActivate: [AuthGuard] },
+    { path: &#x27;rqbank&#x27;, component: RetrieveQuestionBankComponent, canActivate: [AuthGuard] },
+    { path: &#x27;create-question&#x27;, component: CreateQuestionsComponent, canActivate: [AuthGuard] },
+    { path: &#x27;archive-quiz&#x27;, component: ArchiveQuizComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes)],
-	exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class ContentCreatorRoutingModule { }
 </code></pre>
     </div>
 </div>
@@ -130,7 +128,7 @@ export class AppRoutingModule { }
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
-            var COMPODOC_CURRENT_PAGE_URL = 'AppRoutingModule.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'ContentCreatorRoutingModule.html';
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>

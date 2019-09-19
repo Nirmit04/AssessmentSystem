@@ -386,8 +386,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/app/features/employee/components/non-mock-report/non-mock-report.component.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/app/features/employee/components/non-mock-report/non-mock-report.component.ts:58</a></div>
                 </td>
             </tr>
 
@@ -682,13 +682,12 @@ export class NonMockReportComponent implements OnInit {
   }
 
   private getNonMockReport(): void {
-    const subscription &#x3D; this.httpService.getReportOfNonMockQuiz(this.storageService.getStorage(&#x27;uid&#x27;)).subscribe((res: any) &#x3D;&gt; {
+    this.httpService.getReportOfNonMockQuiz(this.storageService.getStorage(&#x27;uid&#x27;)).subscribe((res: any) &#x3D;&gt; {
       this.nonMockReportList &#x3D; res as any[];
       for (this.index &#x3D; 1; this.index &lt;&#x3D; this.nonMockReportList.length; this.index++) {
         this.nonMockReportList[this.index - 1].SerialNumber &#x3D; this.index;
       }
     });
-    subscription.unsubscribe();
   }
 
   public viewDetailedReport(quizId: number, index: number): void {

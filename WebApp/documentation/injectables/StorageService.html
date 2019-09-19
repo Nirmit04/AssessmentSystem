@@ -174,8 +174,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/app/services/storage.service.ts:26</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/app/services/storage.service.ts:24</a></div>
                 </td>
             </tr>
 
@@ -215,8 +215,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/app/services/storage.service.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/app/services/storage.service.ts:46</a></div>
                 </td>
             </tr>
 
@@ -287,8 +287,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/app/services/storage.service.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/app/services/storage.service.ts:33</a></div>
                 </td>
             </tr>
 
@@ -431,8 +431,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/app/services/storage.service.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/app/services/storage.service.ts:28</a></div>
                 </td>
             </tr>
 
@@ -503,8 +503,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/app/services/storage.service.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/app/services/storage.service.ts:18</a></div>
                 </td>
             </tr>
 
@@ -620,9 +620,7 @@ export class StorageService {
 
   public getStorage(key: string) {
     const encryptedKey &#x3D; this.encryptUsingAES256(key);
-    console.log(&#x27;encryptedKey&#x27;, encryptedKey);
     const encryptedValue &#x3D; localStorage.getItem(encryptedKey);
-    console.log(&#x27;encryptedvalue&#x27;, encryptedValue);
     const decryptedValue &#x3D; this.decryptUsingAES256((encryptedValue));
     return JSON.parse(decryptedValue);
   }
@@ -666,7 +664,7 @@ export class StorageService {
         mode: CryptoJS.mode.ECB,
         padding: CryptoJS.pad.Pkcs7
       }).toString(CryptoJS.enc.Utf8);
-      return decrypted;
+    return decrypted;
   }
 
 }

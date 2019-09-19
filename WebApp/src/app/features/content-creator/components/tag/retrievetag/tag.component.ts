@@ -26,10 +26,6 @@ export class TagComponent implements OnInit, OnDestroy {
 		private httpService: HttpService) { }
 
 	public ngOnInit(): void {
-		this.dtOptions = {
-			pagingType: 'full_numbers',
-			pageLength: 10,
-		};
 		this.columns = [
 			{ field: 'SerialNumber', header: 'S NO' },
 			{ field: 'Name', header: 'Subject' },

@@ -608,8 +608,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="95"
-                            class="link-to-prism">src/app/core/logs/logger.ts:95</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="94"
+                            class="link-to-prism">src/app/core/logs/logger.ts:94</a></div>
                 </td>
             </tr>
 
@@ -680,8 +680,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="83"
-                            class="link-to-prism">src/app/core/logs/logger.ts:83</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/app/core/logs/logger.ts:82</a></div>
                 </td>
             </tr>
 
@@ -721,8 +721,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="76"
-                            class="link-to-prism">src/app/core/logs/logger.ts:76</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/app/core/logs/logger.ts:75</a></div>
                 </td>
             </tr>
 
@@ -793,8 +793,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/app/core/logs/logger.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/app/core/logs/logger.ts:47</a></div>
                 </td>
             </tr>
 
@@ -834,8 +834,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="128"
-                            class="link-to-prism">src/app/core/logs/logger.ts:128</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="127"
+                            class="link-to-prism">src/app/core/logs/logger.ts:127</a></div>
                 </td>
             </tr>
 
@@ -906,8 +906,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="112"
-                            class="link-to-prism">src/app/core/logs/logger.ts:112</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="111"
+                            class="link-to-prism">src/app/core/logs/logger.ts:111</a></div>
                 </td>
             </tr>
 
@@ -947,8 +947,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/app/core/logs/logger.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="38"
+                            class="link-to-prism">src/app/core/logs/logger.ts:38</a></div>
                 </td>
             </tr>
 
@@ -1061,10 +1061,9 @@ export class Logger {
   private flush &#x3D; new Subject&lt;LoggerEvents&gt;();
 
   constructor(private appName: string, private logEndpoint: string) {
-    const subscription &#x3D; this.flush
+    this.flush
       .pipe(debounceTime(5000), filter((event) &#x3D;&gt; event &#x3D;&#x3D;&#x3D; LoggerEvents.Flush))
       .subscribe(() &#x3D;&gt; this.flushBuffer());
-      subscription.unsubscribe();
   }
 
   public log(type: LogType, message: string, data: LogFields) {

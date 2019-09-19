@@ -394,8 +394,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="82"
-                            class="link-to-prism">src/app/features/test-admin/components/retrieve-schedule/view-schedule/view-schedule.component.ts:82</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/app/features/test-admin/components/retrieve-schedule/view-schedule/view-schedule.component.ts:80</a></div>
                 </td>
             </tr>
 
@@ -466,8 +466,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="72"
-                            class="link-to-prism">src/app/features/test-admin/components/retrieve-schedule/view-schedule/view-schedule.component.ts:72</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/app/features/test-admin/components/retrieve-schedule/view-schedule/view-schedule.component.ts:70</a></div>
                 </td>
             </tr>
 
@@ -610,8 +610,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/app/features/test-admin/components/retrieve-schedule/view-schedule/view-schedule.component.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/app/features/test-admin/components/retrieve-schedule/view-schedule/view-schedule.component.ts:50</a></div>
                 </td>
             </tr>
 
@@ -682,8 +682,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/app/features/test-admin/components/retrieve-schedule/view-schedule/view-schedule.component.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/app/features/test-admin/components/retrieve-schedule/view-schedule/view-schedule.component.ts:37</a></div>
                 </td>
             </tr>
 
@@ -723,8 +723,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="64"
-                            class="link-to-prism">src/app/features/test-admin/components/retrieve-schedule/view-schedule/view-schedule.component.ts:64</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">src/app/features/test-admin/components/retrieve-schedule/view-schedule/view-schedule.component.ts:63</a></div>
                 </td>
             </tr>
 
@@ -834,7 +834,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/features/test-admin/components/retrieve-schedule/view-schedule/view-schedule.component.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/features/test-admin/components/retrieve-schedule/view-schedule/view-schedule.component.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -890,7 +890,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/features/test-admin/components/retrieve-schedule/view-schedule/view-schedule.component.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/features/test-admin/components/retrieve-schedule/view-schedule/view-schedule.component.ts:32</a></div>
                             </td>
                         </tr>
 
@@ -918,7 +918,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/features/test-admin/components/retrieve-schedule/view-schedule/view-schedule.component.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/features/test-admin/components/retrieve-schedule/view-schedule/view-schedule.component.ts:29</a></div>
                             </td>
                         </tr>
 
@@ -1112,7 +1112,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/features/test-admin/components/retrieve-schedule/view-schedule/view-schedule.component.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/features/test-admin/components/retrieve-schedule/view-schedule/view-schedule.component.ts:30</a></div>
                             </td>
                         </tr>
 
@@ -1176,10 +1176,11 @@ export class ViewScheduleComponent implements OnInit {
   public usersList: any[];
   public startDateValid &#x3D; false;
   public endDateValid &#x3D; false;
-  public startDateTime:Date;
-  private startDate:Date;
+  public startDateTime: Date;
+  private startDate: Date;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data,
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef&lt;UpdateQuestionComponent&gt;,
     public toastr: ToastrService,
     private service: TestAdminService,
@@ -1202,26 +1203,23 @@ export class ViewScheduleComponent implements OnInit {
   }
 
   private loadExistingUsers(scheduleQuizId: number): void {
-    const subscription &#x3D; this.httpService.getScheduleQuizUsers(scheduleQuizId).subscribe((res: any) &#x3D;&gt; {
+    this.httpService.getScheduleQuizUsers(scheduleQuizId).subscribe((res: any) &#x3D;&gt; {
       this.usersList &#x3D; res as any[];
     });
-    subscription.unsubscribe();
   }
 
   public deleteUserFromSchedule(UserId: string): void {
-    const subscription &#x3D; this.httpService.deleteUserFromSchedule(+this.data, UserId).subscribe((res: any) &#x3D;&gt; {
+    this.httpService.deleteUserFromSchedule(+this.data, UserId).subscribe((res: any) &#x3D;&gt; {
       this.toastr.error(&#x27;removed successfully&#x27;);
       this.loadExistingUsers(+this.data);
     });
-    subscription.unsubscribe();
   }
 
   public onSubmit(form: NgForm): void {
-    const subscription &#x3D; this.httpService.editSchedule(this.data, form.value).subscribe(res &#x3D;&gt; {
+    this.httpService.editSchedule(this.data, form.value).subscribe(res &#x3D;&gt; {
       this.toastr.success(&#x27;Changes Saved&#x27;);
       this.dialogRef.close(&#x27;Saved&#x27;);
     });
-    subscription.unsubscribe();
   }
 
   public checkStartDate(date1: NgForm): void {
@@ -1326,7 +1324,7 @@ export class ViewScheduleComponent implements OnInit {
 td {
 	text-align: center;
 }
-mat-dialog-content {
+.mat-dialog-content {
 	position: relative;
 }
 
@@ -1338,7 +1336,7 @@ mat-dialog-content {
 	width: 35px;
 	height: 35px;
 }
-mat-icon {
+.mat-icon {
 	width: 30px;
 	height: 30px;
 	position: absolute;

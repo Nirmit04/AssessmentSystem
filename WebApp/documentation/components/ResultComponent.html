@@ -299,8 +299,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="60"
-                            class="link-to-prism">src/app/features/employee/components/result/result.component.ts:60</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/app/features/employee/components/result/result.component.ts:59</a></div>
                 </td>
             </tr>
 
@@ -340,8 +340,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="72"
-                            class="link-to-prism">src/app/features/employee/components/result/result.component.ts:72</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/app/features/employee/components/result/result.component.ts:71</a></div>
                 </td>
             </tr>
 
@@ -552,7 +552,7 @@ export class ResultComponent implements OnInit {
   public ngOnInit(): void {
     this.correct &#x3D; [];
     if (this.service.quizScheduleId &#x3D;&#x3D;&#x3D; null) {
-      const subscription &#x3D; this.httpService.getAnswers().subscribe((res: any) &#x3D;&gt; {
+      this.httpService.getAnswers().subscribe((res: any) &#x3D;&gt; {
         this.questionsWithAnswer &#x3D; res as any[];
         this.service.correctAnswerCount &#x3D; 0;
         this.service.questionsOfQuiz.forEach((question, index) &#x3D;&gt; {
@@ -563,7 +563,6 @@ export class ResultComponent implements OnInit {
         });
         this.displayCard &#x3D; true;
       });
-      subscription.unsubscribe();
     }
 
     const body &#x3D; this.service.questionsOfQuiz.map(x &#x3D;&gt; x.QuestionId);

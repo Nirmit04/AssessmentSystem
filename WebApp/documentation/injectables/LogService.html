@@ -99,6 +99,10 @@
                                 <a href="#logError">logError</a>
                             </li>
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#logging">logging</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Public</span>
                                 <a href="#logHttpInfo">logHttpInfo</a>
                             </li>
@@ -241,8 +245,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/app/core/logs/log.service.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/app/core/logs/log.service.ts:50</a></div>
                 </td>
             </tr>
 
@@ -284,6 +288,47 @@
                     </div>
                     <div class="io-description">
                         
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logging"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            logging
+                        </b>
+                        <a href="#logging"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>logging()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/app/core/logs/log.service.ts:37</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
                     </div>
                 </td>
             </tr>
@@ -409,8 +454,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="60"
-                            class="link-to-prism">src/app/core/logs/log.service.ts:60</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/app/core/logs/log.service.ts:56</a></div>
                 </td>
             </tr>
 
@@ -575,73 +620,70 @@ import { Logger } from &#x27;./logger&#x27;;
 import { environment } from &#x27;../../../environments/environment&#x27;;
 
 @Injectable({
-  providedIn: &#x27;root&#x27;
+	providedIn: &#x27;root&#x27;
 })
 export class LogService {
-  private logger: Logger;
+	private logger: Logger;
 
-  constructor(private userId: string) {}
+	constructor(private userId: string) {}
 
-  public initialize() {
-    this.logger &#x3D; new Logger(environment.appName, environment.endpoints.elasticSearchEndpoint);
-  }
+	public initialize() {
+		this.logger &#x3D; new Logger(environment.appName, environment.endpoints.elasticSearchEndpoint);
+	}
 
-  public logHttpInfo(info: any, elapsedTime: number, requestPath: string) {
-    // TODO: create and set correlation id
-    const url &#x3D; location.href;
-    const logFields: LogFields &#x3D; {
-      environment: environment.env,
-      userId: this.userId,
-      requestPath,
-      elapsedTime,
-      url,
-    };
+	public logHttpInfo(info: any, elapsedTime: number, requestPath: string) {
+		// TODO: create and set correlation id
+		const url &#x3D; location.href;
+		const logFields: LogFields &#x3D; {
+			environment: environment.env,
+			userId: this.userId,
+			requestPath,
+			elapsedTime,
+			url
+		};
 
-    this.logger.log(&#x27;Information&#x27;, &#x60;${info}&#x60;, logFields);
-  }
+		this.logger.log(&#x27;Information&#x27;, &#x60;${info}&#x60;, logFields);
+	}
 
-  public logWarning(errorMsg: string) {
-    const url &#x3D; location.href;
+	public logWarning(errorMsg: string) {
+		const logFields &#x3D; this.logging();
+		this.logger.log(&#x27;Warning&#x27;, errorMsg, logFields);
+	}
 
-    const logFields: LogFields &#x3D; {
-      environment: environment.env,
-      userId: this.userId,
-      requestPath: &#x27;&#x27;,
-      elapsedTime: 0,
-      url: url,
-    };
+	private logging() {
+		const url &#x3D; location.href;
 
-    this.logger.log(&#x27;Warning&#x27;, errorMsg, logFields);
-  }
+		const logFields: LogFields &#x3D; {
+			environment: environment.env,
+			userId: this.userId,
+			requestPath: &#x27;&#x27;,
+			elapsedTime: 0,
+			url: url
+		};
+		return logFields;
+	}
 
-  public logError(errorMsg: string) {
-    const url &#x3D; location.href;
+	public logError(errorMsg: string) {
+		const logFields &#x3D; this.logging();
+		this.logger.log(&#x27;Warning&#x27;, errorMsg, logFields);
+		this.logger.log(&#x27;Error&#x27;, errorMsg, logFields);
+	}
 
-    const logFields: LogFields &#x3D; {
-      environment: environment.env,
-      userId: this.userId,
-      requestPath: &#x27;&#x27;,
-      elapsedTime: 0,
-      url: url,
-    };
+	public logInfo(info: any) {
+		const url &#x3D; location.href;
 
-    this.logger.log(&#x27;Error&#x27;, errorMsg, logFields);
-  }
+		const logFields: LogFields &#x3D; {
+			environment: environment.env,
+			userId: this.userId,
+			requestPath: &#x27;&#x27;,
+			elapsedTime: 0,
+			url
+		};
 
-  public logInfo(info: any) {
-    const url &#x3D; location.href;
-
-    const logFields: LogFields &#x3D; {
-      environment: environment.env,
-      userId: this.userId,
-      requestPath: &#x27;&#x27;,
-      elapsedTime: 0,
-      url,
-    };
-
-    this.logger.log(&#x27;Information&#x27;, info, logFields);
-  }
-}</code></pre>
+		this.logger.log(&#x27;Information&#x27;, info, logFields);
+	}
+}
+</code></pre>
     </div>
 
 </div>

@@ -754,11 +754,10 @@ export class AddUser1Component implements OnInit {
 
   public onSubmit(form: NgForm): any {
     const quiztakerId &#x3D; this.quizTakers.filter(Id &#x3D;&gt; Id.selected).map(idSelected &#x3D;&gt; idSelected.Id);
-    const subscription &#x3D; this.httpService.addUserInExistingSchedule(this.data, quiztakerId).subscribe(res &#x3D;&gt; {
+    this.httpService.addUserInExistingSchedule(this.data, quiztakerId).subscribe(res &#x3D;&gt; {
       this.toastr.success(&#x27;added succesfully&#x27;);
       this.dialogRef.close(&#x27;Added&#x27;);
     });
-    subscription.unsubscribe();
   }
 
 }
@@ -799,7 +798,7 @@ export class AddUser1Component implements OnInit {
                 <p class="comment">
                     <code>./add-user1.component.css</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">mat-dialog-content {
+                <pre class="line-numbers"><code class="language-scss">.mat-dialog-content {
 	position: relative;
 }
 
@@ -812,7 +811,7 @@ export class AddUser1Component implements OnInit {
 	height: 35px;
 }
 
-mat-icon {
+.mat-icon {
 	width: 30px;
 	height: 30px;
 	position: absolute;

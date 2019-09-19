@@ -344,8 +344,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/app/features/content-creator/components/user-details/user-details.component.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/app/features/content-creator/components/user-details/user-details.component.ts:44</a></div>
                 </td>
             </tr>
 
@@ -679,22 +679,20 @@ export class UserDetailsComponent implements OnInit {
 	}
 
 	private loadUserDetails(): void {
-		const subscription &#x3D; this.httpService.getUserDetails().subscribe((res: any) &#x3D;&gt; {
+		this.httpService.getUserDetails().subscribe((res: any) &#x3D;&gt; {
 			this.firstName &#x3D; res.FirstName;
 			this.lastName &#x3D; res.LastName;
 			this.email &#x3D; res.Email;
 		});
-		subscription.unsubscribe();
 	}
 
 	private loadUserProgress(): void {
-		const subscription &#x3D; this.httpService.getContentCreatorProgress().subscribe((res: any) &#x3D;&gt; {
+	 this.httpService.getContentCreatorProgress().subscribe((res: any) &#x3D;&gt; {
 			this.quizzes &#x3D; res.QuizzesCreated;
 			this.questions &#x3D; res.QuestionsCreated;
 			this.tags &#x3D; res.TagsCreated;
 			this.show &#x3D; false;
 		});
-		subscription.unsubscribe();
 	}
 
 }

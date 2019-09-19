@@ -354,8 +354,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="78"
-                            class="link-to-prism">src/app/features/content-creator/components/update-question/update-question.component.ts:78</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="77"
+                            class="link-to-prism">src/app/features/content-creator/components/update-question/update-question.component.ts:77</a></div>
                 </td>
             </tr>
 
@@ -422,8 +422,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="92"
-                            class="link-to-prism">src/app/features/content-creator/components/update-question/update-question.component.ts:92</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="91"
+                            class="link-to-prism">src/app/features/content-creator/components/update-question/update-question.component.ts:91</a></div>
                 </td>
             </tr>
 
@@ -504,8 +504,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="82"
-                            class="link-to-prism">src/app/features/content-creator/components/update-question/update-question.component.ts:82</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="81"
+                            class="link-to-prism">src/app/features/content-creator/components/update-question/update-question.component.ts:81</a></div>
                 </td>
             </tr>
 
@@ -576,8 +576,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/app/features/content-creator/components/update-question/update-question.component.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/app/features/content-creator/components/update-question/update-question.component.ts:57</a></div>
                 </td>
             </tr>
 
@@ -974,12 +974,12 @@ export class UpdateQuestionComponent implements OnInit {
   public ngOnInit(): void {
     this.flag &#x3D; this.service.readonlyStatus;
     if (this.flag &#x3D;&#x3D;&#x3D; true) {
-      this.label &#x3D; &quot;View Question&quot;;
+      this.label &#x3D; &#x27;View Question&#x27;;
     } else {
-      this.label &#x3D; &quot;Edit Questions&quot;;
+      this.label &#x3D; &#x27;Edit Questions&#x27;;
     }
-    if (this.service.formData.ImageName !&#x3D;&#x3D; null) {
-      this.imageSource &#x3D; environment.imgURl + this.service.formData.ImageName;
+    if (this.service.formData.imageName !&#x3D;&#x3D; null) {
+      this.imageSource &#x3D; environment.imgURl + this.service.formData.imageName;
     }
     this.dropdownSettings &#x3D; {
       singleSelection: false,
@@ -990,10 +990,9 @@ export class UpdateQuestionComponent implements OnInit {
       allowSearchFilter: true,
     };
     this.createdBy &#x3D; this.storageService.getStorage(&#x27;uid&#x27;);
-    const subscription &#x3D; this.httpService.retrieveSubjects().subscribe(res &#x3D;&gt; {
+    this.httpService.retrieveSubjects().subscribe(res &#x3D;&gt; {
       this.subjects &#x3D; res as Subject[];
     });
-    subscription.unsubscribe();
   }
 
   private resetForm(form?: NgForm): void {
@@ -1001,19 +1000,19 @@ export class UpdateQuestionComponent implements OnInit {
       form.resetForm();
     }
     this.service.formData &#x3D; {
-      QuestionType: &quot;&quot;,
-      QuestionId: null,
-      QuestionStatement: &quot;&quot;,
-      Option1: &quot;&quot;,
-      Option2: &quot;&quot;,
-      Option3: &quot;&quot;,
-      Option4: &quot;&quot;,
-      Answer: null,
-      Marks: null,
-      Difficulty: &quot;&quot;,
-      SubjectId: &quot;&quot;,
-      ImageName: null
-    }
+      questionType: &#x27;&#x27;,
+      questionId: null,
+      questionStatement: &#x27;&#x27;,
+      option1: &#x27;&#x27;,
+      option2: &#x27;&#x27;,
+      option3: &#x27;&#x27;,
+      option4: &#x27;&#x27;,
+      answer: null,
+      marks: null,
+      difficulty: &#x27;&#x27;,
+      subjectId: &#x27;&#x27;,
+      imageName: null
+    };
   }
 
   public chooseFile(event): void {
@@ -1031,11 +1030,10 @@ export class UpdateQuestionComponent implements OnInit {
   }
 
   public deleteImage(): void {
-    const subscription &#x3D; this.httpService.deleteImageFromQues(this.service.formData.QuestionId).subscribe(res &#x3D;&gt; {
+    this.httpService.deleteImageFromQues(this.service.formData.questionId).subscribe(res &#x3D;&gt; {
       this.toastr.success(&#x27;Image Successfully Removed&#x27;);
       this.dialogRef.close(&#x27;Submitted&#x27;);
     });
-    subscription.unsubscribe();
   }
 
 }
@@ -1052,12 +1050,12 @@ export class UpdateQuestionComponent implements OnInit {
       &lt;h5 class&#x3D;&quot;card-title&quot;&gt;{{label}}&lt;/h5&gt;
       &lt;form #form&#x3D;&quot;ngForm&quot; (submit)&#x3D;&quot;onSubmit(form)&quot; autocomplete&#x3D;&quot;off&quot;&gt;
         &lt;input type&#x3D;&quot;hidden&quot; name&#x3D;&quot;CreatedBy&quot; #CreatedBy&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;createdBy&quot;&gt;
-        &lt;input type&#x3D;&quot;hidden&quot; name&#x3D;&quot;QuestionId&quot; #QuestionId&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;service.formData.QuestionId&quot;&gt;
-        &lt;input type&#x3D;&quot;hidden&quot; name&#x3D;&quot;ImageName&quot; #ImageName&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;service.formData.ImageName&quot;&gt;
+        &lt;input type&#x3D;&quot;hidden&quot; name&#x3D;&quot;QuestionId&quot; #QuestionId&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;service.formData.questionId&quot;&gt;
+        &lt;input type&#x3D;&quot;hidden&quot; name&#x3D;&quot;ImageName&quot; #ImageName&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;service.formData.imageName&quot;&gt;
         &lt;div class&#x3D;&quot;form-group&quot;&gt;
           &lt;label&gt;Question&lt;/label&gt;
           &lt;textarea class&#x3D;&quot;form-control&quot; [readonly]&#x3D;&quot;flag&quot; name&#x3D;&quot;QuestionStatement&quot; #QuestionStatement&#x3D;&quot;ngModel&quot;
-            [(ngModel)]&#x3D;&quot;service.formData.QuestionStatement&quot; rows&#x3D;&quot;3&quot;&gt;&lt;/textarea&gt;
+            [(ngModel)]&#x3D;&quot;service.formData.questionStatement&quot; rows&#x3D;&quot;3&quot;&gt;&lt;/textarea&gt;
           &lt;div class&#x3D;&quot;validation-error&quot; *ngIf&#x3D;&quot;QuestionStatement.invalid &amp;&amp; QuestionStatement.touched&quot;&gt;This field is
             required.
           &lt;/div&gt;
@@ -1066,13 +1064,13 @@ export class UpdateQuestionComponent implements OnInit {
           &lt;div class&#x3D;&quot;form-group col-md-6&quot;&gt;
             &lt;label&gt;Option 1&lt;/label&gt;
             &lt;input required type&#x3D;&quot;text&quot; [readonly]&#x3D;&quot;flag&quot; name&#x3D;&quot;Option1&quot; #Option1&#x3D;&quot;ngModel&quot;
-              [(ngModel)]&#x3D;&quot;service.formData.Option1&quot; class&#x3D;&quot;form-control&quot;&gt;
+              [(ngModel)]&#x3D;&quot;service.formData.option1&quot; class&#x3D;&quot;form-control&quot;&gt;
             &lt;div class&#x3D;&quot;validation-error&quot; *ngIf&#x3D;&quot;Option1.invalid &amp;&amp; Option1.touched&quot;&gt;This field is required.&lt;/div&gt;
           &lt;/div&gt;
           &lt;div class&#x3D;&quot;form-group col-md-6&quot;&gt;
             &lt;label&gt;Option 2&lt;/label&gt;
             &lt;input required type&#x3D;&quot;text&quot; [readonly]&#x3D;&quot;flag&quot; name&#x3D;&quot;Option2&quot; #Option2&#x3D;&quot;ngModel&quot;
-              [(ngModel)]&#x3D;&quot;service.formData.Option2&quot; class&#x3D;&quot;form-control&quot;&gt;
+              [(ngModel)]&#x3D;&quot;service.formData.option2&quot; class&#x3D;&quot;form-control&quot;&gt;
             &lt;div class&#x3D;&quot;validation-error&quot; *ngIf&#x3D;&quot;Option2.invalid &amp;&amp; Option2.touched&quot;&gt;This field is required.&lt;/div&gt;
           &lt;/div&gt;
         &lt;/div&gt;
@@ -1080,18 +1078,18 @@ export class UpdateQuestionComponent implements OnInit {
           &lt;div class&#x3D;&quot;form-group col-md-6&quot;&gt;
             &lt;label&gt;Option 3&lt;/label&gt;
             &lt;input type&#x3D;&quot;text&quot; [readonly]&#x3D;&quot;flag&quot; name&#x3D;&quot;Option3&quot; #Option3&#x3D;&quot;ngModel&quot;
-              [(ngModel)]&#x3D;&quot;service.formData.Option3&quot; class&#x3D;&quot;form-control&quot;&gt;
+              [(ngModel)]&#x3D;&quot;service.formData.option3&quot; class&#x3D;&quot;form-control&quot;&gt;
           &lt;/div&gt;
           &lt;div class&#x3D;&quot;form-group col-md-6&quot;&gt;
             &lt;label&gt;Option 4&lt;/label&gt;
             &lt;input type&#x3D;&quot;text&quot; [readonly]&#x3D;&quot;flag&quot; name&#x3D;&quot;Option4&quot; #Option4&#x3D;&quot;ngModel&quot;
-              [(ngModel)]&#x3D;&quot;service.formData.Option4&quot; class&#x3D;&quot;form-control&quot;&gt;
+              [(ngModel)]&#x3D;&quot;service.formData.option4&quot; class&#x3D;&quot;form-control&quot;&gt;
           &lt;/div&gt;
         &lt;/div&gt;
         &lt;div class&#x3D;&quot;form-row&quot;&gt;
           &lt;div class&#x3D;&quot;form-group col-md-6&quot;&gt;
             &lt;label&gt;Correct Option&lt;/label&gt;
-            &lt;select name&#x3D;&quot;Answer&quot; [disabled]&#x3D;&quot;flag&quot; required #Answer&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;service.formData.Answer&quot;
+            &lt;select name&#x3D;&quot;Answer&quot; [disabled]&#x3D;&quot;flag&quot; required #Answer&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;service.formData.answer&quot;
               class&#x3D;&quot;form-control&quot;&gt;
               &lt;option value&#x3D;&quot;&quot;&gt;Choose&lt;/option&gt;
               &lt;option value&#x3D;&quot;1&quot;&gt;1&lt;/option&gt;
@@ -1104,7 +1102,7 @@ export class UpdateQuestionComponent implements OnInit {
           &lt;/div&gt;
           &lt;div class&#x3D;&quot;form-group col-md-6&quot;&gt;
             &lt;label&gt;Marks&lt;/label&gt;
-            &lt;select name&#x3D;&quot;Marks&quot; [disabled]&#x3D;&quot;flag&quot; required #Marks&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;service.formData.Marks&quot;
+            &lt;select name&#x3D;&quot;Marks&quot; [disabled]&#x3D;&quot;flag&quot; required #Marks&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;service.formData.marks&quot;
               class&#x3D;&quot;form-control&quot;&gt;
               &lt;option value&#x3D;&quot;&quot;&gt;Choose&lt;/option&gt;
               &lt;option value&#x3D;&quot;1&quot;&gt;1&lt;/option&gt;
@@ -1119,14 +1117,14 @@ export class UpdateQuestionComponent implements OnInit {
           &lt;div class&#x3D;&quot;form-group col-md-6&quot;&gt;
             &lt;label&gt;Select Subject&lt;/label&gt;
             &lt;ng-multiselect-dropdown name&#x3D;&quot;Tags&quot; #Tags&#x3D;&quot;ngModel&quot; placeholder&#x3D;&quot;Choose&quot; required [data]&#x3D;&quot;subjects&quot;
-              [disabled]&#x3D;&quot;flag&quot; [settings]&#x3D;&quot;dropdownSettings&quot; [(ngModel)]&#x3D;&quot;service.formData.Tags&quot;&gt;
+              [disabled]&#x3D;&quot;flag&quot; [settings]&#x3D;&quot;dropdownSettings&quot; [(ngModel)]&#x3D;&quot;service.formData.tags&quot;&gt;
             &lt;/ng-multiselect-dropdown&gt;
             &lt;div class&#x3D;&quot;validation-error&quot; *ngIf&#x3D;&quot;Tags.invalid &amp;&amp; Tags.touched&quot;&gt;This field is required.&lt;/div&gt;
           &lt;/div&gt;
           &lt;div class&#x3D;&quot;form-group col-md-6&quot;&gt;
             &lt;label&gt;Select Difficulty-Level&lt;/label&gt;
             &lt;select name&#x3D;&quot;Difficulty&quot; [disabled]&#x3D;&quot;flag&quot; required #Difficulty&#x3D;&quot;ngModel&quot;
-              [(ngModel)]&#x3D;&quot;service.formData.Difficulty&quot; class&#x3D;&quot;form-control&quot;&gt;
+              [(ngModel)]&#x3D;&quot;service.formData.difficulty&quot; class&#x3D;&quot;form-control&quot;&gt;
               &lt;option value&#x3D;&quot;&quot;&gt;Choose&lt;/option&gt;
               &lt;option value&#x3D;&quot;Beginner&quot;&gt;Beginner&lt;/option&gt;
               &lt;option value&#x3D;&quot;Intermediate&quot;&gt;Intermediate&lt;/option&gt;
@@ -1139,7 +1137,7 @@ export class UpdateQuestionComponent implements OnInit {
           &lt;div class&#x3D;&quot;form-group col-md-6&quot;&gt;
             &lt;label&gt;Select Type&lt;/label&gt;
             &lt;select name&#x3D;&quot;QuestionType&quot; [disabled]&#x3D;&quot;flag&quot; required #QuestionType&#x3D;&quot;ngModel&quot;
-              [(ngModel)]&#x3D;&quot;service.formData.QuestionType&quot; class&#x3D;&quot;form-control&quot;&gt;
+              [(ngModel)]&#x3D;&quot;service.formData.questionType&quot; class&#x3D;&quot;form-control&quot;&gt;
               &lt;option value&#x3D;&quot;&quot;&gt;Choose&lt;/option&gt;
               &lt;option value&#x3D;&quot;Mock&quot;&gt;Mock&lt;/option&gt;
               &lt;option value&#x3D;&quot;Scheduled&quot;&gt;Scheduled&lt;/option&gt;
@@ -1175,7 +1173,7 @@ export class UpdateQuestionComponent implements OnInit {
                 <p class="comment">
                     <code>./update-question.component.css</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">mat-dialog-content {
+                <pre class="line-numbers"><code class="language-scss">.mat-dialog-content {
 	position: relative;
 }
 .pos {
@@ -1186,7 +1184,7 @@ export class UpdateQuestionComponent implements OnInit {
 	width: 35px;
 	height: 35px;
 }
-mat-icon {
+.mat-icon {
 	width: 30px;
 	height: 30px;
 	position: absolute;
@@ -1221,7 +1219,7 @@ mat-icon {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><button type="button " [mat-dialog-close] class="btn btn-danger pos">  <mat-icon>clear</mat-icon></button><div class="card">  <mat-dialog-content>    <div class="card-body">      <h5 class="card-title">{{label}}</h5>      <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">        <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="createdBy">        <input type="hidden" name="QuestionId" #QuestionId="ngModel" [(ngModel)]="service.formData.QuestionId">        <input type="hidden" name="ImageName" #ImageName="ngModel" [(ngModel)]="service.formData.ImageName">        <div class="form-group">          <label>Question</label>          <textarea class="form-control" [readonly]="flag" name="QuestionStatement" #QuestionStatement="ngModel"            [(ngModel)]="service.formData.QuestionStatement" rows="3"></textarea>          <div class="validation-error" *ngIf="QuestionStatement.invalid && QuestionStatement.touched">This field is            required.          </div>        </div>        <div class="form-row">          <div class="form-group col-md-6">            <label>Option 1</label>            <input required type="text" [readonly]="flag" name="Option1" #Option1="ngModel"              [(ngModel)]="service.formData.Option1" class="form-control">            <div class="validation-error" *ngIf="Option1.invalid && Option1.touched">This field is required.</div>          </div>          <div class="form-group col-md-6">            <label>Option 2</label>            <input required type="text" [readonly]="flag" name="Option2" #Option2="ngModel"              [(ngModel)]="service.formData.Option2" class="form-control">            <div class="validation-error" *ngIf="Option2.invalid && Option2.touched">This field is required.</div>          </div>        </div>        <div class="form-row">          <div class="form-group col-md-6">            <label>Option 3</label>            <input type="text" [readonly]="flag" name="Option3" #Option3="ngModel"              [(ngModel)]="service.formData.Option3" class="form-control">          </div>          <div class="form-group col-md-6">            <label>Option 4</label>            <input type="text" [readonly]="flag" name="Option4" #Option4="ngModel"              [(ngModel)]="service.formData.Option4" class="form-control">          </div>        </div>        <div class="form-row">          <div class="form-group col-md-6">            <label>Correct Option</label>            <select name="Answer" [disabled]="flag" required #Answer="ngModel" [(ngModel)]="service.formData.Answer"              class="form-control">              <option value="">Choose</option>              <option value="1">1</option>              <option value="2">2</option>              <option value="3">3</option>              <option value="4">4</option>            </select>            <div class="validation-error" *ngIf="Answer.invalid && Answer.touched">This field is required.            </div>          </div>          <div class="form-group col-md-6">            <label>Marks</label>            <select name="Marks" [disabled]="flag" required #Marks="ngModel" [(ngModel)]="service.formData.Marks"              class="form-control">              <option value="">Choose</option>              <option value="1">1</option>              <option value="2">2</option>              <option value="3">3</option>              <option value="5">5</option>            </select>            <div class="validation-error" *ngIf="Marks.invalid && Marks.touched">This field is required.</div>          </div>        </div>        <div class="form-row">          <div class="form-group col-md-6">            <label>Select Subject</label>            <ng-multiselect-dropdown name="Tags" #Tags="ngModel" placeholder="Choose" required [data]="subjects"              [disabled]="flag" [settings]="dropdownSettings" [(ngModel)]="service.formData.Tags">            </ng-multiselect-dropdown>            <div class="validation-error" *ngIf="Tags.invalid && Tags.touched">This field is required.</div>          </div>          <div class="form-group col-md-6">            <label>Select Difficulty-Level</label>            <select name="Difficulty" [disabled]="flag" required #Difficulty="ngModel"              [(ngModel)]="service.formData.Difficulty" class="form-control">              <option value="">Choose</option>              <option value="Beginner">Beginner</option>              <option value="Intermediate">Intermediate</option>              <option value="Advanced">Advanced</option>            </select>            <div class="validation-error" *ngIf="Difficulty.invalid && Difficulty.touched">This field is required.</div>          </div>        </div>        <div class="form-row">          <div class="form-group col-md-6">            <label>Select Type</label>            <select name="QuestionType" [disabled]="flag" required #QuestionType="ngModel"              [(ngModel)]="service.formData.QuestionType" class="form-control">              <option value="">Choose</option>              <option value="Mock">Mock</option>              <option value="Scheduled">Scheduled</option>            </select>            <div class="validation-error" *ngIf="QuestionType.invalid && QuestionType.touched">This field is required.            </div>          </div>          <div [hidden]="flag" class="form-group col-md-6">            <strong><label>Select/Change Image</label></strong>            <input type="file" (change)="chooseFile($event)" name="ImageNameDemo" class="form-control">          </div>        </div>        <div style="float:right" class="form-group">          <div class="row">            <div class="col-md-6">              <button [hidden]="flag" type="submit" [disabled]="form.invalid || flag"                class="btn btn-primary">Submit</button>            </div>          </div>        </div>        <strong><img [src]="imageSource" alt="Image Does Not Exist"></strong>        <br><br>      </form>      <button type="button" *ngIf="imageSource" (click)="deleteImage()" style="cursor: pointer;" [hidden]="bool"        class="btn btn-outline-danger">        <i class="fa fa-trash" aria-hidden="true"> Delete Image</i></button>    </div>  </mat-dialog-content></div></div>'
+        var COMPONENT_TEMPLATE = '<div><button type="button " [mat-dialog-close] class="btn btn-danger pos">  <mat-icon>clear</mat-icon></button><div class="card">  <mat-dialog-content>    <div class="card-body">      <h5 class="card-title">{{label}}</h5>      <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">        <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="createdBy">        <input type="hidden" name="QuestionId" #QuestionId="ngModel" [(ngModel)]="service.formData.questionId">        <input type="hidden" name="ImageName" #ImageName="ngModel" [(ngModel)]="service.formData.imageName">        <div class="form-group">          <label>Question</label>          <textarea class="form-control" [readonly]="flag" name="QuestionStatement" #QuestionStatement="ngModel"            [(ngModel)]="service.formData.questionStatement" rows="3"></textarea>          <div class="validation-error" *ngIf="QuestionStatement.invalid && QuestionStatement.touched">This field is            required.          </div>        </div>        <div class="form-row">          <div class="form-group col-md-6">            <label>Option 1</label>            <input required type="text" [readonly]="flag" name="Option1" #Option1="ngModel"              [(ngModel)]="service.formData.option1" class="form-control">            <div class="validation-error" *ngIf="Option1.invalid && Option1.touched">This field is required.</div>          </div>          <div class="form-group col-md-6">            <label>Option 2</label>            <input required type="text" [readonly]="flag" name="Option2" #Option2="ngModel"              [(ngModel)]="service.formData.option2" class="form-control">            <div class="validation-error" *ngIf="Option2.invalid && Option2.touched">This field is required.</div>          </div>        </div>        <div class="form-row">          <div class="form-group col-md-6">            <label>Option 3</label>            <input type="text" [readonly]="flag" name="Option3" #Option3="ngModel"              [(ngModel)]="service.formData.option3" class="form-control">          </div>          <div class="form-group col-md-6">            <label>Option 4</label>            <input type="text" [readonly]="flag" name="Option4" #Option4="ngModel"              [(ngModel)]="service.formData.option4" class="form-control">          </div>        </div>        <div class="form-row">          <div class="form-group col-md-6">            <label>Correct Option</label>            <select name="Answer" [disabled]="flag" required #Answer="ngModel" [(ngModel)]="service.formData.answer"              class="form-control">              <option value="">Choose</option>              <option value="1">1</option>              <option value="2">2</option>              <option value="3">3</option>              <option value="4">4</option>            </select>            <div class="validation-error" *ngIf="Answer.invalid && Answer.touched">This field is required.            </div>          </div>          <div class="form-group col-md-6">            <label>Marks</label>            <select name="Marks" [disabled]="flag" required #Marks="ngModel" [(ngModel)]="service.formData.marks"              class="form-control">              <option value="">Choose</option>              <option value="1">1</option>              <option value="2">2</option>              <option value="3">3</option>              <option value="5">5</option>            </select>            <div class="validation-error" *ngIf="Marks.invalid && Marks.touched">This field is required.</div>          </div>        </div>        <div class="form-row">          <div class="form-group col-md-6">            <label>Select Subject</label>            <ng-multiselect-dropdown name="Tags" #Tags="ngModel" placeholder="Choose" required [data]="subjects"              [disabled]="flag" [settings]="dropdownSettings" [(ngModel)]="service.formData.tags">            </ng-multiselect-dropdown>            <div class="validation-error" *ngIf="Tags.invalid && Tags.touched">This field is required.</div>          </div>          <div class="form-group col-md-6">            <label>Select Difficulty-Level</label>            <select name="Difficulty" [disabled]="flag" required #Difficulty="ngModel"              [(ngModel)]="service.formData.difficulty" class="form-control">              <option value="">Choose</option>              <option value="Beginner">Beginner</option>              <option value="Intermediate">Intermediate</option>              <option value="Advanced">Advanced</option>            </select>            <div class="validation-error" *ngIf="Difficulty.invalid && Difficulty.touched">This field is required.</div>          </div>        </div>        <div class="form-row">          <div class="form-group col-md-6">            <label>Select Type</label>            <select name="QuestionType" [disabled]="flag" required #QuestionType="ngModel"              [(ngModel)]="service.formData.questionType" class="form-control">              <option value="">Choose</option>              <option value="Mock">Mock</option>              <option value="Scheduled">Scheduled</option>            </select>            <div class="validation-error" *ngIf="QuestionType.invalid && QuestionType.touched">This field is required.            </div>          </div>          <div [hidden]="flag" class="form-group col-md-6">            <strong><label>Select/Change Image</label></strong>            <input type="file" (change)="chooseFile($event)" name="ImageNameDemo" class="form-control">          </div>        </div>        <div style="float:right" class="form-group">          <div class="row">            <div class="col-md-6">              <button [hidden]="flag" type="submit" [disabled]="form.invalid || flag"                class="btn btn-primary">Submit</button>            </div>          </div>        </div>        <strong><img [src]="imageSource" alt="Image Does Not Exist"></strong>        <br><br>      </form>      <button type="button" *ngIf="imageSource" (click)="deleteImage()" style="cursor: pointer;" [hidden]="bool"        class="btn btn-outline-danger">        <i class="fa fa-trash" aria-hidden="true"> Delete Image</i></button>    </div>  </mat-dialog-content></div></div>'
     var COMPONENTS = [{'name': 'AddQuesInQuizComponent', 'selector': 'app-add-ques-in-quiz'},{'name': 'AddUser1Component', 'selector': 'app-add-user1'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AnalyticsByQuizComponent', 'selector': 'app-analytics-by-quiz'},{'name': 'AnalyticsByTagComponent', 'selector': 'app-analytics-by-tag'},{'name': 'AnalyticsByUserComponent', 'selector': 'app-analytics-by-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchivedScheduleComponent', 'selector': 'app-archived-schedule'},{'name': 'ArchiveQuizComponent', 'selector': 'app-archive-quiz'},{'name': 'ContentCreatorComponent', 'selector': 'app-content-creator'},{'name': 'CreateQuestionsComponent', 'selector': 'app-create-questions'},{'name': 'CreateQuizComponent', 'selector': 'app-create-quiz'},{'name': 'CreateScheduleComponent', 'selector': 'app-create-schedule'},{'name': 'CreatetagComponent', 'selector': 'app-createtag'},{'name': 'DetailedReportComponent', 'selector': 'app-detailed-report'},{'name': 'DetailsComponent', 'selector': 'app-details'},{'name': 'EmployeeComponent', 'selector': 'app-employee'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HttpInterceptorComponent', 'selector': 'app-http-interceptor'},{'name': 'InstructionsComponent', 'selector': 'app-instructions'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainNav2Component', 'selector': 'app-main-nav2'},{'name': 'MainNav3Component', 'selector': 'app-main-nav3'},{'name': 'Mainnav4Component', 'selector': 'app-mainnav4'},{'name': 'MainNavComponent', 'selector': 'app-main-nav'},{'name': 'MockComponent', 'selector': 'app-mock'},{'name': 'MockReportComponent', 'selector': 'app-mock-report'},{'name': 'NonMockComponent', 'selector': 'app-non-mock'},{'name': 'NonMockReportComponent', 'selector': 'app-non-mock-report'},{'name': 'ReportingUserComponent', 'selector': 'app-reporting-user'},{'name': 'ResultComponent', 'selector': 'app-result'},{'name': 'RetrieveQuestionBankComponent', 'selector': 'app-retrieve-question-bank'},{'name': 'RetrieveQuizComponent', 'selector': 'retrieve-quiz'},{'name': 'RetrieveScheduleComponent', 'selector': 'app-retrieve-schedule'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TakeQuizComponent', 'selector': 'app-take-quiz'},{'name': 'TestAdminComponent', 'selector': 'app-test-admin'},{'name': 'UpdateQuestionComponent', 'selector': 'app-update-question'},{'name': 'UpdateQuizComponent', 'selector': 'app-update-quiz'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'ViewScheduleComponent', 'selector': 'app-view-schedule'},{'name': 'ViewUserDetailsComponent', 'selector': 'app-view-user-details'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'UpdateQuestionComponent'};

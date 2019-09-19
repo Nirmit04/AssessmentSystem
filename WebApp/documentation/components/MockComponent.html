@@ -386,8 +386,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="64"
-                            class="link-to-prism">src/app/features/employee/components/mock/mock.component.ts:64</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">src/app/features/employee/components/mock/mock.component.ts:63</a></div>
                 </td>
             </tr>
 
@@ -782,7 +782,7 @@ export class MockComponent implements OnInit {
   }
 
   private getMockList(): void {
-    const subscription &#x3D; this.httpService.getListOfMockQuizzes().subscribe((res: any) &#x3D;&gt; {
+    this.httpService.getListOfMockQuizzes().subscribe((res: any) &#x3D;&gt; {
       this.mockList &#x3D; res as any[];
       for (this.index &#x3D; 1; this.index &lt;&#x3D; this.mockList.length; this.index++) {
         this.mockList[this.index - 1].SerialNumber &#x3D; this.index;
@@ -794,12 +794,11 @@ export class MockComponent implements OnInit {
         this.mockList[this.index - 1].Tags1 &#x3D; this.mockList[this.index - 1].Tags1.substring(0, this.mockList[this.index - 1].Tags1.length - 1);
       }
     });
-    subscription.unsubscribe();
   }
 
   public takeMockQuiz(QuizId: number, QuizName: string, index: number): void {
     this.service.quizId &#x3D; QuizId;
-    const subscription &#x3D; this.httpService.getMockQuesOfQuiz(QuizId).subscribe((res: any) &#x3D;&gt; {
+    this.httpService.getMockQuesOfQuiz(QuizId).subscribe((res: any) &#x3D;&gt; {
       if (res !&#x3D;&#x3D; &#x27;Quiz Started&#x27;) {
         this.service.statusMapping &#x3D; res.GetQuestionBuffers;
         this.time &#x3D; res.TimeLeft.split(&quot;:&quot;);
@@ -817,7 +816,6 @@ export class MockComponent implements OnInit {
       this.service.quizScheduleId &#x3D; null;
       this.router.navigate([&#x27;/emp-dash/quiz/take-quiz&#x27;]);
     });
-    subscription.unsubscribe();
   }
 
 }

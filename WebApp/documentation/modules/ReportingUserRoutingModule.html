@@ -34,7 +34,7 @@
 
 <ol class="breadcrumb">
     <li>Modules</li>
-    <li>AppRoutingModule</li>
+    <li>ReportingUserRoutingModule</li>
 </ol>
 
 
@@ -54,7 +54,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/app-routing.module.ts</code>
+            <code>src/app/features/reporting-user/reporting-user-routing.module.ts</code>
         </p>
 
 
@@ -72,29 +72,28 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { Routes, RouterModule } from &#x27;@angular/router&#x27;;
-import { HomeComponent } from &#x27;./core/home/home.component&#x27;;
-import { LoginComponent } from &#x27;./core/login/login.component&#x27;;
-import { AppComponent } from &#x27;./app.component&#x27;;
-import { AuthGuard } from &#x27;./auth.guard&#x27;;
-import { HttpInterceptorComponent } from &#x27;./core/interceptors/http-interceptor/http-interceptor.component&#x27;;
+import { AnalyticsByTagComponent } from &#x27;./components/analytics-by-tag/analytics-by-tag.component&#x27;;
+import { AnalyticsByUserComponent } from &#x27;./components/analytics-by-user/analytics-by-user.component&#x27;;
+import { AnalyticsByQuizComponent } from &#x27;./components/analytics-by-quiz/analytics-by-quiz.component&#x27;;
+import { ReportingUserComponent } from &#x27;./reporting-user.component&#x27;;
+import { ViewUserDetailsComponent } from &#x27;./components/analytics-by-user/view-user-details/view-user-details.component&#x27;;
+import { DetailsComponent } from &#x27;./components/analytics-by-quiz/details/details.component&#x27;;
+import { AuthGuard } from &#x27;../../auth.guard&#x27;;
 
 const routes: Routes &#x3D; [
-	{ path: &#x27;home&#x27;, component: HomeComponent },
-	{ path: &#x27;&#x27;, component: LoginComponent, pathMatch: &#x27;full&#x27; },
-	{ path: &#x27;app-root&#x27;, component: AppComponent },
-	{ path: &#x27;cc-dash&#x27;, loadChildren: &#x27;./features/content-creator/content-creator.module#ContentCreatorModule&#x27;, canActivate: [AuthGuard], data: { roles: [&#x27;Content-Creator&#x27;] } },
-	{ path: &#x27;login&#x27;, component: LoginComponent },
-	{ path: &#x27;ta-dash&#x27;, loadChildren: &#x27;./features/test-admin/test-admin.module#TestAdminModule&#x27;, canActivate: [AuthGuard], data: { roles: [&#x27;Test-Administrator&#x27;] } },
-	{ path: &#x27;emp-dash&#x27;, loadChildren: &#x27;./features/employee/employee.module#EmployeeModule&#x27;, canActivate: [AuthGuard], data: { roles: [&#x27;Employee&#x27;] } },
-	{ path: &#x27;ru-dash&#x27;, loadChildren: &#x27;./features/reporting-user/reporting-user.module#ReportingUserModule&#x27;, canActivate: [AuthGuard], data: { roles: [&#x27;Reporting-User&#x27;] } },
-	{ path: &#x27;http-error&#x27;, component: HttpInterceptorComponent },
+    { path: &#x27;&#x27;, component: ReportingUserComponent, canActivate: [AuthGuard] },
+    { path: &#x27;ana-by-user&#x27;, component: AnalyticsByUserComponent, canActivate: [AuthGuard] },
+    { path: &#x27;ana-by-tag&#x27;, component: AnalyticsByTagComponent, canActivate: [AuthGuard] },
+    { path: &#x27;ana-by-quiz&#x27;, component: AnalyticsByQuizComponent, canActivate: [AuthGuard] },
+    { path: &#x27;ana-by-user/user-detail&#x27;, component: ViewUserDetailsComponent, canActivate: [AuthGuard] },
+    { path: &#x27;ana-by-user/quiz-detail&#x27;, component: DetailsComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes)],
-	exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class ReportingUserRoutingModule { }
 </code></pre>
     </div>
 </div>
@@ -130,7 +129,7 @@ export class AppRoutingModule { }
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
-            var COMPODOC_CURRENT_PAGE_URL = 'AppRoutingModule.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'ReportingUserRoutingModule.html';
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
