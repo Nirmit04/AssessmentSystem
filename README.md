@@ -5,12 +5,12 @@ The main objective of the project titled “Assessment System” was to enable o
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-git clone https://github.com/Nirmit04/AssessmentSystem.git
-cd AssessmentSystem
-npm install
-ng serve --open
-
+<ul>
+ <li>git clone https://github.com/Nirmit04/AssessmentSystem.git</li>
+ <li>cd AssessmentSystem</li>
+ <li>npm install</li>
+ <li>ng serve --open</li>
+</ul>
 ### Prerequisites
 
 Things to have angular app running on your system are:
@@ -34,14 +34,14 @@ Things to have .Net application running on your system
 2. Install the SQL database, latest is recommended.
 
 Install the VSCode on your machine.
-After cloning the project on your machine by the following command - 
-git clone https://github.com/Nirmit04/AssessmentSystem.git, perform the following steps :
-cd AssessmentSystem
-npm install
-ng serve --open
-Browse to the application at [http://localhost:4200]
-Sign in to the application.
-
+<ul>After cloning the project on your machine by the following command - 
+ <li>git clone https://github.com/Nirmit04/AssessmentSystem.git</li>
+ <li>cd AssessmentSystem.</li>
+ <li>npm install.</li>
+ <li>ng serve --open.</li>
+ <li>Browse to the application at [http://localhost:4200].</li>
+ <li>Sign in to the application.</li>
+</ul>
 ## Feature list
 
  * Content Creator
@@ -129,6 +129,6 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 ## Authors
 
-* **Pulkit Varma** - *Initial work*
+* **Anand Roy** 
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/Nirmit04/AssessmentSystem/graphs/contributors) who participated in this project.
