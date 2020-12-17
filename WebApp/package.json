@@ -26,7 +26,7 @@
     "angularx-social-login": "^1.2.6",
     "chart.js": "^2.8.0",
     "core-js": "^2.5.4",
-    "datatables.net": "^1.10.19",
+    "datatables.net": "^1.10.22",
     "datatables.net-dt": "^1.10.19",
     "jquery": "^3.4.1",
     "luxon": "^1.12.0",
